@@ -1,0 +1,6 @@
+{
+  printIndent();
+  m_writer.write(o.toString());
+  m_writer.write("\n");
+  m_indent=true;
+}

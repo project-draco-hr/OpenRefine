@@ -1,0 +1,22 @@
+{
+  writer.println("{");
+  writer.indent();
+{
+    String[] names=no.getNames(no);
+    for (int i=0; i < names.length; i++) {
+      String name=names[i];
+      Object value=no.get(name);
+      writer.print("'");
+      writer.print(name + "' : ");
+      writeObject(writer,value);
+      if (i < names.length - 1) {
+        writer.println(",");
+      }
+ else {
+        writer.println();
+      }
+    }
+  }
+  writer.unindent();
+  writer.print("}");
+}

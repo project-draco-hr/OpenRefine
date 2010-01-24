@@ -1,0 +1,5 @@
+{
+  if (m_indent) {
+    m_writer.write(s_indents[m_count]);
+  }
+}

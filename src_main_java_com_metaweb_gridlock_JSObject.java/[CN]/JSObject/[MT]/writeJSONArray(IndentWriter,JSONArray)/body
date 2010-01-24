@@ -1,0 +1,19 @@
+{
+  writer.println("[");
+  writer.indent();
+{
+    int count=na.length();
+    for (int i=0; i < count; i++) {
+      Object element=na.get(i);
+      writeObject(writer,element);
+      if (i < count - 1) {
+        writer.println(",");
+      }
+ else {
+        writer.println();
+      }
+    }
+  }
+  writer.unindent();
+  writer.print("]");
+}

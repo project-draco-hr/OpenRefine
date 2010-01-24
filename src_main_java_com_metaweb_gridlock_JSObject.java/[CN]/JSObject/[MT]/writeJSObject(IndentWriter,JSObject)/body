@@ -1,0 +1,22 @@
+{
+  writer.println("{");
+  writer.indent();
+{
+    Enumeration e=jso.propertyNames();
+    while (e.hasMoreElements()) {
+      String name=(String)e.nextElement();
+      Object value=jso.get(name);
+      writer.print("'");
+      writer.print(name + "' : ");
+      writeObject(writer,value);
+      if (e.hasMoreElements()) {
+        writer.println(",");
+      }
+ else {
+        writer.println();
+      }
+    }
+  }
+  writer.unindent();
+  writer.print("}");
+}

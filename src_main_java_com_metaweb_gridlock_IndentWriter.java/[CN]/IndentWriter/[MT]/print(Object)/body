@@ -1,0 +1,5 @@
+{
+  printIndent();
+  m_writer.write(o.toString());
+  m_indent=false;
+}

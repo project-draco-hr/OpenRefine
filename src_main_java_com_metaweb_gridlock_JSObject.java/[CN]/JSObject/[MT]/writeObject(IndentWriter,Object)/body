@@ -1,0 +1,26 @@
+{
+  if (o == null) {
+    writer.print("null");
+  }
+ else   if (o instanceof Boolean) {
+    writer.print(((Boolean)o).booleanValue() ? "true" : "false");
+  }
+ else   if (o instanceof Number) {
+    writer.print(((Number)o).toString());
+  }
+ else   if (o instanceof Collection) {
+    writeCollection(writer,(Collection)o);
+  }
+ else   if (o instanceof JSONArray) {
+    writeJSONArray(writer,(JSONArray)o);
+  }
+ else   if (o instanceof JSObject) {
+    writeJSObject(writer,(JSObject)o);
+  }
+ else   if (o instanceof JSONObject) {
+    writeJSONObject(writer,(JSONObject)o);
+  }
+ else {
+    writer.print("\"" + StringEscapeUtils.escapeJavaScript(o.toString()) + "\"");
+  }
+}

@@ -1,0 +1,31 @@
+{
+  StringBuffer sb=new StringBuffer();
+  try {
+    MultipartParser parser=new MultipartParser(request,20 * 1024 * 1024);
+    Part part=null;
+    while ((part=parser.readNextPart()) != null) {
+      if (part.isFile()) {
+        Reader reader=new InputStreamReader(((FilePart)part).getInputStream());
+        LineNumberReader lnr=new LineNumberReader(reader);
+        try {
+          String line=null;
+          while ((line=lnr.readLine()) != null) {
+            sb.append(line);
+            sb.append('\n');
+          }
+        }
+  finally {
+          lnr.close();
+        }
+      }
+ else       if (part.isParam()) {
+        ParamPart paramPart=(ParamPart)part;
+        properties.put(part.getName(),paramPart.getStringValue());
+      }
+    }
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+  return sb.toString();
+}

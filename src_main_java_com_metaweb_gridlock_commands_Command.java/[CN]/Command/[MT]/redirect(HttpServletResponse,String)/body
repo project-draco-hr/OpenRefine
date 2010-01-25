@@ -1,0 +1,5 @@
+{
+  response.setStatus(HttpServletResponse.SC_OK);
+  String content="<html><head><meta http-equiv=\"refresh\" content=\"1;url=" + url + "\"></head><body></body></html>";
+  response.getWriter().print(content);
+}

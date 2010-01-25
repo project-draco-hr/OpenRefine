@@ -1,0 +1,30 @@
+{
+  File file=new File(_dir,"projects");
+  FileOutputStream fos=null;
+  ObjectOutputStream out=null;
+  try {
+    fos=new FileOutputStream(file);
+    out=new ObjectOutputStream(fos);
+    out.writeObject(this);
+    out.flush();
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+ finally {
+    if (fos != null) {
+      try {
+        fos.close();
+      }
+ catch (      Exception e) {
+      }
+    }
+    if (out != null) {
+      try {
+        out.close();
+      }
+ catch (      Exception e) {
+      }
+    }
+  }
+}

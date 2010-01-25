@@ -1,5 +1,0 @@
-{
-  if (s_verbose) {
-    e.printStackTrace();
-  }
-}

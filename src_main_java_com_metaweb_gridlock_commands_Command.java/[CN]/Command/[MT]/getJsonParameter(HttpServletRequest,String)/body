@@ -1,0 +1,12 @@
+{
+  String value=request.getParameter(name);
+  if (value != null) {
+    try {
+      JSONObject o=jsonStringToObject(value);
+      return o;
+    }
+ catch (    JSONException e) {
+    }
+  }
+  return null;
+}

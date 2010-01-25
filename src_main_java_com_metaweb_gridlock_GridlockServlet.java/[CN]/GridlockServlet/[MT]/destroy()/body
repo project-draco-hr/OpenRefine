@@ -1,0 +1,6 @@
+{
+  ProjectManager.singleton.saveAllProjects();
+  ProjectManager.singleton.save();
+  ProjectManager.singleton=null;
+  super.destroy();
+}

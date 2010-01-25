@@ -1,0 +1,11 @@
+{
+  try {
+    Project p=ProjectManager.singleton.getProject(Long.parseLong(request.getParameter("project")));
+    if (p != null) {
+      return p;
+    }
+  }
+ catch (  Exception e) {
+  }
+  throw new ServletException("Missing or bad project URL parameter");
+}

@@ -1,0 +1,11 @@
+{
+  if (singleton == null) {
+    File file=new File(dir,"projects");
+    if (file.exists()) {
+      singleton=load(file);
+    }
+    if (singleton == null) {
+      singleton=new ProjectManager(dir);
+    }
+  }
+}

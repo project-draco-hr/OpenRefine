@@ -1,0 +1,16 @@
+{
+  if (text.startsWith("\"") && text.endsWith("\"")) {
+    return text.substring(1,text.length() - 1);
+  }
+  try {
+    return Long.parseLong(text);
+  }
+ catch (  NumberFormatException e) {
+  }
+  try {
+    return Double.parseDouble(text);
+  }
+ catch (  NumberFormatException e) {
+  }
+  return text;
+}

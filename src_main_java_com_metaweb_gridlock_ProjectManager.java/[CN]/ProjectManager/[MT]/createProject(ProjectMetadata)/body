@@ -1,0 +1,6 @@
+{
+  Project project=new Project();
+  _projects.put(project.id,project);
+  _projectsMetadata.put(project.id,projectMetadata);
+  return project;
+}

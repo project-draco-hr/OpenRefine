@@ -1,0 +1,8 @@
+{
+  try {
+    return Integer.parseInt(request.getParameter(name));
+  }
+ catch (  Exception e) {
+  }
+  return def;
+}

@@ -1,4 +1,3 @@
 {
   super.init();
-  s_verbose="true".equalsIgnoreCase(System.getProperty("verbose"));
 }

@@ -1,0 +1,12 @@
+{
+  response.setStatus(HttpServletResponse.SC_OK);
+  OutputStream os=response.getOutputStream();
+  OutputStreamWriter osw=new OutputStreamWriter(os);
+  try {
+    osw.write(content);
+  }
+  finally {
+    osw.flush();
+    osw.close();
+  }
+}

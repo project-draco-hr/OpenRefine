@@ -2,8 +2,8 @@
   Properties properties=new Properties();
   String content=readFileUpload(request,properties);
   ProjectMetadata pm=new ProjectMetadata();
-  pm.name=properties.getProperty("name");
-  pm.password=properties.getProperty("password");
+  pm.name=properties.getProperty("project-name");
+  pm.password=properties.getProperty("project-password");
   Project project=ProjectManager.singleton.createProject(pm);
   int start=0;
   String sep=null;
@@ -26,11 +26,11 @@
         sep="\t";
       }
  else {
-        sep="\\,";
+        sep=",";
       }
     }
-    String[] cells=line.split(sep);
     if (first) {
+      String[] cells=line.split(sep);
       first=false;
       for (int c=0; c < cells.length; c++) {
         String cell=cells[c];
@@ -46,11 +46,11 @@
     }
  else {
       Row row=new Row(cellCount);
-      for (int c=0; c < cells.length; c++) {
-        String text=cells[c];
-        Cell cell=new Cell();
-        cell.value=parseCellValue(text);
-        row.cells.add(cell);
+      if (sep.charAt(0) == ',') {
+        parseCSVIntoRow(row,line);
+      }
+ else {
+        parseTSVIntoRow(row,line);
       }
       project.rows.add(row);
     }

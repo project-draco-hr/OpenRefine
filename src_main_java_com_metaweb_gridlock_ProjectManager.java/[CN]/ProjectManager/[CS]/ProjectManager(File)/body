@@ -1,5 +1,6 @@
 {
   _dir=dir;
   _dir.mkdirs();
+  _projectsMetadata=new HashMap<Long,ProjectMetadata>();
   internalInitialize();
 }

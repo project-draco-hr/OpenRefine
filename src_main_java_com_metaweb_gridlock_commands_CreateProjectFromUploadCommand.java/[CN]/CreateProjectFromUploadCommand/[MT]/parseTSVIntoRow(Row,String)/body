@@ -1,0 +1,9 @@
+{
+  String[] cells=line.split("\t");
+  for (int c=0; c < cells.length; c++) {
+    String text=cells[c];
+    Cell cell=new Cell();
+    cell.value=parseCellValue(text);
+    row.cells.add(cell);
+  }
+}

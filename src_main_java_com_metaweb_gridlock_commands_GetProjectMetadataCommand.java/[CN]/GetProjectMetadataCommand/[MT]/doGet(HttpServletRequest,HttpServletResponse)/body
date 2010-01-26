@@ -1,0 +1,9 @@
+{
+  Project project=getProject(request);
+  try {
+    respondJSON(response,ProjectManager.singleton.getProjectMetadata(project.id).getJSON());
+  }
+ catch (  JSONException e) {
+    respondException(response,e);
+  }
+}

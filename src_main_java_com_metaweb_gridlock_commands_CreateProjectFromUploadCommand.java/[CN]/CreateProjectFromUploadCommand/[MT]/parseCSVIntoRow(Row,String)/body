@@ -1,0 +1,31 @@
+{
+  int start=0;
+  while (start < line.length()) {
+    String text=null;
+    if (line.charAt(start) == '"') {
+      int next=line.indexOf('"',start + 1);
+      if (next < 0) {
+        text=line.substring(start);
+        start=line.length();
+      }
+ else {
+        text=line.substring(start,next + 1);
+        start=next + 2;
+      }
+    }
+ else {
+      int next=line.indexOf(',',start);
+      if (next < 0) {
+        text=line.substring(start);
+        start=line.length();
+      }
+ else {
+        text=line.substring(start,next);
+        start=next + 1;
+      }
+    }
+    Cell cell=new Cell();
+    cell.value=parseCellValue(text);
+    row.cells.add(cell);
+  }
+}

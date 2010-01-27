@@ -1,0 +1,5 @@
+{
+  _accessor=accessor;
+  _cellIndex=cellIndex;
+  _matches=matches;
+}

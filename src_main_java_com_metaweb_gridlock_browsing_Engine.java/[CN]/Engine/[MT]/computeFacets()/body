@@ -1,0 +1,6 @@
+{
+  for (  Facet facet : facets) {
+    FilteredRows filteredRows=getFilteredRows(facet);
+    facet.computeChoices(filteredRows);
+  }
+}

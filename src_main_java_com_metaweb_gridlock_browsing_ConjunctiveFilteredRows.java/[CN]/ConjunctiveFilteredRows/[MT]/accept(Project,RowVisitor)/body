@@ -1,0 +1,14 @@
+{
+  for (  Row row : project.rows) {
+    boolean ok=true;
+    for (    RowFilter rowFilter : _rowFilters) {
+      if (!rowFilter.filterRow(row)) {
+        ok=false;
+        break;
+      }
+    }
+    if (ok) {
+      visitor.visit(row);
+    }
+  }
+}

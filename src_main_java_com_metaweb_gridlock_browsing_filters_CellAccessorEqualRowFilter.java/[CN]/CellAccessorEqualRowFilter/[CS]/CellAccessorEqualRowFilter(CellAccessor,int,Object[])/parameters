@@ -1,0 +1,3 @@
+CellAccessor accessor
+int cellIndex
+Object[] matches

@@ -1,0 +1,30 @@
+{
+  File file=getFile();
+  FileOutputStream fos=null;
+  ObjectOutputStream out=null;
+  try {
+    fos=new FileOutputStream(file);
+    out=new ObjectOutputStream(fos);
+    out.writeObject(_change);
+    out.flush();
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+ finally {
+    if (fos != null) {
+      try {
+        fos.close();
+      }
+ catch (      Exception e) {
+      }
+    }
+    if (out != null) {
+      try {
+        out.close();
+      }
+ catch (      Exception e) {
+      }
+    }
+  }
+}

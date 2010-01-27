@@ -1,0 +1,4 @@
+{
+  _cellChanges=new CellChange[cellChanges.size()];
+  cellChanges.toArray(_cellChanges);
+}

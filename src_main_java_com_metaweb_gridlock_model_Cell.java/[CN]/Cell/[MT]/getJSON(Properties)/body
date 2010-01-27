@@ -1,0 +1,8 @@
+{
+  JSONObject o=new JSONObject();
+  o.put("v",value);
+  if (recon != null && options.containsKey("cell-recon")) {
+    o.put("recon",recon.getJSON(options));
+  }
+  return o;
+}

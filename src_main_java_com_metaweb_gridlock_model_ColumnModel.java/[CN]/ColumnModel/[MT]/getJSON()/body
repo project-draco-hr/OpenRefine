@@ -1,9 +1,0 @@
-{
-  JSONObject o=new JSONObject();
-  List<JSONObject> a=new ArrayList<JSONObject>(columns.size());
-  for (  Column column : columns) {
-    a.add(column.getJSON());
-  }
-  o.put("columns",a);
-  return o;
-}

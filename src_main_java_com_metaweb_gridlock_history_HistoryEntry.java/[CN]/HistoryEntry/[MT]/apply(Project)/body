@@ -1,0 +1,6 @@
+{
+  if (_change == null) {
+    loadChange();
+  }
+  _change.apply(project);
+}

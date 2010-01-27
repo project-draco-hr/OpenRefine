@@ -1,0 +1,9 @@
+{
+  Project project=ProjectManager.singleton.getProject(_projectID);
+  while (times > 0 && _futureEntries.size() > 0) {
+    HistoryEntry entry=_futureEntries.remove(0);
+    times--;
+    entry.apply(project);
+    _pastEntries.add(entry);
+  }
+}

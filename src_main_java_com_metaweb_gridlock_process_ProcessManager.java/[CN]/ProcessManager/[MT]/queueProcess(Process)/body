@@ -1,0 +1,10 @@
+{
+  if (process.isImmediate() && _processes.size() == 0) {
+    process.performImmediate();
+    return true;
+  }
+ else {
+    _processes.add(process);
+    return false;
+  }
+}

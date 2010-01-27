@@ -1,0 +1,3 @@
+{
+  return _pastEntries.subList(Math.max(_pastEntries.size() - count,0),_pastEntries.size());
+}

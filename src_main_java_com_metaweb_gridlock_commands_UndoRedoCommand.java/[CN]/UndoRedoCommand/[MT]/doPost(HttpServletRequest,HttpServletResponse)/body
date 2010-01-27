@@ -1,0 +1,6 @@
+{
+  Project project=getProject(request);
+  long lastDoneID=Long.parseLong(request.getParameter("lastDoneID"));
+  boolean done=project.processManager.queueProcess(new HistoryProcess(project,lastDoneID));
+  respond(response,"{ \"code\" : " + (done ? "\"ok\"" : "\"pending\"") + " }");
+}

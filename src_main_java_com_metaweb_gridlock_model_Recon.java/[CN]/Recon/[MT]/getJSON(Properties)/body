@@ -1,0 +1,13 @@
+{
+  JSONObject o=new JSONObject();
+  if (judgment == Judgment.None) {
+    o.put("j","none");
+  }
+ else   if (judgment == Judgment.Approve) {
+    o.put("j","approve");
+  }
+ else   if (judgment == Judgment.New) {
+    o.put("j","new");
+  }
+  return o;
+}

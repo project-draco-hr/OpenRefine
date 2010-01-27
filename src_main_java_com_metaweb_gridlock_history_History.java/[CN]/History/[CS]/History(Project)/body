@@ -1,0 +1,5 @@
+{
+  _projectID=project.id;
+  _pastEntries=new ArrayList<HistoryEntry>();
+  _futureEntries=new ArrayList<HistoryEntry>();
+}

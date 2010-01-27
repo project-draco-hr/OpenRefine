@@ -46,13 +46,9 @@
     }
  else {
       Row row=new Row(cellCount);
-      if (sep.charAt(0) == ',') {
-        parseCSVIntoRow(row,line);
+      if ((sep.charAt(0) == ',') ? parseCSVIntoRow(row,line) : parseTSVIntoRow(row,line)) {
+        project.rows.add(row);
       }
- else {
-        parseTSVIntoRow(row,line);
-      }
-      project.rows.add(row);
     }
   }
   redirect(response,"/project.html?project=" + project.id);

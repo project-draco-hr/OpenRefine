@@ -1,4 +1,5 @@
 {
+  boolean hasData=false;
   int start=0;
   while (start < line.length()) {
     String text=null;
@@ -27,5 +28,9 @@
     Cell cell=new Cell();
     cell.value=parseCellValue(text);
     row.cells.add(cell);
+    if (text.length() > 0) {
+      hasData=true;
+    }
   }
+  return hasData;
 }

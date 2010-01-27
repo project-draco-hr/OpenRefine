@@ -1,0 +1,22 @@
+{
+  List<Evaluable> l=new LinkedList<Evaluable>();
+  if (_token != null && (_token.type != TokenType.Delimiter || !_token.text.equals(closingDelimiter))) {
+    while (_token != null) {
+      Evaluable eval=parseExpression();
+      l.add(eval);
+      if (_token != null && _token.type == TokenType.Delimiter && _token.text.equals(",")) {
+        next();
+      }
+ else {
+        break;
+      }
+    }
+  }
+  if (_token != null && _token.type == TokenType.Delimiter && _token.text.equals(closingDelimiter)) {
+    next();
+  }
+ else {
+    throw makeException("Missing " + closingDelimiter);
+  }
+  return l;
+}

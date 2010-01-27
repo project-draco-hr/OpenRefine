@@ -1,0 +1,10 @@
+{
+  Evaluable sub=parseTerm();
+  while (_token != null && _token.type == TokenType.Operator && "+-".indexOf(_token.text) >= 0) {
+    String op=_token.text;
+    next();
+    Evaluable sub2=parseSubExpression();
+    sub=new OperatorCallExpr(new Evaluable[]{sub,sub2},op);
+  }
+  return sub;
+}

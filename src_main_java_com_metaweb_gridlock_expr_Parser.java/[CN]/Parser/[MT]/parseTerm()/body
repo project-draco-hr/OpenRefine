@@ -1,0 +1,10 @@
+{
+  Evaluable factor=parseFactor();
+  while (_token != null && _token.type == TokenType.Operator && "*/".indexOf(_token.text) >= 0) {
+    String op=_token.text;
+    next();
+    Evaluable factor2=parseFactor();
+    factor=new OperatorCallExpr(new Evaluable[]{factor,factor2},op);
+  }
+  return factor;
+}

@@ -1,50 +1,40 @@
 {
   Project project=getProject(request);
   int cellIndex=Integer.parseInt(request.getParameter("cell"));
+  String columnName=null;
+  for (  Column column : project.columnModel.columns) {
+    if (column.cellIndex == cellIndex) {
+      columnName=column.headerLabel;
+      break;
+    }
+  }
   String expression=request.getParameter("expression");
-  Evaluable eval=null;
-  if (expression.startsWith("replace(this.value,")) {
-    String s="[" + expression.substring("replace(this.value,".length(),expression.length() - 1) + "]";
-    try {
-      JSONTokener t=new JSONTokener(s);
-      JSONArray a=(JSONArray)t.nextValue();
-      eval=new FunctionCallExpr(new Evaluable[]{new FieldAccessorExpr(new VariableExpr("this"),"value"),new LiteralExpr(a.get(0)),new LiteralExpr(a.get(1))},new Replace());
-    }
- catch (    JSONException e) {
-    }
-  }
- else {
-    Function f=null;
-    if (expression.equals("toUppercase(this.value)")) {
-      f=new ToUppercase();
-    }
- else     if (expression.equals("toLowercase(this.value)")) {
-      f=new ToLowercase();
-    }
- else     if (expression.equals("toTitlecase(this.value)")) {
-      f=new ToTitlecase();
-    }
-    eval=new FunctionCallExpr(new Evaluable[]{new FieldAccessorExpr(new VariableExpr("this"),"value")},f);
-  }
-  Properties bindings=new Properties();
-  List<CellChange> cellChanges=new ArrayList<CellChange>(project.rows.size());
-  for (int r=0; r < project.rows.size(); r++) {
-    Row row=project.rows.get(r);
-    if (cellIndex < row.cells.size()) {
-      Cell cell=row.cells.get(cellIndex);
-      if (cell.value == null) {
-        continue;
+  try {
+    Evaluable eval=new Parser(expression).getExpression();
+    Properties bindings=new Properties();
+    List<CellChange> cellChanges=new ArrayList<CellChange>(project.rows.size());
+    for (int r=0; r < project.rows.size(); r++) {
+      Row row=project.rows.get(r);
+      if (cellIndex < row.cells.size()) {
+        Cell cell=row.cells.get(cellIndex);
+        if (cell.value == null) {
+          continue;
+        }
+        bindings.put("this",cell);
+        bindings.put("value",cell.value);
+        Cell newCell=new Cell();
+        newCell.value=eval.evaluate(bindings);
+        newCell.recon=cell.recon;
+        CellChange cellChange=new CellChange(r,cellIndex,cell,newCell);
+        cellChanges.add(cellChange);
       }
-      bindings.put("this",cell);
-      Cell newCell=new Cell();
-      newCell.value=eval.evaluate(bindings);
-      newCell.recon=cell.recon;
-      CellChange cellChange=new CellChange(r,cellIndex,cell,newCell);
-      cellChanges.add(cellChange);
     }
+    MassCellChange massCellChange=new MassCellChange(cellChanges);
+    HistoryEntry historyEntry=new HistoryEntry(project,"Text transform on " + columnName + ": "+ expression,massCellChange);
+    boolean done=project.processManager.queueProcess(new QuickHistoryEntryProcess(project,historyEntry));
+    respond(response,"{ \"code\" : " + (done ? "\"ok\"" : "\"pending\"") + " }");
   }
-  MassCellChange massCellChange=new MassCellChange(cellChanges);
-  HistoryEntry historyEntry=new HistoryEntry(project,"Text transform: " + expression,massCellChange);
-  boolean done=project.processManager.queueProcess(new QuickHistoryEntryProcess(project,historyEntry));
-  respond(response,"{ \"code\" : " + (done ? "\"ok\"" : "\"pending\"") + " }");
+ catch (  Exception e) {
+    respondException(response,e);
+  }
 }

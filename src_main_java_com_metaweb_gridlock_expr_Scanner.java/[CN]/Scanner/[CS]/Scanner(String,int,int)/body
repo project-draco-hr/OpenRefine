@@ -1,0 +1,5 @@
+{
+  _text=s;
+  _index=from;
+  _limit=to;
+}

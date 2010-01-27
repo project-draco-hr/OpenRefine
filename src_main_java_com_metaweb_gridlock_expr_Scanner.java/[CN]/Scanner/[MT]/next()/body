@@ -1,0 +1,95 @@
+{
+  while (_index < _limit && Character.isWhitespace(_text.charAt(_index))) {
+    _index++;
+  }
+  if (_index == _limit) {
+    return null;
+  }
+  char c=_text.charAt(_index);
+  int start=_index;
+  String detail=null;
+  if (Character.isDigit(c)) {
+    double value=0;
+    while (_index < _limit && Character.isDigit(c=_text.charAt(_index))) {
+      value=value * 10 + (c - '0');
+      _index++;
+    }
+    if (_index < _limit && c == '.') {
+      _index++;
+      double division=1;
+      while (_index < _limit && Character.isDigit(c=_text.charAt(_index))) {
+        value=value * 10 + (c - '0');
+        division*=10;
+        _index++;
+      }
+      value/=division;
+    }
+    return new NumberToken(start,_index,_text.substring(start,_index),value);
+  }
+ else   if (c == '"' || c == '\'') {
+    StringBuffer sb=new StringBuffer();
+    char delimiter=c;
+    _index++;
+    while (_index < _limit) {
+      c=_text.charAt(_index);
+      if (c == delimiter) {
+        _index++;
+        return new Token(start,_index,TokenType.String,sb.toString());
+      }
+ else       if (c == '\\') {
+        _index++;
+        if (_index < _limit) {
+          sb.append(_text.charAt(_index));
+        }
+      }
+ else {
+        sb.append(c);
+      }
+      _index++;
+    }
+    detail="String not properly closed";
+  }
+ else   if (Character.isLetter(c)) {
+    while (_index < _limit && Character.isLetterOrDigit(_text.charAt(_index))) {
+      _index++;
+    }
+    return new Token(start,_index,TokenType.Identifier,_text.substring(start,_index));
+  }
+ else   if ("+-*/.".indexOf(c) >= 0) {
+    _index++;
+    return new Token(start,_index,TokenType.Operator,_text.substring(start,_index));
+  }
+ else   if ("()[],".indexOf(c) >= 0) {
+    _index++;
+    return new Token(start,_index,TokenType.Delimiter,_text.substring(start,_index));
+  }
+ else   if (c == '!' && _index < _limit - 1 && _text.charAt(_index + 1) == '=') {
+    _index+=2;
+    return new Token(start,_index,TokenType.Operator,_text.substring(start,_index));
+  }
+ else   if (c == '<') {
+    if (_index < _limit - 1 && (_text.charAt(_index + 1) == '=' || _text.charAt(_index + 1) == '>')) {
+      _index+=2;
+      return new Token(start,_index,TokenType.Operator,_text.substring(start,_index));
+    }
+ else {
+      _index++;
+      return new Token(start,_index,TokenType.Operator,_text.substring(start,_index));
+    }
+  }
+ else   if (">=".indexOf(c) >= 0) {
+    if (_index < _limit - 1 && _text.charAt(_index + 1) == '=') {
+      _index+=2;
+      return new Token(start,_index,TokenType.Operator,_text.substring(start,_index));
+    }
+ else {
+      _index++;
+      return new Token(start,_index,TokenType.Operator,_text.substring(start,_index));
+    }
+  }
+ else {
+    _index++;
+    detail="Unrecognized symbol";
+  }
+  return new ErrorToken(start,_index,_text.substring(start,_index),detail);
+}

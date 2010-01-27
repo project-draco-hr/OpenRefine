@@ -1,0 +1,4 @@
+{
+  super(start,end,TokenType.Error,text);
+  this.detail=detail;
+}

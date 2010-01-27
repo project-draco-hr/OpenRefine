@@ -1,0 +1,4 @@
+{
+  this.decoratedValue=decoratedValue;
+  this.value=value;
+}

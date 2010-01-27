@@ -1,3 +1,4 @@
 {
+  response.setHeader("Content-Type","application/json");
   respond(response,o.toString());
 }

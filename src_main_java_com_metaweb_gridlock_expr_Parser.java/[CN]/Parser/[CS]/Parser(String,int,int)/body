@@ -1,0 +1,5 @@
+{
+  _scanner=new Scanner(s,from,to);
+  _token=_scanner.next();
+  _root=parseExpression();
+}

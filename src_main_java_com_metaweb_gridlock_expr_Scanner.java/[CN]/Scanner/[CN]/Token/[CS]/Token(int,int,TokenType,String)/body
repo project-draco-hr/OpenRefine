@@ -1,0 +1,6 @@
+{
+  this.start=start;
+  this.end=end;
+  this.type=type;
+  this.text=text;
+}

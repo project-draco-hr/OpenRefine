@@ -1,0 +1,6 @@
+{
+  ExpressionNominalRowGrouper grouper=new ExpressionNominalRowGrouper(_eval,_cellIndex);
+  filteredRows.accept(project,grouper);
+  _choices.clear();
+  _choices.addAll(grouper.choices.values());
+}

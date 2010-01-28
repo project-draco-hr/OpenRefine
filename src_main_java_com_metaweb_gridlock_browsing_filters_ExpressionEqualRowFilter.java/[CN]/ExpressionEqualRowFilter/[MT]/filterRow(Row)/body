@@ -1,0 +1,19 @@
+{
+  if (_cellIndex < row.cells.size()) {
+    Cell cell=row.cells.get(_cellIndex);
+    if (cell != null) {
+      Properties bindings=new Properties();
+      bindings.put("this",cell);
+      bindings.put("value",cell.value);
+      Object value=_evaluable.evaluate(bindings);
+      if (value != null) {
+        for (        Object match : _matches) {
+          if (match.equals(value)) {
+            return true;
+          }
+        }
+      }
+    }
+  }
+  return false;
+}

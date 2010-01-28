@@ -1,6 +1,6 @@
 {
   ConjunctiveFilteredRows cfr=new ConjunctiveFilteredRows();
-  for (  Facet facet : facets) {
+  for (  Facet facet : _facets) {
     if (facet != except) {
       cfr.add(facet.getRowFilter());
     }

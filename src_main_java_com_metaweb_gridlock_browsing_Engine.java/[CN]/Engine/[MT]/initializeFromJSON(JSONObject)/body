@@ -10,7 +10,7 @@
     }
     if (facet != null) {
       facet.initializeFromJSON(fo);
-      facets.add(facet);
+      _facets.add(facet);
     }
   }
 }

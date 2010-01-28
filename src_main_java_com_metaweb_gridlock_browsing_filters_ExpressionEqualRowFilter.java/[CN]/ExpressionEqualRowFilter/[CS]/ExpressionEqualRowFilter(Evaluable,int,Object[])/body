@@ -1,0 +1,5 @@
+{
+  _evaluable=evaluable;
+  _cellIndex=cellIndex;
+  _matches=matches;
+}

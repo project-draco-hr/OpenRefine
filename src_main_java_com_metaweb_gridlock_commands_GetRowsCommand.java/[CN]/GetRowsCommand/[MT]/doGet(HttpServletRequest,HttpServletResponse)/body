@@ -1,16 +1,33 @@
 {
-  Project project=getProject(request);
-  int start=Math.min(project.rows.size(),Math.max(0,getIntegerParameter(request,"start",0)));
-  int limit=Math.min(project.rows.size() - start,Math.max(0,getIntegerParameter(request,"limit",20)));
-  Properties options=new Properties();
   try {
+    Project project=getProject(request);
+    Engine engine=getEngine(request,project);
+    int start=Math.min(project.rows.size(),Math.max(0,getIntegerParameter(request,"start",0)));
+    int limit=Math.min(project.rows.size() - start,Math.max(0,getIntegerParameter(request,"limit",20)));
+    Properties options=new Properties();
     JSONObject o=new JSONObject();
     List<JSONObject> a=new ArrayList<JSONObject>(limit);
     try {
-      for (int r=start; r < start + limit && r < project.rows.size(); r++) {
-        Row row=project.rows.get(r);
-        a.add(row.getJSON(options));
+      FilteredRows filteredRows=engine.getAllFilteredRows();
+      RowAccumulator acc=new RowAccumulator(start,limit){
+        List<JSONObject> list;
+        Properties options;
+        public RowAccumulator init(        List<JSONObject> list,        Properties options){
+          this.list=list;
+          this.options=options;
+          return this;
+        }
+        @Override public void internalVisit(        Row row){
+          try {
+            list.add(row.getJSON(options));
+          }
+ catch (          JSONException e) {
+          }
+        }
       }
+.init(a,options);
+      filteredRows.accept(project,acc);
+      o.put("filtered",acc.total);
     }
  catch (    JSONException e) {
       respondException(response,e);
@@ -21,7 +38,7 @@
     o.put("total",project.rows.size());
     respondJSON(response,o);
   }
- catch (  JSONException e) {
+ catch (  Exception e) {
     respondException(response,e);
   }
 }

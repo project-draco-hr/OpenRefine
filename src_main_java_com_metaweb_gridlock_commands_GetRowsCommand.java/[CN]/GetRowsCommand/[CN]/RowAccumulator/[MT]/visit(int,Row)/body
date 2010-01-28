@@ -1,0 +1,6 @@
+{
+  if (total >= start && total < start + limit) {
+    internalVisit(row);
+  }
+  total++;
+}

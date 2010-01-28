@@ -1,0 +1,22 @@
+{
+  if (_cellIndex < row.cells.size()) {
+    Cell cell=row.cells.get(_cellIndex);
+    if (cell != null) {
+      Properties bindings=new Properties();
+      bindings.put("this",cell);
+      bindings.put("value",cell.value);
+      Object value=_evaluable.evaluate(bindings);
+      if (value != null) {
+        DecoratedValue dValue=new DecoratedValue(value,value.toString());
+        if (choices.containsKey(value)) {
+          choices.get(value).count++;
+        }
+ else {
+          NominalFacetChoice choice=new NominalFacetChoice(dValue);
+          choice.count=1;
+          choices.put(value,choice);
+        }
+      }
+    }
+  }
+}

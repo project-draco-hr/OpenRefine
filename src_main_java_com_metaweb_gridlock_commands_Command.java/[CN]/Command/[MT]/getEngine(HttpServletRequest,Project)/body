@@ -1,0 +1,11 @@
+{
+  Properties properties=new Properties();
+  readFileUpload(request,properties);
+  Engine engine=new Engine(project);
+  if (properties.containsKey("engine")) {
+    String json=properties.getProperty("engine");
+    JSONObject o=jsonStringToObject(json);
+    engine.initializeFromJSON(o);
+  }
+  return engine;
+}

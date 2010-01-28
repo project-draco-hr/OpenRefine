@@ -1,3 +1,12 @@
 {
-  return null;
+  JSONObject o=new JSONObject();
+  o.put("name",_name);
+  o.put("expression",_expression);
+  o.put("cellIndex",_cellIndex);
+  List<JSONObject> a=new ArrayList<JSONObject>(_choices.size());
+  for (  NominalFacetChoice choice : _choices) {
+    a.add(choice.getJSON(options));
+  }
+  o.put("choices",a);
+  return o;
 }

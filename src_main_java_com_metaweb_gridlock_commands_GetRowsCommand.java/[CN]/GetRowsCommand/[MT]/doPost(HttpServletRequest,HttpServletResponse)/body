@@ -17,9 +17,11 @@
           this.options=options;
           return this;
         }
-        @Override public void internalVisit(        Row row){
+        @Override public void internalVisit(        int rowIndex,        Row row){
           try {
-            list.add(row.getJSON(options));
+            JSONObject ro=row.getJSON(options);
+            ro.put("i",rowIndex);
+            list.add(ro);
           }
  catch (          JSONException e) {
           }

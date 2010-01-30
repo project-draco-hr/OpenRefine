@@ -3,4 +3,13 @@
   filteredRows.accept(project,grouper);
   _choices.clear();
   _choices.addAll(grouper.choices.values());
+  for (  NominalFacetChoice choice : _selection) {
+    if (grouper.choices.containsKey(choice.decoratedValue.value)) {
+      grouper.choices.get(choice.decoratedValue.value).selected=true;
+    }
+ else {
+      choice.count=0;
+      _choices.add(choice);
+    }
+  }
 }

@@ -2,7 +2,10 @@
   ConjunctiveFilteredRows cfr=new ConjunctiveFilteredRows();
   for (  Facet facet : _facets) {
     if (facet != except) {
-      cfr.add(facet.getRowFilter());
+      RowFilter rowFilter=facet.getRowFilter();
+      if (rowFilter != null) {
+        cfr.add(rowFilter);
+      }
     }
   }
   return cfr;

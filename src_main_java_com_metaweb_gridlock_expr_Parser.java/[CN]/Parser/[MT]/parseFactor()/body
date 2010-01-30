@@ -74,7 +74,7 @@
       next();
       List<Evaluable> args=parseExpressionList("]");
       args.add(0,eval);
-      eval=new FunctionCallExpr(makeArray(args),functionTable.get("slice"));
+      eval=new FunctionCallExpr(makeArray(args),functionTable.get("get"));
     }
  else {
       break;

@@ -1,0 +1,11 @@
+{
+  DecoratedValue dValue=new DecoratedValue(value,value.toString());
+  if (choices.containsKey(value)) {
+    choices.get(value).count++;
+  }
+ else {
+    NominalFacetChoice choice=new NominalFacetChoice(dValue);
+    choice.count=1;
+    choices.put(value,choice);
+  }
+}

@@ -3,7 +3,7 @@
   int length=a.length();
   for (int i=0; i < length; i++) {
     JSONObject fo=a.getJSONObject(i);
-    String type=fo.getString("type");
+    String type=fo.has("type") ? fo.getString("type") : "list";
     Facet facet=null;
     if ("list".equals(type)) {
       facet=new ListFacet();

@@ -1,6 +1,0 @@
-{
-  if (cell.recon != null) {
-    return new Object[]{cell.recon.features.get(_name)};
-  }
-  return null;
-}

@@ -12,6 +12,7 @@
   try {
     Evaluable eval=new Parser(expression).getExpression();
     Properties bindings=new Properties();
+    bindings.put("project",project);
     List<CellChange> cellChanges=new ArrayList<CellChange>(project.rows.size());
     for (int r=0; r < project.rows.size(); r++) {
       Row row=project.rows.get(r);
@@ -20,7 +21,7 @@
         if (cell.value == null) {
           continue;
         }
-        bindings.put("this",cell);
+        bindings.put("cell",cell);
         bindings.put("value",cell.value);
         Cell newCell=new Cell();
         newCell.value=eval.evaluate(bindings);

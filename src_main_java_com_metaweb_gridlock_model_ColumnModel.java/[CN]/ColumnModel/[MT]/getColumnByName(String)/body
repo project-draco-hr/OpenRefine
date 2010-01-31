@@ -1,0 +1,8 @@
+{
+  if (_nameToColumn == null) {
+    for (    Column column : columns) {
+      _nameToColumn.put(column.headerLabel,column);
+    }
+  }
+  return _nameToColumn.get(name);
+}

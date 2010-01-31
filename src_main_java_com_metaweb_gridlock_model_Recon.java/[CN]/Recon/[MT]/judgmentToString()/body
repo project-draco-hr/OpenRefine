@@ -1,0 +1,11 @@
+{
+  if (judgment == Judgment.Approve) {
+    return "approve";
+  }
+ else   if (judgment == Judgment.New) {
+    return "new";
+  }
+ else {
+    return "none";
+  }
+}

@@ -1,0 +1,12 @@
+{
+  if ("flagged".equals(name)) {
+    return flagged;
+  }
+ else   if ("starred".equals(name)) {
+    return starred;
+  }
+ else   if ("cells".equals(name)) {
+    return new Cells();
+  }
+  return null;
+}

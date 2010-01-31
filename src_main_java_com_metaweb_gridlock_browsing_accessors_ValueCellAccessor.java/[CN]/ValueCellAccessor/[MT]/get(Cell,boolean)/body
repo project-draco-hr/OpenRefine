@@ -1,6 +1,0 @@
-{
-  if (cell.value != null) {
-    return new Object[]{cell.value};
-  }
-  return null;
-}

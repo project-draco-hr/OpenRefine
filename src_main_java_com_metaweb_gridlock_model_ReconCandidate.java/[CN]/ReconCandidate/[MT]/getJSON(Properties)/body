@@ -4,5 +4,6 @@
   o.put("guid",topicGUID);
   o.put("name",topicName);
   o.put("types",typeIDs);
+  o.put("score",score);
   return o;
 }

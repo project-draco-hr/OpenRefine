@@ -1,0 +1,6 @@
+{
+  if (args.length > 0) {
+    return !objectToBoolean(args[0]);
+  }
+  return true;
+}

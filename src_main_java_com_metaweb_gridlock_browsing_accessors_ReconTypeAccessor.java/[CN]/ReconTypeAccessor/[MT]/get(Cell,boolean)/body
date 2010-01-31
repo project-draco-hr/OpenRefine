@@ -1,7 +1,0 @@
-{
-  if (cell.recon != null && cell.recon.candidates.size() > 0) {
-    ReconCandidate c=cell.recon.candidates.get(0);
-    return c.typeIDs;
-  }
-  return null;
-}

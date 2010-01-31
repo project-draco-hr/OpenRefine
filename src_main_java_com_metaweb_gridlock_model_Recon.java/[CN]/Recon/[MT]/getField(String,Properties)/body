@@ -1,0 +1,18 @@
+{
+  if ("best".equals(name)) {
+    return candidates.size() > 0 ? candidates.get(0) : null;
+  }
+ else   if ("judgment".equals(name) || "judgement".equals(name)) {
+    return judgmentToString();
+  }
+ else   if ("approved".equals(name)) {
+    return judgment == Judgment.Approve;
+  }
+ else   if ("new".equals(name)) {
+    return judgment == Judgment.New;
+  }
+ else   if ("match".equals(name)) {
+    return match;
+  }
+  return null;
+}

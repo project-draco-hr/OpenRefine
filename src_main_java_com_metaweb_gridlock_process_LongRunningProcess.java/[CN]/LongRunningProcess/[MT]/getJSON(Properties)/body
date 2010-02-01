@@ -1,0 +1,8 @@
+{
+  JSONObject o=new JSONObject();
+  o.put("description",_description);
+  o.put("immediate",false);
+  o.put("status",_thread == null ? "pending" : (_thread.isAlive() ? "running" : "done"));
+  o.put("progress",_progress);
+  return o;
+}

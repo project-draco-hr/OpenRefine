@@ -1,0 +1,18 @@
+{
+  while (_processes.size() > 0) {
+    Process p=_processes.get(0);
+    if (p.isImmediate()) {
+      p.performImmediate();
+      _processes.remove(0);
+    }
+ else     if (p.isDone()) {
+      _processes.remove(0);
+    }
+ else {
+      if (!p.isRunning()) {
+        p.startPerforming(this);
+      }
+      break;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  JSONObject o=new JSONObject();
+  List<JSONObject> a=new ArrayList<JSONObject>(_processes.size());
+  for (  Process p : _processes) {
+    a.add(p.getJSON(options));
+  }
+  o.put("processes",a);
+  return o;
+}

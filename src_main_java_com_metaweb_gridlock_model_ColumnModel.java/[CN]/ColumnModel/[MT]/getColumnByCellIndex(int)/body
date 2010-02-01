@@ -1,0 +1,8 @@
+{
+  for (  Column column : columns) {
+    if (column.cellIndex == cellIndex) {
+      return column;
+    }
+  }
+  return null;
+}

@@ -1,0 +1,7 @@
+{
+  if (_thread == null) {
+    _manager=manager;
+    _thread=new Thread(getRunnable());
+    _thread.start();
+  }
+}

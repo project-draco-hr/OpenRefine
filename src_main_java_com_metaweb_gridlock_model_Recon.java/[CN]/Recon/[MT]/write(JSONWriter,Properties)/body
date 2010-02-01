@@ -1,0 +1,6 @@
+{
+  writer.object();
+  writer.key("j");
+  writer.value(judgmentToString());
+  writer.endObject();
+}

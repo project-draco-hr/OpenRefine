@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("columns");
+  writer.array();
+  for (  Column column : columns) {
+    column.write(writer,options);
+  }
+  writer.endArray();
+  writer.endObject();
+}

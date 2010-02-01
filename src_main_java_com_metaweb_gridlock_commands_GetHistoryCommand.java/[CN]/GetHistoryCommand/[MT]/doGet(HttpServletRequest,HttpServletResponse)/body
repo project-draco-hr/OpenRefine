@@ -1,8 +1,7 @@
 {
   Project project=getProject(request);
-  Properties options=new Properties();
   try {
-    respondJSON(response,project.history.getJSON(options));
+    respondJSON(response,project.history);
   }
  catch (  JSONException e) {
     respondException(response,e);

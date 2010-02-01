@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("cellIndex");
+  writer.value(cellIndex);
+  writer.key("headerLabel");
+  writer.value(headerLabel);
+  writer.key("valueType");
+  writer.value(valueType == null ? null : valueType.getSimpleName());
+  writer.endObject();
+}

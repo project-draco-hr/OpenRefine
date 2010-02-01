@@ -1,8 +1,0 @@
-{
-  JSONObject o=new JSONObject();
-  SimpleDateFormat sdf=(SimpleDateFormat)SimpleDateFormat.getDateTimeInstance();
-  o.put("id",id);
-  o.put("description",description);
-  o.put("time",sdf.format(time));
-  return o;
-}

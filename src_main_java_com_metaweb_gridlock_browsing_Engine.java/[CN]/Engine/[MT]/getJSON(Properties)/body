@@ -1,9 +1,0 @@
-{
-  JSONObject o=new JSONObject();
-  List<JSONObject> a=new ArrayList<JSONObject>(_facets.size());
-  for (  Facet facet : _facets) {
-    a.add(facet.getJSON(options));
-  }
-  o.put("facets",a);
-  return o;
-}

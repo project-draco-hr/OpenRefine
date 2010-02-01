@@ -1,5 +1,0 @@
-{
-  JSONObject o=new JSONObject();
-  o.put("name",name);
-  return o;
-}

@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("facets");
+  writer.array();
+  for (  Facet facet : _facets) {
+    facet.write(writer,options);
+  }
+  writer.endArray();
+  writer.endObject();
+}

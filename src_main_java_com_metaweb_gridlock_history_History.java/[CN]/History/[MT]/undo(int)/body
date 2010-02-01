@@ -6,4 +6,5 @@
     entry.revert(project);
     _futureEntries.add(0,entry);
   }
+  setModified();
 }

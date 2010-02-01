@@ -1,0 +1,11 @@
+{
+  SimpleDateFormat sdf=(SimpleDateFormat)SimpleDateFormat.getDateTimeInstance();
+  writer.object();
+  writer.key("name");
+  writer.value(name);
+  writer.key("created");
+  writer.value(sdf.format(created));
+  writer.key("modified");
+  writer.value(sdf.format(modified));
+  writer.endObject();
+}

@@ -6,4 +6,5 @@
     entry.apply(project);
     _pastEntries.add(entry);
   }
+  setModified();
 }

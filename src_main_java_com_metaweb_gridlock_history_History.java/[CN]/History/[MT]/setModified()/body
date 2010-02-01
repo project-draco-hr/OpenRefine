@@ -1,0 +1,3 @@
+{
+  ProjectManager.singleton.getProjectMetadata(_projectID).modified=new Date();
+}

@@ -1,0 +1,18 @@
+{
+  writer.object();
+  writer.key("flagged");
+  writer.value(flagged);
+  writer.key("starred");
+  writer.value(starred);
+  writer.key("cells");
+  writer.array();
+  for (  Cell cell : cells) {
+    cell.write(writer,options);
+  }
+  writer.endArray();
+  if (options.containsKey("rowIndex")) {
+    writer.key("i");
+    writer.value(options.get("rowIndex"));
+  }
+  writer.endObject();
+}

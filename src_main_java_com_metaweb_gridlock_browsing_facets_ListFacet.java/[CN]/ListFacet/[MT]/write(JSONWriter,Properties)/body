@@ -1,0 +1,16 @@
+{
+  writer.object();
+  writer.key("name");
+  writer.value(_name);
+  writer.key("expression");
+  writer.value(_expression);
+  writer.key("cellIndex");
+  writer.value(_cellIndex);
+  writer.key("choices");
+  writer.array();
+  for (  NominalFacetChoice choice : _choices) {
+    choice.write(writer,options);
+  }
+  writer.endArray();
+  writer.endObject();
+}

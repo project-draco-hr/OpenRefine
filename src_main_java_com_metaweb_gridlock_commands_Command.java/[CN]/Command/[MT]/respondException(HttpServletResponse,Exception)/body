@@ -9,7 +9,8 @@
     pw.flush();
     sw.flush();
     o.put("stack",sw.toString());
-    respondJSON(response,o);
+    response.setHeader("Content-Type","application/json");
+    respond(response,o.toString());
   }
  catch (  JSONException e1) {
     e.printStackTrace(response.getWriter());

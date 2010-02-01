@@ -1,0 +1,16 @@
+{
+  writer.object();
+  writer.key("past");
+  writer.array();
+  for (  HistoryEntry entry : _pastEntries) {
+    entry.write(writer,options);
+  }
+  writer.endArray();
+  writer.key("future");
+  writer.array();
+  for (  HistoryEntry entry : _futureEntries) {
+    entry.write(writer,options);
+  }
+  writer.endArray();
+  writer.endObject();
+}

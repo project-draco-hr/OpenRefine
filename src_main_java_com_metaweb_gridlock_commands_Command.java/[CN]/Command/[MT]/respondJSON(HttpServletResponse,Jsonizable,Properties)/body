@@ -1,0 +1,5 @@
+{
+  response.setHeader("Content-Type","application/json");
+  JSONWriter writer=new JSONWriter(response.getWriter());
+  o.write(writer,options);
+}

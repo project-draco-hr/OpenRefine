@@ -1,0 +1,12 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value(_description);
+  writer.key("immediate");
+  writer.value(false);
+  writer.key("status");
+  writer.value(_thread == null ? "pending" : (_thread.isAlive() ? "running" : "done"));
+  writer.key("progress");
+  writer.value(_progress);
+  writer.endObject();
+}

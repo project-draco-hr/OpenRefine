@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("v");
+  writer.value(value);
+  if (recon != null && options.containsKey("cell-recon")) {
+    writer.key("recon");
+    recon.write(writer,options);
+  }
+  writer.endObject();
+}

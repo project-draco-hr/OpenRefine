@@ -1,7 +1,0 @@
-{
-  JSONObject o=new JSONObject();
-  o.put("cellIndex",cellIndex);
-  o.put("headerLabel",headerLabel);
-  o.put("valueType",valueType == null ? null : valueType.getSimpleName());
-  return o;
-}

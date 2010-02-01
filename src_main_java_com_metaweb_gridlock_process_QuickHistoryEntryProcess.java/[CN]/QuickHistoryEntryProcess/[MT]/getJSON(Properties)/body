@@ -1,7 +1,0 @@
-{
-  JSONObject o=new JSONObject();
-  o.put("description",_historyEntry.description);
-  o.put("immediate",true);
-  o.put("status",_done ? "done" : "pending");
-  return o;
-}

@@ -1,7 +1,0 @@
-{
-  JSONObject o=new JSONObject();
-  o.put("v",decoratedValue.getJSON(options));
-  o.put("c",count);
-  o.put("s",selected);
-  return o;
-}

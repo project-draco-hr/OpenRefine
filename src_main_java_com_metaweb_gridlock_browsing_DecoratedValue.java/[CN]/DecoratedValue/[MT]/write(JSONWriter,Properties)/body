@@ -1,0 +1,8 @@
+{
+  writer.object();
+  writer.key("v");
+  writer.value(value);
+  writer.key("l");
+  writer.value(label);
+  writer.endObject();
+}

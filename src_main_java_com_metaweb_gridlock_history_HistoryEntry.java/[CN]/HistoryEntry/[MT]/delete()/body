@@ -1,0 +1,6 @@
+{
+  File file=getFile();
+  if (file.exists()) {
+    file.delete();
+  }
+}

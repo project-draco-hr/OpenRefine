@@ -1,0 +1,5 @@
+Project project
+String description
+int cellIndex
+List<ReconEntry> entries
+String typeID

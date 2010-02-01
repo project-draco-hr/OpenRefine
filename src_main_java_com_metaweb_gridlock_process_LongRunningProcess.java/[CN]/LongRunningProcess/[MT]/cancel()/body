@@ -1,2 +1,6 @@
 {
+  _canceled=true;
+  if (_thread != null && _thread.isAlive()) {
+    _thread.interrupt();
+  }
 }

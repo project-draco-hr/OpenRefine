@@ -1,0 +1,3 @@
+{
+  return _thread != null && _thread.isAlive();
+}

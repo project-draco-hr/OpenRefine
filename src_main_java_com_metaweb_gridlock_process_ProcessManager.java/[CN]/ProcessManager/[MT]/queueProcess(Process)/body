@@ -5,6 +5,7 @@
   }
  else {
     _processes.add(process);
+    update();
     return false;
   }
 }

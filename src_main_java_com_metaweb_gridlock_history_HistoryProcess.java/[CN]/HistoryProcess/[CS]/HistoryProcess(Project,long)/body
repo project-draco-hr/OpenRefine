@@ -1,4 +1,11 @@
 {
   _project=project;
   _lastDoneID=lastDoneID;
+  if (_lastDoneID == 0) {
+    _description="Undo all";
+  }
+ else {
+    HistoryEntry entry=_project.history.getEntry(_lastDoneID);
+    _description="Undo/redo until after " + entry.description;
+  }
 }

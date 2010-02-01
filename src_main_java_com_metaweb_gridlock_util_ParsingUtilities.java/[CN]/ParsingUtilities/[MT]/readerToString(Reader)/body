@@ -1,0 +1,9 @@
+{
+  StringBuffer sb=new StringBuffer();
+  char[] chars=new char[8192];
+  int c;
+  while ((c=reader.read(chars)) > 0) {
+    sb.insert(sb.length(),chars,0,c);
+  }
+  return sb.toString();
+}

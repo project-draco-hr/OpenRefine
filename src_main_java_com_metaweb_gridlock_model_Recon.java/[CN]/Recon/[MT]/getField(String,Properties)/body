@@ -14,5 +14,13 @@
  else   if ("match".equals(name)) {
     return match;
   }
+ else   if ("features".equals(name)) {
+    return new HasFields(){
+      @Override public Object getField(      String name,      Properties bindings){
+        return features.get(name);
+      }
+    }
+;
+  }
   return null;
 }

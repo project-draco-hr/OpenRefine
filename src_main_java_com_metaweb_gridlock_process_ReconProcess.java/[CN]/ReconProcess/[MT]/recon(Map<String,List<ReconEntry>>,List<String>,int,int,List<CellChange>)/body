@@ -1,0 +1,65 @@
+{
+  StringWriter stringWriter=new StringWriter();
+  JSONWriter jsonWriter=new JSONWriter(stringWriter);
+  jsonWriter.object();
+  for (int i=0; from + i < to; i++) {
+    jsonWriter.key("q" + i + ":search");
+    jsonWriter.object();
+    jsonWriter.key("query");
+    jsonWriter.value(values.get(from + i));
+    jsonWriter.key("limit");
+    jsonWriter.value(5);
+    jsonWriter.key("type");
+    jsonWriter.value(_typeID);
+    jsonWriter.key("type_strict");
+    jsonWriter.value("should");
+    jsonWriter.key("indent");
+    jsonWriter.value(1);
+    jsonWriter.endObject();
+  }
+  jsonWriter.endObject();
+  StringBuffer sb=new StringBuffer();
+  sb.append("http://api.freebase.com/api/service/search?indent=1&queries=");
+  sb.append(ParsingUtilities.encode(stringWriter.toString()));
+  try {
+    URL url=new URL(sb.toString());
+    URLConnection connection=url.openConnection();
+    connection.setConnectTimeout(5000);
+    connection.connect();
+    InputStream is=connection.getInputStream();
+    try {
+      String s=ParsingUtilities.inputStreamToString(is);
+      JSONObject o=ParsingUtilities.evaluateJsonStringToObject(s);
+      for (int i=0; from + i < to; i++) {
+        String value=values.get(from + i);
+        String key="q" + i + ":search";
+        if (!o.has(key)) {
+          continue;
+        }
+        JSONObject o2=o.getJSONObject(key);
+        if (!(o2.has("result"))) {
+          continue;
+        }
+        JSONArray results=o2.getJSONArray("result");
+        Recon recon=createRecon(value,results);
+        for (        ReconEntry entry : valueToEntries.get(value)) {
+          Cell oldCell=entry.cell;
+          Cell newCell=new Cell();
+          newCell.value=oldCell.value;
+          newCell.recon=recon;
+          CellChange cellChange=new CellChange(entry.rowIndex,_cellIndex,oldCell,newCell);
+          cellChanges.add(cellChange);
+        }
+      }
+    }
+  finally {
+      is.close();
+    }
+  }
+ catch (  UnsupportedEncodingException e) {
+    e.printStackTrace();
+  }
+catch (  IOException e) {
+    e.printStackTrace();
+  }
+}

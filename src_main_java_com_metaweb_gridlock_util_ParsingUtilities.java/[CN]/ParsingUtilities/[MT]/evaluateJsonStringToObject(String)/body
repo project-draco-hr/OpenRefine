@@ -1,0 +1,5 @@
+{
+  JSONTokener t=new JSONTokener(s);
+  JSONObject o=(JSONObject)t.nextValue();
+  return o;
+}

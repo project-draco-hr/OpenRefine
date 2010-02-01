@@ -1,0 +1,5 @@
+{
+  Set<String> words1=breakWords(s1);
+  Set<String> words2=breakWords(s2);
+  return words1.size() >= words2.size() ? wordDistance(words1,words2) : wordDistance(words2,words1);
+}

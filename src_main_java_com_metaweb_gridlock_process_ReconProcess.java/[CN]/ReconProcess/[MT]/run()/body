@@ -14,8 +14,15 @@
       entries2.add(entry);
     }
   }
+  List<CellChange> cellChanges=new ArrayList<CellChange>(_entries.size());
   List<String> values=new ArrayList<String>(valueToEntries.keySet());
   for (int i=0; i < values.size(); i+=20) {
+    try {
+      recon(valueToEntries,values,i,Math.min(i + 20,values.size()),cellChanges);
+    }
+ catch (    JSONException e1) {
+      e1.printStackTrace();
+    }
     _progress=i * 100 / values.size();
     try {
       Thread.sleep(100);
@@ -26,5 +33,8 @@
       }
     }
   }
+  MassCellChange massCellChange=new MassCellChange(cellChanges);
+  HistoryEntry historyEntry=new HistoryEntry(_project,_description,massCellChange);
+  _project.history.addEntry(historyEntry);
   _project.processManager.onDoneProcess(this);
 }

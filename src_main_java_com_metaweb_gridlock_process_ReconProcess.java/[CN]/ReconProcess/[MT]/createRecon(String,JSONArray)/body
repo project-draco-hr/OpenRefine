@@ -1,0 +1,34 @@
+{
+  Recon recon=new Recon();
+  int length=results.length();
+  for (int i=0; i < length && recon.candidates.size() < 3; i++) {
+    JSONObject result=results.getJSONObject(i);
+    if (!result.has("name")) {
+      continue;
+    }
+    ReconCandidate candidate=new ReconCandidate();
+    candidate.topicID=result.getString("id");
+    candidate.topicGUID=result.getString("guid");
+    candidate.topicName=result.getString("name");
+    candidate.score=result.getDouble("relevance:score");
+    JSONArray types=result.getJSONArray("type");
+    candidate.typeIDs=new String[types.length()];
+    for (int j=0; j < candidate.typeIDs.length; j++) {
+      candidate.typeIDs[j]=types.getJSONObject(j).getString("id");
+    }
+    if (i == 0) {
+      recon.features.put("nameMatch",text.equalsIgnoreCase(candidate.topicName));
+      recon.features.put("nameLevenshtein",StringUtils.getLevenshteinDistance(text,candidate.topicName));
+      recon.features.put("nameWordDistance",wordDistance(text,candidate.topicName));
+      recon.features.put("typeMatch",false);
+      for (      String typeID : candidate.typeIDs) {
+        if (_typeID.equals(typeID)) {
+          recon.features.put("typeMatch",true);
+          break;
+        }
+      }
+    }
+    recon.candidates.add(candidate);
+  }
+  return recon;
+}

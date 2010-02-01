@@ -1,0 +1,9 @@
+{
+  double common=0;
+  for (  String word : shortWords) {
+    if (longWords.contains(word)) {
+      common++;
+    }
+  }
+  return common / longWords.size();
+}

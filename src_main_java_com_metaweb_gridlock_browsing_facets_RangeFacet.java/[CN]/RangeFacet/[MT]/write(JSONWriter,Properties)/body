@@ -1,0 +1,26 @@
+{
+  writer.object();
+  writer.key("name");
+  writer.value(_name);
+  writer.key("expression");
+  writer.value(_expression);
+  writer.key("cellIndex");
+  writer.value(_cellIndex);
+  writer.key("mode");
+  writer.value(_mode);
+  if ("min".equals(_mode)) {
+    writer.key("min");
+    writer.value(_min);
+  }
+ else   if ("max".equals(_mode)) {
+    writer.key("max");
+    writer.value(_max);
+  }
+ else {
+    writer.key("min");
+    writer.value(_min);
+    writer.key("max");
+    writer.value(_max);
+  }
+  writer.endObject();
+}

@@ -1,0 +1,17 @@
+{
+  _name=o.getString("name");
+  _expression=o.getString("expression");
+  _cellIndex=o.getInt("cellIndex");
+  _eval=new Parser(_expression).getExpression();
+  _mode=o.getString("mode");
+  if ("min".equals(_mode)) {
+    _min=o.getDouble("min");
+  }
+ else   if ("max".equals(_mode)) {
+    _max=o.getDouble("max");
+  }
+ else {
+    _min=o.getDouble("min");
+    _max=o.getDouble("max");
+  }
+}

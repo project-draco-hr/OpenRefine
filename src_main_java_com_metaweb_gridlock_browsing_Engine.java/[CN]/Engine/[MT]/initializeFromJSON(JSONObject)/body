@@ -8,6 +8,9 @@
     if ("list".equals(type)) {
       facet=new ListFacet();
     }
+ else     if ("range".equals(type)) {
+      facet=new RangeFacet();
+    }
     if (facet != null) {
       facet.initializeFromJSON(fo);
       _facets.add(facet);

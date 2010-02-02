@@ -15,6 +15,10 @@
     jsonWriter.value("should");
     jsonWriter.key("indent");
     jsonWriter.value(1);
+    jsonWriter.key("type_exclude");
+    jsonWriter.value("/common/image");
+    jsonWriter.key("domain_exclude");
+    jsonWriter.value("/freebase");
     jsonWriter.endObject();
   }
   jsonWriter.endObject();

@@ -11,6 +11,9 @@
  else     if ("range".equals(type)) {
       facet=new RangeFacet();
     }
+ else     if ("text".equals(type)) {
+      facet=new TextSearchFacet();
+    }
     if (facet != null) {
       facet.initializeFromJSON(fo);
       _facets.add(facet);

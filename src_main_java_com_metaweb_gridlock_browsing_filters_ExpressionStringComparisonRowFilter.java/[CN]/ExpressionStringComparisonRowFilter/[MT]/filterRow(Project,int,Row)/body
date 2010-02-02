@@ -1,0 +1,27 @@
+{
+  if (_cellIndex < row.cells.size()) {
+    Cell cell=row.cells.get(_cellIndex);
+    if (cell != null) {
+      Properties bindings=new Properties();
+      bindings.put("cell",cell);
+      bindings.put("value",cell.value);
+      Object value=_evaluable.evaluate(bindings);
+      if (value != null) {
+        if (value.getClass().isArray()) {
+          Object[] a=(Object[])value;
+          for (          Object v : a) {
+            if (checkValue(v instanceof String ? ((String)v) : v.toString())) {
+              return true;
+            }
+          }
+        }
+ else {
+          if (checkValue(value instanceof String ? ((String)value) : value.toString())) {
+            return true;
+          }
+        }
+      }
+    }
+  }
+  return false;
+}

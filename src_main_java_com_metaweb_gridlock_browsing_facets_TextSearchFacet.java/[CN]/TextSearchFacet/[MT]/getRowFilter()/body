@@ -1,0 +1,19 @@
+{
+  Evaluable eval=new VariableExpr("value");
+  if ("regex".equals(_mode)) {
+    return new ExpressionStringComparisonRowFilter(eval,_cellIndex){
+      protected boolean checkValue(      String s){
+        return s.matches(_query);
+      }
+    }
+;
+  }
+ else {
+    return new ExpressionStringComparisonRowFilter(eval,_cellIndex){
+      protected boolean checkValue(      String s){
+        return s.toLowerCase().contains(_query);
+      }
+    }
+;
+  }
+}

@@ -1,6 +1,6 @@
 {
   if ("min".equals(_mode)) {
-    return new ExpressionComparisonRowFilter(_eval,_cellIndex){
+    return new ExpressionNumberComparisonRowFilter(_eval,_cellIndex){
       protected boolean checkValue(      double d){
         return d >= _min;
       }
@@ -8,7 +8,7 @@
 ;
   }
  else   if ("max".equals(_mode)) {
-    return new ExpressionComparisonRowFilter(_eval,_cellIndex){
+    return new ExpressionNumberComparisonRowFilter(_eval,_cellIndex){
       protected boolean checkValue(      double d){
         return d <= _max;
       }
@@ -16,7 +16,7 @@
 ;
   }
  else {
-    return new ExpressionComparisonRowFilter(_eval,_cellIndex){
+    return new ExpressionNumberComparisonRowFilter(_eval,_cellIndex){
       protected boolean checkValue(      double d){
         return d >= _min && d <= _max;
       }

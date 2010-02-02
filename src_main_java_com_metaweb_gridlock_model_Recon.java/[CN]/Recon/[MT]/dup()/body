@@ -1,0 +1,8 @@
+{
+  Recon r=new Recon();
+  r.features.putAll(new HashMap<String,Object>(features));
+  r.candidates.addAll(candidates);
+  r.judgment=judgment;
+  r.match=match;
+  return r;
+}

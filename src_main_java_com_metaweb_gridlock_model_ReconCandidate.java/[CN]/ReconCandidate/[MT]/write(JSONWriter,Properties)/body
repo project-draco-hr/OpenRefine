@@ -4,5 +4,7 @@
   writer.value(topicID);
   writer.key("name");
   writer.value(topicName);
+  writer.key("score");
+  writer.value(score);
   writer.endObject();
 }

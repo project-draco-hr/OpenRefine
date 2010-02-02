@@ -2,15 +2,17 @@
   writer.object();
   writer.key("j");
   writer.value(judgmentToString());
-  writer.key("c");
-  writer.array();
-  for (  ReconCandidate c : candidates) {
-    c.write(writer,options);
-  }
-  writer.endArray();
   if (match != null) {
     writer.key("m");
     match.write(writer,options);
+  }
+ else {
+    writer.key("c");
+    writer.array();
+    for (    ReconCandidate c : candidates) {
+      c.write(writer,options);
+    }
+    writer.endArray();
   }
   writer.endObject();
 }

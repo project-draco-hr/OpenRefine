@@ -1,0 +1,4 @@
+{
+  _cellIndex=cellIndex;
+  _originalHeaderLabel=_headerLabel=headerLabel;
+}

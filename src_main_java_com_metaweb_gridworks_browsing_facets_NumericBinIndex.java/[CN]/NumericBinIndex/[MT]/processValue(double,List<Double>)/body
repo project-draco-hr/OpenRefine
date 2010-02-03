@@ -1,5 +1,5 @@
 {
-  min=Math.min(min,v);
-  max=Math.max(max,v);
+  _min=Math.min(getMin(),v);
+  _max=Math.max(getMax(),v);
   allValues.add(v);
 }

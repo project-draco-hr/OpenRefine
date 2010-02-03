@@ -3,8 +3,7 @@
   String[] cells=line.split("\t");
   for (int c=0; c < cells.length; c++) {
     String text=cells[c];
-    Cell cell=new Cell();
-    cell.value=parseCellValue(text);
+    Cell cell=new Cell(parseCellValue(text),null);
     row.cells.add(cell);
     if (text.length() > 0) {
       hasData=true;

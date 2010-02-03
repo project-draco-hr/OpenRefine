@@ -6,8 +6,8 @@
     index=new NumericBinIndex(project,_cellIndex,_eval);
     column.setPrecompute(key,index);
   }
-  _min=index.min;
-  _max=index.max;
-  _step=index.step;
-  _bins=index.bins;
+  _min=index.getMin();
+  _max=index.getMax();
+  _step=index.getStep();
+  _bins=index.getBins();
 }

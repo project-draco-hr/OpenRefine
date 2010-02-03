@@ -1,10 +1,8 @@
 {
   writer.object();
   writer.key("cellIndex");
-  writer.value(cellIndex);
+  writer.value(getCellIndex());
   writer.key("headerLabel");
-  writer.value(headerLabel);
-  writer.key("valueType");
-  writer.value(valueType == null ? null : valueType.getSimpleName());
+  writer.value(getHeaderLabel());
   writer.endObject();
 }

@@ -8,7 +8,7 @@
       respond(response,"{ \"code\" : \"error\", \"message\" : \"No such column\" }");
       return;
     }
-    String columnName=column.headerLabel;
+    String columnName=column.getHeaderLabel();
     String typeID=request.getParameter("type");
     List<ReconEntry> entries=new ArrayList<ReconEntry>(project.rows.size());
     FilteredRows filteredRows=engine.getAllFilteredRows();

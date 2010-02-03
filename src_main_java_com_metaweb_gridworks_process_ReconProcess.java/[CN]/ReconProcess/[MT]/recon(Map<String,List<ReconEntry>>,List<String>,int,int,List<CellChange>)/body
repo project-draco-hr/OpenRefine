@@ -48,9 +48,7 @@
         Recon recon=createRecon(value,results);
         for (        ReconEntry entry : valueToEntries.get(value)) {
           Cell oldCell=entry.cell;
-          Cell newCell=new Cell();
-          newCell.value=oldCell.value;
-          newCell.recon=recon;
+          Cell newCell=new Cell(oldCell.value,recon);
           CellChange cellChange=new CellChange(entry.rowIndex,_cellIndex,oldCell,newCell);
           cellChanges.add(cellChange);
         }

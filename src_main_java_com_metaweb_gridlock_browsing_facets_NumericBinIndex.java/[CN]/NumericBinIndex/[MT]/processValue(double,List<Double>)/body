@@ -1,0 +1,5 @@
+{
+  min=Math.min(min,v);
+  max=Math.max(max,v);
+  allValues.add(v);
+}

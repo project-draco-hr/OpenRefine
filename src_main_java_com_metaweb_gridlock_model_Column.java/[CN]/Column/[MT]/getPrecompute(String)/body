@@ -1,0 +1,6 @@
+{
+  if (_precomputes != null) {
+    return _precomputes.get(key);
+  }
+  return null;
+}

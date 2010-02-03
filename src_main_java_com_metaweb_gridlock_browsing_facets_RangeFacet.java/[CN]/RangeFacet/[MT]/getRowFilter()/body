@@ -2,7 +2,7 @@
   if ("min".equals(_mode)) {
     return new ExpressionNumberComparisonRowFilter(_eval,_cellIndex){
       protected boolean checkValue(      double d){
-        return d >= _min;
+        return d >= _from;
       }
     }
 ;
@@ -10,7 +10,7 @@
  else   if ("max".equals(_mode)) {
     return new ExpressionNumberComparisonRowFilter(_eval,_cellIndex){
       protected boolean checkValue(      double d){
-        return d <= _max;
+        return d <= _to;
       }
     }
 ;
@@ -18,7 +18,7 @@
  else {
     return new ExpressionNumberComparisonRowFilter(_eval,_cellIndex){
       protected boolean checkValue(      double d){
-        return d >= _min && d <= _max;
+        return d >= _from && d <= _to;
       }
     }
 ;

@@ -44,7 +44,7 @@
       }
     }
 .init(cellIndex,bindings,cellChanges,eval));
-    MassCellChange massCellChange=new MassCellChange(cellChanges);
+    MassCellChange massCellChange=new MassCellChange(cellChanges,cellIndex);
     HistoryEntry historyEntry=new HistoryEntry(project,"Text transform on " + columnName + ": "+ expression,massCellChange);
     boolean done=project.processManager.queueProcess(new QuickHistoryEntryProcess(project,historyEntry));
     respond(response,"{ \"code\" : " + (done ? "\"ok\"" : "\"pending\"") + " }");

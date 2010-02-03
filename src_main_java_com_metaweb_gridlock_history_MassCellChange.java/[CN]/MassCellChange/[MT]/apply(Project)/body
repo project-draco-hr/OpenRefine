@@ -4,5 +4,8 @@ synchronized (project) {
     for (    CellChange cellChange : _cellChanges) {
       rows.get(cellChange.row).cells.set(cellChange.column,cellChange.newCell);
     }
+    if (_commonCellIndex >= 0) {
+      project.columnModel.getColumnByCellIndex(_commonCellIndex).clearPrecomputes();
+    }
   }
 }

@@ -33,7 +33,7 @@
       }
     }
   }
-  MassCellChange massCellChange=new MassCellChange(cellChanges);
+  MassCellChange massCellChange=new MassCellChange(cellChanges,_cellIndex);
   HistoryEntry historyEntry=new HistoryEntry(_project,_description,massCellChange);
   _project.history.addEntry(historyEntry);
   _project.processManager.onDoneProcess(this);

@@ -1,0 +1,6 @@
+{
+  if (_precomputes == null) {
+    _precomputes=new HashMap<String,Object>();
+  }
+  _precomputes.put(key,value);
+}

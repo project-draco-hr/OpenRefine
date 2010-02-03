@@ -5,13 +5,13 @@
   _eval=new Parser(_expression).getExpression();
   _mode=o.getString("mode");
   if ("min".equals(_mode)) {
-    _min=o.getDouble("min");
+    _from=o.getDouble("from");
   }
  else   if ("max".equals(_mode)) {
-    _max=o.getDouble("max");
+    _to=o.getDouble("to");
   }
  else {
-    _min=o.getDouble("min");
-    _max=o.getDouble("max");
+    _from=o.getDouble("from");
+    _to=o.getDouble("to");
   }
 }

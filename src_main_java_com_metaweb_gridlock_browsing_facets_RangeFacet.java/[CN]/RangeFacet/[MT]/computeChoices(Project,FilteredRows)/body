@@ -1,2 +1,13 @@
 {
+  Column column=project.columnModel.getColumnByCellIndex(_cellIndex);
+  String key="numeric-bin:" + _expression;
+  NumericBinIndex index=(NumericBinIndex)column.getPrecompute(key);
+  if (index == null) {
+    index=new NumericBinIndex(project,_cellIndex,_eval);
+    column.setPrecompute(key,index);
+  }
+  _min=index.min;
+  _max=index.max;
+  _step=index.step;
+  _bins=index.bins;
 }

@@ -1,0 +1,5 @@
+{
+  if (_precomputes != null) {
+    _precomputes.clear();
+  }
+}

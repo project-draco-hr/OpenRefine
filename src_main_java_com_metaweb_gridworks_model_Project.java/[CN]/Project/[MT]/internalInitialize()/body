@@ -1,3 +1,4 @@
 {
   processManager=new ProcessManager();
+  computeContext();
 }

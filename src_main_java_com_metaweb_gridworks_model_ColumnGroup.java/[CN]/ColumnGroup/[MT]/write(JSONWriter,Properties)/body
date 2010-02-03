@@ -1,0 +1,18 @@
+{
+  writer.object();
+  writer.key("cellIndices");
+  writer.array();
+  for (  int i : cellIndices) {
+    writer.value(i);
+  }
+  writer.endArray();
+  if (subgroups != null && subgroups.size() > 0) {
+    writer.key("subgroups");
+    writer.array();
+    for (    ColumnGroup g : subgroups) {
+      g.write(writer,options);
+    }
+    writer.endArray();
+  }
+  writer.endObject();
+}

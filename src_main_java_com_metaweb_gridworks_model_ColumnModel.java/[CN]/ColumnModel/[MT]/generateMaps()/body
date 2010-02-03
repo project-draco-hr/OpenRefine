@@ -1,0 +1,8 @@
+{
+  _nameToColumn=new HashMap<String,Column>();
+  _cellIndexToColumn=new HashMap<Integer,Column>();
+  for (  Column column : columns) {
+    _nameToColumn.put(column.headerLabel,column);
+    _cellIndexToColumn.put(column.cellIndex,column);
+  }
+}

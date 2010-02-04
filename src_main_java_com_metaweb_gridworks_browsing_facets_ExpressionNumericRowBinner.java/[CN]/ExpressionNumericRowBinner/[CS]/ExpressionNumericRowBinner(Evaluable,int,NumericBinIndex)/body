@@ -1,0 +1,6 @@
+{
+  _evaluable=evaluable;
+  _cellIndex=cellIndex;
+  _index=index;
+  bins=new int[_index.getBins().length];
+}

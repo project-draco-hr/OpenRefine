@@ -9,5 +9,8 @@
   _min=index.getMin();
   _max=index.getMax();
   _step=index.getStep();
-  _bins=index.getBins();
+  _baseBins=index.getBins();
+  ExpressionNumericRowBinner binner=new ExpressionNumericRowBinner(_eval,_cellIndex,index);
+  filteredRows.accept(project,binner);
+  _bins=binner.bins;
 }

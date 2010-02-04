@@ -18,6 +18,12 @@
     writer.value(b);
   }
   writer.endArray();
+  writer.key("baseBins");
+  writer.array();
+  for (  int b : _baseBins) {
+    writer.value(b);
+  }
+  writer.endArray();
   writer.key("mode");
   writer.value(_mode);
   if ("min".equals(_mode)) {

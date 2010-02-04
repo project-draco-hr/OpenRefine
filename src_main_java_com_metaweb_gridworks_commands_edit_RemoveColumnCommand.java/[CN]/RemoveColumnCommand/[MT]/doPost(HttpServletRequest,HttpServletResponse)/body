@@ -1,0 +1,13 @@
+{
+  try {
+    Project project=getProject(request);
+    int columnRemovalIndex=Integer.parseInt(request.getParameter("columnRemovalIndex"));
+    AbstractOperation op=new ColumnRemovalOperation(columnRemovalIndex);
+    Process process=op.createProcess(project,new Properties());
+    boolean done=project.processManager.queueProcess(process);
+    respond(response,"{ \"code\" : " + (done ? "\"ok\"" : "\"pending\"") + " }");
+  }
+ catch (  Exception e) {
+    respondException(response,e);
+  }
+}

@@ -1,0 +1,7 @@
+{
+  super(engineConfig);
+  _baseCellIndex=baseCellIndex;
+  _expression=expression;
+  _headerLabel=headerLabel;
+  _columnInsertIndex=columnInsertIndex;
+}

@@ -3,8 +3,13 @@ synchronized (project) {
     _newCellIndex=project.columnModel.allocateNewCellIndex();
     Column column=new Column(_newCellIndex,_headerLabel);
     project.columnModel.columns.add(_columnIndex,column);
-    for (    CellAtRow cell : _newCells) {
-      project.rows.get(cell.row).cells.set(_newCellIndex,cell.cell);
+    try {
+      for (      CellAtRow cell : _newCells) {
+        project.rows.get(cell.row).setCell(_newCellIndex,cell.cell);
+      }
+    }
+ catch (    Exception e) {
+      e.printStackTrace();
     }
   }
 }

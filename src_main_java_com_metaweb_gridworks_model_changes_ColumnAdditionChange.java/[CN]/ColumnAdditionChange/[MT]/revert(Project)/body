@@ -1,7 +1,8 @@
 {
 synchronized (project) {
     for (    CellAtRow cell : _newCells) {
-      project.rows.get(cell.row).cells.remove(_newCellIndex);
+      Row row=project.rows.get(cell.row);
+      row.setCell(_newCellIndex,null);
     }
     project.columnModel.columns.remove(_columnIndex);
   }

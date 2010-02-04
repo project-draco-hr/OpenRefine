@@ -1,0 +1,7 @@
+{
+  int baseCellIndex=Integer.parseInt(request.getParameter("baseCellIndex"));
+  String expression=request.getParameter("expression");
+  String headerLabel=request.getParameter("headerLabel");
+  int columnInsertIndex=Integer.parseInt(request.getParameter("columnInsertIndex"));
+  return new ColumnAdditionOperation(engineConfig,baseCellIndex,expression,headerLabel,columnInsertIndex);
+}

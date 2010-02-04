@@ -1,0 +1,10 @@
+{
+  Column column=project.columnModel.columns.get(_columnRemovalIndex);
+  if (column == null) {
+    throw new Exception("No column at index " + _columnRemovalIndex);
+  }
+  String description="Remove column " + column.getHeaderLabel();
+  Change change=new ColumnRemovalChange(_columnRemovalIndex);
+  HistoryEntry historyEntry=new HistoryEntry(project,description,this,change);
+  return new QuickHistoryEntryProcess(project,historyEntry);
+}

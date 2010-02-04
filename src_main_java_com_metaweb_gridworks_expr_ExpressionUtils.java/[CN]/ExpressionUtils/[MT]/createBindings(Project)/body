@@ -1,5 +1,7 @@
 {
   Properties bindings=new Properties();
+  bindings.put("true",true);
+  bindings.put("false",false);
   bindings.put("project",project);
   return bindings;
 }

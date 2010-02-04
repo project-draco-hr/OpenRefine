@@ -1,0 +1,3 @@
+{
+  return "Create new column " + _headerLabel + " based on column "+ column.getHeaderLabel()+ " by filling "+ cellsAtRows.size()+ " rows with "+ _expression;
+}

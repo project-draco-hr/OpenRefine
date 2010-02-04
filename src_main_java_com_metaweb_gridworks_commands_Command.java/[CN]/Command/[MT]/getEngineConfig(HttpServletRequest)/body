@@ -1,0 +1,7 @@
+{
+  String json=request.getParameter("engine");
+  if (json != null) {
+    return jsonStringToObject(json);
+  }
+  return null;
+}

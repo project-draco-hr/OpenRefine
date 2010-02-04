@@ -1,0 +1,5 @@
+{
+  int cellIndex=Integer.parseInt(request.getParameter("cell"));
+  String typeID=request.getParameter("type");
+  return new ReconOperation(engineConfig,cellIndex,typeID);
+}

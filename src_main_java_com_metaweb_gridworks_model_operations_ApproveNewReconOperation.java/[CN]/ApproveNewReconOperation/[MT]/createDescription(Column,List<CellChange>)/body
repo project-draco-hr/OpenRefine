@@ -1,0 +1,3 @@
+{
+  return "Approve new topics for " + cellChanges.size() + " cells in column "+ column.getHeaderLabel();
+}

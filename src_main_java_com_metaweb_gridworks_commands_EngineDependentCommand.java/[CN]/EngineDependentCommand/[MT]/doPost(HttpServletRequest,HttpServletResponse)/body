@@ -1,0 +1,12 @@
+{
+  try {
+    Project project=getProject(request);
+    AbstractOperation op=createOperation(request,getEngineConfig(request));
+    Process process=op.createProcess(project,new Properties());
+    boolean done=project.processManager.queueProcess(process);
+    respond(response,"{ \"code\" : " + (done ? "\"ok\"" : "\"pending\"") + " }");
+  }
+ catch (  Exception e) {
+    respondException(response,e);
+  }
+}

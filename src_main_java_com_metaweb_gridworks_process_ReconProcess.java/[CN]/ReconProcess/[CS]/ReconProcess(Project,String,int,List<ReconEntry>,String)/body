@@ -1,7 +1,0 @@
-{
-  super(description);
-  _project=project;
-  _cellIndex=cellIndex;
-  _entries=entries;
-  _typeID=typeID;
-}

@@ -1,0 +1,5 @@
+{
+  Engine engine=new Engine(project);
+  engine.initializeFromJSON(getEngineConfig());
+  return engine;
+}

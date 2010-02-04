@@ -1,0 +1,4 @@
+{
+  _engineConfig=engineConfig;
+  _engineConfigString=engineConfig.toString();
+}

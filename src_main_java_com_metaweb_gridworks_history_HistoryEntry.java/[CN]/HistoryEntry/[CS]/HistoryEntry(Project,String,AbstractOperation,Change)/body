@@ -1,0 +1,9 @@
+{
+  this.id=Math.round(Math.random() * 1000000) + System.currentTimeMillis();
+  this.projectID=project.id;
+  this.description=description;
+  this.operation=operation;
+  this.time=new Date();
+  _change=change;
+  saveChange();
+}

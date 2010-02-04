@@ -1,0 +1,10 @@
+{
+  if (_engineConfig == null) {
+    try {
+      _engineConfig=ParsingUtilities.evaluateJsonStringToObject(_engineConfigString);
+    }
+ catch (    JSONException e) {
+    }
+  }
+  return _engineConfig;
+}

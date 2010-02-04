@@ -1,0 +1,5 @@
+{
+  super(description);
+  _project=project;
+  _entries=entries;
+}

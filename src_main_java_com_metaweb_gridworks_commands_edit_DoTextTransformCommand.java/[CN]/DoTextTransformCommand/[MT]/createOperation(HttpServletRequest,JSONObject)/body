@@ -1,0 +1,5 @@
+{
+  int cellIndex=Integer.parseInt(request.getParameter("cell"));
+  String expression=request.getParameter("expression");
+  return new TextTransformOperation(engineConfig,cellIndex,expression);
+}

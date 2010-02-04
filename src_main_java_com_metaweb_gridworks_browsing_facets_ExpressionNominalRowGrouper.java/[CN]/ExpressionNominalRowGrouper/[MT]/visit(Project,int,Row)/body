@@ -2,10 +2,8 @@
   if (_cellIndex < row.cells.size()) {
     Cell cell=row.cells.get(_cellIndex);
     if (cell != null) {
-      Properties bindings=new Properties();
-      bindings.put("project",project);
-      bindings.put("cell",cell);
-      bindings.put("value",cell.value);
+      Properties bindings=ExpressionUtils.createBindings(project);
+      ExpressionUtils.bind(bindings,row,cell);
       Object value=_evaluable.evaluate(bindings);
       if (value != null) {
         if (value.getClass().isArray()) {

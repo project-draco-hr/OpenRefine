@@ -11,8 +11,7 @@
     String columnName=column.getHeaderLabel();
     String expression=request.getParameter("expression");
     Evaluable eval=new Parser(expression).getExpression();
-    Properties bindings=new Properties();
-    bindings.put("project",project);
+    Properties bindings=ExpressionUtils.createBindings(project);
     List<CellChange> cellChanges=new ArrayList<CellChange>(project.rows.size());
     FilteredRows filteredRows=engine.getAllFilteredRows();
     filteredRows.accept(project,new RowVisitor(){
@@ -31,8 +30,7 @@
         if (cellIndex < row.cells.size()) {
           Cell cell=row.cells.get(cellIndex);
           if (cell.value != null) {
-            bindings.put("cell",cell);
-            bindings.put("value",cell.value);
+            ExpressionUtils.bind(bindings,row,cell);
             Cell newCell=new Cell(eval.evaluate(bindings),cell.recon);
             CellChange cellChange=new CellChange(rowIndex,cellIndex,cell,newCell);
             cellChanges.add(cellChange);

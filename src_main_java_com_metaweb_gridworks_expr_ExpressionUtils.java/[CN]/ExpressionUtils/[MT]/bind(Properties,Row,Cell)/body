@@ -1,0 +1,6 @@
+{
+  bindings.put("row",row);
+  bindings.put("cells",row.getField("cells",bindings));
+  bindings.put("cell",cell);
+  bindings.put("value",cell.value);
+}

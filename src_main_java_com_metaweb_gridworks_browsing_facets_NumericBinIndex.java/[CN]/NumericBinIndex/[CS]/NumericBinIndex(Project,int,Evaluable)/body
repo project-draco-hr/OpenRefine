@@ -1,5 +1,5 @@
 {
-  Properties bindings=new Properties();
+  Properties bindings=ExpressionUtils.createBindings(project);
   _min=Double.POSITIVE_INFINITY;
   _max=Double.NEGATIVE_INFINITY;
   List<Double> allValues=new ArrayList<Double>();
@@ -8,9 +8,7 @@
     if (cellIndex < row.cells.size()) {
       Cell cell=row.cells.get(cellIndex);
       if (cell != null) {
-        bindings.put("project",project);
-        bindings.put("cell",cell);
-        bindings.put("value",cell.value);
+        ExpressionUtils.bind(bindings,row,cell);
         Object value=eval.evaluate(bindings);
         if (value != null) {
           if (value.getClass().isArray()) {

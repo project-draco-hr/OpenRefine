@@ -1,0 +1,5 @@
+{
+  Properties bindings=new Properties();
+  bindings.put("project",project);
+  return bindings;
+}

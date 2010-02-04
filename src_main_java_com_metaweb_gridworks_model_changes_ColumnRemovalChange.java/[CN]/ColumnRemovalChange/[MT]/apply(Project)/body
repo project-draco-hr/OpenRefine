@@ -1,0 +1,15 @@
+{
+synchronized (project) {
+    _oldColumn=project.columnModel.columns.remove(_oldColumnIndex);
+    _oldCells=new CellAtRow[project.rows.size()];
+    int cellIndex=_oldColumn.getCellIndex();
+    for (int i=0; i < _oldCells.length; i++) {
+      Row row=project.rows.get(i);
+      Cell oldCell=null;
+      if (cellIndex < row.cells.size()) {
+        oldCell=row.cells.get(cellIndex);
+      }
+      _oldCells[i]=new CellAtRow(i,oldCell);
+    }
+  }
+}

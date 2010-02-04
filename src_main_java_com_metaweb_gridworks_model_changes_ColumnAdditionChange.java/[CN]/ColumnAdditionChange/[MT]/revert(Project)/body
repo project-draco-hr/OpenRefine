@@ -1,0 +1,8 @@
+{
+synchronized (project) {
+    for (    CellAtRow cell : _newCells) {
+      project.rows.get(cell.row).cells.remove(_newCellIndex);
+    }
+    project.columnModel.columns.remove(_columnIndex);
+  }
+}

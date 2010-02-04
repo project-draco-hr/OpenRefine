@@ -1,0 +1,3 @@
+String headerLabel
+int columnIndex
+List<CellAtRow> newCells

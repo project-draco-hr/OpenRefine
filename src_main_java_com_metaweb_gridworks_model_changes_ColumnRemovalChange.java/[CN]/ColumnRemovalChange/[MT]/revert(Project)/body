@@ -1,0 +1,9 @@
+{
+synchronized (project) {
+    project.columnModel.columns.add(_oldColumnIndex,_oldColumn);
+    int cellIndex=_oldColumn.getCellIndex();
+    for (    CellAtRow cell : _oldCells) {
+      project.rows.get(cell.row).cells.set(cellIndex,cell.cell);
+    }
+  }
+}

@@ -13,13 +13,22 @@
       RowAccumulator acc=new RowAccumulator(start,limit){
         JSONWriter writer;
         Properties options;
+        Properties extra;
         public RowAccumulator init(        JSONWriter writer,        Properties options){
           this.writer=writer;
           this.options=options;
+          this.extra=new Properties();
+          this.extra.put("contextual",true);
           return this;
         }
-        @Override public boolean internalVisit(        int rowIndex,        Row row){
+        @Override public boolean internalVisit(        int rowIndex,        Row row,        boolean contextual){
           try {
+            if (contextual) {
+              options.put("extra",extra);
+            }
+ else {
+              options.remove("extra");
+            }
             options.put("rowIndex",rowIndex);
             row.write(writer,options);
           }
@@ -29,7 +38,7 @@
         }
       }
 .init(writer,options);
-      FilteredRows filteredRows=engine.getAllFilteredRows();
+      FilteredRows filteredRows=engine.getAllFilteredRows(true);
       writer.key("rows");
       writer.array();
       filteredRows.accept(project,acc);

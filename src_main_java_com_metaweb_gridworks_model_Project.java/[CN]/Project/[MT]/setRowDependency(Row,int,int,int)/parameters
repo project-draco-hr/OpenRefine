@@ -1,0 +1,4 @@
+Row row
+int cellIndex
+int contextRowIndex
+int contextCellIndex

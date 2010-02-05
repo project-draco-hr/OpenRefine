@@ -5,7 +5,7 @@
     throw new Exception("No column corresponding to cell index " + _cellIndex);
   }
   List<CellChange> cellChanges=new ArrayList<CellChange>(project.rows.size());
-  FilteredRows filteredRows=engine.getAllFilteredRows();
+  FilteredRows filteredRows=engine.getAllFilteredRows(false);
   filteredRows.accept(project,createRowVisitor(project,cellChanges));
   String description=createDescription(column,cellChanges);
   MassCellChange massCellChange=new MassCellChange(cellChanges,_cellIndex);

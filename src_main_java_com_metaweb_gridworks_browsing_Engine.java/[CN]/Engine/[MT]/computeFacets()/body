@@ -1,6 +1,6 @@
 {
   for (  Facet facet : _facets) {
-    FilteredRows filteredRows=getFilteredRows(facet);
+    FilteredRows filteredRows=getFilteredRows(facet,false);
     facet.computeChoices(_project,filteredRows);
   }
 }

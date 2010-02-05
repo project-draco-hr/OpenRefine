@@ -7,7 +7,7 @@
   }
   writer.endArray();
   writer.key("keyCellIndex");
-  writer.value(getKeyCellIndex());
+  writer.value(getKeyColumnIndex());
   writer.key("columnGroups");
   writer.array();
   for (  ColumnGroup g : _rootColumnGroups) {

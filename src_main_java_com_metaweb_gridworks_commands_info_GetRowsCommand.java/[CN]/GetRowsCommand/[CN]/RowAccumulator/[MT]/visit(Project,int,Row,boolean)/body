@@ -1,0 +1,10 @@
+{
+  boolean r=false;
+  if (total >= start && total < start + limit) {
+    r=internalVisit(rowIndex,row,contextual);
+  }
+  if (!contextual) {
+    total++;
+  }
+  return r;
+}

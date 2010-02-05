@@ -23,7 +23,7 @@
           this.writer=writer;
           return this;
         }
-        @Override public boolean visit(        Project project,        int rowIndex,        Row row){
+        @Override public boolean visit(        Project project,        int rowIndex,        Row row,        boolean contextual){
           boolean first=true;
           for (          Column column : project.columnModel.columns) {
             if (first) {
@@ -45,7 +45,7 @@
         }
       }
 .init(writer);
-      FilteredRows filteredRows=engine.getAllFilteredRows();
+      FilteredRows filteredRows=engine.getAllFilteredRows(true);
       filteredRows.accept(project,visitor);
     }
   }

@@ -1,4 +1,4 @@
 {
   processManager=new ProcessManager();
-  computeContext();
+  recomputeRowContextDependencies();
 }

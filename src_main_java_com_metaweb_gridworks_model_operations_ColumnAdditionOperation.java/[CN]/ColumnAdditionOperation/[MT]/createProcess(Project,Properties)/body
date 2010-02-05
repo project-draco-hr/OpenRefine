@@ -5,7 +5,7 @@
     throw new Exception("No column corresponding to cell index " + _baseCellIndex);
   }
   List<CellAtRow> cellsAtRows=new ArrayList<CellAtRow>(project.rows.size());
-  FilteredRows filteredRows=engine.getAllFilteredRows();
+  FilteredRows filteredRows=engine.getAllFilteredRows(false);
   filteredRows.accept(project,createRowVisitor(project,cellsAtRows));
   String description=createDescription(column,cellsAtRows);
   Change change=new ColumnAdditionChange(_headerLabel,_columnInsertIndex,cellsAtRows);

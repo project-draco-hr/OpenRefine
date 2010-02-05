@@ -1,0 +1,60 @@
+{
+  List<Group> keyedGroups=new ArrayList<Group>();
+  keyedGroups.add(createRootKeyedGroup());
+  for (  ColumnGroup group : columnModel.columnGroups) {
+    if (group.keyColumnIndex >= 0) {
+      Group keyedGroup=new Group();
+      keyedGroup.keyCellIndex=columnModel.columns.get(group.keyColumnIndex).getCellIndex();
+      keyedGroup.cellIndices=new int[group.columnSpan - 1];
+      int c=0;
+      for (int i=0; i < group.columnSpan; i++) {
+        int columnIndex=group.startColumnIndex + i;
+        if (columnIndex != group.keyColumnIndex) {
+          int cellIndex=columnModel.columns.get(columnIndex).getCellIndex();
+          keyedGroup.cellIndices[c++]=cellIndex;
+        }
+      }
+      keyedGroups.add(keyedGroup);
+    }
+  }
+  Collections.sort(keyedGroups,new Comparator<Group>(){
+    @Override public int compare(    Group o1,    Group o2){
+      return o2.cellIndices.length - o1.cellIndices.length;
+    }
+  }
+);
+  int[] lastNonBlankRowsByGroup=new int[keyedGroups.size()];
+  for (int i=0; i < lastNonBlankRowsByGroup.length; i++) {
+    lastNonBlankRowsByGroup[i]=-1;
+  }
+  for (int r=0; r < rows.size(); r++) {
+    Row row=rows.get(r);
+    row.contextRowSlots=null;
+    row.contextCellSlots=null;
+    for (int g=0; g < keyedGroups.size(); g++) {
+      Group group=keyedGroups.get(g);
+      if (ExpressionUtils.isBlank(row.getCellValue(group.keyCellIndex))) {
+        int contextRowIndex=lastNonBlankRowsByGroup[g];
+        if (contextRowIndex >= 0) {
+          for (          int dependentCellIndex : group.cellIndices) {
+            if (!ExpressionUtils.isBlank(row.getCellValue(dependentCellIndex))) {
+              setRowDependency(row,dependentCellIndex,contextRowIndex,group.keyCellIndex);
+            }
+          }
+        }
+      }
+ else {
+        lastNonBlankRowsByGroup[g]=r;
+      }
+    }
+    if (row.contextRowSlots != null) {
+      row.contextRows=new ArrayList<Integer>();
+      for (      int index : row.contextRowSlots) {
+        if (index >= 0) {
+          row.contextRows.add(index);
+        }
+      }
+      Collections.sort(row.contextRows);
+    }
+  }
+}

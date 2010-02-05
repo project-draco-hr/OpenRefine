@@ -1,0 +1,33 @@
+{
+  URL url=new URL(urlString);
+  URLConnection connection=null;
+  try {
+    connection=url.openConnection();
+    connection.setConnectTimeout(5000);
+    connection.connect();
+  }
+ catch (  Exception e) {
+    throw new Exception("Cannot connect to " + urlString,e);
+  }
+  InputStream inputStream=null;
+  try {
+    inputStream=connection.getInputStream();
+  }
+ catch (  Exception e) {
+    throw new Exception("Cannot retrieve content from " + url,e);
+  }
+  try {
+    Importer importer=guessImporter(options,connection.getContentType(),url.getPath());
+    if (importer.takesReader()) {
+      String encoding=connection.getContentEncoding();
+      Reader reader=new InputStreamReader(inputStream,(encoding == null) ? "ISO-8859-1" : encoding);
+      importer.read(reader,project,options);
+    }
+ else {
+      importer.read(inputStream,project,options);
+    }
+  }
+  finally {
+    inputStream.close();
+  }
+}

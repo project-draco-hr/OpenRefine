@@ -1,0 +1,57 @@
+{
+  MultipartParser parser=null;
+  try {
+    parser=new MultipartParser(request,20 * 1024 * 1024);
+  }
+ catch (  Exception e) {
+  }
+  if (parser != null) {
+    Part part=null;
+    while ((part=parser.readNextPart()) != null) {
+      if (part.isFile()) {
+        FilePart filePart=(FilePart)part;
+        Importer importer=guessImporter(options,null,filePart.getFileName());
+        if (importer.takesReader()) {
+          Reader reader=new InputStreamReader(filePart.getInputStream());
+          try {
+            importer.read(reader,project,options);
+          }
+  finally {
+            reader.close();
+          }
+        }
+ else {
+          InputStream inputStream=filePart.getInputStream();
+          try {
+            importer.read(inputStream,project,options);
+          }
+  finally {
+            inputStream.close();
+          }
+        }
+      }
+ else       if (part.isParam()) {
+        ParamPart paramPart=(ParamPart)part;
+        String paramName=paramPart.getName();
+        if (paramName.equals("raw-text")) {
+          StringReader reader=new StringReader(paramPart.getStringValue());
+          try {
+            new TsvCsvImporter().read(reader,project,options);
+          }
+  finally {
+            reader.close();
+          }
+        }
+ else         if (paramName.equals("url")) {
+          String url=paramPart.getStringValue();
+          if (url.length() > 0) {
+            internalImportURL(request,project,options,url);
+          }
+        }
+ else {
+          options.put(paramName,paramPart.getStringValue());
+        }
+      }
+    }
+  }
+}

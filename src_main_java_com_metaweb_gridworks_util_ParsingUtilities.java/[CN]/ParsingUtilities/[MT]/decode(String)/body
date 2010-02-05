@@ -1,0 +1,11 @@
+{
+  try {
+    return codec.decode(s,"UTF-8");
+  }
+ catch (  UnsupportedEncodingException e) {
+    return s;
+  }
+catch (  DecoderException e) {
+    return s;
+  }
+}

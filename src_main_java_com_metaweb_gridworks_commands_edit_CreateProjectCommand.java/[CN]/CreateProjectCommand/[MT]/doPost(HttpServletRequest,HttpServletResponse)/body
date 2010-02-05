@@ -1,0 +1,16 @@
+{
+  try {
+    Properties options=parseUrlParameters(request);
+    Project project=new Project();
+    internalImport(request,project,options);
+    ProjectMetadata pm=new ProjectMetadata();
+    pm.setName(options.getProperty("project-name"));
+    pm.setPassword(options.getProperty("project-password"));
+    ProjectManager.singleton.registerProject(project,pm);
+    project.columnModel.update();
+    redirect(response,"/project.html?project=" + project.id);
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

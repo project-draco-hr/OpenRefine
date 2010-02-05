@@ -1,5 +1,0 @@
-{
-  this.cellIndices=cellIndices;
-  this.keyCellIndex=keyCellIndex;
-  internalInitialize();
-}

@@ -3,8 +3,8 @@
   _rootColumnGroups=new LinkedList<ColumnGroup>(columnGroups);
   Collections.sort(_rootColumnGroups,new Comparator<ColumnGroup>(){
     @Override public int compare(    ColumnGroup o1,    ColumnGroup o2){
-      int firstDiff=o1.cellIndices[0] - o2.cellIndices[0];
-      return firstDiff != 0 ? firstDiff : (o2.cellIndices.length - o1.cellIndices.length);
+      int firstDiff=o1.startColumnIndex - o2.startColumnIndex;
+      return firstDiff != 0 ? firstDiff : (o2.columnSpan - o1.columnSpan);
     }
   }
 );

@@ -1,0 +1,6 @@
+{
+  this.startColumnIndex=startColumnIndex;
+  this.columnSpan=columnSpan;
+  this.keyColumnIndex=keyColumnIndex;
+  internalInitialize();
+}

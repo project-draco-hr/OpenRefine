@@ -1,11 +1,11 @@
 {
   writer.object();
-  writer.key("cellIndices");
-  writer.array();
-  for (  int i : cellIndices) {
-    writer.value(i);
-  }
-  writer.endArray();
+  writer.key("startColumnIndex");
+  writer.value(startColumnIndex);
+  writer.key("columnSpan");
+  writer.value(columnSpan);
+  writer.key("keyColumnIndex");
+  writer.value(keyColumnIndex);
   if (subgroups != null && subgroups.size() > 0) {
     writer.key("subgroups");
     writer.array();

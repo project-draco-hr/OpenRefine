@@ -29,12 +29,18 @@
     }
  else {
       Function f=functionTable.get(text);
-      if (f == null) {
-        throw makeException("Unknown function " + text);
+      Control c=controlTable.get(text);
+      if (f == null && c == null) {
+        throw makeException("Unknown function or control named " + text);
       }
       next();
       List<Evaluable> args=parseExpressionList(")");
-      eval=new FunctionCallExpr(makeArray(args),f);
+      if (c != null) {
+        eval=new ControlCallExpr(makeArray(args),c);
+      }
+ else {
+        eval=new FunctionCallExpr(makeArray(args),f);
+      }
     }
   }
  else   if (_token.type == TokenType.Delimiter && _token.text.equals("(")) {

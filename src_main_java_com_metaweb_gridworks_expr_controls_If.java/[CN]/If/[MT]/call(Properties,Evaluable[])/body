@@ -1,0 +1,12 @@
+{
+  if (args.length >= 3) {
+    Object o=args[0].evaluate(bindings);
+    if (ExpressionUtils.isTrue(o)) {
+      return args[1].evaluate(bindings);
+    }
+ else     if (args.length >= 3) {
+      return args[2].evaluate(bindings);
+    }
+  }
+  return null;
+}

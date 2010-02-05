@@ -1,0 +1,9 @@
+{
+  if (cellIndex < cells.size()) {
+    Cell cell=cells.get(cellIndex);
+    if (cell != null) {
+      return cell.value;
+    }
+  }
+  return null;
+}

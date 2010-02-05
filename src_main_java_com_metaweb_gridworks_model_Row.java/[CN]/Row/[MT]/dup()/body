@@ -1,0 +1,7 @@
+{
+  Row row=new Row(cells.size());
+  row.flagged=flagged;
+  row.starred=starred;
+  row.cells.addAll(cells);
+  return row;
+}

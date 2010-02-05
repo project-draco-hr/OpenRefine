@@ -1,0 +1,7 @@
+{
+synchronized (project) {
+    _oldRows=new ArrayList<Row>(project.rows);
+    project.rows.clear();
+    project.rows.addAll(_newRows);
+  }
+}

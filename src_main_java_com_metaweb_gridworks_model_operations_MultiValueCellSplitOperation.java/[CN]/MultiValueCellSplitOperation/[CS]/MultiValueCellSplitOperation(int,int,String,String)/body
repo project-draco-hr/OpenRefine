@@ -1,0 +1,6 @@
+{
+  _cellIndex=cellIndex;
+  _keyCellIndex=keyCellIndex;
+  _separator=separator;
+  _mode=mode;
+}

@@ -1,0 +1,3 @@
+{
+  return isValueBlank(getCellValue(cellIndex));
+}

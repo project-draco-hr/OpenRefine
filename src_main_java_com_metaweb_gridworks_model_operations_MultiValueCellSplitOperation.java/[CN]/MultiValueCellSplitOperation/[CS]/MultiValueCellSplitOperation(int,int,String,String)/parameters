@@ -1,0 +1,4 @@
+int cellIndex
+int keyCellIndex
+String separator
+String mode

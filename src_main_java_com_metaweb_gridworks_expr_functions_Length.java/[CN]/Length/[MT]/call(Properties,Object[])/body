@@ -1,0 +1,16 @@
+{
+  if (args.length == 1) {
+    Object v=args[0];
+    if (v != null) {
+      if (v.getClass().isArray()) {
+        Object[] a=(Object[])v;
+        return a.length;
+      }
+ else {
+        String s=(v instanceof String ? (String)v : v.toString());
+        return s.length();
+      }
+    }
+  }
+  return null;
+}

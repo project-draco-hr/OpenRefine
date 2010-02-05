@@ -10,6 +10,14 @@
   _max=index.getMax();
   _step=index.getStep();
   _baseBins=index.getBins();
+  if (_selected) {
+    _from=Math.max(_from,_min);
+    _to=Math.min(_to,_max);
+  }
+ else {
+    _from=_min;
+    _to=_max;
+  }
   ExpressionNumericRowBinner binner=new ExpressionNumericRowBinner(_eval,_cellIndex,index);
   filteredRows.accept(project,binner);
   _bins=binner.bins;

@@ -5,13 +5,22 @@
   _eval=new Parser(_expression).getExpression();
   _mode=o.getString("mode");
   if ("min".equals(_mode)) {
-    _from=o.getDouble("from");
+    if (o.has("from")) {
+      _from=o.getDouble("from");
+      _selected=true;
+    }
   }
  else   if ("max".equals(_mode)) {
-    _to=o.getDouble("to");
+    if (o.has("to")) {
+      _to=o.getDouble("to");
+      _selected=true;
+    }
   }
  else {
-    _from=o.getDouble("from");
-    _to=o.getDouble("to");
+    if (o.has("from") && o.has("to")) {
+      _from=o.getDouble("from");
+      _to=o.getDouble("to");
+      _selected=true;
+    }
   }
 }

@@ -1,6 +1,6 @@
 {
   List<Group> keyedGroups=new ArrayList<Group>();
-  keyedGroups.add(createRootKeyedGroup());
+  addRootKeyedGroup(keyedGroups);
   for (  ColumnGroup group : columnModel.columnGroups) {
     if (group.keyColumnIndex >= 0) {
       Group keyedGroup=new Group();

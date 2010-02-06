@@ -3,7 +3,6 @@
     Project project=getProject(request);
     int cellIndex=Integer.parseInt(request.getParameter("cellIndex"));
     String expression=request.getParameter("expression");
-    Evaluable eval=new Parser(expression).getExpression();
     String rowIndicesString=request.getParameter("rowIndices");
     if (rowIndicesString == null) {
       respond(response,"{ \"code\" : \"error\", \"message\" : \"No row indices specified\" }");
@@ -13,31 +12,43 @@
     int length=rowIndices.length();
     JSONWriter writer=new JSONWriter(response.getWriter());
     writer.object();
-    writer.key("code");
-    writer.value("ok");
-    writer.key("results");
-    writer.array();
-    Properties bindings=ExpressionUtils.createBindings(project);
-    for (int i=0; i < length; i++) {
-      Object result=null;
-      int rowIndex=rowIndices.getInt(i);
-      if (rowIndex >= 0 && rowIndex < project.rows.size()) {
-        Row row=project.rows.get(rowIndex);
-        if (cellIndex < row.cells.size()) {
-          Cell cell=row.cells.get(cellIndex);
-          if (cell.value != null) {
-            ExpressionUtils.bind(bindings,row,cell);
-            try {
-              result=eval.evaluate(bindings);
-            }
- catch (            Exception e) {
+    try {
+      Evaluable eval=new Parser(expression).getExpression();
+      writer.key("code");
+      writer.value("ok");
+      writer.key("results");
+      writer.array();
+      Properties bindings=ExpressionUtils.createBindings(project);
+      for (int i=0; i < length; i++) {
+        Object result=null;
+        int rowIndex=rowIndices.getInt(i);
+        if (rowIndex >= 0 && rowIndex < project.rows.size()) {
+          Row row=project.rows.get(rowIndex);
+          if (cellIndex < row.cells.size()) {
+            Cell cell=row.cells.get(cellIndex);
+            if (cell != null && cell.value != null) {
+              ExpressionUtils.bind(bindings,row,cell);
+              try {
+                result=eval.evaluate(bindings);
+              }
+ catch (              Exception e) {
+              }
             }
           }
         }
+        if (result != null) {
+          if (result instanceof HasFields) {
+            result="[object " + result.getClass().getSimpleName() + "]";
+          }
+        }
+        writer.value(result);
       }
-      writer.value(result);
+      writer.endArray();
     }
-    writer.endArray();
+ catch (    Exception e) {
+      writer.key("code");
+      writer.value("error");
+    }
     writer.endObject();
   }
  catch (  Exception e) {

@@ -1,4 +1,4 @@
 {
-  super(engineConfig,cellIndex);
+  super(engineConfig,cellIndex,true);
   _expression=expression;
 }

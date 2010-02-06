@@ -5,5 +5,7 @@ synchronized (project) {
       row.setCell(_newCellIndex,null);
     }
     project.columnModel.columns.remove(_columnIndex);
+    project.columnModel.update();
+    project.recomputeRowContextDependencies();
   }
 }

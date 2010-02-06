@@ -8,7 +8,7 @@
   FilteredRows filteredRows=engine.getAllFilteredRows(false);
   filteredRows.accept(project,createRowVisitor(project,cellChanges));
   String description=createDescription(column,cellChanges);
-  MassCellChange massCellChange=new MassCellChange(cellChanges,_cellIndex);
+  MassCellChange massCellChange=new MassCellChange(cellChanges,_cellIndex,_updateRowContextDependencies);
   HistoryEntry historyEntry=new HistoryEntry(project,description,this,massCellChange);
   return new QuickHistoryEntryProcess(project,historyEntry);
 }

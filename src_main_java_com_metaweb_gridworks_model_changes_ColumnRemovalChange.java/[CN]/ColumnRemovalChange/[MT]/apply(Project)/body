@@ -12,5 +12,7 @@ synchronized (project) {
       _oldCells[i]=new CellAtRow(i,oldCell);
       row.setCell(cellIndex,null);
     }
+    project.columnModel.update();
+    project.recomputeRowContextDependencies();
   }
 }

@@ -11,5 +11,7 @@ synchronized (project) {
  catch (    Exception e) {
       e.printStackTrace();
     }
+    project.columnModel.update();
+    project.recomputeRowContextDependencies();
   }
 }

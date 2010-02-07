@@ -1,0 +1,8 @@
+{
+synchronized (project) {
+    super.apply(project);
+    Column column=project.columnModel.getColumnByCellIndex(_commonCellIndex);
+    _oldReconConfig=column.getReconConfig();
+    column.setReconConfig(_newReconConfig);
+  }
+}

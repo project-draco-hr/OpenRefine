@@ -4,5 +4,9 @@
   writer.value(getCellIndex());
   writer.key("headerLabel");
   writer.value(getHeaderLabel());
+  if (_reconConfig != null) {
+    writer.key("reconConfig");
+    _reconConfig.write(writer,options);
+  }
   writer.endObject();
 }

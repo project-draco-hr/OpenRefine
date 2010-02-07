@@ -1,0 +1,3 @@
+List<CellChange> cellChanges
+int commonCellIndex
+ReconConfig newReconConfig

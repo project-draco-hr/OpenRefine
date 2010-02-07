@@ -23,7 +23,7 @@
           this.writer=writer;
           return this;
         }
-        @Override public boolean visit(        Project project,        int rowIndex,        Row row,        boolean contextual){
+        public boolean visit(        Project project,        int rowIndex,        Row row,        boolean contextual){
           boolean first=true;
           for (          Column column : project.columnModel.columns) {
             if (first) {

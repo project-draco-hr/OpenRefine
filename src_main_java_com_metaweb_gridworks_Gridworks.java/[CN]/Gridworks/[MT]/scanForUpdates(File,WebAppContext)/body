@@ -1,0 +1,26 @@
+{
+  List<File> scanList=new ArrayList<File>();
+  scanList.add(new File(contextRoot,"WEB-INF/web.xml"));
+  findFiles(".class",new File(contextRoot,"WEB-INF"),scanList);
+  findFiles(".js",new File(contextRoot,"WEB-INF"),scanList);
+  Log.info("Starting autoreloading scanner...");
+  Scanner scanner=new Scanner();
+  scanner.setScanInterval(Configurations.getInteger("gridworks.scanner.period",1));
+  scanner.setScanDirs(scanList);
+  scanner.setReportExistingFilesOnStartup(false);
+  scanner.addListener(new Scanner.BulkListener(){
+    @SuppressWarnings("unchecked") public void filesChanged(    List changedFiles){
+      try {
+        Log.info("Stopping context: " + contextRoot.getAbsolutePath());
+        context.stop();
+        Log.info("Starting context: " + contextRoot.getAbsolutePath());
+        context.start();
+      }
+ catch (      Exception ex) {
+        throw new RuntimeException(ex);
+      }
+    }
+  }
+);
+  scanner.start();
+}

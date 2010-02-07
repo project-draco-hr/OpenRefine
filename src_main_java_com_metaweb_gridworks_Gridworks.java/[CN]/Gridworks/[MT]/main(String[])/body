@@ -1,0 +1,18 @@
+{
+  System.setProperty("VERBOSE","false");
+  System.setProperty("org.mortbay.log.class","org.mortbay.log.Slf4jLog");
+  Appender console=new ConsoleAppender(new IndentingLayout());
+  Logger root=Logger.getRootLogger();
+  root.setLevel(Level.ALL);
+  root.addAppender(console);
+  Logger jetty_logger=Logger.getLogger("org.mortbay.log");
+  jetty_logger.setLevel(Level.INFO);
+  int port=Configurations.getInteger("gridworks.port",3333);
+  String host=Configurations.get("gridworks.host","127.0.0.1");
+  Gridworks server=new Gridworks(host,port);
+  new ShutdownSignalHandler("TERM",server);
+  server.start();
+  URI starting_url=new URI("http://" + host + ":"+ port+ "/");
+  Desktop.getDesktop().browse(starting_url);
+  server.join();
+}

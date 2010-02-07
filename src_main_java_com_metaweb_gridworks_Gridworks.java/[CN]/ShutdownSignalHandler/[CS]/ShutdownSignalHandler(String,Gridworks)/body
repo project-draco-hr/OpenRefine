@@ -1,0 +1,4 @@
+{
+  super(sigName);
+  this._server=server;
+}

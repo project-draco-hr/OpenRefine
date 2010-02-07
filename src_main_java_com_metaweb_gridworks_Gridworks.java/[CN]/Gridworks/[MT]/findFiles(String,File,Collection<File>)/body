@@ -1,0 +1,14 @@
+{
+  baseDir.listFiles(new FileFilter(){
+    public boolean accept(    File pathname){
+      if (pathname.isDirectory()) {
+        findFiles(extension,pathname,found);
+      }
+ else       if (pathname.getName().endsWith(extension)) {
+        found.add(pathname);
+      }
+      return false;
+    }
+  }
+);
+}

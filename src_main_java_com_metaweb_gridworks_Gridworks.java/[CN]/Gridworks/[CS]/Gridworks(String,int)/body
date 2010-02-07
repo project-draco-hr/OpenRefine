@@ -1,0 +1,29 @@
+{
+  int maxThreads=Configurations.getInteger("gridworks.queue.size",10);
+  int maxQueue=Configurations.getInteger("gridworks.queue.max_size",50);
+  long keepAliveTime=Configurations.getInteger("gridworks.queue.idle_time",60);
+  LinkedBlockingQueue<Runnable> queue=new LinkedBlockingQueue<Runnable>(maxQueue);
+  threadPool=new ThreadPoolExecutor(maxThreads,maxQueue,keepAliveTime,TimeUnit.SECONDS,queue);
+  this.setThreadPool(new ThreadPoolExecutorAdapter(threadPool));
+  Connector connector=new SocketConnector();
+  connector.setPort(port);
+  connector.setHost(host);
+  connector.setMaxIdleTime(Configurations.getInteger("gridworks.connection.max_idle_time",60000));
+  connector.setStatsOn(false);
+  this.addConnector(connector);
+  final File contextRoot=new File(Configurations.get("gridworks.webapp","webapp"));
+  final String contextPath=Configurations.get("gridworks.context_path","/");
+  File webXml=new File(contextRoot,"WEB-INF/web.xml");
+  if (!webXml.isFile()) {
+    Log.warn("Warning: Failed to find web application. Could not find 'web.xml' at '" + webXml.getAbsolutePath() + "'");
+    System.exit(-1);
+  }
+  Log.info("Initializing context: '" + contextPath + "' from '"+ contextRoot.getAbsolutePath()+ "'");
+  WebAppContext context=new WebAppContext(contextRoot.getAbsolutePath(),contextPath);
+  this.setHandler(context);
+  this.setStopAtShutdown(true);
+  this.setSendServerVersion(true);
+  if (Configurations.getBoolean("gridworks.autoreloading",false)) {
+    scanForUpdates(contextRoot,context);
+  }
+}

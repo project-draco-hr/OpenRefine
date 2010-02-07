@@ -1,0 +1,4 @@
+{
+  String val=get(name);
+  return (val == null) ? def : Boolean.parseBoolean(val);
+}

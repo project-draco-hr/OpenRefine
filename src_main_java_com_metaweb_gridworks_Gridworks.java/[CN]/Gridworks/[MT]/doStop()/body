@@ -1,0 +1,8 @@
+{
+  try {
+    if (threadPool != null)     threadPool.shutdown();
+    super.doStop();
+  }
+ catch (  InterruptedException e) {
+  }
+}

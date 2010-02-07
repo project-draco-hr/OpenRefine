@@ -1,0 +1,5 @@
+{
+  this.handler=handler;
+  sun.misc.Signal signal=new sun.misc.Signal(signalName);
+  existingHandler=sun.misc.Signal.handle(signal,this);
+}

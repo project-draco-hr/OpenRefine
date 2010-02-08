@@ -5,5 +5,4 @@
   this.operation=operation;
   this.time=new Date();
   _change=change;
-  saveChange();
 }

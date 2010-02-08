@@ -3,4 +3,5 @@
     loadChange();
   }
   _change.apply(project);
+  saveChange();
 }

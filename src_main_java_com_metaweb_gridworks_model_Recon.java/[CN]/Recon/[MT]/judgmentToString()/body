@@ -1,6 +1,6 @@
 {
-  if (judgment == Judgment.Approve) {
-    return "approve";
+  if (judgment == Judgment.Matched) {
+    return "matched";
   }
  else   if (judgment == Judgment.New) {
     return "new";

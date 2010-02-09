@@ -2,7 +2,7 @@
 synchronized (project) {
     List<Row> rows=project.rows;
     for (    CellChange cellChange : _cellChanges) {
-      rows.get(cellChange.row).cells.set(cellChange.column,cellChange.oldCell);
+      rows.get(cellChange.row).setCell(cellChange.cellIndex,cellChange.oldCell);
     }
     if (_commonCellIndex >= 0) {
       project.columnModel.getColumnByCellIndex(_commonCellIndex).clearPrecomputes();

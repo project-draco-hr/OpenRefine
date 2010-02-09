@@ -5,8 +5,8 @@
  else   if ("judgment".equals(name) || "judgement".equals(name)) {
     return judgmentToString();
   }
- else   if ("approved".equals(name)) {
-    return judgment == Judgment.Approve;
+ else   if ("matched".equals(name)) {
+    return judgment == Judgment.Matched;
   }
  else   if ("new".equals(name)) {
     return judgment == Judgment.New;

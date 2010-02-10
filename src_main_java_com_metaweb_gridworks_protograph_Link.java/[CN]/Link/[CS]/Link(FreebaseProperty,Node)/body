@@ -1,4 +1,4 @@
 {
-  _property=property;
-  _target=target;
+  this.property=property;
+  this.target=target;
 }

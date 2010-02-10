@@ -1,0 +1,12 @@
+{
+  writer.object();
+  writer.key("nodeType");
+  writer.value("cell-as-topic");
+  writer.key("cellIndex");
+  writer.value(cellIndex);
+  writer.key("type");
+  type.write(writer,options);
+  writer.key("createUnlessRecon");
+  writer.value(createForNoReconMatch);
+  writer.endObject();
+}

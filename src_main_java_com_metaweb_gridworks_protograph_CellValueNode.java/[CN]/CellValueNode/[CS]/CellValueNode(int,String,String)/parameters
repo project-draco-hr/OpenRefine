@@ -1,0 +1,3 @@
+int cellIndex
+String valueType
+String lang

@@ -1,5 +1,0 @@
-{
-  this.cellIndex=cellIndex;
-  this.createUnlessRecon=createUnlessRecon;
-  this.type=type;
-}

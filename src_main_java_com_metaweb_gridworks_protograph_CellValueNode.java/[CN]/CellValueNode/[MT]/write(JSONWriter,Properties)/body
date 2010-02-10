@@ -1,0 +1,12 @@
+{
+  writer.object();
+  writer.key("nodeType");
+  writer.value("cell-as-value");
+  writer.key("cellIndex");
+  writer.value(cellIndex);
+  writer.key("valueType");
+  writer.value(valueType);
+  writer.key("lang");
+  writer.value(lang);
+  writer.endObject();
+}

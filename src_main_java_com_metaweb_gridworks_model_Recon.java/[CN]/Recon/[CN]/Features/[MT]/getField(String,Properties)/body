@@ -1,3 +1,4 @@
 {
-  return features.get(name);
+  int index=s_featureMap.get(name);
+  return index < features.length ? features[index] : null;
 }

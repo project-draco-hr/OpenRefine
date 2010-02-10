@@ -1,6 +1,6 @@
 {
   Recon r=new Recon();
-  r.features.putAll(new HashMap<String,Object>(features));
+  System.arraycopy(features,0,r.features,0,features.length);
   r.candidates.addAll(candidates);
   r.judgment=judgment;
   r.match=match;

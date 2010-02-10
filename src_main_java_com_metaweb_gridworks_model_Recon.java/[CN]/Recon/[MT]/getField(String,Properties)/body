@@ -15,12 +15,7 @@
     return match;
   }
  else   if ("features".equals(name)) {
-    return new HasFields(){
-      public Object getField(      String name,      Properties bindings){
-        return features.get(name);
-      }
-    }
-;
+    return new Features();
   }
   return null;
 }

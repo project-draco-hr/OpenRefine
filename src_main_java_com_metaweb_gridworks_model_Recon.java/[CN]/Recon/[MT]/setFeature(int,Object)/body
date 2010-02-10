@@ -1,0 +1,11 @@
+{
+  if (feature >= features.length) {
+    if (feature >= Feature_max) {
+      return;
+    }
+    Object[] newFeatures=new Object[Feature_max];
+    System.arraycopy(features,0,newFeatures,0,features.length);
+    features=newFeatures;
+  }
+  features[feature]=v;
+}

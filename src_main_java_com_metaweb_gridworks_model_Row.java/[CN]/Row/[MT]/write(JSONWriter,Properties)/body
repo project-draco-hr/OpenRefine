@@ -15,6 +15,10 @@
     }
   }
   writer.endArray();
+  if (recordIndex >= 0) {
+    writer.key("j");
+    writer.value(recordIndex);
+  }
   if (options.containsKey("rowIndex")) {
     writer.key("i");
     writer.value(options.get("rowIndex"));

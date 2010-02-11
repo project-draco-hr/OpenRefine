@@ -1,0 +1,37 @@
+{
+  Node node=null;
+  String nodeType=o.getString("nodeType");
+  if (nodeType.startsWith("cell-as-")) {
+    String columnName=o.getString("columnName");
+    if ("cell-as-topic".equals(nodeType)) {
+      node=new CellTopicNode(columnName,o.getBoolean("createForNoReconMatch"),reconstructType(o.getJSONObject("type")));
+    }
+ else     if ("cell-as-value".equals(nodeType)) {
+      node=new CellValueNode(columnName,o.getString("valueType"),o.getString("lang"));
+    }
+ else     if ("cell-as-key".equals(nodeType)) {
+      node=new CellKeyNode(columnName,reconstructTopic(o.getJSONObject("namespace")));
+    }
+  }
+ else   if ("topic".equals(nodeType)) {
+    node=new FreebaseTopicNode(reconstructTopic(o.getJSONObject("topic")));
+  }
+ else   if ("value".equals(nodeType)) {
+    node=new ValueNode(o.get("value"),o.getString("valueType"),o.getString("lang"));
+  }
+ else   if ("anonymous".equals(nodeType)) {
+    node=new AnonymousNode(reconstructType(o.getJSONObject("type")));
+  }
+  if (node != null) {
+    if (node instanceof NodeWithLinks && o.has("links")) {
+      NodeWithLinks node2=(NodeWithLinks)node;
+      JSONArray links=o.getJSONArray("links");
+      int linkCount=links.length();
+      for (int j=0; j < linkCount; j++) {
+        JSONObject oLink=links.getJSONObject(j);
+        node2.addLink(new Link(reconstructProperty(oLink.getJSONObject("property")),reconstructNode(oLink.getJSONObject("target"))));
+      }
+    }
+  }
+  return node;
+}

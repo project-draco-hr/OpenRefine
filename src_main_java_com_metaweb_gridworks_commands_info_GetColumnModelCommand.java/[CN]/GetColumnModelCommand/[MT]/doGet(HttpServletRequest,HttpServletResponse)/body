@@ -1,9 +1,0 @@
-{
-  Project project=getProject(request);
-  try {
-    respondJSON(response,project.columnModel);
-  }
- catch (  JSONException e) {
-    respondException(response,e);
-  }
-}

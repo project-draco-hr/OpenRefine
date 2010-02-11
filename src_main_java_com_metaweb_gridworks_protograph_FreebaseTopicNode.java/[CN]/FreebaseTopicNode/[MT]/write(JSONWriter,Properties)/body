@@ -4,5 +4,11 @@
   writer.value("topic");
   writer.key("topic");
   topic.write(writer,options);
+  writer.key("links");
+  writer.array();
+  for (  Link link : links) {
+    link.write(writer,options);
+  }
+  writer.endArray();
   writer.endObject();
 }

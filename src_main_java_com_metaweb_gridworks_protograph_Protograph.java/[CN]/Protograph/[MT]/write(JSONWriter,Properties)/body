@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("rootNodes");
+  writer.array();
+  for (  Node node : _rootNodes) {
+    node.write(writer,options);
+  }
+  writer.endArray();
+  writer.endObject();
+}

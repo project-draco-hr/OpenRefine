@@ -1,5 +1,0 @@
-{
-  super(cellIndex);
-  this.createForNoReconMatch=createForNoReconMatch;
-  this.type=type;
-}

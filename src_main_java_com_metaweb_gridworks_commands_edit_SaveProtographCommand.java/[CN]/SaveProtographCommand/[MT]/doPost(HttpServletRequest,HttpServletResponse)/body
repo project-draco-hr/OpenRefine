@@ -1,0 +1,15 @@
+{
+  try {
+    Project project=getProject(request);
+    String jsonString=request.getParameter("protograph");
+    JSONObject json=jsonStringToObject(jsonString);
+    Protograph protograph=Protograph.reconstruct(json);
+    AbstractOperation op=new SaveProtographOperation(protograph);
+    Process process=op.createProcess(project,new Properties());
+    boolean done=project.processManager.queueProcess(process);
+    respond(response,"{ \"code\" : " + (done ? "\"ok\"" : "\"pending\"") + " }");
+  }
+ catch (  Exception e) {
+    respondException(response,e);
+  }
+}

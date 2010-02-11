@@ -1,0 +1,6 @@
+{
+synchronized (project) {
+    _oldProtograph=project.protograph;
+    project.protograph=_newProtograph;
+  }
+}

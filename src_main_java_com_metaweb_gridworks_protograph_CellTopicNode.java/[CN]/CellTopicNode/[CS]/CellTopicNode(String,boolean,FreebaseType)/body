@@ -1,0 +1,5 @@
+{
+  super(columnName);
+  this.createForNoReconMatch=createForNoReconMatch;
+  this.type=type;
+}

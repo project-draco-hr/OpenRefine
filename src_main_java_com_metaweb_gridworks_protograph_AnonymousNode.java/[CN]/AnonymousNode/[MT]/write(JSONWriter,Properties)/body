@@ -1,2 +1,8 @@
 {
+  writer.object();
+  writer.key("nodeType");
+  writer.value("anonymous");
+  writer.key("type");
+  type.write(writer,options);
+  writer.endObject();
 }

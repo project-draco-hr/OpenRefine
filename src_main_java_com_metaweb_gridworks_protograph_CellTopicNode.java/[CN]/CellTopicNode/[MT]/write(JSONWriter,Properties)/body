@@ -4,7 +4,7 @@
   writer.value("cell-as-topic");
   writer.key("columnName");
   writer.value(columnName);
-  writer.key("createUnlessRecon");
+  writer.key("createForNoReconMatch");
   writer.value(createForNoReconMatch);
   if (createForNoReconMatch && type != null) {
     writer.key("type");

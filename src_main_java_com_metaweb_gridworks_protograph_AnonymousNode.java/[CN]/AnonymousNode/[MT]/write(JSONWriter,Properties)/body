@@ -4,5 +4,13 @@
   writer.value("anonymous");
   writer.key("type");
   type.write(writer,options);
+  if (links != null) {
+    writer.key("links");
+    writer.array();
+    for (    Link link : links) {
+      link.write(writer,options);
+    }
+    writer.endArray();
+  }
   writer.endObject();
 }

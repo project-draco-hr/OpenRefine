@@ -1,0 +1,20 @@
+{
+  if (obj == null) {
+    obj=new JSONObject();
+    try {
+      if (cell.recon != null && cell.recon.judgment == Recon.Judgment.Matched && cell.recon.match != null) {
+        obj.put("id",cell.recon.match.topicID);
+      }
+ else {
+        obj.put("id",(String)null);
+        obj.put("name",cell.value.toString());
+        obj.put("type",node.type.id);
+        obj.put("create","unless_exists");
+      }
+    }
+ catch (    JSONException e) {
+      e.printStackTrace();
+    }
+  }
+  return obj;
+}

@@ -1,0 +1,15 @@
+{
+  try {
+    Project project=getProject(request);
+    String jsonString=request.getParameter("protograph");
+    JSONObject json=jsonStringToObject(jsonString);
+    Protograph protograph=Protograph.reconstruct(json);
+    MqlreadLikeTransposedNodeFactory nodeFactory=new MqlreadLikeTransposedNodeFactory();
+    Transposer.transpose(project,protograph,protograph.getRootNode(0),nodeFactory);
+    JSONArray results=nodeFactory.getJSON();
+    respond(response,"{ \"result\" : " + results.toString() + " }");
+  }
+ catch (  Exception e) {
+    respondException(response,e);
+  }
+}

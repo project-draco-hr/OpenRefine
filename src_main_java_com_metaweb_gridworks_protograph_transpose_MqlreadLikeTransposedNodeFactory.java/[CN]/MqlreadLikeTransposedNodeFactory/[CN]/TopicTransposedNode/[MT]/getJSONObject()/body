@@ -1,0 +1,12 @@
+{
+  if (obj == null) {
+    obj=new JSONObject();
+    try {
+      obj.put("id",node.topic.id);
+    }
+ catch (    JSONException e) {
+      e.printStackTrace();
+    }
+  }
+  return obj;
+}

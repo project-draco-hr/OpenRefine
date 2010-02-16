@@ -1,0 +1,16 @@
+{
+  if (obj == null) {
+    obj=new JSONObject();
+    try {
+      obj.put("value",cell.value.toString());
+      JSONObject nsObj=new JSONObject();
+      nsObj.put("id",node.namespace.id);
+      obj.put("namespace",nsObj);
+      obj.put("connect","insert");
+    }
+ catch (    JSONException e) {
+      e.printStackTrace();
+    }
+  }
+  return obj;
+}

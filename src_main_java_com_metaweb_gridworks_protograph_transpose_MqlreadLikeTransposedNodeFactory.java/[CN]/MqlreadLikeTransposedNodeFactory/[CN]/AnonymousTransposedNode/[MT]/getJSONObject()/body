@@ -1,0 +1,15 @@
+{
+  if (obj == null) {
+    obj=new JSONObject();
+    try {
+      obj.put("type",this.node.type.id);
+      obj.put("id",(String)null);
+      obj.put("create","unconditional");
+    }
+ catch (    JSONException e) {
+      e.printStackTrace();
+    }
+    linkTransposedNodeJSON(obj,parent,property);
+  }
+  return obj;
+}

@@ -1,0 +1,4 @@
+Node node
+Context parent
+Link link
+int limit

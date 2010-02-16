@@ -1,0 +1,16 @@
+{
+  if (obj == null) {
+    obj=new JSONObject();
+    try {
+      obj.put("value",node.value);
+      if (node.lang != null) {
+        obj.put("lang",node.lang);
+      }
+      obj.put("connect","insert");
+    }
+ catch (    JSONException e) {
+      e.printStackTrace();
+    }
+  }
+  return obj;
+}

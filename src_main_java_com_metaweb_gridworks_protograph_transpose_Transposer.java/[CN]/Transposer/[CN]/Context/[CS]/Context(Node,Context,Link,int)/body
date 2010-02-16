@@ -1,0 +1,14 @@
+{
+  this.parent=parent;
+  this.link=link;
+  this.limit=limit;
+  if (node instanceof NodeWithLinks) {
+    NodeWithLinks node2=(NodeWithLinks)node;
+    int subContextCount=node2.getLinkCount();
+    subContexts=new LinkedList<Context>();
+    for (int i=0; i < subContextCount; i++) {
+      Link link2=node2.getLink(i);
+      subContexts.add(new Context(link2.getTarget(),this,link2,-1));
+    }
+  }
+}

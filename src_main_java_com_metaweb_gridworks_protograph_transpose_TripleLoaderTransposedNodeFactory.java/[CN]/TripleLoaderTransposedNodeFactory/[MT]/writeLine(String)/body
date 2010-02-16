@@ -1,0 +1,6 @@
+{
+  if (stringBuffer.length() > 0) {
+    stringBuffer.append('\n');
+  }
+  stringBuffer.append(line);
+}

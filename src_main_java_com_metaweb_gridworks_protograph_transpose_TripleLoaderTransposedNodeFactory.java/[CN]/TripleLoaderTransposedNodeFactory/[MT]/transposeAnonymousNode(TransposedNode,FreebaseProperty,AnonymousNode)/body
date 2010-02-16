@@ -1,0 +1,5 @@
+{
+  WritingTransposedNode tnode=new AnonymousTransposedNode(node);
+  processTransposedNode(tnode,parentNode,property);
+  return tnode;
+}

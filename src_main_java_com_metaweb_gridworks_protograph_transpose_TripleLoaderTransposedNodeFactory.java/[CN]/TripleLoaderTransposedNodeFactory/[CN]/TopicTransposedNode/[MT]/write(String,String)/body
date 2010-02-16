@@ -1,0 +1,6 @@
+{
+  String object=JSONObject.quote(node.topic.id);
+  writeLine(subject,predicate,object);
+  writeChildren(object);
+  return object;
+}

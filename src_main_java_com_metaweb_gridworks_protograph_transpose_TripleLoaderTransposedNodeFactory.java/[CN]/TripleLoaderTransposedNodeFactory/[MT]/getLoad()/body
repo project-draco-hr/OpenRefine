@@ -1,0 +1,7 @@
+{
+  stringBuffer=new StringBuffer();
+  for (  WritingTransposedNode node : rootNodes) {
+    node.write(null,null);
+  }
+  return stringBuffer.toString();
+}

@@ -1,0 +1,10 @@
+{
+  String object=node.value instanceof String ? JSONObject.quote((String)node.value) : node.value.toString();
+  if ("/type/text".equals(node.lang)) {
+    writeLine("{ 's' : '" + subject + "', 'p' : '"+ predicate+ "', 'o' : "+ object+ ", 'lang' : '"+ node.lang+ "' }");
+  }
+ else {
+    writeLine("{ 's' : '" + subject + "', 'p' : '"+ predicate+ "', 'o' : "+ object+ " }");
+  }
+  return object;
+}

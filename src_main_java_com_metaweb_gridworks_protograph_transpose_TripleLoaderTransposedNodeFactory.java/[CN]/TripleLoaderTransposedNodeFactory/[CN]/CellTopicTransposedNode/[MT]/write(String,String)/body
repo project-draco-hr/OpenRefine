@@ -1,0 +1,13 @@
+{
+  String id=null;
+  if (cell.recon != null && cell.recon.judgment == Recon.Judgment.Matched && cell.recon.match != null) {
+    id=cell.recon.match.topicID;
+  }
+ else {
+    id="$" + node.columnName.replaceAll("\\W","_");
+    writeLine("{ 's' : '" + id + "', 'p' : 'type', 'o' : '"+ node.type.id+ "' }");
+    writeLine("{ 's' : '" + id + "', 'p' : 'name', 'o' : "+ JSONObject.quote(cell.value.toString())+ " }");
+  }
+  writeChildren(id);
+  return JSONObject.quote(id);
+}

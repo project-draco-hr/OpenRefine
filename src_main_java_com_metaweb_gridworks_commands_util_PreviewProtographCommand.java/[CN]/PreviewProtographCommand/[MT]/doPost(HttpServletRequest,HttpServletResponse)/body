@@ -4,10 +4,23 @@
     String jsonString=request.getParameter("protograph");
     JSONObject json=jsonStringToObject(jsonString);
     Protograph protograph=Protograph.reconstruct(json);
-    MqlreadLikeTransposedNodeFactory nodeFactory=new MqlreadLikeTransposedNodeFactory();
-    Transposer.transpose(project,protograph,protograph.getRootNode(0),nodeFactory);
-    JSONArray results=nodeFactory.getJSON();
-    respond(response,"{ \"result\" : " + results.toString() + " }");
+    StringBuffer sb=new StringBuffer();
+    sb.append("{ ");
+{
+      TripleLoaderTransposedNodeFactory nodeFactory=new TripleLoaderTransposedNodeFactory();
+      Transposer.transpose(project,protograph,protograph.getRootNode(0),nodeFactory);
+      sb.append("\"tripleloader\" : ");
+      sb.append(JSONObject.quote(nodeFactory.getLoad()));
+    }
+{
+      MqlreadLikeTransposedNodeFactory nodeFactory=new MqlreadLikeTransposedNodeFactory();
+      Transposer.transpose(project,protograph,protograph.getRootNode(0),nodeFactory);
+      JSONArray results=nodeFactory.getJSON();
+      sb.append(", \"mqllike\" : ");
+      sb.append(results.toString());
+    }
+    sb.append(" }");
+    respond(response,sb.toString());
   }
  catch (  Exception e) {
     respondException(response,e);

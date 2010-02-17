@@ -5,7 +5,7 @@
   writer.key("description");
   writer.value("Text transform on cells in column " + _columnName + " with expression "+ _expression);
   writer.key("engineConfig");
-  writer.value(_engineConfig);
+  writer.value(getEngineConfig());
   writer.key("columnName");
   writer.value(_columnName);
   writer.key("expression");

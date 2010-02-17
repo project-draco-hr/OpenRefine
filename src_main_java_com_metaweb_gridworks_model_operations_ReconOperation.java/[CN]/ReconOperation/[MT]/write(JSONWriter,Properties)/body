@@ -8,5 +8,7 @@
   writer.value(_columnName);
   writer.key("typeID");
   writer.value(_typeID);
+  writer.key("engineConfig");
+  writer.value(getEngineConfig());
   writer.endObject();
 }

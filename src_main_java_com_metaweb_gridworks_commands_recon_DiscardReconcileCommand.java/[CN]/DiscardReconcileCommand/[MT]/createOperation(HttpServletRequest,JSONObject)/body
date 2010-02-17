@@ -1,4 +1,4 @@
 {
-  int cellIndex=Integer.parseInt(request.getParameter("cell"));
-  return new DiscardReconOperation(engineConfig,cellIndex);
+  String columnName=request.getParameter("columnName");
+  return new DiscardReconOperation(engineConfig,columnName);
 }

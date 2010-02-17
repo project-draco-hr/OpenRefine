@@ -1,4 +1,5 @@
 {
+  Column column=project.columnModel.getColumnByName(_baseColumnName);
   Evaluable eval=new Parser(_expression).getExpression();
   Properties bindings=ExpressionUtils.createBindings(project);
   return new RowVisitor(){
@@ -24,5 +25,5 @@
       return false;
     }
   }
-.init(_baseCellIndex,bindings,cellsAtRows,eval);
+.init(column.getCellIndex(),bindings,cellsAtRows,eval);
 }

@@ -1,5 +1,0 @@
-{
-  super(engineConfig);
-  _cellIndex=cellIndex;
-  _typeID=typeID;
-}

@@ -1,4 +1,5 @@
 {
+  Column column=project.columnModel.getColumnByName(_columnName);
   return new RowVisitor(){
     int cellIndex;
     List<CellChange> cellChanges;
@@ -21,5 +22,5 @@
       return false;
     }
   }
-.init(_cellIndex,cellChanges);
+.init(column.getCellIndex(),cellChanges);
 }

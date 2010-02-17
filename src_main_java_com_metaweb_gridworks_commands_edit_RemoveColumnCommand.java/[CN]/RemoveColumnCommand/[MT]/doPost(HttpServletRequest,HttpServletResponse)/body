@@ -1,8 +1,8 @@
 {
   try {
     Project project=getProject(request);
-    int columnRemovalIndex=Integer.parseInt(request.getParameter("columnRemovalIndex"));
-    AbstractOperation op=new ColumnRemovalOperation(columnRemovalIndex);
+    String columnName=request.getParameter("columnName");
+    AbstractOperation op=new ColumnRemovalOperation(columnName);
     Process process=op.createProcess(project,new Properties());
     boolean done=project.processManager.queueProcess(process);
     respond(response,"{ \"code\" : " + (done ? "\"ok\"" : "\"pending\"") + " }");

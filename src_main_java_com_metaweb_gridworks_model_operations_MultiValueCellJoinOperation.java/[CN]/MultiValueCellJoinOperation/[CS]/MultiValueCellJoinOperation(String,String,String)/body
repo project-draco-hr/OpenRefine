@@ -1,0 +1,5 @@
+{
+  _columnName=columnName;
+  _keyColumnName=keyColumnName;
+  _separator=separator;
+}

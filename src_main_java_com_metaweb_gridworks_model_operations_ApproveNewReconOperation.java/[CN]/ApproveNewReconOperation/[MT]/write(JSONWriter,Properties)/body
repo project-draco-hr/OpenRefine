@@ -1,5 +1,7 @@
 {
   writer.object();
+  writer.key("op");
+  writer.value("approve-new-recon");
   writer.key("description");
   writer.value("Approve new topics in column " + _columnName);
   writer.key("engineConfig");

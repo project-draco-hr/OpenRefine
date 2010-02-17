@@ -1,2 +1,10 @@
 {
+  writer.object();
+  writer.key("op");
+  writer.value("save-protograph");
+  writer.key("description");
+  writer.value("Save protograph");
+  writer.key("protograph");
+  _protograph.write(writer,options);
+  writer.endObject();
 }

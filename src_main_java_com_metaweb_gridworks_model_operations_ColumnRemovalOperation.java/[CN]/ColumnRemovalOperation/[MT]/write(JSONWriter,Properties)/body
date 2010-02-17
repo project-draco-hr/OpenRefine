@@ -1,2 +1,10 @@
 {
+  writer.object();
+  writer.key("op");
+  writer.value("remove-column");
+  writer.key("description");
+  writer.value("Remove column " + _columnName);
+  writer.key("columnName");
+  writer.value(_columnName);
+  writer.endObject();
 }

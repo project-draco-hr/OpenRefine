@@ -54,7 +54,7 @@
     }
     r=r2 - 1;
   }
-  String description="Split multi-value cells in column " + column.getHeaderLabel();
+  String description="Split multi-valued cells in column " + column.getHeaderLabel();
   Change change=new MassRowChange(newRows);
   HistoryEntry historyEntry=new HistoryEntry(project,description,this,change);
   return new QuickHistoryEntryProcess(project,historyEntry);

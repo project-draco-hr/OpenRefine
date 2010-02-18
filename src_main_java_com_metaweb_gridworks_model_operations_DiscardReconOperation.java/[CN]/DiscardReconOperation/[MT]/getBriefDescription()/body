@@ -1,0 +1,3 @@
+{
+  return "Discard recon results for cells in column " + _columnName;
+}

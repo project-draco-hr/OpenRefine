@@ -1,4 +1,7 @@
 {
+  if (_historyEntry == null) {
+    _historyEntry=createHistoryEntry();
+  }
   _project.history.addEntry(_historyEntry);
   _done=true;
 }

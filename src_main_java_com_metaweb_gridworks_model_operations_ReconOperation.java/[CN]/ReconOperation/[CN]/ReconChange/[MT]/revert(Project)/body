@@ -1,6 +1,6 @@
 {
 synchronized (project) {
     super.revert(project);
-    project.columnModel.getColumnByCellIndex(_commonCellIndex).setReconConfig(_oldReconConfig);
+    project.columnModel.getColumnByName(_commonColumnName).setReconConfig(_oldReconConfig);
   }
 }

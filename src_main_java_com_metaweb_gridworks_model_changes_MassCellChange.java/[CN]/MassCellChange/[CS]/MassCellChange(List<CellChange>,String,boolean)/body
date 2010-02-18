@@ -1,0 +1,6 @@
+{
+  _cellChanges=new CellChange[cellChanges.size()];
+  _commonColumnName=commonColumnName;
+  cellChanges.toArray(_cellChanges);
+  _updateRowContextDependencies=updateRowContextDependencies;
+}

@@ -3,55 +3,9 @@
     Project project=getProject(request);
     int rowIndex=Integer.parseInt(request.getParameter("row"));
     int cellIndex=Integer.parseInt(request.getParameter("cell"));
-    Cell cell=project.rows.get(rowIndex).getCell(cellIndex);
-    if (cell == null || cell.value == null) {
-      respond(response,"{ \"code\" : \"error\", \"message\" : \"Cell is blank\" }");
-      return;
-    }
-    Column column=project.columnModel.getColumnByCellIndex(cellIndex);
-    if (column == null) {
-      respond(response,"{ \"code\" : \"error\", \"message\" : \"No such column\" }");
-      return;
-    }
-    Cell newCell=new Cell(cell.value,cell.recon == null ? new Recon() : cell.recon.dup());
-    String cellDescription="single cell on row " + (rowIndex + 1) + ", column "+ column.getHeaderLabel()+ ", containing \""+ cell.value+ "\"";
-    String description=null;
     String judgment=request.getParameter("judgment");
-    if ("match".equals(judgment)) {
-      ReconCandidate match=null;
-      if (cell.recon != null) {
-        String candidateID=request.getParameter("candidate");
-        for (        ReconCandidate c : cell.recon.candidates) {
-          if (candidateID.equals(c.topicID)) {
-            match=c;
-            break;
-          }
-        }
-      }
-      if (match == null) {
-        respond(response,"{ \"code\" : \"error\", \"message\" : \"No such recon candidate\" }");
-        return;
-      }
-      newCell.recon.judgment=Recon.Judgment.Matched;
-      newCell.recon.match=match;
-      description="Match " + match.topicName + " ("+ match.topicID+ ") to "+ cellDescription;
-    }
- else     if ("new".equals(judgment)) {
-      newCell.recon.judgment=Recon.Judgment.New;
-      description="Mark to create new topic for " + cellDescription;
-    }
- else     if ("discard".equals(judgment)) {
-      newCell.recon.judgment=Recon.Judgment.None;
-      newCell.recon.match=null;
-      description="Discard recon judgment for " + cellDescription;
-    }
- else {
-      respond(response,"{ \"code\" : \"error\", \"message\" : \"bad judgment\" }");
-      return;
-    }
-    Change change=new CellChange(rowIndex,cellIndex,cell,newCell);
-    HistoryEntry historyEntry=new HistoryEntry(project,description,null,change);
-    Process process=new QuickHistoryEntryProcess(project,historyEntry);
+    String candidateID=request.getParameter("candidate");
+    JudgeOneCellProcess process=new JudgeOneCellProcess(project,"Judge one cell's recon result",rowIndex,cellIndex,judgment,candidateID);
     boolean done=project.processManager.queueProcess(process);
     if (done) {
       JSONWriter writer=new JSONWriter(response.getWriter());
@@ -59,7 +13,7 @@
       writer.key("code");
       writer.value("ok");
       writer.key("cell");
-      newCell.write(writer,new Properties());
+      process.newCell.write(writer,new Properties());
       writer.endObject();
     }
  else {

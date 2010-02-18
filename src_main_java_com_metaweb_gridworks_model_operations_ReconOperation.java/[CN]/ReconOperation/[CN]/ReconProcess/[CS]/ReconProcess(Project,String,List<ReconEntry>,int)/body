@@ -1,6 +1,0 @@
-{
-  super(description);
-  _project=project;
-  _entries=entries;
-  _cellIndex=cellIndex;
-}

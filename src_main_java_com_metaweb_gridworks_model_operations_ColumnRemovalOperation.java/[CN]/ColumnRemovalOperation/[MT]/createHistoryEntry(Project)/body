@@ -1,0 +1,9 @@
+{
+  Column column=project.columnModel.getColumnByName(_columnName);
+  if (column == null) {
+    throw new Exception("No column named " + _columnName);
+  }
+  String description="Remove column " + column.getHeaderLabel();
+  Change change=new ColumnRemovalChange(project.columnModel.columns.indexOf(column));
+  return new HistoryEntry(project,description,ColumnRemovalOperation.this,change);
+}

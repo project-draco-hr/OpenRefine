@@ -4,8 +4,8 @@
   writer.value(_name);
   writer.key("expression");
   writer.value(_expression);
-  writer.key("cellIndex");
-  writer.value(_cellIndex);
+  writer.key("columnName");
+  writer.value(_columnName);
   writer.key("min");
   writer.value(_min);
   writer.key("max");

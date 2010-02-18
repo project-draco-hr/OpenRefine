@@ -2,7 +2,12 @@
   while (_processes.size() > 0) {
     Process p=_processes.get(0);
     if (p.isImmediate()) {
-      p.performImmediate();
+      try {
+        p.performImmediate();
+      }
+ catch (      Exception e) {
+        e.printStackTrace();
+      }
       _processes.remove(0);
     }
  else     if (p.isDone()) {

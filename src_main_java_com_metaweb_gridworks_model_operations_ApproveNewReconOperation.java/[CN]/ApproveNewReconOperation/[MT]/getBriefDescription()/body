@@ -1,0 +1,3 @@
+{
+  return "Approve new topics for cells in column " + _columnName;
+}

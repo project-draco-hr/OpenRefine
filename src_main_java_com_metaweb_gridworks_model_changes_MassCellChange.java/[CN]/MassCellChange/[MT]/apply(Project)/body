@@ -4,8 +4,9 @@ synchronized (project) {
     for (    CellChange cellChange : _cellChanges) {
       rows.get(cellChange.row).setCell(cellChange.cellIndex,cellChange.newCell);
     }
-    if (_commonCellIndex >= 0) {
-      project.columnModel.getColumnByCellIndex(_commonCellIndex).clearPrecomputes();
+    if (_commonColumnName != null) {
+      Column column=project.columnModel.getColumnByName(_commonColumnName);
+      column.clearPrecomputes();
     }
     if (_updateRowContextDependencies) {
       project.recomputeRowContextDependencies();

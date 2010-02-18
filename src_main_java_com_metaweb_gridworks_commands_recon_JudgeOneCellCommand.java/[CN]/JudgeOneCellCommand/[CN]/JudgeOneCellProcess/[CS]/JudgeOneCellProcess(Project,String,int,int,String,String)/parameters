@@ -1,0 +1,6 @@
+Project project
+String briefDescription
+int rowIndex
+int cellIndex
+String judgment
+String candidateID

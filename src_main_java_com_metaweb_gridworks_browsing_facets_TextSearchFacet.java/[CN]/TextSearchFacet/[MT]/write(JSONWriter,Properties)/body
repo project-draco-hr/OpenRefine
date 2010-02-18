@@ -2,8 +2,8 @@
   writer.object();
   writer.key("name");
   writer.value(_name);
-  writer.key("cellIndex");
-  writer.value(_cellIndex);
+  writer.key("columnName");
+  writer.value(_columnName);
   writer.key("query");
   writer.value(_query);
   writer.key("mode");

@@ -1,6 +1,8 @@
 {
 synchronized (project) {
-    _newCellIndex=project.columnModel.allocateNewCellIndex();
+    if (_newCellIndex < 0) {
+      _newCellIndex=project.columnModel.allocateNewCellIndex();
+    }
     Column column=new Column(_newCellIndex,_headerLabel);
     project.columnModel.columns.add(_columnIndex,column);
     try {

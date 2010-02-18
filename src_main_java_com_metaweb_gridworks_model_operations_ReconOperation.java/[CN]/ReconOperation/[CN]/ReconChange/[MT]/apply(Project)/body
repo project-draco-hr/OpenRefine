@@ -1,7 +1,7 @@
 {
 synchronized (project) {
     super.apply(project);
-    Column column=project.columnModel.getColumnByCellIndex(_commonCellIndex);
+    Column column=project.columnModel.getColumnByName(_commonColumnName);
     _oldReconConfig=column.getReconConfig();
     column.setReconConfig(_newReconConfig);
   }

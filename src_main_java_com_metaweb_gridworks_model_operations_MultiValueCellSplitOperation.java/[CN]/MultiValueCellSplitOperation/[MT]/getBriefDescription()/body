@@ -1,0 +1,3 @@
+{
+  return "Split multi-valued cells in column " + _columnName;
+}

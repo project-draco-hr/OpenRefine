@@ -1,6 +1,0 @@
-{
-  _cellChanges=new CellChange[cellChanges.size()];
-  _commonCellIndex=commonCellIndex;
-  cellChanges.toArray(_cellChanges);
-  _updateRowContextDependencies=updateRowContextDependencies;
-}

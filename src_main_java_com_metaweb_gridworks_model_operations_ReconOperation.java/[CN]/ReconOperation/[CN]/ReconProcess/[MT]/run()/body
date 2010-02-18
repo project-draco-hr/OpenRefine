@@ -1,4 +1,10 @@
 {
+  try {
+    populateEntries();
+  }
+ catch (  Exception e2) {
+    e2.printStackTrace();
+  }
   Map<String,List<ReconEntry>> valueToEntries=new HashMap<String,List<ReconEntry>>();
   for (  ReconEntry entry : _entries) {
     Object value=entry.cell.value;
@@ -34,7 +40,7 @@
     }
   }
   ReconConfig reconConfig=new ReconConfig(_typeID);
-  Change reconChange=new ReconChange(cellChanges,_cellIndex,reconConfig);
+  Change reconChange=new ReconChange(cellChanges,_columnName,reconConfig);
   HistoryEntry historyEntry=new HistoryEntry(_project,_description,ReconOperation.this,reconChange);
   _project.history.addEntry(historyEntry);
   _project.processManager.onDoneProcess(this);

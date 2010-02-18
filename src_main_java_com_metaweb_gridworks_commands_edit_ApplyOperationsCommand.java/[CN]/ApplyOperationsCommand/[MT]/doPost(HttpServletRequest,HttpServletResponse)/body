@@ -1,0 +1,16 @@
+{
+  Project project=getProject(request);
+  String jsonString=request.getParameter("operations");
+  try {
+    JSONArray a=jsonStringToArray(jsonString);
+    int count=a.length();
+    for (int i=0; i < count; i++) {
+      JSONObject obj=a.getJSONObject(i);
+      reconstructOperation(project,obj);
+    }
+    respond(response,"{ \"code\" : \"pending\" }");
+  }
+ catch (  JSONException e) {
+    respondException(response,e);
+  }
+}

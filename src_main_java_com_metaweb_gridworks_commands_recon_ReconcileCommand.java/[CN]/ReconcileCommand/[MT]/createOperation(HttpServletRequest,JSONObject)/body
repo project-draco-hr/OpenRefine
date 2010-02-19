@@ -1,5 +1,6 @@
 {
   String columnName=request.getParameter("columnName");
-  String typeID=request.getParameter("type");
-  return new ReconOperation(engineConfig,columnName,typeID);
+  String typeID=request.getParameter("typeID");
+  String typeName=request.getParameter("typeName");
+  return new ReconOperation(engineConfig,columnName,typeID,typeName);
 }

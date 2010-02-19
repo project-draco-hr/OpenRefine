@@ -2,4 +2,5 @@
   super(engineConfig);
   _columnName=columnName;
   _typeID=typeID;
+  _typeName=typeName;
 }

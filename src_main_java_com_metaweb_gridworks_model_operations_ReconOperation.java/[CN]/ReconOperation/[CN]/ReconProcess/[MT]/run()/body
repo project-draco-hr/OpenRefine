@@ -34,7 +34,7 @@
       }
     }
   }
-  ReconConfig reconConfig=new ReconConfig(_typeID);
+  ReconConfig reconConfig=new ReconConfig(_typeID,_typeName);
   Change reconChange=new ReconChange(cellChanges,_columnName,reconConfig);
   HistoryEntry historyEntry=new HistoryEntry(_project,_description,ReconOperation.this,reconChange);
   _project.history.addEntry(historyEntry);

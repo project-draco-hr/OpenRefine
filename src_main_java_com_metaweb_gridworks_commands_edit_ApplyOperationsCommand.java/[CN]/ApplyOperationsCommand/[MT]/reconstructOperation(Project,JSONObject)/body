@@ -26,7 +26,7 @@
       operation=new MultiValueCellSplitOperation(columnName,obj.getString("keyColumnName"),obj.getString("separator"),obj.getString("mode"));
     }
  else     if ("recon".equals(op)) {
-      operation=new ReconOperation(engineConfig,columnName,obj.getString("typeID"));
+      operation=new ReconOperation(engineConfig,columnName,obj.getString("typeID"),obj.getString("typeName"));
     }
  else     if ("save-protograph".equals(op)) {
       operation=new SaveProtographOperation(Protograph.reconstruct(obj.getJSONObject("protograph")));

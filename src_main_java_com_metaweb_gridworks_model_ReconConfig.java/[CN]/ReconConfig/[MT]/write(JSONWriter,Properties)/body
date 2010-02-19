@@ -1,6 +1,11 @@
 {
   writer.object();
   writer.key("type");
+  writer.object();
+  writer.key("id");
   writer.value(typeID);
+  writer.key("name");
+  writer.value(typeName);
+  writer.endObject();
   writer.endObject();
 }

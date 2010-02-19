@@ -1,30 +1,35 @@
 {
   Recon recon=new Recon();
-  int length=results.length();
-  for (int i=0; i < length && recon.candidates.size() < 3; i++) {
-    JSONObject result=results.getJSONObject(i);
-    if (!result.has("name")) {
-      continue;
-    }
-    JSONArray types=result.getJSONArray("type");
-    String[] typeIDs=new String[types.length()];
-    for (int j=0; j < typeIDs.length; j++) {
-      typeIDs[j]=types.getJSONObject(j).getString("id");
-    }
-    ReconCandidate candidate=new ReconCandidate(result.getString("id"),result.getString("guid"),result.getString("name"),typeIDs,result.getDouble("relevance:score"));
-    if (i == 0) {
-      recon.setFeature(Recon.Feature_nameMatch,text.equalsIgnoreCase(candidate.topicName));
-      recon.setFeature(Recon.Feature_nameLevenshtein,StringUtils.getLevenshteinDistance(text,candidate.topicName));
-      recon.setFeature(Recon.Feature_nameWordDistance,wordDistance(text,candidate.topicName));
-      recon.setFeature(Recon.Feature_typeMatch,false);
-      for (      String typeID : candidate.typeIDs) {
-        if (_typeID.equals(typeID)) {
-          recon.setFeature(Recon.Feature_typeMatch,true);
-          break;
+  try {
+    int length=results.length();
+    for (int i=0; i < length && recon.candidates.size() < 3; i++) {
+      JSONObject result=results.getJSONObject(i);
+      if (!result.has("name")) {
+        continue;
+      }
+      JSONArray types=result.getJSONArray("type");
+      String[] typeIDs=new String[types.length()];
+      for (int j=0; j < typeIDs.length; j++) {
+        typeIDs[j]=types.getJSONObject(j).getString("id");
+      }
+      ReconCandidate candidate=new ReconCandidate(result.getString("id"),result.getString("guid"),result.getString("name"),typeIDs,result.getDouble("relevance:score"));
+      if (i == 0) {
+        recon.setFeature(Recon.Feature_nameMatch,text.equalsIgnoreCase(candidate.topicName));
+        recon.setFeature(Recon.Feature_nameLevenshtein,StringUtils.getLevenshteinDistance(text,candidate.topicName));
+        recon.setFeature(Recon.Feature_nameWordDistance,wordDistance(text,candidate.topicName));
+        recon.setFeature(Recon.Feature_typeMatch,false);
+        for (        String typeID : candidate.typeIDs) {
+          if (_typeID.equals(typeID)) {
+            recon.setFeature(Recon.Feature_typeMatch,true);
+            break;
+          }
         }
       }
+      recon.candidates.add(candidate);
     }
-    recon.candidates.add(candidate);
+  }
+ catch (  JSONException e) {
+    e.printStackTrace();
   }
   return recon;
 }

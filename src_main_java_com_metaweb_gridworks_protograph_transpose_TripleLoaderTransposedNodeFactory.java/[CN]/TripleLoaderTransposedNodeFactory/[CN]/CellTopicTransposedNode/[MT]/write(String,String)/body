@@ -4,9 +4,17 @@
     id=cell.recon.match.topicID;
   }
  else {
-    id="$" + node.columnName.replaceAll("\\W","_");
+    long var=0;
+    if (varPool.containsKey(node.columnName)) {
+      var=varPool.get(node.columnName);
+    }
+    varPool.put(node.columnName,var + 1);
+    id="$" + node.columnName.replaceAll("\\W+","_") + "_"+ var;
     writeLine("{ 's' : '" + id + "', 'p' : 'type', 'o' : '"+ node.type.id+ "' }");
     writeLine("{ 's' : '" + id + "', 'p' : 'name', 'o' : "+ JSONObject.quote(cell.value.toString())+ " }");
+  }
+  if (subject != null) {
+    writeLine(subject,predicate,id);
   }
   writeChildren(id);
   return JSONObject.quote(id);

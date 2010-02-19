@@ -1,0 +1,41 @@
+{
+  try {
+    Project project=getProject(request);
+    String columnName=request.getParameter("columnName");
+    JSONWriter writer=new JSONWriter(response.getWriter());
+    writer.object();
+    Column column=project.columnModel.getColumnByName(columnName);
+    if (column == null) {
+      writer.key("code");
+      writer.value("error");
+      writer.key("message");
+      writer.value("No such column");
+    }
+ else {
+      try {
+        writer.key("code");
+        writer.value("ok");
+        writer.key("types");
+        writer.array();
+        List<TypeGroup> typeGroups=guessTypes(project,column);
+        for (        TypeGroup tg : typeGroups) {
+          writer.object();
+          writer.key("id");
+          writer.value(tg.id);
+          writer.key("name");
+          writer.value(tg.name);
+          writer.endObject();
+        }
+        writer.endArray();
+      }
+ catch (      Exception e) {
+        writer.key("code");
+        writer.value("error");
+      }
+    }
+    writer.endObject();
+  }
+ catch (  Exception e) {
+    respondException(response,e);
+  }
+}

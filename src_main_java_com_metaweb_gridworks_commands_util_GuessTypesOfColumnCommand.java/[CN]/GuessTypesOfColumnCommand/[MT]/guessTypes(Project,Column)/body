@@ -1,0 +1,90 @@
+{
+  Map<String,TypeGroup> map=new HashMap<String,TypeGroup>();
+  int cellIndex=column.getCellIndex();
+  List<String> samples=new ArrayList<String>(10);
+  for (  Row row : project.rows) {
+    Object value=row.getCellValue(cellIndex);
+    if (!ExpressionUtils.isBlank(value)) {
+      samples.add(value.toString());
+      if (samples.size() >= 10) {
+        break;
+      }
+    }
+  }
+  try {
+    StringWriter stringWriter=new StringWriter();
+    JSONWriter jsonWriter=new JSONWriter(stringWriter);
+    jsonWriter.object();
+    for (int i=0; i < samples.size(); i++) {
+      jsonWriter.key("q" + i + ":search");
+      jsonWriter.object();
+      jsonWriter.key("query");
+      jsonWriter.value(samples.get(i));
+      jsonWriter.key("limit");
+      jsonWriter.value(3);
+      jsonWriter.key("type_exclude");
+      jsonWriter.value("/common/image");
+      jsonWriter.key("domain_exclude");
+      jsonWriter.value("/freebase");
+      jsonWriter.endObject();
+    }
+    jsonWriter.endObject();
+    StringBuffer sb=new StringBuffer();
+    sb.append("http://api.freebase.com/api/service/search?indent=1&queries=");
+    sb.append(ParsingUtilities.encode(stringWriter.toString()));
+    URL url=new URL(sb.toString());
+    URLConnection connection=url.openConnection();
+    connection.setConnectTimeout(5000);
+    connection.connect();
+    InputStream is=connection.getInputStream();
+    try {
+      String s=ParsingUtilities.inputStreamToString(is);
+      JSONObject o=ParsingUtilities.evaluateJsonStringToObject(s);
+      for (int i=0; i < samples.size(); i++) {
+        String key="q" + i + ":search";
+        if (!o.has(key)) {
+          continue;
+        }
+        JSONObject o2=o.getJSONObject(key);
+        if (!(o2.has("result"))) {
+          continue;
+        }
+        JSONArray results=o2.getJSONArray("result");
+        int count=results.length();
+        for (int j=0; j < count; j++) {
+          JSONObject result=results.getJSONObject(j);
+          double score=result.getDouble("relevance:score");
+          JSONArray types=result.getJSONArray("type");
+          int typeCount=types.length();
+          for (int t=0; t < typeCount; t++) {
+            JSONObject type=types.getJSONObject(t);
+            String id=type.getString("id");
+            if (id.equals("/common/topic") || (id.startsWith("/base/") && id.endsWith("/topic")) || id.startsWith("/user/")) {
+              continue;
+            }
+            if (map.containsKey(id)) {
+              map.get(id).score+=score;
+            }
+ else {
+              map.put(id,new TypeGroup(id,type.getString("name"),score));
+            }
+          }
+        }
+      }
+    }
+  finally {
+      is.close();
+    }
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+  List<TypeGroup> types=new ArrayList<TypeGroup>(map.values());
+  Collections.sort(types,new Comparator<TypeGroup>(){
+    public int compare(    TypeGroup o1,    TypeGroup o2){
+      return (int)Math.signum(o2.score - o1.score);
+    }
+  }
+);
+  return types;
+}

@@ -2,6 +2,7 @@
   super(project,briefDescription);
   this.rowIndex=rowIndex;
   this.cellIndex=cellIndex;
-  this.judgment=judgment;
-  this.candidateID=candidateID;
+  this.judgment=null;
+  this.candidateID=null;
+  this.match=match;
 }

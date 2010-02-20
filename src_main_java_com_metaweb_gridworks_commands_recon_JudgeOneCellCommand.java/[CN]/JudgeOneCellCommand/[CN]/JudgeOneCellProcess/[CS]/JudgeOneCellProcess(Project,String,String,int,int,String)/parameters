@@ -1,6 +1,6 @@
 Project project
 String briefDescription
+String judgment
 int rowIndex
 int cellIndex
-String judgment
 String candidateID

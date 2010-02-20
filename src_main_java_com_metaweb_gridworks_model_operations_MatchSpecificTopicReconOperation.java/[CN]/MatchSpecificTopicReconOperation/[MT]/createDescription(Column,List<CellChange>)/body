@@ -1,0 +1,3 @@
+{
+  return "Match specific topic " + match.topicName + " ("+ match.topicID+ ") to "+ cellChanges.size()+ " cells in column "+ column.getHeaderLabel();
+}

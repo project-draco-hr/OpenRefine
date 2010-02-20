@@ -4,8 +4,14 @@
     int rowIndex=Integer.parseInt(request.getParameter("row"));
     int cellIndex=Integer.parseInt(request.getParameter("cell"));
     String judgment=request.getParameter("judgment");
-    String candidateID=request.getParameter("candidate");
-    JudgeOneCellProcess process=new JudgeOneCellProcess(project,"Judge one cell's recon result",rowIndex,cellIndex,judgment,candidateID);
+    JudgeOneCellProcess process=null;
+    if (judgment != null) {
+      process=new JudgeOneCellProcess(project,"Judge one cell's recon result",judgment,rowIndex,cellIndex,request.getParameter("candidate"));
+    }
+ else {
+      ReconCandidate match=new ReconCandidate(request.getParameter("topicID"),request.getParameter("topicGUID"),request.getParameter("topicName"),request.getParameter("types").split(","),100);
+      process=new JudgeOneCellProcess(project,"Judge one cell's recon result",rowIndex,cellIndex,match);
+    }
     boolean done=project.processManager.queueProcess(process);
     if (done) {
       JSONWriter writer=new JSONWriter(response.getWriter());

@@ -2,12 +2,17 @@
   Map<String,TypeGroup> map=new HashMap<String,TypeGroup>();
   int cellIndex=column.getCellIndex();
   List<String> samples=new ArrayList<String>(10);
+  Set<String> sampleSet=new HashSet<String>();
   for (  Row row : project.rows) {
     Object value=row.getCellValue(cellIndex);
     if (!ExpressionUtils.isBlank(value)) {
-      samples.add(value.toString());
-      if (samples.size() >= 10) {
-        break;
+      String s=value.toString().trim();
+      if (!sampleSet.contains(s)) {
+        samples.add(s);
+        sampleSet.add(s);
+        if (samples.size() >= 10) {
+          break;
+        }
       }
     }
   }

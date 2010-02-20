@@ -1,0 +1,5 @@
+{
+  String columnName=request.getParameter("columnName");
+  ReconCandidate match=new ReconCandidate(request.getParameter("topicID"),request.getParameter("topicGUID"),request.getParameter("topicName"),request.getParameter("types").split(","),100);
+  return new MatchSpecificTopicReconOperation(engineConfig,columnName,match);
+}

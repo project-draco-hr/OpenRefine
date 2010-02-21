@@ -4,5 +4,5 @@
     throw new Exception("No column named " + _columnName);
   }
   String description="Reconcile cells in column " + column.getHeaderLabel() + " to type "+ _typeID;
-  return new ReconProcess(project,getEngineConfig(),description,_columnName);
+  return new ReconProcess(project,getEngineConfig(),description);
 }

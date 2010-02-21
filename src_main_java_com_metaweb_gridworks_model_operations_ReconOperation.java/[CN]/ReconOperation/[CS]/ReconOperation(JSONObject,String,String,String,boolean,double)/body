@@ -3,4 +3,6 @@
   _columnName=columnName;
   _typeID=typeID;
   _typeName=typeName;
+  _autoMatch=autoMatch;
+  _minScore=minScore;
 }

@@ -10,6 +10,10 @@
   writer.value(_typeID);
   writer.key("typeName");
   writer.value(_typeName);
+  writer.key("autoMatch");
+  writer.value(_autoMatch);
+  writer.key("minScore");
+  writer.value(_minScore);
   writer.key("engineConfig");
   writer.value(getEngineConfig());
   writer.endObject();

@@ -2,3 +2,5 @@ JSONObject engineConfig
 String columnName
 String typeID
 String typeName
+boolean autoMatch
+double minScore

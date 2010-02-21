@@ -2,5 +2,4 @@
   super(description);
   _project=project;
   _engineConfig=engineConfig;
-  _columnName=columnName;
 }

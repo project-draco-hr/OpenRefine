@@ -12,7 +12,8 @@
       for (int j=0; j < typeIDs.length; j++) {
         typeIDs[j]=types.getJSONObject(j).getString("id");
       }
-      ReconCandidate candidate=new ReconCandidate(result.getString("id"),result.getString("guid"),result.getString("name"),typeIDs,result.getDouble("relevance:score"));
+      double score=result.getDouble("relevance:score");
+      ReconCandidate candidate=new ReconCandidate(result.getString("id"),result.getString("guid"),result.getString("name"),typeIDs,score);
       if (i == 0) {
         recon.setFeature(Recon.Feature_nameMatch,text.equalsIgnoreCase(candidate.topicName));
         recon.setFeature(Recon.Feature_nameLevenshtein,StringUtils.getLevenshteinDistance(text,candidate.topicName));
@@ -21,6 +22,10 @@
         for (        String typeID : candidate.typeIDs) {
           if (_typeID.equals(typeID)) {
             recon.setFeature(Recon.Feature_typeMatch,true);
+            if (_autoMatch && score >= _minScore) {
+              recon.match=candidate;
+              recon.judgment=Judgment.Matched;
+            }
             break;
           }
         }

@@ -1,7 +1,7 @@
 {
   Map<String,TypeGroup> map=new HashMap<String,TypeGroup>();
   int cellIndex=column.getCellIndex();
-  List<String> samples=new ArrayList<String>(10);
+  List<String> samples=new ArrayList<String>(s_sampleSize);
   Set<String> sampleSet=new HashSet<String>();
   for (  Row row : project.rows) {
     Object value=row.getCellValue(cellIndex);
@@ -10,7 +10,7 @@
       if (!sampleSet.contains(s)) {
         samples.add(s);
         sampleSet.add(s);
-        if (samples.size() >= 10) {
+        if (samples.size() >= s_sampleSize) {
           break;
         }
       }
@@ -27,10 +27,6 @@
       jsonWriter.value(samples.get(i));
       jsonWriter.key("limit");
       jsonWriter.value(3);
-      jsonWriter.key("type_exclude");
-      jsonWriter.value("/common/image");
-      jsonWriter.key("domain_exclude");
-      jsonWriter.value("/freebase");
       jsonWriter.endObject();
     }
     jsonWriter.endObject();
@@ -58,17 +54,19 @@
         int count=results.length();
         for (int j=0; j < count; j++) {
           JSONObject result=results.getJSONObject(j);
-          double score=result.getDouble("relevance:score");
+          double score=1.0 / (1 + j);
           JSONArray types=result.getJSONArray("type");
           int typeCount=types.length();
           for (int t=0; t < typeCount; t++) {
             JSONObject type=types.getJSONObject(t);
             String id=type.getString("id");
-            if (id.equals("/common/topic") || (id.startsWith("/base/") && id.endsWith("/topic")) || id.startsWith("/user/")) {
+            if (id.equals("/common/topic") || id.equals("/base/ontologies/ontology_instance") || (id.startsWith("/base/") && id.endsWith("/topic"))|| id.startsWith("/user/")|| id.startsWith("/freebase/")) {
               continue;
             }
             if (map.containsKey(id)) {
-              map.get(id).score+=score;
+              TypeGroup tg=map.get(id);
+              tg.score+=score;
+              tg.count++;
             }
  else {
               map.put(id,new TypeGroup(id,type.getString("name"),score));
@@ -87,7 +85,11 @@
   List<TypeGroup> types=new ArrayList<TypeGroup>(map.values());
   Collections.sort(types,new Comparator<TypeGroup>(){
     public int compare(    TypeGroup o1,    TypeGroup o2){
-      return (int)Math.signum(o2.score - o1.score);
+      int c=Math.min(s_sampleSize,o2.count) - Math.min(s_sampleSize,o1.count);
+      if (c != 0) {
+        return c;
+      }
+      return (int)Math.signum(o2.score / o2.count - o1.score / o1.count);
     }
   }
 );

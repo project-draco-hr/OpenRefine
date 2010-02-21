@@ -24,6 +24,10 @@
           writer.value(tg.id);
           writer.key("name");
           writer.value(tg.name);
+          writer.key("score");
+          writer.value(tg.score);
+          writer.key("count");
+          writer.value(tg.count);
           writer.endObject();
         }
         writer.endArray();

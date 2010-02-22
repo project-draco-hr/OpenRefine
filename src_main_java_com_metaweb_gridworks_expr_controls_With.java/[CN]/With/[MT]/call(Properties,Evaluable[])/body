@@ -6,22 +6,8 @@
     if (o != null) {
       Object oldValue=bindings.get(name);
       try {
-        Object[] values;
-        if (o.getClass().isArray()) {
-          values=(Object[])o;
-        }
- else {
-          values=new Object[]{o};
-        }
-        List<Object> results=new ArrayList<Object>(values.length);
-        for (        Object v : values) {
-          bindings.put(name,v);
-          Object r=args[2].evaluate(bindings);
-          if (r != null) {
-            results.add(r);
-          }
-        }
-        return results.toArray();
+        bindings.put(name,o);
+        return args[2].evaluate(bindings);
       }
   finally {
         if (oldValue != null) {

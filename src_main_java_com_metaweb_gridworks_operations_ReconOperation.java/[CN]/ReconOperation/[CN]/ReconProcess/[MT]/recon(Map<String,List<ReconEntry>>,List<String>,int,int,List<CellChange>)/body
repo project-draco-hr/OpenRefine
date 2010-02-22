@@ -9,13 +9,11 @@
       jsonWriter.key("query");
       jsonWriter.value(values.get(from + i));
       jsonWriter.key("limit");
-      jsonWriter.value(5);
+      jsonWriter.value(3);
       jsonWriter.key("type");
       jsonWriter.value(_typeID);
       jsonWriter.key("type_strict");
       jsonWriter.value("should");
-      jsonWriter.key("indent");
-      jsonWriter.value(1);
       jsonWriter.key("type_exclude");
       jsonWriter.value("/common/image");
       jsonWriter.key("domain_exclude");
@@ -74,4 +72,5 @@
       cellChanges.add(cellChange);
     }
   }
+  System.gc();
 }

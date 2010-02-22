@@ -1,6 +1,6 @@
 {
   Cell cell=_project.rows.get(rowIndex).getCell(cellIndex);
-  if (cell == null || cell.value == null) {
+  if (cell == null || ExpressionUtils.isBlank(cell.value)) {
     throw new Exception("Cell is blank");
   }
   Column column=_project.columnModel.getColumnByCellIndex(cellIndex);

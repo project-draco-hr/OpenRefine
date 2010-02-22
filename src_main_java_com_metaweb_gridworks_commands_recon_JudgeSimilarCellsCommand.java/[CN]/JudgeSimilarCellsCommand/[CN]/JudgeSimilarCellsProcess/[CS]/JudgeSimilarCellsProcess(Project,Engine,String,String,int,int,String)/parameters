@@ -1,0 +1,7 @@
+Project project
+Engine engine
+String briefDescription
+String judgment
+int rowIndex
+int cellIndex
+String candidateID

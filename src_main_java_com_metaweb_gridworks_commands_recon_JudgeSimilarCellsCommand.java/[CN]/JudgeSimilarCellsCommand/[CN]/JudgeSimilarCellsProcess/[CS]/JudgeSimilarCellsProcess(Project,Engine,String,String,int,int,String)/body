@@ -1,0 +1,9 @@
+{
+  super(project,briefDescription);
+  this.engine=engine;
+  this.rowIndex=rowIndex;
+  this.cellIndex=cellIndex;
+  this.judgment=judgment;
+  this.candidateID=candidateID;
+  this.match=null;
+}

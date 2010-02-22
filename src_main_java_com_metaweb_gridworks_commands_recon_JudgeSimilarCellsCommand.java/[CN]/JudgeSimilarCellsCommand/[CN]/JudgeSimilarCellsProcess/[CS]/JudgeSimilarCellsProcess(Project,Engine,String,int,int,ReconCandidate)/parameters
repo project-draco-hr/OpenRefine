@@ -1,0 +1,6 @@
+Project project
+Engine engine
+String briefDescription
+int rowIndex
+int cellIndex
+ReconCandidate match

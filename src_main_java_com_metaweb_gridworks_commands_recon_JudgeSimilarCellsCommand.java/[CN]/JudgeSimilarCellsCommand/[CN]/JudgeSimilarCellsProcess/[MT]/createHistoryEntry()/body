@@ -1,0 +1,79 @@
+{
+  Cell cell=_project.rows.get(rowIndex).getCell(cellIndex);
+  if (cell == null || ExpressionUtils.isBlank(cell.value)) {
+    throw new Exception("Cell is blank");
+  }
+  Column column=_project.columnModel.getColumnByCellIndex(cellIndex);
+  if (column == null) {
+    throw new Exception("No such column");
+  }
+  List<CellChange> cellChanges=new ArrayList<CellChange>(_project.rows.size());
+  String similarValue=cell.value.toString();
+  RowVisitor rowVisitor=new RowVisitor(){
+    List<CellChange> cellChanges;
+    String similarValue;
+    public RowVisitor init(    List<CellChange> cellChanges,    String similarValue){
+      this.cellChanges=cellChanges;
+      this.similarValue=similarValue;
+      return this;
+    }
+    public boolean visit(    Project project,    int rowIndex,    Row row,    boolean contextual){
+      Cell cell=row.getCell(cellIndex);
+      if (cell != null && !ExpressionUtils.isBlank(cell.value) && similarValue.equals(cell.value)) {
+        Cell newCell=new Cell(cell.value,cell.recon == null ? new Recon() : cell.recon.dup());
+        if (match != null) {
+          newCell.recon.judgment=Recon.Judgment.Matched;
+          newCell.recon.match=match;
+        }
+ else {
+          if ("match".equals(judgment)) {
+            ReconCandidate match=null;
+            if (cell.recon != null) {
+              for (              ReconCandidate c : cell.recon.candidates) {
+                if (candidateID.equals(c.topicID)) {
+                  match=c;
+                  break;
+                }
+              }
+            }
+            if (match == null) {
+              return false;
+            }
+            newCell.recon.judgment=Recon.Judgment.Matched;
+            newCell.recon.match=match;
+          }
+ else           if ("new".equals(judgment)) {
+            newCell.recon.judgment=Recon.Judgment.New;
+          }
+ else           if ("discard".equals(judgment)) {
+            newCell.recon.judgment=Recon.Judgment.None;
+            newCell.recon.match=null;
+          }
+        }
+        CellChange cellChange=new CellChange(rowIndex,cellIndex,cell,newCell);
+        cellChanges.add(cellChange);
+      }
+      return false;
+    }
+  }
+.init(cellChanges,similarValue);
+  FilteredRows filteredRows=engine.getAllFilteredRows(false);
+  filteredRows.accept(_project,rowVisitor);
+  String description=null;
+  if (match != null) {
+    description="Match " + cellChanges.size() + " cell(s) in column "+ column.getHeaderLabel()+ " containing "+ similarValue+ " to topic "+ match.topicName+ " ("+ match.topicID+ ")";
+  }
+ else {
+    if ("match".equals(judgment)) {
+      description="Match " + cellChanges.size() + " cell(s) in column "+ column.getHeaderLabel()+ " containing "+ similarValue+ " to topic "+ candidateID;
+    }
+ else     if ("new".equals(judgment)) {
+      description="Mark to create new topic for " + cellChanges.size() + " cell(s) in column "+ column.getHeaderLabel()+ " containing "+ similarValue;
+    }
+ else     if ("discard".equals(judgment)) {
+      description="Discard recon judgments for " + cellChanges.size() + " cell(s) in column "+ column.getHeaderLabel()+ " containing "+ similarValue;
+    }
+  }
+  MassCellChange massCellChange=new MassCellChange(cellChanges,column.getHeaderLabel(),false);
+  return new HistoryEntry(_project,description,null,massCellChange);
+}

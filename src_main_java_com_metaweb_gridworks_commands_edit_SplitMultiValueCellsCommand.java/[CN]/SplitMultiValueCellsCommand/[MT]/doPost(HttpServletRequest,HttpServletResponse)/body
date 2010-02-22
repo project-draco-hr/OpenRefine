@@ -5,7 +5,7 @@
     String keyColumnName=request.getParameter("keyColumnName");
     String separator=request.getParameter("separator");
     String mode=request.getParameter("mode");
-    AbstractOperation op=new MultiValueCellSplitOperation(columnName,keyColumnName,separator,mode);
+    AbstractOperation op=new MultiValuedCellSplitOperation(columnName,keyColumnName,separator,mode);
     Process process=op.createProcess(project,new Properties());
     boolean done=project.processManager.queueProcess(process);
     respond(response,"{ \"code\" : " + (done ? "\"ok\"" : "\"pending\"") + " }");

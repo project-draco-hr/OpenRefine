@@ -4,7 +4,7 @@
     String columnName=request.getParameter("columnName");
     String keyColumnName=request.getParameter("keyColumnName");
     String separator=request.getParameter("separator");
-    AbstractOperation op=new MultiValueCellJoinOperation(columnName,keyColumnName,separator);
+    AbstractOperation op=new MultiValuedCellJoinOperation(columnName,keyColumnName,separator);
     Process process=op.createProcess(project,new Properties());
     boolean done=project.processManager.queueProcess(process);
     respond(response,"{ \"code\" : " + (done ? "\"ok\"" : "\"pending\"") + " }");

@@ -1,0 +1,5 @@
+{
+  JSONObject engineConfig=obj.getJSONObject("engineConfig");
+  String columnName=obj.getString("columnName");
+  return new ReconMarkNewTopicsOperation(engineConfig,columnName);
+}

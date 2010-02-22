@@ -1,4 +1,0 @@
-{
-  String columnName=request.getParameter("columnName");
-  return new ApproveReconOperation(engineConfig,columnName);
-}

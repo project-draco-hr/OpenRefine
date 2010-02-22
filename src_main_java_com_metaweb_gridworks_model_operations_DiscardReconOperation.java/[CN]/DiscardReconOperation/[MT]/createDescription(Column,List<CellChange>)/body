@@ -1,3 +1,0 @@
-{
-  return "Discard recon results for " + cellChanges.size() + " cells in column "+ column.getHeaderLabel();
-}

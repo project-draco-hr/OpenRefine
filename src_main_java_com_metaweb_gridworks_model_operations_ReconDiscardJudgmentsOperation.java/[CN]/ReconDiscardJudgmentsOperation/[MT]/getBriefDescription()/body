@@ -1,0 +1,3 @@
+{
+  return "Discard recon judgments for cells in column " + _columnName;
+}

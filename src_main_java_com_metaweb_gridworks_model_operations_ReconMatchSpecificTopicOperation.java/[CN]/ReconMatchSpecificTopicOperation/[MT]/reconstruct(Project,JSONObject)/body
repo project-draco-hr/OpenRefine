@@ -1,0 +1,10 @@
+{
+  JSONObject engineConfig=obj.getJSONObject("engineConfig");
+  JSONObject match=obj.getJSONObject("match");
+  JSONArray types=obj.getJSONArray("types");
+  String[] typeIDs=new String[types.length()];
+  for (int i=0; i < typeIDs.length; i++) {
+    typeIDs[i]=types.getString(i);
+  }
+  return new ReconMatchSpecificTopicOperation(engineConfig,obj.getString("columnName"),new ReconCandidate(match.getString("id"),match.getString("guid"),match.getString("name"),typeIDs,100));
+}

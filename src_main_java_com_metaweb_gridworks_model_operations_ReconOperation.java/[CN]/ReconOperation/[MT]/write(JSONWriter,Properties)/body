@@ -1,9 +1,9 @@
 {
   writer.object();
   writer.key("op");
-  writer.value("recon");
+  writer.value(OperationRegistry.s_opClassToName.get(this.getClass()));
   writer.key("description");
-  writer.value("Reconcile cells in column " + _columnName + " to type "+ _typeID);
+  writer.value(getBriefDescription());
   writer.key("columnName");
   writer.value(_columnName);
   writer.key("typeID");

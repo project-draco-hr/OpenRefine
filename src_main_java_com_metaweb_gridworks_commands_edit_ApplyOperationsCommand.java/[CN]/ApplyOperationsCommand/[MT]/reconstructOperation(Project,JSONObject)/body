@@ -1,39 +1,15 @@
 {
   try {
     String op=obj.getString("op");
-    AbstractOperation operation=null;
-    JSONObject engineConfig=obj.has("engineConfig") ? obj.getJSONObject("engineConfig") : null;
-    String columnName=obj.has("columnName") ? obj.getString("columnName") : null;
-    if ("approve-new-recon".equals(op)) {
-      operation=new ApproveNewReconOperation(engineConfig,columnName);
+    Class<? extends AbstractOperation> klass=OperationRegistry.s_opNameToClass.get(op);
+    if (klass == null) {
+      return;
     }
- else     if ("approve-recon".equals(op)) {
-      operation=new ApproveReconOperation(engineConfig,columnName);
+    Method reconstruct=klass.getMethod("reconstruct",Project.class,JSONObject.class);
+    if (reconstruct == null) {
+      return;
     }
- else     if ("add-column".equals(op)) {
-      operation=new ColumnAdditionOperation(engineConfig,obj.getString("baseColumnName"),obj.getString("expression"),obj.getString("headerLabel"),obj.getInt("columnInsertIndex"));
-    }
- else     if ("remove-column".equals(op)) {
-      operation=new ColumnRemovalOperation(columnName);
-    }
- else     if ("discard-recon".equals(op)) {
-      operation=new DiscardReconOperation(engineConfig,columnName);
-    }
- else     if ("join-multivalued-cells".equals(op)) {
-      operation=new MultiValueCellJoinOperation(columnName,obj.getString("keyColumnName"),obj.getString("separator"));
-    }
- else     if ("split-multivalued-cells".equals(op)) {
-      operation=new MultiValueCellSplitOperation(columnName,obj.getString("keyColumnName"),obj.getString("separator"),obj.getString("mode"));
-    }
- else     if ("recon".equals(op)) {
-      operation=new ReconOperation(engineConfig,columnName,obj.getString("typeID"),obj.getString("typeName"),obj.getBoolean("autoMatch"),obj.getDouble("minScore"));
-    }
- else     if ("save-protograph".equals(op)) {
-      operation=new SaveProtographOperation(Protograph.reconstruct(obj.getJSONObject("protograph")));
-    }
- else     if ("text-transform".equals(op)) {
-      operation=new TextTransformOperation(engineConfig,columnName,obj.getString("expression"));
-    }
+    AbstractOperation operation=(AbstractOperation)reconstruct.invoke(null,project,obj);
     if (operation != null) {
       Process process=operation.createProcess(project,new Properties());
       project.processManager.queueProcess(process);

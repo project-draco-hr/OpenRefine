@@ -1,0 +1,27 @@
+{
+  writer.object();
+  writer.key("op");
+  writer.value(OperationRegistry.s_opClassToName.get(this.getClass()));
+  writer.key("description");
+  writer.value(getBriefDescription());
+  writer.key("engineConfig");
+  writer.value(getEngineConfig());
+  writer.key("columnName");
+  writer.value(_columnName);
+  writer.key("match");
+  writer.object();
+  writer.key("id");
+  writer.value(match.topicID);
+  writer.key("guid");
+  writer.value(match.topicGUID);
+  writer.key("name");
+  writer.value(match.topicName);
+  writer.key("types");
+  writer.array();
+  for (  String typeID : match.typeIDs) {
+    writer.value(typeID);
+  }
+  writer.endArray();
+  writer.endObject();
+  writer.endObject();
+}

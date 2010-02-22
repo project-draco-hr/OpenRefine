@@ -1,0 +1,3 @@
+{
+  return new MultiValuedCellSplitOperation(obj.getString("columnName"),obj.getString("keyColumnName"),obj.getString("separator"),obj.getString("mode"));
+}

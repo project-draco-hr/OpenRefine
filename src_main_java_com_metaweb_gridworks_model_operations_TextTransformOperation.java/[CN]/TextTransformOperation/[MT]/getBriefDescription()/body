@@ -1,3 +1,3 @@
 {
-  return "Text transform on cells in column " + _columnName + " using "+ _expression;
+  return "Text transform on cells in column " + _columnName + " using expression "+ _expression;
 }

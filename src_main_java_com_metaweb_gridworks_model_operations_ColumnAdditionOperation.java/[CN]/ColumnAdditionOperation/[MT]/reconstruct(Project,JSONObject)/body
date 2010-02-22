@@ -1,0 +1,4 @@
+{
+  JSONObject engineConfig=obj.getJSONObject("engineConfig");
+  return new ColumnAdditionOperation(engineConfig,obj.getString("baseColumnName"),obj.getString("expression"),obj.getString("headerLabel"),obj.getInt("columnInsertIndex"));
+}

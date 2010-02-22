@@ -1,7 +1,7 @@
 {
   writer.object();
   writer.key("op");
-  writer.value("remove-column");
+  writer.value(OperationRegistry.s_opClassToName.get(this.getClass()));
   writer.key("description");
   writer.value("Remove column " + _columnName);
   writer.key("columnName");

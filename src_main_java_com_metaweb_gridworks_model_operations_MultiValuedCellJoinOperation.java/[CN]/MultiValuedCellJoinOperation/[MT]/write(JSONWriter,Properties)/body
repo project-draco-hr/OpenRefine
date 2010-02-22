@@ -1,0 +1,14 @@
+{
+  writer.object();
+  writer.key("op");
+  writer.value(OperationRegistry.s_opClassToName.get(this.getClass()));
+  writer.key("description");
+  writer.value(getBriefDescription());
+  writer.key("columnName");
+  writer.value(_columnName);
+  writer.key("keyColumnName");
+  writer.value(_keyColumnName);
+  writer.key("separator");
+  writer.value(_separator);
+  writer.endObject();
+}

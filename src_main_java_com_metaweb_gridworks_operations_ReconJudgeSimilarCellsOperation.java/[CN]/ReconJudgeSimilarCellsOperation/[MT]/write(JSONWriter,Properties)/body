@@ -16,5 +16,7 @@
     writer.key("match");
     _match.write(writer,options);
   }
+  writer.key("shareNewTopics");
+  writer.value(_shareNewTopics);
   writer.endObject();
 }

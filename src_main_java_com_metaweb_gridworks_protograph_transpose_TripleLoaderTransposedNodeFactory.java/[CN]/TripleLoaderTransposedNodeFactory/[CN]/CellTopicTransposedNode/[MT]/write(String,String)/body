@@ -3,15 +3,26 @@
   if (cell.recon != null && cell.recon.judgment == Recon.Judgment.Matched && cell.recon.match != null) {
     id=cell.recon.match.topicID;
   }
- else {
-    long var=0;
-    if (varPool.containsKey(node.columnName)) {
-      var=varPool.get(node.columnName);
+ else   if (node.createForNoReconMatch || (cell.recon != null && cell.recon.judgment == Judgment.New)) {
+    if (cell.recon != null && newTopicVars.containsKey(cell.recon.id)) {
+      id=newTopicVars.get(cell.recon.id);
     }
-    varPool.put(node.columnName,var + 1);
-    id="$" + node.columnName.replaceAll("\\W+","_") + "_"+ var;
-    writeLine("{ 's' : '" + id + "', 'p' : 'type', 'o' : '"+ node.type.id+ "' }");
-    writeLine("{ 's' : '" + id + "', 'p' : 'name', 'o' : "+ JSONObject.quote(cell.value.toString())+ " }");
+ else {
+      long var=0;
+      if (varPool.containsKey(node.columnName)) {
+        var=varPool.get(node.columnName);
+      }
+      varPool.put(node.columnName,var + 1);
+      id="$" + node.columnName.replaceAll("\\W+","_") + "_"+ var;
+      writeLine("{ 's' : '" + id + "', 'p' : 'type', 'o' : '"+ node.type.id+ "' }");
+      writeLine("{ 's' : '" + id + "', 'p' : 'name', 'o' : "+ JSONObject.quote(cell.value.toString())+ " }");
+      if (cell.recon != null) {
+        newTopicVars.put(cell.recon.id,id);
+      }
+    }
+  }
+ else {
+    return null;
   }
   if (subject != null) {
     writeLine(subject,predicate,id);

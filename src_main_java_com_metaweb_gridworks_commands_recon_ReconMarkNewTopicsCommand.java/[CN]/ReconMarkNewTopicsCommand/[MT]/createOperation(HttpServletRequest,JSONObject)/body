@@ -1,4 +1,3 @@
 {
-  String columnName=request.getParameter("columnName");
-  return new ReconMarkNewTopicsOperation(engineConfig,columnName);
+  return new ReconMarkNewTopicsOperation(engineConfig,request.getParameter("columnName"),"true".equals(request.getParameter("shareNewTopics")));
 }

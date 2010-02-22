@@ -3,3 +3,4 @@ String columnName
 String similarValue
 Judgment judgment
 ReconCandidate match
+boolean shareNewTopics

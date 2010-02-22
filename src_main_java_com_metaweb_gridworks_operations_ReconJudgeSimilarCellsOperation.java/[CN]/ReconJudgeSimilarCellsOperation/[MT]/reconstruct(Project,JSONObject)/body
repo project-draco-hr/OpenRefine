@@ -14,5 +14,5 @@
   if (obj.has("judgment")) {
     judgment=Recon.stringToJudgment(obj.getString("judgment"));
   }
-  return new ReconJudgeSimilarCellsOperation(engineConfig,obj.getString("columnName"),obj.getString("similarValue"),judgment,match);
+  return new ReconJudgeSimilarCellsOperation(engineConfig,obj.getString("columnName"),obj.getString("similarValue"),judgment,match,obj.has("shareNewTopics") ? obj.getBoolean("shareNewTopics") : false);
 }

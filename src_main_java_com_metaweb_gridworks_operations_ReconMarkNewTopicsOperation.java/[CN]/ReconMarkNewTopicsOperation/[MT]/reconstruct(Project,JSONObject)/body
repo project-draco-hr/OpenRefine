@@ -1,5 +1,4 @@
 {
   JSONObject engineConfig=obj.getJSONObject("engineConfig");
-  String columnName=obj.getString("columnName");
-  return new ReconMarkNewTopicsOperation(engineConfig,columnName);
+  return new ReconMarkNewTopicsOperation(engineConfig,obj.getString("columnName"),obj.has("shareNewTopics") ? obj.getBoolean("shareNewTopics") : false);
 }

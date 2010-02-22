@@ -1,6 +1,0 @@
-{
-  super(engineConfig,columnName,false);
-  this._similarValue=similarValue;
-  this._judgment=judgment;
-  this._match=match;
-}

@@ -1,6 +1,7 @@
 {
   super(engineConfig,columnName,false);
   this._similarValue=similarValue;
-  this._judgment=Recon.stringToJudgment(judgmentString);
+  this._judgment=judgment;
   this._match=match;
+  this._shareNewTopics=shareNewTopics;
 }

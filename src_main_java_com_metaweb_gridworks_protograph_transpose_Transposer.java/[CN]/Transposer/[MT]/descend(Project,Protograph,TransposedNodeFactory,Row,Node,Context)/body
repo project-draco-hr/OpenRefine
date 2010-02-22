@@ -7,6 +7,11 @@
     Column column=project.columnModel.getColumnByName(node2.columnName);
     Cell cell=row.getCell(column.getCellIndex());
     if (cell != null && !ExpressionUtils.isBlank(cell.value)) {
+      if (node2 instanceof CellTopicNode) {
+        if (!((CellTopicNode)node2).createForNoReconMatch && (cell.recon == null || cell.recon.judgment == Judgment.None)) {
+          return;
+        }
+      }
       context.count++;
       if (context.limit > 0 && context.count > context.limit) {
         return;

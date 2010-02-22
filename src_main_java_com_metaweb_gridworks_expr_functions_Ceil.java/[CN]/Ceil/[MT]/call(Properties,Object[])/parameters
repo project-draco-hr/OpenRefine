@@ -1,3 +1,2 @@
 Properties bindings
-Row row
-Cell cell
+Object[] args

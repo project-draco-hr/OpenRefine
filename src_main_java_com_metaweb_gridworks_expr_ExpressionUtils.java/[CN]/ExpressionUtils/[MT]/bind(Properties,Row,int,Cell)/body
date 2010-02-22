@@ -1,5 +1,6 @@
 {
   bindings.put("row",row);
+  bindings.put("rowIndex",rowIndex);
   bindings.put("cells",row.getField("cells",bindings));
   if (cell == null) {
     bindings.remove("cell");

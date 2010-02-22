@@ -1,0 +1,11 @@
+{
+  if ("matched".equals(s)) {
+    return Judgment.Matched;
+  }
+ else   if ("new".equals(s)) {
+    return Judgment.New;
+  }
+ else {
+    return Judgment.None;
+  }
+}

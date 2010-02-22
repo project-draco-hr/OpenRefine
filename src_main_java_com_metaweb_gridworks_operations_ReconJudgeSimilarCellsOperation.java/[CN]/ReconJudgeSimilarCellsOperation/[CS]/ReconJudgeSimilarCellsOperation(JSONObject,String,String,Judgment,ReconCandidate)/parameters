@@ -1,0 +1,5 @@
+JSONObject engineConfig
+String columnName
+String similarValue
+Judgment judgment
+ReconCandidate match

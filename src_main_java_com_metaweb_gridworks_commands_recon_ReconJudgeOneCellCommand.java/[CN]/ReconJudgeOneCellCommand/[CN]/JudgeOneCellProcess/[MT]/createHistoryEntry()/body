@@ -10,38 +10,19 @@
   newCell=new Cell(cell.value,cell.recon == null ? new Recon() : cell.recon.dup());
   String cellDescription="single cell on row " + (rowIndex + 1) + ", column "+ column.getHeaderLabel()+ ", containing \""+ cell.value+ "\"";
   String description=null;
-  if (match != null) {
+  if (judgment == Judgment.None) {
+    newCell.recon.judgment=Recon.Judgment.None;
+    newCell.recon.match=null;
+    description="Discard recon judgment for " + cellDescription;
+  }
+ else   if (judgment == Judgment.New) {
+    newCell.recon.judgment=Recon.Judgment.New;
+    description="Mark to create new topic for " + cellDescription;
+  }
+ else {
     newCell.recon.judgment=Recon.Judgment.Matched;
     newCell.recon.match=this.match;
     description="Match " + this.match.topicName + " ("+ match.topicID+ ") to "+ cellDescription;
-  }
- else {
-    if ("match".equals(judgment)) {
-      ReconCandidate match=null;
-      if (cell.recon != null) {
-        for (        ReconCandidate c : cell.recon.candidates) {
-          if (candidateID.equals(c.topicID)) {
-            match=c;
-            break;
-          }
-        }
-      }
-      if (match == null) {
-        throw new Exception("No such recon candidate");
-      }
-      newCell.recon.judgment=Recon.Judgment.Matched;
-      newCell.recon.match=match;
-      description="Match " + match.topicName + " ("+ match.topicID+ ") to "+ cellDescription;
-    }
- else     if ("new".equals(judgment)) {
-      newCell.recon.judgment=Recon.Judgment.New;
-      description="Mark to create new topic for " + cellDescription;
-    }
- else     if ("discard".equals(judgment)) {
-      newCell.recon.judgment=Recon.Judgment.None;
-      newCell.recon.match=null;
-      description="Discard recon judgment for " + cellDescription;
-    }
   }
   Change change=new CellChange(rowIndex,cellIndex,cell,newCell);
   return new HistoryEntry(_project,description,null,change);

@@ -1,0 +1,33 @@
+{
+  Column column=project.columnModel.getColumnByName(_columnName);
+  return new RowVisitor(){
+    int _cellIndex;
+    List<CellChange> _cellChanges;
+    public RowVisitor init(    int cellIndex,    List<CellChange> cellChanges){
+      _cellIndex=cellIndex;
+      _cellChanges=cellChanges;
+      return this;
+    }
+    public boolean visit(    Project project,    int rowIndex,    Row row,    boolean contextual){
+      Cell cell=row.getCell(_cellIndex);
+      if (cell != null && !ExpressionUtils.isBlank(cell.value) && _similarValue.equals(cell.value)) {
+        Cell newCell=new Cell(cell.value,cell.recon == null ? new Recon() : cell.recon.dup());
+        if (_judgment == Judgment.Matched) {
+          newCell.recon.judgment=Recon.Judgment.Matched;
+          newCell.recon.match=_match;
+        }
+ else         if (_judgment == Judgment.New) {
+          newCell.recon.judgment=Recon.Judgment.New;
+        }
+ else         if (_judgment == Judgment.None) {
+          newCell.recon.judgment=Recon.Judgment.None;
+          newCell.recon.match=null;
+        }
+        CellChange cellChange=new CellChange(rowIndex,_cellIndex,cell,newCell);
+        _cellChanges.add(cellChange);
+      }
+      return false;
+    }
+  }
+.init(column.getCellIndex(),cellChanges);
+}

@@ -1,0 +1,6 @@
+Project project
+String briefDescription
+Judgment judgment
+int rowIndex
+int cellIndex
+ReconCandidate match

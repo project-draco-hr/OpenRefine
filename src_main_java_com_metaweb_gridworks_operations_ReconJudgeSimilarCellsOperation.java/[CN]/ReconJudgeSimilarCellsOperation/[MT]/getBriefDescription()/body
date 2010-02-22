@@ -1,0 +1,12 @@
+{
+  if (_judgment == Judgment.None) {
+    return "Discard recon judgments for cells containing \"" + _similarValue + "\" in column "+ _columnName;
+  }
+ else   if (_judgment == Judgment.New) {
+    return "Mark to create new topics for cells containing \"" + _similarValue + "\" in column "+ _columnName;
+  }
+ else   if (_judgment == Judgment.Matched) {
+    return "Match topic " + _match.topicName + " ("+ _match.topicID+ ") for cells containing \""+ _similarValue+ "\" in column "+ _columnName;
+  }
+  throw new InternalError("Can't get here");
+}

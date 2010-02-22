@@ -1,0 +1,18 @@
+{
+  JSONObject engineConfig=obj.getJSONObject("engineConfig");
+  ReconCandidate match=null;
+  if (obj.has("match")) {
+    JSONObject matchObj=obj.getJSONObject("match");
+    JSONArray types=matchObj.getJSONArray("types");
+    String[] typeIDs=new String[types.length()];
+    for (int i=0; i < typeIDs.length; i++) {
+      typeIDs[i]=types.getString(i);
+    }
+    match=new ReconCandidate(matchObj.getString("id"),matchObj.getString("guid"),matchObj.getString("name"),typeIDs,matchObj.getDouble("score"));
+  }
+  Judgment judgment=Judgment.None;
+  if (obj.has("judgment")) {
+    judgment=Recon.stringToJudgment(obj.getString("judgment"));
+  }
+  return new ReconJudgeSimilarCellsOperation(engineConfig,obj.getString("columnName"),obj.getString("similarValue"),judgment,match);
+}

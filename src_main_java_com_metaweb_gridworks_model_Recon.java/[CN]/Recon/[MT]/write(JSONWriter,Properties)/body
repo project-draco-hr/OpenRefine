@@ -9,8 +9,10 @@
  else {
     writer.key("c");
     writer.array();
-    for (    ReconCandidate c : candidates) {
-      c.write(writer,options);
+    if (candidates != null) {
+      for (      ReconCandidate c : candidates) {
+        c.write(writer,options);
+      }
     }
     writer.endArray();
   }

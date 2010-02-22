@@ -1,0 +1,6 @@
+{
+  if (candidates == null) {
+    candidates=new ArrayList<ReconCandidate>(3);
+  }
+  candidates.add(candidate);
+}

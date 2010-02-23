@@ -1,0 +1,8 @@
+{
+  String starredString=request.getParameter("starred");
+  if (starredString != null) {
+    boolean starred="true".endsWith(starredString);
+    return new RowStarOperation(engineConfig,starred);
+  }
+  return null;
+}

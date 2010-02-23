@@ -1,0 +1,5 @@
+{
+  Row row=project.rows.get(rowIndex);
+  oldStarred=row.starred;
+  row.starred=newStarred;
+}

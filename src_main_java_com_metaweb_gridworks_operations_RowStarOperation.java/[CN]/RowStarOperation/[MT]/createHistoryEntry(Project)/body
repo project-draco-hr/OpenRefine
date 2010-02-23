@@ -1,0 +1,7 @@
+{
+  Engine engine=createEngine(project);
+  List<Change> changes=new ArrayList<Change>(project.rows.size());
+  FilteredRows filteredRows=engine.getAllFilteredRows(false);
+  filteredRows.accept(project,createRowVisitor(project,changes));
+  return new HistoryEntry(project,(_starred ? "Star" : "Unstar") + " " + changes.size()+ " rows",this,new MassChange(changes,false));
+}

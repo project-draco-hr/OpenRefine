@@ -1,0 +1,3 @@
+{
+  return (_starred ? "Star rows" : "Unstar rows");
+}

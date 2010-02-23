@@ -1,0 +1,10 @@
+{
+synchronized (project) {
+    for (    Change change : _changes) {
+      change.revert(project);
+    }
+    if (_updateRowContextDependencies) {
+      project.recomputeRowContextDependencies();
+    }
+  }
+}

@@ -84,6 +84,9 @@
       }
       if (hasData) {
         project.rows.add(newRow);
+        if (limit > 0 && project.rows.size() >= limit) {
+          break;
+        }
       }
     }
   }

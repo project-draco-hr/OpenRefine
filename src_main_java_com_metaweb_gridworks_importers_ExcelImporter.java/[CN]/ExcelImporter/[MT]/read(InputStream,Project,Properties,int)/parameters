@@ -1,3 +1,4 @@
 InputStream inputStream
 Project project
 Properties options
+int limit

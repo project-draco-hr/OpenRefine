@@ -36,6 +36,9 @@
         if ((sep.charAt(0) == ',') ? ImporterUtilities.parseCSVIntoRow(row,line) : ImporterUtilities.parseTSVIntoRow(row,line)) {
           project.rows.add(row);
           project.columnModel.setMaxCellIndex(Math.max(project.columnModel.getMaxCellIndex(),row.cells.size()));
+          if (limit > 0 && project.rows.size() >= limit) {
+            break;
+          }
         }
       }
     }

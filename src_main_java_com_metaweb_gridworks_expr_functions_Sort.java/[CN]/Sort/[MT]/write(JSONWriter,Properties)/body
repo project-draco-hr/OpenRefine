@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Sorts array a");
+  writer.key("params");
+  writer.value("array a");
+  writer.key("returns");
+  writer.value("array");
+  writer.endObject();
+}

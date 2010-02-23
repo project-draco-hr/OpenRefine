@@ -1,0 +1,12 @@
+{
+  if (args.length == 1) {
+    Object v=args[0];
+    if (v != null && v.getClass().isArray()) {
+      Object[] a=(Object[])v;
+      Object[] r=a.clone();
+      Arrays.sort(r,0,r.length);
+      return r;
+    }
+  }
+  return null;
+}

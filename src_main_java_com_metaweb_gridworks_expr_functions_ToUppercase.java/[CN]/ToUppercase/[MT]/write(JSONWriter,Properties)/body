@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns s converted to uppercase");
+  writer.key("params");
+  writer.value("string s");
+  writer.key("returns");
+  writer.value("string");
+  writer.endObject();
+}

@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns the index of sub first ocurring in s");
+  writer.key("params");
+  writer.value("string s, string sub");
+  writer.key("returns");
+  writer.value("number");
+  writer.endObject();
+}

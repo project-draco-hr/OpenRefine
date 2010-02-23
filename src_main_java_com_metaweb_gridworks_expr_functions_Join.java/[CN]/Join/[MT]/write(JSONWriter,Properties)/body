@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns the string obtained by joining the array a with the separator sep");
+  writer.key("params");
+  writer.value("array a, string sep");
+  writer.key("returns");
+  writer.value("string");
+  writer.endObject();
+}

@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns n rounded");
+  writer.key("params");
+  writer.value("number n");
+  writer.key("returns");
+  writer.value("number");
+  writer.endObject();
+}

@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns a OR b");
+  writer.key("params");
+  writer.value("boolean a, boolean b");
+  writer.key("returns");
+  writer.value("boolean");
+  writer.endObject();
+}

@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns whether o is null");
+  writer.key("params");
+  writer.value("o");
+  writer.key("returns");
+  writer.value("boolean");
+  writer.endObject();
+}

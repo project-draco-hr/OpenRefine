@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns the ceiling of a number");
+  writer.key("params");
+  writer.value("number d");
+  writer.key("returns");
+  writer.value("number");
+  writer.endObject();
+}

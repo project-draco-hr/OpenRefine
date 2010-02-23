@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns o converted to a number");
+  writer.key("params");
+  writer.value("o");
+  writer.key("returns");
+  writer.value("number");
+  writer.endObject();
+}

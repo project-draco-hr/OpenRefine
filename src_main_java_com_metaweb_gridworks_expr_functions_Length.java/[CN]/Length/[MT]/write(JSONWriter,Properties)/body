@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns the length of o");
+  writer.key("params");
+  writer.value("array or string o");
+  writer.key("returns");
+  writer.value("number");
+  writer.endObject();
+}

@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns the opposite of b");
+  writer.key("params");
+  writer.value("boolean b");
+  writer.key("returns");
+  writer.value("boolean");
+  writer.endObject();
+}

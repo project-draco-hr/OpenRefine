@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns the smaller of two numbers");
+  writer.key("params");
+  writer.value("number a, number b");
+  writer.key("returns");
+  writer.value("number");
+  writer.endObject();
+}

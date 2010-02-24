@@ -39,6 +39,7 @@
     Column column=new Column(c,nonBlankHeaderStrings.get(c));
     project.columnModel.columns.add(column);
   }
+  int rowsWithData=0;
   for (; r <= lastRow; r++) {
     org.apache.poi.ss.usermodel.Row row=sheet.getRow(r);
     if (row == null) {
@@ -83,9 +84,12 @@
         }
       }
       if (hasData) {
-        project.rows.add(newRow);
-        if (limit > 0 && project.rows.size() >= limit) {
-          break;
+        rowsWithData++;
+        if (skip <= 0 || rowsWithData > skip) {
+          project.rows.add(newRow);
+          if (limit > 0 && project.rows.size() >= limit) {
+            break;
+          }
         }
       }
     }

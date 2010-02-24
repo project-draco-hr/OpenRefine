@@ -21,10 +21,10 @@
     if (importer.takesReader()) {
       String encoding=connection.getContentEncoding();
       Reader reader=new InputStreamReader(inputStream,(encoding == null) ? "ISO-8859-1" : encoding);
-      importer.read(reader,project,options,limit);
+      importer.read(reader,project,options,skip,limit);
     }
  else {
-      importer.read(inputStream,project,options,limit);
+      importer.read(inputStream,project,options,skip,limit);
     }
   }
   finally {

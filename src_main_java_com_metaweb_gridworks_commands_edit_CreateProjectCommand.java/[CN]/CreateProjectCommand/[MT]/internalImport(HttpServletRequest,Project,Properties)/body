@@ -9,10 +9,19 @@
     Part part=null;
     String url=null;
     int limit=-1;
+    int skip=0;
     if (options.containsKey("limit")) {
       String s=options.getProperty("limit");
       try {
         limit=Integer.parseInt(s);
+      }
+ catch (      Exception e) {
+      }
+    }
+    if (options.containsKey("skip")) {
+      String s=options.getProperty("skip");
+      try {
+        skip=Integer.parseInt(s);
       }
  catch (      Exception e) {
       }
@@ -24,7 +33,7 @@
         if (importer.takesReader()) {
           Reader reader=new InputStreamReader(filePart.getInputStream());
           try {
-            importer.read(reader,project,options,limit);
+            importer.read(reader,project,options,skip,limit);
           }
   finally {
             reader.close();
@@ -33,7 +42,7 @@
  else {
           InputStream inputStream=filePart.getInputStream();
           try {
-            importer.read(inputStream,project,options,limit);
+            importer.read(inputStream,project,options,skip,limit);
           }
   finally {
             inputStream.close();
@@ -46,7 +55,7 @@
         if (paramName.equals("raw-text")) {
           StringReader reader=new StringReader(paramPart.getStringValue());
           try {
-            new TsvCsvImporter().read(reader,project,options,limit);
+            new TsvCsvImporter().read(reader,project,options,skip,limit);
           }
   finally {
             reader.close();
@@ -61,7 +70,7 @@
       }
     }
     if (url != null && url.length() > 0) {
-      internalImportURL(request,project,options,url,limit);
+      internalImportURL(request,project,options,url,skip,limit);
     }
   }
 }

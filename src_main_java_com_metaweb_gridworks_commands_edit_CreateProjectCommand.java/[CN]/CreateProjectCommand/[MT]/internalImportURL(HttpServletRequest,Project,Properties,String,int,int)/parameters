@@ -1,0 +1,6 @@
+HttpServletRequest request
+Project project
+Properties options
+String urlString
+int skip
+int limit

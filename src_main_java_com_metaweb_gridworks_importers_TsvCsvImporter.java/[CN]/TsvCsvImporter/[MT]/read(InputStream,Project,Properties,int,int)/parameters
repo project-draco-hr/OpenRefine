@@ -1,4 +1,5 @@
-Reader reader
+InputStream inputStream
 Project project
 Properties options
+int skip
 int limit

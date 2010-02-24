@@ -1,5 +1,5 @@
-HttpServletRequest request
+InputStream inputStream
 Project project
 Properties options
-String urlString
+int skip
 int limit

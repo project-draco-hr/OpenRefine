@@ -2,7 +2,12 @@
 synchronized (project) {
     super.apply(project);
     Column column=project.columnModel.getColumnByName(_commonColumnName);
+    if (_newReconStats == null) {
+      _newReconStats=ReconStats.create(project,column.getCellIndex());
+    }
     _oldReconConfig=column.getReconConfig();
+    _oldReconStats=column.getReconStats();
     column.setReconConfig(_newReconConfig);
+    column.setReconStats(_newReconStats);
   }
 }

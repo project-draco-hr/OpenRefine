@@ -8,5 +8,9 @@
     writer.key("reconConfig");
     _reconConfig.write(writer,options);
   }
+  if (_reconStats != null) {
+    writer.key("reconStats");
+    _reconStats.write(writer,options);
+  }
   writer.endObject();
 }

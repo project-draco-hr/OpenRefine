@@ -1,0 +1,6 @@
+{
+  _cellChanges=new CellChange[1];
+  _cellChanges[0]=cellChange;
+  _commonColumnName=commonColumnName;
+  _updateRowContextDependencies=updateRowContextDependencies;
+}

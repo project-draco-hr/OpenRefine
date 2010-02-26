@@ -1,6 +1,0 @@
-{
-synchronized (project) {
-    super.revert(project);
-    project.columnModel.getColumnByName(_commonColumnName).setReconConfig(_oldReconConfig);
-  }
-}

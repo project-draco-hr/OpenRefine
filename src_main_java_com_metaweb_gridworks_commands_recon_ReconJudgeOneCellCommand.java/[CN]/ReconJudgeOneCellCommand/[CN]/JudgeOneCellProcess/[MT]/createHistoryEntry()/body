@@ -7,6 +7,7 @@
   if (column == null) {
     throw new Exception("No such column");
   }
+  Judgment oldJudgment=cell.recon == null ? Judgment.None : cell.recon.judgment;
   newCell=new Cell(cell.value,cell.recon == null ? new Recon() : cell.recon.dup());
   String cellDescription="single cell on row " + (rowIndex + 1) + ", column "+ column.getHeaderLabel()+ ", containing \""+ cell.value+ "\"";
   String description=null;
@@ -24,6 +25,27 @@
     newCell.recon.match=this.match;
     description="Match " + this.match.topicName + " ("+ match.topicID+ ") to "+ cellDescription;
   }
-  Change change=new CellChange(rowIndex,cellIndex,cell,newCell);
+  ReconStats stats=column.getReconStats();
+  if (stats == null) {
+    stats=ReconStats.create(_project,cellIndex);
+  }
+ else {
+    int newChange=0;
+    int matchChange=0;
+    if (oldJudgment == Judgment.New) {
+      newChange--;
+    }
+    if (oldJudgment == Judgment.Matched) {
+      matchChange--;
+    }
+    if (newCell.recon.judgment == Judgment.New) {
+      newChange++;
+    }
+    if (newCell.recon.judgment == Judgment.Matched) {
+      matchChange++;
+    }
+    stats=new ReconStats(stats.nonBlanks,stats.newTopics + newChange,stats.matchedTopics + matchChange);
+  }
+  Change change=new ReconChange(new CellChange(rowIndex,cellIndex,cell,newCell),column.getHeaderLabel(),column.getReconConfig(),stats);
   return new HistoryEntry(_project,description,null,change);
 }

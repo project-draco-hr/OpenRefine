@@ -1,3 +1,4 @@
-List<CellChange> cellChanges
+CellChange cellChange
 String commonColumnName
 ReconConfig newReconConfig
+ReconStats newReconStats

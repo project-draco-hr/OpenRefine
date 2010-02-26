@@ -8,6 +8,5 @@
   FilteredRows filteredRows=engine.getAllFilteredRows(false);
   filteredRows.accept(project,createRowVisitor(project,cellChanges));
   String description=createDescription(column,cellChanges);
-  MassCellChange massCellChange=new MassCellChange(cellChanges,column.getHeaderLabel(),_updateRowContextDependencies);
-  return new HistoryEntry(project,description,this,massCellChange);
+  return new HistoryEntry(project,description,this,createChange(project,column,cellChanges));
 }

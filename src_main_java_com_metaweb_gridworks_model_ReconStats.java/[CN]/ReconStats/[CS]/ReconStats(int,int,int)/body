@@ -1,0 +1,5 @@
+{
+  this.nonBlanks=nonBlanks;
+  this.newTopics=newTopics;
+  this.matchedTopics=matchedTopics;
+}

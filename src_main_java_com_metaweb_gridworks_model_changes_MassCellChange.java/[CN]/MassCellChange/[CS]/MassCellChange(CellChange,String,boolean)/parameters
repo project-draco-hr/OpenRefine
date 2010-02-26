@@ -1,0 +1,3 @@
+CellChange cellChange
+String commonColumnName
+boolean updateRowContextDependencies

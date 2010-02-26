@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("nonBlanks");
+  writer.value(nonBlanks);
+  writer.key("newTopics");
+  writer.value(newTopics);
+  writer.key("matchedTopics");
+  writer.value(matchedTopics);
+  writer.endObject();
+}

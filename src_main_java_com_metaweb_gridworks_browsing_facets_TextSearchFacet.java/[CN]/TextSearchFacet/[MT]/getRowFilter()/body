@@ -1,4 +1,7 @@
 {
+  if (_query == null || _query.length() == 0) {
+    return null;
+  }
   Evaluable eval=new VariableExpr("value");
   if ("regex".equals(_mode)) {
     return new ExpressionStringComparisonRowFilter(eval,_cellIndex){
@@ -11,7 +14,7 @@
  else {
     return new ExpressionStringComparisonRowFilter(eval,_cellIndex){
       protected boolean checkValue(      String s){
-        return s.toLowerCase().contains(_query);
+        return (_caseSensitive ? s : s.toLowerCase()).contains(_query);
       }
     }
 ;

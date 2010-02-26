@@ -2,10 +2,15 @@
   _name=o.getString("name");
   _columnName=o.getString("columnName");
   _cellIndex=project.columnModel.getColumnByName(_columnName).getCellIndex();
-  _query=o.getString("query");
+  if (!o.isNull("query")) {
+    _query=o.getString("query");
+  }
   _mode=o.getString("mode");
   _caseSensitive=o.getBoolean("caseSensitive");
-  if (!_caseSensitive) {
-    _query=_query.toLowerCase();
+  if (_query != null) {
+    _query=_query.trim();
+    if (!_caseSensitive) {
+      _query=_query.toLowerCase();
+    }
   }
 }

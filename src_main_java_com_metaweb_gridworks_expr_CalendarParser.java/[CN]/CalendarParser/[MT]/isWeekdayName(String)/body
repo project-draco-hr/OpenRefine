@@ -1,0 +1,12 @@
+{
+  if (str == null || str.length() < 3) {
+    return false;
+  }
+  String lstr=str.toLowerCase();
+  for (int i=0; i < WEEKDAY_NAMES.length; i++) {
+    if (lstr.startsWith(WEEKDAY_NAMES[i]) || WEEKDAY_NAMES[i].toLowerCase().startsWith(lstr)) {
+      return true;
+    }
+  }
+  return false;
+}

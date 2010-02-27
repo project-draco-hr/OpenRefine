@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Removes separator from the end of str if it's there, otherwise leave it alone.");
+  writer.key("params");
+  writer.value("string str, string separator");
+  writer.key("returns");
+  writer.value("string");
+  writer.endObject();
+}

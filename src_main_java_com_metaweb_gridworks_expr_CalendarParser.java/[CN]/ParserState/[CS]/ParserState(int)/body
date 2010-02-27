@@ -1,0 +1,12 @@
+{
+  yearBeforeMonth=(order & YEAR_BEFORE_MONTH) == YEAR_BEFORE_MONTH;
+  yearBeforeDay=(order & YEAR_BEFORE_DAY) == YEAR_BEFORE_DAY;
+  monthBeforeDay=(order & MONTH_BEFORE_DAY) == MONTH_BEFORE_DAY;
+  year=UNSET;
+  month=UNSET;
+  day=UNSET;
+  hour=UNSET;
+  minute=UNSET;
+  second=UNSET;
+  timePostMeridian=false;
+}

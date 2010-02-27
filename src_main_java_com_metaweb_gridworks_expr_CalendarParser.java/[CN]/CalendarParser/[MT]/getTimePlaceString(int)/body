@@ -1,0 +1,15 @@
+{
+switch (place) {
+case PLACE_HOUR:
+    return "hour";
+case PLACE_MINUTE:
+  return "minute";
+case PLACE_SECOND:
+return "second";
+case PLACE_MILLI:
+return "millisecond";
+default :
+break;
+}
+return "unknown";
+}

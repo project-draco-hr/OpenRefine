@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns the SHA-1 hash of s");
+  writer.key("params");
+  writer.value("string s");
+  writer.key("returns");
+  writer.value("string");
+  writer.endObject();
+}

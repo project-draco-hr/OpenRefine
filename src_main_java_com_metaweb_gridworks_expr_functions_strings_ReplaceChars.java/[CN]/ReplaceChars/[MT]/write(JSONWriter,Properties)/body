@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns the string obtained by replacing all chars in f with the char in s at that same position");
+  writer.key("params");
+  writer.value("string s, string f, string r");
+  writer.key("returns");
+  writer.value("string");
+  writer.endObject();
+}

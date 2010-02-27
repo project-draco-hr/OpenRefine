@@ -1,0 +1,6 @@
+{
+  if (val < 0 || val > 999) {
+    throw new CalendarParserException("Bad millisecond " + val);
+  }
+  milli=val;
+}

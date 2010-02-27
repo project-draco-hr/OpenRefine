@@ -3,7 +3,7 @@
   writer.key("description");
   writer.value("Returns o converted to a string");
   writer.key("params");
-  writer.value("o");
+  writer.value("o, string format (optional)");
   writer.key("returns");
   writer.value("string");
   writer.endObject();

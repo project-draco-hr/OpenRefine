@@ -1,0 +1,6 @@
+{
+  if (args.length == 0) {
+    return Calendar.getInstance();
+  }
+  return null;
+}

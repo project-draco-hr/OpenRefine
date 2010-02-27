@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns an array of strings describing each character of s in their full unicode notation");
+  writer.key("params");
+  writer.value("string s");
+  writer.key("returns");
+  writer.value("string");
+  writer.endObject();
+}

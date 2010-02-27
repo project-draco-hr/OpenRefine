@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns o converted to a date object");
+  writer.key("params");
+  writer.value("o, boolean month_first (optional)");
+  writer.key("returns");
+  writer.value("date");
+  writer.endObject();
+}

@@ -1,0 +1,19 @@
+{
+switch (order) {
+case DD_MM_YY:
+    return "DD_MM_YY";
+case MM_DD_YY:
+  return "MM_DD_YY";
+case MM_YY_DD:
+return "MM_YY_DD";
+case DD_YY_MM:
+return "DD_YY_MM";
+case YY_DD_MM:
+return "YY_DD_MM";
+case YY_MM_DD:
+return "YY_MM_DD";
+default :
+break;
+}
+return "??" + order + "??";
+}

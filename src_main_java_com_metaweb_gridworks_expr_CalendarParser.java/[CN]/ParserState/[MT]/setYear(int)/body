@@ -1,0 +1,6 @@
+{
+  if (val < 0) {
+    throw new CalendarParserException("Bad year " + val);
+  }
+  year=val;
+}

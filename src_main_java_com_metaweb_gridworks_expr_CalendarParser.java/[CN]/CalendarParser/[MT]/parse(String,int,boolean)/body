@@ -1,0 +1,6 @@
+{
+  if (dateStr == null) {
+    return null;
+  }
+  return parseString(dateStr,order,ignoreChanges);
+}

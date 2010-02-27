@@ -1,0 +1,14 @@
+{
+  final int len=(str == null ? 0 : str.length());
+  if (len >= 3) {
+    String suffix=str.substring(len - 2);
+    if (suffix.equalsIgnoreCase("st") || suffix.equalsIgnoreCase("nd") || suffix.equalsIgnoreCase("rd")|| suffix.equalsIgnoreCase("th")) {
+      try {
+        return Integer.parseInt(str.substring(0,len - 2));
+      }
+ catch (      NumberFormatException nfe) {
+      }
+    }
+  }
+  return UNSET;
+}

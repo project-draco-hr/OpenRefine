@@ -1,0 +1,22 @@
+{
+  if (cal == null) {
+    return null;
+  }
+  final int calYear=cal.get(Calendar.YEAR);
+  final int calMonth=cal.get(Calendar.MONTH);
+  final int calDay=cal.get(Calendar.DATE);
+  StringBuffer buf=new StringBuffer();
+  buf.append(calYear);
+  buf.append('-');
+  if ((calMonth + 1) < 10) {
+    buf.append('0');
+  }
+  buf.append(calMonth + 1);
+  buf.append('-');
+  if (calDay < 10) {
+    buf.append('0');
+  }
+  buf.append(calDay);
+  appendTimeString(buf,cal,true);
+  return buf.toString();
+}

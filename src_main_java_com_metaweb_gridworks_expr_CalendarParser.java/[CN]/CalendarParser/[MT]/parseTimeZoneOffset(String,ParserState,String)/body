@@ -1,0 +1,43 @@
+{
+  int place=PLACE_HOUR;
+  final boolean isNegative=(zoneStr.charAt(0) == '-');
+  if (!isNegative && zoneStr.charAt(0) != '+') {
+    throw new CalendarParserException("Bad time zone offset \"" + zoneStr + "\" in date \""+ dateStr+ "\"");
+  }
+  int hour=UNSET;
+  int minute=UNSET;
+  String[] tList=zoneStr.substring(1).split(":");
+  for (int i=0; i < tList.length; i++) {
+    String token=tList[i];
+    if (DEBUG) {
+      System.err.println("TZ_HOUR " + (hour != UNSET ? Integer.toString(hour) : "UNSET") + ", TZ_MINUTE "+ (minute != UNSET ? Integer.toString(minute) : "UNSET")+ ", TOKEN=\""+ token+ "\"");
+    }
+    final int val;
+    try {
+      val=Integer.parseInt(token);
+    }
+ catch (    NumberFormatException nfe) {
+      throw new CalendarParserException("Bad time zone " + getTimePlaceString(place) + " offset \""+ token+ "\" in \""+ dateStr+ "\"");
+    }
+switch (place) {
+case PLACE_HOUR:
+      hour=val;
+    if (DEBUG) {
+      System.err.println("Set time zone offset hour to " + val);
+    }
+  place=PLACE_MINUTE;
+break;
+case PLACE_MINUTE:
+minute=val;
+if (DEBUG) {
+System.err.println("Set time zone offset minute to " + val);
+}
+place=PLACE_UNKNOWN;
+break;
+default :
+throw new CalendarParserException("Unexpected place value " + place);
+}
+}
+String customID="GMT" + (isNegative ? "-" : "+") + hour+ ":"+ (minute < 10 ? "0" : "")+ minute;
+state.setTimeZone(TimeZone.getTimeZone(customID));
+}

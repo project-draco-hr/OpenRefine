@@ -1,0 +1,69 @@
+{
+  final int hour=cal.get(Calendar.HOUR_OF_DAY);
+  final int minute=cal.get(Calendar.MINUTE);
+  final int second=cal.get(Calendar.SECOND);
+  final int milli=cal.get(Calendar.MILLISECOND);
+  if (hour != 0 || minute != 0 || second != 0 || milli != 0) {
+    if (needSpace) {
+      buf.append(' ');
+    }
+    if (hour < 10) {
+      buf.append(' ');
+    }
+    buf.append(hour);
+    if (minute < 10) {
+      buf.append(":0");
+    }
+ else {
+      buf.append(':');
+    }
+    buf.append(minute);
+    if (second != 0 || milli != 0) {
+      if (second < 10) {
+        buf.append(":0");
+      }
+ else {
+        buf.append(':');
+      }
+      buf.append(second);
+      if (milli != 0) {
+        if (milli < 10) {
+          buf.append(".00");
+        }
+ else         if (milli < 100) {
+          buf.append(".0");
+        }
+ else {
+          buf.append('.');
+        }
+        buf.append(milli);
+      }
+    }
+  }
+  TimeZone tz=cal.getTimeZone();
+  if (tz.getRawOffset() == 0) {
+    buf.append(" GMT");
+  }
+ else {
+    buf.append(' ');
+    int offset=tz.getRawOffset() / (60 * 1000);
+    if (offset < 0) {
+      buf.append('-');
+      offset=-offset;
+    }
+ else {
+      buf.append('+');
+    }
+    int hrOff=offset / 60;
+    if (hrOff < 10) {
+      buf.append('0');
+    }
+    buf.append(hrOff);
+    buf.append(':');
+    int minOff=offset % 60;
+    if (minOff < 10) {
+      buf.append('0');
+    }
+    buf.append(minOff);
+  }
+}

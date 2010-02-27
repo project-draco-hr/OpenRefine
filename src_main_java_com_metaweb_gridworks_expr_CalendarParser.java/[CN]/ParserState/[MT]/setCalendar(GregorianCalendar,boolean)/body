@@ -1,0 +1,33 @@
+{
+  cal.clear();
+  if (year != UNSET && month != UNSET && day != UNSET) {
+    cal.set(Calendar.YEAR,year);
+    cal.set(Calendar.MONTH,month - 1);
+    cal.set(Calendar.DATE,day);
+    if (!ignoreChanges) {
+      final int calYear=cal.get(Calendar.YEAR);
+      final int calMonth=cal.get(Calendar.MONTH);
+      final int calDay=cal.get(Calendar.DATE);
+      if (calYear != year || (calMonth + 1) != month || calDay != day) {
+        throw new CalendarParserException("Date was set to " + calYear + "/"+ (calMonth + 1)+ "/"+ calDay+ " not requested "+ year+ "/"+ month+ "/"+ day);
+      }
+    }
+  }
+  cal.clear(Calendar.HOUR);
+  cal.clear(Calendar.MINUTE);
+  cal.clear(Calendar.SECOND);
+  cal.clear(Calendar.MILLISECOND);
+  if (hour != UNSET && minute != UNSET) {
+    cal.set(Calendar.HOUR,hour);
+    cal.set(Calendar.MINUTE,minute);
+    if (second != UNSET) {
+      cal.set(Calendar.SECOND,second);
+      if (milli != UNSET) {
+        cal.set(Calendar.MILLISECOND,milli);
+      }
+    }
+    if (timeZone != null) {
+      cal.setTimeZone(timeZone);
+    }
+  }
+}

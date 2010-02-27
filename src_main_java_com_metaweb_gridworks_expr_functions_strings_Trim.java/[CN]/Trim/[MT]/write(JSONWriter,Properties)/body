@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns copy of the string, with leading and trailing whitespace omitted.");
+  writer.key("params");
+  writer.value("string s");
+  writer.key("returns");
+  writer.value("string");
+  writer.endObject();
+}

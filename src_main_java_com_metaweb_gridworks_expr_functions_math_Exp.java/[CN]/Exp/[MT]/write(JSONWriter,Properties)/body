@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns e^n");
+  writer.key("params");
+  writer.value("number n");
+  writer.key("returns");
+  writer.value("number");
+  writer.endObject();
+}

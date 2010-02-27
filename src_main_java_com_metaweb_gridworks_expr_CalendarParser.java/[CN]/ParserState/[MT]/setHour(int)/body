@@ -1,0 +1,14 @@
+{
+  final int tmpHour;
+  if (timePostMeridian) {
+    tmpHour=val + 12;
+    timePostMeridian=false;
+  }
+ else {
+    tmpHour=val;
+  }
+  if (tmpHour < 0 || tmpHour > 23) {
+    throw new CalendarParserException("Bad hour " + val);
+  }
+  hour=tmpHour;
+}

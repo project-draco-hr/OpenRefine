@@ -1,0 +1,11 @@
+{
+  if (str != null && str.length() >= 3) {
+    String lstr=str.toLowerCase();
+    for (int i=0; i < MONTHS.length; i++) {
+      if (lstr.startsWith(MONTHS[i][0]) || MONTHS[i][1].toLowerCase().startsWith(lstr)) {
+        return i + 1;
+      }
+    }
+  }
+  return UNSET;
+}

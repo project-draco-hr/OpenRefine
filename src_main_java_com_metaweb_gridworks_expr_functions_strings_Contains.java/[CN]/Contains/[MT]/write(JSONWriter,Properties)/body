@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns whether s contains frag");
+  writer.key("params");
+  writer.value("string s, string frag");
+  writer.key("returns");
+  writer.value("boolean");
+  writer.endObject();
+}

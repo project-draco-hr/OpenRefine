@@ -1,0 +1,3 @@
+String dateStr
+int order
+boolean ignoreChanges

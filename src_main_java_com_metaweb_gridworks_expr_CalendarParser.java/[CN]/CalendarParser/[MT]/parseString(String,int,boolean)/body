@@ -1,0 +1,75 @@
+{
+  ParserState state=new ParserState(order);
+  Pattern pat=Pattern.compile("([\\s/,]+|(\\S)\\-)");
+  Matcher matcher=pat.matcher(dateStr);
+  int prevEnd=0;
+  while (prevEnd < dateStr.length()) {
+    String token;
+    if (!matcher.find()) {
+      token=dateStr.substring(prevEnd);
+      prevEnd=dateStr.length();
+    }
+ else {
+      final boolean isMinus=(matcher.groupCount() == 2 && matcher.group(2) != null);
+      if (!isMinus) {
+        token=dateStr.substring(prevEnd,matcher.start());
+      }
+ else {
+        token=dateStr.substring(prevEnd,matcher.start()) + matcher.group(2);
+      }
+      prevEnd=matcher.end();
+    }
+    if (DEBUG) {
+      System.err.println("YEAR " + (state.isYearSet() ? Integer.toString(state.getYear()) : "UNSET") + ", MONTH "+ (state.isMonthSet() ? Integer.toString(state.getMonth()) : "UNSET")+ ", DAY "+ (state.isDateSet() ? Integer.toString(state.getDate()) : "UNSET")+ ", TOKEN=\""+ token+ "\"");
+    }
+    try {
+      final int val=Integer.parseInt(token);
+      parseNumericToken(dateStr,state,val);
+    }
+ catch (    NumberFormatException e) {
+      parseNonNumericToken(dateStr,state,token);
+    }
+  }
+  if (!state.isDateSet() && state.getYear() <= 31) {
+    int tmp=state.getDate();
+    state.setDate(state.getYear());
+    state.setYear(tmp);
+  }
+  if (!state.isDateSet()) {
+    if (!state.isMonthSet()) {
+      if (!state.isYearSet()) {
+        throw new CalendarParserException("No date found in \"" + dateStr + "\"");
+      }
+ else {
+        throw new CalendarParserException("Day and month missing" + " from \"" + dateStr + "\"");
+      }
+    }
+ else {
+      throw new CalendarParserException("Day missing from \"" + dateStr + "\"");
+    }
+  }
+ else   if (!state.isMonthSet()) {
+    if (!state.isYearSet()) {
+      throw new CalendarParserException("Year and month missing" + " from \"" + dateStr + "\"");
+    }
+ else {
+      throw new CalendarParserException("Month missing from \"" + dateStr + "\"");
+    }
+  }
+ else   if (!state.isYearSet()) {
+    throw new CalendarParserException("Year missing from \"" + dateStr + "\"");
+  }
+  final int tmpYear=state.getYear();
+  if (tmpYear < 50) {
+    state.setYear(tmpYear + CENTURY_OFFSET);
+  }
+ else   if (tmpYear < 100) {
+    state.setYear(tmpYear + (CENTURY_OFFSET - 100));
+  }
+  GregorianCalendar cal=new GregorianCalendar();
+  state.setCalendar(cal,ignoreChanges);
+  if (DEBUG) {
+    System.err.println("Y" + state.getYear() + " M"+ state.getMonth()+ " D"+ state.getDate()+ " H"+ state.getHour()+ " M"+ state.getMinute()+ " S"+ state.getSecond()+ " L"+ state.getMillisecond()+ " => "+ toString(cal));
+  }
+  return cal;
+}

@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns an array of strings [a,frag,b] where a is the string part before the first occurrence of frag in s and b is what's left.");
+  writer.key("params");
+  writer.value("string s, string frag");
+  writer.key("returns");
+  writer.value("array");
+  writer.endObject();
+}

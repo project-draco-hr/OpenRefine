@@ -1,0 +1,6 @@
+{
+  if (val < 1 || val > 31) {
+    throw new CalendarParserException("Bad day " + val);
+  }
+  day=val;
+}

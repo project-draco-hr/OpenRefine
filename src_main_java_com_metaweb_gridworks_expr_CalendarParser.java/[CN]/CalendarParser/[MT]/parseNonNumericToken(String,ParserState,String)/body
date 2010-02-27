@@ -1,0 +1,154 @@
+{
+  if (isWeekdayName(token)) {
+    if (DEBUG) {
+      System.err.println("IGNORE \"" + token + "\" (weekday)");
+    }
+    return;
+  }
+  if (token.indexOf(':') > 0) {
+    final char firstChar=token.charAt(0);
+    if (Character.isDigit(firstChar)) {
+      parseTime(dateStr,state,token);
+      return;
+    }
+ else     if (firstChar == '+' || firstChar == '-') {
+      parseTimeZoneOffset(dateStr,state,token);
+      return;
+    }
+ else {
+      throw new CalendarParserException("Unrecognized time \"" + token + "\" in date \""+ dateStr+ "\"");
+    }
+  }
+  int tmpMon=monthNameToNumber(token);
+  if (tmpMon != UNSET) {
+    if (!state.isMonthSet()) {
+      state.setMonth(tmpMon);
+      if (DEBUG) {
+        System.err.println("MONTH=" + MONTHS[state.getMonth() - 1][0] + " ("+ token+ ") name");
+      }
+      return;
+    }
+    if (!state.isYearSet()) {
+      if (state.isDateSet() || state.isYearBeforeDay()) {
+        state.setYear(state.getMonth());
+        state.setMonth(tmpMon);
+        if (DEBUG) {
+          System.err.println("MONTH=" + MONTHS[state.getMonth() - 1][0] + ", YEAR="+ state.getYear()+ " ("+ token+ ") name swap");
+        }
+      }
+ else {
+        state.setDate(state.getMonth());
+        state.setMonth(tmpMon);
+        if (DEBUG) {
+          System.err.println("MONTH=" + MONTHS[state.getMonth() - 1][0] + ", DAY="+ state.getDate()+ " ("+ token+ ") name swap");
+        }
+      }
+      return;
+    }
+    if (!state.isDateSet()) {
+      state.setDate(state.getMonth());
+      state.setMonth(tmpMon);
+      if (DEBUG) {
+        System.err.println("MONTH=" + MONTHS[state.getMonth() - 1][0] + ", DAY="+ state.getDate()+ " ("+ token+ ") name swap 2");
+      }
+      return;
+    }
+    if (DEBUG) {
+      System.err.println("*** Too many numbers in \"" + dateStr + "\"");
+    }
+    throw new CalendarParserException("Too many numbers in" + " date \"" + dateStr + "\"");
+  }
+  int val=getOrdinalNumber(token);
+  if (val == UNSET) {
+    final String lToken=token.toLowerCase();
+    if (lToken.equals("am")) {
+      if (DEBUG) {
+        System.err.println("TIME=AM (" + token + ")");
+      }
+      return;
+    }
+ else     if (lToken.equals("pm")) {
+      if (!state.isHourSet()) {
+        state.setTimePostMeridian(true);
+      }
+ else {
+        state.setHour(state.getHour() + 12);
+      }
+      if (DEBUG) {
+        System.err.println("TIME=PM (" + token + ")");
+      }
+      return;
+    }
+ else     if (zoneNames != null) {
+      for (int z=0; z < zoneNames.length; z++) {
+        if (token.equalsIgnoreCase(zoneNames[z])) {
+          TimeZone tz=TimeZone.getTimeZone(token);
+          if (tz.getRawOffset() != 0 || lToken.equals("gmt")) {
+            state.setTimeZone(tz);
+            return;
+          }
+        }
+      }
+    }
+    if (DEBUG) {
+      System.err.println("*** Unknown string \"" + token + "\"");
+    }
+    throw new CalendarParserException("Unknown string \"" + token + "\" in date \""+ dateStr+ "\"");
+  }
+  if (!state.isDateSet()) {
+    state.setDate(val);
+    if (DEBUG) {
+      System.err.println("DAY=" + state.getDate() + " ("+ token+ ") ord");
+    }
+    return;
+  }
+  if (!state.isYearSet() || !state.isMonthSet()) {
+    if (state.getDate() > 12) {
+      if (!state.isYearSet()) {
+        state.setYear(state.getDate());
+        state.setDate(val);
+        if (DEBUG) {
+          System.err.println("YEAR=" + state.getYear() + ", DAY="+ state.getDate()+ " ("+ token+ ") ord>12 swap");
+        }
+        return;
+      }
+      if (state.getYear() <= 12) {
+        state.setMonth(state.getYear());
+        state.setYear(state.getDate());
+        state.setDate(val);
+        if (DEBUG) {
+          System.err.println("YEAR=" + state.getYear() + ", MONTH="+ state.getMonth()+ ", DAY="+ state.getDate()+ " ("+ token+ ") ord megaswap");
+        }
+        return;
+      }
+    }
+ else     if (!state.isYearSet()) {
+      if (!state.isMonthSet() && !state.isYearBeforeMonth()) {
+        state.setMonth(state.getDate());
+        state.setDate(val);
+        if (DEBUG) {
+          System.err.println("MONTH=" + state.getMonth() + ", DAY="+ state.getDate()+ " ("+ token+ ") ord swap");
+        }
+        return;
+      }
+      state.setYear(state.getDate());
+      state.setDate(val);
+      if (DEBUG) {
+        System.err.println("YEAR=" + state.getYear() + ", DAY="+ state.getDate()+ " ("+ token+ ") ord swap");
+      }
+      return;
+    }
+ else {
+      state.setMonth(state.getDate());
+      state.setDate(val);
+      if (DEBUG) {
+        System.err.println("MONTH=" + state.getMonth() + ", DAY="+ state.getDate()+ " ("+ token+ ") ord swap#2");
+      }
+      return;
+    }
+  }
+  if (DEBUG) {
+    System.err.println("*** Extra number \"" + token + "\"");
+  }
+  throw new CalendarParserException("Cannot assign ordinal in \"" + dateStr + "\"");
+}

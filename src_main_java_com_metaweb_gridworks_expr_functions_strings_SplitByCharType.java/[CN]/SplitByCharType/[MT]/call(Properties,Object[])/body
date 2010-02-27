@@ -1,0 +1,10 @@
+{
+  if (args.length == 1) {
+    Object o=args[0];
+    if (o != null) {
+      String s=(o instanceof String) ? (String)o : o.toString();
+      return StringUtils.splitByCharacterType(s);
+    }
+  }
+  return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " expects 2 strings");
+}

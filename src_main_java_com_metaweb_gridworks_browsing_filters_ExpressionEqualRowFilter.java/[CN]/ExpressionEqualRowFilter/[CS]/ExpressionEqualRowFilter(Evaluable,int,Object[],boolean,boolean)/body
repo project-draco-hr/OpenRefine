@@ -2,4 +2,6 @@
   _evaluable=evaluable;
   _cellIndex=cellIndex;
   _matches=matches;
+  _selectBlank=selectBlank;
+  _selectError=selectError;
 }

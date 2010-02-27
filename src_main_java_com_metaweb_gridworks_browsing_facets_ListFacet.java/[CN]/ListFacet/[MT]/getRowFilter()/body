@@ -1,3 +1,3 @@
 {
-  return _selection.size() == 0 ? null : new ExpressionEqualRowFilter(_eval,_cellIndex,createMatches());
+  return _selection.size() == 0 && !_selectBlank && !_selectError ? null : new ExpressionEqualRowFilter(_eval,_cellIndex,createMatches(),_selectBlank,_selectError);
 }

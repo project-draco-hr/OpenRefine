@@ -1,0 +1,16 @@
+{
+  if (ExpressionUtils.isError(v)) {
+    return _selectError;
+  }
+ else   if (ExpressionUtils.isNonBlankData(v)) {
+    for (    Object match : _matches) {
+      if (match.equals(v)) {
+        return true;
+      }
+    }
+    return false;
+  }
+ else {
+    return _selectBlank;
+  }
+}

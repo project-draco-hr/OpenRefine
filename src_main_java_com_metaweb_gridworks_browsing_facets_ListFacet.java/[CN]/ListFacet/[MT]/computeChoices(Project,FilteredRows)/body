@@ -12,4 +12,6 @@
       _choices.add(choice);
     }
   }
+  _blankCount=grouper.blankCount;
+  _errorCount=grouper.errorCount;
 }

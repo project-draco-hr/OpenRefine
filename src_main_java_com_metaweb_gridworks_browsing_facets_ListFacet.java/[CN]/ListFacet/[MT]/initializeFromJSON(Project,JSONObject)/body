@@ -15,4 +15,10 @@
     nominalFacetChoice.selected=true;
     _selection.add(nominalFacetChoice);
   }
+  if (o.has("selectBlank")) {
+    _selectBlank=o.getBoolean("selectBlank");
+  }
+  if (o.has("selectError")) {
+    _selectError=o.getBoolean("selectError");
+  }
 }

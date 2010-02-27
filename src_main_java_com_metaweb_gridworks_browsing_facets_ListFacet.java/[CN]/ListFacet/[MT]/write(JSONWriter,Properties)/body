@@ -12,5 +12,23 @@
     choice.write(writer,options);
   }
   writer.endArray();
+  if (_selectBlank || _blankCount > 0) {
+    writer.key("blankChoice");
+    writer.object();
+    writer.key("s");
+    writer.value(_selectBlank);
+    writer.key("c");
+    writer.value(_blankCount);
+    writer.endObject();
+  }
+  if (_selectError || _errorCount > 0) {
+    writer.key("errorChoice");
+    writer.object();
+    writer.key("s");
+    writer.value(_selectError);
+    writer.key("c");
+    writer.value(_errorCount);
+    writer.endObject();
+  }
   writer.endObject();
 }

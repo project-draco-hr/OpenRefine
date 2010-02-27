@@ -1,8 +1,3 @@
 {
-  if (bindings.containsKey(_name)) {
-    return bindings.get(_name);
-  }
- else {
-    return new EvalError("No variable named " + _name);
-  }
+  return bindings.get(_name);
 }

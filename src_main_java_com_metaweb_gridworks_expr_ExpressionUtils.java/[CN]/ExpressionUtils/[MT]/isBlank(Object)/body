@@ -1,3 +1,0 @@
-{
-  return o == null || (o instanceof String && ((String)o).length() == 0);
-}

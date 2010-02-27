@@ -6,5 +6,5 @@
       return (v instanceof String ? (String)v : v.toString()).split((String)split);
     }
   }
-  return null;
+  return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " expects 2 strings");
 }

@@ -1,0 +1,6 @@
+{
+  if (args.length != 3) {
+    return "if expects 3 arguments";
+  }
+  return null;
+}

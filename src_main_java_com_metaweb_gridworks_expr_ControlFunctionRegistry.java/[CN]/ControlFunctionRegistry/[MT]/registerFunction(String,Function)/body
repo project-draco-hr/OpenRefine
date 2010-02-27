@@ -1,0 +1,4 @@
+{
+  s_nameToFunction.put(name,f);
+  s_functionToName.put(f,name);
+}

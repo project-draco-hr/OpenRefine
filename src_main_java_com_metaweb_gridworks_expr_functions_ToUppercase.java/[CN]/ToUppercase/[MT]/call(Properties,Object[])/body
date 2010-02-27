@@ -3,5 +3,5 @@
     Object o=args[0];
     return (o instanceof String ? (String)o : o.toString()).toUpperCase();
   }
-  return null;
+  return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " expects a string");
 }

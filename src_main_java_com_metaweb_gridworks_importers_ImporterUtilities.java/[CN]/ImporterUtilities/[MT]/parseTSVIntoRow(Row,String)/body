@@ -4,12 +4,12 @@
   for (int c=0; c < cells.length; c++) {
     String text=cells[c];
     Object value=parseCellValue(text);
-    if (ExpressionUtils.isBlank(value)) {
-      row.cells.add(null);
-    }
- else {
+    if (ExpressionUtils.isNonBlankData(value)) {
       row.cells.add(new Cell(value,null));
       hasData=true;
+    }
+ else {
+      row.cells.add(null);
     }
   }
   return hasData;

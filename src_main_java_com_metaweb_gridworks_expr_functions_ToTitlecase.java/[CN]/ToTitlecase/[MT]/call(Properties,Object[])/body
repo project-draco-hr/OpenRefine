@@ -15,5 +15,5 @@
     }
     return sb.toString();
   }
-  return null;
+  return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " expects a string");
 }

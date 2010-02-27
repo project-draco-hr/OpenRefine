@@ -33,7 +33,10 @@
           }
         }
         if (result != null) {
-          if (result instanceof HasFields) {
+          if (result instanceof EvalError) {
+            result="[Error: " + ((EvalError)result).message + "]";
+          }
+ else           if (result instanceof HasFields) {
             result="[object " + result.getClass().getSimpleName() + "]";
           }
         }
@@ -41,9 +44,21 @@
       }
       writer.endArray();
     }
- catch (    Exception e) {
+ catch (    ParserException e) {
       writer.key("code");
       writer.value("error");
+      writer.key("type");
+      writer.value("parser");
+      writer.key("message");
+      writer.value(e.getMessage());
+    }
+catch (    Exception e) {
+      writer.key("code");
+      writer.value("error");
+      writer.key("type");
+      writer.value("other");
+      writer.key("message");
+      writer.value(e.getMessage());
     }
     writer.endObject();
   }

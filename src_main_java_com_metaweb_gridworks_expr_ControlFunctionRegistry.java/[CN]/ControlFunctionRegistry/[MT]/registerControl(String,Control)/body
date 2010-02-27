@@ -1,0 +1,4 @@
+{
+  s_nameToControl.put(name,c);
+  s_controlToName.put(c,name);
+}

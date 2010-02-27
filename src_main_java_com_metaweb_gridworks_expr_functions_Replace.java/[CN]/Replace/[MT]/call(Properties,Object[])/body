@@ -7,5 +7,5 @@
       return (v instanceof String ? (String)v : v.toString()).replace((String)find,(String)replace);
     }
   }
-  return null;
+  return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " expects 3 strings");
 }

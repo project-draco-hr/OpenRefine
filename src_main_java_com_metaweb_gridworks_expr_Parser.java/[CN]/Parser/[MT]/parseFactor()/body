@@ -28,15 +28,20 @@
       eval=new VariableExpr(text);
     }
  else {
-      Function f=functionTable.get(text);
-      Control c=controlTable.get(text);
+      Function f=ControlFunctionRegistry.getFunction(text);
+      Control c=ControlFunctionRegistry.getControl(text);
       if (f == null && c == null) {
         throw makeException("Unknown function or control named " + text);
       }
       next();
       List<Evaluable> args=parseExpressionList(")");
       if (c != null) {
-        eval=new ControlCallExpr(makeArray(args),c);
+        Evaluable[] argsA=makeArray(args);
+        String errorMessage=c.checkArguments(argsA);
+        if (errorMessage != null) {
+          throw makeException(errorMessage);
+        }
+        eval=new ControlCallExpr(argsA,c);
       }
  else {
         eval=new FunctionCallExpr(makeArray(args),f);
@@ -66,7 +71,7 @@
       next();
       if (_token != null && _token.type == TokenType.Delimiter && _token.text.equals("(")) {
         next();
-        Function f=functionTable.get(identifier);
+        Function f=ControlFunctionRegistry.getFunction(identifier);
         if (f == null) {
           throw makeException("Unknown function " + identifier);
         }
@@ -82,7 +87,7 @@
       next();
       List<Evaluable> args=parseExpressionList("]");
       args.add(0,eval);
-      eval=new FunctionCallExpr(makeArray(args),functionTable.get("get"));
+      eval=new FunctionCallExpr(makeArray(args),ControlFunctionRegistry.getFunction("get"));
     }
  else {
       break;

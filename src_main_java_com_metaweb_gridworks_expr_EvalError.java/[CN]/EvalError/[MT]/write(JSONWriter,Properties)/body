@@ -1,0 +1,8 @@
+{
+  writer.object();
+  writer.key("type");
+  writer.value("error");
+  writer.key("message");
+  writer.value(message);
+  writer.endObject();
+}

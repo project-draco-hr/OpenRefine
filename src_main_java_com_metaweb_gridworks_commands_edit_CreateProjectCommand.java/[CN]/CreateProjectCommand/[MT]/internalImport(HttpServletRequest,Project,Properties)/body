@@ -31,9 +31,12 @@
         FilePart filePart=(FilePart)part;
         Importer importer=guessImporter(options,null,filePart.getFileName());
         if (importer.takesReader()) {
-          Reader reader=new InputStreamReader(filePart.getInputStream());
+          CharsetDetector detector=new CharsetDetector();
+          CharsetMatch charsetMatch=detector.setText(enforceMarking(filePart.getInputStream())).detect();
+          logger.info("Best encoding guess: " + charsetMatch.getName() + " [confidence: "+ charsetMatch.getConfidence()+ "]");
+          Reader reader=charsetMatch.getReader();
           try {
-            importer.read(reader,project,options,skip,limit);
+            importer.read(charsetMatch.getReader(),project,options,skip,limit);
           }
   finally {
             reader.close();

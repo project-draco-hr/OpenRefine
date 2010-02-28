@@ -1,0 +1,19 @@
+{
+  if (args.length == 2) {
+    Object o1=args[0];
+    Object o2=args[1];
+    if (o1 != null && o2 != null && o2 instanceof String) {
+      String str=(o1 instanceof String) ? (String)o1 : o1.toString();
+      String decoder=(String)o2;
+      String reinterpreted=null;
+      try {
+        reinterpreted=new String(str.getBytes(decoder),"UTF8");
+      }
+ catch (      UnsupportedEncodingException e) {
+        return new EvalError(ControlFunctionRegistry.getFunctionName(this) + ": encoding '" + decoder+ "' is not available or recognized.");
+      }
+      return reinterpreted;
+    }
+  }
+  return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " expects 2 arguments");
+}

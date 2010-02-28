@@ -1,0 +1,23 @@
+{
+  if (args.length == 2) {
+    Object o1=args[0];
+    Object o2=args[1];
+    if (o1 != null && o2 != null && o2 instanceof String) {
+      String str=(o1 instanceof String) ? (String)o1 : o1.toString();
+      String encoding=((String)o2).toLowerCase();
+      if ("doublemetaphone".equals(encoding)) {
+        return metaphone2.doubleMetaphone(str);
+      }
+ else       if ("metaphone".equals(encoding)) {
+        return metaphone.metaphone(str);
+      }
+ else       if ("soundex".equals(encoding)) {
+        return soundex.soundex(str);
+      }
+ else {
+        return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " doesn't know how to handle the '" + encoding+ "' encoding.");
+      }
+    }
+  }
+  return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " expects 3 strings");
+}

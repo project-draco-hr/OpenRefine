@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns s reinterpreted thru the given encoder.");
+  writer.key("params");
+  writer.value("string s, string encoder");
+  writer.key("returns");
+  writer.value("string");
+  writer.endObject();
+}

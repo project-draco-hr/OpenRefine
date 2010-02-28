@@ -1,0 +1,13 @@
+{
+  if (args.length == 1 && args[0] != null) {
+    Object o=args[0];
+    String s=(o instanceof String) ? (String)o : o.toString();
+    s=s.trim();
+    s=s.toLowerCase();
+    s=alphanum.matcher(s).replaceAll("");
+    String[] frags=StringUtils.split(s);
+    Arrays.sort(frags);
+    return StringUtils.join(frags," ");
+  }
+  return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " expects a string");
+}

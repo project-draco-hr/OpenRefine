@@ -1,10 +1,10 @@
 {
   writer.object();
   writer.key("description");
-  writer.value("Compares two Strings, and returns the portion where they differ. (More precisely, return the remainder of the second String, starting from where it's different from the first.)");
+  writer.value("For strings, returns the portion where they differ. For dates, it returns the difference in given time units");
   writer.key("params");
-  writer.value("string s, string v");
+  writer.value("o1, o2, time unit (optional)");
   writer.key("returns");
-  writer.value("string");
+  writer.value("string for strings, number for dates");
   writer.endObject();
 }

@@ -3,7 +3,7 @@
   _expression=o.getString("expression");
   _columnName=o.getString("columnName");
   _cellIndex=project.columnModel.getColumnByName(_columnName).getCellIndex();
-  _eval=new Parser(_expression).getExpression();
+  _eval=MetaParser.parse(_expression);
   _selection.clear();
   JSONArray a=o.getJSONArray("selection");
   int length=a.length();

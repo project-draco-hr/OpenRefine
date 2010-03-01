@@ -15,7 +15,7 @@
     JSONWriter writer=new JSONWriter(response.getWriter());
     writer.object();
     try {
-      Evaluable eval=new Parser(expression).getExpression();
+      Evaluable eval=MetaParser.parse(expression);
       writer.key("code");
       writer.value("ok");
       writer.key("results");

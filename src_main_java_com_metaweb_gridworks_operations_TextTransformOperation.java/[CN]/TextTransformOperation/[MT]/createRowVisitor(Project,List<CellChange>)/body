@@ -1,6 +1,6 @@
 {
   Column column=project.columnModel.getColumnByName(_columnName);
-  Evaluable eval=new Parser(_expression).getExpression();
+  Evaluable eval=MetaParser.parse(_expression);
   Properties bindings=ExpressionUtils.createBindings(project);
   return new RowVisitor(){
     int cellIndex;

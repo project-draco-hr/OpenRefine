@@ -1,0 +1,4 @@
+{
+  Parser parser=new Parser(s);
+  return parser.getExpression();
+}

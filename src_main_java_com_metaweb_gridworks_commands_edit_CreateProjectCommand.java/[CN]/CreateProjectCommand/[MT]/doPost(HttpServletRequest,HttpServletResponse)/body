@@ -6,6 +6,8 @@
     ProjectMetadata pm=new ProjectMetadata();
     pm.setName(options.getProperty("project-name"));
     pm.setPassword(options.getProperty("project-password"));
+    pm.setEncoding(options.getProperty("encoding"));
+    pm.setEncodingConfidence(options.getProperty("encoding_confidence"));
     ProjectManager.singleton.registerProject(project,pm);
     project.columnModel.update();
     project.recomputeRowContextDependencies();

@@ -9,5 +9,5 @@
     Arrays.sort(frags);
     return StringUtils.join(frags," ");
   }
-  return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " expects a string");
+  return null;
 }

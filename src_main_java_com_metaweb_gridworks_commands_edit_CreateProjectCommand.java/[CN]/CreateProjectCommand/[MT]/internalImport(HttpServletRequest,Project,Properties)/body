@@ -32,7 +32,10 @@
         Importer importer=guessImporter(options,null,filePart.getFileName());
         if (importer.takesReader()) {
           CharsetDetector detector=new CharsetDetector();
+          detector.setDeclaredEncoding("utf8");
           CharsetMatch charsetMatch=detector.setText(enforceMarking(filePart.getInputStream())).detect();
+          options.setProperty("encoding",charsetMatch.getName());
+          options.setProperty("encoding_confidence",Integer.toString(charsetMatch.getConfidence()));
           logger.info("Best encoding guess: " + charsetMatch.getName() + " [confidence: "+ charsetMatch.getConfidence()+ "]");
           Reader reader=charsetMatch.getReader();
           try {

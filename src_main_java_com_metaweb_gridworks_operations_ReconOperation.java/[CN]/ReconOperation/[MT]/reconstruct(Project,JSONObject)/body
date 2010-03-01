@@ -1,4 +1,4 @@
 {
   JSONObject engineConfig=obj.getJSONObject("engineConfig");
-  return new ReconOperation(engineConfig,obj.getString("columnName"),obj.getString("typeID"),obj.getString("typeName"),obj.getBoolean("autoMatch"),obj.getDouble("minScore"));
+  return new ReconOperation(engineConfig,obj.getString("columnName"),ReconConfig.reconstruct(obj.getJSONObject("config")));
 }

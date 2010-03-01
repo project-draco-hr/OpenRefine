@@ -1,3 +1,0 @@
-{
-  return "Reconcile cells in column " + _columnName + " to type "+ _typeID;
-}

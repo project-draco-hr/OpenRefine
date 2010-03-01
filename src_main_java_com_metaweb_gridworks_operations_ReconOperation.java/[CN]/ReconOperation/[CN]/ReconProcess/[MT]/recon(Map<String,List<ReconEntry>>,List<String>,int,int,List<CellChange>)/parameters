@@ -1,5 +1,0 @@
-Map<String,List<ReconEntry>> valueToEntries
-List<String> values
-int from
-int to
-List<CellChange> cellChanges

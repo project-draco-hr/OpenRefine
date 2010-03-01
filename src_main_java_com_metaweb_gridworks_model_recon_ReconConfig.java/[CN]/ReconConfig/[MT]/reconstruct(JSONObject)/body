@@ -1,0 +1,7 @@
+{
+  String mode=obj.getString("mode");
+  if ("heuristic".equals(mode)) {
+    return HeuristicReconConfig.reconstruct(obj);
+  }
+  return null;
+}

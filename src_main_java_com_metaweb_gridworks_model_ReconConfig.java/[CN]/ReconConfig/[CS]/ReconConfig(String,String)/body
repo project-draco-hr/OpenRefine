@@ -1,4 +1,0 @@
-{
-  this.typeID=typeID;
-  this.typeName=typeName;
-}

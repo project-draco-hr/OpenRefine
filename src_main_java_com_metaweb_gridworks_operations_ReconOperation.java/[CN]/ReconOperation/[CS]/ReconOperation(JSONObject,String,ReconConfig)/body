@@ -1,0 +1,5 @@
+{
+  super(engineConfig);
+  _columnName=columnName;
+  _reconConfig=reconConfig;
+}

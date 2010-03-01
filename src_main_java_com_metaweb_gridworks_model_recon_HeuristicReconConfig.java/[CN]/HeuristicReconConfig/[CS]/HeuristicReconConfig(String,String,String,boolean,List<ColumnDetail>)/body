@@ -1,0 +1,7 @@
+{
+  this.service=service;
+  this.typeID=typeID;
+  this.typeName=typeName;
+  this.autoMatch=autoMatch;
+  this.columnDetails=new ArrayList<ColumnDetail>();
+}

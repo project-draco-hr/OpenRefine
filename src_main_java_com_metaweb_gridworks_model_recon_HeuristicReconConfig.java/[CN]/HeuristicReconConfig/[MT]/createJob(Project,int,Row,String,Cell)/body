@@ -1,0 +1,5 @@
+{
+  HeuristicReconJob job=new HeuristicReconJob();
+  job.text=cell.value.toString();
+  return job;
+}

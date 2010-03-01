@@ -1,7 +1,13 @@
 {
   writer.object();
-  writer.key("v");
-  writer.value(value);
+  if (ExpressionUtils.isError(value)) {
+    writer.key("e");
+    writer.value(((EvalError)value).message);
+  }
+ else {
+    writer.key("v");
+    writer.value(value);
+  }
   if (recon != null) {
     writer.key("r");
     recon.write(writer,options);

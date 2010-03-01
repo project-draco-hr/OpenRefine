@@ -1,0 +1,3 @@
+{
+  return "Returns whether o is null or an empty string";
+}

@@ -1,0 +1,6 @@
+{
+  if (args.length != 1) {
+    return ControlFunctionRegistry.getControlName(this) + " expects one argument";
+  }
+  return null;
+}

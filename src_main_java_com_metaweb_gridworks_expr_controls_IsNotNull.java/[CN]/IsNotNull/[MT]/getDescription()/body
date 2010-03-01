@@ -1,0 +1,3 @@
+{
+  return "Returns whether o is not null";
+}

@@ -1,8 +1,5 @@
 {
   Object o=args[0].evaluate(bindings);
-  if (ExpressionUtils.isError(o)) {
-    return o;
-  }
   String name=((VariableExpr)args[1]).getName();
   Object oldValue=bindings.get(name);
   try {

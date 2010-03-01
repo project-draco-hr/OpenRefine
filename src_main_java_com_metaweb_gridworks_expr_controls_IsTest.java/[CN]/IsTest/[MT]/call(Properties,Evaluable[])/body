@@ -1,0 +1,4 @@
+{
+  Object o=args[0].evaluate(bindings);
+  return test(o);
+}

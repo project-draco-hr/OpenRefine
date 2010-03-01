@@ -49,7 +49,7 @@
       }
       writer.endArray();
     }
- catch (    ParserException e) {
+ catch (    ParsingException e) {
       writer.key("code");
       writer.value("error");
       writer.key("type");

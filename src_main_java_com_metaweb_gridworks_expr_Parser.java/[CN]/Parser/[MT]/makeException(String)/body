@@ -1,4 +1,4 @@
 {
   int index=_token != null ? _token.start : _scanner.getIndex();
-  return new ParserException("Parsing error at offset " + index + ": "+ desc);
+  return new ParsingException("Parsing error at offset " + index + ": "+ desc);
 }

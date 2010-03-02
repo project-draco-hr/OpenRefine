@@ -1,0 +1,4 @@
+{
+  JSONObject ns=obj.getJSONObject("namespace");
+  return new KeyBasedReconConfig(new FreebaseTopic(ns.getString("id"),ns.getString("name")));
+}

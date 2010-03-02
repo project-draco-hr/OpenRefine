@@ -1,0 +1,7 @@
+{
+  String match=obj.getString("match");
+  if ("key".equals(match)) {
+    return KeyBasedReconConfig.reconstruct(obj);
+  }
+  return null;
+}

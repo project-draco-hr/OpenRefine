@@ -3,5 +3,8 @@
   if ("heuristic".equals(mode)) {
     return HeuristicReconConfig.reconstruct(obj);
   }
+ else   if ("strict".equals(mode)) {
+    return StrictReconConfig.reconstruct(obj);
+  }
   return null;
 }

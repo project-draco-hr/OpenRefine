@@ -1,0 +1,12 @@
+{
+  writer.object();
+  writer.key("from");
+  writer.array();
+  for (  String s : from) {
+    writer.value(s);
+  }
+  writer.endArray();
+  writer.key("to");
+  writer.value(to);
+  writer.endObject();
+}

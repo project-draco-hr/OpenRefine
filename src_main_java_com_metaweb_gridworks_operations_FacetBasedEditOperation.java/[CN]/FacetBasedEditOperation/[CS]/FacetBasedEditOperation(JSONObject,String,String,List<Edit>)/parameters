@@ -1,0 +1,4 @@
+JSONObject engineConfig
+String columnName
+String expression
+List<Edit> edits

@@ -1,0 +1,20 @@
+{
+  writer.object();
+  writer.key("op");
+  writer.value(OperationRegistry.s_opClassToName.get(this.getClass()));
+  writer.key("description");
+  writer.value(getBriefDescription(null));
+  writer.key("engineConfig");
+  writer.value(getEngineConfig());
+  writer.key("columnName");
+  writer.value(_columnName);
+  writer.key("expression");
+  writer.value(_expression);
+  writer.key("edits");
+  writer.array();
+  for (  Edit edit : _edits) {
+    edit.write(writer,options);
+  }
+  writer.endArray();
+  writer.endObject();
+}

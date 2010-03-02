@@ -1,0 +1,5 @@
+{
+  super(engineConfig,columnName,true);
+  _expression=expression;
+  _edits=edits;
+}

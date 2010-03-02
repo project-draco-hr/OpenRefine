@@ -1,0 +1,3 @@
+{
+  return "Facet-based edit cells in column " + _columnName;
+}

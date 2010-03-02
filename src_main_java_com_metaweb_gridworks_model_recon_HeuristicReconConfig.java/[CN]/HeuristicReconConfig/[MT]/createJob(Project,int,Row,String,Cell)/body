@@ -1,5 +1,41 @@
 {
   HeuristicReconJob job=new HeuristicReconJob();
-  job.text=cell.value.toString();
+  if ("relevance".equals(service)) {
+    job.code=job.text=cell.value.toString();
+  }
+ else {
+    try {
+      StringWriter stringWriter=new StringWriter();
+      JSONWriter jsonWriter=new JSONWriter(stringWriter);
+      jsonWriter.object();
+      jsonWriter.key("/type/object/name");
+      jsonWriter.value(cell.value.toString());
+      jsonWriter.key("/type/object/type");
+      jsonWriter.value(typeID);
+      for (      ColumnDetail c : columnDetails) {
+        int cellIndex=project.columnModel.getColumnByName(c.columnName).getCellIndex();
+        Cell cell2=row.getCell(cellIndex);
+        if (cell2 != null && ExpressionUtils.isNonBlankData(cell2.value)) {
+          jsonWriter.key(c.property.id);
+          if (cell2.recon != null && cell2.recon.match != null) {
+            jsonWriter.object();
+            jsonWriter.key("id");
+            jsonWriter.value(cell2.recon.match.topicID);
+            jsonWriter.key("name");
+            jsonWriter.value(cell2.recon.match.topicName);
+            jsonWriter.endObject();
+          }
+ else {
+            jsonWriter.value(cell2.value.toString());
+          }
+        }
+      }
+      jsonWriter.endObject();
+      job.text=cell.value.toString();
+      job.code=stringWriter.toString();
+    }
+ catch (    JSONException e) {
+    }
+  }
   return job;
 }

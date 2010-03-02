@@ -1,64 +1,33 @@
 {
   List<Recon> recons=new ArrayList<Recon>(jobs.size());
-  try {
-    StringWriter stringWriter=new StringWriter();
-    JSONWriter jsonWriter=new JSONWriter(stringWriter);
-    jsonWriter.object();
-    for (int i=0; i < jobs.size(); i++) {
-      HeuristicReconJob job=(HeuristicReconJob)jobs.get(i);
-      jsonWriter.key("q" + i + ":search");
-      jsonWriter.object();
-      jsonWriter.key("query");
-      jsonWriter.value(job.text);
-      jsonWriter.key("limit");
-      jsonWriter.value(3);
-      jsonWriter.key("type");
-      jsonWriter.value(typeID);
-      jsonWriter.key("type_strict");
-      jsonWriter.value("should");
-      jsonWriter.key("type_exclude");
-      jsonWriter.value("/common/image");
-      jsonWriter.key("domain_exclude");
-      jsonWriter.value("/freebase");
-      jsonWriter.endObject();
-    }
-    jsonWriter.endObject();
-    StringBuffer sb=new StringBuffer();
-    sb.append("http://api.freebase.com/api/service/search?indent=1&queries=");
-    sb.append(ParsingUtilities.encode(stringWriter.toString()));
-    URL url=new URL(sb.toString());
-    URLConnection connection=url.openConnection();
-    connection.setConnectTimeout(5000);
-    connection.connect();
-    InputStream is=connection.getInputStream();
+  for (int i=0; i < jobs.size(); i++) {
+    HeuristicReconJob job=(HeuristicReconJob)jobs.get(i);
+    Recon recon=null;
     try {
-      String s=ParsingUtilities.inputStreamToString(is);
-      JSONObject o=ParsingUtilities.evaluateJsonStringToObject(s);
-      for (int i=0; i < jobs.size(); i++) {
-        HeuristicReconJob job=(HeuristicReconJob)jobs.get(i);
-        String text=job.text;
-        String key="q" + i + ":search";
-        if (!o.has(key)) {
-          continue;
-        }
-        Recon recon=null;
-        JSONObject o2=o.getJSONObject(key);
-        if (o2.has("result")) {
-          JSONArray results=o2.getJSONArray("result");
-          recon=createReconFromRelevanceResults(text,results);
-        }
- else {
-          recon=new Recon();
-        }
-        recons.add(recon);
+      StringBuffer sb=new StringBuffer();
+      sb.append(s_reconService + "?limit=5&q=");
+      sb.append(ParsingUtilities.encode(job.code));
+      URL url=new URL(sb.toString());
+      URLConnection connection=url.openConnection();
+      connection.setConnectTimeout(5000);
+      connection.connect();
+      InputStream is=connection.getInputStream();
+      try {
+        String s=ParsingUtilities.inputStreamToString(is);
+        JSONArray a=ParsingUtilities.evaluateJsonStringToArray(s);
+        recon=createReconFromReconResults(job.text,a);
+      }
+  finally {
+        is.close();
       }
     }
-  finally {
-      is.close();
+ catch (    Exception e) {
+      e.printStackTrace();
     }
-  }
- catch (  Exception e) {
-    e.printStackTrace();
+    if (recon == null) {
+      recon=new Recon();
+    }
+    recons.add(recon);
   }
   System.gc();
   return recons;

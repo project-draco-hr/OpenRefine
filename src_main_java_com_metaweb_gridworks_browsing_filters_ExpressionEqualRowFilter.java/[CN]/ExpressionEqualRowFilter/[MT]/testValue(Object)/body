@@ -4,7 +4,7 @@
   }
  else   if (ExpressionUtils.isNonBlankData(v)) {
     for (    Object match : _matches) {
-      if (match.equals(v)) {
+      if (testValue(v,match)) {
         return true;
       }
     }

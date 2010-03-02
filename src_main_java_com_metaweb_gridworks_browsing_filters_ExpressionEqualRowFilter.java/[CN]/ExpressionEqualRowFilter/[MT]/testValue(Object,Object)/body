@@ -1,0 +1,3 @@
+{
+  return (v instanceof Number && match instanceof Number) ? ((Number)match).doubleValue() == ((Number)v).doubleValue() : match.equals(v);
+}

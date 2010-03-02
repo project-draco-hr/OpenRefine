@@ -1,0 +1,3 @@
+{
+  return "Reconcile cells in column " + columnName + " as Freebase IDs";
+}

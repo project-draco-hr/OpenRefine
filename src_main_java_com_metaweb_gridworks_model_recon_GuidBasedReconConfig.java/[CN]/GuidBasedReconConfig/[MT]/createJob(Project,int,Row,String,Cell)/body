@@ -1,0 +1,12 @@
+{
+  GuidBasedReconJob job=new GuidBasedReconJob();
+  String s=cell.value.toString();
+  if (s.startsWith("/guid/")) {
+    s="#" + s.substring(6);
+  }
+ else   if (!s.startsWith("#")) {
+    s="#" + s;
+  }
+  job.guid=s;
+  return job;
+}

@@ -1,0 +1,17 @@
+{
+  IdBasedReconJob job=new IdBasedReconJob();
+  String s=cell.value.toString();
+  if (!s.startsWith("/")) {
+    if (s.startsWith("92")) {
+      s="/guid/" + s;
+    }
+ else     if (!s.contains("/")) {
+      s="/en/" + s;
+    }
+ else {
+      s="/" + s;
+    }
+  }
+  job.id=s;
+  return job;
+}

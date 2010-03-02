@@ -1,0 +1,8 @@
+{
+  writer.object();
+  writer.key("mode");
+  writer.value("strict");
+  writer.key("match");
+  writer.value("id");
+  writer.endObject();
+}

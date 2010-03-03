@@ -1,0 +1,8 @@
+{
+  _expressions.remove(s);
+  _expressions.add(0,s);
+  while (_expressions.size() > s_expressionHistoryMax) {
+    _expressions.remove(_expressions.size() - 1);
+  }
+  ProjectManager.singleton.addLatestExpression(s);
+}

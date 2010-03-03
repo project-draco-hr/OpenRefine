@@ -1,5 +1,10 @@
 {
   for (  Project project : _projects.values()) {
-    saveProject(project);
+    try {
+      saveProject(project);
+    }
+ catch (    Exception e) {
+      e.printStackTrace();
+    }
   }
 }

@@ -2,5 +2,6 @@
   _dir=dir;
   _dir.mkdirs();
   _projectsMetadata=new HashMap<Long,ProjectMetadata>();
+  _expressions=new LinkedList<String>();
   internalInitialize();
 }

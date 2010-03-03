@@ -1,5 +1,5 @@
 {
-  ProjectManager.initialize(new File("./data"));
+  ProjectManager.initialize();
   String commandName=request.getPathInfo().substring(1);
   Command command=_commands.get(commandName);
   if (command != null) {

@@ -1,0 +1,11 @@
+{
+  if (onError == OnError.SetToBlank) {
+    return "set-to-blank";
+  }
+ else   if (onError == OnError.StoreError) {
+    return "store-error";
+  }
+ else {
+    return "keep-original";
+  }
+}

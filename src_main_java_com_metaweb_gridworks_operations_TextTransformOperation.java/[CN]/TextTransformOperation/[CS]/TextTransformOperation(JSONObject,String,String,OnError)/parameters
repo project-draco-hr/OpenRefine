@@ -1,3 +1,4 @@
 JSONObject engineConfig
 String columnName
 String expression
+OnError onError

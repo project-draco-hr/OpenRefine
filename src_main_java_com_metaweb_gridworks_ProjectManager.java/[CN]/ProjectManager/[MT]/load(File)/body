@@ -1,4 +1,5 @@
 {
+  Gridworks.log("Loading project metadata from " + file.getAbsolutePath());
   ProjectManager pm=null;
   FileInputStream fis=null;
   ObjectInputStream in=null;

@@ -1,4 +1,5 @@
 {
+  Gridworks.log("Saving project metadata ...");
   File file=new File(_dir,"projects");
   FileOutputStream fos=null;
   ObjectOutputStream out=null;

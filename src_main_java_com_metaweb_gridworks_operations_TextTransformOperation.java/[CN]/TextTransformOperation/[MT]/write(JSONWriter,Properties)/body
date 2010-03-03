@@ -10,5 +10,7 @@
   writer.value(_columnName);
   writer.key("expression");
   writer.value(_expression);
+  writer.key("onError");
+  writer.value(onErrorToString(_onError));
   writer.endObject();
 }

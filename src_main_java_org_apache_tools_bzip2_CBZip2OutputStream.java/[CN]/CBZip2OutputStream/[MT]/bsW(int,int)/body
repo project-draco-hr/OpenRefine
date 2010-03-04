@@ -1,0 +1,16 @@
+{
+  while (bsLive >= 8) {
+    int ch=(bsBuff >> 24);
+    try {
+      bsStream.write(ch);
+    }
+ catch (    IOException e) {
+      throw e;
+    }
+    bsBuff<<=8;
+    bsLive-=8;
+    bytesOut++;
+  }
+  bsBuff|=(v << (32 - bsLive - n));
+  bsLive+=n;
+}

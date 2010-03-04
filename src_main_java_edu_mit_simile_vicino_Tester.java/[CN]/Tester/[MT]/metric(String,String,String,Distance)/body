@@ -1,0 +1,11 @@
+{
+  float dxx=d.d(x,x);
+  boolean identity=(dxx == 0.0f);
+  float dxy=d.d(x,y);
+  float dyx=d.d(y,x);
+  boolean simmetrical=(dxy == dyx);
+  float dxz=d.d(x,z);
+  float dyz=d.d(y,z);
+  boolean triangular=(dxz <= dxy + dyz);
+  return (identity && simmetrical && triangular);
+}

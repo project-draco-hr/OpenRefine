@@ -1,0 +1,5 @@
+int[] code
+char[] length
+int minLen
+int maxLen
+int alphaSize

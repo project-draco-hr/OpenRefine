@@ -1,0 +1,8 @@
+{
+  ll8=null;
+  tt=null;
+  bsSetStream(zStream);
+  initialize();
+  initBlock();
+  setupBlock();
+}

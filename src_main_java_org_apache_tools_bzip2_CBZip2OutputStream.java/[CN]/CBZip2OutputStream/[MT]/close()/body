@@ -1,0 +1,14 @@
+{
+  if (closed) {
+    return;
+  }
+  if (runLength > 0) {
+    writeRun();
+  }
+  currentChar=-1;
+  endBlock();
+  endCompression();
+  closed=true;
+  super.close();
+  bsStream.close();
+}

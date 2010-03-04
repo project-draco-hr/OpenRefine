@@ -1,0 +1,21 @@
+{
+  blockCRC=mCrc.getFinalCRC();
+  combinedCRC=(combinedCRC << 1) | (combinedCRC >>> 31);
+  combinedCRC^=blockCRC;
+  doReversibleTransformation();
+  bsPutUChar(0x31);
+  bsPutUChar(0x41);
+  bsPutUChar(0x59);
+  bsPutUChar(0x26);
+  bsPutUChar(0x53);
+  bsPutUChar(0x59);
+  bsPutint(blockCRC);
+  if (blockRandomised) {
+    bsW(1,1);
+    nBlocksRandomised++;
+  }
+ else {
+    bsW(1,0);
+  }
+  moveToFrontCodeAndSend();
+}

@@ -1,0 +1,11 @@
+{
+  int temp=0;
+  while (n > 0) {
+    temp=zptr[p1];
+    zptr[p1]=zptr[p2];
+    zptr[p2]=temp;
+    p1++;
+    p2++;
+    n--;
+  }
+}

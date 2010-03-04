@@ -1,0 +1,5 @@
+{
+  bsPutIntVS(24,origPtr);
+  generateMTFValues();
+  sendMTFValues();
+}

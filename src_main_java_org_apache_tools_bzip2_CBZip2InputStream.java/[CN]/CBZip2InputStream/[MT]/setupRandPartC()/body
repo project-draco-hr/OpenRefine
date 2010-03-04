@@ -1,0 +1,13 @@
+{
+  if (j2 < (int)z) {
+    currentChar=ch2;
+    mCrc.updateCRC(ch2);
+    j2++;
+  }
+ else {
+    currentState=RAND_PART_A_STATE;
+    i2++;
+    count=0;
+    setupRandPartA();
+  }
+}

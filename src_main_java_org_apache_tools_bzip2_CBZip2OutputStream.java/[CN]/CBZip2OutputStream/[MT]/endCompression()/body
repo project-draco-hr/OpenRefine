@@ -1,0 +1,10 @@
+{
+  bsPutUChar(0x17);
+  bsPutUChar(0x72);
+  bsPutUChar(0x45);
+  bsPutUChar(0x38);
+  bsPutUChar(0x50);
+  bsPutUChar(0x90);
+  bsPutint(combinedCRC);
+  bsFinishedWithStream();
+}

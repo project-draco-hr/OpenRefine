@@ -1,0 +1,4 @@
+{
+  Distance d=getDistance(args[0]);
+  System.out.println(args[1] + " <- " + d.d(args[1],args[2])+ " -> "+ args[2]);
+}

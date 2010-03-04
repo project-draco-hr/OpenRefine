@@ -1,0 +1,46 @@
+{
+  if (last < allowableBlockSize) {
+    inUse[currentChar]=true;
+    for (int i=0; i < runLength; i++) {
+      mCrc.updateCRC((char)currentChar);
+    }
+switch (runLength) {
+case 1:
+      last++;
+    block[last + 1]=(char)currentChar;
+  break;
+case 2:
+last++;
+block[last + 1]=(char)currentChar;
+last++;
+block[last + 1]=(char)currentChar;
+break;
+case 3:
+last++;
+block[last + 1]=(char)currentChar;
+last++;
+block[last + 1]=(char)currentChar;
+last++;
+block[last + 1]=(char)currentChar;
+break;
+default :
+inUse[runLength - 4]=true;
+last++;
+block[last + 1]=(char)currentChar;
+last++;
+block[last + 1]=(char)currentChar;
+last++;
+block[last + 1]=(char)currentChar;
+last++;
+block[last + 1]=(char)currentChar;
+last++;
+block[last + 1]=(char)(runLength - 4);
+break;
+}
+}
+ else {
+endBlock();
+initBlock();
+writeRun();
+}
+}

@@ -1,0 +1,30 @@
+{
+  if (ch2 != chPrev) {
+    currentState=RAND_PART_A_STATE;
+    count=1;
+    setupRandPartA();
+  }
+ else {
+    count++;
+    if (count >= 4) {
+      z=ll8[tPos];
+      tPos=tt[tPos];
+      if (rNToGo == 0) {
+        rNToGo=rNums[rTPos];
+        rTPos++;
+        if (rTPos == 512) {
+          rTPos=0;
+        }
+      }
+      rNToGo--;
+      z^=((rNToGo == 1) ? 1 : 0);
+      j2=0;
+      currentState=RAND_PART_C_STATE;
+      setupRandPartC();
+    }
+ else {
+      currentState=RAND_PART_A_STATE;
+      setupRandPartA();
+    }
+  }
+}

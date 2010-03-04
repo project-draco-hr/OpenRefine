@@ -1,0 +1,3 @@
+{
+  return (Distance)Class.forName("edu.mit.simile.vicino.distances." + distance + "Distance").newInstance();
+}

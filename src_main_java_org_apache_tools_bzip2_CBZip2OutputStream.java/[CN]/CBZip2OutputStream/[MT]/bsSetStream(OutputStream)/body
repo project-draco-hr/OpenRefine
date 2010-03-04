@@ -1,0 +1,6 @@
+{
+  bsStream=f;
+  bsLive=0;
+  bsBuff=0;
+  bytesOut=0;
+}

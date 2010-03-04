@@ -1,0 +1,11 @@
+{
+  if (!(0 <= newSize100k && newSize100k <= 9 && 0 <= blockSize100k && blockSize100k <= 9)) {
+  }
+  blockSize100k=newSize100k;
+  if (newSize100k == 0) {
+    return;
+  }
+  int n=baseBlockSize * newSize100k;
+  ll8=new char[n];
+  tt=new int[n];
+}

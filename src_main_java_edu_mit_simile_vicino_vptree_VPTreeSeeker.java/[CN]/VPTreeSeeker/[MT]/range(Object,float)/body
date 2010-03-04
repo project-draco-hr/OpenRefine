@@ -1,0 +1,3 @@
+{
+  return rangeTraversal(query,range,tree.getRoot(),new ArrayList<Serializable>());
+}

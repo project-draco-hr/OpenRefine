@@ -1,0 +1,123 @@
+{
+  int nNodes, nHeap, n1, n2, i, j, k;
+  boolean tooLong;
+  int[] heap=new int[MAX_ALPHA_SIZE + 2];
+  int[] weight=new int[MAX_ALPHA_SIZE * 2];
+  int[] parent=new int[MAX_ALPHA_SIZE * 2];
+  for (i=0; i < alphaSize; i++) {
+    weight[i + 1]=(freq[i] == 0 ? 1 : freq[i]) << 8;
+  }
+  while (true) {
+    nNodes=alphaSize;
+    nHeap=0;
+    heap[0]=0;
+    weight[0]=0;
+    parent[0]=-2;
+    for (i=1; i <= alphaSize; i++) {
+      parent[i]=-1;
+      nHeap++;
+      heap[nHeap]=i;
+{
+        int zz, tmp;
+        zz=nHeap;
+        tmp=heap[zz];
+        while (weight[tmp] < weight[heap[zz >> 1]]) {
+          heap[zz]=heap[zz >> 1];
+          zz>>=1;
+        }
+        heap[zz]=tmp;
+      }
+    }
+    if (!(nHeap < (MAX_ALPHA_SIZE + 2))) {
+      panic();
+    }
+    while (nHeap > 1) {
+      n1=heap[1];
+      heap[1]=heap[nHeap];
+      nHeap--;
+{
+        int zz=0, yy=0, tmp=0;
+        zz=1;
+        tmp=heap[zz];
+        while (true) {
+          yy=zz << 1;
+          if (yy > nHeap) {
+            break;
+          }
+          if (yy < nHeap && weight[heap[yy + 1]] < weight[heap[yy]]) {
+            yy++;
+          }
+          if (weight[tmp] < weight[heap[yy]]) {
+            break;
+          }
+          heap[zz]=heap[yy];
+          zz=yy;
+        }
+        heap[zz]=tmp;
+      }
+      n2=heap[1];
+      heap[1]=heap[nHeap];
+      nHeap--;
+{
+        int zz=0, yy=0, tmp=0;
+        zz=1;
+        tmp=heap[zz];
+        while (true) {
+          yy=zz << 1;
+          if (yy > nHeap) {
+            break;
+          }
+          if (yy < nHeap && weight[heap[yy + 1]] < weight[heap[yy]]) {
+            yy++;
+          }
+          if (weight[tmp] < weight[heap[yy]]) {
+            break;
+          }
+          heap[zz]=heap[yy];
+          zz=yy;
+        }
+        heap[zz]=tmp;
+      }
+      nNodes++;
+      parent[n1]=parent[n2]=nNodes;
+      weight[nNodes]=((weight[n1] & 0xffffff00) + (weight[n2] & 0xffffff00)) | (1 + (((weight[n1] & 0x000000ff) > (weight[n2] & 0x000000ff)) ? (weight[n1] & 0x000000ff) : (weight[n2] & 0x000000ff)));
+      parent[nNodes]=-1;
+      nHeap++;
+      heap[nHeap]=nNodes;
+{
+        int zz=0, tmp=0;
+        zz=nHeap;
+        tmp=heap[zz];
+        while (weight[tmp] < weight[heap[zz >> 1]]) {
+          heap[zz]=heap[zz >> 1];
+          zz>>=1;
+        }
+        heap[zz]=tmp;
+      }
+    }
+    if (!(nNodes < (MAX_ALPHA_SIZE * 2))) {
+      panic();
+    }
+    tooLong=false;
+    for (i=1; i <= alphaSize; i++) {
+      j=0;
+      k=i;
+      while (parent[k] >= 0) {
+        k=parent[k];
+        j++;
+      }
+      len[i - 1]=(char)j;
+      if (j > maxLen) {
+        tooLong=true;
+      }
+    }
+    if (!tooLong) {
+      break;
+    }
+    for (i=1; i < alphaSize; i++) {
+      j=weight[i] >> 8;
+      j=1 + (j / 2);
+      weight[i]=j << 8;
+    }
+  }
+}

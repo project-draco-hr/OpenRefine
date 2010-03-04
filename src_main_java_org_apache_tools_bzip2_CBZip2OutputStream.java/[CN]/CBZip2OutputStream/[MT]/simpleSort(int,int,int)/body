@@ -1,0 +1,64 @@
+{
+  int i, j, h, bigN, hp;
+  int v;
+  bigN=hi - lo + 1;
+  if (bigN < 2) {
+    return;
+  }
+  hp=0;
+  while (incs[hp] < bigN) {
+    hp++;
+  }
+  hp--;
+  for (; hp >= 0; hp--) {
+    h=incs[hp];
+    i=lo + h;
+    while (true) {
+      if (i > hi) {
+        break;
+      }
+      v=zptr[i];
+      j=i;
+      while (fullGtU(zptr[j - h] + d,v + d)) {
+        zptr[j]=zptr[j - h];
+        j=j - h;
+        if (j <= (lo + h - 1)) {
+          break;
+        }
+      }
+      zptr[j]=v;
+      i++;
+      if (i > hi) {
+        break;
+      }
+      v=zptr[i];
+      j=i;
+      while (fullGtU(zptr[j - h] + d,v + d)) {
+        zptr[j]=zptr[j - h];
+        j=j - h;
+        if (j <= (lo + h - 1)) {
+          break;
+        }
+      }
+      zptr[j]=v;
+      i++;
+      if (i > hi) {
+        break;
+      }
+      v=zptr[i];
+      j=i;
+      while (fullGtU(zptr[j - h] + d,v + d)) {
+        zptr[j]=zptr[j - h];
+        j=j - h;
+        if (j <= (lo + h - 1)) {
+          break;
+        }
+      }
+      zptr[j]=v;
+      i++;
+      if (workDone > workLimit && firstAttempt) {
+        return;
+      }
+    }
+  }
+}

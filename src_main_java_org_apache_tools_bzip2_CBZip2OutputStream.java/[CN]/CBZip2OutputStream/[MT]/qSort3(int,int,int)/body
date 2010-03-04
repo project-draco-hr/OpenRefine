@@ -1,0 +1,108 @@
+{
+  int unLo, unHi, ltLo, gtHi, med, n, m;
+  int sp, lo, hi, d;
+  StackElem[] stack=new StackElem[QSORT_STACK_SIZE];
+  for (int count=0; count < QSORT_STACK_SIZE; count++) {
+    stack[count]=new StackElem();
+  }
+  sp=0;
+  stack[sp].ll=loSt;
+  stack[sp].hh=hiSt;
+  stack[sp].dd=dSt;
+  sp++;
+  while (sp > 0) {
+    if (sp >= QSORT_STACK_SIZE) {
+      panic();
+    }
+    sp--;
+    lo=stack[sp].ll;
+    hi=stack[sp].hh;
+    d=stack[sp].dd;
+    if (hi - lo < SMALL_THRESH || d > DEPTH_THRESH) {
+      simpleSort(lo,hi,d);
+      if (workDone > workLimit && firstAttempt) {
+        return;
+      }
+      continue;
+    }
+    med=med3(block[zptr[lo] + d + 1],block[zptr[hi] + d + 1],block[zptr[(lo + hi) >> 1] + d + 1]);
+    unLo=ltLo=lo;
+    unHi=gtHi=hi;
+    while (true) {
+      while (true) {
+        if (unLo > unHi) {
+          break;
+        }
+        n=((int)block[zptr[unLo] + d + 1]) - med;
+        if (n == 0) {
+          int temp=0;
+          temp=zptr[unLo];
+          zptr[unLo]=zptr[ltLo];
+          zptr[ltLo]=temp;
+          ltLo++;
+          unLo++;
+          continue;
+        }
+        ;
+        if (n > 0) {
+          break;
+        }
+        unLo++;
+      }
+      while (true) {
+        if (unLo > unHi) {
+          break;
+        }
+        n=((int)block[zptr[unHi] + d + 1]) - med;
+        if (n == 0) {
+          int temp=0;
+          temp=zptr[unHi];
+          zptr[unHi]=zptr[gtHi];
+          zptr[gtHi]=temp;
+          gtHi--;
+          unHi--;
+          continue;
+        }
+        ;
+        if (n < 0) {
+          break;
+        }
+        unHi--;
+      }
+      if (unLo > unHi) {
+        break;
+      }
+      int temp=0;
+      temp=zptr[unLo];
+      zptr[unLo]=zptr[unHi];
+      zptr[unHi]=temp;
+      unLo++;
+      unHi--;
+    }
+    if (gtHi < ltLo) {
+      stack[sp].ll=lo;
+      stack[sp].hh=hi;
+      stack[sp].dd=d + 1;
+      sp++;
+      continue;
+    }
+    n=((ltLo - lo) < (unLo - ltLo)) ? (ltLo - lo) : (unLo - ltLo);
+    vswap(lo,unLo - n,n);
+    m=((hi - gtHi) < (gtHi - unHi)) ? (hi - gtHi) : (gtHi - unHi);
+    vswap(unLo,hi - m + 1,m);
+    n=lo + unLo - ltLo - 1;
+    m=hi - (gtHi - unHi) + 1;
+    stack[sp].ll=lo;
+    stack[sp].hh=n;
+    stack[sp].dd=d;
+    sp++;
+    stack[sp].ll=n + 1;
+    stack[sp].hh=m - 1;
+    stack[sp].dd=d + 1;
+    sp++;
+    stack[sp].ll=m;
+    stack[sp].hh=hi;
+    stack[sp].dd=d;
+    sp++;
+  }
+}

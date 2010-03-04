@@ -1,0 +1,32 @@
+{
+  int delta=end - begin;
+  int middle=begin + delta / 2;
+  TNode node=new TNode(nodes[begin + getRandomIndex(delta)].get());
+  if (DEBUG)   System.out.println("\nnode: " + node.get().toString());
+  calculateDistances(node,nodes,begin,end);
+  orderDistances(nodes,begin,end);
+  if (DEBUG) {
+    for (int i=begin; i <= end; i++) {
+      System.out.println(" +-- " + nodes[i].getDistance() + " --> "+ nodes[i].get());
+    }
+  }
+  if (delta + 1 > 0) {
+    if (middle - (begin + 1) >= 1) {
+      node.setLeft(addNode(nodes,begin + 1,middle));
+      if (DEBUG)       System.out.println(" L --> " + node.getLeft().get());
+    }
+ else     if (middle - (begin + 1) == 0) {
+      node.setLeft(new TNode(nodes[middle].get()));
+      if (DEBUG)       System.out.println(" L --> " + node.getLeft().get());
+    }
+    if ((end - (middle + 1)) >= 1) {
+      node.setRight(addNode(nodes,middle + 1,end));
+      if (DEBUG)       System.out.println(" R --> " + node.getRight().get());
+    }
+ else     if (end - (middle + 1) == 0) {
+      node.setRight(new TNode(nodes[middle + 1].get()));
+      if (DEBUG)       System.out.println(" R --> " + node.getRight().get());
+    }
+  }
+  return node;
+}

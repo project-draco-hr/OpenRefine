@@ -1,0 +1,22 @@
+{
+  int v;
+  while (bsLive < n) {
+    int zzi;
+    char thech=0;
+    try {
+      thech=(char)bsStream.read();
+    }
+ catch (    IOException e) {
+      compressedStreamEOF();
+    }
+    if (thech == -1) {
+      compressedStreamEOF();
+    }
+    zzi=thech;
+    bsBuff=(bsBuff << 8) | (zzi & 0xff);
+    bsLive+=8;
+  }
+  v=(bsBuff >> (bsLive - n)) & ((1 << n) - 1);
+  bsLive-=n;
+  return v;
+}

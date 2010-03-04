@@ -1,0 +1,19 @@
+{
+  if (tNode != null) {
+    float distance=this.distance.d(query.toString(),tNode.toString());
+    if (distance < range) {
+      results.add(tNode.get());
+    }
+    if ((distance + range) < tNode.getMedian()) {
+      rangeTraversal(query,range,tNode.getLeft(),results);
+    }
+ else     if ((distance - range) > tNode.getMedian()) {
+      rangeTraversal(query,range,tNode.getRight(),results);
+    }
+ else {
+      rangeTraversal(query,range,tNode.getLeft(),results);
+      rangeTraversal(query,range,tNode.getRight(),results);
+    }
+  }
+  return results;
+}

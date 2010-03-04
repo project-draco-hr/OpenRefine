@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns a date changed by the given amount in the given unit of time");
+  writer.key("params");
+  writer.value("date d, number value, string unit (default to 'hour')");
+  writer.key("returns");
+  writer.value("date");
+  writer.endObject();
+}

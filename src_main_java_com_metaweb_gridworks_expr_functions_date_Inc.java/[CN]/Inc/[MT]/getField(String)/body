@@ -1,0 +1,26 @@
+{
+  if ("hours".equals(unit) || "hour".equals(unit) || "h".equals(unit)) {
+    return Calendar.HOUR;
+  }
+ else   if ("days".equals(unit) || "day".equals(unit) || "d".equals(unit)) {
+    return Calendar.DAY_OF_MONTH;
+  }
+ else   if ("years".equals(unit) || "year".equals(unit)) {
+    return Calendar.YEAR;
+  }
+ else   if ("months".equals(unit) || "month".equals(unit)) {
+    return Calendar.MONTH;
+  }
+ else   if ("minutes".equals(unit) || "minute".equals(unit) || "min".equals(unit)) {
+    return Calendar.MINUTE;
+  }
+ else   if ("weeks".equals(unit) || "week".equals(unit) || "w".equals(unit)) {
+    return Calendar.WEEK_OF_MONTH;
+  }
+ else   if ("seconds".equals(unit) || "sec".equals(unit) || "s".equals(unit)) {
+    return Calendar.SECOND;
+  }
+ else {
+    throw new RuntimeException("Unit '" + unit + "' not recognized.");
+  }
+}

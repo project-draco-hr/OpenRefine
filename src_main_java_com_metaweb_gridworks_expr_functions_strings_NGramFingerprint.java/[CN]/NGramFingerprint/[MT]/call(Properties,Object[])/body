@@ -1,0 +1,23 @@
+{
+  if (args.length == 1 || args.length == 2) {
+    if (args[0] != null) {
+      int ngram_size=1;
+      if (args.length == 2 && args[1] != null) {
+        ngram_size=(args[1] instanceof Number) ? ((Number)args[1]).intValue() : Integer.parseInt(args[1].toString());
+      }
+      Object o=args[0];
+      String s=(o instanceof String) ? (String)o : o.toString();
+      s=s.toLowerCase();
+      s=alphanum.matcher(s).replaceAll("");
+      TreeSet<String> set=ngram_split(s,ngram_size);
+      StringBuffer b=new StringBuffer();
+      Iterator<String> i=set.iterator();
+      while (i.hasNext()) {
+        b.append(i.next());
+      }
+      return b.toString();
+    }
+    return null;
+  }
+  return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " expects at least a string");
+}

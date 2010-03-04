@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns the n-gram fingerprint of s");
+  writer.key("params");
+  writer.value("string s, number n");
+  writer.key("returns");
+  writer.value("string");
+  writer.endObject();
+}

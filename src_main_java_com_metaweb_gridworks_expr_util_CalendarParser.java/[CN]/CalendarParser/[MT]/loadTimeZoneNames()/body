@@ -15,7 +15,7 @@
   }
   Object result;
   try {
-    result=method.invoke((Object)null,(Object)null);
+    result=method.invoke((Object)null);
   }
  catch (  IllegalAccessException iae) {
     return null;

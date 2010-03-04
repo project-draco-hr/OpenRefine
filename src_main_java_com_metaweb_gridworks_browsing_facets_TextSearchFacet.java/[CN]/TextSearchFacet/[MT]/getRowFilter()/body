@@ -2,11 +2,14 @@
   if (_query == null || _query.length() == 0) {
     return null;
   }
+ else   if ("regex".equals(_mode) && _pattern == null) {
+    return null;
+  }
   Evaluable eval=new VariableExpr("value");
   if ("regex".equals(_mode)) {
     return new ExpressionStringComparisonRowFilter(eval,_cellIndex){
       protected boolean checkValue(      String s){
-        return s.matches(_query);
+        return _pattern.matcher(s).find();
       }
     }
 ;

@@ -9,8 +9,17 @@
   _caseSensitive=o.getBoolean("caseSensitive");
   if (_query != null) {
     _query=_query.trim();
-    if (!_caseSensitive) {
-      _query=_query.toLowerCase();
+    if (_query.length() > 0) {
+      if (!_caseSensitive) {
+        _query=_query.toLowerCase();
+      }
+      if ("regex".equals(_mode)) {
+        try {
+          _pattern=Pattern.compile(_query);
+        }
+ catch (        java.util.regex.PatternSyntaxException e) {
+        }
+      }
     }
   }
 }

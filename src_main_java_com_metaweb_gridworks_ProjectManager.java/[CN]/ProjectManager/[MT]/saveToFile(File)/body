@@ -1,0 +1,28 @@
+{
+  FileWriter writer=new FileWriter(file);
+  try {
+    JSONWriter jsonWriter=new JSONWriter(writer);
+    Properties options=new Properties();
+    options.setProperty("mode","save");
+    jsonWriter.object();
+    jsonWriter.key("projectMetadata");
+    jsonWriter.array();
+    for (    Long id : _projectsMetadata.keySet()) {
+      jsonWriter.object();
+      jsonWriter.key("id");
+      jsonWriter.value(id);
+      jsonWriter.key("metadata");
+      _projectsMetadata.get(id).write(jsonWriter,options);
+      jsonWriter.endObject();
+      writer.write('\n');
+    }
+    jsonWriter.endArray();
+    writer.write('\n');
+    jsonWriter.key("expressions");
+    JSONUtilities.writeStringList(jsonWriter,_expressions);
+    jsonWriter.endObject();
+  }
+  finally {
+    writer.close();
+  }
+}

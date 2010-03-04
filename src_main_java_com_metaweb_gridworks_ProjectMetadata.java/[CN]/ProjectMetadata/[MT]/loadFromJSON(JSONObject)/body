@@ -1,0 +1,10 @@
+{
+  ProjectMetadata pm=new ProjectMetadata(JSONUtilities.getDate(obj,"modified",new Date()));
+  pm._modified=JSONUtilities.getDate(obj,"modified",new Date());
+  pm._name=JSONUtilities.getString(obj,"name","<Error recovering project name>");
+  pm._password=JSONUtilities.getString(obj,"password","");
+  pm._encoding=JSONUtilities.getString(obj,"encoding","");
+  pm._encodingConfidence=JSONUtilities.getInt(obj,"encodingConfidence",0);
+  JSONUtilities.getStringList(obj,"expressions",pm._expressions);
+  return pm;
+}

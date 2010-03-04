@@ -1,0 +1,8 @@
+{
+  try {
+    return obj.getBoolean(key);
+  }
+ catch (  JSONException e) {
+    return def;
+  }
+}

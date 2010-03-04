@@ -1,0 +1,11 @@
+{
+  try {
+    JSONArray a=obj.getJSONArray(key);
+    int count=a.length();
+    for (int i=0; i < count; i++) {
+      list.add(a.getString(i));
+    }
+  }
+ catch (  JSONException e) {
+  }
+}

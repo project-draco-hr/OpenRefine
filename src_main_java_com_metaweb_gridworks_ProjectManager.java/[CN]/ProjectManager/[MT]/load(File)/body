@@ -1,34 +1,18 @@
 {
-  Gridworks.log("Loading project metadata from " + file.getAbsolutePath());
-  ProjectManager pm=null;
-  FileInputStream fis=null;
-  ObjectInputStream in=null;
   try {
-    fis=new FileInputStream(file);
-    in=new ObjectInputStream(fis);
-    pm=(ProjectManager)in.readObject();
+    return loadFromFile(new File(dir,"projects.json"));
   }
- catch (  IOException e) {
-    e.printStackTrace();
+ catch (  Exception e) {
   }
-catch (  ClassNotFoundException e) {
-    e.printStackTrace();
+  try {
+    return loadFromFile(new File(dir,"projects.json.temp"));
   }
- finally {
-    if (fis != null) {
-      try {
-        fis.close();
-      }
- catch (      Exception e) {
-      }
-    }
-    if (in != null) {
-      try {
-        in.close();
-      }
- catch (      Exception e) {
-      }
-    }
+ catch (  Exception e) {
   }
-  return pm;
+  try {
+    return loadFromFile(new File(dir,"projects.json.old"));
+  }
+ catch (  Exception e) {
+  }
+  return null;
 }

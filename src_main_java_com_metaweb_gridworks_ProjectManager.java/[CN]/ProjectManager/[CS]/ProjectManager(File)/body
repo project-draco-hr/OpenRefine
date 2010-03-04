@@ -3,5 +3,5 @@
   _dir.mkdirs();
   _projectsMetadata=new HashMap<Long,ProjectMetadata>();
   _expressions=new LinkedList<String>();
-  internalInitialize();
+  _projects=new HashMap<Long,Project>();
 }

@@ -1,0 +1,7 @@
+{
+  writer.array();
+  for (  String s : list) {
+    writer.value(s);
+  }
+  writer.endArray();
+}

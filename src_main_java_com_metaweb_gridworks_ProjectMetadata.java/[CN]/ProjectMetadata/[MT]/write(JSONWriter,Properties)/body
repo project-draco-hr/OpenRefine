@@ -1,11 +1,20 @@
 {
-  SimpleDateFormat sdf=(SimpleDateFormat)SimpleDateFormat.getDateTimeInstance();
   writer.object();
   writer.key("name");
-  writer.value(getName());
+  writer.value(_name);
   writer.key("created");
-  writer.value(sdf.format(getCreated()));
+  writer.value(ParsingUtilities.dateToString(_created));
   writer.key("modified");
-  writer.value(sdf.format(_modified));
+  writer.value(ParsingUtilities.dateToString(_modified));
+  if ("save".equals(options.getProperty("mode"))) {
+    writer.key("password");
+    writer.value(_password);
+    writer.key("encoding");
+    writer.value(_encoding);
+    writer.key("encodingConfidence");
+    writer.value(_encodingConfidence);
+    writer.key("expressions");
+    JSONUtilities.writeStringList(writer,_expressions);
+  }
   writer.endObject();
 }

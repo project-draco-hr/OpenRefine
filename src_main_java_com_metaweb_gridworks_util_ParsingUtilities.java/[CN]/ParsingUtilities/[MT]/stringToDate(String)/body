@@ -1,0 +1,8 @@
+{
+  try {
+    return s_sdf.parse(s);
+  }
+ catch (  ParseException e) {
+    return null;
+  }
+}

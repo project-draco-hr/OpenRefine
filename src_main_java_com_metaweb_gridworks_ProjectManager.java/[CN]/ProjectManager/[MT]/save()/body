@@ -1,31 +1,22 @@
 {
   Gridworks.log("Saving project metadata ...");
-  File file=new File(_dir,"projects");
-  FileOutputStream fos=null;
-  ObjectOutputStream out=null;
+  File tempFile=new File(_dir,"projects.json.temp");
   try {
-    fos=new FileOutputStream(file);
-    out=new ObjectOutputStream(fos);
-    out.writeObject(this);
-    out.flush();
+    saveToFile(tempFile);
   }
- catch (  IOException e) {
+ catch (  Exception e) {
     e.printStackTrace();
+    Gridworks.log("Failed to save project");
+    return;
   }
- finally {
-    if (fos != null) {
-      try {
-        fos.close();
-      }
- catch (      Exception e) {
-      }
-    }
-    if (out != null) {
-      try {
-        out.close();
-      }
- catch (      Exception e) {
-      }
-    }
+  File file=new File(_dir,"projects.json");
+  File oldFile=new File(_dir,"projects.json.old");
+  if (file.exists()) {
+    file.renameTo(oldFile);
   }
+  tempFile.renameTo(file);
+  if (oldFile.exists()) {
+    oldFile.delete();
+  }
+  Gridworks.log("Project metadata saved.");
 }

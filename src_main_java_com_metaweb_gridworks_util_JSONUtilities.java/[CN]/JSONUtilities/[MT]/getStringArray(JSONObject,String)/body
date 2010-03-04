@@ -1,0 +1,13 @@
+{
+  try {
+    JSONArray a=obj.getJSONArray(key);
+    String[] r=new String[a.length()];
+    for (int i=0; i < r.length; i++) {
+      r[i]=a.getString(i);
+    }
+    return r;
+  }
+ catch (  JSONException e) {
+    return new String[0];
+  }
+}

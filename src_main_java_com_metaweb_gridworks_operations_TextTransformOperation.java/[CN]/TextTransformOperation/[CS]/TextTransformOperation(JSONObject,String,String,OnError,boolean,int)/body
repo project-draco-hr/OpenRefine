@@ -2,4 +2,6 @@
   super(engineConfig,columnName,true);
   _expression=expression;
   _onError=onError;
+  _repeat=repeat;
+  _repeatCount=repeatCount;
 }

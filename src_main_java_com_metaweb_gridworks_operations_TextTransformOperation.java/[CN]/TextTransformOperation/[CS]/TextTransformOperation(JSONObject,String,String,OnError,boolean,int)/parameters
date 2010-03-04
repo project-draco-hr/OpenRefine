@@ -2,3 +2,5 @@ JSONObject engineConfig
 String columnName
 String expression
 OnError onError
+boolean repeat
+int repeatCount

@@ -12,5 +12,9 @@
   writer.value(_expression);
   writer.key("onError");
   writer.value(onErrorToString(_onError));
+  writer.key("repeat");
+  writer.value(_repeat);
+  writer.key("repeatCount");
+  writer.value(_repeatCount);
   writer.endObject();
 }

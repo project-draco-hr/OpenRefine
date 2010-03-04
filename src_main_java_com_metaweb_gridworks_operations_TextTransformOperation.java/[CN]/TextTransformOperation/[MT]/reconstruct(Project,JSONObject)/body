@@ -1,4 +1,4 @@
 {
   JSONObject engineConfig=obj.getJSONObject("engineConfig");
-  return new TextTransformOperation(engineConfig,obj.getString("columnName"),obj.getString("expression"),stringToOnError(obj.getString("onError")));
+  return new TextTransformOperation(engineConfig,obj.getString("columnName"),obj.getString("expression"),stringToOnError(obj.getString("onError")),obj.getBoolean("repeat"),obj.getInt("repeatCount"));
 }

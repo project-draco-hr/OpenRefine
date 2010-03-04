@@ -6,8 +6,17 @@
     s=s.toLowerCase();
     s=alphanum.matcher(s).replaceAll("");
     String[] frags=StringUtils.split(s);
-    Arrays.sort(frags);
-    return StringUtils.join(frags," ");
+    TreeSet<String> set=new TreeSet<String>();
+    for (    String ss : frags) {
+      set.add(ss);
+    }
+    StringBuffer b=new StringBuffer();
+    Iterator<String> i=set.iterator();
+    while (i.hasNext()) {
+      b.append(i.next());
+      b.append(' ');
+    }
+    return b.toString();
   }
   return null;
 }

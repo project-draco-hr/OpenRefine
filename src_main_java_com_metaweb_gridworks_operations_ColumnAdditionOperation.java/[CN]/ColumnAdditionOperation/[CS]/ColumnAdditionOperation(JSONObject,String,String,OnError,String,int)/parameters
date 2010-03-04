@@ -1,5 +1,6 @@
 JSONObject engineConfig
 String baseColumnName
 String expression
+OnError onError
 String headerLabel
 int columnInsertIndex

@@ -18,7 +18,15 @@
       Cell cell=row.getCell(cellIndex);
       ExpressionUtils.bind(bindings,row,rowIndex,cell);
       Object v=eval.evaluate(bindings);
-      if (ExpressionUtils.isNonBlankData(v)) {
+      if (ExpressionUtils.isError(v)) {
+        if (_onError == OnError.SetToBlank) {
+          return false;
+        }
+ else         if (_onError == OnError.KeepOriginal) {
+          v=cell != null ? cell.value : null;
+        }
+      }
+      if (v != null) {
         Cell newCell=new Cell(v,null);
         cellsAtRows.add(new CellAtRow(rowIndex,newCell));
       }

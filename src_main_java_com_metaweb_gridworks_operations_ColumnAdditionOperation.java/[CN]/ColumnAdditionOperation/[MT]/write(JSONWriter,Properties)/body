@@ -14,5 +14,7 @@
   writer.value(_baseColumnName);
   writer.key("expression");
   writer.value(_expression);
+  writer.key("onError");
+  writer.value(TextTransformOperation.onErrorToString(_onError));
   writer.endObject();
 }

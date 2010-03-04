@@ -3,5 +3,6 @@
   String expression=request.getParameter("expression");
   String headerLabel=request.getParameter("headerLabel");
   int columnInsertIndex=Integer.parseInt(request.getParameter("columnInsertIndex"));
-  return new ColumnAdditionOperation(engineConfig,baseColumnName,expression,headerLabel,columnInsertIndex);
+  String onError=request.getParameter("onError");
+  return new ColumnAdditionOperation(engineConfig,baseColumnName,expression,TextTransformOperation.stringToOnError(onError),headerLabel,columnInsertIndex);
 }

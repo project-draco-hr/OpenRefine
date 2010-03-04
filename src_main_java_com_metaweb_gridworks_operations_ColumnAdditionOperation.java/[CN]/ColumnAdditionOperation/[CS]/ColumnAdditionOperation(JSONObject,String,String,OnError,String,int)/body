@@ -2,6 +2,7 @@
   super(engineConfig);
   _baseColumnName=baseColumnName;
   _expression=expression;
+  _onError=onError;
   _headerLabel=headerLabel;
   _columnInsertIndex=columnInsertIndex;
 }

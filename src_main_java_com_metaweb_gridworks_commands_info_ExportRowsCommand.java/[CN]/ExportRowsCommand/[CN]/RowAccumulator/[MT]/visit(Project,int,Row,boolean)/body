@@ -1,8 +1,0 @@
-{
-  boolean r=false;
-  if (total >= start && total < start + limit) {
-    r=internalVisit(rowIndex,row);
-  }
-  total++;
-  return r;
-}

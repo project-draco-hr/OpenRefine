@@ -1,12 +1,11 @@
 {
-  String object=cell.value instanceof String ? JSONObject.quote((String)cell.value) : cell.value.toString();
   if (subject != null) {
     if ("/type/text".equals(node.lang)) {
-      writeLine("{ 's' : '" + subject + "', 'p' : '"+ predicate+ "', 'o' : "+ object+ ", 'lang' : '"+ node.lang+ "' }");
+      writeLine(subject,predicate,cell.value,node.lang);
     }
  else {
-      writeLine("{ 's' : '" + subject + "', 'p' : '"+ predicate+ "', 'o' : "+ object+ " }");
+      writeLine(subject,predicate,cell.value);
     }
   }
-  return object;
+  return cell.value.toString();
 }

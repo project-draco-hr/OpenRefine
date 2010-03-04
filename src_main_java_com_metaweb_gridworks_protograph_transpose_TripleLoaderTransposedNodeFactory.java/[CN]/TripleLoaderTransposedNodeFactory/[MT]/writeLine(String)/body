@@ -1,6 +1,13 @@
 {
-  if (stringBuffer.length() > 0) {
-    stringBuffer.append('\n');
+  try {
+    if (start) {
+      start=false;
+    }
+ else {
+      writer.write('\n');
+    }
+    writer.write(line);
   }
-  stringBuffer.append(line);
+ catch (  IOException e) {
+  }
 }

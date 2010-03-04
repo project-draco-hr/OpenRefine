@@ -1,7 +1,6 @@
 {
   ProjectManager.initialize();
-  String commandName=request.getPathInfo().substring(1);
-  Command command=_commands.get(commandName);
+  Command command=_commands.get(getCommandName(request));
   if (command != null) {
     command.doGet(request,response);
   }

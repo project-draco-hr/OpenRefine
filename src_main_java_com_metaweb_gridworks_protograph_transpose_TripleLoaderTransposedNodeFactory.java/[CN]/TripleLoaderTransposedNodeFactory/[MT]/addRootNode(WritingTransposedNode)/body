@@ -1,0 +1,6 @@
+{
+  if (lastRootNode != null) {
+    lastRootNode.write(null,null);
+  }
+  lastRootNode=tnode;
+}

@@ -9,10 +9,12 @@
     StringBuffer sb=new StringBuffer();
     sb.append("{ ");
 {
-      TripleLoaderTransposedNodeFactory nodeFactory=new TripleLoaderTransposedNodeFactory();
+      StringWriter stringWriter=new StringWriter();
+      TripleLoaderTransposedNodeFactory nodeFactory=new TripleLoaderTransposedNodeFactory(stringWriter);
       Transposer.transpose(project,protograph,protograph.getRootNode(0),nodeFactory);
+      nodeFactory.flush();
       sb.append("\"tripleloader\" : ");
-      sb.append(JSONObject.quote(nodeFactory.getLoad()));
+      sb.append(JSONObject.quote(stringWriter.toString()));
     }
 {
       MqlreadLikeTransposedNodeFactory nodeFactory=new MqlreadLikeTransposedNodeFactory();

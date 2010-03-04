@@ -1,5 +1,0 @@
-{
-  if (subject != null && object != null) {
-    writeLine("{ 's' : '" + subject + "', 'p' : '"+ predicate+ "', 'o' : "+ object+ " }");
-  }
-}

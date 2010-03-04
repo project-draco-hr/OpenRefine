@@ -15,10 +15,10 @@
         sb.append(", ");
       }
       sb.append("\"" + properties.get(i).id + "\": ");
-      sb.append(s);
+      sb.append(s instanceof String ? JSONObject.quote(s) : s.toString());
     }
   }
   sb.append(" }");
-  writeLine(subject,predicate,sb.toString());
+  writeLine(subject,predicate,sb);
   return null;
 }

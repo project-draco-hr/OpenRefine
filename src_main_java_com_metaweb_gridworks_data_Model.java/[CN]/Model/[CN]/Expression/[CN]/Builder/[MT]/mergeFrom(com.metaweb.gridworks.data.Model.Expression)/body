@@ -1,0 +1,8 @@
+{
+  if (other == com.metaweb.gridworks.data.Model.Expression.getDefaultInstance())   return this;
+  if (other.hasValue()) {
+    setValue(other.getValue());
+  }
+  this.mergeUnknownFields(other.getUnknownFields());
+  return this;
+}

@@ -1,0 +1,32 @@
+{
+  if (other == com.metaweb.gridworks.data.Model.Project.getDefaultInstance())   return this;
+  if (other.hasName()) {
+    setName(other.getName());
+  }
+  if (other.hasCreated()) {
+    setCreated(other.getCreated());
+  }
+  if (other.hasModified()) {
+    setModified(other.getModified());
+  }
+  if (other.hasEncoding()) {
+    setEncoding(other.getEncoding());
+  }
+  if (other.hasEncodingConfidence()) {
+    setEncodingConfidence(other.getEncodingConfidence());
+  }
+  if (other.hasCreator()) {
+    setCreator(other.getCreator());
+  }
+  if (other.hasPassword()) {
+    setPassword(other.getPassword());
+  }
+  if (!other.expression_.isEmpty()) {
+    if (result.expression_.isEmpty()) {
+      result.expression_=new java.util.ArrayList<com.metaweb.gridworks.data.Model.Expression>();
+    }
+    result.expression_.addAll(other.expression_);
+  }
+  this.mergeUnknownFields(other.getUnknownFields());
+  return this;
+}

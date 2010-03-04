@@ -1,0 +1,5 @@
+{
+  result.hasModified=true;
+  result.modified_=value;
+  return this;
+}

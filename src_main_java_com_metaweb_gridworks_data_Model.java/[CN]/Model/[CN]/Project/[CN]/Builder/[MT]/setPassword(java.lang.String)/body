@@ -1,0 +1,8 @@
+{
+  if (value == null) {
+    throw new NullPointerException();
+  }
+  result.hasPassword=true;
+  result.password_=value;
+  return this;
+}

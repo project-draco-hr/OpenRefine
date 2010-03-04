@@ -1,0 +1,5 @@
+{
+  result.hasCreator=false;
+  result.creator_=getDefaultInstance().getCreator();
+  return this;
+}

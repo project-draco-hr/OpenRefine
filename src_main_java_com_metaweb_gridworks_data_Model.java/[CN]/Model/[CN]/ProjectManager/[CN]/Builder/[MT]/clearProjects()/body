@@ -1,0 +1,4 @@
+{
+  result.projects_=java.util.Collections.emptyList();
+  return this;
+}

@@ -1,0 +1,7 @@
+{
+  if (result.projects_.isEmpty()) {
+    result.projects_=new java.util.ArrayList<com.metaweb.gridworks.data.Model.Project>();
+  }
+  super.addAll(values,result.projects_);
+  return this;
+}

@@ -1,0 +1,3 @@
+{
+  return com.metaweb.gridworks.data.Model.internal_static_gridworks_ProjectManager_descriptor;
+}

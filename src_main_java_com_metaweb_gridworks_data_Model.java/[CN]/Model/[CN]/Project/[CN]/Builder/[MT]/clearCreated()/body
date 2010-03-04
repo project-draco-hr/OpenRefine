@@ -1,0 +1,5 @@
+{
+  result.hasCreated=false;
+  result.created_=0L;
+  return this;
+}

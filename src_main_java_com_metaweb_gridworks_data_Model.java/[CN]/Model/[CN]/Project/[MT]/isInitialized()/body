@@ -1,0 +1,10 @@
+{
+  if (!hasName)   return false;
+  if (!hasCreated)   return false;
+  if (!hasModified)   return false;
+  if (!hasEncoding)   return false;
+  for (  com.metaweb.gridworks.data.Model.Expression element : getExpressionList()) {
+    if (!element.isInitialized())     return false;
+  }
+  return true;
+}

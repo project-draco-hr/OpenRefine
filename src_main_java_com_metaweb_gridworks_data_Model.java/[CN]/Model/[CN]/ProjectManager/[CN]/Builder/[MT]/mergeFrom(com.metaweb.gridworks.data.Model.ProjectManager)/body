@@ -1,0 +1,11 @@
+{
+  if (other == com.metaweb.gridworks.data.Model.ProjectManager.getDefaultInstance())   return this;
+  if (!other.projects_.isEmpty()) {
+    if (result.projects_.isEmpty()) {
+      result.projects_=new java.util.ArrayList<com.metaweb.gridworks.data.Model.Project>();
+    }
+    result.projects_.addAll(other.projects_);
+  }
+  this.mergeUnknownFields(other.getUnknownFields());
+  return this;
+}

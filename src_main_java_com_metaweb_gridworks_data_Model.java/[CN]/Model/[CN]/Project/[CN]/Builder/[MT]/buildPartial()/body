@@ -1,0 +1,11 @@
+{
+  if (result == null) {
+    throw new IllegalStateException("build() has already been called on this Builder.");
+  }
+  if (result.expression_ != java.util.Collections.EMPTY_LIST) {
+    result.expression_=java.util.Collections.unmodifiableList(result.expression_);
+  }
+  com.metaweb.gridworks.data.Model.Project returnMe=result;
+  result=null;
+  return returnMe;
+}

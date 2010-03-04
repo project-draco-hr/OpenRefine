@@ -1,0 +1,3 @@
+{
+  return com.metaweb.gridworks.data.Model.Expression.getDefaultInstance();
+}

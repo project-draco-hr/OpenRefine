@@ -1,0 +1,5 @@
+{
+  result.hasPassword=false;
+  result.password_=getDefaultInstance().getPassword();
+  return this;
+}

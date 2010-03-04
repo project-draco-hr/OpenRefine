@@ -41,8 +41,8 @@
             ExpressionUtils.bind(bindings,row,rowIndex,cell);
             result=eval.evaluate(bindings);
             if (repeat) {
-              for (int r=0; r < repeatCount; r++) {
-                Cell newCell=new Cell(result,(cell != null) ? cell.recon : null);
+              for (int r=0; r < repeatCount && ExpressionUtils.isStorable(result); r++) {
+                Cell newCell=new Cell((Serializable)result,(cell != null) ? cell.recon : null);
                 ExpressionUtils.bind(bindings,row,rowIndex,newCell);
                 Object newResult=eval.evaluate(bindings);
                 if (ExpressionUtils.isError(newResult)) {
@@ -51,7 +51,9 @@
  else                 if (ExpressionUtils.sameValue(result,newResult)) {
                   break;
                 }
-                result=newResult;
+ else {
+                  result=newResult;
+                }
               }
             }
           }

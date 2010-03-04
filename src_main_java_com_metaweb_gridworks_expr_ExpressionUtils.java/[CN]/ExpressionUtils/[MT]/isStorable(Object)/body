@@ -1,0 +1,3 @@
+{
+  return v == null || v instanceof Number || v instanceof String || v instanceof Boolean || v instanceof Date || v instanceof Calendar || v instanceof EvalError;
+}

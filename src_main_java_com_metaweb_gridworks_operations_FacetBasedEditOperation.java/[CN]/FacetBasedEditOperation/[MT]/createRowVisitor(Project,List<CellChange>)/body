@@ -2,7 +2,7 @@
   Column column=project.columnModel.getColumnByName(_columnName);
   Evaluable eval=MetaParser.parse(_expression);
   Properties bindings=ExpressionUtils.createBindings(project);
-  Map<String,Object> fromTo=new HashMap<String,Object>();
+  Map<String,Serializable> fromTo=new HashMap<String,Serializable>();
   for (  Edit edit : _edits) {
     for (    String s : edit.from) {
       fromTo.put(s,edit.to);
@@ -13,8 +13,8 @@
     Properties bindings;
     List<CellChange> cellChanges;
     Evaluable eval;
-    Map<String,Object> fromTo;
-    public RowVisitor init(    int cellIndex,    Properties bindings,    List<CellChange> cellChanges,    Evaluable eval,    Map<String,Object> fromTo){
+    Map<String,Serializable> fromTo;
+    public RowVisitor init(    int cellIndex,    Properties bindings,    List<CellChange> cellChanges,    Evaluable eval,    Map<String,Serializable> fromTo){
       this.cellIndex=cellIndex;
       this.bindings=bindings;
       this.cellChanges=cellChanges;
@@ -28,7 +28,7 @@
       Object v=eval.evaluate(bindings);
       if (v != null) {
         String from=v.toString();
-        Object to=fromTo.get(from);
+        Serializable to=fromTo.get(from);
         if (to != null) {
           Cell newCell=new Cell(to,(cell != null) ? cell.recon : null);
           CellChange cellChange=new CellChange(rowIndex,cellIndex,cell,newCell);

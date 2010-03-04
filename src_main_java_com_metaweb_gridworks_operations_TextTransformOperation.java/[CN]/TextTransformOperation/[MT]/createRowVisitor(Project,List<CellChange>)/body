@@ -18,7 +18,7 @@
       Cell cell=row.getCell(cellIndex);
       Object oldValue=cell != null ? cell.value : null;
       ExpressionUtils.bind(bindings,row,rowIndex,cell);
-      Object newValue=eval.evaluate(bindings);
+      Serializable newValue=ExpressionUtils.wrapStorable(eval.evaluate(bindings));
       if (ExpressionUtils.isError(newValue)) {
         if (_onError == OnError.KeepOriginal) {
           return false;
@@ -32,7 +32,7 @@
         if (_repeat) {
           for (int i=0; i < _repeatCount; i++) {
             ExpressionUtils.bind(bindings,row,rowIndex,newCell);
-            newValue=eval.evaluate(bindings);
+            newValue=ExpressionUtils.wrapStorable(eval.evaluate(bindings));
             if (ExpressionUtils.isError(newValue)) {
               break;
             }

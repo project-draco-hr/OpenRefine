@@ -65,7 +65,7 @@
         if (cellType == org.apache.poi.ss.usermodel.Cell.CELL_TYPE_FORMULA) {
           cellType=cell.getCachedFormulaResultType();
         }
-        Object value=null;
+        Serializable value=null;
         if (cellType == org.apache.poi.ss.usermodel.Cell.CELL_TYPE_BOOLEAN) {
           value=cell.getBooleanCellValue();
         }

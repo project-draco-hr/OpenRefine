@@ -1,0 +1,3 @@
+{
+  return isStorable(v) ? (Serializable)v : new EvalError(v.getClass().getSimpleName() + " value not storable");
+}

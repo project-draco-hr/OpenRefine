@@ -17,7 +17,7 @@
     public boolean visit(    Project project,    int rowIndex,    Row row,    boolean contextual){
       Cell cell=row.getCell(cellIndex);
       ExpressionUtils.bind(bindings,row,rowIndex,cell);
-      Object v=eval.evaluate(bindings);
+      Serializable v=ExpressionUtils.wrapStorable(eval.evaluate(bindings));
       if (ExpressionUtils.isError(v)) {
         if (_onError == OnError.SetToBlank) {
           return false;

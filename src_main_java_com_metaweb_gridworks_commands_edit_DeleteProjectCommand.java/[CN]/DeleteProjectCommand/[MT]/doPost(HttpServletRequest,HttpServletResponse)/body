@@ -1,0 +1,9 @@
+{
+  try {
+    boolean result=ProjectManager.singleton.deleteProject(getProject(request));
+    respond(response,"{ \"code\" : " + (result ? "\"ok\"" : "\"error\"") + " }");
+  }
+ catch (  Exception e) {
+    respondException(response,e);
+  }
+}

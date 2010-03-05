@@ -67,8 +67,14 @@
           writer.endObject();
         }
  else {
-          if (result != null && result instanceof HasFields) {
-            result="[object " + result.getClass().getSimpleName() + "]";
+          if (result != null) {
+            if (result instanceof HasFields) {
+              result="[object " + result.getClass().getSimpleName() + "]";
+            }
+ else             if (result instanceof Calendar) {
+              Calendar c=(Calendar)result;
+              result="[object " + result.getClass().getSimpleName() + " "+ ParsingUtilities.dateToString(c.getTime())+ "]";
+            }
           }
           writer.value(result);
         }

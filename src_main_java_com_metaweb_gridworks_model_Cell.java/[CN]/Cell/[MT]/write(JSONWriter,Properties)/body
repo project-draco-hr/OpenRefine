@@ -6,7 +6,12 @@
   }
  else {
     writer.key("v");
-    writer.value(value);
+    if (value != null && value instanceof Calendar) {
+      writer.value(ParsingUtilities.dateToString(((Calendar)value).getTime()));
+    }
+ else {
+      writer.value(value);
+    }
   }
   if (recon != null) {
     writer.key("r");

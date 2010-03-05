@@ -1,5 +1,7 @@
 {
-  _min=Math.min(getMin(),v);
-  _max=Math.max(getMax(),v);
-  allValues.add(v);
+  if (!Double.isInfinite(v)) {
+    _min=Math.min(_min,v);
+    _max=Math.max(_max,v);
+    allValues.add(v);
+  }
 }

@@ -1,5 +1,7 @@
 {
   writer.object();
+  writer.key("id");
+  writer.value(hashCode());
   writer.key("description");
   writer.value(_description);
   writer.key("immediate");

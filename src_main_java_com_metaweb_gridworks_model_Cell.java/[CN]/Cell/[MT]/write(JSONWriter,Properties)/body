@@ -6,11 +6,19 @@
   }
  else {
     writer.key("v");
-    if (value != null && value instanceof Calendar) {
-      writer.value(ParsingUtilities.dateToString(((Calendar)value).getTime()));
+    if (value != null) {
+      if (value instanceof Calendar) {
+        writer.value(ParsingUtilities.dateToString(((Calendar)value).getTime()));
+      }
+ else       if (value instanceof Date) {
+        writer.value(ParsingUtilities.dateToString((Date)value));
+      }
+ else {
+        writer.value(value);
+      }
     }
  else {
-      writer.value(value);
+      writer.value(null);
     }
   }
   if (recon != null) {

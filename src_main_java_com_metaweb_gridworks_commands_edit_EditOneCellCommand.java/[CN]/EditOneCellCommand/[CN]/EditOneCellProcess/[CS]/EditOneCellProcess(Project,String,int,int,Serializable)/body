@@ -1,0 +1,6 @@
+{
+  super(project,briefDescription);
+  this.rowIndex=rowIndex;
+  this.cellIndex=cellIndex;
+  this.value=value;
+}

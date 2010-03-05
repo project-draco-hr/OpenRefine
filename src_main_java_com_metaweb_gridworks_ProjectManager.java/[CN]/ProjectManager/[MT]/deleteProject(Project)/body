@@ -1,11 +1,15 @@
 {
-  File file=new File(_dir,project.id + ".project");
-  if (file.exists()) {
+  if (_projectsMetadata.containsKey(project.id)) {
     _projects.remove(project.id);
     _projectsMetadata.remove(project.id);
-    boolean result=file.delete();
+    File file=new File(_dir,project.id + ".project");
+    if (file.exists()) {
+      file.delete();
+    }
     save();
-    return result;
+    return true;
   }
-  return false;
+ else {
+    return false;
+  }
 }

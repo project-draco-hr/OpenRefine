@@ -7,15 +7,7 @@
       }
       Object o=args[0];
       String s=(o instanceof String) ? (String)o : o.toString();
-      s=s.toLowerCase();
-      s=alphanum.matcher(s).replaceAll("");
-      TreeSet<String> set=ngram_split(s,ngram_size);
-      StringBuffer b=new StringBuffer();
-      Iterator<String> i=set.iterator();
-      while (i.hasNext()) {
-        b.append(i.next());
-      }
-      return b.toString();
+      return ngram_fingerprint.key(s,ngram_size);
     }
     return null;
   }

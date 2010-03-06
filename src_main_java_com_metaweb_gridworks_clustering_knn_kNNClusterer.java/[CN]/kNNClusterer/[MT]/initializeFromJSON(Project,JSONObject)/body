@@ -1,0 +1,4 @@
+{
+  super.initializeFromJSON(project,o);
+  _distance=_distances.get(o.getString("function").toLowerCase());
+}

@@ -1,0 +1,21 @@
+{
+  EntriesComparator c=new EntriesComparator();
+  writer.array();
+  for (  Map<Object,Integer> m : _clusters) {
+    if (m.size() > 1) {
+      writer.array();
+      List<Entry<Object,Integer>> entries=new ArrayList<Entry<Object,Integer>>(m.entrySet());
+      Collections.sort(entries,c);
+      for (      Entry<Object,Integer> e : entries) {
+        writer.object();
+        writer.key("v");
+        writer.value(e.getKey());
+        writer.key("c");
+        writer.value(e.getValue());
+        writer.endObject();
+      }
+      writer.endArray();
+    }
+  }
+  writer.endArray();
+}

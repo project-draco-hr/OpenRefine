@@ -1,0 +1,8 @@
+{
+  BinningRowVisitor visitor=new BinningRowVisitor(_keyer,_config);
+  FilteredRows filteredRows=engine.getAllFilteredRows(true);
+  filteredRows.accept(_project,visitor);
+  Map<String,Map<Object,Integer>> map=visitor.getMap();
+  _clusters=new ArrayList<Map<Object,Integer>>(map.values());
+  Collections.sort(_clusters,new SizeComparator());
+}

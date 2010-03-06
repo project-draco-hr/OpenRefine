@@ -1,0 +1,8 @@
+{
+  Node[] nodes_array=this.nodes.toArray(new Node[this.nodes.size()]);
+  Gridworks.log("building tree with nodes: " + nodes_array.length);
+  VPTree tree=new VPTree();
+  tree.setRoot(addNode(nodes_array,0,nodes_array.length - 1));
+  Gridworks.log("tree built");
+  return tree;
+}

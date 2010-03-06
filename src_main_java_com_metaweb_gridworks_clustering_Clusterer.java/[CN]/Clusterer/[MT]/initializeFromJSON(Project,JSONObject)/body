@@ -1,0 +1,10 @@
+{
+  _project=project;
+  _config=o;
+  String colname=o.getString("column");
+  for (  Column column : project.columnModel.columns) {
+    if (column.getHeaderLabel().equals(colname)) {
+      _colindex=column.getCellIndex();
+    }
+  }
+}

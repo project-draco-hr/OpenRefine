@@ -1,1 +1,1 @@
-Collection<? extends Serializable> col
+Collection<? extends Serializable> values

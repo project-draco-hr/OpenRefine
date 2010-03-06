@@ -1,0 +1,13 @@
+{
+  VPTree tree=buildVPTree();
+  VPTreeSeeker seeker=new VPTreeSeeker(distance,tree);
+  Map<Serializable,List<? extends Serializable>> map=new HashMap<Serializable,List<? extends Serializable>>();
+  for (  Node n : nodes) {
+    Serializable s=n.get();
+    Gridworks.log(" find results for: " + s);
+    List<? extends Serializable> results=seeker.range(s,radius);
+    Gridworks.log("  found: " + results.size());
+    map.put(s,results);
+  }
+  return map;
+}

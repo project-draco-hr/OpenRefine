@@ -1,0 +1,8 @@
+{
+  if (n instanceof Node) {
+    return ((Node)n).get().equals(this.obj);
+  }
+ else {
+    return false;
+  }
+}

@@ -1,0 +1,4 @@
+{
+  super.initializeFromJSON(project,o);
+  _keyer=_keyers.get(o.getString("function").toLowerCase());
+}

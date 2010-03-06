@@ -1,0 +1,3 @@
+{
+  return _metaphone2.doubleMetaphone(s);
+}

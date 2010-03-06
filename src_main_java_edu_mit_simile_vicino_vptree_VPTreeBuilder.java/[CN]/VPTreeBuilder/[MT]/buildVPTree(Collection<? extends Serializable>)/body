@@ -1,12 +1,7 @@
 {
-  Node nodes[]=new Node[col.size()];
-  Iterator<? extends Serializable> i=col.iterator();
-  int counter=0;
-  while (i.hasNext()) {
-    Serializable s=(Serializable)i.next();
-    nodes[counter++]=new Node(s);
+  reset();
+  for (  Serializable s : values) {
+    populate(s);
   }
-  tree=new VPTree();
-  tree.setRoot(addNode(nodes,0,nodes.length - 1));
-  return tree;
+  return buildVPTree();
 }

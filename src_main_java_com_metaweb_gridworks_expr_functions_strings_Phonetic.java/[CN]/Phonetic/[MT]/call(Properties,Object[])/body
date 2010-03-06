@@ -6,13 +6,13 @@
       String str=(o1 instanceof String) ? (String)o1 : o1.toString();
       String encoding=((String)o2).toLowerCase();
       if ("doublemetaphone".equals(encoding)) {
-        return metaphone2.doubleMetaphone(str);
+        return metaphone2.key(str);
       }
  else       if ("metaphone".equals(encoding)) {
-        return metaphone.metaphone(str);
+        return metaphone.key(str);
       }
  else       if ("soundex".equals(encoding)) {
-        return soundex.soundex(str);
+        return soundex.key(str);
       }
  else {
         return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " doesn't know how to handle the '" + encoding+ "' encoding.");

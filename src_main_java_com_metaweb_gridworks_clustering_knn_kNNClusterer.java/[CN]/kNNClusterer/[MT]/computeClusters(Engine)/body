@@ -1,0 +1,8 @@
+{
+  kNNClusteringRowVisitor visitor=new kNNClusteringRowVisitor(_distance,_config);
+  FilteredRows filteredRows=engine.getAllFilteredRows(true);
+  filteredRows.accept(_project,visitor);
+  Map<Serializable,List<? extends Serializable>> clusters=visitor.getClusters();
+  _clusters=new ArrayList<List<? extends Serializable>>(clusters.values());
+  Collections.sort(_clusters,new SizeComparator());
+}

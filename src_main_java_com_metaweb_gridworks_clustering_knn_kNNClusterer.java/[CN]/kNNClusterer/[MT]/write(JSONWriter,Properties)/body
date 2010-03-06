@@ -1,0 +1,18 @@
+{
+  writer.array();
+  for (  List<? extends Serializable> m : _clusters) {
+    if (m.size() > 1) {
+      writer.array();
+      for (      Serializable s : m) {
+        writer.object();
+        writer.key("v");
+        writer.value(s);
+        writer.key("c");
+        writer.value(1);
+        writer.endObject();
+      }
+      writer.endArray();
+    }
+  }
+  writer.endArray();
+}

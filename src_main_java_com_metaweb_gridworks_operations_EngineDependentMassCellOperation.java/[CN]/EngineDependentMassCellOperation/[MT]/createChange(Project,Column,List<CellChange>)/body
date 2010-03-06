@@ -1,3 +1,3 @@
 {
-  return new MassCellChange(cellChanges,column.getHeaderLabel(),_updateRowContextDependencies);
+  return new MassCellChange(cellChanges,column.getName(),_updateRowContextDependencies);
 }

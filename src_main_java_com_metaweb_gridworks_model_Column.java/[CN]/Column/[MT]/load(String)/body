@@ -1,0 +1,12 @@
+{
+  JSONObject obj=ParsingUtilities.evaluateJsonStringToObject(s);
+  Column column=new Column(obj.getInt("cellIndex"),obj.getString("originalName"));
+  column._name=obj.getString("name");
+  if (obj.has("reconConfig")) {
+    column._reconConfig=ReconConfig.reconstruct(obj.getJSONObject("reconConfig"));
+  }
+  if (obj.has("reconStats")) {
+    column._reconStats=ReconStats.reconstruct(obj.getJSONObject("reconStats"));
+  }
+  return column;
+}

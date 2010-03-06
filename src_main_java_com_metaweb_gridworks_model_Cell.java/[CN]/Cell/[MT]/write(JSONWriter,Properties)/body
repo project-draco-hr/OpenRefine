@@ -9,9 +9,13 @@
     if (value != null) {
       if (value instanceof Calendar) {
         writer.value(ParsingUtilities.dateToString(((Calendar)value).getTime()));
+        writer.key("t");
+        writer.value("date");
       }
  else       if (value instanceof Date) {
         writer.value(ParsingUtilities.dateToString((Date)value));
+        writer.key("t");
+        writer.value("date");
       }
  else {
         writer.value(value);

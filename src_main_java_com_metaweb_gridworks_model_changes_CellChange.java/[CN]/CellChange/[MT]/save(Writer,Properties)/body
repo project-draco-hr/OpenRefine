@@ -1,0 +1,19 @@
+{
+  writer.write("row=");
+  writer.write(Integer.toString(row));
+  writer.write('\n');
+  writer.write("cell=");
+  writer.write(Integer.toString(cellIndex));
+  writer.write('\n');
+  writer.write("old=");
+  if (oldCell != null) {
+    oldCell.save(writer,options);
+  }
+  writer.write('\n');
+  writer.write("new=");
+  if (newCell != null) {
+    newCell.save(writer,options);
+  }
+  writer.write('\n');
+  writer.write("/ec/\n");
+}

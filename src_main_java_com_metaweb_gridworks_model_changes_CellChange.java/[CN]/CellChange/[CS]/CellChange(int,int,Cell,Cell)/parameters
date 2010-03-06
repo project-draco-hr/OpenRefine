@@ -1,4 +1,4 @@
 int row
-int column
+int cellIndex
 Cell oldCell
 Cell newCell

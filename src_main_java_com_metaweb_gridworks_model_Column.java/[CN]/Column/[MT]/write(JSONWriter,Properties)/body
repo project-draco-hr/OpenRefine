@@ -1,9 +1,11 @@
 {
   writer.object();
   writer.key("cellIndex");
-  writer.value(getCellIndex());
-  writer.key("headerLabel");
-  writer.value(getHeaderLabel());
+  writer.value(_cellIndex);
+  writer.key("originalName");
+  writer.value(_originalName);
+  writer.key("name");
+  writer.value(_name);
   if (_reconConfig != null) {
     writer.key("reconConfig");
     _reconConfig.write(writer,options);

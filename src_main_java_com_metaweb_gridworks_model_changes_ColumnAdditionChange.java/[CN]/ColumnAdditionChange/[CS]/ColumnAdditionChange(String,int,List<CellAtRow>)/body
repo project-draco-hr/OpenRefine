@@ -1,5 +1,5 @@
 {
-  _headerLabel=headerLabel;
+  _columnName=columnName;
   _columnIndex=columnIndex;
   _newCells=new CellAtRow[newCells.size()];
   newCells.toArray(_newCells);

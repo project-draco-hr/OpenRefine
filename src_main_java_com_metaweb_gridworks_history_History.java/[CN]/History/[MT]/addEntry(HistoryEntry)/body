@@ -2,8 +2,8 @@
   for (  HistoryEntry entry2 : _futureEntries) {
     entry2.delete();
   }
-  _futureEntries.clear();
-  _pastEntries.add(entry);
   entry.apply(ProjectManager.singleton.getProject(_projectID));
+  _pastEntries.add(entry);
+  _futureEntries.clear();
   setModified();
 }

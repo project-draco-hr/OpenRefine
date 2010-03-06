@@ -1,0 +1,7 @@
+{
+  File dir=new File(_workspaceDir,projectID + ".project");
+  if (!dir.exists()) {
+    dir.mkdir();
+  }
+  return dir;
+}

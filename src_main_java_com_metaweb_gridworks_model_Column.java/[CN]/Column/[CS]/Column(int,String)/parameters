@@ -1,2 +1,2 @@
 int cellIndex
-String headerLabel
+String originalName

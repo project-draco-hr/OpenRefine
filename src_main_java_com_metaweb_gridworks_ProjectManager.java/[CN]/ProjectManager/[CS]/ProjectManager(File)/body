@@ -1,6 +1,6 @@
 {
-  _dir=dir;
-  _dir.mkdirs();
+  _workspaceDir=dir;
+  _workspaceDir.mkdirs();
   _projectsMetadata=new HashMap<Long,ProjectMetadata>();
   _expressions=new LinkedList<String>();
   _projects=new HashMap<Long,Project>();

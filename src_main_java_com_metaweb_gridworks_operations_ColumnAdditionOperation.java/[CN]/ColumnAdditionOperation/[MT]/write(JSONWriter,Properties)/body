@@ -6,8 +6,8 @@
   writer.value(getBriefDescription(null));
   writer.key("engineConfig");
   writer.value(getEngineConfig());
-  writer.key("headerLabel");
-  writer.value(_headerLabel);
+  writer.key("newColumnName");
+  writer.value(_newColumnName);
   writer.key("columnInsertIndex");
   writer.value(_columnInsertIndex);
   writer.key("baseColumnName");

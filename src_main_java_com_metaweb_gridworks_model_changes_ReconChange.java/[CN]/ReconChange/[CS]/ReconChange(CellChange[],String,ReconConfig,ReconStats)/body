@@ -1,0 +1,5 @@
+{
+  super(cellChanges,commonColumnName,false);
+  _newReconConfig=newReconConfig;
+  _newReconStats=newReconStats;
+}

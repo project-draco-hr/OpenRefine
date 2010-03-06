@@ -1,8 +1,8 @@
 {
   String baseColumnName=request.getParameter("baseColumnName");
   String expression=request.getParameter("expression");
-  String headerLabel=request.getParameter("headerLabel");
+  String newColumnName=request.getParameter("newColumnName");
   int columnInsertIndex=Integer.parseInt(request.getParameter("columnInsertIndex"));
   String onError=request.getParameter("onError");
-  return new ColumnAdditionOperation(engineConfig,baseColumnName,expression,TextTransformOperation.stringToOnError(onError),headerLabel,columnInsertIndex);
+  return new ColumnAdditionOperation(engineConfig,baseColumnName,expression,TextTransformOperation.stringToOnError(onError),newColumnName,columnInsertIndex);
 }

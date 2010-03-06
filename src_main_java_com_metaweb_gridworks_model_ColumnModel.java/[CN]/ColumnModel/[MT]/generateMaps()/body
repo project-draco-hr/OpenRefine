@@ -2,7 +2,7 @@
   _nameToColumn=new HashMap<String,Column>();
   _cellIndexToColumn=new HashMap<Integer,Column>();
   for (  Column column : columns) {
-    _nameToColumn.put(column.getHeaderLabel(),column);
+    _nameToColumn.put(column.getName(),column);
     _cellIndexToColumn.put(column.getCellIndex(),column);
   }
 }

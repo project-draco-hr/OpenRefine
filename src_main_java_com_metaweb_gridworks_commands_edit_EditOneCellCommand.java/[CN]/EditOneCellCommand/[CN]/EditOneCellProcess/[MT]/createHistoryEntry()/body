@@ -5,7 +5,7 @@
     throw new Exception("No such column");
   }
   newCell=new Cell(value,cell != null ? cell.recon : null);
-  String description="Edit single cell on row " + (rowIndex + 1) + ", column "+ column.getHeaderLabel();
+  String description="Edit single cell on row " + (rowIndex + 1) + ", column "+ column.getName();
   Change change=new CellChange(rowIndex,cellIndex,cell,newCell);
   return new HistoryEntry(_project,description,null,change);
 }

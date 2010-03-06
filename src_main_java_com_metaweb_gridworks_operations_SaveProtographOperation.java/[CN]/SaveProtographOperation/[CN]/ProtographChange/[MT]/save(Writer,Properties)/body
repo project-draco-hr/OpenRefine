@@ -1,0 +1,9 @@
+{
+  writer.write("newProtograph=");
+  writeProtograph(_newProtograph,writer);
+  writer.write('\n');
+  writer.write("oldProtograph=");
+  writeProtograph(_oldProtograph,writer);
+  writer.write('\n');
+  writer.write("/ec/\n");
+}

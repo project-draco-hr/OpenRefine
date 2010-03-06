@@ -1,5 +1,5 @@
 {
-  File file=new File(_dir,project.id + ".project");
+  File file=new File(getProjectDir(project.id),"raw-data");
   FileOutputStream fos=null;
   ObjectOutputStream out=null;
   try {

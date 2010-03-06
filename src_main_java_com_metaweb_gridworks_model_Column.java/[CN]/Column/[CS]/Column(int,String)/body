@@ -1,4 +1,4 @@
 {
   _cellIndex=cellIndex;
-  _originalHeaderLabel=_headerLabel=headerLabel;
+  _originalName=_name=originalName;
 }

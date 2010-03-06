@@ -1,0 +1,16 @@
+{
+  writer.write("oldColumnIndex=");
+  writer.write(Integer.toString(_oldColumnIndex));
+  writer.write('\n');
+  writer.write("oldColumn=");
+  _oldColumn.save(writer);
+  writer.write('\n');
+  writer.write("oldCellCount=");
+  writer.write(Integer.toString(_oldCells.length));
+  writer.write('\n');
+  for (  CellAtRow c : _oldCells) {
+    c.save(writer,options);
+    writer.write('\n');
+  }
+  writer.write("/ec/\n");
+}

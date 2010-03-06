@@ -2,6 +2,15 @@
   if (_change == null) {
     loadChange();
   }
-  _change.apply(project);
-  saveChange();
+synchronized (project) {
+    _change.apply(project);
+    try {
+      saveChange();
+    }
+ catch (    IOException e) {
+      e.printStackTrace();
+      _change.revert(project);
+      throw new RuntimeException("Failed to apply change",e);
+    }
+  }
 }

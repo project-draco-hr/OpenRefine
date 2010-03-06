@@ -1,0 +1,23 @@
+{
+  Protograph oldProtograph=null;
+  Protograph newProtograph=null;
+  String line;
+  while ((line=reader.readLine()) != null && !"/ec/".equals(line)) {
+    int equal=line.indexOf('=');
+    CharSequence field=line.subSequence(0,equal);
+    String value=line.substring(equal + 1);
+    if ("oldProtograph".equals(field)) {
+      if (value.length() > 0) {
+        oldProtograph=Protograph.reconstruct(ParsingUtilities.evaluateJsonStringToObject(value));
+      }
+    }
+ else     if ("newProtograph".equals(field)) {
+      if (value.length() > 0) {
+        newProtograph=Protograph.reconstruct(ParsingUtilities.evaluateJsonStringToObject(value));
+      }
+    }
+  }
+  ProtographChange change=new ProtographChange(newProtograph);
+  change._oldProtograph=oldProtograph;
+  return change;
+}

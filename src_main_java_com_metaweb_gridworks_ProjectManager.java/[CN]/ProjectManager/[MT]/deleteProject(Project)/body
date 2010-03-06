@@ -2,7 +2,7 @@
   if (_projectsMetadata.containsKey(project.id)) {
     _projects.remove(project.id);
     _projectsMetadata.remove(project.id);
-    File file=new File(_dir,project.id + ".project");
+    File file=new File(getProjectDir(project.id),"raw-data");
     if (file.exists()) {
       file.delete();
     }

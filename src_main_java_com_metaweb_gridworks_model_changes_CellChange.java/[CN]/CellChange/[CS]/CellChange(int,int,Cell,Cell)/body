@@ -1,6 +1,6 @@
 {
   this.row=row;
-  this.cellIndex=column;
+  this.cellIndex=cellIndex;
   this.oldCell=oldCell;
   this.newCell=newCell;
 }

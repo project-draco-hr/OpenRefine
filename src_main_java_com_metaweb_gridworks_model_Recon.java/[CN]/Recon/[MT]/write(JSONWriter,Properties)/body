@@ -1,5 +1,7 @@
 {
   writer.object();
+  writer.key("id");
+  writer.value(id);
   writer.key("j");
   writer.value(judgmentToString());
   if (match != null) {
@@ -13,6 +15,14 @@
       for (      ReconCandidate c : candidates) {
         c.write(writer,options);
       }
+    }
+    writer.endArray();
+  }
+  if ("save".equals(options.getProperty("mode"))) {
+    writer.key("f");
+    writer.array();
+    for (    Object o : features) {
+      writer.value(o);
     }
     writer.endArray();
   }

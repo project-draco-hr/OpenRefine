@@ -3,7 +3,7 @@
     return _projects.get(id);
   }
  else {
-    File file=new File(_dir,id + ".project");
+    File file=new File(getProjectDir(id),"raw-data");
     Project project=null;
     FileInputStream fis=null;
     ObjectInputStream in=null;

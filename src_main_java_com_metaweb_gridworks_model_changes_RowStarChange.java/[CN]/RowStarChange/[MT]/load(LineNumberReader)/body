@@ -1,0 +1,23 @@
+{
+  int row=-1;
+  boolean oldStarred=false;
+  boolean newStarred=false;
+  String line;
+  while ((line=reader.readLine()) != null && !"/ec/".equals(line)) {
+    int equal=line.indexOf('=');
+    CharSequence field=line.subSequence(0,equal);
+    String value=line.substring(equal + 1);
+    if ("row".equals(field)) {
+      row=Integer.parseInt(value);
+    }
+ else     if ("oldStarred".equals(field)) {
+      oldStarred=Boolean.parseBoolean(value);
+    }
+ else     if ("newStarred".equals(field)) {
+      oldStarred=Boolean.parseBoolean(value);
+    }
+  }
+  RowStarChange change=new RowStarChange(row,newStarred);
+  change.oldStarred=oldStarred;
+  return change;
+}

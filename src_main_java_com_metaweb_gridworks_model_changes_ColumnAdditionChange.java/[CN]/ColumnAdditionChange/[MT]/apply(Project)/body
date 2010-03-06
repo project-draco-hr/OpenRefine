@@ -3,7 +3,7 @@ synchronized (project) {
     if (_newCellIndex < 0) {
       _newCellIndex=project.columnModel.allocateNewCellIndex();
     }
-    Column column=new Column(_newCellIndex,_headerLabel);
+    Column column=new Column(_newCellIndex,_columnName);
     project.columnModel.columns.add(_columnIndex,column);
     try {
       for (      CellAtRow cell : _newCells) {

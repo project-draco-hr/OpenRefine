@@ -1,32 +1,9 @@
 {
-  File file=getFile();
-  FileInputStream fis=null;
-  ObjectInputStream in=null;
+  File changeFile=getChangeFile();
   try {
-    fis=new FileInputStream(file);
-    in=new ObjectInputStream(fis);
-    _change=(Change)in.readObject();
+    loadChange(changeFile);
   }
- catch (  IOException e) {
-    e.printStackTrace();
-  }
-catch (  ClassNotFoundException e) {
-    e.printStackTrace();
-  }
- finally {
-    if (fis != null) {
-      try {
-        fis.close();
-      }
- catch (      Exception e) {
-      }
-    }
-    if (in != null) {
-      try {
-        in.close();
-      }
- catch (      Exception e) {
-      }
-    }
+ catch (  Exception e) {
+    throw new RuntimeException("Failed to load change file " + changeFile.getAbsolutePath(),e);
   }
 }

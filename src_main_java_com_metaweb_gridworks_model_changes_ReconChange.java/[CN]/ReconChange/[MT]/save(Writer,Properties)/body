@@ -1,0 +1,15 @@
+{
+  writer.write("newReconConfig=");
+  _newReconConfig.save(writer);
+  writer.write('\n');
+  writer.write("newReconStats=");
+  _newReconStats.save(writer);
+  writer.write('\n');
+  writer.write("oldReconConfig=");
+  _oldReconConfig.save(writer);
+  writer.write('\n');
+  writer.write("oldReconStats=");
+  _oldReconStats.save(writer);
+  writer.write('\n');
+  super.save(writer,options);
+}

@@ -1,6 +1,6 @@
 {
   Gridworks.log("Saving project metadata ...");
-  File tempFile=new File(_dir,"projects.json.temp");
+  File tempFile=new File(_workspaceDir,"projects.json.temp");
   try {
     saveToFile(tempFile);
   }
@@ -9,8 +9,8 @@
     Gridworks.log("Failed to save project");
     return;
   }
-  File file=new File(_dir,"projects.json");
-  File oldFile=new File(_dir,"projects.json.old");
+  File file=new File(_workspaceDir,"projects.json");
+  File oldFile=new File(_workspaceDir,"projects.json.old");
   if (file.exists()) {
     file.renameTo(oldFile);
   }

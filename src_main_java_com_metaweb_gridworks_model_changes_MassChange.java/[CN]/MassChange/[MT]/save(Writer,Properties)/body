@@ -1,0 +1,12 @@
+{
+  writer.write("updateRowContextDependencies=");
+  writer.write(Boolean.toString(_updateRowContextDependencies));
+  writer.write('\n');
+  writer.write("changeCount=");
+  writer.write(Integer.toString(_changes.size()));
+  writer.write('\n');
+  for (  Change c : _changes) {
+    c.save(writer,options);
+  }
+  writer.write("/ec/\n");
+}

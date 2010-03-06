@@ -1,0 +1,5 @@
+{
+  _cellChanges=cellChanges;
+  _commonColumnName=commonColumnName;
+  _updateRowContextDependencies=updateRowContextDependencies;
+}

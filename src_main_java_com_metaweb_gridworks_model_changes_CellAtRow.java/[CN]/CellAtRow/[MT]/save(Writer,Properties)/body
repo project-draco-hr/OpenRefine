@@ -1,0 +1,7 @@
+{
+  writer.write(Integer.toString(row));
+  writer.write(';');
+  if (cell != null) {
+    cell.save(writer,options);
+  }
+}

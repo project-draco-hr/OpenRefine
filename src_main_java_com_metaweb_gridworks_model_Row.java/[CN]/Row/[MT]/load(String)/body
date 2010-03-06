@@ -1,0 +1,19 @@
+{
+  JSONObject obj=ParsingUtilities.evaluateJsonStringToObject(s);
+  JSONArray a=obj.getJSONArray("cells");
+  int count=a.length();
+  Row row=new Row(count);
+  for (int i=0; i < count; i++) {
+    if (!a.isNull(i)) {
+      JSONObject o=a.getJSONObject(i);
+      row.setCell(i,Cell.load(o));
+    }
+  }
+  if (obj.has("starred")) {
+    row.starred=obj.getBoolean("starred");
+  }
+  if (obj.has("flagged")) {
+    row.flagged=obj.getBoolean("flagged");
+  }
+  return row;
+}

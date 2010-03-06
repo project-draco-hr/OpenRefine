@@ -15,20 +15,22 @@
     }
   }
   writer.endArray();
-  if (recordIndex >= 0) {
-    writer.key("j");
-    writer.value(recordIndex);
-  }
-  if (options.containsKey("rowIndex")) {
-    writer.key("i");
-    writer.value(options.get("rowIndex"));
-  }
-  if (options.containsKey("extra")) {
-    Properties extra=(Properties)options.get("extra");
-    if (extra != null) {
-      for (      Object key : extra.keySet()) {
-        writer.key((String)key);
-        writer.value(extra.get(key));
+  if (!"save".equals(options.getProperty("mode"))) {
+    if (recordIndex >= 0) {
+      writer.key("j");
+      writer.value(recordIndex);
+    }
+    if (options.containsKey("rowIndex")) {
+      writer.key("i");
+      writer.value(options.get("rowIndex"));
+    }
+    if (options.containsKey("extra")) {
+      Properties extra=(Properties)options.get("extra");
+      if (extra != null) {
+        for (        Object key : extra.keySet()) {
+          writer.key((String)key);
+          writer.value(extra.get(key));
+        }
       }
     }
   }

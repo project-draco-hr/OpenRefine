@@ -9,7 +9,7 @@
   writer.key("keyCellIndex");
   writer.value(getKeyColumnIndex());
   writer.key("keyColumnName");
-  writer.value(columns.get(_keyColumnIndex).getHeaderLabel());
+  writer.value(columns.get(_keyColumnIndex).getName());
   writer.key("columnGroups");
   writer.array();
   for (  ColumnGroup g : _rootColumnGroups) {

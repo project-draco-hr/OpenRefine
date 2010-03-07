@@ -1,0 +1,6 @@
+{
+  String columnName=request.getParameter("columnName");
+  String expression=request.getParameter("expression");
+  String editsString=request.getParameter("edits");
+  return new MassEditOperation(engineConfig,columnName,expression,MassEditOperation.reconstructEdits(ParsingUtilities.evaluateJsonStringToArray(editsString)));
+}

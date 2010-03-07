@@ -1,0 +1,3 @@
+{
+  return "Mass edit " + cellChanges.size() + " cells in column "+ column.getName();
+}

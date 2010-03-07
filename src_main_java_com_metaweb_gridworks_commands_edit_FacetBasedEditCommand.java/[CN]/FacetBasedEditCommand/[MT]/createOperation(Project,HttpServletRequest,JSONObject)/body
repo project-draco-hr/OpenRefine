@@ -1,6 +1,0 @@
-{
-  String columnName=request.getParameter("columnName");
-  String expression=request.getParameter("expression");
-  String editsString=request.getParameter("edits");
-  return new FacetBasedEditOperation(engineConfig,columnName,expression,FacetBasedEditOperation.reconstructEdits(ParsingUtilities.evaluateJsonStringToArray(editsString)));
-}

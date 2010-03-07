@@ -9,7 +9,14 @@
     for (int j=0; j < fromCount; j++) {
       from.add(fromA.getString(j));
     }
-    edits.add(new Edit(from,editO.getString("to")));
+    Serializable to=(Serializable)editO.get("to");
+    if (editO.has("type")) {
+      String type=editO.getString("type");
+      if ("date".equals(type)) {
+        to=ParsingUtilities.stringToDate((String)to);
+      }
+    }
+    edits.add(new Edit(from,to));
   }
   return edits;
 }

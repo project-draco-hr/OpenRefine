@@ -5,11 +5,7 @@
     try {
       Writer writer=new OutputStreamWriter(out);
       try {
-        Properties options=new Properties();
-        options.setProperty("mode","save");
-        writer.write(_change.getClass().getName());
-        writer.write('\n');
-        _change.save(writer,options);
+        History.writeOneChange(writer,_change);
       }
   finally {
         writer.flush();

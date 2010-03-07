@@ -1,7 +1,0 @@
-{
-  getSerializedSize();
-  if (hasValue()) {
-    output.writeString(1,getValue());
-  }
-  getUnknownFields().writeTo(output);
-}

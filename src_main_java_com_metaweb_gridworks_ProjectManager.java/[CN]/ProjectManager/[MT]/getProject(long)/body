@@ -3,37 +3,7 @@
     return _projects.get(id);
   }
  else {
-    File file=new File(getProjectDir(id),"raw-data");
-    Project project=null;
-    FileInputStream fis=null;
-    ObjectInputStream in=null;
-    try {
-      fis=new FileInputStream(file);
-      in=new ObjectInputStream(fis);
-      project=(Project)in.readObject();
-    }
- catch (    IOException e) {
-      e.printStackTrace();
-    }
-catch (    ClassNotFoundException e) {
-      e.printStackTrace();
-    }
- finally {
-      if (fis != null) {
-        try {
-          fis.close();
-        }
- catch (        Exception e) {
-        }
-      }
-      if (in != null) {
-        try {
-          in.close();
-        }
- catch (        Exception e) {
-        }
-      }
-    }
+    Project project=Project.load(getProjectDir(id),id);
     _projects.put(id,project);
     return project;
   }

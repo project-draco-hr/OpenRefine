@@ -1,4 +1,0 @@
-{
-  processManager=new ProcessManager();
-  recomputeRowContextDependencies();
-}

@@ -1,3 +1,0 @@
-{
-  return result.getProjects(index);
-}

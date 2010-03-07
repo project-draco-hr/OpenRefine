@@ -1,0 +1,11 @@
+{
+  FileReader reader=new FileReader(file);
+  try {
+    JSONTokener tokener=new JSONTokener(reader);
+    JSONObject obj=(JSONObject)tokener.nextValue();
+    return loadFromJSON(obj);
+  }
+  finally {
+    reader.close();
+  }
+}

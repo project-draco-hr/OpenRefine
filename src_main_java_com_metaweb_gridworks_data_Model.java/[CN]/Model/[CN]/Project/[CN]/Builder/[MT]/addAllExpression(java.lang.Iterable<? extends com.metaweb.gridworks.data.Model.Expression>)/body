@@ -1,7 +1,0 @@
-{
-  if (result.expression_.isEmpty()) {
-    result.expression_=new java.util.ArrayList<com.metaweb.gridworks.data.Model.Expression>();
-  }
-  super.addAll(values,result.expression_);
-  return this;
-}

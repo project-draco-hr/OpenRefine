@@ -7,7 +7,7 @@ synchronized (project) {
     try {
       saveChange();
     }
- catch (    IOException e) {
+ catch (    Exception e) {
       e.printStackTrace();
       _change.revert(project);
       throw new RuntimeException("Failed to apply change",e);

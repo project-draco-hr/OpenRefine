@@ -1,9 +1,0 @@
-{
-  if (other instanceof com.metaweb.gridworks.data.Model.Project) {
-    return mergeFrom((com.metaweb.gridworks.data.Model.Project)other);
-  }
- else {
-    super.mergeFrom(other);
-    return this;
-  }
-}

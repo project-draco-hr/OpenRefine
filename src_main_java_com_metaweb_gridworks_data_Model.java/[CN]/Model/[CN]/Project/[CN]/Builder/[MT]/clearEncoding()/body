@@ -1,5 +1,0 @@
-{
-  result.hasEncoding=false;
-  result.encoding_=getDefaultInstance().getEncoding();
-  return this;
-}

@@ -1,0 +1,18 @@
+{
+  try {
+    return loadFromFile(new File(dir,"metadata.json"));
+  }
+ catch (  Exception e) {
+  }
+  try {
+    return loadFromFile(new File(dir,"metadata.temp.json"));
+  }
+ catch (  Exception e) {
+  }
+  try {
+    return loadFromFile(new File(dir,"metadata.old.json"));
+  }
+ catch (  Exception e) {
+  }
+  return null;
+}

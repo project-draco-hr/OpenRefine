@@ -1,4 +1,0 @@
-{
-  result.expression_=java.util.Collections.emptyList();
-  return this;
-}

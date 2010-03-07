@@ -1,19 +1,20 @@
 {
   Gridworks.log("Loading project metadata from " + file.getAbsolutePath());
+  _projectsMetadata.clear();
+  _expressions.clear();
   FileReader reader=new FileReader(file);
   try {
     JSONTokener tokener=new JSONTokener(reader);
-    ProjectManager pm=new ProjectManager(file.getParentFile());
     JSONObject obj=(JSONObject)tokener.nextValue();
-    JSONArray a=obj.getJSONArray("projectMetadata");
+    JSONArray a=obj.getJSONArray("projectIDs");
     int count=a.length();
     for (int i=0; i < count; i++) {
-      JSONObject obj2=a.getJSONObject(i);
-      long id=obj2.getLong("id");
-      pm._projectsMetadata.put(id,ProjectMetadata.loadFromJSON(obj2.getJSONObject("metadata")));
+      long id=a.getLong(i);
+      File projectDir=getProjectDir(id);
+      ProjectMetadata metadata=ProjectMetadata.load(projectDir);
+      _projectsMetadata.put(id,metadata);
     }
-    JSONUtilities.getStringList(obj,"expressions",pm._expressions);
-    return pm;
+    JSONUtilities.getStringList(obj,"expressions",_expressions);
   }
   finally {
     reader.close();

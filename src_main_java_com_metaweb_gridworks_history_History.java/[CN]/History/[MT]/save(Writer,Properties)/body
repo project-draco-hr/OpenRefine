@@ -1,0 +1,17 @@
+{
+  writer.write("pastEntryCount=");
+  writer.write(Integer.toString(_pastEntries.size()));
+  writer.write('\n');
+  for (  HistoryEntry entry : _pastEntries) {
+    entry.save(writer,options);
+    writer.write('\n');
+  }
+  writer.write("futureEntryCount=");
+  writer.write(Integer.toString(_futureEntries.size()));
+  writer.write('\n');
+  for (  HistoryEntry entry : _futureEntries) {
+    entry.save(writer,options);
+    writer.write('\n');
+  }
+  writer.write("/e/\n");
+}

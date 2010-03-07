@@ -1,5 +1,5 @@
 {
-  id=Math.round(Math.random() * 1000000) + System.currentTimeMillis();
+  id=System.currentTimeMillis() + Math.round(Math.random() * 1000000000000L);
   history=new History(this);
-  internalInitialize();
+  processManager=new ProcessManager();
 }

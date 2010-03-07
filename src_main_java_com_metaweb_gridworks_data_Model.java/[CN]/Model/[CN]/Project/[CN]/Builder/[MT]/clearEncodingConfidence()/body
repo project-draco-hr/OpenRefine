@@ -1,5 +1,0 @@
-{
-  result.hasEncodingConfidence=false;
-  result.encodingConfidence_=0;
-  return this;
-}

@@ -1,0 +1,30 @@
+{
+  try {
+    File file=new File(dir,"data.zip");
+    if (file.exists()) {
+      return loadFromFile(file,id);
+    }
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+  try {
+    File file=new File(dir,"data.temp.zip");
+    if (file.exists()) {
+      return loadFromFile(file,id);
+    }
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+  try {
+    File file=new File(dir,"data.old.zip");
+    if (file.exists()) {
+      return loadFromFile(file,id);
+    }
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+  return null;
+}

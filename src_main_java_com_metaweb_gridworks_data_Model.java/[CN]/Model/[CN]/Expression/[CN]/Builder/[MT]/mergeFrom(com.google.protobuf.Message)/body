@@ -1,9 +1,0 @@
-{
-  if (other instanceof com.metaweb.gridworks.data.Model.Expression) {
-    return mergeFrom((com.metaweb.gridworks.data.Model.Expression)other);
-  }
- else {
-    super.mergeFrom(other);
-    return this;
-  }
-}

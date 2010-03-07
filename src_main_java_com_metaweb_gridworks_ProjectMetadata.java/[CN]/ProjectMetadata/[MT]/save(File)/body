@@ -1,0 +1,20 @@
+{
+  File tempFile=new File(dir,"metadata.temp.json");
+  try {
+    saveToFile(tempFile);
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+    Gridworks.log("Failed to save project metadata");
+    return;
+  }
+  File file=new File(dir,"metadata.json");
+  File oldFile=new File(dir,"metadata.old.json");
+  if (file.exists()) {
+    file.renameTo(oldFile);
+  }
+  tempFile.renameTo(file);
+  if (oldFile.exists()) {
+    oldFile.delete();
+  }
+}

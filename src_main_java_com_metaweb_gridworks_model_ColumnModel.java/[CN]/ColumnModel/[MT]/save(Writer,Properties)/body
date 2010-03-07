@@ -1,0 +1,23 @@
+{
+  writer.write("maxCellIndex=");
+  writer.write(Integer.toString(_maxCellIndex));
+  writer.write('\n');
+  writer.write("keyColumnIndex=");
+  writer.write(Integer.toString(_keyColumnIndex));
+  writer.write('\n');
+  writer.write("columnCount=");
+  writer.write(Integer.toString(columns.size()));
+  writer.write('\n');
+  for (  Column column : columns) {
+    column.save(writer);
+    writer.write('\n');
+  }
+  writer.write("columnGroupCount=");
+  writer.write(Integer.toString(columnGroups.size()));
+  writer.write('\n');
+  for (  ColumnGroup group : columnGroups) {
+    group.save(writer);
+    writer.write('\n');
+  }
+  writer.write("/e/\n");
+}

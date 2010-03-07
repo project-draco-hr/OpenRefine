@@ -2,7 +2,7 @@
   Gridworks.log("Saving all projects ...");
   for (  Project project : _projects.values()) {
     try {
-      saveProject(project);
+      project.save();
     }
  catch (    Exception e) {
       e.printStackTrace();

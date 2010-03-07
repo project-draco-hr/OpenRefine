@@ -1,0 +1,9 @@
+{
+  writer.write(Gridworks.s_version);
+  writer.write('\n');
+  writer.write(change.getClass().getName());
+  writer.write('\n');
+  Properties options=new Properties();
+  options.setProperty("mode","save");
+  change.save(writer,options);
+}

@@ -4,4 +4,5 @@
   _projectsMetadata=new HashMap<Long,ProjectMetadata>();
   _expressions=new LinkedList<String>();
   _projects=new HashMap<Long,Project>();
+  load();
 }

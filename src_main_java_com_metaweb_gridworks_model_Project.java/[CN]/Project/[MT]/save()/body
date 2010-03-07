@@ -1,0 +1,23 @@
+{
+  Gridworks.log("Saving project " + id + " ...");
+  File dir=ProjectManager.singleton.getProjectDir(id);
+  File tempFile=new File(dir,"data.temp.zip");
+  try {
+    saveToFile(tempFile);
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+    Gridworks.log("Failed to save project data");
+    return;
+  }
+  File file=new File(dir,"data.zip");
+  File oldFile=new File(dir,"data.old.zip");
+  if (file.exists()) {
+    file.renameTo(oldFile);
+  }
+  tempFile.renameTo(file);
+  if (oldFile.exists()) {
+    oldFile.delete();
+  }
+  Gridworks.log("Project saved.");
+}

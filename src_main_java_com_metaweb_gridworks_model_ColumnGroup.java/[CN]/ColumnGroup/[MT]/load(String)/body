@@ -1,0 +1,4 @@
+{
+  JSONObject obj=ParsingUtilities.evaluateJsonStringToObject(s);
+  return new ColumnGroup(obj.getInt("startColumnIndex"),obj.getInt("columnSpan"),obj.getInt("keyColumnIndex"));
+}

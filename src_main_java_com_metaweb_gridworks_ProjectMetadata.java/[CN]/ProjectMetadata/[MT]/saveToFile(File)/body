@@ -1,0 +1,12 @@
+{
+  Writer writer=new OutputStreamWriter(new FileOutputStream(file));
+  try {
+    Properties options=new Properties();
+    options.setProperty("mode","save");
+    JSONWriter jsonWriter=new JSONWriter(writer);
+    write(jsonWriter,options);
+  }
+  finally {
+    writer.close();
+  }
+}

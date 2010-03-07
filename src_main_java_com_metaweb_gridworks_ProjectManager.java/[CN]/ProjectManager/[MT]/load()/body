@@ -1,0 +1,20 @@
+{
+  try {
+    loadFromFile(new File(_workspaceDir,"workspace.json"));
+    return;
+  }
+ catch (  Exception e) {
+  }
+  try {
+    loadFromFile(new File(_workspaceDir,"workspace.temp.json"));
+    return;
+  }
+ catch (  Exception e) {
+  }
+  try {
+    loadFromFile(new File(_workspaceDir,"workspace.old.json"));
+    return;
+  }
+ catch (  Exception e) {
+  }
+}

@@ -1,0 +1,16 @@
+{
+  try {
+    String op=obj.getString("op");
+    Class<? extends AbstractOperation> klass=OperationRegistry.s_opNameToClass.get(op);
+    if (klass != null) {
+      Method reconstruct=klass.getMethod("reconstruct",Project.class,JSONObject.class);
+      if (reconstruct != null) {
+        return (AbstractOperation)reconstruct.invoke(null,project,obj);
+      }
+    }
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+  return null;
+}

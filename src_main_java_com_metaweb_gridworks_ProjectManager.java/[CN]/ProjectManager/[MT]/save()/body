@@ -1,16 +1,16 @@
 {
-  Gridworks.log("Saving project metadata ...");
-  File tempFile=new File(_workspaceDir,"projects.json.temp");
+  Gridworks.log("Saving all projects' metadata ...");
+  File tempFile=new File(_workspaceDir,"workspace.temp.json");
   try {
     saveToFile(tempFile);
   }
  catch (  Exception e) {
     e.printStackTrace();
-    Gridworks.log("Failed to save project");
+    Gridworks.log("Failed to save projects' metadata.");
     return;
   }
-  File file=new File(_workspaceDir,"projects.json");
-  File oldFile=new File(_workspaceDir,"projects.json.old");
+  File file=new File(_workspaceDir,"workspace.json");
+  File oldFile=new File(_workspaceDir,"workspace.old.json");
   if (file.exists()) {
     file.renameTo(oldFile);
   }
@@ -18,5 +18,5 @@
   if (oldFile.exists()) {
     oldFile.delete();
   }
-  Gridworks.log("Project metadata saved.");
+  Gridworks.log("All projects' metadata saved.");
 }

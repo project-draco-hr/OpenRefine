@@ -25,6 +25,8 @@
   writer.value(_columnName);
   writer.key("expression");
   writer.value("cell.recon.judgment");
+  writer.key("omitError");
+  writer.value(true);
   writer.endObject();
   writer.key("facetOptions");
   writer.object();

@@ -20,10 +20,8 @@
     nominalFacetChoice.selected=true;
     _selection.add(nominalFacetChoice);
   }
-  if (o.has("selectBlank")) {
-    _selectBlank=o.getBoolean("selectBlank");
-  }
-  if (o.has("selectError")) {
-    _selectError=o.getBoolean("selectError");
-  }
+  _omitBlank=JSONUtilities.getBoolean(o,"omitBlank",false);
+  _omitError=JSONUtilities.getBoolean(o,"omitError",false);
+  _selectBlank=JSONUtilities.getBoolean(o,"selectBlank",false);
+  _selectError=JSONUtilities.getBoolean(o,"selectError",false);
 }

@@ -18,6 +18,5 @@ synchronized (this) {
     if (oldFile.exists()) {
       oldFile.delete();
     }
-    Gridworks.log("Saved workspace.");
   }
 }

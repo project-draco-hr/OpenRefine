@@ -1,0 +1,17 @@
+{
+  try {
+    Project project=getProject(request);
+    ProjectManager.singleton.ensureProjectSaved(project.id);
+    response.setHeader("Content-Type","application/x-tar");
+    OutputStream os=response.getOutputStream();
+    try {
+      tarToOutputStream(ProjectManager.singleton.getProjectDir(project.id),os);
+    }
+  finally {
+      os.close();
+    }
+  }
+ catch (  Exception e) {
+    respondException(response,e);
+  }
+}

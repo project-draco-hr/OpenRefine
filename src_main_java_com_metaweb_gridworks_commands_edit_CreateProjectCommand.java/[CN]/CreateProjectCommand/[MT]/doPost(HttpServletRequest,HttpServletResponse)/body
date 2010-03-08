@@ -1,6 +1,6 @@
 {
   try {
-    Properties options=parseUrlParameters(request);
+    Properties options=ParsingUtilities.parseUrlParameters(request);
     Project project=new Project();
     internalImport(request,project,options);
     ProjectMetadata pm=new ProjectMetadata();

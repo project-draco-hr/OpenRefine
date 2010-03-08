@@ -1,0 +1,18 @@
+{
+  try {
+    Properties options=ParsingUtilities.parseUrlParameters(request);
+    long projectID=Project.generateID();
+    internalImport(request,options,projectID);
+    ProjectManager.singleton.importProject(projectID);
+    if (options.containsKey("project-name")) {
+      String projectName=options.getProperty("project-name");
+      if (projectName != null && projectName.length() > 0) {
+        ProjectManager.singleton.getProjectMetadata(projectID).setName(projectName);
+      }
+    }
+    redirect(response,"/project.html?project=" + projectID);
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

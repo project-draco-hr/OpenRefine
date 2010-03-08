@@ -1,0 +1,9 @@
+{
+  TarOutputStream tos=new TarOutputStream(os);
+  try {
+    tarDir("",dir,tos);
+  }
+  finally {
+    tos.close();
+  }
+}

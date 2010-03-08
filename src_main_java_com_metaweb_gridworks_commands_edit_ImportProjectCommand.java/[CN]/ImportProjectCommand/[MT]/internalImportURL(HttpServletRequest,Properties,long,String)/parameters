@@ -1,0 +1,4 @@
+HttpServletRequest request
+Properties options
+long projectID
+String urlString

@@ -1,4 +1,4 @@
 {
-  id=System.currentTimeMillis() + Math.round(Math.random() * 1000000000000L);
+  id=generateID();
   history=new History(this);
 }

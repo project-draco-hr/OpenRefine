@@ -1,3 +1,11 @@
 {
   super.init();
+  ProjectManager.initialize();
+  long period=1000 * 60 * 5;
+  _timer.scheduleAtFixedRate(new TimerTask(){
+    @Override public void run(){
+      ProjectManager.singleton.save(false);
+    }
+  }
+,period,period);
 }

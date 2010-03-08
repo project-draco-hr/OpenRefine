@@ -1,4 +1,6 @@
 {
-  _projects.put(project.id,project);
-  _projectsMetadata.put(project.id,projectMetadata);
+synchronized (this) {
+    _projects.put(project.id,project);
+    _projectsMetadata.put(project.id,projectMetadata);
+  }
 }

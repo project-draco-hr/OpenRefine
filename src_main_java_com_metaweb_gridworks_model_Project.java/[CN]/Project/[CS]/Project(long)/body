@@ -1,5 +1,4 @@
 {
   this.id=id;
   this.history=new History(this);
-  this.processManager=new ProcessManager();
 }

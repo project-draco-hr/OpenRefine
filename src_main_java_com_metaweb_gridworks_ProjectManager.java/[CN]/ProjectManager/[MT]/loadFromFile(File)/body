@@ -1,5 +1,5 @@
 {
-  Gridworks.log("Loading project metadata from " + file.getAbsolutePath());
+  Gridworks.log("Loading workspace from " + file.getAbsolutePath());
   _projectsMetadata.clear();
   _expressions.clear();
   FileReader reader=new FileReader(file);

@@ -1,5 +1,4 @@
 {
   id=System.currentTimeMillis() + Math.round(Math.random() * 1000000000000L);
   history=new History(this);
-  processManager=new ProcessManager();
 }

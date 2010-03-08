@@ -1,7 +1,8 @@
 {
+  _timer.cancel();
+  _timer=null;
   if (ProjectManager.singleton != null) {
-    ProjectManager.singleton.saveAllProjects();
-    ProjectManager.singleton.save();
+    ProjectManager.singleton.save(true);
     ProjectManager.singleton=null;
   }
   super.destroy();

@@ -1,0 +1,23 @@
+{
+synchronized (this) {
+    File tempFile=new File(_workspaceDir,"workspace.temp.json");
+    try {
+      saveToFile(tempFile);
+    }
+ catch (    Exception e) {
+      e.printStackTrace();
+      Gridworks.log("Failed to save workspace.");
+      return;
+    }
+    File file=new File(_workspaceDir,"workspace.json");
+    File oldFile=new File(_workspaceDir,"workspace.old.json");
+    if (file.exists()) {
+      file.renameTo(oldFile);
+    }
+    tempFile.renameTo(file);
+    if (oldFile.exists()) {
+      oldFile.delete();
+    }
+    Gridworks.log("Saved workspace.");
+  }
+}

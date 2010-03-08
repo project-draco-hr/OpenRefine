@@ -1,5 +1,4 @@
 {
-  ProjectManager.initialize();
   Command command=_commands.get(getCommandName(request));
   if (command != null) {
     command.doGet(request,response);

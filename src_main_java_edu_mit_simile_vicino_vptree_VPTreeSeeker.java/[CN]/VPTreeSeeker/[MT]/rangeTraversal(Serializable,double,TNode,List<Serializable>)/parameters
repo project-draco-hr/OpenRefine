@@ -1,4 +1,4 @@
 Serializable query
-float range
+double range
 TNode tNode
 List<Serializable> results

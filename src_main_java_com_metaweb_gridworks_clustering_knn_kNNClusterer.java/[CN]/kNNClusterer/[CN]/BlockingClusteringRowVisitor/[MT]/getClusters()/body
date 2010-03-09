@@ -1,5 +1,5 @@
 {
-  NGramTokenizer tokenizer=new NGramTokenizer(4,4,false,SimpleTokenizer.DEFAULT_TOKENIZER);
+  NGramTokenizer tokenizer=new NGramTokenizer(_blockingNgramSize,_blockingNgramSize,false,SimpleTokenizer.DEFAULT_TOKENIZER);
   Map<String,List<String>> blocks=new HashMap<String,List<String>>();
   for (  String s : _data) {
     Token[] tokens=tokenizer.tokenize(s);
@@ -22,9 +22,10 @@
     for (    String a : list) {
       for (      String b : list) {
         if (a == b)         continue;
+        if (clusters.containsKey(a) && clusters.get(a).contains(b))         continue;
+        if (clusters.containsKey(b) && clusters.get(b).contains(a))         continue;
         double d=_distance.d(a,b);
-        if (d <= _radius) {
-          System.out.println(a + " | " + b+ ": "+ d);
+        if (d <= _radius || _radius < 0) {
           Set<Serializable> l=null;
           if (!clusters.containsKey(a)) {
             l=new TreeSet<Serializable>();
@@ -39,5 +40,6 @@
       }
     }
   }
+  Gridworks.log("Calculated " + _distance.getCount() + " distances");
   return clusters;
 }

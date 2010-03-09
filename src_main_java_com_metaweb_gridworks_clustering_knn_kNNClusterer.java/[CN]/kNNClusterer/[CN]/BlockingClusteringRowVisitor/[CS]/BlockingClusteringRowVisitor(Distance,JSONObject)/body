@@ -3,10 +3,11 @@
   _config=o;
   _data=new HashSet<String>();
   try {
-    _radius=(float)o.getJSONObject("params").getDouble("radius");
+    JSONObject params=o.getJSONObject("params");
+    _radius=params.getDouble("radius");
+    _blockingNgramSize=params.getInt("blocking-ngram-size");
   }
  catch (  JSONException e) {
-    Gridworks.warn("No radius found, using default");
-    _radius=0.1f;
+    Gridworks.warn("No parameters found, using defaults");
   }
 }

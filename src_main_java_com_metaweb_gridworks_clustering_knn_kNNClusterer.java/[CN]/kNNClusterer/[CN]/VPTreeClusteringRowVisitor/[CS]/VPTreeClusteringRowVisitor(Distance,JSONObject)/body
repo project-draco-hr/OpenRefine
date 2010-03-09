@@ -3,10 +3,10 @@
   _config=o;
   _treeBuilder=new VPTreeBuilder(_distance);
   try {
-    _radius=(float)o.getJSONObject("params").getDouble("radius");
+    JSONObject params=o.getJSONObject("params");
+    _radius=params.getDouble("radius");
   }
  catch (  JSONException e) {
-    Gridworks.warn("No radius found, using default");
-    _radius=0.1f;
+    Gridworks.warn("No parameters found, using defaults");
   }
 }

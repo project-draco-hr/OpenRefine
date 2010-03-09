@@ -7,6 +7,5 @@
     _radius=params.getDouble("radius");
   }
  catch (  JSONException e) {
-    Gridworks.warn("No parameters found, using defaults");
   }
 }

@@ -55,6 +55,34 @@
     }
     return new Token(start,_index,TokenType.Identifier,_text.substring(start,_index));
   }
+ else   if (c == '/' && regexPossible) {
+    StringBuffer sb=new StringBuffer();
+    _index++;
+    while (_index < _limit) {
+      c=_text.charAt(_index);
+      if (c == '/') {
+        _index++;
+        boolean caseInsensitive=false;
+        if (_index < _limit && _text.charAt(_index) == 'i') {
+          caseInsensitive=true;
+          _index++;
+        }
+        return new RegexToken(start,_index,sb.toString(),caseInsensitive);
+      }
+ else       if (c == '\\') {
+        sb.append(c);
+        _index++;
+        if (_index < _limit) {
+          sb.append(_text.charAt(_index));
+        }
+      }
+ else {
+        sb.append(c);
+      }
+      _index++;
+    }
+    detail="Regex not properly closed";
+  }
  else   if ("+-*/.".indexOf(c) >= 0) {
     _index++;
     return new Token(start,_index,TokenType.Operator,_text.substring(start,_index));

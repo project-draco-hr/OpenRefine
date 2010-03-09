@@ -5,7 +5,7 @@
       Evaluable eval=parseExpression();
       l.add(eval);
       if (_token != null && _token.type == TokenType.Delimiter && _token.text.equals(",")) {
-        next();
+        next(true);
       }
  else {
         break;
@@ -13,7 +13,7 @@
     }
   }
   if (_token != null && _token.type == TokenType.Delimiter && _token.text.equals(closingDelimiter)) {
-    next();
+    next(false);
   }
  else {
     throw makeException("Missing " + closingDelimiter);

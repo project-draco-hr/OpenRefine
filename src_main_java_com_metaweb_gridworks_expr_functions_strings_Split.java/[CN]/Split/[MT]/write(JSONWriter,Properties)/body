@@ -3,7 +3,7 @@
   writer.key("description");
   writer.value("Returns the array of strings obtained by splitting s with separator sep");
   writer.key("params");
-  writer.value("string s, string sep");
+  writer.value("string s, string or regex sep");
   writer.key("returns");
   writer.value("array");
   writer.endObject();

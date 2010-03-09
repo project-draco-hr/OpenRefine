@@ -5,17 +5,22 @@
   Evaluable eval=null;
   if (_token.type == TokenType.String) {
     eval=new LiteralExpr(_token.text);
-    next();
+    next(false);
+  }
+ else   if (_token.type == TokenType.Regex) {
+    RegexToken t=(RegexToken)_token;
+    eval=new LiteralExpr(Pattern.compile(_token.text,t.caseInsensitive ? Pattern.CASE_INSENSITIVE : 0));
+    next(false);
   }
  else   if (_token.type == TokenType.Number) {
     eval=new LiteralExpr(((NumberToken)_token).value);
-    next();
+    next(false);
   }
  else   if (_token.type == TokenType.Operator && _token.text.equals("-")) {
-    next();
+    next(true);
     if (_token != null && _token.type == TokenType.Number) {
       eval=new LiteralExpr(-((NumberToken)_token).value);
-      next();
+      next(false);
     }
  else {
       throw makeException("Bad negative number");
@@ -23,7 +28,7 @@
   }
  else   if (_token.type == TokenType.Identifier) {
     String text=_token.text;
-    next();
+    next(false);
     if (_token == null || _token.type != TokenType.Delimiter || !_token.text.equals("(")) {
       eval=new VariableExpr(text);
     }
@@ -33,7 +38,7 @@
       if (f == null && c == null) {
         throw makeException("Unknown function or control named " + text);
       }
-      next();
+      next(true);
       List<Evaluable> args=parseExpressionList(")");
       if (c != null) {
         Evaluable[] argsA=makeArray(args);
@@ -49,10 +54,10 @@
     }
   }
  else   if (_token.type == TokenType.Delimiter && _token.text.equals("(")) {
-    next();
+    next(true);
     eval=parseExpression();
     if (_token != null && _token.type == TokenType.Delimiter && _token.text.equals(")")) {
-      next();
+      next(false);
     }
  else {
       throw makeException("Missing )");
@@ -63,14 +68,14 @@
   }
   while (_token != null) {
     if (_token.type == TokenType.Operator && _token.text.equals(".")) {
-      next();
+      next(false);
       if (_token == null || _token.type != TokenType.Identifier) {
         throw makeException("Missing function name");
       }
       String identifier=_token.text;
-      next();
+      next(false);
       if (_token != null && _token.type == TokenType.Delimiter && _token.text.equals("(")) {
-        next();
+        next(true);
         Function f=ControlFunctionRegistry.getFunction(identifier);
         if (f == null) {
           throw makeException("Unknown function " + identifier);
@@ -84,7 +89,7 @@
       }
     }
  else     if (_token.type == TokenType.Delimiter && _token.text.equals("[")) {
-      next();
+      next(true);
       List<Evaluable> args=parseExpressionList("]");
       args.add(0,eval);
       eval=new FunctionCallExpr(makeArray(args),ControlFunctionRegistry.getFunction("get"));

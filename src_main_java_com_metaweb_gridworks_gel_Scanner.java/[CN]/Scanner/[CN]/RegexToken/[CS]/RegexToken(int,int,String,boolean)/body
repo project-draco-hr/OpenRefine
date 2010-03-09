@@ -1,0 +1,4 @@
+{
+  super(start,end,TokenType.Regex,text);
+  this.caseInsensitive=caseInsensitive;
+}

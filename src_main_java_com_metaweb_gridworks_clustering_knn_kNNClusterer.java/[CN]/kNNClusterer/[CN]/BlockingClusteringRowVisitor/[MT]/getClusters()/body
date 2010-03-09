@@ -1,24 +1,43 @@
 {
-  Map<Serializable,List<Serializable>> map=new HashMap<Serializable,List<Serializable>>();
-  ClusterNGramBlocker blocker=new ClusterNGramBlocker();
-  blocker.block(_data);
-  for (int i=0; i < blocker.numCorrectPairs(); i++) {
-    Pair p=blocker.getPair(i);
-    String a=p.getA().unwrap();
-    String b=p.getB().unwrap();
-    List<Serializable> l=null;
-    if (!map.containsKey(a)) {
-      l=new ArrayList<Serializable>();
-      map.put(a,l);
-    }
+  NGramTokenizer tokenizer=new NGramTokenizer(4,4,false,SimpleTokenizer.DEFAULT_TOKENIZER);
+  Map<String,List<String>> blocks=new HashMap<String,List<String>>();
+  for (  String s : _data) {
+    Token[] tokens=tokenizer.tokenize(s);
+    for (    Token t : tokens) {
+      String ss=t.getValue();
+      List<String> l=null;
+      if (!blocks.containsKey(ss)) {
+        l=new ArrayList<String>();
+        blocks.put(ss,l);
+      }
  else {
-      l=map.get(a);
-    }
-    double d=_distance.d(a,b);
-    System.out.println(a + " | " + b+ ": "+ d);
-    if (d <= _radius) {
-      l.add(b);
+        l=blocks.get(ss);
+      }
+      l.add(s);
     }
   }
-  return map;
+  Map<Serializable,Set<Serializable>> clusters=new HashMap<Serializable,Set<Serializable>>();
+  for (  List<String> list : blocks.values()) {
+    if (list.size() < 2)     continue;
+    for (    String a : list) {
+      for (      String b : list) {
+        if (a == b)         continue;
+        double d=_distance.d(a,b);
+        if (d <= _radius) {
+          System.out.println(a + " | " + b+ ": "+ d);
+          Set<Serializable> l=null;
+          if (!clusters.containsKey(a)) {
+            l=new TreeSet<Serializable>();
+            l.add(a);
+            clusters.put(a,l);
+          }
+ else {
+            l=clusters.get(a);
+          }
+          l.add(b);
+        }
+      }
+    }
+  }
+  return clusters;
 }

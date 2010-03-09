@@ -1,8 +1,7 @@
 {
   _distance=d;
   _config=o;
-  _data=new MatchData();
-  _set=new HashSet<String>();
+  _data=new HashSet<String>();
   try {
     _radius=(float)o.getJSONObject("params").getDouble("radius");
   }

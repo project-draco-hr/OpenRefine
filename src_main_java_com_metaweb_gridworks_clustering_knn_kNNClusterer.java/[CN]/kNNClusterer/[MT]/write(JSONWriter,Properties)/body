@@ -1,6 +1,6 @@
 {
   writer.array();
-  for (  List<Serializable> m : _clusters) {
+  for (  Set<Serializable> m : _clusters) {
     if (m.size() > 1) {
       writer.array();
       for (      Serializable s : m) {

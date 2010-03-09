@@ -1,4 +1,3 @@
 {
-  float d=Math.abs((float)this.distance.score(x,y));
-  return d / (x.length() + y.length());
+  return this.distance.score(x,y);
 }

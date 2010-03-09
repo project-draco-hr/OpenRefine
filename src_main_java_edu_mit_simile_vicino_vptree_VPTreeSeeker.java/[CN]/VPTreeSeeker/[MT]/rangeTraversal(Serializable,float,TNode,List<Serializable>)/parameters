@@ -1,4 +1,4 @@
-Object query
+Serializable query
 float range
 TNode tNode
 List<Serializable> results

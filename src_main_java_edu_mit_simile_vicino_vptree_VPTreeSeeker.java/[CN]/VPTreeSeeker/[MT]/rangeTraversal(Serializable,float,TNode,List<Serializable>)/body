@@ -1,6 +1,6 @@
 {
   if (tNode != null) {
-    float distance=this.distance.d(query.toString(),tNode.toString());
+    double distance=this.distance.d(query.toString(),tNode.get().toString());
     if (distance < range) {
       results.add(tNode.get());
     }

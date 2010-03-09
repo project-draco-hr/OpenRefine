@@ -1,3 +1,5 @@
 {
-  this.setEncodingConfidence(Integer.parseInt(confidence));
+  if (confidence != null) {
+    this.setEncodingConfidence(Integer.parseInt(confidence));
+  }
 }

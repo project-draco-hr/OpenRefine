@@ -1,0 +1,24 @@
+{
+  Map<Serializable,List<Serializable>> map=new HashMap<Serializable,List<Serializable>>();
+  ClusterNGramBlocker blocker=new ClusterNGramBlocker();
+  blocker.block(_data);
+  for (int i=0; i < blocker.numCorrectPairs(); i++) {
+    Pair p=blocker.getPair(i);
+    String a=p.getA().unwrap();
+    String b=p.getB().unwrap();
+    List<Serializable> l=null;
+    if (!map.containsKey(a)) {
+      l=new ArrayList<Serializable>();
+      map.put(a,l);
+    }
+ else {
+      l=map.get(a);
+    }
+    double d=_distance.d(a,b);
+    System.out.println(a + " | " + b+ ": "+ d);
+    if (d <= _radius) {
+      l.add(b);
+    }
+  }
+  return map;
+}

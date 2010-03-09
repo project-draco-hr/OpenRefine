@@ -1,0 +1,13 @@
+{
+  _distance=d;
+  _config=o;
+  _data=new MatchData();
+  _set=new HashSet<String>();
+  try {
+    _radius=(float)o.getJSONObject("params").getDouble("radius");
+  }
+ catch (  JSONException e) {
+    Gridworks.warn("No radius found, using default");
+    _radius=0.1f;
+  }
+}

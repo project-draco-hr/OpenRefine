@@ -1,2 +1,0 @@
-List<? extends Serializable> o1
-List<? extends Serializable> o2

@@ -1,0 +1,21 @@
+{
+  String k=(String)key.__tojava__(String.class);
+  Object v=_obj.getField(k,_bindings);
+  if (v != null) {
+    if (v instanceof HasFields) {
+      return new JythonHasFieldsWrapper((HasFields)v,_bindings);
+    }
+ else     if (v instanceof String) {
+      return new PyString((String)v);
+    }
+ else     if (v instanceof PyObject) {
+      return (PyObject)v;
+    }
+ else {
+      return new JythonObjectWrapper(v);
+    }
+  }
+ else {
+    return null;
+  }
+}

@@ -1,0 +1,26 @@
+{
+  try {
+    for (Enumeration<Object> e=bindings.keys(); e.hasMoreElements(); ) {
+      Object k=e.nextElement();
+      Object v=bindings.get(k);
+      if (v instanceof HasFields) {
+        _engine.set((String)k,new JythonHasFieldsWrapper((HasFields)v,bindings));
+      }
+ else {
+        _engine.set((String)k,v);
+      }
+    }
+    _engine.exec(_code);
+    Object result=_engine.eval(_functionName + "()");
+    if (result instanceof JythonObjectWrapper) {
+      result=((JythonObjectWrapper)result)._obj;
+    }
+ else     if (result instanceof JythonHasFieldsWrapper) {
+      result=((JythonHasFieldsWrapper)result)._obj;
+    }
+    return result;
+  }
+ catch (  PyException e) {
+    return new EvalError(e.toString());
+  }
+}

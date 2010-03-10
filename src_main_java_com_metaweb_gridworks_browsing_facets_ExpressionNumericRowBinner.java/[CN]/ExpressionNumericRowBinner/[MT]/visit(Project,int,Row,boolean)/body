@@ -3,16 +3,14 @@
   Properties bindings=ExpressionUtils.createBindings(project);
   ExpressionUtils.bind(bindings,row,rowIndex,cell);
   Object value=_evaluable.evaluate(bindings);
-  if (value != null) {
-    if (value.getClass().isArray()) {
-      Object[] a=(Object[])value;
-      for (      Object v : a) {
-        processValue(v);
-      }
+  if (value != null && value.getClass().isArray()) {
+    Object[] a=(Object[])value;
+    for (    Object v : a) {
+      processValue(v);
     }
+  }
  else {
-      processValue(value);
-    }
+    processValue(value);
   }
   return false;
 }

@@ -1,0 +1,5 @@
+Evaluable evaluable
+int cellIndex
+boolean selectNonNumeric
+boolean selectBlank
+boolean selectError

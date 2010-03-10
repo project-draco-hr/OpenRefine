@@ -4,5 +4,6 @@ synchronized (project) {
     Column column=project.columnModel.getColumnByName(_commonColumnName);
     column.setReconConfig(_oldReconConfig);
     column.setReconStats(_oldReconStats);
+    column.clearPrecomputes();
   }
 }

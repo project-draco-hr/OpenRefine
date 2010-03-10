@@ -42,5 +42,11 @@
       writer.value(_to);
     }
   }
+  writer.key("nonNumericCount");
+  writer.value(_nonNumericCount);
+  writer.key("blankCount");
+  writer.value(_blankCount);
+  writer.key("errorCount");
+  writer.value(_errorCount);
   writer.endObject();
 }

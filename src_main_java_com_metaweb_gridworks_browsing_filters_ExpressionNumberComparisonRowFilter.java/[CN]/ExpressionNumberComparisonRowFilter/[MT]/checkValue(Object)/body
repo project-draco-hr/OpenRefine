@@ -1,0 +1,16 @@
+{
+  if (ExpressionUtils.isError(v)) {
+    return _selectError;
+  }
+ else   if (ExpressionUtils.isNonBlankData(v)) {
+    if (v instanceof Number) {
+      return checkValue(((Number)v).doubleValue());
+    }
+ else {
+      return _selectNonNumeric;
+    }
+  }
+ else {
+    return _selectBlank;
+  }
+}

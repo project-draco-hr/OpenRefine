@@ -24,4 +24,10 @@
       _selected=true;
     }
   }
+  _selectNonNumeric=JSONUtilities.getBoolean(o,"selectNonNumeric",true);
+  _selectBlank=JSONUtilities.getBoolean(o,"selectBlank",true);
+  _selectError=JSONUtilities.getBoolean(o,"selectError",true);
+  if (!_selectNonNumeric || !_selectBlank || !_selectError) {
+    _selected=true;
+  }
 }

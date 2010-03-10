@@ -3,19 +3,17 @@
   Properties bindings=ExpressionUtils.createBindings(project);
   ExpressionUtils.bind(bindings,row,rowIndex,cell);
   Object value=_evaluable.evaluate(bindings);
-  if (value != null) {
-    if (value.getClass().isArray()) {
-      Object[] a=(Object[])value;
-      for (      Object v : a) {
-        if (v instanceof Number && checkValue(((Number)v).doubleValue())) {
-          return true;
-        }
-      }
-    }
- else {
-      if (value instanceof Number && checkValue(((Number)value).doubleValue())) {
+  if (value != null && value.getClass().isArray()) {
+    Object[] a=(Object[])value;
+    for (    Object v : a) {
+      if (checkValue(v)) {
         return true;
       }
+    }
+  }
+ else {
+    if (checkValue(value)) {
+      return true;
     }
   }
   return false;

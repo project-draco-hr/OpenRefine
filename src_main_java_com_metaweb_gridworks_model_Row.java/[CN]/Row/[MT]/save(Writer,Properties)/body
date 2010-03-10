@@ -1,7 +1,7 @@
 {
   JSONWriter jsonWriter=new JSONWriter(writer);
   try {
-    write(jsonWriter,new Properties());
+    write(jsonWriter,options);
   }
  catch (  JSONException e) {
     e.printStackTrace();

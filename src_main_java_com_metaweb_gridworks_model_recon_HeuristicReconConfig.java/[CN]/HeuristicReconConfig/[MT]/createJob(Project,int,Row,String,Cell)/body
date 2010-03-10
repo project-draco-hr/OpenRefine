@@ -13,8 +13,18 @@
       jsonWriter.key("/type/object/type");
       jsonWriter.value(typeID);
       for (      ColumnDetail c : columnDetails) {
-        int cellIndex=project.columnModel.getColumnByName(c.columnName).getCellIndex();
-        Cell cell2=row.getCell(cellIndex);
+        int detailCellIndex=project.columnModel.getColumnByName(c.columnName).getCellIndex();
+        Cell cell2=row.getCell(detailCellIndex);
+        if (cell2 == null || !ExpressionUtils.isNonBlankData(cell2.value)) {
+          int cellIndex=project.columnModel.getColumnByName(columnName).getCellIndex();
+          if (cellIndex < row.contextRowSlots.length) {
+            int contextRowIndex=row.contextRowSlots[cellIndex];
+            if (contextRowIndex >= 0 && contextRowIndex < project.rows.size()) {
+              Row row2=project.rows.get(contextRowIndex);
+              cell2=row2.getCell(detailCellIndex);
+            }
+          }
+        }
         if (cell2 != null && ExpressionUtils.isNonBlankData(cell2.value)) {
           jsonWriter.key(c.property.id);
           if (cell2.recon != null && cell2.recon.match != null) {

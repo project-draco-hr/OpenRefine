@@ -1,0 +1,6 @@
+{
+  this.minNGramSize=minNGramSize;
+  this.maxNGramSize=maxNGramSize;
+  this.keepOldTokens=keepOldTokens;
+  this.innerTokenizer=innerTokenizer;
+}

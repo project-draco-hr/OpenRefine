@@ -1,0 +1,8 @@
+{
+  char[] c=s.toCharArray();
+  StringBuffer b=new StringBuffer();
+  for (int i=0; i < c.length; i++) {
+    b.append(translate(c[i]));
+  }
+  return b.toString();
+}

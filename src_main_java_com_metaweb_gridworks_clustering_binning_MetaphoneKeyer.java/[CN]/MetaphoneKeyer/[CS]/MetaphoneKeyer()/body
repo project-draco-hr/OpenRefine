@@ -1,0 +1,4 @@
+{
+  _metaphone=new Metaphone();
+  _metaphone.setMaxCodeLen(2000);
+}

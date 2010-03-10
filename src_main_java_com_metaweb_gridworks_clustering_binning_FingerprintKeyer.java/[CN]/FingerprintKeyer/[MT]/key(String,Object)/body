@@ -13,5 +13,5 @@
     b.append(i.next());
     b.append(' ');
   }
-  return b.toString();
+  return asciify(b.toString());
 }

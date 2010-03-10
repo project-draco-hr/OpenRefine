@@ -11,5 +11,5 @@
   while (i.hasNext()) {
     b.append(i.next());
   }
-  return b.toString();
+  return asciify(b.toString());
 }

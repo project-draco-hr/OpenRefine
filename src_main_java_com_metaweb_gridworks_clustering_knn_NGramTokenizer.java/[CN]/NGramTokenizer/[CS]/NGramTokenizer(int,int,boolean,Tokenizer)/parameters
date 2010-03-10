@@ -1,0 +1,4 @@
+int minNGramSize
+int maxNGramSize
+boolean keepOldTokens
+Tokenizer innerTokenizer

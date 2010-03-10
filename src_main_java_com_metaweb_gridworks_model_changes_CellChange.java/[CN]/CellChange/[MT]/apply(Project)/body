@@ -1,3 +1,4 @@
 {
   project.rows.get(row).setCell(cellIndex,newCell);
+  project.columnModel.getColumnByCellIndex(cellIndex).clearPrecomputes();
 }

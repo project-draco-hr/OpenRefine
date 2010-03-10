@@ -5,7 +5,9 @@
   try {
     JSONObject params=o.getJSONObject("params");
     _radius=params.getDouble("radius");
+    Gridworks.warn("Use radius: " + _radius);
     _blockingNgramSize=params.getInt("blocking-ngram-size");
+    Gridworks.warn("Use blocking ngram size: " + _blockingNgramSize);
   }
  catch (  JSONException e) {
     Gridworks.warn("No parameters found, using defaults");

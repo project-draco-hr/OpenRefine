@@ -16,9 +16,11 @@
       l.add(s);
     }
   }
+  int block_count=0;
   Map<Serializable,Set<Serializable>> clusters=new HashMap<Serializable,Set<Serializable>>();
   for (  List<String> list : blocks.values()) {
     if (list.size() < 2)     continue;
+    block_count++;
     for (    String a : list) {
       for (      String b : list) {
         if (a == b)         continue;
@@ -40,6 +42,7 @@
       }
     }
   }
-  Gridworks.log("Calculated " + _distance.getCount() + " distances");
+  Gridworks.log("Calculated " + _distance.getCount() + " distances in "+ block_count+ " blocks.");
+  _distance.resetCounter();
   return clusters;
 }

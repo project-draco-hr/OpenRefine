@@ -4,6 +4,7 @@
   if (k instanceof NGramFingerprintKeyer) {
     try {
       int size=_config.getJSONObject("params").getInt("ngram-size");
+      Gridworks.log("Using ngram size: " + size);
       _params=new Object[1];
       _params[0]=size;
     }

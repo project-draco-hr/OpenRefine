@@ -4,7 +4,7 @@
   }
  else   if (ExpressionUtils.isNonBlankData(v)) {
     if (v instanceof Number) {
-      return checkValue(((Number)v).doubleValue());
+      return _selectNumeric && checkValue(((Number)v).doubleValue());
     }
  else {
       return _selectNonNumeric;

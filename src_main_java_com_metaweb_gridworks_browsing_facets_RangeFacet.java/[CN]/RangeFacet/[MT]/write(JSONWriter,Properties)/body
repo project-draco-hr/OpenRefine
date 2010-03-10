@@ -42,6 +42,8 @@
       writer.value(_to);
     }
   }
+  writer.key("numericCount");
+  writer.value(_numericCount);
   writer.key("nonNumericCount");
   writer.value(_nonNumericCount);
   writer.key("blankCount");

@@ -49,9 +49,15 @@
     }
     detail="String not properly closed";
   }
- else   if (Character.isLetter(c)) {
-    while (_index < _limit && Character.isLetterOrDigit(_text.charAt(_index))) {
-      _index++;
+ else   if (Character.isLetter(c) || c == '_') {
+    while (_index < _limit) {
+      char c1=_text.charAt(_index);
+      if (c1 == '_' || Character.isLetterOrDigit(c1)) {
+        _index++;
+      }
+ else {
+        break;
+      }
     }
     return new Token(start,_index,TokenType.Identifier,_text.substring(start,_index));
   }

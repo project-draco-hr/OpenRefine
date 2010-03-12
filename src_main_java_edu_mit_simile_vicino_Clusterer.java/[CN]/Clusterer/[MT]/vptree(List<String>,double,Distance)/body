@@ -1,0 +1,24 @@
+{
+  long start=System.currentTimeMillis();
+  VPTreeBuilder treeBuilder=new VPTreeBuilder(distance);
+  for (  String s : strings) {
+    treeBuilder.populate(s);
+  }
+  Map<Serializable,Set<Serializable>> cluster_map=treeBuilder.getClusters(radius);
+  List<Set<Serializable>> clusters=new ArrayList<Set<Serializable>>(cluster_map.values());
+  Collections.sort(clusters,new SizeComparator());
+  System.out.println("Calculated " + distance.getCount() + " distances.");
+  distance.resetCounter();
+  int found=0;
+  for (  Set<Serializable> m : clusters) {
+    if (m.size() > 1) {
+      found++;
+      for (      Serializable s : m) {
+        System.out.println(s);
+      }
+      System.out.println();
+    }
+  }
+  long stop=System.currentTimeMillis();
+  System.out.println("Found " + found + " clusters in "+ (stop - start)+ " ms");
+}

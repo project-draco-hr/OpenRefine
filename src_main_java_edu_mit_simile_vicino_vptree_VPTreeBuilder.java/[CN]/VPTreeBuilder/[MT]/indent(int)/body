@@ -1,0 +1,7 @@
+{
+  StringBuffer b=new StringBuffer();
+  for (int j=0; j < i; j++) {
+    b.append(' ');
+  }
+  return b.toString();
+}

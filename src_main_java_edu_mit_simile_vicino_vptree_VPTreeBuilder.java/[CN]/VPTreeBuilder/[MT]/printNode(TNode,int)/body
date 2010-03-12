@@ -1,0 +1,7 @@
+{
+  if (node != null) {
+    if (DEBUG)     System.out.println(indent(level++) + node.get() + " ["+ node.getMedian()+ "]");
+    printNode(node.getLeft(),level);
+    printNode(node.getRight(),level);
+  }
+}

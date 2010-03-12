@@ -1,0 +1,8 @@
+{
+  Distance distance=getDistance(args[0]);
+  List<String> strings=getStrings(args[1]);
+  double radius=Double.parseDouble(args[2]);
+  int blocking_size=Integer.parseInt(args[3]);
+  vptree(strings,radius,distance);
+  ngram_blocking(strings,radius,distance,blocking_size);
+}

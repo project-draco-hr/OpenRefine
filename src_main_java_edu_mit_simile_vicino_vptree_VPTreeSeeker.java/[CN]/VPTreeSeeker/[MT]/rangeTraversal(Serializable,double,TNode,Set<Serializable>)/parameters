@@ -1,4 +1,4 @@
 Serializable query
 double range
 TNode tNode
-List<Serializable> results
+Set<Serializable> results

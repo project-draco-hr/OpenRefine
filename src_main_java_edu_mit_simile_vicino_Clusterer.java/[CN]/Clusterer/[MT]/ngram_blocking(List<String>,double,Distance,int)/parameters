@@ -1,0 +1,4 @@
+List<String> strings
+double radius
+Distance distance
+int blockSize

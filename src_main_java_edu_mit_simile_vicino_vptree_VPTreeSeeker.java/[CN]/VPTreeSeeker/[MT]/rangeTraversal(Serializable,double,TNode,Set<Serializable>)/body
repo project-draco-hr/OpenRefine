@@ -1,19 +1,25 @@
 {
+  if (DEBUG)   System.out.println("> " + tNode);
   if (tNode != null) {
     double distance=this.distance.d(query.toString(),tNode.get().toString());
-    if (distance < range) {
+    if (distance <= range) {
+      if (DEBUG)       System.out.println("*** add ***");
       results.add(tNode.get());
     }
     if ((distance + range) < tNode.getMedian()) {
+      if (DEBUG)       System.out.println("left: " + distance + " + "+ range+ " < "+ tNode.getMedian());
       rangeTraversal(query,range,tNode.getLeft(),results);
     }
  else     if ((distance - range) > tNode.getMedian()) {
+      if (DEBUG)       System.out.println("right: " + distance + " + "+ range+ " > "+ tNode.getMedian());
       rangeTraversal(query,range,tNode.getRight(),results);
     }
  else {
+      if (DEBUG)       System.out.println("left & right: " + distance + " + "+ range+ " = "+ tNode.getMedian());
       rangeTraversal(query,range,tNode.getLeft(),results);
       rangeTraversal(query,range,tNode.getRight(),results);
     }
   }
+  if (DEBUG)   System.out.println("< " + tNode);
   return results;
 }

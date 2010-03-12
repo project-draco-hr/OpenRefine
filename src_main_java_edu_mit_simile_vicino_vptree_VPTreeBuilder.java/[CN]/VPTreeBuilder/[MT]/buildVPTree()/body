@@ -1,7 +1,14 @@
 {
+  if (DEBUG) {
+    for (    Node n : this.nodes) {
+      System.out.println(n.get().toString());
+    }
+    System.out.println();
+  }
   Node[] nodes_array=this.nodes.toArray(new Node[this.nodes.size()]);
   VPTree tree=new VPTree();
-  tree.setRoot(addNode(nodes_array,0,nodes_array.length - 1));
-  Gridworks.log("Built vptree with " + nodes_array.length + " nodes");
+  if (nodes_array.length > 0) {
+    tree.setRoot(makeNode(nodes_array,0,nodes_array.length - 1));
+  }
   return tree;
 }

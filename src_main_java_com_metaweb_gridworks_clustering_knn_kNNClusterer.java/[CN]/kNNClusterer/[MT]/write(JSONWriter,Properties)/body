@@ -2,13 +2,19 @@
   writer.array();
   for (  Set<Serializable> m : _clusters) {
     if (m.size() > 1) {
-      writer.array();
+      Map<Serializable,Integer> internal_counts=new HashMap<Serializable,Integer>();
       for (      Serializable s : m) {
+        internal_counts.put(s,_counts.get(s));
+      }
+      List<Entry<Serializable,Integer>> values=new ArrayList<Entry<Serializable,Integer>>(internal_counts.entrySet());
+      Collections.sort(values,new ValuesComparator());
+      writer.array();
+      for (      Entry<Serializable,Integer> e : values) {
         writer.object();
         writer.key("v");
-        writer.value(s);
+        writer.value(e.getKey());
         writer.key("c");
-        writer.value(1);
+        writer.value(e.getValue());
         writer.endObject();
       }
       writer.endArray();

@@ -4,6 +4,7 @@
     Object v=cell.value;
     String s=(v instanceof String) ? ((String)v) : v.toString().intern();
     _data.add(s);
+    count(s);
   }
   return false;
 }

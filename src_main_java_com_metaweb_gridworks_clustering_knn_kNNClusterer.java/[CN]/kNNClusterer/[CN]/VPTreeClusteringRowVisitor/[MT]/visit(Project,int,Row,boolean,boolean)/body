@@ -4,6 +4,7 @@
     Object v=cell.value;
     String s=(v instanceof String) ? ((String)v) : v.toString();
     _treeBuilder.populate(s);
+    count(s);
   }
   return false;
 }

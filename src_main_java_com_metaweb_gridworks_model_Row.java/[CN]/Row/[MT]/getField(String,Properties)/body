@@ -11,5 +11,10 @@
  else   if ("index".equals(name)) {
     return bindings.get("rowIndex");
   }
+ else   if ("record".equals(name)) {
+    int rowIndex=(Integer)bindings.get("rowIndex");
+    int recordRowIndex=(contextRows != null && contextRows.size() > 0) ? contextRows.get(0) : rowIndex;
+    return new Record(recordRowIndex,rowIndex);
+  }
   return null;
 }

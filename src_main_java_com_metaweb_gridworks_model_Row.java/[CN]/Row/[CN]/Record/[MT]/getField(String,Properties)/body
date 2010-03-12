@@ -1,0 +1,6 @@
+{
+  if ("cells".equals(name)) {
+    return new RecordCells(_recordRowIndex);
+  }
+  return null;
+}

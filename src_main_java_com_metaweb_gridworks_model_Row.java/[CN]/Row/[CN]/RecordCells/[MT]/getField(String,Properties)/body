@@ -1,0 +1,23 @@
+{
+  Project project=(Project)bindings.get("project");
+  Column column=project.columnModel.getColumnByName(name);
+  if (column != null) {
+    Row recordRow=project.rows.get(_recordRowIndex);
+    int cellIndex=column.getCellIndex();
+    CellTuple cells=new CellTuple();
+    int recordIndex=recordRow.recordIndex;
+    int count=project.rows.size();
+    for (int r=_recordRowIndex; r < count; r++) {
+      Row row=project.rows.get(r);
+      if (row.recordIndex > recordIndex) {
+        break;
+      }
+      Cell cell=row.getCell(cellIndex);
+      if (cell != null && ExpressionUtils.isNonBlankData(cell.value)) {
+        cells.add(cell);
+      }
+    }
+    return cells;
+  }
+  return null;
+}

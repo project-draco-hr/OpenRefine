@@ -2,8 +2,24 @@
   _name=o.getString("name");
   _expression=o.getString("expression");
   _columnName=o.getString("columnName");
-  _cellIndex=project.columnModel.getColumnByName(_columnName).getCellIndex();
-  _eval=MetaParser.parse(_expression);
+  if (_columnName.length() > 0) {
+    Column column=project.columnModel.getColumnByName(_columnName);
+    if (column != null) {
+      _cellIndex=column.getCellIndex();
+    }
+ else {
+      _errorMessage="No column named " + _columnName;
+    }
+  }
+ else {
+    _cellIndex=-1;
+  }
+  try {
+    _eval=MetaParser.parse(_expression);
+  }
+ catch (  ParsingException e) {
+    _errorMessage=e.getMessage();
+  }
   _mode=o.getString("mode");
   if ("min".equals(_mode)) {
     if (o.has("from")) {

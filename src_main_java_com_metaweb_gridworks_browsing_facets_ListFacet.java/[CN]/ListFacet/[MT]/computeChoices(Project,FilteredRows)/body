@@ -1,18 +1,20 @@
 {
-  ExpressionNominalRowGrouper grouper=new ExpressionNominalRowGrouper(_eval,_cellIndex);
-  filteredRows.accept(project,grouper);
-  _choices.clear();
-  _choices.addAll(grouper.choices.values());
-  for (  NominalFacetChoice choice : _selection) {
-    String valueString=choice.decoratedValue.value.toString();
-    if (grouper.choices.containsKey(valueString)) {
-      grouper.choices.get(valueString).selected=true;
-    }
+  if (_eval != null && _errorMessage == null) {
+    ExpressionNominalRowGrouper grouper=new ExpressionNominalRowGrouper(_eval,_cellIndex);
+    filteredRows.accept(project,grouper);
+    _choices.clear();
+    _choices.addAll(grouper.choices.values());
+    for (    NominalFacetChoice choice : _selection) {
+      String valueString=choice.decoratedValue.value.toString();
+      if (grouper.choices.containsKey(valueString)) {
+        grouper.choices.get(valueString).selected=true;
+      }
  else {
-      choice.count=0;
-      _choices.add(choice);
+        choice.count=0;
+        _choices.add(choice);
+      }
     }
+    _blankCount=grouper.blankCount;
+    _errorCount=grouper.errorCount;
   }
-  _blankCount=grouper.blankCount;
-  _errorCount=grouper.errorCount;
 }

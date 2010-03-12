@@ -1,6 +1,6 @@
 {
   if (_token == null) {
-    throw makeException("Expression ends too early");
+    throw makeException("Expecting something more at end of expression");
   }
   Evaluable eval=null;
   if (_token.type == TokenType.String) {
@@ -64,7 +64,7 @@
     }
   }
  else {
-    throw makeException("Missing number, string, identifier, or parenthesized expression");
+    throw makeException("Missing number, string, identifier, regex, or parenthesized expression");
   }
   while (_token != null) {
     if (_token.type == TokenType.Operator && _token.text.equals(".")) {

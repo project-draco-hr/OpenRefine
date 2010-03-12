@@ -6,5 +6,7 @@
     facet.write(writer,options);
   }
   writer.endArray();
+  writer.key("includeDependent");
+  writer.value(_includeDependent);
   writer.endObject();
 }

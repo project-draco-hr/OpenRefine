@@ -1,5 +1,5 @@
 {
-  ConjunctiveFilteredRows cfr=new ConjunctiveFilteredRows(contextual);
+  ConjunctiveFilteredRows cfr=new ConjunctiveFilteredRows(includeContextual,_includeDependent);
   for (  Facet facet : _facets) {
     if (facet != except) {
       RowFilter rowFilter=facet.getRowFilter();

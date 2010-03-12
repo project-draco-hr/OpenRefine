@@ -14,7 +14,7 @@
       this.eval=eval;
       return this;
     }
-    public boolean visit(    Project project,    int rowIndex,    Row row,    boolean contextual){
+    public boolean visit(    Project project,    int rowIndex,    Row row,    boolean includeContextual,    boolean includeDependent){
       Cell cell=row.getCell(cellIndex);
       ExpressionUtils.bind(bindings,row,rowIndex,cell);
       Serializable v=ExpressionUtils.wrapStorable(eval.evaluate(bindings));

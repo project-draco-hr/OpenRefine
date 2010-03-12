@@ -1,9 +1,9 @@
 {
   boolean r=false;
   if (total >= start && total < start + limit) {
-    r=internalVisit(rowIndex,row,contextual);
+    r=internalVisit(rowIndex,row,includeContextual,includeDependent);
   }
-  if (!contextual) {
+  if (!includeContextual) {
     total++;
   }
   return r;

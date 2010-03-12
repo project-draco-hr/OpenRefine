@@ -1,0 +1,16 @@
+{
+  if (_includeContextual) {
+    if (row.contextRows != null && lastVisitedRow < rowIndex - 1) {
+      for (      int contextRowIndex : row.contextRows) {
+        if (contextRowIndex > lastVisitedRow) {
+          visitor.visit(project,contextRowIndex,project.rows.get(contextRowIndex),true,false);
+          lastVisitedRow=contextRowIndex;
+        }
+      }
+    }
+    visitor.visit(project,rowIndex,row,false,false);
+  }
+ else {
+    visitor.visit(project,rowIndex,row,false,false);
+  }
+}

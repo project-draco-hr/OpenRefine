@@ -1,8 +1,21 @@
 {
-  if (_contextual) {
-    contextualAccept(project,visitor);
-  }
- else {
-    simpleAccept(project,visitor);
+  int lastVisitedRow=-1;
+  int lastRecordRowAccepted=-1;
+  int c=project.rows.size();
+  for (int i=0; i < c; i++) {
+    Row row=project.rows.get(i);
+    if (checkRow(project,i,row)) {
+      if (row.recordIndex >= 0) {
+        lastRecordRowAccepted=i;
+      }
+      visitRow(project,visitor,i,row,lastVisitedRow);
+      lastVisitedRow=i;
+    }
+ else     if (_includeDependent && row.recordIndex < 0 && row.contextRows != null && row.contextRows.size() > 0) {
+      if (row.contextRows.get(0) == lastRecordRowAccepted) {
+        visitor.visit(project,i,row,false,true);
+        lastVisitedRow=i;
+      }
+    }
   }
 }

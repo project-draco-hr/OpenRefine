@@ -1,0 +1,5 @@
+Project project
+RowVisitor visitor
+int rowIndex
+Row row
+int lastVisitedRow

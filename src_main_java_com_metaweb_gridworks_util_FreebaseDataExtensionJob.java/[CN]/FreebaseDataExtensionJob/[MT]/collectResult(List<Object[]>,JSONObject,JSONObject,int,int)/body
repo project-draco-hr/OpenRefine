@@ -27,9 +27,11 @@
         if (isOwnColumn) {
           storeCell(rows,startRowIndex2++,startColumnIndex2++,o);
         }
-        int[] rowcol=collectResult(rows,extNode.getJSONArray("properties"),o,startRowIndex,startColumnIndex2);
-        startRowIndex=rowcol[0];
-        maxColIndex=Math.max(maxColIndex,rowcol[1]);
+        if (hasSubProperties) {
+          int[] rowcol=collectResult(rows,extNode.getJSONArray("properties"),o,startRowIndex,startColumnIndex2);
+          startRowIndex=rowcol[0];
+          maxColIndex=Math.max(maxColIndex,rowcol[1]);
+        }
       }
       return new int[]{startRowIndex,maxColIndex};
     }

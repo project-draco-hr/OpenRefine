@@ -12,7 +12,7 @@
     jsonWriter.value(guid);
   }
   jsonWriter.endArray();
-  formulateQueryNode(node,jsonWriter);
+  formulateQueryNode(node.getJSONArray("properties"),jsonWriter);
   jsonWriter.endObject();
   jsonWriter.endArray();
   jsonWriter.endObject();

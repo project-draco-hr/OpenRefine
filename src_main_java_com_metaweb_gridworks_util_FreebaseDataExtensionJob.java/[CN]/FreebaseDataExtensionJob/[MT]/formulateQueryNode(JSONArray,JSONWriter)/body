@@ -1,0 +1,6 @@
+{
+  int l=propertiesA.length();
+  for (int i=0; i < l; i++) {
+    formulateQueryNode(propertiesA.getJSONObject(i),writer);
+  }
+}

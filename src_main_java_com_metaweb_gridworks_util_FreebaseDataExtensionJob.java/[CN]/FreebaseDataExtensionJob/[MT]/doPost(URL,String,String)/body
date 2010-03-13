@@ -1,0 +1,16 @@
+{
+  URLConnection connection=url.openConnection();
+  connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+  connection.setConnectTimeout(5000);
+  DataOutputStream dos=new DataOutputStream(connection.getOutputStream());
+  try {
+    String data=name + "=" + ParsingUtilities.encode(load);
+    dos.writeBytes(data);
+  }
+  finally {
+    dos.flush();
+    dos.close();
+  }
+  connection.connect();
+  return connection.getInputStream();
+}

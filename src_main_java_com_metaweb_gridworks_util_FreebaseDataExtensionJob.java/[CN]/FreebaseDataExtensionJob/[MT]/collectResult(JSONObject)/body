@@ -1,0 +1,7 @@
+{
+  List<Object[]> rows=new ArrayList<Object[]>();
+  collectResult(rows,extension,obj,0,0);
+  Object[][] data=new Object[rows.size()][columnCount];
+  rows.toArray(data);
+  return new DataExtension(data);
+}

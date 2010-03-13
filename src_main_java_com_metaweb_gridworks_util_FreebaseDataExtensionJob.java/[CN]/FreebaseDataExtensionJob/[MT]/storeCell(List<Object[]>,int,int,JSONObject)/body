@@ -1,0 +1,3 @@
+{
+  storeCell(rows,row,col,new ReconCandidate(obj.getString("id"),obj.getString("guid"),obj.getString("name"),JSONUtilities.getStringArray(obj,"type"),100));
+}

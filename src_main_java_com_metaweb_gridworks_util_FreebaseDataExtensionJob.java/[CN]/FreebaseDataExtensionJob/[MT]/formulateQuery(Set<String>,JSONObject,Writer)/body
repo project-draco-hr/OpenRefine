@@ -1,0 +1,19 @@
+{
+  JSONWriter jsonWriter=new JSONWriter(writer);
+  jsonWriter.object();
+  jsonWriter.key("query");
+  jsonWriter.array();
+  jsonWriter.object();
+  jsonWriter.key("guid");
+  jsonWriter.value(null);
+  jsonWriter.key("guid|=");
+  jsonWriter.array();
+  for (  String guid : guids) {
+    jsonWriter.value(guid);
+  }
+  jsonWriter.endArray();
+  formulateQueryNode(node,jsonWriter);
+  jsonWriter.endObject();
+  jsonWriter.endArray();
+  jsonWriter.endObject();
+}

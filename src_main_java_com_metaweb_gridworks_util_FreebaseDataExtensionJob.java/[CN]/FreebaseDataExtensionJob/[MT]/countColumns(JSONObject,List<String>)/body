@@ -1,0 +1,15 @@
+{
+  if (obj.has("properties") && !obj.isNull("properties")) {
+    boolean included=(obj.has("included") && obj.getBoolean("included"));
+    if (included && columnNames != null) {
+      columnNames.add(obj.getString("name"));
+    }
+    return (included ? 1 : 0) + countColumns(obj.getJSONArray("properties"),columnNames);
+  }
+ else {
+    if (columnNames != null) {
+      columnNames.add(obj.getString("name"));
+    }
+    return 1;
+  }
+}

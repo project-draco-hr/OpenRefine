@@ -1,0 +1,40 @@
+{
+  String propertyID=extNode.getString("id");
+  String expectedTypeID=extNode.getString("expected");
+  JSONArray a=resultNode != null && resultNode.has(propertyID) && !resultNode.isNull(propertyID) ? resultNode.getJSONArray(propertyID) : null;
+  if (expectedTypeID.startsWith("/type/")) {
+    if (a != null) {
+      int l=a.length();
+      for (int r=0; r < l; r++) {
+        Object o=a.isNull(r) ? null : a.get(r);
+        if (o instanceof Serializable) {
+          storeCell(rows,startRowIndex++,startColumnIndex,o);
+        }
+      }
+    }
+    return new int[]{startRowIndex,startColumnIndex + 1};
+  }
+ else {
+    boolean hasSubProperties=(extNode.has("properties") && !extNode.isNull("properties"));
+    boolean isOwnColumn=!hasSubProperties || (extNode.has("included") && extNode.getBoolean("included"));
+    if (a != null) {
+      int maxColIndex=startColumnIndex;
+      int l=a.length();
+      for (int r=0; r < l; r++) {
+        JSONObject o=a.isNull(r) ? null : a.getJSONObject(r);
+        int startColumnIndex2=startColumnIndex;
+        int startRowIndex2=startRowIndex;
+        if (isOwnColumn) {
+          storeCell(rows,startRowIndex2++,startColumnIndex2++,o);
+        }
+        int[] rowcol=collectResult(rows,extNode.getJSONArray("properties"),o,startRowIndex,startColumnIndex2);
+        startRowIndex=rowcol[0];
+        maxColIndex=Math.max(maxColIndex,rowcol[1]);
+      }
+      return new int[]{startRowIndex,maxColIndex};
+    }
+ else {
+      return new int[]{startRowIndex,countColumns(extNode,null)};
+    }
+  }
+}

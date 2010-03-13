@@ -1,0 +1,6 @@
+{
+  while (row >= rows.size()) {
+    rows.add(new Object[columnCount]);
+  }
+  rows.get(row)[col]=value;
+}

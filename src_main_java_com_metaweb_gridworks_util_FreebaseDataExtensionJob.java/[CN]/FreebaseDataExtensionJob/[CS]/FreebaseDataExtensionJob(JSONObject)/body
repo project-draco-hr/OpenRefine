@@ -1,0 +1,4 @@
+{
+  this.extension=obj;
+  this.columnCount=(obj.has("properties") && !obj.isNull("properties")) ? countColumns(obj.getJSONArray("properties"),columnNames) : 0;
+}

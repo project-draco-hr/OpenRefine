@@ -1,0 +1,5 @@
+List<Object[]> rows
+JSONArray subProperties
+JSONObject resultNode
+int startRowIndex
+int startColumnIndex

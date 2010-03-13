@@ -1,0 +1,36 @@
+{
+  String propertyID=node.getString("id");
+  String expectedTypeID=node.getString("expected");
+  writer.key(propertyID);
+  writer.array();
+{
+    if (!expectedTypeID.startsWith("/type/")) {
+      writer.object();
+      writer.key("limit");
+      writer.value(10);
+{
+        boolean hasSubProperties=(node.has("properties") && !node.isNull("properties"));
+        if (!hasSubProperties || (node.has("included") && node.getBoolean("included"))) {
+          writer.key("name");
+          writer.value(null);
+          writer.key("id");
+          writer.value(null);
+          writer.key("guid");
+          writer.value(null);
+          writer.key("type");
+          writer.array();
+          writer.endArray();
+        }
+        if (hasSubProperties) {
+          JSONArray a=node.getJSONArray("properties");
+          int l=a.length();
+          for (int i=0; i < l; i++) {
+            formulateQueryNode(a.getJSONObject(i),writer);
+          }
+        }
+      }
+      writer.endObject();
+    }
+  }
+  writer.endArray();
+}

@@ -1,0 +1,3 @@
+Set<String> guids
+JSONObject node
+Writer writer

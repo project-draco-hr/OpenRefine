@@ -1,3 +1,3 @@
 {
-  return _treeBuilder.getClusters(_radius);
+  return _clusterer.getClusters(_radius);
 }

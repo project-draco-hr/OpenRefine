@@ -2,7 +2,5 @@
   BlockingClusteringRowVisitor visitor=new BlockingClusteringRowVisitor(_distance,_config);
   FilteredRows filteredRows=engine.getAllFilteredRows(true);
   filteredRows.accept(_project,visitor);
-  Map<Serializable,Set<Serializable>> clusters=visitor.getClusters();
-  _clusters=new ArrayList<Set<Serializable>>(clusters.values());
-  Collections.sort(_clusters,new SizeComparator());
+  _clusters=visitor.getClusters();
 }

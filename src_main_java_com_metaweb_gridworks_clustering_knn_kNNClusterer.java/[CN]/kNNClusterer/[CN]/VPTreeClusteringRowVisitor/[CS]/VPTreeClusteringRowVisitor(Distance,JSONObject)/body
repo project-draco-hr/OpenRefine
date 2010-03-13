@@ -1,7 +1,7 @@
 {
   _distance=d;
   _config=o;
-  _treeBuilder=new VPTreeBuilder(_distance);
+  _clusterer=new VPTreeClusterer(_distance);
   try {
     JSONObject params=o.getJSONObject("params");
     _radius=params.getDouble("radius");

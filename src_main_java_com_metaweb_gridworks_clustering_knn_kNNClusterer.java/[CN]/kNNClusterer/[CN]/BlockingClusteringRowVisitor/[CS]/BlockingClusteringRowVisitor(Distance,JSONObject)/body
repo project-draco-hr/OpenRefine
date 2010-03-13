@@ -12,4 +12,5 @@
  catch (  JSONException e) {
     Gridworks.warn("No parameters found, using defaults");
   }
+  _clusterer=new NGramClusterer(_distance,_blockingNgramSize);
 }

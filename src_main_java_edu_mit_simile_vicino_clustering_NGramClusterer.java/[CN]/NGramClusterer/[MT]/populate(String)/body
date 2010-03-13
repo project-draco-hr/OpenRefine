@@ -1,0 +1,15 @@
+{
+  Token[] tokens=_tokenizer.tokenize(s);
+  for (  Token t : tokens) {
+    String ss=t.getValue();
+    Set<String> l=null;
+    if (!blocks.containsKey(ss)) {
+      l=new TreeSet<String>();
+      blocks.put(ss,l);
+    }
+ else {
+      l=blocks.get(ss);
+    }
+    l.add(s);
+  }
+}

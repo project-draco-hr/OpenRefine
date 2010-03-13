@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns the type of o");
+  writer.key("params");
+  writer.value("object o");
+  writer.key("returns");
+  writer.value("string");
+  writer.endObject();
+}

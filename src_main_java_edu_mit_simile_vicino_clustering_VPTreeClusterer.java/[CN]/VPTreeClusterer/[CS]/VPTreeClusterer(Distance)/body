@@ -1,0 +1,4 @@
+{
+  _distance=d;
+  _treeBuilder=new VPTreeBuilder(d);
+}

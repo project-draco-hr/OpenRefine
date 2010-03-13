@@ -1,0 +1,25 @@
+{
+  VPTree tree=_treeBuilder.buildVPTree();
+  Set<Node> nodes=_treeBuilder.getNodes();
+  VPTreeSeeker seeker=new VPTreeSeeker(_distance,tree);
+  Map<Serializable,Boolean> flags=new HashMap<Serializable,Boolean>();
+  for (  Node n : nodes) {
+    flags.put(n.get(),true);
+  }
+  Map<Serializable,Set<Serializable>> map=new HashMap<Serializable,Set<Serializable>>();
+  for (  Node n : nodes) {
+    Serializable s=n.get();
+    if (flags.get(s)) {
+      Set<Serializable> results=seeker.range(s,radius);
+      for (      Serializable ss : results) {
+        flags.put(ss,false);
+      }
+      if (results.size() > 1) {
+        map.put(s,results);
+      }
+    }
+  }
+  List<Set<Serializable>> clusters=new ArrayList<Set<Serializable>>(map.values());
+  Collections.sort(clusters,new SizeComparator());
+  return clusters;
+}

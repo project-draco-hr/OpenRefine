@@ -1,0 +1,23 @@
+{
+  if (args.length == 1) {
+    Object v=args[0];
+    if (v != null) {
+      if (v instanceof String) {
+        return "string";
+      }
+ else       if (v instanceof Calendar) {
+        return "date";
+      }
+ else       if (v instanceof Number) {
+        return "number";
+      }
+ else       if (v.getClass().isArray()) {
+        return "array";
+      }
+ else {
+        return v.getClass().getName();
+      }
+    }
+  }
+  return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " expects a parameter");
+}

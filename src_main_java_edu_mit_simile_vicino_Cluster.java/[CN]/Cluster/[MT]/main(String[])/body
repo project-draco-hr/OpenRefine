@@ -1,0 +1,3 @@
+{
+  (new Cluster()).init(args);
+}

@@ -9,10 +9,12 @@
  else   if (delta < 0) {
     return null;
   }
-  TNode vpNode=new TNode(nodes[begin + getRandomIndex(delta)].get());
+  Node randomNode=nodes[begin + getRandomIndex(delta)];
+  TNode vpNode=new TNode(randomNode.get());
   if (DEBUG)   System.out.println("\nvp-node: " + vpNode.get().toString());
   calculateDistances(vpNode,nodes,begin,end);
   orderDistances(nodes,begin,end);
+  fixVantagPoint(randomNode,nodes,begin,end);
   if (DEBUG) {
     for (int i=begin; i <= end; i++) {
       System.out.println(" +-- " + nodes[i].getDistance() + " --> "+ nodes[i].get());

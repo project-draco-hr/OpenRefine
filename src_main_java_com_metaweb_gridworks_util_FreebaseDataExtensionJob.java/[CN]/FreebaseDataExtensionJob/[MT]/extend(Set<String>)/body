@@ -1,8 +1,7 @@
 {
   StringWriter writer=new StringWriter();
   formulateQuery(guids,extension,writer);
-  URL url=new URL("http://api.freebase.com/api/service/mqlread");
-  InputStream is=doPost(url,"query",writer.toString());
+  InputStream is=doMqlRead(writer.toString());
   try {
     String s=ParsingUtilities.inputStreamToString(is);
     JSONObject o=ParsingUtilities.evaluateJsonStringToObject(s);

@@ -17,7 +17,7 @@
  else {
     boolean hasSubProperties=(extNode.has("properties") && !extNode.isNull("properties"));
     boolean isOwnColumn=!hasSubProperties || (extNode.has("included") && extNode.getBoolean("included"));
-    if (a != null) {
+    if (a != null && a.length() > 0) {
       int maxColIndex=startColumnIndex;
       int l=a.length();
       for (int r=0; r < l; r++) {
@@ -29,14 +29,16 @@
         }
         if (hasSubProperties) {
           int[] rowcol=collectResult(rows,extNode.getJSONArray("properties"),o,startRowIndex,startColumnIndex2);
-          startRowIndex=rowcol[0];
-          maxColIndex=Math.max(maxColIndex,rowcol[1]);
+          startRowIndex2=rowcol[0];
+          startColumnIndex2=rowcol[1];
         }
+        startRowIndex=startRowIndex2;
+        maxColIndex=Math.max(maxColIndex,startColumnIndex2);
       }
       return new int[]{startRowIndex,maxColIndex};
     }
  else {
-      return new int[]{startRowIndex,countColumns(extNode,null)};
+      return new int[]{startRowIndex,startColumnIndex + countColumns(extNode,null)};
     }
   }
 }

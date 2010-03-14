@@ -8,6 +8,8 @@
       writer.object();
       writer.key("limit");
       writer.value(10);
+      writer.key("optional");
+      writer.value(true);
 {
         boolean hasSubProperties=(node.has("properties") && !node.isNull("properties"));
         if (!hasSubProperties || (node.has("included") && node.getBoolean("included"))) {

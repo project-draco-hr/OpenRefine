@@ -2,7 +2,7 @@
   int c=0;
   int l=a.length();
   for (int i=0; i < l; i++) {
-    c+=countColumns(a.getJSONObject(i),columnNames);
+    c+=countColumns(a.getJSONObject(i),columns,names,path);
   }
   return c;
 }

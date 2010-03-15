@@ -38,7 +38,7 @@
       return new int[]{startRowIndex,maxColIndex};
     }
  else {
-      return new int[]{startRowIndex,startColumnIndex + countColumns(extNode,null)};
+      return new int[]{startRowIndex,startColumnIndex + countColumns(extNode,null,new ArrayList<String>(),new ArrayList<String>())};
     }
   }
 }

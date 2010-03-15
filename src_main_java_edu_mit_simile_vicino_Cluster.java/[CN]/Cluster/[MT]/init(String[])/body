@@ -31,4 +31,5 @@
     log("NGram clusterer found these clusters the other method couldn't: ");
     diff(ngram_clusters,vptree_clusters);
   }
+  System.exit(0);
 }

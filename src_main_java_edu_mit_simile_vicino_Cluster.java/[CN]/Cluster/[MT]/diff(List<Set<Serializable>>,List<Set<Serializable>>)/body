@@ -5,10 +5,7 @@
   }
   for (  Set<Serializable> s : more) {
     if (!holder.contains(s)) {
-      for (      Serializable ss : s) {
-        log(ss.toString());
-      }
-      log("");
+      printCluster(s);
     }
   }
 }

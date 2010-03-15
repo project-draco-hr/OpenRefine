@@ -9,7 +9,7 @@
  else   if (delta < 0) {
     return null;
   }
-  Node randomNode=nodes[begin + getRandomIndex(delta)];
+  Node randomNode=getVantagePoint(nodes,begin,end);
   TNode vpNode=new TNode(randomNode.get());
   if (DEBUG)   System.out.println("\nvp-node: " + vpNode.get().toString());
   calculateDistances(vpNode,nodes,begin,end);

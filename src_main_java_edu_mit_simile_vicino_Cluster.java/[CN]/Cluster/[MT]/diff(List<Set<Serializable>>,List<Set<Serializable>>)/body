@@ -1,0 +1,14 @@
+{
+  Set<Set<Serializable>> holder=new HashSet<Set<Serializable>>(base.size());
+  for (  Set<Serializable> s : base) {
+    holder.add(s);
+  }
+  for (  Set<Serializable> s : more) {
+    if (!holder.contains(s)) {
+      for (      Serializable ss : s) {
+        log(ss.toString());
+      }
+      log("");
+    }
+  }
+}

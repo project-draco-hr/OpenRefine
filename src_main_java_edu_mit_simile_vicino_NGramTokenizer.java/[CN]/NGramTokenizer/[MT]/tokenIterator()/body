@@ -1,3 +1,3 @@
 {
-  return innerTokenizer.tokenIterator();
+  return tokMap.values().iterator();
 }

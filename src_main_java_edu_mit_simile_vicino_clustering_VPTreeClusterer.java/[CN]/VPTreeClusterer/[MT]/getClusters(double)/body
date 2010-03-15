@@ -1,5 +1,6 @@
 {
   VPTree tree=_treeBuilder.buildVPTree();
+  System.out.println("distances after the tree: " + _distance.getCount());
   Set<Node> nodes=_treeBuilder.getNodes();
   VPTreeSeeker seeker=new VPTreeSeeker(_distance,tree);
   Map<Serializable,Boolean> flags=new HashMap<Serializable,Boolean>();

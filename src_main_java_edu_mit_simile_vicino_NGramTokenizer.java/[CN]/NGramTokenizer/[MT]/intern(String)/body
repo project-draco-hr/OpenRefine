@@ -1,3 +1,9 @@
 {
-  return innerTokenizer.intern(s);
+  s=s.toLowerCase().intern();
+  Token tok=tokMap.get(s);
+  if (tok == null) {
+    tok=new BasicToken(++nextId,s);
+    tokMap.put(s,tok);
+  }
+  return tok;
 }

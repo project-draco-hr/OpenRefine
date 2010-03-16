@@ -1,0 +1,28 @@
+{
+  Set<String> guids=new HashSet<String>();
+  for (int i=from; i < to; i++) {
+    int index=rowIndices.get(i);
+    Row row=_project.rows.get(index);
+    Cell cell=row.getCell(_cellIndex);
+    guids.add(cell.recon.match.topicGUID);
+  }
+  Map<String,DataExtension> map=null;
+  try {
+    map=_job.extend(guids);
+  }
+ catch (  Exception e) {
+    map=new HashMap<String,DataExtension>();
+  }
+  for (int i=from; i < to; i++) {
+    int index=rowIndices.get(i);
+    Row row=_project.rows.get(index);
+    Cell cell=row.getCell(_cellIndex);
+    String guid=cell.recon.match.topicGUID;
+    if (map.containsKey(guid)) {
+      dataExtensions.add(map.get(guid));
+    }
+ else {
+      dataExtensions.add(null);
+    }
+  }
+}

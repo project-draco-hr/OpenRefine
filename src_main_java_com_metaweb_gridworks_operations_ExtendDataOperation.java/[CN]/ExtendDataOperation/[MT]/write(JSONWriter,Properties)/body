@@ -1,0 +1,16 @@
+{
+  writer.object();
+  writer.key("op");
+  writer.value(OperationRegistry.s_opClassToName.get(this.getClass()));
+  writer.key("description");
+  writer.value(getBriefDescription(null));
+  writer.key("engineConfig");
+  writer.value(getEngineConfig());
+  writer.key("columnInsertIndex");
+  writer.value(_columnInsertIndex);
+  writer.key("baseColumnName");
+  writer.value(_baseColumnName);
+  writer.key("extension");
+  writer.value(_extension);
+  writer.endObject();
+}

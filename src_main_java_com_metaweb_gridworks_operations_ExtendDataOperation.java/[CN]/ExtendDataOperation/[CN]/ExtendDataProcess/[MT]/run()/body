@@ -1,0 +1,34 @@
+{
+  List<Integer> rowIndices=new ArrayList<Integer>();
+  List<DataExtension> dataExtensions=new ArrayList<DataExtension>();
+  try {
+    populateRowsWithMatches(rowIndices);
+  }
+ catch (  Exception e2) {
+    e2.printStackTrace();
+  }
+  int start=0;
+  while (start < rowIndices.size()) {
+    int end=Math.min(start + 20,rowIndices.size());
+    extendRows(rowIndices,dataExtensions,start,end);
+    start=end;
+    _progress=end * 100 / rowIndices.size();
+    try {
+      Thread.sleep(200);
+    }
+ catch (    InterruptedException e) {
+      if (_canceled) {
+        break;
+      }
+    }
+  }
+  if (!_canceled) {
+    List<String> columnNames=new ArrayList<String>();
+    for (    ColumnInfo info : _job.columns) {
+      columnNames.add(StringUtils.join(info.names," - "));
+    }
+    HistoryEntry historyEntry=new HistoryEntry(_project,_description,ExtendDataOperation.this,new DataExtensionChange(_baseColumnName,_columnInsertIndex,columnNames,rowIndices,dataExtensions));
+    _project.history.addEntry(historyEntry);
+    _project.processManager.onDoneProcess(this);
+  }
+}

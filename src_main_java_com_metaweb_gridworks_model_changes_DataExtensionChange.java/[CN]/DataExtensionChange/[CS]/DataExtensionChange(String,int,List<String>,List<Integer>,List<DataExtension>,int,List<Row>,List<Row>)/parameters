@@ -1,0 +1,8 @@
+String baseColumnName
+int columnInsertIndex
+List<String> columnNames
+List<Integer> rowIndices
+List<DataExtension> dataExtensions
+int firstNewCellIndex
+List<Row> oldRows
+List<Row> newRows

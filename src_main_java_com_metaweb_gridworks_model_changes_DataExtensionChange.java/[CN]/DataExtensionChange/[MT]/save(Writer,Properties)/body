@@ -1,0 +1,63 @@
+{
+  writer.write("baseColumnName=");
+  writer.write(_baseColumnName);
+  writer.write('\n');
+  writer.write("columnInsertIndex=");
+  writer.write(Integer.toString(_columnInsertIndex));
+  writer.write('\n');
+  writer.write("columnNameCount=");
+  writer.write(Integer.toString(_columnNames.size()));
+  writer.write('\n');
+  for (  String name : _columnNames) {
+    writer.write(name);
+    writer.write('\n');
+  }
+  writer.write("rowIndexCount=");
+  writer.write(Integer.toString(_rowIndices.size()));
+  writer.write('\n');
+  for (  Integer rowIndex : _rowIndices) {
+    writer.write(rowIndex.toString());
+    writer.write('\n');
+  }
+  writer.write("dataExtensionCount=");
+  writer.write(Integer.toString(_dataExtensions.size()));
+  writer.write('\n');
+  for (  DataExtension dataExtension : _dataExtensions) {
+    writer.write(Integer.toString(dataExtension.data.length));
+    writer.write('\n');
+    for (    Object[] values : dataExtension.data) {
+      for (      Object value : values) {
+        try {
+          JSONWriter jsonWriter=new JSONWriter(writer);
+          if (value instanceof ReconCandidate) {
+            ((ReconCandidate)value).write(jsonWriter,options);
+          }
+ else {
+            jsonWriter.value(value);
+          }
+        }
+ catch (        JSONException e) {
+        }
+        writer.write('\n');
+      }
+    }
+  }
+  writer.write("firstNewCellIndex=");
+  writer.write(Integer.toString(_firstNewCellIndex));
+  writer.write('\n');
+  writer.write("newRowCount=");
+  writer.write(Integer.toString(_newRows.size()));
+  writer.write('\n');
+  for (  Row row : _newRows) {
+    row.save(writer,options);
+    writer.write('\n');
+  }
+  writer.write("oldRowCount=");
+  writer.write(Integer.toString(_oldRows.size()));
+  writer.write('\n');
+  for (  Row row : _oldRows) {
+    row.save(writer,options);
+    writer.write('\n');
+  }
+  writer.write("/ec/\n");
+}

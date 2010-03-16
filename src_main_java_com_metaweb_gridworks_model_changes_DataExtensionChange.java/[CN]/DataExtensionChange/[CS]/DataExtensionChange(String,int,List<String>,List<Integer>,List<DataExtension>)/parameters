@@ -1,0 +1,5 @@
+String baseColumnName
+int columnInsertIndex
+List<String> columnNames
+List<Integer> rowIndices
+List<DataExtension> dataExtensions

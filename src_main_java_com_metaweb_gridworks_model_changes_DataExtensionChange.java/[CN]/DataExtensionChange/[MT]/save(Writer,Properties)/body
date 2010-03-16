@@ -12,6 +12,18 @@
     writer.write(name);
     writer.write('\n');
   }
+  writer.write("columnTypeCount=");
+  writer.write(Integer.toString(_columnTypes.size()));
+  writer.write('\n');
+  for (  FreebaseType type : _columnTypes) {
+    try {
+      JSONWriter jsonWriter=new JSONWriter(writer);
+      type.write(jsonWriter,options);
+    }
+ catch (    JSONException e) {
+    }
+    writer.write('\n');
+  }
   writer.write("rowIndexCount=");
   writer.write(Integer.toString(_rowIndices.size()));
   writer.write('\n');
@@ -27,16 +39,22 @@
     writer.write('\n');
     for (    Object[] values : dataExtension.data) {
       for (      Object value : values) {
-        try {
-          JSONWriter jsonWriter=new JSONWriter(writer);
-          if (value instanceof ReconCandidate) {
+        if (value == null) {
+          writer.write("null");
+        }
+ else         if (value instanceof ReconCandidate) {
+          try {
+            JSONWriter jsonWriter=new JSONWriter(writer);
             ((ReconCandidate)value).write(jsonWriter,options);
           }
- else {
-            jsonWriter.value(value);
+ catch (          JSONException e) {
           }
         }
- catch (        JSONException e) {
+ else         if (value instanceof String) {
+          writer.write(JSONObject.quote((String)value));
+        }
+ else {
+          writer.write(value.toString());
         }
         writer.write('\n');
       }

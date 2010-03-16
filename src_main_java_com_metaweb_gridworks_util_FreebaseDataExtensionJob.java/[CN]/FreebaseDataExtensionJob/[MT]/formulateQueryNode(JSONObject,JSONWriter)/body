@@ -1,6 +1,6 @@
 {
   String propertyID=node.getString("id");
-  String expectedTypeID=node.getString("expected");
+  String expectedTypeID=node.getJSONObject("expected").getString("id");
   writer.key(propertyID);
   writer.array();
 {

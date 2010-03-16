@@ -2,6 +2,7 @@
   _baseColumnName=baseColumnName;
   _columnInsertIndex=columnInsertIndex;
   _columnNames=columnNames;
+  _columnTypes=columnTypes;
   _rowIndices=rowIndices;
   _dataExtensions=dataExtensions;
   _firstNewCellIndex=firstNewCellIndex;

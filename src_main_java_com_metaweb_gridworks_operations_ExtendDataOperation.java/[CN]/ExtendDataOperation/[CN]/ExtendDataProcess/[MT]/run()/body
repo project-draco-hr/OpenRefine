@@ -27,7 +27,11 @@
     for (    ColumnInfo info : _job.columns) {
       columnNames.add(StringUtils.join(info.names," - "));
     }
-    HistoryEntry historyEntry=new HistoryEntry(_project,_description,ExtendDataOperation.this,new DataExtensionChange(_baseColumnName,_columnInsertIndex,columnNames,rowIndices,dataExtensions));
+    List<FreebaseType> columnTypes=new ArrayList<FreebaseType>();
+    for (    ColumnInfo info : _job.columns) {
+      columnTypes.add(info.expectedType);
+    }
+    HistoryEntry historyEntry=new HistoryEntry(_project,_description,ExtendDataOperation.this,new DataExtensionChange(_baseColumnName,_columnInsertIndex,columnNames,columnTypes,rowIndices,dataExtensions));
     _project.history.addEntry(historyEntry);
     _project.processManager.onDoneProcess(this);
   }

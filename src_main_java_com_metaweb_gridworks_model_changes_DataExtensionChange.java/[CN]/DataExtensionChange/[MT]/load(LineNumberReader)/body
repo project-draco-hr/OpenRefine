@@ -1,12 +1,13 @@
 {
   String baseColumnName=null;
   int columnInsertIndex=-1;
-  int firstNewCellIndex=-1;
   List<String> columnNames=null;
+  List<FreebaseType> columnTypes=null;
   List<Integer> rowIndices=null;
   List<DataExtension> dataExtensions=null;
   List<Row> oldRows=null;
   List<Row> newRows=null;
+  int firstNewCellIndex=-1;
   String line;
   while ((line=reader.readLine()) != null && !"/ec/".equals(line)) {
     int equal=line.indexOf('=');
@@ -37,6 +38,14 @@
         columnNames.add(line);
       }
     }
+ else     if ("columnTypeCount".equals(field)) {
+      int count=Integer.parseInt(value);
+      columnTypes=new ArrayList<FreebaseType>(count);
+      for (int i=0; i < count; i++) {
+        line=reader.readLine();
+        columnTypes.add(FreebaseType.load(ParsingUtilities.evaluateJsonStringToObject(line)));
+      }
+    }
  else     if ("dataExtensionCount".equals(field)) {
       int count=Integer.parseInt(value);
       dataExtensions=new ArrayList<DataExtension>(count);
@@ -50,11 +59,13 @@
             line=reader.readLine();
             JSONTokener t=new JSONTokener(line);
             Object o=t.nextValue();
-            if (o instanceof JSONObject) {
-              row[c]=ReconCandidate.load((JSONObject)o);
-            }
+            if (o != JSONObject.NULL) {
+              if (o instanceof JSONObject) {
+                row[c]=ReconCandidate.load((JSONObject)o);
+              }
  else {
-              row[c]=o;
+                row[c]=o;
+              }
             }
           }
           data[r]=row;
@@ -79,6 +90,6 @@
       }
     }
   }
-  DataExtensionChange change=new DataExtensionChange(baseColumnName,columnInsertIndex,columnNames,rowIndices,dataExtensions,firstNewCellIndex,oldRows,newRows);
+  DataExtensionChange change=new DataExtensionChange(baseColumnName,columnInsertIndex,columnNames,columnTypes,rowIndices,dataExtensions,firstNewCellIndex,oldRows,newRows);
   return change;
 }

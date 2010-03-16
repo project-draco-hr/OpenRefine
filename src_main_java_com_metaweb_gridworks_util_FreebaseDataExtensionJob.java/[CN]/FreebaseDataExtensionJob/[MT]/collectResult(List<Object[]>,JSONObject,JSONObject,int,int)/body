@@ -1,6 +1,6 @@
 {
   String propertyID=extNode.getString("id");
-  String expectedTypeID=extNode.getString("expected");
+  String expectedTypeID=extNode.getJSONObject("expected").getString("id");
   JSONArray a=resultNode != null && resultNode.has(propertyID) && !resultNode.isNull(propertyID) ? resultNode.getJSONArray(propertyID) : null;
   if (expectedTypeID.startsWith("/type/")) {
     if (a != null) {

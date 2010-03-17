@@ -3,17 +3,28 @@
     Project project=getProject(request);
     Engine engine=getEngine(request,project);
     String format=request.getParameter("format");
-    PrintWriter writer=response.getWriter();
     Exporter exporter=null;
     if ("tripleloader".equalsIgnoreCase(format)) {
       exporter=new TripleloaderExporter();
+    }
+ else     if ("html".equalsIgnoreCase(format)) {
+      exporter=new HtmlTableExporter();
+    }
+ else     if ("xls".equalsIgnoreCase(format)) {
+      exporter=new XlsExporter();
     }
  else {
       exporter=new TsvExporter();
     }
     response.setCharacterEncoding("UTF-8");
     response.setHeader("Content-Type",exporter.getContentType());
-    exporter.export(project,new Properties(),engine,writer);
+    if (exporter.takeWriter()) {
+      PrintWriter writer=response.getWriter();
+      exporter.export(project,new Properties(),engine,writer);
+    }
+ else {
+      exporter.export(project,new Properties(),engine,response.getOutputStream());
+    }
   }
  catch (  Exception e) {
     respondException(response,e);

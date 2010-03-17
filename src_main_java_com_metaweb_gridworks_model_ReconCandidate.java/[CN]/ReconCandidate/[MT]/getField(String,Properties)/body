@@ -1,6 +1,6 @@
 {
   if ("id".equals(name)) {
-    return topicName;
+    return topicID;
   }
  else   if ("guid".equals(name)) {
     return topicGUID;

@@ -11,7 +11,7 @@
  else       if (v instanceof Number) {
         return "number";
       }
- else       if (v.getClass().isArray()) {
+ else       if (v.getClass().isArray() || v instanceof List<?>) {
         return "array";
       }
  else {

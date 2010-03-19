@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Sums numbers in array a");
+  writer.key("params");
+  writer.value("array a");
+  writer.key("returns");
+  writer.value("number");
+  writer.endObject();
+}

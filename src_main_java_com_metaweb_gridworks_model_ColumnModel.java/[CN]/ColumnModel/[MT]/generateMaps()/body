@@ -1,8 +1,10 @@
 {
   _nameToColumn=new HashMap<String,Column>();
   _cellIndexToColumn=new HashMap<Integer,Column>();
+  _columnNames=new ArrayList<String>();
   for (  Column column : columns) {
     _nameToColumn.put(column.getName(),column);
     _cellIndexToColumn.put(column.getCellIndex(),column);
+    _columnNames.add(column.getName());
   }
 }

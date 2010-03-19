@@ -85,7 +85,31 @@
           }
         }
         if (value != null) {
-          newRow.setCell(c,new Cell(value,null));
+          Recon recon=null;
+          Hyperlink hyperlink=cell.getHyperlink();
+          if (hyperlink != null) {
+            String url=hyperlink.getAddress();
+            if (url.startsWith("http://") || url.startsWith("https://")) {
+              final String sig="freebase.com/view";
+              int i=url.indexOf(sig);
+              if (i > 0) {
+                String id=url.substring(i + sig.length());
+                int q=id.indexOf('?');
+                if (q > 0) {
+                  id=id.substring(0,q);
+                }
+                int h=id.indexOf('#');
+                if (h > 0) {
+                  id=id.substring(0,h);
+                }
+                recon=new Recon();
+                recon.judgment=Judgment.Matched;
+                recon.match=new ReconCandidate(id,"",value.toString(),new String[0],100);
+                recon.addCandidate(recon.match);
+              }
+            }
+          }
+          newRow.setCell(c,new Cell(value,recon));
           hasData=true;
         }
       }

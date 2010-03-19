@@ -1,10 +1,5 @@
 {
-  MultipartParser parser=null;
-  try {
-    parser=new MultipartParser(request,20 * 1024 * 1024);
-  }
- catch (  Exception e) {
-  }
+  MultipartParser parser=new MultipartParser(request,1024 * 1024 * 1024);
   if (parser != null) {
     Part part=null;
     String url=null;
@@ -29,24 +24,41 @@
     while ((part=parser.readNextPart()) != null) {
       if (part.isFile()) {
         FilePart filePart=(FilePart)part;
+        BufferedInputStream inputStream=new BufferedInputStream(filePart.getInputStream());
         Importer importer=guessImporter(options,null,filePart.getFileName());
         if (importer.takesReader()) {
+          byte[] bytes=new byte[1024 * 4];
+{
+            inputStream.mark(bytes.length);
+            inputStream.read(bytes);
+            inputStream.reset();
+          }
           CharsetDetector detector=new CharsetDetector();
           detector.setDeclaredEncoding("utf8");
-          CharsetMatch charsetMatch=detector.setText(enforceMarking(filePart.getInputStream())).detect();
-          options.setProperty("encoding",charsetMatch.getName());
-          options.setProperty("encoding_confidence",Integer.toString(charsetMatch.getConfidence()));
-          Gridworks.log("Best encoding guess: " + charsetMatch.getName() + " [confidence: "+ charsetMatch.getConfidence()+ "]");
-          Reader reader=charsetMatch.getReader();
+          Reader reader=null;
+          CharsetMatch[] charsetMatches=detector.setText(bytes).detectAll();
+          for (          CharsetMatch charsetMatch : charsetMatches) {
+            try {
+              reader=new InputStreamReader(inputStream,charsetMatch.getName());
+              options.setProperty("encoding",charsetMatch.getName());
+              options.setProperty("encoding_confidence",Integer.toString(charsetMatch.getConfidence()));
+              Gridworks.log("Best encoding guess: " + charsetMatch.getName() + " [confidence: "+ charsetMatch.getConfidence()+ "]");
+              break;
+            }
+ catch (            UnsupportedEncodingException e) {
+            }
+          }
+          if (reader == null) {
+            reader=new InputStreamReader(inputStream);
+          }
           try {
-            importer.read(charsetMatch.getReader(),project,options,skip,limit);
+            importer.read(reader,project,options,skip,limit);
           }
   finally {
             reader.close();
           }
         }
  else {
-          InputStream inputStream=filePart.getInputStream();
           try {
             importer.read(inputStream,project,options,skip,limit);
           }

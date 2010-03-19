@@ -1,7 +1,7 @@
 {
   String[] lines=s.split("\r\n|\r|\n");
   StringBuffer sb=new StringBuffer();
-  sb.append("def " + s_functionName + "():");
+  sb.append("def " + s_functionName + "(value, cell, cells, row, rowIndex):");
   for (int i=0; i < lines.length; i++) {
     sb.append("\n  " + lines[i]);
   }

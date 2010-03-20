@@ -1,6 +1,7 @@
 {
   List<SaveRecord> records=new ArrayList<SaveRecord>();
   Date now=new Date();
+  boolean gc=false;
 synchronized (this) {
     for (    long id : _projectsMetadata.keySet()) {
       ProjectMetadata metadata=_projectsMetadata.get(id);
@@ -11,8 +12,9 @@ synchronized (this) {
           long msecsOverdue=now.getTime() - project.lastSave.getTime();
           records.add(new SaveRecord(project,msecsOverdue));
         }
- else         if (now.getTime() - project.lastSave.getTime() > 1000 * 60 * 60) {
+ else         if (now.getTime() - project.lastSave.getTime() > s_projectFlushDelay) {
           _projects.remove(id);
+          gc=true;
         }
       }
     }
@@ -33,7 +35,7 @@ synchronized (this) {
     }
 );
     Gridworks.log(allModified ? "Saving all modified projects ..." : "Saving some modified projects ...");
-    for (int i=0; i < records.size() && (allModified || (new Date().getTime() - now.getTime() < 30000)); i++) {
+    for (int i=0; i < records.size() && (allModified || (new Date().getTime() - now.getTime() < s_quickSaveTimeout)); i++) {
       try {
         records.get(i).project.save();
       }
@@ -41,5 +43,8 @@ synchronized (this) {
         e.printStackTrace();
       }
     }
+  }
+  if (gc) {
+    System.gc();
   }
 }

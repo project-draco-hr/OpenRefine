@@ -1,10 +1,12 @@
 {
-  if (_projects.containsKey(id)) {
-    return _projects.get(id);
-  }
+synchronized (this) {
+    if (_projects.containsKey(id)) {
+      return _projects.get(id);
+    }
  else {
-    Project project=Project.load(getProjectDir(id),id);
-    _projects.put(id,project);
-    return project;
+      Project project=Project.load(getProjectDir(id),id);
+      _projects.put(id,project);
+      return project;
+    }
   }
 }

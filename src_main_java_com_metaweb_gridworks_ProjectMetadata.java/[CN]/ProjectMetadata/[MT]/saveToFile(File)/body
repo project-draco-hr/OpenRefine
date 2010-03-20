@@ -1,5 +1,5 @@
 {
-  Writer writer=new OutputStreamWriter(new FileOutputStream(file));
+  Writer writer=new OutputStreamWriter(new FileOutputStream(metadataFile));
   try {
     Properties options=new Properties();
     options.setProperty("mode","save");

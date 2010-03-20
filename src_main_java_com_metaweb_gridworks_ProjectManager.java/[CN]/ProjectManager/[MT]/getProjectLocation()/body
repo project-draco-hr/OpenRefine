@@ -12,16 +12,18 @@
       return data;
     }
  catch (    Error e) {
-      Gridworks.log("Failed to use jdatapath to detect user data path. Resorting to environment variables.");
-      String appData=System.getenv("APPDATA");
+      Gridworks.log("Failed to use jdatapath to detect user data path. " + "Resorting to environment variables.");
       File parentDir=null;
-      if (appData != null && appData.length() > 0) {
-        parentDir=new File(appData);
-      }
+{
+        String appData=System.getenv("APPDATA");
+        if (appData != null && appData.length() > 0) {
+          parentDir=new File(appData);
+        }
  else {
-        String userProfile=System.getenv("USERPROFILE");
-        if (userProfile != null && userProfile.length() > 0) {
-          parentDir=new File(userProfile);
+          String userProfile=System.getenv("USERPROFILE");
+          if (userProfile != null && userProfile.length() > 0) {
+            parentDir=new File(userProfile);
+          }
         }
       }
       if (parentDir == null) {

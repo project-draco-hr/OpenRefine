@@ -1,6 +1,8 @@
 {
-  _timer.cancel();
-  _timer=null;
+  if (_timer != null) {
+    _timer.cancel();
+    _timer=null;
+  }
   if (ProjectManager.singleton != null) {
     ProjectManager.singleton.save(true);
     ProjectManager.singleton=null;

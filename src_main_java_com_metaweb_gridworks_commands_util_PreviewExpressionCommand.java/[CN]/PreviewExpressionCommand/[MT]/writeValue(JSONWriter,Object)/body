@@ -1,0 +1,20 @@
+{
+  if (ExpressionUtils.isError(v)) {
+    writer.object();
+    writer.key("message");
+    writer.value(((EvalError)v).message);
+    writer.endObject();
+  }
+ else {
+    if (v != null) {
+      if (v instanceof HasFields) {
+        v="[object " + v.getClass().getSimpleName() + "]";
+      }
+ else       if (v instanceof Calendar) {
+        Calendar c=(Calendar)v;
+        v="[object " + v.getClass().getSimpleName() + " "+ ParsingUtilities.dateToString(c.getTime())+ "]";
+      }
+    }
+    writer.value(v);
+  }
+}

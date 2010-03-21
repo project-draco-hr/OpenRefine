@@ -2,7 +2,7 @@
   Project project=getProject(request);
   String jsonString=request.getParameter("operations");
   try {
-    JSONArray a=jsonStringToArray(jsonString);
+    JSONArray a=ParsingUtilities.evaluateJsonStringToArray(jsonString);
     int count=a.length();
     for (int i=0; i < count; i++) {
       JSONObject obj=a.getJSONObject(i);

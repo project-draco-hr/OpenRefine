@@ -16,7 +16,7 @@
         }
       }
  else {
-        for (        Object o : (List<Object>)v) {
+        for (        Object o : ExpressionUtils.toObjectList(v)) {
           if (o != null) {
             if (sb.length() > 0) {
               sb.append(separator);

@@ -1,5 +1,0 @@
-{
-  JSONTokener t=new JSONTokener(s);
-  JSONArray a=(JSONArray)t.nextValue();
-  return a;
-}

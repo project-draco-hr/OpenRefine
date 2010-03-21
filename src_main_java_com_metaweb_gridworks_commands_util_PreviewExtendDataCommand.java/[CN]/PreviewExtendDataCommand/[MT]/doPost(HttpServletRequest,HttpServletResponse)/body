@@ -8,8 +8,8 @@
       return;
     }
     String jsonString=request.getParameter("extension");
-    JSONObject json=jsonStringToObject(jsonString);
-    JSONArray rowIndices=jsonStringToArray(rowIndicesString);
+    JSONObject json=ParsingUtilities.evaluateJsonStringToObject(jsonString);
+    JSONArray rowIndices=ParsingUtilities.evaluateJsonStringToArray(rowIndicesString);
     int length=rowIndices.length();
     int cellIndex=project.columnModel.getColumnByName(columnName).getCellIndex();
     List<String> topicNames=new ArrayList<String>();

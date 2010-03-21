@@ -4,7 +4,7 @@
     response.setCharacterEncoding("UTF-8");
     response.setHeader("Content-Type","application/json");
     String jsonString=request.getParameter("protograph");
-    JSONObject json=jsonStringToObject(jsonString);
+    JSONObject json=ParsingUtilities.evaluateJsonStringToObject(jsonString);
     Protograph protograph=Protograph.reconstruct(json);
     StringBuffer sb=new StringBuffer();
     sb.append("{ ");

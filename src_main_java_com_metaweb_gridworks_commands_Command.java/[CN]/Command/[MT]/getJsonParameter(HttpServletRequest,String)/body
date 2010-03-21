@@ -2,7 +2,7 @@
   String value=request.getParameter(name);
   if (value != null) {
     try {
-      JSONObject o=jsonStringToObject(value);
+      JSONObject o=ParsingUtilities.evaluateJsonStringToObject(value);
       return o;
     }
  catch (    JSONException e) {

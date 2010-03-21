@@ -1,0 +1,61 @@
+{
+  int limit=-1;
+  int skip=0;
+  if (options.containsKey("limit")) {
+    String s=options.getProperty("limit");
+    try {
+      limit=Integer.parseInt(s);
+    }
+ catch (    Exception e) {
+    }
+  }
+  if (options.containsKey("skip")) {
+    String s=options.getProperty("skip");
+    try {
+      skip=Integer.parseInt(s);
+    }
+ catch (    Exception e) {
+    }
+  }
+  BufferedInputStream inputStream=new BufferedInputStream(rawInputStream);
+  if (importer.takesReader()) {
+    byte[] bytes=new byte[1024 * 4];
+{
+      inputStream.mark(bytes.length);
+      inputStream.read(bytes);
+      inputStream.reset();
+    }
+    CharsetDetector detector=new CharsetDetector();
+    detector.setDeclaredEncoding("utf8");
+    Reader reader=null;
+    CharsetMatch[] charsetMatches=detector.setText(bytes).detectAll();
+    for (    CharsetMatch charsetMatch : charsetMatches) {
+      try {
+        reader=new InputStreamReader(inputStream,charsetMatch.getName());
+        options.setProperty("encoding",charsetMatch.getName());
+        options.setProperty("encoding_confidence",Integer.toString(charsetMatch.getConfidence()));
+        Gridworks.log("Best encoding guess: " + charsetMatch.getName() + " [confidence: "+ charsetMatch.getConfidence()+ "]");
+        break;
+      }
+ catch (      UnsupportedEncodingException e) {
+      }
+    }
+    if (reader == null) {
+      reader=encoding != null ? new InputStreamReader(inputStream,encoding) : new InputStreamReader(inputStream);
+    }
+    try {
+      importer.read(reader,project,options,skip,limit);
+    }
+  finally {
+      reader.close();
+    }
+  }
+ else {
+    try {
+      importer.read(inputStream,project,options,skip,limit);
+    }
+  finally {
+      inputStream.close();
+    }
+  }
+}

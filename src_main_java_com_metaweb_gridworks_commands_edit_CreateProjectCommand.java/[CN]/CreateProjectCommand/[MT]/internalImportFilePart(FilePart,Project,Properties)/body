@@ -1,0 +1,4 @@
+{
+  Importer importer=guessImporter(options,null,filePart.getFileName());
+  internalInvokeImporter(project,importer,options,filePart.getInputStream(),null);
+}

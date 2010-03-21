@@ -2,7 +2,7 @@
   try {
     Project project=getProject(request);
     String jsonString=request.getParameter("protograph");
-    JSONObject json=jsonStringToObject(jsonString);
+    JSONObject json=ParsingUtilities.evaluateJsonStringToObject(jsonString);
     Protograph protograph=Protograph.reconstruct(json);
     AbstractOperation op=new SaveProtographOperation(protograph);
     Process process=op.createProcess(project,new Properties());

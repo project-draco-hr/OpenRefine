@@ -31,7 +31,7 @@
     }
     jsonWriter.endObject();
     StringBuffer sb=new StringBuffer();
-    sb.append("http://api.freebase.com/api/service/search?indent=1&queries=");
+    sb.append("http://api.freebase.com/api/service/search?queries=");
     sb.append(ParsingUtilities.encode(stringWriter.toString()));
     URL url=new URL(sb.toString());
     URLConnection connection=url.openConnection();

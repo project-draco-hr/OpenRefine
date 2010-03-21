@@ -21,7 +21,7 @@
           this.extra.put("contextual",true);
           return this;
         }
-        @Override public boolean internalVisit(        int rowIndex,        Row row,        boolean contextual,        boolean includeDependent){
+        @Override public boolean internalVisit(        int rowIndex,        Row row,        boolean contextual,        boolean dependent){
           try {
             if (contextual) {
               options.put("extra",extra);

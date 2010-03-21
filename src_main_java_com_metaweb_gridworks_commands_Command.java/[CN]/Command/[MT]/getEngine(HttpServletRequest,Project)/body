@@ -2,7 +2,7 @@
   Engine engine=new Engine(project);
   String json=request.getParameter("engine");
   if (json != null) {
-    JSONObject o=jsonStringToObject(json);
+    JSONObject o=ParsingUtilities.evaluateJsonStringToObject(json);
     engine.initializeFromJSON(o);
   }
   return engine;

@@ -20,7 +20,7 @@
     }
     response.setCharacterEncoding("UTF-8");
     response.setHeader("Content-Type","application/json");
-    JSONArray rowIndices=jsonStringToArray(rowIndicesString);
+    JSONArray rowIndices=ParsingUtilities.evaluateJsonStringToArray(rowIndicesString);
     int length=rowIndices.length();
     JSONWriter writer=new JSONWriter(response.getWriter());
     writer.object();
@@ -60,23 +60,22 @@
  catch (          Exception e) {
           }
         }
-        if (ExpressionUtils.isError(result)) {
-          writer.object();
-          writer.key("message");
-          writer.value(((EvalError)result).message);
-          writer.endObject();
-        }
- else {
-          if (result != null) {
-            if (result instanceof HasFields) {
-              result="[object " + result.getClass().getSimpleName() + "]";
-            }
- else             if (result instanceof Calendar) {
-              Calendar c=(Calendar)result;
-              result="[object " + result.getClass().getSimpleName() + " "+ ParsingUtilities.dateToString(c.getTime())+ "]";
+        if (result != null && (result.getClass().isArray() || result instanceof List<?>)) {
+          writer.array();
+          if (result.getClass().isArray()) {
+            for (            Object v : (Object[])result) {
+              writeValue(writer,v);
             }
           }
-          writer.value(result);
+ else {
+            for (            Object v : ExpressionUtils.toObjectList(result)) {
+              writeValue(writer,v);
+            }
+          }
+          writer.endArray();
+        }
+ else {
+          writeValue(writer,result);
         }
       }
       writer.endArray();

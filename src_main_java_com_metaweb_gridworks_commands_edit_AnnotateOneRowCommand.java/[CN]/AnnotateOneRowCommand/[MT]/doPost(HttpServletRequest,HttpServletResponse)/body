@@ -7,7 +7,7 @@
     String starredString=request.getParameter("starred");
     if (starredString != null) {
       boolean starred="true".endsWith(starredString);
-      String description=starred ? "Star row " + rowIndex : "Unstar row " + rowIndex;
+      String description=(starred ? "Star row " : "Unstar row ") + (rowIndex + 1);
       StarOneRowProcess process=new StarOneRowProcess(project,description,rowIndex,starred);
       boolean done=project.processManager.queueProcess(process);
       if (done) {

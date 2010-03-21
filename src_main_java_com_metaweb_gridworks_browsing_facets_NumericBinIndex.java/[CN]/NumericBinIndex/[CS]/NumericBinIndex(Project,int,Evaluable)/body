@@ -17,6 +17,13 @@
           }
         }
       }
+ else       if (value instanceof Collection<?>) {
+        for (        Object v : ExpressionUtils.toObjectCollection(value)) {
+          if (v instanceof Number) {
+            processValue(((Number)v).doubleValue(),allValues);
+          }
+        }
+      }
  else       if (value instanceof Number) {
         processValue(((Number)value).doubleValue(),allValues);
       }

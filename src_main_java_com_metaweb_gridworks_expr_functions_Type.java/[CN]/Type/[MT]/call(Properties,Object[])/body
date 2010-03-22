@@ -5,7 +5,7 @@
       if (v instanceof String) {
         return "string";
       }
- else       if (v instanceof Calendar) {
+ else       if (v instanceof Calendar || v instanceof Date) {
         return "date";
       }
  else       if (v instanceof Number) {
@@ -14,10 +14,14 @@
  else       if (v.getClass().isArray() || v instanceof List<?>) {
         return "array";
       }
+ else       if (v instanceof EvalError) {
+        return "error";
+      }
  else {
         return v.getClass().getName();
       }
     }
+    return "undefined";
   }
-  return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " expects a parameter");
+  return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " expects one argument");
 }

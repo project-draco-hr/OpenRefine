@@ -3,7 +3,7 @@
   if (ExpressionUtils.isError(o)) {
     return o;
   }
- else   if (o == null || (!o.getClass().isArray() && !(o instanceof Iterable<?>))) {
+ else   if (!ExpressionUtils.isArrayOrCollection(o)) {
     return new EvalError("First argument to forEach is not an array");
   }
   String name=((VariableExpr)args[1]).getName();
@@ -20,10 +20,9 @@
       }
     }
  else {
-      results=o instanceof Collection<?> ? new ArrayList<Object>(ExpressionUtils.toObjectCollection(o).size()) : new ArrayList<Object>();
-      Iterator<Object> i=ExpressionUtils.toObjectCollection(o).iterator();
-      while (i.hasNext()) {
-        Object v=i.next();
+      Collection<Object> collection=ExpressionUtils.toObjectCollection(o);
+      results=new ArrayList<Object>(collection.size());
+      for (      Object v : collection) {
         bindings.put(name,v);
         Object r=args[2].evaluate(bindings);
         results.add(r);

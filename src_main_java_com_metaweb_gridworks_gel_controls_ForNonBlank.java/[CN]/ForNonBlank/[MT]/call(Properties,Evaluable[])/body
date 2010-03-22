@@ -3,7 +3,7 @@
   Evaluable var=args[1];
   String name=((VariableExpr)var).getName();
   if (ExpressionUtils.isNonBlankData(o)) {
-    Object oldValue=bindings.containsKey(name) ? bindings.get(name) : null;
+    Object oldValue=bindings.get(name);
     bindings.put(name,o);
     try {
       return args[2].evaluate(bindings);

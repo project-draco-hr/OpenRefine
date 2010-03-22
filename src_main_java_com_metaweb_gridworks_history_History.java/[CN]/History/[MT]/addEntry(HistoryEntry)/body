@@ -1,9 +1,15 @@
 {
-  for (  HistoryEntry entry2 : _futureEntries) {
-    entry2.delete();
-  }
   entry.apply(ProjectManager.singleton.getProject(_projectID));
   _pastEntries.add(entry);
-  _futureEntries.clear();
   setModified();
+  List<HistoryEntry> futureEntries=_futureEntries;
+  _futureEntries=new ArrayList<HistoryEntry>();
+  for (  HistoryEntry entry2 : futureEntries) {
+    try {
+      entry2.delete();
+    }
+ catch (    Exception e) {
+      e.printStackTrace();
+    }
+  }
 }

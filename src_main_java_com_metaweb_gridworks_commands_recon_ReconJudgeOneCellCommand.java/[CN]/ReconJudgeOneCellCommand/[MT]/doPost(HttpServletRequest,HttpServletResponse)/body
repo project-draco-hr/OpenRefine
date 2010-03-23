@@ -11,14 +11,17 @@
       match=new ReconCandidate(topicID,request.getParameter("topicGUID"),request.getParameter("topicName"),request.getParameter("types").split(","),scoreString != null ? Double.parseDouble(scoreString) : 100);
     }
     JudgeOneCellProcess process=new JudgeOneCellProcess(project,"Judge one cell's recon result",judgment,rowIndex,cellIndex,match);
-    boolean done=project.processManager.queueProcess(process);
-    if (done) {
+    HistoryEntry historyEntry=project.processManager.queueProcess(process);
+    if (historyEntry != null) {
       JSONWriter writer=new JSONWriter(response.getWriter());
+      Properties options=new Properties();
       writer.object();
       writer.key("code");
       writer.value("ok");
+      writer.key("historyEntry");
+      historyEntry.write(writer,options);
       writer.key("cell");
-      process.newCell.write(writer,new Properties());
+      process.newCell.write(writer,options);
       writer.endObject();
     }
  else {

@@ -1,0 +1,16 @@
+{
+  HistoryEntry historyEntry=project.processManager.queueProcess(process);
+  if (historyEntry != null) {
+    JSONWriter writer=new JSONWriter(response.getWriter());
+    Properties options=new Properties();
+    writer.object();
+    writer.key("code");
+    writer.value("ok");
+    writer.key("historyEntry");
+    historyEntry.write(writer,options);
+    writer.endObject();
+  }
+ else {
+    respond(response,"{ \"code\" : \"pending\" }");
+  }
+}

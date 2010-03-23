@@ -1,4 +1,5 @@
 {
   _project.history.undoRedo(_lastDoneID);
   _done=true;
+  return null;
 }

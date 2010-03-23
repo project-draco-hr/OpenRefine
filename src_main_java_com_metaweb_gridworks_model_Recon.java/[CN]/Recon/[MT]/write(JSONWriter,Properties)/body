@@ -1,4 +1,5 @@
 {
+  boolean saveMode="save".equals(options.getProperty("mode"));
   writer.object();
   writer.key("id");
   writer.value(id);
@@ -8,7 +9,7 @@
     writer.key("m");
     match.write(writer,options);
   }
- else {
+  if (match == null || saveMode) {
     writer.key("c");
     writer.array();
     if (candidates != null) {
@@ -18,7 +19,7 @@
     }
     writer.endArray();
   }
-  if ("save".equals(options.getProperty("mode"))) {
+  if (saveMode) {
     writer.key("f");
     writer.array();
     for (    Object o : features) {

@@ -8,7 +8,7 @@
   writer.value(topicName);
   writer.key("score");
   writer.value(score);
-  if (!options.containsKey("reconCandidateOmitTypes")) {
+{
     writer.key("types");
     writer.array();
     for (    String typeID : typeIDs) {

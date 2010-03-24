@@ -1,0 +1,20 @@
+{
+  if (value == null || (value instanceof String && ((String)value).isEmpty())) {
+    return;
+  }
+  ImportColumn column=getColumn(project,columnGroup,columnLocalName);
+  int cellIndex=column.cellIndex;
+  while (cellIndex >= record.columnEmptyRowIndices.size()) {
+    record.columnEmptyRowIndices.add(commonStaringRowIndex);
+  }
+  int rowIndex=record.columnEmptyRowIndices.get(cellIndex);
+  while (rowIndex >= record.rows.size()) {
+    record.rows.add(new ArrayList<Cell>());
+  }
+  List<Cell> row=record.rows.get(rowIndex);
+  while (cellIndex >= row.size()) {
+    row.add(null);
+  }
+  row.set(cellIndex,new Cell(value,null));
+  record.columnEmptyRowIndices.set(cellIndex,rowIndex + 1);
+}

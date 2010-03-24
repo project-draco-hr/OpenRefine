@@ -16,6 +16,9 @@
  else     if (fileName.endsWith(".xlsx")) {
       return new ExcelImporter(true);
     }
+ else     if (fileName.endsWith(".xml") || fileName.endsWith(".rss")) {
+      return new XmlImporter();
+    }
   }
   return new TsvCsvImporter();
 }

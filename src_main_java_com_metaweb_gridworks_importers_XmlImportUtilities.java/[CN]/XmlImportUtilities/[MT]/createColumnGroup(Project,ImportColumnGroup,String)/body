@@ -1,0 +1,5 @@
+{
+  ImportColumnGroup newGroup=new ImportColumnGroup();
+  newGroup.name=columnGroup.name.length() == 0 ? (localName == null ? "Text" : localName) : (localName == null ? columnGroup.name : (columnGroup.name + " - " + localName));
+  return newGroup;
+}

@@ -1,0 +1,11 @@
+{
+  while (parser.hasNext()) {
+    int eventType=parser.next();
+    if (eventType == XMLStreamConstants.START_ELEMENT) {
+      skip(parser);
+    }
+ else     if (eventType == XMLStreamConstants.END_ELEMENT) {
+      return;
+    }
+  }
+}

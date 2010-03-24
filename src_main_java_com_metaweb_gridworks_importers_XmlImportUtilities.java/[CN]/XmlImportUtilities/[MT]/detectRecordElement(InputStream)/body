@@ -1,0 +1,22 @@
+{
+  List<RecordElementCandidate> candidates=new ArrayList<RecordElementCandidate>();
+  try {
+    XMLStreamReader parser=XMLInputFactory.newInstance().createXMLStreamReader(inputStream);
+    while (parser.hasNext()) {
+      int eventType=parser.next();
+      if (eventType == XMLStreamConstants.START_ELEMENT) {
+        RecordElementCandidate candidate=detectRecordElement(parser,new String[]{parser.getLocalName()});
+        if (candidate != null) {
+          candidates.add(candidate);
+        }
+      }
+    }
+  }
+ catch (  Exception e) {
+  }
+  if (candidates.size() > 0) {
+    sortRecordElementCandidates(candidates);
+    return candidates.get(0).path;
+  }
+  return null;
+}

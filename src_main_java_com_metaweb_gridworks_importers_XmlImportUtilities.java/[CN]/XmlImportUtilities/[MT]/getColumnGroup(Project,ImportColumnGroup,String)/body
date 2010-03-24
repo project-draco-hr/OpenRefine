@@ -1,0 +1,8 @@
+{
+  if (columnGroup.subgroups.containsKey(localName)) {
+    return columnGroup.subgroups.get(localName);
+  }
+  ImportColumnGroup subgroup=createColumnGroup(project,columnGroup,localName);
+  columnGroup.subgroups.put(localName,subgroup);
+  return subgroup;
+}

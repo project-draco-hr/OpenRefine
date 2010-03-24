@@ -1,0 +1,24 @@
+{
+  int commonStartingRowIndex=0;
+  for (  ImportColumn column : columnGroup.columns.values()) {
+    if (column.cellIndex < record.columnEmptyRowIndices.size()) {
+      commonStartingRowIndex=Math.max(commonStartingRowIndex,record.columnEmptyRowIndices.get(column.cellIndex));
+    }
+  }
+  while (parser.hasNext()) {
+    int eventType=parser.next();
+    if (eventType == XMLStreamConstants.START_ELEMENT) {
+      int attributeCount=parser.getAttributeCount();
+      for (int i=0; i < attributeCount; i++) {
+        addCell(project,columnGroup,record,parser.getAttributeLocalName(i),parser.getAttributeValue(i),commonStartingRowIndex);
+      }
+      processSubRecord(project,parser,getColumnGroup(project,columnGroup,parser.getLocalName()),record);
+    }
+ else     if (eventType == XMLStreamConstants.CDATA || eventType == XMLStreamConstants.CHARACTERS) {
+      addCell(project,columnGroup,record,null,parser.getText(),commonStartingRowIndex);
+    }
+ else     if (eventType == XMLStreamConstants.END_ELEMENT) {
+      break;
+    }
+  }
+}

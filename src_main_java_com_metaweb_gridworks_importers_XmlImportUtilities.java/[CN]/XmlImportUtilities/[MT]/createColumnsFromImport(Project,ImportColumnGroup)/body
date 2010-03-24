@@ -1,0 +1,9 @@
+{
+  for (  ImportColumn c : columnGroup.columns.values()) {
+    Column column=new com.metaweb.gridworks.model.Column(c.cellIndex,c.name);
+    project.columnModel.columns.add(column);
+  }
+  for (  ImportColumnGroup g : columnGroup.subgroups.values()) {
+    createColumnsFromImport(project,g);
+  }
+}

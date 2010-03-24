@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns the array of strings obtained by splitting s into substrings with the given lengths");
+  writer.key("params");
+  writer.value("string s, number n, ...");
+  writer.key("returns");
+  writer.value("array");
+  writer.endObject();
+}

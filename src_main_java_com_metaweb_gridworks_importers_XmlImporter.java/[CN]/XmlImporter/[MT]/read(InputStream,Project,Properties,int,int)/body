@@ -6,9 +6,15 @@
     bis.mark(buffer.length);
     int c=bis.read(buffer);
     bis.reset();
-    recordPath=XmlImportUtilities.detectRecordElement(new ByteArrayInputStream(buffer,0,c));
+    if (options.containsKey("importer-record-tag")) {
+      recordPath=XmlImportUtilities.detectPathFromTag(new ByteArrayInputStream(buffer,0,c),options.getProperty("importer-record-tag"));
+    }
+ else {
+      recordPath=XmlImportUtilities.detectRecordElement(new ByteArrayInputStream(buffer,0,c));
+    }
   }
   ImportColumnGroup rootColumnGroup=new ImportColumnGroup();
   XmlImportUtilities.importXml(bis,project,recordPath,rootColumnGroup);
   XmlImportUtilities.createColumnsFromImport(project,rootColumnGroup);
+  project.columnModel.update();
 }

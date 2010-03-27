@@ -1,25 +1,40 @@
 {
+  ImportColumnGroup thisColumnGroup=getColumnGroup(project,columnGroup,composeName(parser.getPrefix(),parser.getLocalName()));
   int commonStartingRowIndex=0;
-  for (  ImportColumn column : columnGroup.columns.values()) {
+  for (  ImportColumn column : thisColumnGroup.columns.values()) {
     if (column.cellIndex < record.columnEmptyRowIndices.size()) {
       commonStartingRowIndex=Math.max(commonStartingRowIndex,record.columnEmptyRowIndices.get(column.cellIndex));
+    }
+  }
+  int attributeCount=parser.getAttributeCount();
+  for (int i=0; i < attributeCount; i++) {
+    String text=parser.getAttributeValue(i).trim();
+    if (text.length() > 0) {
+      addCell(project,thisColumnGroup,record,composeName(parser.getAttributePrefix(i),parser.getAttributeLocalName(i)),text,commonStartingRowIndex);
     }
   }
   while (parser.hasNext()) {
     int eventType=parser.next();
     if (eventType == XMLStreamConstants.START_ELEMENT) {
-      ImportColumnGroup thisColumnGroup=getColumnGroup(project,columnGroup,parser.getLocalName());
-      int attributeCount=parser.getAttributeCount();
-      for (int i=0; i < attributeCount; i++) {
-        addCell(project,thisColumnGroup,record,parser.getAttributeLocalName(i),parser.getAttributeValue(i),commonStartingRowIndex);
-      }
       processSubRecord(project,parser,thisColumnGroup,record);
     }
- else     if (eventType == XMLStreamConstants.CDATA || eventType == XMLStreamConstants.CHARACTERS) {
-      addCell(project,columnGroup,record,null,parser.getText(),commonStartingRowIndex);
+ else     if (eventType == XMLStreamConstants.CHARACTERS) {
+      String text=parser.getText().trim();
+      if (text.length() > 0) {
+        addCell(project,thisColumnGroup,record,null,parser.getText(),commonStartingRowIndex);
+      }
     }
  else     if (eventType == XMLStreamConstants.END_ELEMENT) {
       break;
+    }
+  }
+  if (commonStartingRowIndex < record.rows.size()) {
+    List<Cell> startingRow=record.rows.get(commonStartingRowIndex);
+    for (    ImportColumn c : thisColumnGroup.columns.values()) {
+      int cellIndex=c.cellIndex;
+      if (cellIndex >= startingRow.size() || startingRow.get(cellIndex) == null) {
+        c.blankOnFirstRow=true;
+      }
     }
   }
 }

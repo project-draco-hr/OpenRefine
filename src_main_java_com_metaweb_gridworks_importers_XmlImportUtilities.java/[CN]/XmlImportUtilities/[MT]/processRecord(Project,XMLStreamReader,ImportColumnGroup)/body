@@ -1,14 +1,16 @@
 {
   ImportRecord record=new ImportRecord();
   processSubRecord(project,parser,rootColumnGroup,record);
-  for (  List<Cell> row : record.rows) {
-    Row realRow=new Row(row.size());
-    for (int c=0; c < row.size(); c++) {
-      Cell cell=row.get(c);
-      if (cell != null) {
-        realRow.setCell(c,cell);
+  if (record.rows.size() > 0) {
+    for (    List<Cell> row : record.rows) {
+      Row realRow=new Row(row.size());
+      for (int c=0; c < row.size(); c++) {
+        Cell cell=row.get(c);
+        if (cell != null) {
+          realRow.setCell(c,cell);
+        }
       }
+      project.rows.add(realRow);
     }
-    project.rows.add(realRow);
   }
 }

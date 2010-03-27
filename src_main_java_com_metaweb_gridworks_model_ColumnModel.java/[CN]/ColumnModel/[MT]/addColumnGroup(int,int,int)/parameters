@@ -1,0 +1,3 @@
+int startColumnIndex
+int span
+int keyColumnIndex

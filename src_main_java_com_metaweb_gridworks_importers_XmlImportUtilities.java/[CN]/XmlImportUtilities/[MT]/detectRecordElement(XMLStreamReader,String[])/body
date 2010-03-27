@@ -1,30 +1,41 @@
 {
-  List<RecordElementCandidate> candidateList=new ArrayList<RecordElementCandidate>();
-  Map<String,Integer> candidates=new HashMap<String,Integer>();
+  List<RecordElementCandidate> descendantCandidates=new ArrayList<RecordElementCandidate>();
+  Map<String,Integer> immediateChildCandidateMap=new HashMap<String,Integer>();
+  int textNodeCount=0;
+  int childElementNodeCount=0;
   try {
     while (parser.hasNext()) {
       int eventType=parser.next();
       if (eventType == XMLStreamConstants.END_ELEMENT) {
         break;
       }
+ else       if (eventType == XMLStreamConstants.CHARACTERS) {
+        if (parser.getText().trim().length() > 0) {
+          textNodeCount++;
+        }
+      }
  else       if (eventType == XMLStreamConstants.START_ELEMENT) {
+        childElementNodeCount++;
         String tagName=parser.getLocalName();
-        candidates.put(tagName,candidates.containsKey(tagName) ? candidates.get(tagName) + 1 : 1);
+        immediateChildCandidateMap.put(tagName,immediateChildCandidateMap.containsKey(tagName) ? immediateChildCandidateMap.get(tagName) + 1 : 1);
         String[] path2=new String[path.length + 1];
         System.arraycopy(path,0,path2,0,path.length);
         path2[path.length]=tagName;
         RecordElementCandidate c=detectRecordElement(parser,path2);
         if (c != null) {
-          candidateList.add(c);
+          descendantCandidates.add(c);
         }
       }
     }
   }
  catch (  Exception e) {
   }
-  if (candidates.size() > 0) {
-    List<RecordElementCandidate> ourCandidateList=new ArrayList<RecordElementCandidate>(candidates.size());
-    for (    Entry<String,Integer> entry : candidates.entrySet()) {
+  if (textNodeCount > 0 && childElementNodeCount > 0) {
+    return null;
+  }
+  if (immediateChildCandidateMap.size() > 0) {
+    List<RecordElementCandidate> immediateChildCandidates=new ArrayList<RecordElementCandidate>(immediateChildCandidateMap.size());
+    for (    Entry<String,Integer> entry : immediateChildCandidateMap.entrySet()) {
       int count=entry.getValue();
       if (count > 1) {
         String[] path2=new String[path.length + 1];
@@ -33,21 +44,24 @@
         RecordElementCandidate candidate=new RecordElementCandidate();
         candidate.path=path2;
         candidate.count=count;
-        ourCandidateList.add(candidate);
+        immediateChildCandidates.add(candidate);
       }
     }
-    if (ourCandidateList.size() > 0) {
-      sortRecordElementCandidates(ourCandidateList);
-      RecordElementCandidate ourCandidate=ourCandidateList.get(0);
-      if (ourCandidate.count > 10) {
+    if (immediateChildCandidates.size() > 0 && immediateChildCandidates.size() < 5) {
+      sortRecordElementCandidates(immediateChildCandidates);
+      RecordElementCandidate ourCandidate=immediateChildCandidates.get(0);
+      if (ourCandidate.count / immediateChildCandidates.size() > 5) {
         return ourCandidate;
       }
-      candidateList.add(ourCandidate);
+      descendantCandidates.add(ourCandidate);
     }
   }
-  if (candidateList.size() > 0) {
-    sortRecordElementCandidates(candidateList);
-    return candidateList.get(0);
+  if (descendantCandidates.size() > 0) {
+    sortRecordElementCandidates(descendantCandidates);
+    RecordElementCandidate candidate=descendantCandidates.get(0);
+    if (candidate.count / descendantCandidates.size() > 5) {
+      return candidate;
+    }
   }
   return null;
 }

@@ -1,5 +1,4 @@
 {
-  List<RecordElementCandidate> candidates=new ArrayList<RecordElementCandidate>();
   try {
     XMLStreamReader parser=XMLInputFactory.newInstance().createXMLStreamReader(inputStream);
     while (parser.hasNext()) {

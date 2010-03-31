@@ -1,9 +1,9 @@
 {
   boolean hasData=false;
-  String[] cells=line.split("\t");
+  String[] cells=StringUtils.splitPreserveAllTokens(line,sep);
   for (int c=0; c < cells.length; c++) {
     String text=cells[c];
-    Serializable value=parseCellValue(text);
+    Serializable value=ImporterUtilities.parseCellValue(text);
     if (ExpressionUtils.isNonBlankData(value)) {
       row.cells.add(new Cell(value,null));
       hasData=true;

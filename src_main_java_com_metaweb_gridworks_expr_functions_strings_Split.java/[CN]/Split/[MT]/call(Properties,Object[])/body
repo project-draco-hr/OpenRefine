@@ -5,7 +5,7 @@
     if (v != null && split != null) {
       String str=(v instanceof String ? (String)v : v.toString());
       if (split instanceof String) {
-        return str.split((String)split);
+        return StringUtils.splitByWholeSeparator(str,(String)split);
       }
  else       if (split instanceof Pattern) {
         Pattern pattern=(Pattern)split;

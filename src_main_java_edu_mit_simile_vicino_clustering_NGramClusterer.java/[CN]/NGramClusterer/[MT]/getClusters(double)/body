@@ -1,8 +1,0 @@
-{
-  if (MULTITHREADED) {
-    return getClustersMultiThread(radius);
-  }
- else {
-    return getClustersSingleThread(radius);
-  }
-}

@@ -1,9 +1,0 @@
-{
-  if (this == o) {
-    return true;
-  }
-  if (o instanceof Node) {
-    return ((Node)o).get().equals(this.obj);
-  }
-  return false;
-}

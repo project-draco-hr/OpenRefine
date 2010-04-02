@@ -1,7 +1,0 @@
-{
-  s=s.trim();
-  s=extra.matcher(s).replaceAll("");
-  s=whitespace.matcher(s).replaceAll(" ");
-  s=s.toLowerCase();
-  return s.intern();
-}

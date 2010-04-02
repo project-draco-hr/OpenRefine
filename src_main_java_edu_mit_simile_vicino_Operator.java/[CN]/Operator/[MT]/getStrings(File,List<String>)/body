@@ -1,8 +1,0 @@
-{
-  BufferedReader input=new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF-8"));
-  String line;
-  while ((line=input.readLine()) != null) {
-    strings.add(line.trim().intern());
-  }
-  input.close();
-}

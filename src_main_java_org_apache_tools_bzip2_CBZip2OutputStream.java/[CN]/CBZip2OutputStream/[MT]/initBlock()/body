@@ -1,8 +1,0 @@
-{
-  mCrc.initialiseCRC();
-  last=-1;
-  for (int i=0; i < 256; i++) {
-    inUse[i]=false;
-  }
-  allowableBlockSize=baseBlockSize * blockSize100k - 20;
-}

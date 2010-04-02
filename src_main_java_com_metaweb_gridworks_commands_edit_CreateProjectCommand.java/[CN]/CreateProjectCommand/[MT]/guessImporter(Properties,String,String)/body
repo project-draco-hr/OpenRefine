@@ -7,6 +7,9 @@
  else     if ("application/x-xls".equals(contentType)) {
       return new ExcelImporter(true);
     }
+ else     if ("application/xml".equals(contentType) || "text/xml".equals(contentType) || "application/rss+xml".equals(contentType)|| "application/atom+xml".equals(contentType)|| "application/rdf+xml".equals(contentType)) {
+      return new XmlImporter();
+    }
   }
  else   if (fileName != null) {
     fileName=fileName.toLowerCase();

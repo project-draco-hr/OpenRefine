@@ -1,3 +1,0 @@
-{
-  NodeSorter.sort(nodes,0,nodes.length - 1);
-}

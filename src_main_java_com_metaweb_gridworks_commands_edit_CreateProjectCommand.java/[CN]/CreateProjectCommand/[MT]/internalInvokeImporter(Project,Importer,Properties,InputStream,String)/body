@@ -43,19 +43,9 @@
     if (reader == null) {
       reader=encoding != null ? new InputStreamReader(inputStream,encoding) : new InputStreamReader(inputStream);
     }
-    try {
-      importer.read(reader,project,options,skip,limit);
-    }
-  finally {
-      reader.close();
-    }
+    importer.read(reader,project,options,skip,limit);
   }
  else {
-    try {
-      importer.read(inputStream,project,options,skip,limit);
-    }
-  finally {
-      inputStream.close();
-    }
+    importer.read(inputStream,project,options,skip,limit);
   }
 }

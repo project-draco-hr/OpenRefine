@@ -1,4 +1,0 @@
-{
-  if (DEBUG)   System.out.println("--------------- " + query + " "+ range);
-  return rangeTraversal(query,range,tree.getRoot(),new HashSet<Serializable>());
-}

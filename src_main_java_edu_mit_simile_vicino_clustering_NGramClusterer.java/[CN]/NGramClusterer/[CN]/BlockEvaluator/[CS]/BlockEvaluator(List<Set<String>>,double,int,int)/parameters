@@ -1,4 +1,0 @@
-List<Set<String>> blocks
-double radius
-int start
-int stop

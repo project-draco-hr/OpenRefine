@@ -1,6 +1,0 @@
-{
-  this.blocks=blocks;
-  this.start=start;
-  this.stop=stop;
-  this.radius=radius;
-}

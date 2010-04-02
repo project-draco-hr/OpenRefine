@@ -1,4 +1,0 @@
-{
-  super.flush();
-  bsStream.flush();
-}

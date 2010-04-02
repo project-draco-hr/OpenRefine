@@ -1,0 +1,13 @@
+{
+  FileOutputStream output=new FileOutputStream(file);
+  byte[] buffer=new byte[4 * 1024];
+  long count=0;
+  int n=0;
+  while (-1 != (n=input.read(buffer))) {
+    output.write(buffer,0,n);
+    count+=n;
+  }
+  output.close();
+  input.close();
+  return count;
+}

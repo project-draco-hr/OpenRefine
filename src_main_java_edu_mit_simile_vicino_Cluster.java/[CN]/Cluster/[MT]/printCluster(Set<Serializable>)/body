@@ -1,6 +1,0 @@
-{
-  for (  Serializable s : cluster) {
-    log(s.toString());
-  }
-  log("");
-}

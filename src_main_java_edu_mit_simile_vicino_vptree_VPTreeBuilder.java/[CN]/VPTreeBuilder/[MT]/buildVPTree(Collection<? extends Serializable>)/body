@@ -1,7 +1,0 @@
-{
-  reset();
-  for (  Serializable s : values) {
-    populate(s);
-  }
-  return buildVPTree();
-}

@@ -1,8 +1,0 @@
-{
-  storedCombinedCRC=bsGetInt32();
-  if (storedCombinedCRC != computedCombinedCRC) {
-    crcError();
-  }
-  bsFinishedWithStream();
-  streamEnd=true;
-}

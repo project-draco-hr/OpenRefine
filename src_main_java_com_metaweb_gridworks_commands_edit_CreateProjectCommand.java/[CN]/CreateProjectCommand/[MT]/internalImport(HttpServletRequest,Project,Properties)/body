@@ -5,7 +5,8 @@
     String url=null;
     while ((part=parser.readNextPart()) != null) {
       if (part.isFile()) {
-        internalImportFilePart((FilePart)part,project,options);
+        FilePart filePart=(FilePart)part;
+        internalImportFile(project,options,filePart.getFileName(),filePart.getInputStream());
       }
  else       if (part.isParam()) {
         ParamPart paramPart=(ParamPart)part;

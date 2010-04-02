@@ -1,0 +1,57 @@
+{
+  if (fileName.endsWith(".tar.gz") || fileName.endsWith(".tar.bz2")) {
+    File file=save(inputStream);
+    BufferedInputStream stream=new BufferedInputStream(new FileInputStream(file));
+    InputStream is=(fileName.endsWith(".tar.gz")) ? new GZIPInputStream(stream) : new CBZip2InputStream(stream);
+    TarInputStream tis=new TarInputStream(is);
+    HashMap<String,Integer> ext_map=new HashMap<String,Integer>();
+    while (true) {
+      TarEntry entry=tis.getNextEntry();
+      if (entry == null)       break;
+      if (!entry.isDirectory()) {
+        String name=entry.getName();
+        String ext=getExtension(name)[1];
+        if (ext_map.containsKey(ext)) {
+          ext_map.put(ext,ext_map.get(ext) + 1);
+        }
+ else {
+          ext_map.put(ext,1);
+        }
+      }
+    }
+    stream.close();
+    List<Entry<String,Integer>> values=new ArrayList<Entry<String,Integer>>(ext_map.entrySet());
+    Collections.sort(values,new ValuesComparator());
+    if (values.size() == 0) {
+      throw new RuntimeException("The archive contains no files.");
+    }
+    HashSet<String> exts=new HashSet<String>();
+    Entry<String,Integer> most_frequent=values.get(0);
+    Entry<String,Integer> second_most_frequent=values.get(1);
+    if (most_frequent.getValue() > second_most_frequent.getValue()) {
+      exts.add(most_frequent.getKey());
+    }
+ else {
+      int winning_frequency=most_frequent.getValue();
+      for (      Entry<String,Integer> e : values) {
+        if (e.getValue() == winning_frequency) {
+          exts.add(e.getKey());
+        }
+      }
+    }
+    Gridworks.log("Most frequent extensions: " + exts.toString());
+  }
+ else   if (fileName.endsWith(".zip")) {
+  }
+ else   if (fileName.endsWith(".gz")) {
+    String[] frags=getExtension(fileName);
+    internalImportFile(project,options,frags[0],new GZIPInputStream(inputStream));
+  }
+ else   if (fileName.endsWith(".bz2")) {
+    String[] frags=getExtension(fileName);
+    internalImportFile(project,options,frags[0],new CBZip2InputStream(inputStream));
+  }
+ else {
+    load(project,options,fileName,inputStream);
+  }
+}

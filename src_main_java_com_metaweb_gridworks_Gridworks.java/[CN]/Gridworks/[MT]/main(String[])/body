@@ -9,6 +9,8 @@
   Logger jetty_logger=Logger.getLogger("org.mortbay.log");
   jetty_logger.setLevel(Level.WARN);
   version=Configurations.get("gridworks.version","trunk");
+  tempDir=new File(Configurations.get("gridworks.temp","temp"));
+  if (!tempDir.exists())   tempDir.mkdirs();
   Gridworks gridworks=new Gridworks();
   gridworks.init(args);
 }

@@ -1,3 +1,0 @@
-{
-  return Math.abs(this.distance.score(x,y));
-}

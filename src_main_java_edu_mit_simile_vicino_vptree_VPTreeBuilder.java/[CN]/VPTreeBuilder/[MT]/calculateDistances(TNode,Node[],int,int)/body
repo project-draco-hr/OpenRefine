@@ -1,8 +1,0 @@
-{
-  Serializable x=pivot.get();
-  for (int i=begin; i <= end; i++) {
-    Serializable y=nodes[i].get();
-    double d=(x == y || x.equals(y)) ? 0.0d : distance.d(x.toString(),y.toString());
-    nodes[i].setDistance(d);
-  }
-}

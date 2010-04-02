@@ -1,4 +1,0 @@
-{
-  _tokenizer=new NGramTokenizer(blockSize);
-  _distance=d;
-}

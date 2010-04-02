@@ -1,5 +1,0 @@
-{
-  double result=d2(x,y);
-  counter+=1;
-  return result;
-}

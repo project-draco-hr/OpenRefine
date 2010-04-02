@@ -16,7 +16,7 @@
  else     if (fileName.endsWith(".xlsx")) {
       return new ExcelImporter(true);
     }
- else     if (fileName.endsWith(".xml") || fileName.endsWith(".rdf") || fileName.endsWith(".rss")) {
+ else     if (fileName.endsWith(".xml") || fileName.endsWith(".rdf") || fileName.endsWith(".atom")|| fileName.endsWith(".rss")) {
       return new XmlImporter();
     }
   }

@@ -1,0 +1,6 @@
+{
+  String item=e.getActionCommand();
+  if (item.startsWith("Open")) {
+    openBrowser();
+  }
+}

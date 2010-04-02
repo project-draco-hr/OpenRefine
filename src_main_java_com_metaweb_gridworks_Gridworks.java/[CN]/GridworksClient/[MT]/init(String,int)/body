@@ -1,0 +1,4 @@
+{
+  URI starting_url=new URI("http://" + host + ":"+ port+ "/");
+  Desktop.getDesktop().browse(starting_url);
+}

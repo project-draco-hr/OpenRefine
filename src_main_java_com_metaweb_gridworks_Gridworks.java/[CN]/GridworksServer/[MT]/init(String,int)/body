@@ -12,18 +12,20 @@
   connector.setStatsOn(false);
   this.addConnector(connector);
   final File contextRoot=new File(Configurations.get("gridworks.webapp","webapp"));
+  final File classRoot=new File(Configurations.get("gridworks.classes","build/classes"));
   final String contextPath=Configurations.get("gridworks.context_path","/");
   File webXml=new File(contextRoot,"WEB-INF/web.xml");
   if (!webXml.isFile()) {
-    Log.warn("Warning: Failed to find web application. Could not find 'web.xml' at '" + webXml.getAbsolutePath() + "'");
+    Gridworks.warn("Warning: Failed to find web application. Could not find 'web.xml' at '" + webXml.getAbsolutePath() + "'");
     System.exit(-1);
   }
-  Log.info("Initializing context: '" + contextPath + "' from '"+ contextRoot.getAbsolutePath()+ "'");
+  Gridworks.info("Initializing context: '" + contextPath + "' from '"+ contextRoot.getAbsolutePath()+ "'");
   WebAppContext context=new WebAppContext(contextRoot.getAbsolutePath(),contextPath);
   this.setHandler(context);
   this.setStopAtShutdown(true);
   this.setSendServerVersion(true);
   if (Configurations.getBoolean("gridworks.autoreloading",false)) {
-    scanForUpdates(contextRoot,context);
+    scanForUpdates(contextRoot,classRoot,context);
   }
+  this.start();
 }

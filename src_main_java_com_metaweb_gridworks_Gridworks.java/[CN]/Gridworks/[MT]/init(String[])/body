@@ -1,0 +1,9 @@
+{
+  int port=Configurations.getInteger("gridworks.port",3333);
+  String host=Configurations.get("gridworks.host","127.0.0.1");
+  GridworksServer server=new GridworksServer();
+  server.init(host,port);
+  GridworksClient client=new GridworksClient();
+  client.init(host,port);
+  new ShutdownSignalHandler("TERM",server);
+}

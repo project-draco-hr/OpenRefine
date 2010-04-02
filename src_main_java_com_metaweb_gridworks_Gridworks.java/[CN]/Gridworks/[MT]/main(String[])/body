@@ -6,12 +6,7 @@
   root.addAppender(console);
   Logger jetty_logger=Logger.getLogger("org.mortbay.log");
   jetty_logger.setLevel(Level.WARN);
-  int port=Configurations.getInteger("gridworks.port",3333);
-  String host=Configurations.get("gridworks.host","127.0.0.1");
-  Gridworks server=new Gridworks(host,port);
-  new ShutdownSignalHandler("TERM",server);
-  server.start();
-  URI starting_url=new URI("http://" + host + ":"+ port+ "/");
-  Desktop.getDesktop().browse(starting_url);
-  server.join();
+  version=Configurations.get("gridworks.version","trunk");
+  Gridworks gridworks=new Gridworks();
+  gridworks.init(args);
 }

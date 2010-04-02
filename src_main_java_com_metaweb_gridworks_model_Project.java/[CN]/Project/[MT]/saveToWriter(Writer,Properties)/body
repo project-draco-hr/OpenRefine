@@ -1,5 +1,5 @@
 {
-  writer.write(Gridworks.s_version);
+  writer.write(Gridworks.getVersion());
   writer.write('\n');
   writer.write("columnModel=\n");
   columnModel.save(writer,options);

@@ -1,5 +1,4 @@
 {
-  System.err.println("Received Signal: " + signame);
   _server.setGracefulShutdown(3000);
   try {
     _server.stop();

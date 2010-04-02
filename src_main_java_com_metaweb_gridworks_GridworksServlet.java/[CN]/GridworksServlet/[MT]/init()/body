@@ -1,6 +1,9 @@
 {
   super.init();
   ProjectManager.initialize();
+  if (_timer == null) {
+    _timer=new Timer();
+  }
   long period=1000 * 60 * 5;
   _timer.scheduleAtFixedRate(new TimerTask(){
     @Override public void run(){

@@ -1,9 +1,8 @@
 {
   List<File> scanList=new ArrayList<File>();
   scanList.add(new File(contextRoot,"WEB-INF/web.xml"));
-  findFiles(".class",new File(contextRoot,"WEB-INF"),scanList);
-  findFiles(".class",classRoot,scanList);
-  Gridworks.info("Starting autoreloading scanner... [class dir: " + classRoot.getAbsolutePath() + "]");
+  findFiles(".class",new File(contextRoot,"WEB-INF/classes"),scanList);
+  Gridworks.info("Starting autoreloading scanner... ");
   Scanner scanner=new Scanner();
   scanner.setScanInterval(Configurations.getInteger("gridworks.scanner.period",1));
   scanner.setScanDirs(scanList);

@@ -1,5 +1,4 @@
 {
   Importer importer=guessImporter(options,null,fileName);
   internalInvokeImporter(project,importer,options,inputStream,null);
-  inputStream.close();
 }

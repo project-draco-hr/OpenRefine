@@ -6,7 +6,14 @@
     while ((part=parser.readNextPart()) != null) {
       if (part.isFile()) {
         FilePart filePart=(FilePart)part;
-        internalImportFile(project,options,filePart.getFileName(),filePart.getInputStream());
+        InputStream stream=filePart.getInputStream();
+        String name=filePart.getFileName().toLowerCase();
+        try {
+          internalImportFile(project,options,name,stream);
+        }
+  finally {
+          stream.close();
+        }
       }
  else       if (part.isParam()) {
         ParamPart paramPart=(ParamPart)part;

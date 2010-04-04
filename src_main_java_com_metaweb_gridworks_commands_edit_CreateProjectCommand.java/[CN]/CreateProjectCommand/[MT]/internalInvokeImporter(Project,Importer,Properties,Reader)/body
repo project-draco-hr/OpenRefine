@@ -1,21 +1,5 @@
 {
-  int limit=-1;
-  int skip=0;
-  if (options.containsKey("limit")) {
-    String s=options.getProperty("limit");
-    try {
-      limit=Integer.parseInt(s);
-    }
- catch (    Exception e) {
-    }
-  }
-  if (options.containsKey("skip")) {
-    String s=options.getProperty("skip");
-    try {
-      skip=Integer.parseInt(s);
-    }
- catch (    Exception e) {
-    }
-  }
+  int limit=getIntegerOption("limit",options,-1);
+  int skip=getIntegerOption("skip",options,0);
   importer.read(reader,project,options,skip,limit);
 }

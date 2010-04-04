@@ -1,25 +1,28 @@
 {
-  if (fileName.endsWith(".tar.gz") || fileName.endsWith(".tar.bz2")) {
+  Gridworks.info("Importing " + fileName + "");
+  if (fileName.endsWith(".zip") || fileName.endsWith(".tar.gz") || fileName.endsWith(".tgz")|| fileName.endsWith(".tar.bz2")) {
     File file=save(inputStream);
-    BufferedInputStream stream=new BufferedInputStream(new FileInputStream(file));
-    InputStream is=(fileName.endsWith(".tar.gz")) ? new GZIPInputStream(stream) : new CBZip2InputStream(stream);
-    TarInputStream tis=new TarInputStream(is);
     HashMap<String,Integer> ext_map=new HashMap<String,Integer>();
-    while (true) {
-      TarEntry entry=tis.getNextEntry();
-      if (entry == null)       break;
-      if (!entry.isDirectory()) {
-        String name=entry.getName();
-        String ext=getExtension(name)[1];
-        if (ext_map.containsKey(ext)) {
-          ext_map.put(ext,ext_map.get(ext) + 1);
-        }
- else {
-          ext_map.put(ext,1);
+    InputStream is=getStream(fileName,new FileInputStream(file));
+    if (is instanceof TarInputStream) {
+      TarInputStream tis=(TarInputStream)is;
+      TarEntry te;
+      while ((te=tis.getNextEntry()) != null) {
+        if (!te.isDirectory()) {
+          mapExtension(te.getName(),ext_map);
         }
       }
     }
-    stream.close();
+ else     if (is instanceof ZipInputStream) {
+      ZipInputStream zis=(ZipInputStream)is;
+      ZipEntry ze;
+      while ((ze=zis.getNextEntry()) != null) {
+        if (!ze.isDirectory()) {
+          mapExtension(ze.getName(),ext_map);
+        }
+      }
+    }
+    is.close();
     List<Entry<String,Integer>> values=new ArrayList<Entry<String,Integer>>(ext_map.entrySet());
     Collections.sort(values,new ValuesComparator());
     if (values.size() == 0) {
@@ -39,17 +42,42 @@
         }
       }
     }
-    Gridworks.log("**** Most frequent extensions: " + exts.toString());
-  }
- else   if (fileName.endsWith(".zip")) {
+    Gridworks.log("Most frequent extensions: " + exts.toString());
+    is=getStream(fileName,new FileInputStream(file));
+    SafeInputStream sis=new SafeInputStream(is);
+    if (is instanceof TarInputStream) {
+      TarInputStream tis=(TarInputStream)is;
+      TarEntry te;
+      while ((te=tis.getNextEntry()) != null) {
+        if (!te.isDirectory()) {
+          String name=te.getName();
+          String ext=getExtension(name)[1];
+          if (exts.contains(ext)) {
+            internalImportFile(project,options,name,sis);
+          }
+        }
+      }
+    }
+ else     if (is instanceof ZipInputStream) {
+      ZipInputStream zis=(ZipInputStream)is;
+      ZipEntry ze;
+      while ((ze=zis.getNextEntry()) != null) {
+        if (!ze.isDirectory()) {
+          String name=ze.getName();
+          String ext=getExtension(name)[1];
+          if (exts.contains(ext)) {
+            internalImportFile(project,options,name,sis);
+          }
+        }
+      }
+    }
+    sis.reallyClose();
   }
  else   if (fileName.endsWith(".gz")) {
-    String[] frags=getExtension(fileName);
-    internalImportFile(project,options,frags[0],new GZIPInputStream(inputStream));
+    internalImportFile(project,options,getExtension(fileName)[0],new GZIPInputStream(inputStream));
   }
  else   if (fileName.endsWith(".bz2")) {
-    String[] frags=getExtension(fileName);
-    internalImportFile(project,options,frags[0],new CBZip2InputStream(inputStream));
+    internalImportFile(project,options,getExtension(fileName)[0],new CBZip2InputStream(inputStream));
   }
  else {
     load(project,options,fileName,inputStream);

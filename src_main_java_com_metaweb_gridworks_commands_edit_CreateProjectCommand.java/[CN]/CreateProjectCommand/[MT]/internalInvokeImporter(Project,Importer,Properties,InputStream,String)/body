@@ -1,30 +1,12 @@
 {
-  int limit=-1;
-  int skip=0;
-  if (options.containsKey("limit")) {
-    String s=options.getProperty("limit");
-    try {
-      limit=Integer.parseInt(s);
-    }
- catch (    Exception e) {
-    }
-  }
-  if (options.containsKey("skip")) {
-    String s=options.getProperty("skip");
-    try {
-      skip=Integer.parseInt(s);
-    }
- catch (    Exception e) {
-    }
-  }
-  BufferedInputStream inputStream=new BufferedInputStream(rawInputStream);
+  int limit=getIntegerOption("limit",options,-1);
+  int skip=getIntegerOption("skip",options,0);
   if (importer.takesReader()) {
+    BufferedInputStream inputStream=new BufferedInputStream(rawInputStream);
     byte[] bytes=new byte[1024 * 4];
-{
-      inputStream.mark(bytes.length);
-      inputStream.read(bytes);
-      inputStream.reset();
-    }
+    inputStream.mark(bytes.length);
+    inputStream.read(bytes);
+    inputStream.reset();
     CharsetDetector detector=new CharsetDetector();
     detector.setDeclaredEncoding("utf8");
     Reader reader=null;
@@ -46,6 +28,6 @@
     importer.read(reader,project,options,skip,limit);
   }
  else {
-    importer.read(inputStream,project,options,skip,limit);
+    importer.read(rawInputStream,project,options,skip,limit);
   }
 }

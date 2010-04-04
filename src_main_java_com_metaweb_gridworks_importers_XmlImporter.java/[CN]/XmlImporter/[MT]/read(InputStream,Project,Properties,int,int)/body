@@ -1,20 +1,24 @@
 {
-  BufferedInputStream bis=new BufferedInputStream(inputStream);
+  PushbackInputStream pis=new PushbackInputStream(inputStream,BUFFER_SIZE);
   String[] recordPath=null;
 {
-    byte[] buffer=new byte[64 * 1024];
-    bis.mark(buffer.length);
-    int c=bis.read(buffer);
-    bis.reset();
+    byte[] buffer=new byte[BUFFER_SIZE];
+    int bytes_read=0;
+    while (bytes_read < BUFFER_SIZE) {
+      int c=pis.read(buffer,bytes_read,BUFFER_SIZE - bytes_read);
+      if (c == -1)       break;
+      bytes_read+=c;
+    }
+    pis.unread(buffer,0,bytes_read);
     if (options.containsKey("importer-record-tag")) {
-      recordPath=XmlImportUtilities.detectPathFromTag(new ByteArrayInputStream(buffer,0,c),options.getProperty("importer-record-tag"));
+      recordPath=XmlImportUtilities.detectPathFromTag(new ByteArrayInputStream(buffer,0,bytes_read),options.getProperty("importer-record-tag"));
     }
  else {
-      recordPath=XmlImportUtilities.detectRecordElement(new ByteArrayInputStream(buffer,0,c));
+      recordPath=XmlImportUtilities.detectRecordElement(new ByteArrayInputStream(buffer,0,bytes_read));
     }
   }
   ImportColumnGroup rootColumnGroup=new ImportColumnGroup();
-  XmlImportUtilities.importXml(bis,project,recordPath,rootColumnGroup);
+  XmlImportUtilities.importXml(pis,project,recordPath,rootColumnGroup);
   XmlImportUtilities.createColumnsFromImport(project,rootColumnGroup);
   project.columnModel.update();
 }

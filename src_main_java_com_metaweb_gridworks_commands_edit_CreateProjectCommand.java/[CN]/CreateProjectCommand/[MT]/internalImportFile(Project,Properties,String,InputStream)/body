@@ -37,16 +37,21 @@
       throw new RuntimeException("The archive contains no files.");
     }
     HashSet<String> exts=new HashSet<String>();
-    Entry<String,Integer> most_frequent=values.get(0);
-    Entry<String,Integer> second_most_frequent=values.get(1);
-    if (most_frequent.getValue() > second_most_frequent.getValue()) {
-      exts.add(most_frequent.getKey());
+    if (values.size() == 1) {
+      exts.add(values.get(0).getKey());
     }
  else {
-      int winning_frequency=most_frequent.getValue();
-      for (      Entry<String,Integer> e : values) {
-        if (e.getValue() == winning_frequency) {
-          exts.add(e.getKey());
+      Entry<String,Integer> most_frequent=values.get(0);
+      Entry<String,Integer> second_most_frequent=values.get(1);
+      if (most_frequent.getValue() > second_most_frequent.getValue()) {
+        exts.add(most_frequent.getKey());
+      }
+ else {
+        int winning_frequency=most_frequent.getValue();
+        for (        Entry<String,Integer> e : values) {
+          if (e.getValue() == winning_frequency) {
+            exts.add(e.getKey());
+          }
         }
       }
     }

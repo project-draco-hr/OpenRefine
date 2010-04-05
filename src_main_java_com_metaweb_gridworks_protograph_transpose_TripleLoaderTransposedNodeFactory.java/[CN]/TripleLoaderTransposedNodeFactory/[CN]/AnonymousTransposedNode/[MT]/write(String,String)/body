@@ -15,7 +15,7 @@
         sb.append(", ");
       }
       sb.append("\"" + properties.get(i).id + "\": ");
-      sb.append(s instanceof String ? JSONObject.quote(s) : s.toString());
+      sb.append(JSONObject.quote(s));
     }
   }
   sb.append(" }");

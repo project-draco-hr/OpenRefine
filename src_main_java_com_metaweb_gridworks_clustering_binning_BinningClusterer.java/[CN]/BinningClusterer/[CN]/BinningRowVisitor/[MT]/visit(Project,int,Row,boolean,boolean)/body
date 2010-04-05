@@ -1,21 +1,21 @@
 {
   Cell cell=row.getCell(_colindex);
   if (cell != null && cell.value != null) {
-    String v=cell.value.toString();
+    Object v=cell.value;
     String s=(v instanceof String) ? ((String)v) : v.toString();
     String key=_keyer.key(s,_params);
     if (_map.containsKey(key)) {
       Map<String,Integer> m=_map.get(key);
-      if (m.containsKey(v)) {
-        m.put(v,m.get(v) + 1);
+      if (m.containsKey(s)) {
+        m.put(s,m.get(s) + 1);
       }
  else {
-        m.put(v,1);
+        m.put(s,1);
       }
     }
  else {
       Map<String,Integer> m=new TreeMap<String,Integer>();
-      m.put(v,1);
+      m.put(s,1);
       _map.put(key,m);
     }
   }

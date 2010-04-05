@@ -3,11 +3,23 @@
   byte[] buffer=new byte[4 * 1024];
   long count=0;
   int n=0;
-  while (-1 != (n=input.read(buffer))) {
-    output.write(buffer,0,n);
-    count+=n;
+  try {
+    while (-1 != (n=input.read(buffer))) {
+      output.write(buffer,0,n);
+      count+=n;
+    }
   }
-  output.close();
-  input.close();
+  finally {
+    try {
+      output.close();
+    }
+ catch (    IOException e) {
+    }
+    try {
+      input.close();
+    }
+ catch (    IOException e) {
+    }
+  }
   return count;
 }

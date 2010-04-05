@@ -8,9 +8,9 @@
     writer.key("projects");
     writer.object();
     Map<Long,ProjectMetadata> m=ProjectManager.singleton.getAllProjectMetadata();
-    for (    Long id : m.keySet()) {
-      writer.key(id.toString());
-      m.get(id).write(writer,options);
+    for (    Entry<Long,ProjectMetadata> e : m.entrySet()) {
+      writer.key(e.getKey().toString());
+      e.getValue().write(writer,options);
     }
     writer.endObject();
     writer.endObject();

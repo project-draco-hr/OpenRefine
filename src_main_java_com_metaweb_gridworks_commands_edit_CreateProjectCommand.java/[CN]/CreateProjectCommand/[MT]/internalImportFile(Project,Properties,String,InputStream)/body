@@ -4,25 +4,33 @@
     File file=save(inputStream);
     HashMap<String,Integer> ext_map=new HashMap<String,Integer>();
     InputStream is=getStream(fileName,new FileInputStream(file));
-    if (is instanceof TarInputStream) {
-      TarInputStream tis=(TarInputStream)is;
-      TarEntry te;
-      while ((te=tis.getNextEntry()) != null) {
-        if (!te.isDirectory()) {
-          mapExtension(te.getName(),ext_map);
+    try {
+      if (is instanceof TarInputStream) {
+        TarInputStream tis=(TarInputStream)is;
+        TarEntry te;
+        while ((te=tis.getNextEntry()) != null) {
+          if (!te.isDirectory()) {
+            mapExtension(te.getName(),ext_map);
+          }
+        }
+      }
+ else       if (is instanceof ZipInputStream) {
+        ZipInputStream zis=(ZipInputStream)is;
+        ZipEntry ze;
+        while ((ze=zis.getNextEntry()) != null) {
+          if (!ze.isDirectory()) {
+            mapExtension(ze.getName(),ext_map);
+          }
         }
       }
     }
- else     if (is instanceof ZipInputStream) {
-      ZipInputStream zis=(ZipInputStream)is;
-      ZipEntry ze;
-      while ((ze=zis.getNextEntry()) != null) {
-        if (!ze.isDirectory()) {
-          mapExtension(ze.getName(),ext_map);
-        }
+  finally {
+      try {
+        is.close();
+      }
+ catch (      IOException e) {
       }
     }
-    is.close();
     List<Entry<String,Integer>> values=new ArrayList<Entry<String,Integer>>(ext_map.entrySet());
     Collections.sort(values,new ValuesComparator());
     if (values.size() == 0) {
@@ -45,33 +53,41 @@
     Gridworks.log("Most frequent extensions: " + exts.toString());
     is=getStream(fileName,new FileInputStream(file));
     SafeInputStream sis=new SafeInputStream(is);
-    if (is instanceof TarInputStream) {
-      TarInputStream tis=(TarInputStream)is;
-      TarEntry te;
-      while ((te=tis.getNextEntry()) != null) {
-        if (!te.isDirectory()) {
-          String name=te.getName();
-          String ext=getExtension(name)[1];
-          if (exts.contains(ext)) {
-            internalImportFile(project,options,name,sis);
+    try {
+      if (is instanceof TarInputStream) {
+        TarInputStream tis=(TarInputStream)is;
+        TarEntry te;
+        while ((te=tis.getNextEntry()) != null) {
+          if (!te.isDirectory()) {
+            String name=te.getName();
+            String ext=getExtension(name)[1];
+            if (exts.contains(ext)) {
+              internalImportFile(project,options,name,sis);
+            }
+          }
+        }
+      }
+ else       if (is instanceof ZipInputStream) {
+        ZipInputStream zis=(ZipInputStream)is;
+        ZipEntry ze;
+        while ((ze=zis.getNextEntry()) != null) {
+          if (!ze.isDirectory()) {
+            String name=ze.getName();
+            String ext=getExtension(name)[1];
+            if (exts.contains(ext)) {
+              internalImportFile(project,options,name,sis);
+            }
           }
         }
       }
     }
- else     if (is instanceof ZipInputStream) {
-      ZipInputStream zis=(ZipInputStream)is;
-      ZipEntry ze;
-      while ((ze=zis.getNextEntry()) != null) {
-        if (!ze.isDirectory()) {
-          String name=ze.getName();
-          String ext=getExtension(name)[1];
-          if (exts.contains(ext)) {
-            internalImportFile(project,options,name,sis);
-          }
-        }
+  finally {
+      try {
+        sis.reallyClose();
+      }
+ catch (      IOException e) {
       }
     }
-    sis.reallyClose();
   }
  else   if (fileName.endsWith(".gz")) {
     internalImportFile(project,options,getExtension(fileName)[0],new GZIPInputStream(inputStream));

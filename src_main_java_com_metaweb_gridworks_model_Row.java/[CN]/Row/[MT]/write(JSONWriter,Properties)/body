@@ -27,9 +27,9 @@
     if (options.containsKey("extra")) {
       Properties extra=(Properties)options.get("extra");
       if (extra != null) {
-        for (        Object key : extra.keySet()) {
-          writer.key((String)key);
-          writer.value(extra.get(key));
+        for (        Entry<Object,Object> e : extra.entrySet()) {
+          writer.key((String)e.getKey());
+          writer.value(e.getValue());
         }
       }
     }

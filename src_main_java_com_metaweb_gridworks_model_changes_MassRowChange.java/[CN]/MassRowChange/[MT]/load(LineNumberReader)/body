@@ -10,7 +10,9 @@
       oldRows=new ArrayList<Row>(count);
       for (int i=0; i < count; i++) {
         line=reader.readLine();
-        oldRows.add(Row.load(line));
+        if (line != null) {
+          oldRows.add(Row.load(line));
+        }
       }
     }
  else     if ("newRowCount".equals(field)) {
@@ -18,7 +20,9 @@
       newRows=new ArrayList<Row>(count);
       for (int i=0; i < count; i++) {
         line=reader.readLine();
-        newRows.add(Row.load(line));
+        if (line != null) {
+          newRows.add(Row.load(line));
+        }
       }
     }
   }

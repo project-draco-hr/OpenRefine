@@ -29,6 +29,5 @@
     }
     recons.add(recon);
   }
-  System.gc();
   return recons;
 }

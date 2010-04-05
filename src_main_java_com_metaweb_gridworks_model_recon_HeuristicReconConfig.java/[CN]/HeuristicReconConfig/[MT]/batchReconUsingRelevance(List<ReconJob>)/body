@@ -60,6 +60,5 @@
  catch (  Exception e) {
     e.printStackTrace();
   }
-  System.gc();
   return recons;
 }

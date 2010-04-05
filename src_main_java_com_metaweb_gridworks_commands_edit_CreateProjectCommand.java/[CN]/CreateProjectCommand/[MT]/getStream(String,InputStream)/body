@@ -5,10 +5,7 @@
  else   if (fileName.endsWith(".tar.bz2")) {
     return new TarInputStream(new CBZip2InputStream(is));
   }
- else   if (fileName.endsWith(".zip")) {
-    return new ZipInputStream(is);
-  }
  else {
-    return null;
+    return new ZipInputStream(is);
   }
 }

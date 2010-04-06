@@ -23,11 +23,20 @@
     }
     if (first) {
       String[] cells=StringUtils.splitPreserveAllTokens(line,sep);
+      Map<String,Integer> nameToIndex=new HashMap<String,Integer>();
       first=false;
       for (int c=0; c < cells.length; c++) {
         String cell=cells[c];
         if (cell.startsWith("\"") && cell.endsWith("\"")) {
           cell=cell.substring(1,cell.length() - 1);
+        }
+        if (nameToIndex.containsKey(cell)) {
+          int index=nameToIndex.get(cell);
+          nameToIndex.put(cell,index + 1);
+          cell=cell.contains(" ") ? (cell + " " + index) : (cell + index);
+        }
+ else {
+          nameToIndex.put(cell,2);
         }
         Column column=new Column(c,cell);
         project.columnModel.columns.add(column);

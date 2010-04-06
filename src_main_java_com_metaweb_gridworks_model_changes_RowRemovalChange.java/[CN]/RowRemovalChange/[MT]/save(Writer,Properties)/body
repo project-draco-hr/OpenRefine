@@ -1,0 +1,17 @@
+{
+  writer.write("rowIndexCount=");
+  writer.write(Integer.toString(_rowIndices.size()));
+  writer.write('\n');
+  for (  Integer index : _rowIndices) {
+    writer.write(index.toString());
+    writer.write('\n');
+  }
+  writer.write("rowCount=");
+  writer.write(Integer.toString(_rows.size()));
+  writer.write('\n');
+  for (  Row row : _rows) {
+    row.save(writer,options);
+    writer.write('\n');
+  }
+  writer.write("/ec/\n");
+}

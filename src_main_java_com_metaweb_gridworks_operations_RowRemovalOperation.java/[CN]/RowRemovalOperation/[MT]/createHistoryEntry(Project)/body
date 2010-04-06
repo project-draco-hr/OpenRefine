@@ -1,0 +1,7 @@
+{
+  Engine engine=createEngine(project);
+  List<Integer> rowIndices=new ArrayList<Integer>();
+  FilteredRows filteredRows=engine.getAllFilteredRows(false);
+  filteredRows.accept(project,createRowVisitor(project,rowIndices));
+  return new HistoryEntry(project,"Remove " + rowIndices.size() + " rows",this,new RowRemovalChange(rowIndices));
+}

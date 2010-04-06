@@ -17,7 +17,7 @@
     throw new Exception("Cannot retrieve content from " + url,e);
   }
   try {
-    internalImportInputStream(projectID,inputStream);
+    internalImportInputStream(projectID,inputStream,!urlString.endsWith(".tar"));
   }
   finally {
     inputStream.close();

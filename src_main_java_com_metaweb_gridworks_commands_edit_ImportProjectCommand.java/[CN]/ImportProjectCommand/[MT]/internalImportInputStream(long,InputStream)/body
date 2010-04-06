@@ -1,5 +1,0 @@
-{
-  File destDir=ProjectManager.singleton.getProjectDir(projectID);
-  destDir.mkdirs();
-  untar(destDir,inputStream);
-}

@@ -1,0 +1,11 @@
+{
+  File destDir=ProjectManager.singleton.getProjectDir(projectID);
+  destDir.mkdirs();
+  if (gziped) {
+    GZIPInputStream gis=new GZIPInputStream(inputStream);
+    untar(destDir,gis);
+  }
+ else {
+    untar(destDir,inputStream);
+  }
+}

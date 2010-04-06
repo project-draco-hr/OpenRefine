@@ -13,7 +13,7 @@
         FilePart filePart=(FilePart)part;
         InputStream inputStream=filePart.getInputStream();
         try {
-          internalImportInputStream(projectID,inputStream);
+          internalImportInputStream(projectID,inputStream,!filePart.getFileName().endsWith(".tar"));
         }
   finally {
           inputStream.close();

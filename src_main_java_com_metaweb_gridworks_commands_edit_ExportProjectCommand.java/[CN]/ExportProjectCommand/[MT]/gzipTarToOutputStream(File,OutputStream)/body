@@ -1,0 +1,9 @@
+{
+  GZIPOutputStream gos=new GZIPOutputStream(os);
+  try {
+    tarToOutputStream(dir,gos);
+  }
+  finally {
+    gos.close();
+  }
+}

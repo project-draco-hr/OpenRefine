@@ -2,10 +2,10 @@
   try {
     Project project=getProject(request);
     ProjectManager.singleton.ensureProjectSaved(project.id);
-    response.setHeader("Content-Type","application/x-tar");
+    response.setHeader("Content-Type","application/x-gzip");
     OutputStream os=response.getOutputStream();
     try {
-      tarToOutputStream(ProjectManager.singleton.getProjectDir(project.id),os);
+      gzipTarToOutputStream(ProjectManager.singleton.getProjectDir(project.id),os);
     }
   finally {
       os.close();

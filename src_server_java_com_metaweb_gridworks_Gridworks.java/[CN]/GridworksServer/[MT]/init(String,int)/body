@@ -27,5 +27,4 @@
     scanForUpdates(contextRoot,context);
   }
   this.start();
-  this.join();
 }

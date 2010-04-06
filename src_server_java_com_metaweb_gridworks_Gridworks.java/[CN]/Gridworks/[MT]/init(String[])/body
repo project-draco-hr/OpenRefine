@@ -6,4 +6,5 @@
   GridworksClient client=new GridworksClient();
   client.init(host,port);
   new ShutdownSignalHandler("TERM",server);
+  server.join();
 }

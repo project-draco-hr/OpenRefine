@@ -1,0 +1,9 @@
+{
+  String key=fromProject + ";" + fromColumn+ ";"+ toProject+ ";"+ toColumn;
+  if (!_joins.containsKey(key)) {
+    ProjectJoin join=new ProjectJoin(ProjectManager.singleton.getProjectID(fromProject),fromColumn,ProjectManager.singleton.getProjectID(toProject),toColumn);
+    computeJoin(join);
+    _joins.put(key,join);
+  }
+  return _joins.get(key);
+}

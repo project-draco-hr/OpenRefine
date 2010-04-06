@@ -1,0 +1,3 @@
+{
+  return "cells".equals(name) || "record".equals(name);
+}

@@ -1,0 +1,14 @@
+{
+  if (ExpressionUtils.isNonBlankData(value) && valueToRowIndices.containsKey(value)) {
+    Project toProject=ProjectManager.singleton.getProject(toProjectID);
+    if (toProject != null) {
+      HasFieldsListImpl rows=new HasFieldsListImpl();
+      for (      Integer r : valueToRowIndices.get(value)) {
+        Row row=toProject.rows.get(r);
+        rows.add(new WrappedRow(toProject,r,row));
+      }
+      return rows;
+    }
+  }
+  return null;
+}

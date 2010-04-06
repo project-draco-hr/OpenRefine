@@ -1,0 +1,8 @@
+{
+  for (  Entry<String,ProjectJoin> entry : _joins.entrySet()) {
+    ProjectJoin join=entry.getValue();
+    if (join.fromProjectID == projectID && join.fromProjectColumnName.equals(columnName) || join.toProjectID == projectID && join.toProjectColumnName.equals(columnName)) {
+      _joins.remove(entry.getKey());
+    }
+  }
+}

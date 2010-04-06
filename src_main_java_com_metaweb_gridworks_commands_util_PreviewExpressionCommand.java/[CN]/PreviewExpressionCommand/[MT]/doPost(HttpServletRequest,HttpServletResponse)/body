@@ -2,6 +2,7 @@
   try {
     Project project=getProject(request);
     int cellIndex=Integer.parseInt(request.getParameter("cellIndex"));
+    String columnName=project.columnModel.getColumnByCellIndex(cellIndex).getName();
     String expression=request.getParameter("expression");
     String rowIndicesString=request.getParameter("rowIndices");
     if (rowIndicesString == null) {
@@ -38,12 +39,12 @@
           Row row=project.rows.get(rowIndex);
           Cell cell=row.getCell(cellIndex);
           try {
-            ExpressionUtils.bind(bindings,row,rowIndex,cell);
+            ExpressionUtils.bind(bindings,row,rowIndex,columnName,cell);
             result=eval.evaluate(bindings);
             if (repeat) {
               for (int r=0; r < repeatCount && ExpressionUtils.isStorable(result); r++) {
                 Cell newCell=new Cell((Serializable)result,(cell != null) ? cell.recon : null);
-                ExpressionUtils.bind(bindings,row,rowIndex,newCell);
+                ExpressionUtils.bind(bindings,row,rowIndex,columnName,newCell);
                 Object newResult=eval.evaluate(bindings);
                 if (ExpressionUtils.isError(newResult)) {
                   break;
@@ -60,22 +61,19 @@
  catch (          Exception e) {
           }
         }
-        if (result != null && (result.getClass().isArray() || result instanceof List<?>)) {
-          writer.array();
-          if (result.getClass().isArray()) {
-            for (            Object v : (Object[])result) {
-              writeValue(writer,v);
-            }
-          }
- else {
-            for (            Object v : ExpressionUtils.toObjectList(result)) {
-              writeValue(writer,v);
-            }
-          }
-          writer.endArray();
+        if (result == null) {
+          writer.value(null);
+        }
+ else         if (ExpressionUtils.isError(result)) {
+          writer.object();
+          writer.key("message");
+          writer.value(((EvalError)result).message);
+          writer.endObject();
         }
  else {
-          writeValue(writer,result);
+          StringBuffer sb=new StringBuffer();
+          writeValue(sb,result,false);
+          writer.value(sb.toString());
         }
       }
       writer.endArray();

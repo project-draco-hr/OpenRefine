@@ -1,0 +1,3 @@
+{
+  return "match".equals(name) || "best".equals(name);
+}

@@ -1,0 +1,8 @@
+{
+  _evaluable=evaluable;
+  _columnName=columnName;
+  _cellIndex=cellIndex;
+  _matches=matches;
+  _selectBlank=selectBlank;
+  _selectError=selectError;
+}

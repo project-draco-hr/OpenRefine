@@ -1,0 +1,6 @@
+Evaluable evaluable
+String columnName
+int cellIndex
+Object[] matches
+boolean selectBlank
+boolean selectError

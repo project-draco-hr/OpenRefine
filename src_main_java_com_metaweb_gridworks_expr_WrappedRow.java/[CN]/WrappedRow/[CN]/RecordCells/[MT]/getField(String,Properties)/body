@@ -1,0 +1,22 @@
+{
+  Column column=project.columnModel.getColumnByName(name);
+  if (column != null) {
+    Row recordRow=project.rows.get(_recordRowIndex);
+    int cellIndex=column.getCellIndex();
+    HasFieldsListImpl cells=new HasFieldsListImpl();
+    int recordIndex=recordRow.recordIndex;
+    int count=project.rows.size();
+    for (int r=_recordRowIndex; r < count; r++) {
+      Row row=project.rows.get(r);
+      if (row.recordIndex > recordIndex) {
+        break;
+      }
+      Cell cell=row.getCell(cellIndex);
+      if (cell != null && ExpressionUtils.isNonBlankData(cell.value)) {
+        cells.add(new WrappedCell(project,name,cell));
+      }
+    }
+    return cells;
+  }
+  return null;
+}

@@ -1,9 +1,0 @@
-{
-  Project project=(Project)bindings.get("project");
-  Column column=project.columnModel.getColumnByName(name);
-  if (column != null) {
-    int cellIndex=column.getCellIndex();
-    return getCell(cellIndex);
-  }
-  return null;
-}

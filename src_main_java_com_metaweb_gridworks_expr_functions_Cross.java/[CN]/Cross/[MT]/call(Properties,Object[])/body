@@ -1,0 +1,12 @@
+{
+  if (args.length == 3) {
+    Object wrappedCell=args[0];
+    Object toProjectName=args[1];
+    Object toColumnName=args[2];
+    if (wrappedCell != null && wrappedCell instanceof WrappedCell && toProjectName != null && toProjectName instanceof String && toColumnName != null && toColumnName instanceof String) {
+      ProjectJoin join=ProjectManager.singleton.getInterProjectModel().getJoin(ProjectManager.singleton.getProjectMetadata(((Project)bindings.get("project")).id).getName(),((WrappedCell)wrappedCell).columnName,(String)toProjectName,(String)toColumnName);
+      return join.getRows(((WrappedCell)wrappedCell).cell.value);
+    }
+  }
+  return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " expects a cell, a project name to join with, and a column name in that project");
+}

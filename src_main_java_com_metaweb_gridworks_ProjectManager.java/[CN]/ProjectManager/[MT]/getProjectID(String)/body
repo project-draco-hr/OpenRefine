@@ -1,0 +1,8 @@
+{
+  for (  Entry<Long,ProjectMetadata> entry : _projectsMetadata.entrySet()) {
+    if (entry.getValue().getName().equals(name)) {
+      return entry.getKey();
+    }
+  }
+  return -1;
+}

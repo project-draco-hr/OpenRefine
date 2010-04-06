@@ -1,0 +1,61 @@
+{
+  if (ExpressionUtils.isError(v)) {
+    sb.append("[error: " + ((EvalError)v).message + "]");
+  }
+ else {
+    if (v == null) {
+      sb.append("null");
+    }
+ else {
+      if (v instanceof WrappedCell) {
+        sb.append("[object Cell]");
+      }
+ else       if (v instanceof WrappedRow) {
+        sb.append("[object Row]");
+      }
+ else       if (ExpressionUtils.isArray(v)) {
+        Object[] a=(Object[])v;
+        sb.append("[ ");
+        for (int i=0; i < a.length; i++) {
+          if (i > 0) {
+            sb.append(", ");
+          }
+          writeValue(sb,a[i],true);
+        }
+        sb.append(" ]");
+      }
+ else       if (ExpressionUtils.isArrayOrList(v)) {
+        List<Object> list=ExpressionUtils.toObjectList(v);
+        sb.append("[ ");
+        for (int i=0; i < list.size(); i++) {
+          if (i > 0) {
+            sb.append(", ");
+          }
+          writeValue(sb,list.get(i),true);
+        }
+        sb.append(" ]");
+      }
+ else       if (v instanceof HasFields) {
+        sb.append("[object " + v.getClass().getSimpleName() + "]");
+      }
+ else       if (v instanceof Calendar) {
+        Calendar c=(Calendar)v;
+        sb.append("[date " + ParsingUtilities.dateToString(c.getTime()) + "]");
+      }
+ else       if (v instanceof Date) {
+        sb.append("[date " + ParsingUtilities.dateToString((Date)v) + "]");
+      }
+ else       if (v instanceof String) {
+        if (quote) {
+          sb.append(JSONObject.quote((String)v));
+        }
+ else {
+          sb.append((String)v);
+        }
+      }
+ else {
+        sb.append(v.toString());
+      }
+    }
+  }
+}

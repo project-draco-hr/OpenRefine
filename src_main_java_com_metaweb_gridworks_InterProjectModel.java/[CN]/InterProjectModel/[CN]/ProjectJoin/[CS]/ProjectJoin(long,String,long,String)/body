@@ -1,0 +1,6 @@
+{
+  this.fromProjectID=fromProjectID;
+  this.fromProjectColumnName=fromProjectColumnName;
+  this.toProjectID=toProjectID;
+  this.toProjectColumnName=toProjectColumnName;
+}

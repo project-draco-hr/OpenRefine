@@ -1,8 +1,0 @@
-{
-  _evaluable=evaluable;
-  _cellIndex=cellIndex;
-  _selectNumeric=selectNumeric;
-  _selectNonNumeric=selectNonNumeric;
-  _selectBlank=selectBlank;
-  _selectError=selectError;
-}

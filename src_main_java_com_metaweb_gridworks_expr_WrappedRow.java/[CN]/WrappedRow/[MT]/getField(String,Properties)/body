@@ -1,0 +1,20 @@
+{
+  if ("cells".equals(name)) {
+    return new CellTuple(project,row);
+  }
+ else   if ("index".equals(name)) {
+    return rowIndex;
+  }
+ else   if ("record".equals(name)) {
+    int rowIndex=(Integer)bindings.get("rowIndex");
+    int recordRowIndex=(row.contextRows != null && row.contextRows.size() > 0) ? row.contextRows.get(0) : rowIndex;
+    return new Record(recordRowIndex,rowIndex);
+  }
+ else   if ("columnNames".equals(name)) {
+    Project project=(Project)bindings.get("project");
+    return project.columnModel.getColumnNames();
+  }
+ else {
+    return row.getField(name,bindings);
+  }
+}

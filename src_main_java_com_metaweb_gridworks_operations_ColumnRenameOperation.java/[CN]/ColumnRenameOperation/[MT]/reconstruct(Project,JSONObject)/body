@@ -1,0 +1,3 @@
+{
+  return new ColumnRenameOperation(obj.getString("oldColumnName"),obj.getString("newColumnName"));
+}

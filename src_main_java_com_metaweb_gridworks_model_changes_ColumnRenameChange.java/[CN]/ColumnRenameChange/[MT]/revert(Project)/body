@@ -1,0 +1,6 @@
+{
+synchronized (project) {
+    project.columnModel.getColumnByName(_newColumnName).setName(_oldColumnName);
+    project.columnModel.update();
+  }
+}

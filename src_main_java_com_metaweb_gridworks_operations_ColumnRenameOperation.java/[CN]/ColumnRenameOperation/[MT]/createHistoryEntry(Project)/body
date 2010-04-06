@@ -1,0 +1,10 @@
+{
+  if (project.columnModel.getColumnByName(_oldColumnName) == null) {
+    throw new Exception("No column named " + _oldColumnName);
+  }
+  if (project.columnModel.getColumnByName(_newColumnName) != null) {
+    throw new Exception("Another column already named " + _newColumnName);
+  }
+  Change change=new ColumnRenameChange(_oldColumnName,_newColumnName);
+  return new HistoryEntry(project,getBriefDescription(null),ColumnRenameOperation.this,change);
+}

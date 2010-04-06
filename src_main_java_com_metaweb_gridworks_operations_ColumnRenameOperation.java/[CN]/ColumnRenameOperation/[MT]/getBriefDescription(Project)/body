@@ -1,0 +1,3 @@
+{
+  return "Rename column " + _oldColumnName + " to "+ _newColumnName;
+}

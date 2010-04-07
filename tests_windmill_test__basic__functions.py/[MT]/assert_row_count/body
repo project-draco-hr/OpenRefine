@@ -1,0 +1,2 @@
+def assert_row_count(client, count):
+    client.asserts.assertText(jquery=u'("span.viewPanel-summary-row-count")[0]', validator=u'{0}'.format(count))

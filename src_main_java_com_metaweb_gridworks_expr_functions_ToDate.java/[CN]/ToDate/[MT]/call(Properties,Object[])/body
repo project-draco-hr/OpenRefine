@@ -1,18 +1,38 @@
 {
-  if (args.length == 1 || args.length == 2) {
-    Object o1=args[0];
-    if (o1 != null && o1 instanceof String) {
-      boolean month_first=true;
-      if (args.length == 2) {
-        Object o2=args[1];
-        if (o2 != null && o2 instanceof Boolean) {
-          month_first=((Boolean)o2).booleanValue();
-        }
+  if (args.length == 0) {
+  }
+  if (!(args[0] instanceof String)) {
+    return null;
+  }
+  String o1=(String)args[0];
+  if (args.length == 1 || (args.length == 2 && args[1] instanceof Boolean)) {
+    boolean month_first=true;
+    if (args.length == 2) {
+      month_first=(Boolean)args[1];
+    }
+    try {
+      return CalendarParser.parse(o1,(month_first) ? CalendarParser.MM_DD_YY : CalendarParser.DD_MM_YY);
+    }
+ catch (    CalendarParserException e) {
+    }
+  }
+  if (args.length >= 2) {
+    for (int i=1; i < args.length; i++) {
+      if (!(args[i] instanceof String)) {
+        continue;
       }
+      String format=(String)args[i];
+      SimpleDateFormat formatter=new SimpleDateFormat(format);
+      Date date=null;
       try {
-        return CalendarParser.parse((String)o1,(month_first) ? CalendarParser.MM_DD_YY : CalendarParser.DD_MM_YY);
+        date=formatter.parse(o1);
       }
- catch (      CalendarParserException e) {
+ catch (      java.text.ParseException e) {
+      }
+      if (date != null) {
+        GregorianCalendar c=new GregorianCalendar();
+        c.setTime(date);
+        return c;
       }
     }
   }

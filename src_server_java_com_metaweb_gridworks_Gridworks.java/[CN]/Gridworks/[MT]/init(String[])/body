@@ -3,8 +3,11 @@
   String host=Configurations.get("gridworks.host","127.0.0.1");
   GridworksServer server=new GridworksServer();
   server.init(host,port);
-  GridworksClient client=new GridworksClient();
-  client.init(host,port);
+  boolean headless=Configurations.getBoolean("gridworks.headless",false);
+  if (!headless) {
+    GridworksClient client=new GridworksClient();
+    client.init(host,port);
+  }
   new ShutdownSignalHandler("TERM",server);
   server.join();
 }

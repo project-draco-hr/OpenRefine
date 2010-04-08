@@ -24,15 +24,13 @@
  else   if ("anonymous".equals(nodeType)) {
     node=new AnonymousNode(reconstructType(o.getJSONObject("type")));
   }
-  if (node != null) {
-    if (node instanceof NodeWithLinks && o.has("links")) {
-      NodeWithLinks node2=(NodeWithLinks)node;
-      JSONArray links=o.getJSONArray("links");
-      int linkCount=links.length();
-      for (int j=0; j < linkCount; j++) {
-        JSONObject oLink=links.getJSONObject(j);
-        node2.addLink(new Link(reconstructProperty(oLink.getJSONObject("property")),reconstructNode(oLink.getJSONObject("target"))));
-      }
+  if (node != null && node instanceof NodeWithLinks && o.has("links")) {
+    NodeWithLinks node2=(NodeWithLinks)node;
+    JSONArray links=o.getJSONArray("links");
+    int linkCount=links.length();
+    for (int j=0; j < linkCount; j++) {
+      JSONObject oLink=links.getJSONObject(j);
+      node2.addLink(new Link(reconstructProperty(oLink.getJSONObject("property")),reconstructNode(oLink.getJSONObject("target"))));
     }
   }
   return node;

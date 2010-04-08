@@ -11,11 +11,9 @@
       visitRow(project,visitor,rowIndex,row,lastVisitedRowRowIndex);
       lastVisitedRowRowIndex=rowIndex;
     }
- else     if (_includeDependent && row.recordIndex < 0 && row.contextRows != null && row.contextRows.size() > 0) {
-      if (row.contextRows.get(0) == lastRecordRowAcceptedRowIndex) {
-        visitor.visit(project,rowIndex,row,false,true);
-        lastVisitedRowRowIndex=rowIndex;
-      }
+ else     if (_includeDependent && row.recordIndex < 0 && row.contextRows != null && row.contextRows.size() > 0 && row.contextRows.get(0) == lastRecordRowAcceptedRowIndex) {
+      visitor.visit(project,rowIndex,row,false,true);
+      lastVisitedRowRowIndex=rowIndex;
     }
   }
 }

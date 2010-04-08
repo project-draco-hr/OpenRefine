@@ -6,15 +6,11 @@
     int equal=line.indexOf('=');
     CharSequence field=line.subSequence(0,equal);
     String value=line.substring(equal + 1);
-    if ("oldProtograph".equals(field)) {
-      if (value.length() > 0) {
-        oldProtograph=Protograph.reconstruct(ParsingUtilities.evaluateJsonStringToObject(value));
-      }
+    if ("oldProtograph".equals(field) && value.length() > 0) {
+      oldProtograph=Protograph.reconstruct(ParsingUtilities.evaluateJsonStringToObject(value));
     }
- else     if ("newProtograph".equals(field)) {
-      if (value.length() > 0) {
-        newProtograph=Protograph.reconstruct(ParsingUtilities.evaluateJsonStringToObject(value));
-      }
+ else     if ("newProtograph".equals(field) && value.length() > 0) {
+      newProtograph=Protograph.reconstruct(ParsingUtilities.evaluateJsonStringToObject(value));
     }
   }
   ProtographChange change=new ProtographChange(newProtograph);

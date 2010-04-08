@@ -1,5 +1,5 @@
 {
-  if (_engineConfig == null) {
+  if (_engineConfig == null && _engineConfigString != null) {
     try {
       _engineConfig=ParsingUtilities.evaluateJsonStringToObject(_engineConfigString);
     }

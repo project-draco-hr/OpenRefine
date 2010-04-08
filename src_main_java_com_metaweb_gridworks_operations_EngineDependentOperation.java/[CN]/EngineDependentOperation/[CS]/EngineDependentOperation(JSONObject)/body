@@ -1,4 +1,4 @@
 {
   _engineConfig=engineConfig;
-  _engineConfigString=engineConfig.toString();
+  _engineConfigString=engineConfig == null || engineConfig.length() == 0 ? null : engineConfig.toString();
 }

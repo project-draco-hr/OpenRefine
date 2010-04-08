@@ -5,8 +5,13 @@
   server.init(host,port);
   boolean headless=Configurations.getBoolean("gridworks.headless",false);
   if (!headless) {
-    GridworksClient client=new GridworksClient();
-    client.init(host,port);
+    try {
+      GridworksClient client=new GridworksClient();
+      client.init(host,port);
+    }
+ catch (    Exception e) {
+      Log.warn("Sorry, some error prevented us from launching the browser for you.\n\n Point your browser to http://" + host + ":"+ port+ "/ to start using Gridworks.");
+    }
   }
   new ShutdownSignalHandler("TERM",server);
   server.join();

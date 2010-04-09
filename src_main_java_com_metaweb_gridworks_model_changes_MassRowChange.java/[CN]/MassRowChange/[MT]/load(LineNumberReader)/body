@@ -1,6 +1,7 @@
 {
   List<Row> oldRows=null;
   List<Row> newRows=null;
+  Map<Long,Recon> reconCache=new HashMap<Long,Recon>();
   String line;
   while ((line=reader.readLine()) != null && !"/ec/".equals(line)) {
     int equal=line.indexOf('=');
@@ -11,7 +12,7 @@
       for (int i=0; i < count; i++) {
         line=reader.readLine();
         if (line != null) {
-          oldRows.add(Row.load(line));
+          oldRows.add(Row.load(line,reconCache));
         }
       }
     }
@@ -21,7 +22,7 @@
       for (int i=0; i < count; i++) {
         line=reader.readLine();
         if (line != null) {
-          newRows.add(Row.load(line));
+          newRows.add(Row.load(line,reconCache));
         }
       }
     }

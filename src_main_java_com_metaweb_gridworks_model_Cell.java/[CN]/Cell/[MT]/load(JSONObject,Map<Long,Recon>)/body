@@ -14,7 +14,7 @@
     }
   }
   if (obj.has("r") && !obj.isNull("r")) {
-    recon=Recon.load(obj.getJSONObject("r"));
+    recon=Recon.load(obj.getJSONObject("r"),reconCache);
   }
   return new Cell(value,recon);
 }

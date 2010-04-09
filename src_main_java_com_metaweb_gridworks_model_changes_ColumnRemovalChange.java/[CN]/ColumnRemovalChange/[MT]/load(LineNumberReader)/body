@@ -14,11 +14,12 @@
     }
  else     if ("oldCellCount".equals(field)) {
       int oldCellCount=Integer.parseInt(line.substring(equal + 1));
+      Map<Long,Recon> reconCache=new HashMap<Long,Recon>();
       oldCells=new CellAtRow[oldCellCount];
       for (int i=0; i < oldCellCount; i++) {
         line=reader.readLine();
         if (line != null) {
-          oldCells[i]=CellAtRow.load(line);
+          oldCells[i]=CellAtRow.load(line,reconCache);
         }
       }
     }

@@ -35,9 +35,10 @@
     }
  else     if ("cellChangeCount".equals(field)) {
       int cellChangeCount=Integer.parseInt(value);
+      Map<Long,Recon> reconCache=new HashMap<Long,Recon>();
       cellChanges=new CellChange[cellChangeCount];
       for (int i=0; i < cellChangeCount; i++) {
-        cellChanges[i]=CellChange.load(reader);
+        cellChanges[i]=CellChange.load(reader,reconCache);
       }
     }
   }

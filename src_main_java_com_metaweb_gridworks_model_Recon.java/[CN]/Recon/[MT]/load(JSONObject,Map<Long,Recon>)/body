@@ -2,7 +2,11 @@
   if (obj == null) {
     return null;
   }
-  Recon recon=new Recon(obj.getLong("id"));
+  long id=obj.getLong("id");
+  if (reconCache.containsKey(id)) {
+    return reconCache.get(id);
+  }
+  Recon recon=new Recon(id);
   if (obj.has("j")) {
     recon.judgment=stringToJudgment(obj.getString("j"));
   }
@@ -25,5 +29,6 @@
       }
     }
   }
+  reconCache.put(id,recon);
   return recon;
 }

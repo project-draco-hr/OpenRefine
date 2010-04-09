@@ -18,10 +18,11 @@
     }
  else     if ("rowCount".equals(field)) {
       int count=Integer.parseInt(value);
+      Map<Long,Recon> reconCache=new HashMap<Long,Recon>();
       for (int i=0; i < count; i++) {
         line=reader.readLine();
         if (line != null) {
-          Row row=Row.load(line);
+          Row row=Row.load(line,reconCache);
           project.rows.add(row);
           maxCellCount=Math.max(maxCellCount,row.cells.size());
         }

@@ -15,10 +15,10 @@
       cellIndex=Integer.parseInt(value);
     }
  else     if ("new".equals(field) && value.length() > 0) {
-      newCell=Cell.load(value);
+      newCell=Cell.load(value,reconCache);
     }
  else     if ("old".equals(field) && value.length() > 0) {
-      oldCell=Cell.load(value);
+      oldCell=Cell.load(value,reconCache);
     }
   }
   return new CellChange(row,cellIndex,oldCell,newCell);

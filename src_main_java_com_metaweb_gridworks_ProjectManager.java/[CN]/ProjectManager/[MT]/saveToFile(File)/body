@@ -6,13 +6,15 @@
     jsonWriter.key("projectIDs");
     jsonWriter.array();
     for (    Long id : _projectsMetadata.keySet()) {
-      jsonWriter.value(id);
       ProjectMetadata metadata=_projectsMetadata.get(id);
-      try {
-        metadata.save(getProjectDir(id));
-      }
- catch (      Exception e) {
-        e.printStackTrace();
+      if (metadata != null) {
+        jsonWriter.value(id);
+        try {
+          metadata.save(getProjectDir(id));
+        }
+ catch (        Exception e) {
+          e.printStackTrace();
+        }
       }
     }
     jsonWriter.endArray();

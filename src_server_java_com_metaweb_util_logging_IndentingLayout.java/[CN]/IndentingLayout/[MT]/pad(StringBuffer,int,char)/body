@@ -1,5 +1,5 @@
 {
   for (int i=0; i < pads; i++) {
-    buf.append(padchar);
+    buffer.append(padchar);
   }
 }

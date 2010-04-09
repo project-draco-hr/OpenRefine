@@ -1,0 +1,5 @@
+{
+  this.handler=handler;
+  final Signal signal=new Signal(signalName);
+  existingHandler=Signal.handle(signal,this);
+}

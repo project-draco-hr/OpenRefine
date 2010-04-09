@@ -7,7 +7,7 @@
   writer.key("time");
   writer.value(ParsingUtilities.dateToString(time));
   if ("save".equals(options.getProperty("mode")) && operation != null) {
-    writer.key("operation");
+    writer.key(OPERATION);
     operation.write(writer,options);
   }
   writer.endObject();

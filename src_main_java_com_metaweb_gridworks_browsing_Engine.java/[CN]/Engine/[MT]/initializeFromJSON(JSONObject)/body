@@ -24,7 +24,7 @@
       }
     }
   }
-  if (o.has("includeDependent") && !o.isNull("includeDependent")) {
-    _includeDependent=o.getBoolean("includeDependent");
+  if (o.has(INCLUDE_DEPENDENT) && !o.isNull(INCLUDE_DEPENDENT)) {
+    _includeDependent=o.getBoolean(INCLUDE_DEPENDENT);
   }
 }

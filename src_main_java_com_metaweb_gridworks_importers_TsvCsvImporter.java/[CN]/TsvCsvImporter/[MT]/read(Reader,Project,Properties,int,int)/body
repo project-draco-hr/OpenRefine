@@ -7,7 +7,7 @@
   RowParser parser=(sep == null || (sep.length() == 0)) ? null : new SeparatorRowParser(sep);
   int rowsWithData=0;
   while ((line=lnReader.readLine()) != null) {
-    if (line.trim().length() == 0) {
+    if (StringUtils.isBlank(line)) {
       continue;
     }
     if (parser == null) {

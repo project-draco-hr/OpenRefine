@@ -1,4 +1,4 @@
 {
-  String val=get(name);
+  final String val=get(name);
   return (val == null) ? def : val;
 }

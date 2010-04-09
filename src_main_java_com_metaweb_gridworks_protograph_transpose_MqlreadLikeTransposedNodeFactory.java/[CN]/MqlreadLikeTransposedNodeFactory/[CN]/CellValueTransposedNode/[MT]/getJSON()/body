@@ -2,12 +2,12 @@
   if (obj == null) {
     obj=new JSONObject();
     try {
-      obj.put("value",cell.value.toString());
-      obj.put("type",node.valueType);
+      obj.put(VALUE,cell.value.toString());
+      obj.put(TYPE,node.valueType);
       if ("/type/text".equals(node.lang)) {
-        obj.put("lang",node.lang);
+        obj.put(LANG,node.lang);
       }
-      obj.put("connect","insert");
+      obj.put(CONNECT,"insert");
     }
  catch (    JSONException e) {
       e.printStackTrace();

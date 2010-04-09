@@ -8,11 +8,11 @@
       row.setCell(i,Cell.load(o));
     }
   }
-  if (obj.has("starred")) {
-    row.starred=obj.getBoolean("starred");
+  if (obj.has(STARRED)) {
+    row.starred=obj.getBoolean(STARRED);
   }
-  if (obj.has("flagged")) {
-    row.flagged=obj.getBoolean("flagged");
+  if (obj.has(FLAGGED)) {
+    row.flagged=obj.getBoolean(FLAGGED);
   }
   return row;
 }

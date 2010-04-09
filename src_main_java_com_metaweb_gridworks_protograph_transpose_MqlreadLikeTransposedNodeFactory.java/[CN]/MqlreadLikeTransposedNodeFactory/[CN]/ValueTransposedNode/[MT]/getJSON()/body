@@ -2,12 +2,12 @@
   if (obj == null) {
     obj=new JSONObject();
     try {
-      obj.put("value",node.value);
-      obj.put("type",node.valueType);
+      obj.put(VALUE,node.value);
+      obj.put(TYPE,node.valueType);
       if ("/type/text".equals(node.lang)) {
-        obj.put("lang",node.lang);
+        obj.put(LANG,node.lang);
       }
-      obj.put("connect","insert");
+      obj.put(CONNECT,"insert");
     }
  catch (    JSONException e) {
       e.printStackTrace();

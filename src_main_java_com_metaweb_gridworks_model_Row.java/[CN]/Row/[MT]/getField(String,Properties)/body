@@ -1,8 +1,8 @@
 {
-  if ("flagged".equals(name)) {
+  if (FLAGGED.equals(name)) {
     return flagged;
   }
- else   if ("starred".equals(name)) {
+ else   if (STARRED.equals(name)) {
     return starred;
   }
   return null;

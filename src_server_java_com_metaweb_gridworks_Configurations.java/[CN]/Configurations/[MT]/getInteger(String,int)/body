@@ -1,9 +1,9 @@
 {
-  String val=get(name);
+  final String val=get(name);
   try {
     return (val == null) ? def : Integer.parseInt(val);
   }
  catch (  NumberFormatException e) {
-    throw new RuntimeException("Could not parse '" + val + "' as an integer number.");
+    throw new RuntimeException("Could not parse '" + val + "' as an integer number.",e);
   }
 }

@@ -1,9 +1,9 @@
 {
-  String val=get(name);
+  final String val=get(name);
   try {
     return (val == null) ? def : Float.parseFloat(val);
   }
  catch (  NumberFormatException e) {
-    throw new RuntimeException("Could not parse '" + val + "' as a floating point number.");
+    throw new RuntimeException("Could not parse '" + val + "' as a floating point number.",e);
   }
 }

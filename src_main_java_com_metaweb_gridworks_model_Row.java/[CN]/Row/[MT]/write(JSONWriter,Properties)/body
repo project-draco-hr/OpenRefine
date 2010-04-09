@@ -1,8 +1,8 @@
 {
   writer.object();
-  writer.key("flagged");
+  writer.key(FLAGGED);
   writer.value(flagged);
-  writer.key("starred");
+  writer.key(STARRED);
   writer.value(starred);
   writer.key("cells");
   writer.array();

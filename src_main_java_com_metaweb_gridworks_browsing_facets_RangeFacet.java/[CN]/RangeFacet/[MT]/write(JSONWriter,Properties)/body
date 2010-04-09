@@ -14,9 +14,9 @@
   }
  else {
     if (!Double.isInfinite(_min) && !Double.isInfinite(_max)) {
-      writer.key("min");
+      writer.key(MIN);
       writer.value(_min);
-      writer.key("max");
+      writer.key(MAX);
       writer.value(_max);
       writer.key("step");
       writer.value(_step);
@@ -32,18 +32,18 @@
         writer.value(b);
       }
       writer.endArray();
-      if ("min".equals(_mode)) {
-        writer.key("from");
+      if (MIN.equals(_mode)) {
+        writer.key(FROM);
         writer.value(_from);
       }
- else       if ("max".equals(_mode)) {
-        writer.key("to");
+ else       if (MAX.equals(_mode)) {
+        writer.key(TO);
         writer.value(_to);
       }
  else {
-        writer.key("from");
+        writer.key(FROM);
         writer.value(_from);
-        writer.key("to");
+        writer.key(TO);
         writer.value(_to);
       }
     }

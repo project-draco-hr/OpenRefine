@@ -1,0 +1,14 @@
+{
+  if (process) {
+    Cell cellx=row.getCell(col_x);
+    Cell celly=row.getCell(col_y);
+    if ((cellx != null && cellx.value != null && cellx.value instanceof Number) && (celly != null && celly.value != null && celly.value instanceof Number)) {
+      double xv=((Number)cellx.value).doubleValue();
+      double yv=((Number)celly.value).doubleValue();
+      double x=(xv - min_x) * w / max_x;
+      double y=(yv - min_y) * h / max_y;
+      g2.fill(new Rectangle2D.Double(x,y,px,px));
+    }
+  }
+  return false;
+}

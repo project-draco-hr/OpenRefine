@@ -1,0 +1,6 @@
+{
+  DrawingRowVisitor drawingVisitor=new DrawingRowVisitor(project,options);
+  FilteredRows filteredRows=engine.getAllFilteredRows(false);
+  filteredRows.accept(project,drawingVisitor);
+  ImageIO.write(drawingVisitor.getImage(),"png",output);
+}

@@ -1,0 +1,37 @@
+{
+  String col_x_name=o.getString("cx");
+  Column column_x=project.columnModel.getColumnByName(col_x_name);
+  if (column_x != null) {
+    col_x=column_x.getCellIndex();
+    index_x=getBinIndex(project,column_x);
+    min_x=index_x.getMin() * 1.1d;
+    max_x=index_x.getMax() * 1.1d;
+  }
+  String col_y_name=o.getString("cy");
+  Column column_y=project.columnModel.getColumnByName(col_y_name);
+  if (column_y != null) {
+    col_y=column_y.getCellIndex();
+    index_y=getBinIndex(project,column_y);
+    min_y=index_y.getMin() * 1.1d;
+    max_y=index_y.getMax() * 1.1d;
+  }
+  width=o.getInt("w");
+  height=o.getInt("h");
+  w=(double)width;
+  h=(double)height;
+  if (index_x.isNumeric() && index_y.isNumeric()) {
+    image=new BufferedImage(width,height,BufferedImage.TYPE_4BYTE_ABGR);
+    g2=(Graphics2D)image.getGraphics();
+    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+    g2.setStroke(new BasicStroke(1.0f));
+    AffineTransform t=AffineTransform.getTranslateInstance(0,h);
+    t.concatenate(AffineTransform.getScaleInstance(1.0d,-1.0d));
+    g2.setTransform(t);
+    g2.setColor(COLOR);
+    g2.setPaint(COLOR);
+  }
+ else {
+    image=new BufferedImage(1,1,BufferedImage.TYPE_4BYTE_ABGR);
+    process=false;
+  }
+}

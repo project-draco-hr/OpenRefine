@@ -1,0 +1,14 @@
+{
+  if (args.length == 2 && args[0] != null && (args[0] instanceof Calendar || args[0] instanceof Date) && args[1] != null && args[1] instanceof String) {
+    String part=(String)args[1];
+    if (args[0] instanceof Calendar) {
+      return getPart((Calendar)args[0],part);
+    }
+ else {
+      Calendar c=Calendar.getInstance();
+      c.setTime((Date)args[0]);
+      return getPart(c,part);
+    }
+  }
+  return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " expects a date, a number and a string");
+}

@@ -22,11 +22,11 @@
       }
     }
     if (first) {
-      String[] cells=StringUtils.splitPreserveAllTokens(line,sep);
+      List<String> cells=parser.split(line);
       Map<String,Integer> nameToIndex=new HashMap<String,Integer>();
       first=false;
-      for (int c=0; c < cells.length; c++) {
-        String cell=cells[c];
+      for (int c=0; c < cells.size(); c++) {
+        String cell=cells.get(c);
         if (cell.startsWith("\"") && cell.endsWith("\"")) {
           cell=cell.substring(1,cell.length() - 1);
         }
@@ -41,7 +41,7 @@
         Column column=new Column(c,cell);
         project.columnModel.columns.add(column);
       }
-      cellCount=cells.length;
+      cellCount=cells.size();
     }
  else {
       Row row=new Row(cellCount);

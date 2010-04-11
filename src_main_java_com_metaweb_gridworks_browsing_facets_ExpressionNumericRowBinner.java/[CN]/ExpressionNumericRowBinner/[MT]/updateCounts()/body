@@ -1,0 +1,14 @@
+{
+  if (rowHasError) {
+    errorCount++;
+  }
+  if (rowHasBlank) {
+    blankCount++;
+  }
+  if (rowHasNumeric) {
+    numericCount++;
+  }
+  if (rowHasNonNumeric) {
+    nonNumericCount++;
+  }
+}

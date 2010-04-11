@@ -11,6 +11,10 @@
     _max=index.getMax();
     _step=index.getStep();
     _baseBins=index.getBins();
+    _baseNumericCount=index.getNumericRowCount();
+    _baseNonNumericCount=index.getNonNumericRowCount();
+    _baseBlankCount=index.getBlankRowCount();
+    _baseErrorCount=index.getErrorRowCount();
     if (_selected) {
       _from=Math.max(_from,_min);
       _to=Math.min(_to,_max);

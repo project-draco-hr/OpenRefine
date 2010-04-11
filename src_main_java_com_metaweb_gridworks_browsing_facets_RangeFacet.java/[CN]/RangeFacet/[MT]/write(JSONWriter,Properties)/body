@@ -47,6 +47,14 @@
         writer.value(_to);
       }
     }
+    writer.key("baseNumericCount");
+    writer.value(_baseNumericCount);
+    writer.key("baseNonNumericCount");
+    writer.value(_baseNonNumericCount);
+    writer.key("baseBlankCount");
+    writer.value(_baseBlankCount);
+    writer.key("baseErrorCount");
+    writer.value(_baseErrorCount);
     writer.key("numericCount");
     writer.value(_numericCount);
     writer.key("nonNumericCount");

@@ -1,24 +1,24 @@
 {
   if (ExpressionUtils.isError(value)) {
-    errorCount++;
+    rowHasError=true;
   }
  else   if (ExpressionUtils.isNonBlankData(value)) {
     if (value instanceof Number) {
       double d=((Number)value).doubleValue();
       if (!Double.isInfinite(d) && !Double.isNaN(d)) {
-        numericCount++;
+        rowHasNumeric=true;
         int bin=(int)Math.floor((d - _index.getMin()) / _index.getStep());
         bins[bin]++;
       }
  else {
-        errorCount++;
+        rowHasError=true;
       }
     }
  else {
-      nonNumericCount++;
+      rowHasNonNumeric=true;
     }
   }
  else {
-    blankCount++;
+    rowHasBlank=true;
   }
 }

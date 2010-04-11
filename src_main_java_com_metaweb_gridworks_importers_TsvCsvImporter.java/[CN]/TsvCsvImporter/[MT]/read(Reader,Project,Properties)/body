@@ -1,4 +1,7 @@
 {
+  int limit=ImporterUtilities.getIntegerOption("limit",options,-1);
+  int skip=ImporterUtilities.getIntegerOption("skip",options,0);
+  boolean guessValueType=ImporterUtilities.getBooleanOption("guess-value-type",options,true);
   LineNumberReader lnReader=new LineNumberReader(reader);
   String sep=options.getProperty("separator");
   String line=null;
@@ -45,7 +48,7 @@
     }
  else {
       Row row=new Row(cellCount);
-      if (parser.parseRow(row,line)) {
+      if (parser.parseRow(row,line,guessValueType)) {
         rowsWithData++;
         if (skip <= 0 || rowsWithData > skip) {
           project.rows.add(row);

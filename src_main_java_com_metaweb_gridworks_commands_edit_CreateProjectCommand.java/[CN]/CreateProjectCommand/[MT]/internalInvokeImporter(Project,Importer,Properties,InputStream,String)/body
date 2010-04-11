@@ -1,6 +1,4 @@
 {
-  int limit=getIntegerOption("limit",options,-1);
-  int skip=getIntegerOption("skip",options,0);
   if (importer.takesReader()) {
     BufferedInputStream inputStream=new BufferedInputStream(rawInputStream);
     byte[] bytes=new byte[1024 * 4];
@@ -25,9 +23,9 @@
     if (reader == null) {
       reader=encoding != null ? new InputStreamReader(inputStream,encoding) : new InputStreamReader(inputStream);
     }
-    importer.read(reader,project,options,skip,limit);
+    importer.read(reader,project,options);
   }
  else {
-    importer.read(rawInputStream,project,options,skip,limit);
+    importer.read(rawInputStream,project,options);
   }
 }

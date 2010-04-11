@@ -1,4 +1,6 @@
 {
+  int limit=ImporterUtilities.getIntegerOption("limit",options,-1);
+  int skip=ImporterUtilities.getIntegerOption("skip",options,0);
   Workbook wb=null;
   try {
     wb=_xmlBased ? new XSSFWorkbook(inputStream) : new HSSFWorkbook(new POIFSFileSystem(inputStream));

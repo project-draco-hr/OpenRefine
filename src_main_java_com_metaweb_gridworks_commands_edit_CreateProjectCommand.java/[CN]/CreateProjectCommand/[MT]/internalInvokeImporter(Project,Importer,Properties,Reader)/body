@@ -1,5 +1,3 @@
 {
-  int limit=getIntegerOption("limit",options,-1);
-  int skip=getIntegerOption("skip",options,0);
-  importer.read(reader,project,options,skip,limit);
+  importer.read(reader,project,options);
 }

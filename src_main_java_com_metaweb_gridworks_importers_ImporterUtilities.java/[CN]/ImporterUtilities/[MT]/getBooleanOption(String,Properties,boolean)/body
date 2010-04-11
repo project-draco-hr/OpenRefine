@@ -1,0 +1,12 @@
+{
+  boolean value=def;
+  if (options.containsKey(name)) {
+    String s=options.getProperty(name);
+    try {
+      value=Boolean.parseBoolean(s);
+    }
+ catch (    Exception e) {
+    }
+  }
+  return value;
+}

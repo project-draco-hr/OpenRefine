@@ -1,0 +1,60 @@
+{
+  writer.object();
+  writer.key("name");
+  writer.value(_name);
+  writer.key("expression");
+  writer.value(_expression);
+  writer.key("columnName");
+  writer.value(_columnName);
+  writer.key("mode");
+  writer.value(_mode);
+  if (_errorMessage != null) {
+    writer.key("error");
+    writer.value(_errorMessage);
+  }
+ else {
+    if (!Double.isInfinite(_min) && !Double.isInfinite(_max)) {
+      writer.key(MIN);
+      writer.value(_min);
+      writer.key(MAX);
+      writer.value(_max);
+      writer.key("step");
+      writer.value(_step);
+      writer.key("bins");
+      writer.array();
+      for (      int b : _bins) {
+        writer.value(b);
+      }
+      writer.endArray();
+      writer.key("baseBins");
+      writer.array();
+      for (      int b : _baseBins) {
+        writer.value(b);
+      }
+      writer.endArray();
+      if (MIN.equals(_mode)) {
+        writer.key(FROM);
+        writer.value(_from);
+      }
+ else       if (MAX.equals(_mode)) {
+        writer.key(TO);
+        writer.value(_to);
+      }
+ else {
+        writer.key(FROM);
+        writer.value(_from);
+        writer.key(TO);
+        writer.value(_to);
+      }
+    }
+    writer.key("numericCount");
+    writer.value(_numericCount);
+    writer.key("nonNumericCount");
+    writer.value(_nonNumericCount);
+    writer.key("blankCount");
+    writer.value(_blankCount);
+    writer.key("errorCount");
+    writer.value(_errorCount);
+  }
+  writer.endObject();
+}

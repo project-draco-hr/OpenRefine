@@ -1,0 +1,50 @@
+{
+  _name=o.getString("name");
+  _expression=o.getString("expression");
+  _columnName=o.getString("columnName");
+  if (_columnName.length() > 0) {
+    Column column=project.columnModel.getColumnByName(_columnName);
+    if (column != null) {
+      _cellIndex=column.getCellIndex();
+    }
+ else {
+      _errorMessage="No column named " + _columnName;
+    }
+  }
+ else {
+    _cellIndex=-1;
+  }
+  try {
+    _eval=MetaParser.parse(_expression);
+  }
+ catch (  ParsingException e) {
+    _errorMessage=e.getMessage();
+  }
+  _mode=o.getString("mode");
+  if (MIN.equals(_mode)) {
+    if (o.has(FROM)) {
+      _from=o.getDouble(FROM);
+      _selected=true;
+    }
+  }
+ else   if (MAX.equals(_mode)) {
+    if (o.has(TO)) {
+      _to=o.getDouble(TO);
+      _selected=true;
+    }
+  }
+ else {
+    if (o.has(FROM) && o.has(TO)) {
+      _from=o.getDouble(FROM);
+      _to=o.getDouble(TO);
+      _selected=true;
+    }
+  }
+  _selectNumeric=JSONUtilities.getBoolean(o,"selectNumeric",true);
+  _selectNonNumeric=JSONUtilities.getBoolean(o,"selectNonNumeric",true);
+  _selectBlank=JSONUtilities.getBoolean(o,"selectBlank",true);
+  _selectError=JSONUtilities.getBoolean(o,"selectError",true);
+  if (!_selectNumeric || !_selectNonNumeric || !_selectBlank|| !_selectError) {
+    _selected=true;
+  }
+}

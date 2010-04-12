@@ -15,6 +15,9 @@
  else       if ("range".equals(type)) {
         facet=new RangeFacet();
       }
+ else       if ("scatterplot".equals(type)) {
+        facet=new ScatterplotFacet();
+      }
  else       if ("text".equals(type)) {
         facet=new TextSearchFacet();
       }

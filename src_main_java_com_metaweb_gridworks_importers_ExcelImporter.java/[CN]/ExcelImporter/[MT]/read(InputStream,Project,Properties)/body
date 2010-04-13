@@ -1,4 +1,5 @@
 {
+  int ignoreLines=ImporterUtilities.getIntegerOption("ignore",options,-1);
   int limit=ImporterUtilities.getIntegerOption("limit",options,-1);
   int skip=ImporterUtilities.getIntegerOption("skip",options,0);
   Workbook wb=null;
@@ -17,6 +18,10 @@
   for (; r <= lastRow; r++) {
     org.apache.poi.ss.usermodel.Row row=sheet.getRow(r);
     if (row == null) {
+      continue;
+    }
+ else     if (ignoreLines > 0) {
+      ignoreLines--;
       continue;
     }
     short firstCell=row.getFirstCellNum();

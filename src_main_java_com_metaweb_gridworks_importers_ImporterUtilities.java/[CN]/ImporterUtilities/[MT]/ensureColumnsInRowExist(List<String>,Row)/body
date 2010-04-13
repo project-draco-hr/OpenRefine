@@ -1,0 +1,6 @@
+{
+  int count=row.cells.size();
+  while (count > columnNames.size()) {
+    columnNames.add("");
+  }
+}

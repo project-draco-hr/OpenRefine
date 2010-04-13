@@ -1,16 +1,21 @@
 {
+  String sep=options.getProperty("separator");
+  int ignoreLines=ImporterUtilities.getIntegerOption("ignore",options,-1);
+  int headerLines=ImporterUtilities.getIntegerOption("header-lines",options,1);
   int limit=ImporterUtilities.getIntegerOption("limit",options,-1);
   int skip=ImporterUtilities.getIntegerOption("skip",options,0);
   boolean guessValueType=ImporterUtilities.getBooleanOption("guess-value-type",options,true);
+  List<String> columnNames=new ArrayList<String>();
   LineNumberReader lnReader=new LineNumberReader(reader);
-  String sep=options.getProperty("separator");
-  String line=null;
-  boolean first=true;
-  int cellCount=1;
   RowParser parser=(sep == null || (sep.length() == 0)) ? null : new SeparatorRowParser(sep);
+  String line=null;
   int rowsWithData=0;
   while ((line=lnReader.readLine()) != null) {
-    if (StringUtils.isBlank(line)) {
+    if (ignoreLines > 0) {
+      ignoreLines--;
+      continue;
+    }
+ else     if (StringUtils.isBlank(line)) {
       continue;
     }
     if (parser == null) {
@@ -24,35 +29,22 @@
         parser=new CSVRowParser();
       }
     }
-    if (first) {
+    if (headerLines > 0) {
+      headerLines--;
       List<String> cells=parser.split(line);
-      Map<String,Integer> nameToIndex=new HashMap<String,Integer>();
-      first=false;
       for (int c=0; c < cells.size(); c++) {
         String cell=cells.get(c).trim();
-        if (cell.startsWith("\"") && cell.endsWith("\"")) {
-          cell=cell.substring(1,cell.length() - 1).trim();
-        }
-        if (nameToIndex.containsKey(cell)) {
-          int index=nameToIndex.get(cell);
-          nameToIndex.put(cell,index + 1);
-          cell=cell.contains(" ") ? (cell + " " + index) : (cell + index);
-        }
- else {
-          nameToIndex.put(cell,2);
-        }
-        Column column=new Column(c,cell);
-        project.columnModel.columns.add(column);
+        ImporterUtilities.appendColumnName(columnNames,c,cell);
       }
-      cellCount=cells.size();
     }
  else {
-      Row row=new Row(cellCount);
+      Row row=new Row(columnNames.size());
       if (parser.parseRow(row,line,guessValueType)) {
         rowsWithData++;
         if (skip <= 0 || rowsWithData > skip) {
           project.rows.add(row);
           project.columnModel.setMaxCellIndex(row.cells.size());
+          ImporterUtilities.ensureColumnsInRowExist(columnNames,row);
           if (limit > 0 && project.rows.size() >= limit) {
             break;
           }
@@ -60,4 +52,5 @@
       }
     }
   }
+  ImporterUtilities.setupColumns(project,columnNames);
 }

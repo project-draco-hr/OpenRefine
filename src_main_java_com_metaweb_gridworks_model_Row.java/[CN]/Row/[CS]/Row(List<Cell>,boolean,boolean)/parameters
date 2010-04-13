@@ -1,0 +1,3 @@
+List<Cell> cells
+boolean flagged
+boolean starred

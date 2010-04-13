@@ -1,0 +1,5 @@
+{
+  this.cells=cells;
+  this.flagged=flagged;
+  this.starred=starred;
+}

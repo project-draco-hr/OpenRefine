@@ -1,0 +1,30 @@
+{
+  JsonFactory jsonFactory=new JsonFactory();
+  JsonParser jp=jsonFactory.createJsonParser(s);
+  if (jp.nextToken() != JsonToken.START_OBJECT) {
+    return null;
+  }
+  List<Cell> cells=new ArrayList<Cell>();
+  boolean starred=false;
+  boolean flagged=false;
+  while (jp.nextToken() != JsonToken.END_OBJECT) {
+    String fieldName=jp.getCurrentName();
+    jp.nextToken();
+    if (STARRED.equals(fieldName)) {
+      starred=jp.getBooleanValue();
+    }
+ else     if (FLAGGED.equals(fieldName)) {
+      flagged=jp.getBooleanValue();
+    }
+ else     if ("cells".equals(fieldName)) {
+      if (jp.getCurrentToken() != JsonToken.START_ARRAY) {
+        return null;
+      }
+      while (jp.nextToken() != JsonToken.END_ARRAY) {
+        Cell cell=Cell.loadStreaming(jp,reconCache);
+        cells.add(cell);
+      }
+    }
+  }
+  return (cells.size() > 0) ? new Row(cells,flagged,starred) : null;
+}

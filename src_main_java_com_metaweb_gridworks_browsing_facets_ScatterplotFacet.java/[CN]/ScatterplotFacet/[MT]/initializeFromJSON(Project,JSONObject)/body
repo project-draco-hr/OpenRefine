@@ -1,50 +1,53 @@
 {
   _name=o.getString("name");
-  _expression=o.getString("expression");
-  _columnName=o.getString("columnName");
-  if (_columnName.length() > 0) {
-    Column column=project.columnModel.getColumnByName(_columnName);
-    if (column != null) {
-      _cellIndex=column.getCellIndex();
+  _x_expression=o.getString("x_expression");
+  _x_columnName=o.getString("x_columnName");
+  if (_x_columnName.length() > 0) {
+    Column x_column=project.columnModel.getColumnByName(_x_columnName);
+    if (x_column != null) {
+      _x_cellIndex=x_column.getCellIndex();
     }
  else {
-      _errorMessage="No column named " + _columnName;
+      _x_errorMessage="No column named " + _x_columnName;
     }
   }
  else {
-    _cellIndex=-1;
+    _x_cellIndex=-1;
   }
   try {
-    _eval=MetaParser.parse(_expression);
+    _x_eval=MetaParser.parse(_x_expression);
   }
  catch (  ParsingException e) {
-    _errorMessage=e.getMessage();
+    _x_errorMessage=e.getMessage();
   }
-  _mode=o.getString("mode");
-  if (MIN.equals(_mode)) {
-    if (o.has(FROM)) {
-      _from=o.getDouble(FROM);
-      _selected=true;
+  if (o.has(X_FROM) && o.has(X_TO)) {
+    _x_from=o.getDouble(X_FROM);
+    _x_to=o.getDouble(X_TO);
+    _selected=true;
+  }
+  _y_expression=o.getString("y_expression");
+  _y_columnName=o.getString("y_columnName");
+  if (_y_columnName.length() > 0) {
+    Column y_column=project.columnModel.getColumnByName(_y_columnName);
+    if (y_column != null) {
+      _y_cellIndex=y_column.getCellIndex();
     }
-  }
- else   if (MAX.equals(_mode)) {
-    if (o.has(TO)) {
-      _to=o.getDouble(TO);
-      _selected=true;
+ else {
+      _y_errorMessage="No column named " + _y_columnName;
     }
   }
  else {
-    if (o.has(FROM) && o.has(TO)) {
-      _from=o.getDouble(FROM);
-      _to=o.getDouble(TO);
-      _selected=true;
-    }
+    _y_cellIndex=-1;
   }
-  _selectNumeric=JSONUtilities.getBoolean(o,"selectNumeric",true);
-  _selectNonNumeric=JSONUtilities.getBoolean(o,"selectNonNumeric",true);
-  _selectBlank=JSONUtilities.getBoolean(o,"selectBlank",true);
-  _selectError=JSONUtilities.getBoolean(o,"selectError",true);
-  if (!_selectNumeric || !_selectNonNumeric || !_selectBlank|| !_selectError) {
+  try {
+    _y_eval=MetaParser.parse(_y_expression);
+  }
+ catch (  ParsingException e) {
+    _y_errorMessage=e.getMessage();
+  }
+  if (o.has(Y_FROM) && o.has(Y_TO)) {
+    _y_from=o.getDouble(Y_FROM);
+    _y_to=o.getDouble(Y_TO);
     _selected=true;
   }
 }

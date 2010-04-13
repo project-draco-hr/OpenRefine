@@ -2,59 +2,35 @@
   writer.object();
   writer.key("name");
   writer.value(_name);
-  writer.key("expression");
-  writer.value(_expression);
-  writer.key("columnName");
-  writer.value(_columnName);
-  writer.key("mode");
-  writer.value(_mode);
-  if (_errorMessage != null) {
-    writer.key("error");
-    writer.value(_errorMessage);
+  writer.key("x_expression");
+  writer.value(_x_expression);
+  writer.key("x_columnName");
+  writer.value(_x_columnName);
+  if (_x_errorMessage != null) {
+    writer.key("x_error");
+    writer.value(_x_errorMessage);
   }
  else {
-    if (!Double.isInfinite(_min) && !Double.isInfinite(_max)) {
-      writer.key(MIN);
-      writer.value(_min);
-      writer.key(MAX);
-      writer.value(_max);
-      writer.key("step");
-      writer.value(_step);
-      writer.key("bins");
-      writer.array();
-      for (      int b : _bins) {
-        writer.value(b);
-      }
-      writer.endArray();
-      writer.key("baseBins");
-      writer.array();
-      for (      int b : _baseBins) {
-        writer.value(b);
-      }
-      writer.endArray();
-      if (MIN.equals(_mode)) {
-        writer.key(FROM);
-        writer.value(_from);
-      }
- else       if (MAX.equals(_mode)) {
-        writer.key(TO);
-        writer.value(_to);
-      }
- else {
-        writer.key(FROM);
-        writer.value(_from);
-        writer.key(TO);
-        writer.value(_to);
-      }
+    if (!Double.isInfinite(_x_min) && !Double.isInfinite(_x_max)) {
+      writer.key(X_MIN);
+      writer.value(_x_min);
+      writer.key(X_MAX);
+      writer.value(_x_max);
+      writer.key(X_FROM);
+      writer.value(_x_from);
+      writer.key(X_TO);
+      writer.value(_x_to);
     }
-    writer.key("numericCount");
-    writer.value(_numericCount);
-    writer.key("nonNumericCount");
-    writer.value(_nonNumericCount);
-    writer.key("blankCount");
-    writer.value(_blankCount);
-    writer.key("errorCount");
-    writer.value(_errorCount);
+    if (!Double.isInfinite(_y_min) && !Double.isInfinite(_y_max)) {
+      writer.key(Y_MIN);
+      writer.value(_y_min);
+      writer.key(Y_MAX);
+      writer.value(_y_max);
+      writer.key(Y_FROM);
+      writer.value(_y_from);
+      writer.key(Y_TO);
+      writer.value(_y_to);
+    }
   }
   writer.endObject();
 }

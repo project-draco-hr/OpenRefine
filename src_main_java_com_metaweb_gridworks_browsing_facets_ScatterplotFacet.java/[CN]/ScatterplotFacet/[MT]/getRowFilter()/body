@@ -1,29 +1,11 @@
 {
-  if (_eval != null && _errorMessage == null && _selected) {
-    if (MIN.equals(_mode)) {
-      return new ExpressionNumberComparisonRowFilter(_eval,_columnName,_cellIndex,_selectNumeric,_selectNonNumeric,_selectBlank,_selectError){
-        protected boolean checkValue(        double d){
-          return d >= _from;
-        }
+  if (_selected && _x_eval != null && _x_errorMessage == null && _y_eval != null && _y_errorMessage == null) {
+    return new DualExpressionsNumberComparisonRowFilter(_x_eval,_x_columnName,_x_cellIndex,_y_eval,_y_columnName,_y_cellIndex){
+      protected boolean checkValues(      double x,      double y){
+        return x >= _x_from && x < _x_to && y >= _y_from && y < _y_to;
       }
-;
     }
- else     if (MAX.equals(_mode)) {
-      return new ExpressionNumberComparisonRowFilter(_eval,_columnName,_cellIndex,_selectNumeric,_selectNonNumeric,_selectBlank,_selectError){
-        protected boolean checkValue(        double d){
-          return d < _to;
-        }
-      }
 ;
-    }
- else {
-      return new ExpressionNumberComparisonRowFilter(_eval,_columnName,_cellIndex,_selectNumeric,_selectNonNumeric,_selectBlank,_selectError){
-        protected boolean checkValue(        double d){
-          return d >= _from && d < _to;
-        }
-      }
-;
-    }
   }
  else {
     return null;

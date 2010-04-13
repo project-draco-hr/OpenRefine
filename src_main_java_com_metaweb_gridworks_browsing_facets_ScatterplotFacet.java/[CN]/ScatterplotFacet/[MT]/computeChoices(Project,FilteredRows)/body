@@ -1,30 +1,38 @@
 {
-  if (_eval != null && _errorMessage == null) {
-    Column column=project.columnModel.getColumnByCellIndex(_cellIndex);
-    String key="numeric-bin:" + _expression;
-    NumericBinIndex index=(NumericBinIndex)column.getPrecompute(key);
-    if (index == null) {
-      index=new NumericBinIndex(project,_columnName,_cellIndex,_eval);
-      column.setPrecompute(key,index);
+  if (_x_eval != null && _y_eval != null && _x_errorMessage == null && _y_errorMessage == null) {
+    Column column_x=project.columnModel.getColumnByCellIndex(_x_cellIndex);
+    String key_x="numeric-bin:" + _x_expression;
+    NumericBinIndex index_x=(NumericBinIndex)column_x.getPrecompute(key_x);
+    if (index_x == null) {
+      index_x=new NumericBinIndex(project,_x_columnName,_x_cellIndex,_x_eval);
+      column_x.setPrecompute(key_x,index_x);
     }
-    _min=index.getMin();
-    _max=index.getMax();
-    _step=index.getStep();
-    _baseBins=index.getBins();
+    _x_min=index_x.getMin();
+    _x_max=index_x.getMax();
     if (_selected) {
-      _from=Math.max(_from,_min);
-      _to=Math.min(_to,_max);
+      _x_from=Math.max(_x_from,_x_min);
+      _x_to=Math.min(_x_to,_x_max);
     }
  else {
-      _from=_min;
-      _to=_max;
+      _x_from=_x_min;
+      _x_to=_x_max;
     }
-    ExpressionNumericRowBinner binner=new ExpressionNumericRowBinner(_eval,_columnName,_cellIndex,index);
-    filteredRows.accept(project,binner);
-    _bins=binner.bins;
-    _numericCount=binner.numericCount;
-    _nonNumericCount=binner.nonNumericCount;
-    _blankCount=binner.blankCount;
-    _errorCount=binner.errorCount;
+    Column column_y=project.columnModel.getColumnByCellIndex(_y_cellIndex);
+    String key_y="numeric-bin:" + _y_expression;
+    NumericBinIndex index_y=(NumericBinIndex)column_y.getPrecompute(key_y);
+    if (index_y == null) {
+      index_y=new NumericBinIndex(project,_y_columnName,_y_cellIndex,_y_eval);
+      column_y.setPrecompute(key_y,index_y);
+    }
+    _y_min=index_y.getMin();
+    _y_max=index_y.getMax();
+    if (_selected) {
+      _y_from=Math.max(_y_from,_y_min);
+      _y_to=Math.min(_y_to,_y_max);
+    }
+ else {
+      _y_from=_y_min;
+      _y_to=_y_max;
+    }
   }
 }

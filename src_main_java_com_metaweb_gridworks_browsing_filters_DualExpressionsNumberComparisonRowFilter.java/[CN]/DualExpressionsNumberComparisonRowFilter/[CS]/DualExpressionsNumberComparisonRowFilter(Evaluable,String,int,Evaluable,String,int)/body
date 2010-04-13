@@ -1,0 +1,8 @@
+{
+  _x_evaluable=x_evaluable;
+  _x_columnName=x_columnName;
+  _x_cellIndex=x_cellIndex;
+  _y_evaluable=y_evaluable;
+  _y_columnName=y_columnName;
+  _y_cellIndex=y_cellIndex;
+}

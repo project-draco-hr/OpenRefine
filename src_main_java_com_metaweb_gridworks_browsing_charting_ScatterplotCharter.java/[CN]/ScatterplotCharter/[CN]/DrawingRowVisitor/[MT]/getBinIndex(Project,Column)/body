@@ -1,8 +1,9 @@
 {
-  String key="numeric-bin:value";
+  String expression="value";
+  String key="numeric-bin:" + expression;
   Evaluable eval=null;
   try {
-    eval=MetaParser.parse("value");
+    eval=MetaParser.parse(expression);
   }
  catch (  ParsingException e) {
   }

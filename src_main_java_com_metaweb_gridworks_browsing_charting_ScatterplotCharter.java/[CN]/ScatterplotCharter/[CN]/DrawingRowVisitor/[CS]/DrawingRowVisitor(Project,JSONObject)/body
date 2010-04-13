@@ -4,19 +4,33 @@
   if (column_x != null) {
     col_x=column_x.getCellIndex();
     index_x=getBinIndex(project,column_x);
-    min_x=index_x.getMin() * 1.1d;
-    max_x=index_x.getMax() * 1.1d;
+    min_x=index_x.getMin();
+    max_x=index_x.getMax();
   }
   String col_y_name=o.getString("cy");
   Column column_y=project.columnModel.getColumnByName(col_y_name);
   if (column_y != null) {
     col_y=column_y.getCellIndex();
     index_y=getBinIndex(project,column_y);
-    min_y=index_y.getMin() * 1.1d;
-    max_y=index_y.getMax() * 1.1d;
+    min_y=index_y.getMin();
+    max_y=index_y.getMax();
   }
-  width=o.getInt("w");
-  height=o.getInt("h");
+  width=(o.has("w")) ? o.getInt("w") : 20;
+  height=(o.has("h")) ? o.getInt("h") : 20;
+  dot=(o.has("dot")) ? o.getDouble("dot") : 0.1d;
+  dim=(o.has("dim")) ? getAxisDim(o.getString("dim")) : LIN;
+  delta_x=max_x - min_x;
+  delta_y=max_y - min_y;
+  if (dim == RADIAL) {
+    rx=(o.has("rx")) ? o.getDouble("rx") : 0.0d;
+    ry=(o.has("ry")) ? o.getDouble("ry") : 0.0d;
+  }
+ else   if (dim == LOG) {
+    log_delta_x=Math.log10(delta_x);
+    log_delta_y=Math.log10(delta_y);
+  }
+  String color_str=(o.has("color")) ? o.getString("color") : "000000";
+  color=new Color(Integer.parseInt(color_str,16));
   w=(double)width;
   h=(double)height;
   if (index_x.isNumeric() && index_y.isNumeric()) {
@@ -27,8 +41,8 @@
     AffineTransform t=AffineTransform.getTranslateInstance(0,h);
     t.concatenate(AffineTransform.getScaleInstance(1.0d,-1.0d));
     g2.setTransform(t);
-    g2.setColor(COLOR);
-    g2.setPaint(COLOR);
+    g2.setColor(color);
+    g2.setPaint(color);
   }
  else {
     image=new BufferedImage(1,1,BufferedImage.TYPE_4BYTE_ABGR);

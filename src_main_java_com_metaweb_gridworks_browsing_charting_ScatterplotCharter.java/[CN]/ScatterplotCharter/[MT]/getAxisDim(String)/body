@@ -1,0 +1,11 @@
+{
+  if ("log".equals(type)) {
+    return LOG;
+  }
+ else   if ("rad".equals(type) || "radial".equals(type)) {
+    return RADIAL;
+  }
+ else {
+    return LIN;
+  }
+}

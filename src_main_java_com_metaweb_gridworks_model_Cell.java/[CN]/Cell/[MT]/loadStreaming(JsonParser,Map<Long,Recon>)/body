@@ -21,10 +21,10 @@
         value=jp.getText();
       }
  else       if (token == JsonToken.VALUE_NUMBER_INT) {
-        value=jp.getIntValue();
+        value=jp.getLongValue();
       }
  else       if (token == JsonToken.VALUE_NUMBER_FLOAT) {
-        value=jp.getFloatValue();
+        value=jp.getDoubleValue();
       }
  else       if (token == JsonToken.VALUE_TRUE) {
         value=true;

@@ -1,4 +1,4 @@
 {
-  JSONObject engineConfig=obj.getJSONObject("engineConfig");
+  JSONObject engineConfig=obj.has("engineConfig") && !obj.isNull("engineConfig") ? obj.getJSONObject("engineConfig") : null;
   return new MassEditOperation(engineConfig,obj.getString("columnName"),obj.getString("expression"),reconstructEdits(obj.getJSONArray("edits")));
 }

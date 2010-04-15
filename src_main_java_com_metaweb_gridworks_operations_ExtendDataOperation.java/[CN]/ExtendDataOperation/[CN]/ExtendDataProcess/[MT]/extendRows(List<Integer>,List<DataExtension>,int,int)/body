@@ -1,7 +1,8 @@
 {
   Set<String> guids=new HashSet<String>();
-  for (int i=from; i < to; i++) {
-    int index=rowIndices.get(i);
+  int end;
+  for (end=from; end < limit && guids.size() < 10; end++) {
+    int index=rowIndices.get(end);
     Row row=_project.rows.get(index);
     Cell cell=row.getCell(_cellIndex);
     guids.add(cell.recon.match.topicGUID);
@@ -13,7 +14,7 @@
  catch (  Exception e) {
     map=new HashMap<String,DataExtension>();
   }
-  for (int i=from; i < to; i++) {
+  for (int i=from; i < end; i++) {
     int index=rowIndices.get(i);
     Row row=_project.rows.get(index);
     Cell cell=row.getCell(_cellIndex);
@@ -25,4 +26,5 @@
       dataExtensions.add(null);
     }
   }
+  return end;
 }

@@ -1,4 +1,4 @@
 List<Integer> rowIndices
 List<DataExtension> dataExtensions
 int from
-int to
+int limit

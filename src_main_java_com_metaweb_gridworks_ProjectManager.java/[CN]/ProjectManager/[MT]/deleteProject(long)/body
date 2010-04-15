@@ -8,7 +8,7 @@ synchronized (this) {
     }
     File dir=getProjectDir(projectID);
     if (dir.exists()) {
-      dir.delete();
+      deleteDir(dir);
     }
   }
   saveWorkspace();

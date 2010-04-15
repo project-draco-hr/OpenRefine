@@ -1,0 +1,19 @@
+{
+  try {
+    response.setCharacterEncoding("UTF-8");
+    response.setHeader("Content-Type","application/json");
+    Project project=getProject(request);
+    JSONWriter writer=new JSONWriter(response.getWriter());
+    writer.array();
+    for (    Column column : project.columnModel.columns) {
+      writer.object();
+      write(project,column,writer);
+      writer.endObject();
+    }
+    writer.endArray();
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+    respondException(response,e);
+  }
+}

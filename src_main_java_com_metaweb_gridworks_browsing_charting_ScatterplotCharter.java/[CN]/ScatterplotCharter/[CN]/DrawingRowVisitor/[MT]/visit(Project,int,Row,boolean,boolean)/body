@@ -11,7 +11,7 @@
         x=Math.log10(xv - min_x) * w / log_delta_x - dot / 2;
         y=Math.log10(yv - min_y) * h / log_delta_y - dot / 2;
       }
- else       if (dim == RADIAL) {
+ else       if (dim == POLAR) {
         x=(xv - min_x) * w / delta_x - dot / 2;
         y=(yv - min_y) * h / delta_y - dot / 2;
       }

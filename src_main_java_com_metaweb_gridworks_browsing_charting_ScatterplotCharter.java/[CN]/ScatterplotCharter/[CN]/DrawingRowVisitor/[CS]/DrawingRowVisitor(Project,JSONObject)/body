@@ -15,13 +15,13 @@
     min_y=index_y.getMin();
     max_y=index_y.getMax();
   }
-  width=(o.has("w")) ? o.getInt("w") : 20;
-  height=(o.has("h")) ? o.getInt("h") : 20;
-  dot=(o.has("dot")) ? o.getDouble("dot") : 0.1d;
+  width=(o.has("w")) ? o.getInt("w") : 50;
+  height=(o.has("h")) ? o.getInt("h") : 50;
+  dot=(o.has("dot")) ? o.getDouble("dot") : 0.2d;
   dim=(o.has("dim")) ? getAxisDim(o.getString("dim")) : LIN;
   delta_x=max_x - min_x;
   delta_y=max_y - min_y;
-  if (dim == RADIAL) {
+  if (dim == POLAR) {
     rx=(o.has("rx")) ? o.getDouble("rx") : 0.0d;
     ry=(o.has("ry")) ? o.getDouble("ry") : 0.0d;
   }

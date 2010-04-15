@@ -1,0 +1,30 @@
+{
+  NumericBinIndex columnIndex=getBinIndex(project,column);
+  if (columnIndex != null) {
+    writer.key("name");
+    writer.value(column.getName());
+    boolean is_numeric=columnIndex.isNumeric();
+    writer.key("is_numeric");
+    writer.value(is_numeric);
+    writer.key("numeric_row_count");
+    writer.value(columnIndex.getNumericRowCount());
+    writer.key("non_numeric_row_count");
+    writer.value(columnIndex.getNonNumericRowCount());
+    writer.key("error_row_count");
+    writer.value(columnIndex.getErrorRowCount());
+    writer.key("blank_row_count");
+    writer.value(columnIndex.getBlankRowCount());
+    if (is_numeric) {
+      writer.key("min");
+      writer.value(columnIndex.getMin());
+      writer.key("max");
+      writer.value(columnIndex.getMax());
+      writer.key("step");
+      writer.value(columnIndex.getStep());
+    }
+  }
+ else {
+    writer.key("error");
+    writer.value("error finding numeric information on the '" + column.getName() + "' column");
+  }
+}

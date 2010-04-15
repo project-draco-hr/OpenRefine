@@ -2,8 +2,8 @@
   if ("log".equals(type)) {
     return LOG;
   }
- else   if ("rad".equals(type) || "radial".equals(type)) {
-    return RADIAL;
+ else   if ("pol".equals(type) || "polar".equals(type)) {
+    return POLAR;
   }
  else {
     return LIN;

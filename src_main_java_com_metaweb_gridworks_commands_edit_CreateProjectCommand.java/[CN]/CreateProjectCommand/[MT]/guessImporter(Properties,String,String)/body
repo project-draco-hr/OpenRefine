@@ -10,6 +10,9 @@
  else     if ("application/xml".equals(contentType) || "text/xml".equals(contentType) || "application/rss+xml".equals(contentType)|| "application/atom+xml".equals(contentType)|| "application/rdf+xml".equals(contentType)) {
       return new XmlImporter();
     }
+ else     if ("application/marc".equals(contentType)) {
+      return new MarcImporter();
+    }
   }
  else   if (fileName != null) {
     fileName=fileName.toLowerCase();
@@ -21,6 +24,9 @@
     }
  else     if (fileName.endsWith(".xml") || fileName.endsWith(".rdf") || fileName.endsWith(".atom")|| fileName.endsWith(".rss")) {
       return new XmlImporter();
+    }
+ else     if (fileName.endsWith(".mrc") || fileName.endsWith(".marc") || fileName.contains(".mrc.")|| fileName.contains(".marc.")) {
+      return new MarcImporter();
     }
   }
   return new TsvCsvImporter();

@@ -1,0 +1,42 @@
+{
+  int limit=ImporterUtilities.getIntegerOption("limit",options,-1);
+  int skip=ImporterUtilities.getIntegerOption("skip",options,0);
+  File tempFile=File.createTempFile("gridworks-import-",".marc.xml");
+  try {
+    OutputStream os=new FileOutputStream(tempFile);
+    try {
+      MarcPermissiveStreamReader reader=new MarcPermissiveStreamReader(inputStream,true,true);
+      MarcWriter writer=new MarcXmlWriter(os,true);
+      int count=0;
+      while (reader.hasNext()) {
+        Record record=reader.next();
+        if (skip <= 0) {
+          if (limit == -1 || count < limit) {
+            writer.write(record);
+            count++;
+          }
+ else {
+            break;
+          }
+        }
+ else {
+          skip--;
+        }
+      }
+      writer.close();
+    }
+  finally {
+      os.close();
+    }
+    InputStream is=new FileInputStream(tempFile);
+    try {
+      new XmlImporter().read(is,project,options);
+    }
+  finally {
+      is.close();
+    }
+  }
+  finally {
+    tempFile.delete();
+  }
+}

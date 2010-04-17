@@ -1,0 +1,12 @@
+{
+  rotation=rotation.toLowerCase();
+  if ("cw".equals(rotation) || "right".equals(rotation)) {
+    return ScatterplotFacet.ROTATE_CW;
+  }
+ else   if ("ccw".equals(rotation) || "left".equals(rotation)) {
+    return ScatterplotFacet.ROTATE_CCW;
+  }
+ else {
+    return NO_ROTATION;
+  }
+}

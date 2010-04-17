@@ -1,39 +1,61 @@
 {
   writer.object();
-  writer.key("name");
-  writer.value(_name);
-  writer.key("x_expression");
-  writer.value(_x_expression);
-  writer.key("x_columnName");
-  writer.value(_x_columnName);
-  writer.key("y_expression");
-  writer.value(_y_expression);
-  writer.key("y_columnName");
-  writer.value(_y_columnName);
-  if (_x_errorMessage != null) {
-    writer.key("x_error");
-    writer.value(_x_errorMessage);
+  writer.key(NAME);
+  writer.value(name);
+  writer.key(X_COLUMN_NAME);
+  writer.value(columnName_x);
+  writer.key(X_EXPRESSION);
+  writer.value(expression_x);
+  writer.key(Y_COLUMN_NAME);
+  writer.value(columnName_y);
+  writer.key(Y_EXPRESSION);
+  writer.value(expression_y);
+  writer.key(SIZE);
+  writer.value(size);
+  writer.key(DOT);
+  writer.value(dot);
+  writer.key(ROTATION);
+  writer.value(rotation);
+  writer.key(DIM_X);
+  writer.value(dim_x);
+  writer.key(DIM_Y);
+  writer.value(dim_y);
+  writer.key(COLOR);
+  writer.value(color_str);
+  if (IMAGE_URI) {
+    writer.key(IMAGE);
+    writer.value(image);
+  }
+  if (errorMessage_x != null) {
+    writer.key(ERROR_X);
+    writer.value(errorMessage_x);
   }
  else {
-    if (!Double.isInfinite(_x_min) && !Double.isInfinite(_x_max)) {
-      writer.key(X_MIN);
-      writer.value(_x_min);
-      writer.key(X_MAX);
-      writer.value(_x_max);
-      writer.key(X_FROM);
-      writer.value(_x_from);
-      writer.key(X_TO);
-      writer.value(_x_to);
+    if (!Double.isInfinite(min_x) && !Double.isInfinite(max_x)) {
+      writer.key(MIN_X);
+      writer.value(min_x);
+      writer.key(MAX_X);
+      writer.value(max_x);
+      writer.key(FROM_X);
+      writer.value(from_x);
+      writer.key(TO_X);
+      writer.value(to_x);
     }
-    if (!Double.isInfinite(_y_min) && !Double.isInfinite(_y_max)) {
-      writer.key(Y_MIN);
-      writer.value(_y_min);
-      writer.key(Y_MAX);
-      writer.value(_y_max);
-      writer.key(Y_FROM);
-      writer.value(_y_from);
-      writer.key(Y_TO);
-      writer.value(_y_to);
+  }
+  if (errorMessage_y != null) {
+    writer.key(ERROR_Y);
+    writer.value(errorMessage_y);
+  }
+ else {
+    if (!Double.isInfinite(min_y) && !Double.isInfinite(max_y)) {
+      writer.key(MIN_Y);
+      writer.value(min_y);
+      writer.key(MAX_Y);
+      writer.value(max_y);
+      writer.key(FROM_Y);
+      writer.value(from_y);
+      writer.key(TO_Y);
+      writer.value(to_y);
     }
   }
   writer.endObject();

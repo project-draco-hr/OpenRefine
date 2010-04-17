@@ -1,8 +1,12 @@
 {
-  if (_selected && _x_eval != null && _x_errorMessage == null && _y_eval != null && _y_errorMessage == null) {
-    return new DualExpressionsNumberComparisonRowFilter(_x_eval,_x_columnName,_x_cellIndex,_y_eval,_y_columnName,_y_cellIndex){
+  if (selected && eval_x != null && errorMessage_x == null && eval_y != null && errorMessage_y == null) {
+    return new DualExpressionsNumberComparisonRowFilter(eval_x,columnName_x,columnIndex_x,eval_y,columnName_y,columnIndex_y){
       protected boolean checkValues(      double x,      double y){
-        return x >= _x_from && x < _x_to && y >= _y_from && y < _y_to;
+        Point2D.Double p=new Point2D.Double(x,y);
+        p=translateCoordinates(p,dim_x,dim_y,rotation,l,min_x,max_x,min_y,max_y);
+        boolean value=p.x >= from_x && p.x < to_x && p.y >= from_y && p.y < to_y;
+        System.out.println(p + " " + value);
+        return value;
       }
     }
 ;

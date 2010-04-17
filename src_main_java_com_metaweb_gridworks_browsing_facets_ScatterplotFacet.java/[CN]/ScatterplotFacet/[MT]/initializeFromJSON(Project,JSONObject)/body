@@ -1,53 +1,60 @@
 {
-  _name=o.getString("name");
-  _x_expression=o.getString("x_expression");
-  _x_columnName=o.getString("x_columnName");
-  if (_x_columnName.length() > 0) {
-    Column x_column=project.columnModel.getColumnByName(_x_columnName);
+  name=o.getString(NAME);
+  size=(o.has(SIZE)) ? o.getInt(SIZE) : 100;
+  dot=(o.has(DOT)) ? o.getInt(DOT) : 0.5d;
+  dim_x=(o.has(DIM_X)) ? getAxisDim(o.getString(DIM_X)) : LIN;
+  dim_y=(o.has(DIM_Y)) ? getAxisDim(o.getString(DIM_Y)) : LIN;
+  rotation=(o.has(ROTATION)) ? getRotation(o.getString(ROTATION)) : NO_ROTATION;
+  color_str=(o.has(COLOR)) ? o.getString(COLOR) : "000000";
+  color=new Color(Integer.parseInt(color_str,16));
+  columnName_x=o.getString(X_COLUMN_NAME);
+  expression_x=o.getString(X_EXPRESSION);
+  if (columnName_x.length() > 0) {
+    Column x_column=project.columnModel.getColumnByName(columnName_x);
     if (x_column != null) {
-      _x_cellIndex=x_column.getCellIndex();
+      columnIndex_x=x_column.getCellIndex();
     }
  else {
-      _x_errorMessage="No column named " + _x_columnName;
+      errorMessage_x="No column named " + columnName_x;
     }
   }
  else {
-    _x_cellIndex=-1;
+    columnIndex_x=-1;
   }
   try {
-    _x_eval=MetaParser.parse(_x_expression);
+    eval_x=MetaParser.parse(expression_x);
   }
  catch (  ParsingException e) {
-    _x_errorMessage=e.getMessage();
+    errorMessage_x=e.getMessage();
   }
-  if (o.has(X_FROM) && o.has(X_TO)) {
-    _x_from=o.getDouble(X_FROM);
-    _x_to=o.getDouble(X_TO);
-    _selected=true;
+  if (o.has(FROM_X) && o.has(TO_X)) {
+    from_x=o.getDouble(FROM_X);
+    to_x=o.getDouble(TO_X);
+    selected=true;
   }
-  _y_expression=o.getString("y_expression");
-  _y_columnName=o.getString("y_columnName");
-  if (_y_columnName.length() > 0) {
-    Column y_column=project.columnModel.getColumnByName(_y_columnName);
+  columnName_y=o.getString(Y_COLUMN_NAME);
+  expression_y=o.getString(Y_EXPRESSION);
+  if (columnName_y.length() > 0) {
+    Column y_column=project.columnModel.getColumnByName(columnName_y);
     if (y_column != null) {
-      _y_cellIndex=y_column.getCellIndex();
+      columnIndex_y=y_column.getCellIndex();
     }
  else {
-      _y_errorMessage="No column named " + _y_columnName;
+      errorMessage_y="No column named " + columnName_y;
     }
   }
  else {
-    _y_cellIndex=-1;
+    columnIndex_y=-1;
   }
   try {
-    _y_eval=MetaParser.parse(_y_expression);
+    eval_y=MetaParser.parse(expression_y);
   }
  catch (  ParsingException e) {
-    _y_errorMessage=e.getMessage();
+    errorMessage_y=e.getMessage();
   }
-  if (o.has(Y_FROM) && o.has(Y_TO)) {
-    _y_from=o.getDouble(Y_FROM);
-    _y_to=o.getDouble(Y_TO);
-    _selected=true;
+  if (o.has(FROM_Y) && o.has(TO_Y)) {
+    from_y=o.getDouble(FROM_Y);
+    to_y=o.getDouble(TO_Y);
+    selected=true;
   }
 }

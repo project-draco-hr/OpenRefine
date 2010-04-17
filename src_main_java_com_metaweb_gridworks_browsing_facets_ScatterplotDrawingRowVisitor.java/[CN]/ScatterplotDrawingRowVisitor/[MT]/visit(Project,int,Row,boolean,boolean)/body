@@ -1,0 +1,12 @@
+{
+  Cell cellx=row.getCell(col_x);
+  Cell celly=row.getCell(col_y);
+  if ((cellx != null && cellx.value != null && cellx.value instanceof Number) && (celly != null && celly.value != null && celly.value instanceof Number)) {
+    double xv=((Number)cellx.value).doubleValue();
+    double yv=((Number)celly.value).doubleValue();
+    Point2D.Double p=new Point2D.Double(xv,yv);
+    p=ScatterplotFacet.translateCoordinates(p,dim_x,dim_y,rotation,l,min_x,max_x,min_y,max_y);
+    g2.fill(new Rectangle2D.Double(p.x - dot / 2,p.y - dot / 2,dot,dot));
+  }
+  return false;
+}

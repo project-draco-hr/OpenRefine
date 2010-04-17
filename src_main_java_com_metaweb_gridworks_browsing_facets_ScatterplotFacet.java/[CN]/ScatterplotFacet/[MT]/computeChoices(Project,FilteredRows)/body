@@ -1,38 +1,43 @@
 {
-  if (_x_eval != null && _y_eval != null && _x_errorMessage == null && _y_errorMessage == null) {
-    Column column_x=project.columnModel.getColumnByCellIndex(_x_cellIndex);
-    String key_x="numeric-bin:" + _x_expression;
-    NumericBinIndex index_x=(NumericBinIndex)column_x.getPrecompute(key_x);
-    if (index_x == null) {
-      index_x=new NumericBinIndex(project,_x_columnName,_x_cellIndex,_x_eval);
-      column_x.setPrecompute(key_x,index_x);
-    }
-    _x_min=index_x.getMin();
-    _x_max=index_x.getMax();
-    if (_selected) {
-      _x_from=Math.max(_x_from,_x_min);
-      _x_to=Math.min(_x_to,_x_max);
+  if (eval_x != null && eval_y != null && errorMessage_x == null && errorMessage_y == null) {
+    Column column_x=project.columnModel.getColumnByCellIndex(columnIndex_x);
+    NumericBinIndex index_x=getBinIndex(project,column_x,eval_x,expression_x);
+    min_x=index_x.getMin();
+    max_x=index_x.getMax();
+    if (selected) {
+      from_x=Math.max(from_x,min_x);
+      to_x=Math.min(to_x,max_x);
     }
  else {
-      _x_from=_x_min;
-      _x_to=_x_max;
+      from_x=min_x;
+      to_x=max_x;
     }
-    Column column_y=project.columnModel.getColumnByCellIndex(_y_cellIndex);
-    String key_y="numeric-bin:" + _y_expression;
-    NumericBinIndex index_y=(NumericBinIndex)column_y.getPrecompute(key_y);
-    if (index_y == null) {
-      index_y=new NumericBinIndex(project,_y_columnName,_y_cellIndex,_y_eval);
-      column_y.setPrecompute(key_y,index_y);
-    }
-    _y_min=index_y.getMin();
-    _y_max=index_y.getMax();
-    if (_selected) {
-      _y_from=Math.max(_y_from,_y_min);
-      _y_to=Math.min(_y_to,_y_max);
+    Column column_y=project.columnModel.getColumnByCellIndex(columnIndex_y);
+    NumericBinIndex index_y=getBinIndex(project,column_y,eval_y,expression_y);
+    min_y=index_y.getMin();
+    max_y=index_y.getMax();
+    if (selected) {
+      from_y=Math.max(from_y,min_y);
+      to_y=Math.min(to_y,max_y);
     }
  else {
-      _y_from=_y_min;
-      _y_to=_y_max;
+      from_y=min_y;
+      to_y=max_y;
+    }
+    if (IMAGE_URI) {
+      if (index_x.isNumeric() && index_y.isNumeric()) {
+        ScatterplotDrawingRowVisitor drawer=new ScatterplotDrawingRowVisitor(columnIndex_x,columnIndex_y,min_x,max_x,min_y,max_y,size,dim_x,dim_y,rotation,dot,color,from_x,from_y,to_x,to_y);
+        filteredRows.accept(project,drawer);
+        try {
+          image=serializeImage(drawer.getImage());
+        }
+ catch (        IOException e) {
+          Gridworks.warn("Exception caught while generating the image",e);
+        }
+      }
+ else {
+        image=EMPTY_IMAGE;
+      }
     }
   }
 }

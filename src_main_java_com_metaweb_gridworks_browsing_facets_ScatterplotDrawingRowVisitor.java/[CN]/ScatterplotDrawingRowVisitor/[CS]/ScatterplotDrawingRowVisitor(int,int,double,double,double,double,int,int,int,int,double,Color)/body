@@ -11,10 +11,6 @@
   this.dim_x=dim_x;
   this.dim_y=dim_y;
   this.rotation=rotation;
-  this.from_x=from_x;
-  this.from_y=from_y;
-  this.to_x=to_x;
-  this.to_y=to_y;
   l=(double)size;
   image=new BufferedImage(size,size,BufferedImage.TYPE_4BYTE_ABGR);
   g2=(Graphics2D)image.getGraphics();

@@ -1,6 +1,7 @@
 {
   name=o.getString(NAME);
   size=(o.has(SIZE)) ? o.getInt(SIZE) : 100;
+  l=size;
   dot=(o.has(DOT)) ? o.getInt(DOT) : 0.5d;
   dim_x=(o.has(DIM_X)) ? getAxisDim(o.getString(DIM_X)) : LIN;
   dim_y=(o.has(DIM_Y)) ? getAxisDim(o.getString(DIM_Y)) : LIN;
@@ -13,6 +14,9 @@
     Column x_column=project.columnModel.getColumnByName(columnName_x);
     if (x_column != null) {
       columnIndex_x=x_column.getCellIndex();
+      NumericBinIndex index_x=ScatterplotFacet.getBinIndex(project,x_column,eval_x,expression_x);
+      min_x=index_x.getMin();
+      max_x=index_x.getMax();
     }
  else {
       errorMessage_x="No column named " + columnName_x;
@@ -38,6 +42,9 @@
     Column y_column=project.columnModel.getColumnByName(columnName_y);
     if (y_column != null) {
       columnIndex_y=y_column.getCellIndex();
+      NumericBinIndex index_y=ScatterplotFacet.getBinIndex(project,y_column,eval_y,expression_y);
+      min_y=index_y.getMin();
+      max_y=index_y.getMax();
     }
  else {
       errorMessage_y="No column named " + columnName_y;

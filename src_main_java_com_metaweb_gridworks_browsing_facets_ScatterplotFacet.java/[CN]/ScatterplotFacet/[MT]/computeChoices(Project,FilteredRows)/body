@@ -26,7 +26,7 @@
     }
     if (IMAGE_URI) {
       if (index_x.isNumeric() && index_y.isNumeric()) {
-        ScatterplotDrawingRowVisitor drawer=new ScatterplotDrawingRowVisitor(columnIndex_x,columnIndex_y,min_x,max_x,min_y,max_y,size,dim_x,dim_y,rotation,dot,color,from_x,from_y,to_x,to_y);
+        ScatterplotDrawingRowVisitor drawer=new ScatterplotDrawingRowVisitor(columnIndex_x,columnIndex_y,min_x,max_x,min_y,max_y,size,dim_x,dim_y,rotation,dot,color);
         filteredRows.accept(project,drawer);
         try {
           image=serializeImage(drawer.getImage());

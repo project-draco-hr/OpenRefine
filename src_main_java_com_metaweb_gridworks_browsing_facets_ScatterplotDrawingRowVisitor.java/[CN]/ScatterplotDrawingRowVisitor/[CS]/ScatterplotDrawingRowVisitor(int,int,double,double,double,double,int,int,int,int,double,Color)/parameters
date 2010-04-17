@@ -10,7 +10,3 @@ int dim_y
 int rotation
 double dot
 Color color
-double from_x
-double from_y
-double to_x
-double to_y

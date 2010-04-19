@@ -6,8 +6,6 @@
   writer.value(_expression);
   writer.key("columnName");
   writer.value(_columnName);
-  writer.key("mode");
-  writer.value(_mode);
   if (_errorMessage != null) {
     writer.key("error");
     writer.value(_errorMessage);
@@ -32,20 +30,10 @@
         writer.value(b);
       }
       writer.endArray();
-      if (MIN.equals(_mode)) {
-        writer.key(FROM);
-        writer.value(_from);
-      }
- else       if (MAX.equals(_mode)) {
-        writer.key(TO);
-        writer.value(_to);
-      }
- else {
-        writer.key(FROM);
-        writer.value(_from);
-        writer.key(TO);
-        writer.value(_to);
-      }
+      writer.key(FROM);
+      writer.value(_from);
+      writer.key(TO);
+      writer.value(_to);
     }
     writer.key("baseNumericCount");
     writer.value(_baseNumericCount);

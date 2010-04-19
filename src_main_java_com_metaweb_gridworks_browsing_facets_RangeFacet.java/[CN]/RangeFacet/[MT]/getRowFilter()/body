@@ -1,29 +1,11 @@
 {
   if (_eval != null && _errorMessage == null && _selected) {
-    if (MIN.equals(_mode)) {
-      return new ExpressionNumberComparisonRowFilter(_eval,_columnName,_cellIndex,_selectNumeric,_selectNonNumeric,_selectBlank,_selectError){
-        protected boolean checkValue(        double d){
-          return d >= _from;
-        }
+    return new ExpressionNumberComparisonRowFilter(_eval,_columnName,_cellIndex,_selectNumeric,_selectNonNumeric,_selectBlank,_selectError){
+      protected boolean checkValue(      double d){
+        return d >= _from && d < _to;
       }
-;
     }
- else     if (MAX.equals(_mode)) {
-      return new ExpressionNumberComparisonRowFilter(_eval,_columnName,_cellIndex,_selectNumeric,_selectNonNumeric,_selectBlank,_selectError){
-        protected boolean checkValue(        double d){
-          return d < _to;
-        }
-      }
 ;
-    }
- else {
-      return new ExpressionNumberComparisonRowFilter(_eval,_columnName,_cellIndex,_selectNumeric,_selectNonNumeric,_selectBlank,_selectError){
-        protected boolean checkValue(        double d){
-          return d >= _from && d < _to;
-        }
-      }
-;
-    }
   }
  else {
     return null;

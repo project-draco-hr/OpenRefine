@@ -93,7 +93,13 @@
           value=cell.getBooleanCellValue();
         }
  else         if (cellType == org.apache.poi.ss.usermodel.Cell.CELL_TYPE_NUMERIC) {
-          value=cell.getNumericCellValue();
+          double d=cell.getNumericCellValue();
+          if (HSSFDateUtil.isCellDateFormatted(cell)) {
+            value=HSSFDateUtil.getJavaDate(d);
+          }
+ else {
+            value=d;
+          }
         }
  else {
           String text=cell.getStringCellValue().trim();

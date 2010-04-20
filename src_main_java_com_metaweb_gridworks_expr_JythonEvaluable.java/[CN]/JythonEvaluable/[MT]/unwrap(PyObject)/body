@@ -9,7 +9,7 @@
     Iterator<PyObject> i=po.asIterable().iterator();
     List<Object> list=new ArrayList<Object>();
     while (i.hasNext()) {
-      list.add(unwrap(i.next()));
+      list.add(unwrap((Object)i.next()));
     }
     return list.toArray();
   }

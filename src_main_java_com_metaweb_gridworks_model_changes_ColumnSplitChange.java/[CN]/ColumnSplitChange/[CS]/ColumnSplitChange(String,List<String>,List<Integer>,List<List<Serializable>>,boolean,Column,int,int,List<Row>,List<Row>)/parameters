@@ -1,0 +1,10 @@
+String columnName
+List<String> columnNames
+List<Integer> rowIndices
+List<List<Serializable>> tuples
+boolean removeOriginalColumn
+Column column
+int columnIndex
+int firstNewCellIndex
+List<Row> oldRows
+List<Row> newRows

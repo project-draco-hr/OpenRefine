@@ -1,0 +1,7 @@
+{
+  _columnName=columnName;
+  _columnNames=columnNames;
+  _rowIndices=rowIndices;
+  _tuples=tuples;
+  _removeOriginalColumn=removeOriginalColumn;
+}

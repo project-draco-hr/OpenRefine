@@ -1,0 +1,7 @@
+{
+  this.project=project;
+  this.cellIndex=cellIndex;
+  this.columnNames=columnNames;
+  this.rowIndices=rowIndices;
+  this.tuples=tuples;
+}

@@ -1,0 +1,11 @@
+{
+  super(engineConfig);
+  _columnName=columnName;
+  _guessCellType=guessCellType;
+  _removeOriginalColumn=removeOriginalColumn;
+  _mode="separator";
+  _separator=separator;
+  _regex=regex;
+  _maxColumns=maxColumns;
+  _fieldLengths=null;
+}

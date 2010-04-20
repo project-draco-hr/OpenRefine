@@ -1,0 +1,5 @@
+JSONObject engineConfig
+String columnName
+boolean guessCellType
+boolean removeOriginalColumn
+int[] fieldLengths

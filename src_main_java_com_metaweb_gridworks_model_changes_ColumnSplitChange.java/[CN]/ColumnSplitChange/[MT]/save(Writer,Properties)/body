@@ -1,0 +1,65 @@
+{
+  writer.write("columnName=");
+  writer.write(_columnName);
+  writer.write('\n');
+  writer.write("columnNameCount=");
+  writer.write(Integer.toString(_columnNames.size()));
+  writer.write('\n');
+  for (  String name : _columnNames) {
+    writer.write(name);
+    writer.write('\n');
+  }
+  writer.write("rowIndexCount=");
+  writer.write(Integer.toString(_rowIndices.size()));
+  writer.write('\n');
+  for (  Integer rowIndex : _rowIndices) {
+    writer.write(rowIndex.toString());
+    writer.write('\n');
+  }
+  writer.write("tupleCount=");
+  writer.write(Integer.toString(_tuples.size()));
+  writer.write('\n');
+  for (  List<Serializable> tuple : _tuples) {
+    writer.write(Integer.toString(tuple.size()));
+    writer.write('\n');
+    for (    Serializable value : tuple) {
+      if (value == null) {
+        writer.write("null");
+      }
+ else       if (value instanceof String) {
+        writer.write(JSONObject.quote((String)value));
+      }
+ else {
+        writer.write(value.toString());
+      }
+      writer.write('\n');
+    }
+  }
+  writer.write("removeOriginalColumn=");
+  writer.write(Boolean.toString(_removeOriginalColumn));
+  writer.write('\n');
+  writer.write("column=");
+  _column.save(writer);
+  writer.write('\n');
+  writer.write("columnIndex=");
+  writer.write(Integer.toString(_columnIndex));
+  writer.write('\n');
+  writer.write("firstNewCellIndex=");
+  writer.write(Integer.toString(_firstNewCellIndex));
+  writer.write('\n');
+  writer.write("newRowCount=");
+  writer.write(Integer.toString(_newRows.size()));
+  writer.write('\n');
+  for (  Row row : _newRows) {
+    row.save(writer,options);
+    writer.write('\n');
+  }
+  writer.write("oldRowCount=");
+  writer.write(Integer.toString(_oldRows.size()));
+  writer.write('\n');
+  for (  Row row : _oldRows) {
+    row.save(writer,options);
+    writer.write('\n');
+  }
+  writer.write("/ec/\n");
+}

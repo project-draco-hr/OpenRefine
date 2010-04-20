@@ -1,0 +1,12 @@
+{
+  _columnName=columnName;
+  _columnNames=columnNames;
+  _rowIndices=rowIndices;
+  _tuples=tuples;
+  _removeOriginalColumn=removeOriginalColumn;
+  _column=column;
+  _columnIndex=columnIndex;
+  _firstNewCellIndex=firstNewCellIndex;
+  _oldRows=oldRows;
+  _newRows=newRows;
+}

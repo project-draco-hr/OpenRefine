@@ -1,0 +1,10 @@
+{
+  JSONObject engineConfig=obj.getJSONObject("engineConfig");
+  String mode=obj.getString("mode");
+  if ("separator".equals(mode)) {
+    return new ColumnSplitOperation(engineConfig,obj.getString("columnName"),obj.getBoolean("guessCellType"),obj.getBoolean("removeOriginalColumn"),obj.getString("separator"),obj.getBoolean("regex"),obj.getInt("maxColumns"));
+  }
+ else {
+    return new ColumnSplitOperation(engineConfig,obj.getString("columnName"),obj.getBoolean("guessCellType"),obj.getBoolean("removeOriginalColumn"),JSONUtilities.getIntArray(obj,"fieldLengths"));
+  }
+}

@@ -1,0 +1,19 @@
+{
+  Object value=row.getCellValue(cellIndex);
+  if (ExpressionUtils.isNonBlankData(value)) {
+    String s=value instanceof String ? ((String)value) : value.toString();
+    List<Serializable> tuple=split(s);
+    rowIndices.add(rowIndex);
+    tuples.add(tuple);
+    for (int i=columnNames.size(); i < tuple.size(); i++) {
+      while (true) {
+        String newColumnName=_columnName + " " + columnNameIndex++;
+        if (project.columnModel.getColumnByName(newColumnName) == null) {
+          columnNames.add(newColumnName);
+          break;
+        }
+      }
+    }
+  }
+  return false;
+}

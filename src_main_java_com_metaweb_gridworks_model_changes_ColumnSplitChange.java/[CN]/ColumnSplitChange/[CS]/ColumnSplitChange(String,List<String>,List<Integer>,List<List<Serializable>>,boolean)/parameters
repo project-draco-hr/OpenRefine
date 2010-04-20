@@ -1,0 +1,5 @@
+String columnName
+List<String> columnNames
+List<Integer> rowIndices
+List<List<Serializable>> tuples
+boolean removeOriginalColumn

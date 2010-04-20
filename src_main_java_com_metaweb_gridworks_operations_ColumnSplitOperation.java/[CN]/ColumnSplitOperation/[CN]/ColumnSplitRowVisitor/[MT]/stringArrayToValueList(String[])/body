@@ -1,0 +1,7 @@
+{
+  List<Serializable> results=new ArrayList<Serializable>(cells.length);
+  for (  String cell : cells) {
+    results.add(stringToValue(cell));
+  }
+  return results;
+}

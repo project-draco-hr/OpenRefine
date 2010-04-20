@@ -1,0 +1,48 @@
+{
+synchronized (project) {
+    if (_firstNewCellIndex < 0) {
+      _firstNewCellIndex=project.columnModel.allocateNewCellIndex();
+      for (int i=1; i < _columnNames.size(); i++) {
+        project.columnModel.allocateNewCellIndex();
+      }
+      _column=project.columnModel.getColumnByName(_columnName);
+      _columnIndex=project.columnModel.getColumnIndexByName(_columnName);
+      _oldRows=new ArrayList<Row>(_rowIndices.size());
+      _newRows=new ArrayList<Row>(_rowIndices.size());
+      int cellIndex=_column.getCellIndex();
+      for (int i=0; i < _rowIndices.size(); i++) {
+        int r=_rowIndices.get(i);
+        List<Serializable> tuple=_tuples.get(i);
+        Row oldRow=project.rows.get(r);
+        Row newRow=oldRow.dup();
+        _oldRows.add(oldRow);
+        _newRows.add(newRow);
+        for (int c=0; c < tuple.size(); c++) {
+          Serializable value=tuple.get(c);
+          if (value != null) {
+            newRow.setCell(_firstNewCellIndex + c,new Cell(value,null));
+          }
+        }
+        if (_removeOriginalColumn) {
+          newRow.setCell(cellIndex,null);
+        }
+      }
+    }
+    for (int i=0; i < _rowIndices.size(); i++) {
+      int r=_rowIndices.get(i);
+      Row newRow=_newRows.get(i);
+      project.rows.set(r,newRow);
+    }
+    for (int i=0; i < _columnNames.size(); i++) {
+      String name=_columnNames.get(i);
+      int cellIndex=_firstNewCellIndex + i;
+      Column column=new Column(cellIndex,name);
+      project.columnModel.columns.add(_columnIndex + 1 + i,column);
+    }
+    if (_removeOriginalColumn) {
+      project.columnModel.columns.remove(_columnIndex);
+    }
+    project.columnModel.update();
+    project.recomputeRowContextDependencies();
+  }
+}

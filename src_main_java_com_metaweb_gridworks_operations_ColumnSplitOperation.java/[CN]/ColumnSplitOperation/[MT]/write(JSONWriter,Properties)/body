@@ -1,0 +1,34 @@
+{
+  writer.object();
+  writer.key("op");
+  writer.value(OperationRegistry.s_opClassToName.get(this.getClass()));
+  writer.key("description");
+  writer.value(getBriefDescription(null));
+  writer.key("engineConfig");
+  writer.value(getEngineConfig());
+  writer.key("columnName");
+  writer.value(_columnName);
+  writer.key("guessCellType");
+  writer.value(_guessCellType);
+  writer.key("removeOriginalColumn");
+  writer.value(_removeOriginalColumn);
+  writer.key("mode");
+  writer.value(_mode);
+  if ("separator".equals(_mode)) {
+    writer.key("separator");
+    writer.value(_separator);
+    writer.key("regex");
+    writer.value(_regex);
+    writer.key("maxColumns");
+    writer.value(_maxColumns);
+  }
+ else {
+    writer.key("fieldLengths");
+    writer.array();
+    for (    int l : _fieldLengths) {
+      writer.value(l);
+    }
+    writer.endArray();
+  }
+  writer.endObject();
+}

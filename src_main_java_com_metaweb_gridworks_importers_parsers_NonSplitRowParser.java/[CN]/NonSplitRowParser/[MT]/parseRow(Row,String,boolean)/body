@@ -1,0 +1,17 @@
+{
+  line=line.trim();
+  if (line.isEmpty()) {
+    return false;
+  }
+ else {
+    Serializable value=guessValueType ? ImporterUtilities.parseCellValue(line) : line;
+    if (ExpressionUtils.isNonBlankData(value)) {
+      row.cells.add(new Cell(value,null));
+      return true;
+    }
+ else {
+      row.cells.add(null);
+      return false;
+    }
+  }
+}

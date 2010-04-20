@@ -1,4 +1,5 @@
 {
+  boolean splitIntoColumns=ImporterUtilities.getBooleanOption("split-into-columns",options,true);
   String sep=options.getProperty("separator");
   int ignoreLines=ImporterUtilities.getIntegerOption("ignore",options,-1);
   int headerLines=ImporterUtilities.getIntegerOption("header-lines",options,1);
@@ -7,7 +8,7 @@
   boolean guessValueType=ImporterUtilities.getBooleanOption("guess-value-type",options,true);
   List<String> columnNames=new ArrayList<String>();
   LineNumberReader lnReader=new LineNumberReader(reader);
-  RowParser parser=(sep == null || (sep.length() == 0)) ? null : new SeparatorRowParser(sep);
+  RowParser parser=(sep != null && sep.length() > 0 && splitIntoColumns) ? new SeparatorRowParser(sep) : null;
   String line=null;
   int rowsWithData=0;
   while ((line=lnReader.readLine()) != null) {
@@ -19,14 +20,19 @@
       continue;
     }
     if (parser == null) {
-      int tab=line.indexOf('\t');
-      if (tab >= 0) {
-        sep="\t";
-        parser=new SeparatorRowParser(sep);
+      if (splitIntoColumns) {
+        int tab=line.indexOf('\t');
+        if (tab >= 0) {
+          sep="\t";
+          parser=new SeparatorRowParser(sep);
+        }
+ else {
+          sep=",";
+          parser=new CSVRowParser();
+        }
       }
  else {
-        sep=",";
-        parser=new CSVRowParser();
+        parser=new NonSplitRowParser();
       }
     }
     if (headerLines > 0) {

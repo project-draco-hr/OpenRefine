@@ -1,0 +1,13 @@
+{
+  if (name == null)   throw new RuntimeException("cookie name cannot be null");
+  Cookie cookie=null;
+  Cookie[] cookies=request.getCookies();
+  if (cookies != null) {
+    for (    Cookie c : cookies) {
+      if (name.equals(c.getName())) {
+        cookie=c;
+      }
+    }
+  }
+  return cookie;
+}

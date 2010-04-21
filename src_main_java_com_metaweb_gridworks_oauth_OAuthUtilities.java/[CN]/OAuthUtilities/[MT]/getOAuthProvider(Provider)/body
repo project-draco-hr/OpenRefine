@@ -1,0 +1,3 @@
+{
+  return new CommonsHttpOAuthProvider(p.getRequestTokenServiceURL(),p.getAccessTokenServiceURL(),p.getUserAuthorizationURL());
+}

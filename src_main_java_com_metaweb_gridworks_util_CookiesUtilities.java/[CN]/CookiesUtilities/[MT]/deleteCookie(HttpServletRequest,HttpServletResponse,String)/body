@@ -1,0 +1,10 @@
+{
+  Cookie cookie=getCookie(request,name);
+  if (cookie != null) {
+    Cookie delCookie=new Cookie(cookie.getName(),cookie.getValue());
+    delCookie.setDomain(cookie.getDomain());
+    delCookie.setPath(cookie.getPath());
+    delCookie.setMaxAge(0);
+    response.addCookie(delCookie);
+  }
+}

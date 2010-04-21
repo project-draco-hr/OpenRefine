@@ -1,0 +1,3 @@
+{
+  return "http://" + Configurations.get("gridworks.host",DEFAULT_HOST) + ":"+ Configurations.getInteger("gridworks.port",DEFAULT_PORT);
+}

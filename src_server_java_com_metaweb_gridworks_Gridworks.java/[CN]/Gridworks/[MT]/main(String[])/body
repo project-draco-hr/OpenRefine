@@ -3,6 +3,7 @@
   System.setProperty("org.mortbay.log.class","org.mortbay.log.Slf4jLog");
   System.setProperty("apple.laf.useScreenMenuBar","true");
   System.setProperty("com.apple.eawt.CocoaComponent.CompatibilityMode","false");
+  System.setProperty("debug","true");
   Appender console=new ConsoleAppender(new IndentingLayout());
   root.setLevel(Level.ALL);
   root.addAppender(console);
@@ -10,6 +11,8 @@
   jetty_logger.setLevel(Level.WARN);
   tempDir=new File(Configurations.get("gridworks.temp","temp"));
   if (!tempDir.exists())   tempDir.mkdirs();
+  port=Configurations.getInteger("gridworks.port",DEFAULT_PORT);
+  host=Configurations.get("gridworks.host",DEFAULT_HOST);
   Gridworks gridworks=new Gridworks();
   gridworks.init(args);
 }

@@ -1,6 +1,6 @@
 {
   FileOutputStream output=new FileOutputStream(file);
-  byte[] buffer=new byte[4 * 1024];
+  byte[] buffer=new byte[DEFAULT_BUFFER_SIZE];
   long count=0;
   int n=0;
   try {

@@ -3,4 +3,7 @@
   if (command != null) {
     command.doGet(request,response);
   }
+ else {
+    response.sendError(404);
+  }
 }

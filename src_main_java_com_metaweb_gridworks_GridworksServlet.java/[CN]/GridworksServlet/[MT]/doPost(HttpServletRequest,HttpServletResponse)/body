@@ -3,4 +3,7 @@
   if (command != null) {
     command.doPost(request,response);
   }
+ else {
+    response.sendError(404);
+  }
 }

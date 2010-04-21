@@ -1,6 +1,4 @@
 {
-  int port=Configurations.getInteger("gridworks.port",DEFAULT_PORT);
-  String host=Configurations.get("gridworks.host",DEFAULT_HOST);
   GridworksServer server=new GridworksServer();
   server.init(host,port);
   boolean headless=Configurations.getBoolean("gridworks.headless",false);

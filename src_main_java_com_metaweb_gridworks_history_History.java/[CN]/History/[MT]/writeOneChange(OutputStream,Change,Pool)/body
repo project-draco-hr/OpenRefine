@@ -1,0 +1,9 @@
+{
+  Writer writer=new OutputStreamWriter(out);
+  try {
+    History.writeOneChange(writer,change,pool);
+  }
+  finally {
+    writer.flush();
+  }
+}

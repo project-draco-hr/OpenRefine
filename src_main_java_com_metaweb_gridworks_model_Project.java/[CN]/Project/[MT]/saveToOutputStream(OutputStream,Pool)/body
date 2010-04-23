@@ -1,0 +1,12 @@
+{
+  Writer writer=new OutputStreamWriter(out);
+  try {
+    Properties options=new Properties();
+    options.setProperty("mode","save");
+    options.put("pool",pool);
+    saveToWriter(writer,options);
+  }
+  finally {
+    writer.flush();
+  }
+}

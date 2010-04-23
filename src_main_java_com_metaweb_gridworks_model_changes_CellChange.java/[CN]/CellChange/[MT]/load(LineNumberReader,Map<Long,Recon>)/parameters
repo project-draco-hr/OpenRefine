@@ -1,2 +1,0 @@
-LineNumberReader reader
-Map<Long,Recon> reconCache

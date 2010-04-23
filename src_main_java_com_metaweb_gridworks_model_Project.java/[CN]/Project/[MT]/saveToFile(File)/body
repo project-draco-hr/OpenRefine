@@ -1,17 +1,17 @@
 {
   ZipOutputStream out=new ZipOutputStream(new FileOutputStream(file));
   try {
+    Pool pool=new Pool();
     out.putNextEntry(new ZipEntry("data.txt"));
     try {
-      Writer writer=new OutputStreamWriter(out);
-      try {
-        Properties options=new Properties();
-        options.setProperty("mode","save");
-        saveToWriter(writer,options);
-      }
+      saveToOutputStream(out,pool);
+    }
   finally {
-        writer.flush();
-      }
+      out.closeEntry();
+    }
+    out.putNextEntry(new ZipEntry("pool.txt"));
+    try {
+      pool.save(out);
     }
   finally {
       out.closeEntry();

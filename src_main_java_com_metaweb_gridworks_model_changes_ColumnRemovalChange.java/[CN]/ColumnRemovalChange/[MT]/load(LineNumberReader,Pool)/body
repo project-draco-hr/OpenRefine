@@ -1,0 +1,30 @@
+{
+  int oldColumnIndex=-1;
+  Column oldColumn=null;
+  CellAtRow[] oldCells=null;
+  String line;
+  while ((line=reader.readLine()) != null && !"/ec/".equals(line)) {
+    int equal=line.indexOf('=');
+    CharSequence field=line.subSequence(0,equal);
+    if ("oldColumnIndex".equals(field)) {
+      oldColumnIndex=Integer.parseInt(line.substring(equal + 1));
+    }
+ else     if ("oldColumn".equals(field)) {
+      oldColumn=Column.load(line.substring(equal + 1));
+    }
+ else     if ("oldCellCount".equals(field)) {
+      int oldCellCount=Integer.parseInt(line.substring(equal + 1));
+      oldCells=new CellAtRow[oldCellCount];
+      for (int i=0; i < oldCellCount; i++) {
+        line=reader.readLine();
+        if (line != null) {
+          oldCells[i]=CellAtRow.load(line,pool);
+        }
+      }
+    }
+  }
+  ColumnRemovalChange change=new ColumnRemovalChange(oldColumnIndex);
+  change._oldColumn=oldColumn;
+  change._oldCells=oldCells;
+  return change;
+}

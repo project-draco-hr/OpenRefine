@@ -1,0 +1,3 @@
+{
+  candidates.put(candidate.topicID,candidate);
+}

@@ -27,7 +27,9 @@
   }
   if (recon != null) {
     writer.key("r");
-    recon.write(writer,options);
+    writer.value(Long.toString(recon.id));
+    Pool pool=(Pool)options.get("pool");
+    pool.pool(recon);
   }
   writer.endObject();
 }

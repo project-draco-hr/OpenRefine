@@ -1,0 +1,8 @@
+{
+  JsonFactory jsonFactory=new JsonFactory();
+  JsonParser jp=jsonFactory.createJsonParser(s);
+  if (jp.nextToken() != JsonToken.START_OBJECT) {
+    return null;
+  }
+  return loadStreaming(jp);
+}

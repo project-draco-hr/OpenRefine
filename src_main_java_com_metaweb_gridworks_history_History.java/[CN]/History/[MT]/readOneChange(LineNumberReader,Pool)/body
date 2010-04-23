@@ -1,0 +1,7 @@
+{
+  reader.readLine();
+  String className=reader.readLine();
+  Class<? extends Change> klass=getChangeClass(className);
+  Method load=klass.getMethod("load",LineNumberReader.class,Pool.class);
+  return (Change)load.invoke(null,reader,pool);
+}

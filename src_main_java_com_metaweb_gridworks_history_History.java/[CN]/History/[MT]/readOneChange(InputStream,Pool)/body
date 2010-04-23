@@ -1,0 +1,9 @@
+{
+  LineNumberReader reader=new LineNumberReader(new InputStreamReader(in));
+  try {
+    return readOneChange(reader,pool);
+  }
+  finally {
+    reader.close();
+  }
+}

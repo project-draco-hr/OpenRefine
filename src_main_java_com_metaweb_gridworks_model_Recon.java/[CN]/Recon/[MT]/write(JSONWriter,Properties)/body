@@ -7,14 +7,14 @@
   writer.value(judgmentToString());
   if (match != null) {
     writer.key("m");
-    match.write(writer,options);
+    writer.value(match.topicID);
   }
   if (match == null || saveMode) {
     writer.key("c");
     writer.array();
     if (candidates != null) {
       for (      ReconCandidate c : candidates) {
-        c.write(writer,options);
+        writer.value(c.topicID);
       }
     }
     writer.endArray();

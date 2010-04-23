@@ -1,15 +1,17 @@
 {
   ZipOutputStream out=new ZipOutputStream(new FileOutputStream(file));
   try {
+    Pool pool=new Pool();
     out.putNextEntry(new ZipEntry("change.txt"));
     try {
-      Writer writer=new OutputStreamWriter(out);
-      try {
-        History.writeOneChange(writer,_change);
-      }
+      History.writeOneChange(out,_change,pool);
+    }
   finally {
-        writer.flush();
-      }
+      out.closeEntry();
+    }
+    out.putNextEntry(new ZipEntry("pool.txt"));
+    try {
+      pool.save(out);
     }
   finally {
       out.closeEntry();

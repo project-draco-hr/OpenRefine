@@ -1,0 +1,9 @@
+{
+  Writer writer=new OutputStreamWriter(out);
+  try {
+    save(writer);
+  }
+  finally {
+    writer.flush();
+  }
+}

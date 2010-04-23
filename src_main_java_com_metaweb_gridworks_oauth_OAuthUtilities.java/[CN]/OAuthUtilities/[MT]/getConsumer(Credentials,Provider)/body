@@ -1,5 +1,7 @@
 {
   OAuthConsumer consumer=getConsumer(provider);
-  consumer.setTokenWithSecret(credentials.getToken(),credentials.getSecret());
+  if (credentials != null) {
+    consumer.setTokenWithSecret(credentials.getToken(),credentials.getSecret());
+  }
   return consumer;
 }

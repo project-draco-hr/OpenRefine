@@ -14,7 +14,7 @@
         reader=new InputStreamReader(inputStream,charsetMatch.getName());
         options.setProperty("encoding",charsetMatch.getName());
         options.setProperty("encoding_confidence",Integer.toString(charsetMatch.getConfidence()));
-        Gridworks.log("Best encoding guess: " + charsetMatch.getName() + " [confidence: "+ charsetMatch.getConfidence()+ "]");
+        logger.info("Best encoding guess: {} [confidence: {}]",charsetMatch.getName(),charsetMatch.getConfidence());
         break;
       }
  catch (      UnsupportedEncodingException e) {

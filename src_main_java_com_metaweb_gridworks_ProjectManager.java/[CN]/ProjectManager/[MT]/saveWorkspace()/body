@@ -6,7 +6,7 @@ synchronized (this) {
     }
  catch (    Exception e) {
       e.printStackTrace();
-      Gridworks.log("Failed to save workspace.");
+      logger.warn("Failed to save workspace");
       return;
     }
     File file=new File(_workspaceDir,"workspace.json");
@@ -18,5 +18,6 @@ synchronized (this) {
     if (oldFile.exists()) {
       oldFile.delete();
     }
+    logger.info("Saved workspace");
   }
 }

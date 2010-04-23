@@ -15,10 +15,10 @@
   final String contextPath=Configurations.get("gridworks.context_path","/");
   File webXml=new File(contextRoot,"WEB-INF/web.xml");
   if (!webXml.isFile()) {
-    Gridworks.warn("Warning: Failed to find web application. Could not find 'web.xml' at '" + webXml.getAbsolutePath() + "'");
+    logger.warn("Warning: Failed to find web application. Could not find 'web.xml' at '" + webXml.getAbsolutePath() + "'");
     System.exit(-1);
   }
-  Gridworks.info("Initializing context: '" + contextPath + "' from '"+ contextRoot.getAbsolutePath()+ "'");
+  logger.info("Initializing context: '" + contextPath + "' from '"+ contextRoot.getAbsolutePath()+ "'");
   WebAppContext context=new WebAppContext(contextRoot.getAbsolutePath(),contextPath);
   this.setHandler(context);
   this.setStopAtShutdown(true);

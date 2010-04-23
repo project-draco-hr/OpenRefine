@@ -1,7 +1,3 @@
 {
-  response.setStatus(HttpServletResponse.SC_OK);
-  Writer writer=response.getWriter();
-  writer.write("<html><head>");
-  writer.write("<meta http-equiv=\"refresh\" content=\"1;url=" + url + "\">");
-  writer.write("</head><body></body></html>");
+  response.sendRedirect(url);
 }

@@ -29,7 +29,7 @@
     eval_x=MetaParser.parse(expression_x);
   }
  catch (  ParsingException e) {
-    Gridworks.warn("error parsing expression",e);
+    logger.warn("error parsing expression",e);
   }
   String columnName_y=o.getString(ScatterplotFacet.Y_COLUMN_NAME);
   String expression_y=(o.has(ScatterplotFacet.Y_EXPRESSION)) ? o.getString(ScatterplotFacet.Y_EXPRESSION) : "value";
@@ -46,7 +46,7 @@
     eval_y=MetaParser.parse(expression_y);
   }
  catch (  ParsingException e) {
-    Gridworks.warn("error parsing expression",e);
+    logger.warn("error parsing expression",e);
   }
   NumericBinIndex index_x=null;
   NumericBinIndex index_y=null;

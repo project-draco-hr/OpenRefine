@@ -1,4 +1,8 @@
 {
+  response.setCharacterEncoding("UTF-8");
   response.setStatus(HttpServletResponse.SC_OK);
-  response.getWriter().write(content);
+  Writer w=response.getWriter();
+  w.write(content);
+  w.flush();
+  w.close();
 }

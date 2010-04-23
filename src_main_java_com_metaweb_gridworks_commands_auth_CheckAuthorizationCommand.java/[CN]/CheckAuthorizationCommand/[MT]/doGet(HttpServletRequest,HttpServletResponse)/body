@@ -1,28 +1,20 @@
 {
   try {
-    Provider provider=getProvider(request);
+    Provider provider=OAuthUtilities.getProvider(request);
     Credentials.deleteCredentials(request,response,provider,Credentials.Type.REQUEST);
     Credentials access_credentials=Credentials.getCredentials(request,provider,Credentials.Type.ACCESS);
     response.setCharacterEncoding("UTF-8");
     response.setHeader("Content-Type","application/json");
     if (access_credentials != null) {
-      Gridworks.log(access_credentials.toString());
-      OAuthConsumer consumer=OAuthUtilities.getConsumer(access_credentials,provider);
-      HttpGet httpRequest=new HttpGet("http://" + provider.getHost() + "/api/service/user_info");
-      httpRequest.getParams().setParameter(CoreProtocolPNames.USER_AGENT,"Gridworks " + Gridworks.getVersion());
-      httpRequest.setHeader("X-Requested-With","1");
-      consumer.sign(request);
-      HttpClient httpClient=new DefaultHttpClient();
-      HttpResponse httpResponse=httpClient.execute(httpRequest);
-      OutputStream output=response.getOutputStream();
-      InputStream input=httpResponse.getEntity().getContent();
-      IOUtils.copy(input,output);
-      input.close();
-      output.close();
+      String user_info=FreebaseUtils.getUserInfo(access_credentials,provider);
+      response.getWriter().write(user_info);
     }
-    respond(response,"401 Unauthorized","You don't have the right credentials");
+ else {
+      respond(response,"401 Unauthorized","You don't have the right credentials");
+    }
   }
  catch (  Exception e) {
+    logger.info("error",e);
     respondException(response,e);
   }
 }

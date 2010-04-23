@@ -1,5 +1,5 @@
 {
-  e.printStackTrace();
+  logger.warn("Exception caught",e);
   try {
     JSONObject o=new JSONObject();
     o.put("code","error");
@@ -10,6 +10,7 @@
     pw.flush();
     sw.flush();
     o.put("stack",sw.toString());
+    response.setCharacterEncoding("UTF-8");
     response.setHeader("Content-Type","application/json");
     respond(response,o.toString());
   }

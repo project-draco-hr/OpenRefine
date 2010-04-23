@@ -15,7 +15,7 @@
     clusterer.initializeFromJSON(project,clusterer_conf);
     clusterer.computeClusters(engine);
     respondJSON(response,clusterer);
-    Gridworks.log("computed clusters [" + type + ","+ clusterer_conf.getString("function")+ "] in "+ (System.currentTimeMillis() - start)+ "ms");
+    logger.info("computed clusters [{},{}] in {}ms",new Object[]{type,clusterer_conf.getString("function"),Long.toString(System.currentTimeMillis() - start)});
   }
  catch (  Exception e) {
     respondException(response,e);

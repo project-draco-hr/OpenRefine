@@ -1,0 +1,12 @@
+{
+  Writer w=response.getWriter();
+  JSONWriter writer=new JSONWriter(w);
+  writer.object();
+  writer.key("status");
+  writer.value(status);
+  writer.key("message");
+  writer.value(message);
+  writer.endObject();
+  w.flush();
+  w.close();
+}

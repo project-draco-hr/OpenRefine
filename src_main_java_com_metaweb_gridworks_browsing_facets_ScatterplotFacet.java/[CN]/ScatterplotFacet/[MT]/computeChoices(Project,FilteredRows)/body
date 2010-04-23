@@ -32,7 +32,7 @@
           image=serializeImage(drawer.getImage());
         }
  catch (        IOException e) {
-          Gridworks.warn("Exception caught while generating the image",e);
+          logger.warn("Exception caught while generating the image",e);
         }
       }
  else {

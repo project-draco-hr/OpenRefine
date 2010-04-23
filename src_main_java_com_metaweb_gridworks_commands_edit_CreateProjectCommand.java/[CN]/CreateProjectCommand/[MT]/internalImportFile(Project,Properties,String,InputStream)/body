@@ -1,5 +1,5 @@
 {
-  Gridworks.info("Importing " + fileName + "");
+  logger.info("Importing '{}'",fileName);
   if (fileName.endsWith(".zip") || fileName.endsWith(".tar.gz") || fileName.endsWith(".tgz")|| fileName.endsWith(".tar.bz2")) {
     File file=save(inputStream);
     HashMap<String,Integer> ext_map=new HashMap<String,Integer>();
@@ -55,7 +55,7 @@
         }
       }
     }
-    Gridworks.log("Most frequent extensions: " + exts.toString());
+    logger.info("Most frequent extensions: {}",exts.toString());
     is=getStream(fileName,new FileInputStream(file));
     SafeInputStream sis=new SafeInputStream(is);
     try {

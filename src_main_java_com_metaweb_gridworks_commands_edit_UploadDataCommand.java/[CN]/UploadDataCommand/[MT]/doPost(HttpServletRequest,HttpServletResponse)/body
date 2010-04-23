@@ -1,0 +1,23 @@
+{
+  try {
+    Project project=getProject(request);
+    Engine engine=getEngine(request,project);
+    TripleloaderExporter exporter=new TripleloaderExporter();
+    StringWriter triples=new StringWriter(1024 * 10);
+    exporter.export(project,new Properties(),engine,triples);
+    String info=request.getParameter("info");
+    String result=FreebaseUtils.uploadTriples(request,info,triples.toString());
+    response.setCharacterEncoding("UTF-8");
+    response.setHeader("Content-Type","application/json");
+    try {
+      new JSONObject(result);
+      response.getWriter().write(result);
+    }
+ catch (    JSONException e) {
+      respond(response,"500 Error",result);
+    }
+  }
+ catch (  Exception e) {
+    respondException(response,e);
+  }
+}

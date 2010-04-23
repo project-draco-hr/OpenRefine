@@ -1,7 +1,10 @@
 {
+  response.setCharacterEncoding("UTF-8");
+  response.setHeader("Content-Type","application/json");
   HistoryEntry historyEntry=project.processManager.queueProcess(process);
   if (historyEntry != null) {
-    JSONWriter writer=new JSONWriter(response.getWriter());
+    Writer w=response.getWriter();
+    JSONWriter writer=new JSONWriter(w);
     Properties options=new Properties();
     writer.object();
     writer.key("code");
@@ -9,6 +12,8 @@
     writer.key("historyEntry");
     historyEntry.write(writer,options);
     writer.endObject();
+    w.flush();
+    w.close();
   }
  else {
     respond(response,"{ \"code\" : \"pending\" }");

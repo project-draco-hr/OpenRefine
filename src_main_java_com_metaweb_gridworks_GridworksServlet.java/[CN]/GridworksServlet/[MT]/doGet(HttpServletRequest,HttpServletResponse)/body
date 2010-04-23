@@ -1,7 +1,10 @@
 {
-  Command command=_commands.get(getCommandName(request));
+  String commandName=getCommandName(request);
+  Command command=_commands.get(commandName);
   if (command != null) {
+    logger.trace("> GET {}",commandName);
     command.doGet(request,response);
+    logger.trace("< GET {}",commandName);
   }
  else {
     response.sendError(404);

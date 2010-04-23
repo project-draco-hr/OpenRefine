@@ -1,9 +1,0 @@
-{
-  JSONWriter writer=new JSONWriter(response.getWriter());
-  writer.object();
-  writer.key("status");
-  writer.value(status);
-  writer.key("message");
-  writer.value(message);
-  writer.endObject();
-}

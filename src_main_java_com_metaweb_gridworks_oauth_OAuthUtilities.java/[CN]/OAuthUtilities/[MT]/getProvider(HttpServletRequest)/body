@@ -1,0 +1,8 @@
+{
+  String path=request.getPathInfo().substring(1);
+  int slash=path.lastIndexOf('/');
+  String provider_str=path.substring(slash + 1);
+  Provider provider=getProvider(provider_str);
+  if (provider == null)   throw new RuntimeException("Can't find OAuth provider '" + provider_str + "'");
+  return provider;
+}

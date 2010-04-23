@@ -1,11 +1,11 @@
 {
+  Provider provider=OAuthUtilities.getProvider(request);
   try {
-    Provider provider=getProvider(request);
     Credentials access_credentials=Credentials.getCredentials(request,provider,Credentials.Type.ACCESS);
-    String callbackURL=Gridworks.getURL() + "/command/authorize";
+    String callbackURL=Gridworks.getURL() + "/command/authorize/" + provider.getHost();
     if (access_credentials == null) {
       Credentials request_credentials=Credentials.getCredentials(request,provider,Credentials.Type.REQUEST);
-      OAuthConsumer consumer=OAuthUtilities.getConsumer(provider);
+      OAuthConsumer consumer=OAuthUtilities.getConsumer(request_credentials,provider);
       OAuthProvider pp=OAuthUtilities.getOAuthProvider(provider);
       if (request_credentials == null) {
         String url=pp.retrieveRequestToken(consumer,callbackURL);
@@ -32,6 +32,8 @@
     }
   }
  catch (  Exception e) {
+    Credentials.deleteCredentials(request,response,provider,Credentials.Type.REQUEST);
+    Credentials.deleteCredentials(request,response,provider,Credentials.Type.ACCESS);
     respondException(response,e);
   }
 }

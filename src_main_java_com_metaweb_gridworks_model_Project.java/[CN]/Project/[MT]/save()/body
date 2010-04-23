@@ -7,7 +7,7 @@ synchronized (this) {
     }
  catch (    Exception e) {
       e.printStackTrace();
-      Gridworks.log("Failed to save project " + id);
+      logger.warn("Failed to save project {}",id);
       return;
     }
     File file=new File(dir,"data.zip");
@@ -20,6 +20,6 @@ synchronized (this) {
       oldFile.delete();
     }
     lastSave=new Date();
-    Gridworks.log("Saved project " + id + ".");
+    logger.info("Saved project '{}'",id);
   }
 }

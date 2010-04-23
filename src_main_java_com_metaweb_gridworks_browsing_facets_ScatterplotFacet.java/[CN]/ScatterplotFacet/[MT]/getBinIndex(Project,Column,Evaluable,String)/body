@@ -5,7 +5,7 @@
       eval=MetaParser.parse(expression);
     }
  catch (    ParsingException e) {
-      Gridworks.warn("Error parsing expression",e);
+      logger.warn("Error parsing expression",e);
     }
   }
   NumericBinIndex index=(NumericBinIndex)column.getPrecompute(key);

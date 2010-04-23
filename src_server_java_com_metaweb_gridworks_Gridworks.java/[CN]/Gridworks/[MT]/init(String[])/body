@@ -8,7 +8,7 @@
       client.init(host,port);
     }
  catch (    Exception e) {
-      Log.warn("Sorry, some error prevented us from launching the browser for you.\n\n Point your browser to http://" + host + ":"+ port+ "/ to start using Gridworks.");
+      logger.warn("Sorry, some error prevented us from launching the browser for you.\n\n Point your browser to http://" + host + ":"+ port+ "/ to start using Gridworks.");
     }
   }
   new ShutdownSignalHandler("TERM",server);

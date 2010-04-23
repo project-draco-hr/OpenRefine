@@ -12,7 +12,7 @@
       return data;
     }
  catch (    Error e) {
-      Gridworks.log("Failed to use jdatapath to detect user data path. " + "Resorting to environment variables.");
+      logger.warn("Failed to use jdatapath to detect user data path: resorting to environment variables");
       File parentDir=null;
 {
         String appData=System.getenv("APPDATA");

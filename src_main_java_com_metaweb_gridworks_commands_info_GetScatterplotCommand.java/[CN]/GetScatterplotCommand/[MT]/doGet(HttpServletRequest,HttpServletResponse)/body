@@ -13,7 +13,7 @@
   finally {
       sos.close();
     }
-    Gridworks.log("Drawn scatterplot in " + (System.currentTimeMillis() - start) + "ms");
+    logger.info("Drawn scatterplot in {} ms",Long.toString(System.currentTimeMillis() - start));
   }
  catch (  Exception e) {
     e.printStackTrace();

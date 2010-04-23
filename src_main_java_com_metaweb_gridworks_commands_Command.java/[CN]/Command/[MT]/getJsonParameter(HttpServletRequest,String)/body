@@ -2,10 +2,10 @@
   String value=request.getParameter(name);
   if (value != null) {
     try {
-      JSONObject o=ParsingUtilities.evaluateJsonStringToObject(value);
-      return o;
+      return ParsingUtilities.evaluateJsonStringToObject(value);
     }
  catch (    JSONException e) {
+      logger.warn("error getting json parameter",e);
     }
   }
   return null;

@@ -5,12 +5,12 @@
   try {
     JSONObject params=o.getJSONObject("params");
     _radius=params.getDouble("radius");
-    Gridworks.warn("Use radius: " + _radius);
+    logger.debug("Use radius: {}",_radius);
     _blockingNgramSize=params.getInt("blocking-ngram-size");
-    Gridworks.warn("Use blocking ngram size: " + _blockingNgramSize);
+    logger.debug("Use blocking ngram size: {}",_blockingNgramSize);
   }
  catch (  JSONException e) {
-    Gridworks.warn("No parameters found, using defaults");
+    logger.debug("No parameters found, using defaults");
   }
   _clusterer=new NGramClusterer(_distance,_blockingNgramSize);
 }

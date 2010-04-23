@@ -5,7 +5,7 @@
   }
  catch (  Exception e) {
     e.printStackTrace();
-    Gridworks.log("Failed to save project metadata");
+    logger.warn("Failed to save project metadata");
     return;
   }
   File file=new File(projectDir,"metadata.json");

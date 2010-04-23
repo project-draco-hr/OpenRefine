@@ -1,4 +1,5 @@
 {
+  logger.trace("> destroy");
   if (_timer != null) {
     _timer.cancel();
     _timer=null;
@@ -8,4 +9,5 @@
     ProjectManager.singleton=null;
   }
   super.destroy();
+  logger.trace("< destroy");
 }

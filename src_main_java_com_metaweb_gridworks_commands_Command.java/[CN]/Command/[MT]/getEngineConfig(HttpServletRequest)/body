@@ -1,7 +1,4 @@
 {
   String json=request.getParameter("engine");
-  if (json != null) {
-    return ParsingUtilities.evaluateJsonStringToObject(json);
-  }
-  return null;
+  return (json == null) ? null : ParsingUtilities.evaluateJsonStringToObject(json);
 }

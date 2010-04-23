@@ -31,7 +31,7 @@
     }
   }
   project.columnModel.setMaxCellIndex(maxCellCount - 1);
-  Gridworks.log("Loaded project " + id + " from disk in "+ (System.currentTimeMillis() - start) / 1000 + " sec(s)");
+  logger.info("Loaded project {} from disk in {} sec(s)",id,Long.toString((System.currentTimeMillis() - start) / 1000));
   project.recomputeRowContextDependencies();
   return project;
 }

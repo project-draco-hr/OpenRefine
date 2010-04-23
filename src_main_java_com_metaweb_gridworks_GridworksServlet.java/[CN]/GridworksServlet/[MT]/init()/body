@@ -1,5 +1,6 @@
 {
   super.init();
+  logger.trace("> initialize");
   ProjectManager.initialize();
   if (_timer == null) {
     _timer=new Timer();
@@ -11,4 +12,5 @@
     }
   }
 ,period,period);
+  logger.trace("< initialize");
 }

@@ -1,5 +1,5 @@
 {
-  Gridworks.log("Loading workspace from " + file.getAbsolutePath());
+  logger.info("Loading workspace: {}",file.getAbsolutePath());
   _projectsMetadata.clear();
   _expressions.clear();
   if (file.exists() || file.canRead()) {
@@ -20,17 +20,17 @@
       return true;
     }
  catch (    JSONException e) {
-      Gridworks.warn("Error reading " + file,e);
+      logger.warn("Error reading file",e);
     }
 catch (    IOException e) {
-      Gridworks.warn("Error reading " + file,e);
+      logger.warn("Error reading file",e);
     }
  finally {
       try {
         reader.close();
       }
  catch (      IOException e) {
-        Gridworks.warn("Exception closing file",e);
+        logger.warn("Exception closing file",e);
       }
     }
   }

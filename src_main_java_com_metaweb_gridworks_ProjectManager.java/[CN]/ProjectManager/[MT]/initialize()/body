@@ -1,7 +1,7 @@
 {
   if (singleton == null) {
     File dir=getProjectLocation();
-    Gridworks.log("Using workspace directory: " + dir.getAbsolutePath());
+    logger.info("Using workspace directory: {}",dir.getAbsolutePath());
     singleton=new ProjectManager(dir);
   }
 }

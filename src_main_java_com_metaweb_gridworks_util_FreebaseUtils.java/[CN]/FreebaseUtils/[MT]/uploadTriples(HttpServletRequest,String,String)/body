@@ -6,7 +6,7 @@
     List<NameValuePair> formparams=new ArrayList<NameValuePair>();
     formparams.add(new BasicNameValuePair("user",user_info.getString("username")));
     formparams.add(new BasicNameValuePair("action_type","LOAD_TRIPLE"));
-    formparams.add(new BasicNameValuePair("operator","gridworks"));
+    formparams.add(new BasicNameValuePair("operator",GRIDWORKS_ID));
     formparams.add(new BasicNameValuePair("mdo_info",info));
     formparams.add(new BasicNameValuePair("graphport",provider.getHost().equals(FREEBASE_HOST) ? "otg" : "sandbox"));
     formparams.add(new BasicNameValuePair("payload",triples));

@@ -1,5 +1,5 @@
 {
-  if (cellIndex < cells.size()) {
+  if (cellIndex >= 0 && cellIndex < cells.size()) {
     return cells.get(cellIndex);
   }
  else {

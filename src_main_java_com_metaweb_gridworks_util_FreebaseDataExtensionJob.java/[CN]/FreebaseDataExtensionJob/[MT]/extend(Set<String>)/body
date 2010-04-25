@@ -1,7 +1,8 @@
 {
   StringWriter writer=new StringWriter();
   formulateQuery(guids,extension,writer);
-  InputStream is=doMqlRead(writer.toString());
+  String query=writer.toString();
+  InputStream is=doMqlRead(query);
   try {
     String s=ParsingUtilities.inputStreamToString(is);
     JSONObject o=ParsingUtilities.evaluateJsonStringToObject(s);

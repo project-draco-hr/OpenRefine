@@ -21,13 +21,19 @@
       int maxColIndex=startColumnIndex;
       int l=a.length();
       for (int r=0; r < l; r++) {
-        JSONObject o=a.isNull(r) ? null : a.getJSONObject(r);
+        Object v=a.isNull(r) ? null : a.get(r);
+        JSONObject o=v != null && v instanceof JSONObject ? (JSONObject)v : null;
         int startColumnIndex2=startColumnIndex;
         int startRowIndex2=startRowIndex;
         if (isOwnColumn) {
-          storeCell(rows,startRowIndex2++,startColumnIndex2++,o);
+          if (o != null) {
+            storeCell(rows,startRowIndex2++,startColumnIndex2++,o);
+          }
+ else {
+            storeCell(rows,startRowIndex2++,startColumnIndex2++,v);
+          }
         }
-        if (hasSubProperties) {
+        if (hasSubProperties && o != null) {
           int[] rowcol=collectResult(rows,extNode.getJSONArray("properties"),o,startRowIndex,startColumnIndex2);
           startRowIndex2=rowcol[0];
           startColumnIndex2=rowcol[1];

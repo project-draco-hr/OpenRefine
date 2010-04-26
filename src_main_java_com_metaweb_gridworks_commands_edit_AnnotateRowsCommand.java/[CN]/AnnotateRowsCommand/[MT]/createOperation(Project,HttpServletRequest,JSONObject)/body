@@ -4,5 +4,10 @@
     boolean starred="true".endsWith(starredString);
     return new RowStarOperation(engineConfig,starred);
   }
+  String flaggedString=request.getParameter("flagged");
+  if (flaggedString != null) {
+    boolean flagged="true".endsWith(flaggedString);
+    return new RowFlagOperation(engineConfig,flagged);
+  }
   return null;
 }

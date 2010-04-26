@@ -1,0 +1,4 @@
+{
+  Row row=project.rows.get(rowIndex);
+  row.flagged=oldFlagged;
+}

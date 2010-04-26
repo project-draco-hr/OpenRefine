@@ -1,0 +1,3 @@
+{
+  return new HistoryEntry(_project,(flagged ? "Flag row " : "Unflag row ") + (rowIndex + 1),null,new RowStarChange(rowIndex,flagged));
+}

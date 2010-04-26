@@ -1,0 +1,5 @@
+{
+  JSONObject engineConfig=obj.getJSONObject("engineConfig");
+  boolean flagged=obj.getBoolean("flagged");
+  return new RowFlagOperation(engineConfig,flagged);
+}

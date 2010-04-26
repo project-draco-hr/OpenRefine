@@ -1,0 +1,4 @@
+{
+  this.rowIndex=rowIndex;
+  this.newFlagged=newFlagged;
+}

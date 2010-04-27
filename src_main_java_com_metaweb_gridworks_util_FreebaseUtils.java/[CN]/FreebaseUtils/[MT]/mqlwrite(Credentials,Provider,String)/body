@@ -1,0 +1,16 @@
+{
+  OAuthConsumer consumer=OAuthUtilities.getConsumer(credentials,provider);
+  JSONObject envelope=new JSONObject();
+  envelope.put("query",new JSONObject(query));
+  List<NameValuePair> formparams=new ArrayList<NameValuePair>();
+  formparams.add(new BasicNameValuePair("query",envelope.toString()));
+  UrlEncodedFormEntity entity=new UrlEncodedFormEntity(formparams,"UTF-8");
+  HttpPost httpRequest=new HttpPost(getMQLWriteURL(provider.getHost()));
+  httpRequest.getParams().setParameter(CoreProtocolPNames.USER_AGENT,"Gridworks " + Gridworks.getVersion());
+  httpRequest.setEntity(entity);
+  httpRequest.setHeader("X-Requested-With","1");
+  consumer.sign(httpRequest);
+  HttpClient httpClient=new DefaultHttpClient();
+  HttpResponse httpResponse=httpClient.execute(httpRequest);
+  return EntityUtils.toString(httpResponse.getEntity());
+}

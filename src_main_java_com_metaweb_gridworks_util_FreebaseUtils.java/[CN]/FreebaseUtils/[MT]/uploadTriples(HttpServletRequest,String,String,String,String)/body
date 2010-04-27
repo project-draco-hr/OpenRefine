@@ -13,7 +13,7 @@
     formparams.add(new BasicNameValuePair("action_type","LOAD_TRIPLE"));
     formparams.add(new BasicNameValuePair("operator",GRIDWORKS_ID));
     formparams.add(new BasicNameValuePair("mdo_info",mdo_info.toString()));
-    formparams.add(new BasicNameValuePair("graphport",provider.getHost().equals(FREEBASE_HOST) ? "otg" : "sandbox"));
+    formparams.add(new BasicNameValuePair("graphport",graph));
     formparams.add(new BasicNameValuePair("payload",triples));
     formparams.add(new BasicNameValuePair("check_params","false"));
     UrlEncodedFormEntity entity=new UrlEncodedFormEntity(formparams,"UTF-8");

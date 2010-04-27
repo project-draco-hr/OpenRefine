@@ -1,3 +1,4 @@
 HttpServletRequest request
-String info
+String source_name
+String source_id
 String triples

@@ -25,7 +25,7 @@
         for (        String typeID : candidate.typeIDs) {
           if (this.typeID.equals(typeID)) {
             recon.setFeature(Recon.Feature_typeMatch,true);
-            if (autoMatch && (score > 0.6 || (result.has("match") && result.getBoolean("match")))) {
+            if (autoMatch && result.has("match") && result.getBoolean("match")) {
               recon.match=candidate;
               recon.judgment=Judgment.Matched;
             }

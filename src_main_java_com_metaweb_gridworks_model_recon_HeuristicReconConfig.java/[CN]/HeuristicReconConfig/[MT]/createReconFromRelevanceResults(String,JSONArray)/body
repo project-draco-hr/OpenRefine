@@ -15,24 +15,27 @@
       }
       double score=result.getDouble("relevance:score");
       ReconCandidate candidate=new ReconCandidate(result.getString("id"),result.getString("guid"),result.getString("name"),typeIDs,score);
-      if (i == 0) {
-        recon.setFeature(Recon.Feature_nameMatch,text.equalsIgnoreCase(candidate.topicName));
-        recon.setFeature(Recon.Feature_nameLevenshtein,StringUtils.getLevenshteinDistance(text,candidate.topicName));
-        recon.setFeature(Recon.Feature_nameWordDistance,wordDistance(text,candidate.topicName));
-        recon.setFeature(Recon.Feature_typeMatch,false);
-        for (        String typeID : candidate.typeIDs) {
-          if (this.typeID.equals(typeID)) {
-            recon.setFeature(Recon.Feature_typeMatch,true);
-            if (autoMatch && score >= 100) {
+      recon.addCandidate(candidate);
+      count++;
+    }
+    if (count > 0) {
+      ReconCandidate candidate=recon.candidates.get(0);
+      recon.setFeature(Recon.Feature_nameMatch,text.equalsIgnoreCase(candidate.topicName));
+      recon.setFeature(Recon.Feature_nameLevenshtein,StringUtils.getLevenshteinDistance(text,candidate.topicName));
+      recon.setFeature(Recon.Feature_nameWordDistance,wordDistance(text,candidate.topicName));
+      recon.setFeature(Recon.Feature_typeMatch,false);
+      for (      String typeID : candidate.typeIDs) {
+        if (this.typeID.equals(typeID)) {
+          recon.setFeature(Recon.Feature_typeMatch,true);
+          if (autoMatch && candidate.score >= 100) {
+            if (count == 1 || candidate.score / recon.candidates.get(1).score >= 1.5) {
               recon.match=candidate;
               recon.judgment=Judgment.Matched;
             }
-            break;
           }
+          break;
         }
       }
-      recon.addCandidate(candidate);
-      count++;
     }
   }
  catch (  JSONException e) {

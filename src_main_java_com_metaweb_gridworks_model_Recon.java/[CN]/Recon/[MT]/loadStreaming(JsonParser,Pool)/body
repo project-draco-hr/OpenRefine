@@ -63,6 +63,21 @@
         }
       }
     }
+ else     if ("service".equals(fieldName)) {
+      recon.service=jp.getText();
+    }
+ else     if ("judgmentAction".equals(fieldName)) {
+      recon.judgmentAction=jp.getText();
+    }
+ else     if ("judgmentHistoryEntry".equals(fieldName)) {
+      recon.judgmentHistoryEntry=jp.getLongValue();
+    }
+ else     if ("judgmentBatchSize".equals(fieldName)) {
+      recon.judgmentBatchSize=jp.getIntValue();
+    }
+ else     if ("matchRank".equals(fieldName)) {
+      recon.matchRank=jp.getIntValue();
+    }
   }
   return recon;
 }

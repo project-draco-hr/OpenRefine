@@ -50,6 +50,7 @@
  else {
           recon=new Recon();
         }
+        recon.service="recon";
         recons.add(recon);
       }
     }

@@ -4,7 +4,12 @@
   if (candidates != null) {
     r.candidates=new ArrayList<ReconCandidate>(candidates);
   }
+  r.service=service;
   r.judgment=judgment;
+  r.judgmentAction=judgmentAction;
+  r.judgmentHistoryEntry=judgmentHistoryEntry;
+  r.judgmentBatchSize=judgmentBatchSize;
   r.match=match;
+  r.matchRank=matchRank;
   return r;
 }

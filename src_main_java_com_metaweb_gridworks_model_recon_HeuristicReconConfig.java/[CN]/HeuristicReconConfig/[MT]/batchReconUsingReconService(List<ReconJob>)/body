@@ -27,6 +27,7 @@
     if (recon == null) {
       recon=new Recon();
     }
+    recon.service="recon";
     recons.add(recon);
   }
   return recons;

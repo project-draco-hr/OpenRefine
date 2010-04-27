@@ -27,7 +27,9 @@
             recon.setFeature(Recon.Feature_typeMatch,true);
             if (autoMatch && result.has("match") && result.getBoolean("match")) {
               recon.match=candidate;
+              recon.matchRank=0;
               recon.judgment=Judgment.Matched;
+              recon.judgmentAction="auto";
             }
             break;
           }

@@ -1,0 +1,5 @@
+{
+  writeLine(subject,predicate,node.topic.id,subjectCell,null);
+  writeChildren(node.topic.id,null);
+  return node.topic.id;
+}

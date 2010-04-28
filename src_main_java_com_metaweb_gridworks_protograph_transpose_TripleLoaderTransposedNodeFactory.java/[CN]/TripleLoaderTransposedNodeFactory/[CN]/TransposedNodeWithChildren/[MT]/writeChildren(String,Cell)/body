@@ -2,6 +2,6 @@
   for (int i=0; i < children.size(); i++) {
     WritingTransposedNode child=children.get(i);
     String predicate=properties.get(i).id;
-    child.write(subject,predicate);
+    child.write(subject,predicate,subjectCell);
   }
 }

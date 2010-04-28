@@ -6,7 +6,7 @@
   sb.append("{ ");
   boolean first=true;
   for (int i=0; i < children.size(); i++) {
-    String s=children.get(i).write(null,null);
+    String s=children.get(i).write(null,null,null);
     if (s != null) {
       if (first) {
         first=false;
@@ -19,6 +19,6 @@
     }
   }
   sb.append(" }");
-  writeLine(subject,predicate,sb);
+  writeLine(subject,predicate,sb,subjectCell,null);
   return null;
 }

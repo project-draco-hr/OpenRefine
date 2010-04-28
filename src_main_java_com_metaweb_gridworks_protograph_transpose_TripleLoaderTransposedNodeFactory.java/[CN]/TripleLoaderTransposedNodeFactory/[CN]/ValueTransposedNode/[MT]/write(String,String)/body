@@ -1,9 +1,0 @@
-{
-  if ("/type/text".equals(node.lang)) {
-    writeLine(subject,predicate,node.value,node.lang);
-  }
- else {
-    writeLine(subject,predicate,node.value);
-  }
-  return node.value.toString();
-}

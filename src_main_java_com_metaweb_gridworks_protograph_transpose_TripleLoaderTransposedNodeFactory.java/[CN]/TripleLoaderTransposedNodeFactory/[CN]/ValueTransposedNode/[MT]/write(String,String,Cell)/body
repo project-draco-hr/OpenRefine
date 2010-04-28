@@ -1,0 +1,9 @@
+{
+  if ("/type/text".equals(node.lang)) {
+    writeLine(subject,predicate,node.value,node.lang,subjectCell);
+  }
+ else {
+    writeLine(subject,predicate,node.value,subjectCell,null);
+  }
+  return node.value.toString();
+}

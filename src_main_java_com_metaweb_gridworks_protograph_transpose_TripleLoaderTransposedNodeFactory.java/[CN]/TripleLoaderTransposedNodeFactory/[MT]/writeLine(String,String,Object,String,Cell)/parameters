@@ -1,0 +1,5 @@
+String subject
+String predicate
+Object object
+String lang
+Cell subjectCell

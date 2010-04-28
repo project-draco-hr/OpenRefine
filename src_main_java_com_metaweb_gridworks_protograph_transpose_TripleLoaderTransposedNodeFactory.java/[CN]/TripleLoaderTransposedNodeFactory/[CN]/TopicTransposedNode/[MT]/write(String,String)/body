@@ -1,5 +1,0 @@
-{
-  writeLine(subject,predicate,node.topic.id);
-  writeChildren(node.topic.id);
-  return node.topic.id;
-}

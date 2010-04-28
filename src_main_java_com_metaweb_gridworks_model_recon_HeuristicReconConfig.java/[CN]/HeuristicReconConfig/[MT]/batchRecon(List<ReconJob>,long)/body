@@ -1,0 +1,8 @@
+{
+  if ("relevance".equals(service)) {
+    return batchReconUsingRelevance(jobs,historyEntryID);
+  }
+ else {
+    return batchReconUsingReconService(jobs,historyEntryID);
+  }
+}

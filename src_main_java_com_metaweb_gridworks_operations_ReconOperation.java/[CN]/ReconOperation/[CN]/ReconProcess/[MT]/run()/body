@@ -25,7 +25,7 @@
     for (int j=i; j < to; j++) {
       jobs.add(groups.get(j).job);
     }
-    List<Recon> recons=_reconConfig.batchRecon(jobs);
+    List<Recon> recons=_reconConfig.batchRecon(jobs,_historyEntryID);
     for (int j=i; j < to; j++) {
       Recon recon=recons.get(j - i);
       List<ReconEntry> entries=groups.get(j).entries;
@@ -51,7 +51,7 @@
   }
   if (!_canceled) {
     Change reconChange=new ReconChange(cellChanges,_columnName,_reconConfig,null);
-    HistoryEntry historyEntry=new HistoryEntry(_project,_description,ReconOperation.this,reconChange);
+    HistoryEntry historyEntry=new HistoryEntry(_historyEntryID,_project,_description,ReconOperation.this,reconChange);
     _project.history.addEntry(historyEntry);
     _project.processManager.onDoneProcess(this);
   }

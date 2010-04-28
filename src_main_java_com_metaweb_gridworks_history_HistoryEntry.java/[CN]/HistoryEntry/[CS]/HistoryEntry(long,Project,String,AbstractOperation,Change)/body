@@ -1,0 +1,8 @@
+{
+  this.id=id;
+  this.projectID=project.id;
+  this.description=description;
+  this.operation=operation;
+  this.time=new Date();
+  _change=change;
+}

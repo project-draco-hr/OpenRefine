@@ -8,6 +8,9 @@
  else   if ("judgmentAction".equals(name) || "judgementAction".equals(name)) {
     return judgmentAction;
   }
+ else   if ("judgmentHistoryEntry".equals(name) || "judgementHistoryEntry".equals(name)) {
+    return judgmentHistoryEntry;
+  }
  else   if ("judgmentBatchSize".equals(name) || "judgementBatchSize".equals(name)) {
     return judgmentBatchSize;
   }

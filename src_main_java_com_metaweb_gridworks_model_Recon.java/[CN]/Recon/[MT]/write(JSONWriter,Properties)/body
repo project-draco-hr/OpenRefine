@@ -3,6 +3,10 @@
   writer.object();
   writer.key("id");
   writer.value(id);
+  if (saveMode) {
+    writer.key("judgmentHistoryEntry");
+    writer.value(judgmentHistoryEntry);
+  }
   writer.key("j");
   writer.value(judgmentToString());
   if (match != null) {
@@ -30,8 +34,6 @@
     writer.value(service);
     writer.key("judgmentAction");
     writer.value(judgmentAction);
-    writer.key("judgmentHistoryEntry");
-    writer.value(judgmentHistoryEntry);
     writer.key("judgmentBatchSize");
     writer.value(judgmentBatchSize);
     if (match != null) {

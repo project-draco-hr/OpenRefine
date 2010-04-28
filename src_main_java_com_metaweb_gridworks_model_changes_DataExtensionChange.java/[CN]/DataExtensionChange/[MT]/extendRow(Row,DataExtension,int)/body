@@ -5,7 +5,7 @@
     Cell cell=null;
     if (value instanceof ReconCandidate) {
       ReconCandidate rc=(ReconCandidate)value;
-      Recon recon=new Recon();
+      Recon recon=new Recon(_historyEntryID);
       recon.addCandidate(rc);
       recon.service="mql";
       recon.match=rc;

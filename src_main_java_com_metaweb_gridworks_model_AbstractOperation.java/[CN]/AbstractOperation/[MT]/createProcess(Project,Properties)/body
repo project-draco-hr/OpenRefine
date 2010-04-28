@@ -1,7 +1,7 @@
 {
   return new QuickHistoryEntryProcess(project,getBriefDescription(null)){
-    @Override protected HistoryEntry createHistoryEntry() throws Exception {
-      return AbstractOperation.this.createHistoryEntry(_project);
+    @Override protected HistoryEntry createHistoryEntry(    long historyEntryID) throws Exception {
+      return AbstractOperation.this.createHistoryEntry(_project,historyEntryID);
     }
   }
 ;

@@ -1,3 +1,0 @@
-{
-  return new HistoryEntry(_project,(starred ? "Star row " : "Unstar row ") + (rowIndex + 1),null,new RowStarChange(rowIndex,starred));
-}

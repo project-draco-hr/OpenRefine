@@ -1,6 +1,6 @@
 {
   if (_historyEntry == null) {
-    _historyEntry=createHistoryEntry();
+    _historyEntry=createHistoryEntry(HistoryEntry.allocateID());
   }
   _project.history.addEntry(_historyEntry);
   _done=true;

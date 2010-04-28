@@ -4,79 +4,85 @@
     return null;
   }
   Recon recon=null;
+  long id=-1;
+  long judgmentHistoryEntry=-1;
   while (jp.nextToken() != JsonToken.END_OBJECT) {
     String fieldName=jp.getCurrentName();
     jp.nextToken();
     if ("id".equals(fieldName)) {
-      long id=jp.getLongValue();
-      recon=new Recon(id);
-    }
- else     if ("j".equals(fieldName)) {
-      recon.judgment=stringToJudgment(jp.getText());
-    }
- else     if ("m".equals(fieldName)) {
-      if (jp.getCurrentToken() == JsonToken.VALUE_STRING) {
-        String candidateID=jp.getText();
-        recon.match=pool.getReconCandidate(candidateID);
-      }
- else {
-        recon.match=ReconCandidate.loadStreaming(jp);
-      }
-    }
- else     if ("f".equals(fieldName)) {
-      if (jp.getCurrentToken() != JsonToken.START_ARRAY) {
-        return null;
-      }
-      int feature=0;
-      while (jp.nextToken() != JsonToken.END_ARRAY) {
-        if (feature < recon.features.length) {
-          JsonToken token=jp.getCurrentToken();
-          if (token == JsonToken.VALUE_STRING) {
-            recon.features[feature++]=jp.getText();
-          }
- else           if (token == JsonToken.VALUE_NUMBER_INT) {
-            recon.features[feature++]=jp.getLongValue();
-          }
- else           if (token == JsonToken.VALUE_NUMBER_FLOAT) {
-            recon.features[feature++]=jp.getDoubleValue();
-          }
- else           if (token == JsonToken.VALUE_FALSE) {
-            recon.features[feature++]=false;
-          }
- else           if (token == JsonToken.VALUE_TRUE) {
-            recon.features[feature++]=true;
-          }
-        }
-      }
-    }
- else     if ("c".equals(fieldName)) {
-      if (jp.getCurrentToken() != JsonToken.START_ARRAY) {
-        return null;
-      }
-      while (jp.nextToken() != JsonToken.END_ARRAY) {
-        if (jp.getCurrentToken() == JsonToken.VALUE_STRING) {
-          String candidateID=jp.getText();
-          recon.addCandidate(pool.getReconCandidate(candidateID));
-        }
- else {
-          recon.addCandidate(ReconCandidate.loadStreaming(jp));
-        }
-      }
-    }
- else     if ("service".equals(fieldName)) {
-      recon.service=jp.getText();
-    }
- else     if ("judgmentAction".equals(fieldName)) {
-      recon.judgmentAction=jp.getText();
+      id=jp.getLongValue();
     }
  else     if ("judgmentHistoryEntry".equals(fieldName)) {
-      recon.judgmentHistoryEntry=jp.getLongValue();
+      judgmentHistoryEntry=jp.getLongValue();
     }
- else     if ("judgmentBatchSize".equals(fieldName)) {
-      recon.judgmentBatchSize=jp.getIntValue();
-    }
- else     if ("matchRank".equals(fieldName)) {
-      recon.matchRank=jp.getIntValue();
+ else {
+      if (recon == null) {
+        recon=new Recon(id,judgmentHistoryEntry);
+      }
+      if ("j".equals(fieldName)) {
+        recon.judgment=stringToJudgment(jp.getText());
+      }
+ else       if ("m".equals(fieldName)) {
+        if (jp.getCurrentToken() == JsonToken.VALUE_STRING) {
+          String candidateID=jp.getText();
+          recon.match=pool.getReconCandidate(candidateID);
+        }
+ else {
+          recon.match=ReconCandidate.loadStreaming(jp);
+        }
+      }
+ else       if ("f".equals(fieldName)) {
+        if (jp.getCurrentToken() != JsonToken.START_ARRAY) {
+          return null;
+        }
+        int feature=0;
+        while (jp.nextToken() != JsonToken.END_ARRAY) {
+          if (feature < recon.features.length) {
+            JsonToken token=jp.getCurrentToken();
+            if (token == JsonToken.VALUE_STRING) {
+              recon.features[feature++]=jp.getText();
+            }
+ else             if (token == JsonToken.VALUE_NUMBER_INT) {
+              recon.features[feature++]=jp.getLongValue();
+            }
+ else             if (token == JsonToken.VALUE_NUMBER_FLOAT) {
+              recon.features[feature++]=jp.getDoubleValue();
+            }
+ else             if (token == JsonToken.VALUE_FALSE) {
+              recon.features[feature++]=false;
+            }
+ else             if (token == JsonToken.VALUE_TRUE) {
+              recon.features[feature++]=true;
+            }
+          }
+        }
+      }
+ else       if ("c".equals(fieldName)) {
+        if (jp.getCurrentToken() != JsonToken.START_ARRAY) {
+          return null;
+        }
+        while (jp.nextToken() != JsonToken.END_ARRAY) {
+          if (jp.getCurrentToken() == JsonToken.VALUE_STRING) {
+            String candidateID=jp.getText();
+            recon.addCandidate(pool.getReconCandidate(candidateID));
+          }
+ else {
+            recon.addCandidate(ReconCandidate.loadStreaming(jp));
+          }
+        }
+      }
+ else       if ("service".equals(fieldName)) {
+        recon.service=jp.getText();
+      }
+ else       if ("judgmentAction".equals(fieldName)) {
+        recon.judgmentAction=jp.getText();
+      }
+ else       if ("judgmentBatchSize".equals(fieldName)) {
+        recon.judgmentBatchSize=jp.getIntValue();
+      }
+ else       if ("matchRank".equals(fieldName)) {
+        recon.matchRank=jp.getIntValue();
+      }
     }
   }
   return recon;

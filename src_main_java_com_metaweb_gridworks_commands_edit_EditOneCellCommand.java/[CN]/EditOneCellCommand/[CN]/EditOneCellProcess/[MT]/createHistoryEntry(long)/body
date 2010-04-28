@@ -1,0 +1,11 @@
+{
+  Cell cell=_project.rows.get(rowIndex).getCell(cellIndex);
+  Column column=_project.columnModel.getColumnByCellIndex(cellIndex);
+  if (column == null) {
+    throw new Exception("No such column");
+  }
+  newCell=new Cell(value,cell != null ? cell.recon : null);
+  String description="Edit single cell on row " + (rowIndex + 1) + ", column "+ column.getName();
+  Change change=new CellChange(rowIndex,cellIndex,cell,newCell);
+  return new HistoryEntry(historyEntryID,_project,description,null,change);
+}

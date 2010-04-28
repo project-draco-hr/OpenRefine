@@ -1,0 +1,14 @@
+{
+  Recon r=new Recon(judgmentHistoryEntry);
+  System.arraycopy(features,0,r.features,0,features.length);
+  if (candidates != null) {
+    r.candidates=new ArrayList<ReconCandidate>(candidates);
+  }
+  r.service=service;
+  r.judgment=judgment;
+  r.judgmentAction=judgmentAction;
+  r.judgmentBatchSize=judgmentBatchSize;
+  r.match=match;
+  r.matchRank=matchRank;
+  return r;
+}

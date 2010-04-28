@@ -1,3 +1,4 @@
 {
-  this.id=id;
+  id=System.currentTimeMillis() * 1000000 + Math.round(Math.random() * 1000000);
+  this.judgmentHistoryEntry=judgmentHistoryEntry;
 }

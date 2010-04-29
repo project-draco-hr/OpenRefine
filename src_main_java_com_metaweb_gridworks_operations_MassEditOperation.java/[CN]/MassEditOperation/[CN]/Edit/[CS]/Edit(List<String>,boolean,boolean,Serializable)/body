@@ -1,0 +1,6 @@
+{
+  this.from=from;
+  this.fromBlank=fromBlank;
+  this.fromError=fromError;
+  this.to=to;
+}

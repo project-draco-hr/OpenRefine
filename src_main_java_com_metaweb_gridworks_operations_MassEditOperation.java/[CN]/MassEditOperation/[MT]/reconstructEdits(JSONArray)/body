@@ -3,12 +3,20 @@
   List<Edit> edits=new ArrayList<Edit>(editCount);
   for (int i=0; i < editCount; i++) {
     JSONObject editO=editsA.getJSONObject(i);
-    JSONArray fromA=editO.getJSONArray("from");
-    int fromCount=fromA.length();
-    List<String> from=new ArrayList<String>(fromCount);
-    for (int j=0; j < fromCount; j++) {
-      from.add(fromA.getString(j));
+    List<String> from=null;
+    if (editO.has("from") && !editO.isNull("from")) {
+      JSONArray fromA=editO.getJSONArray("from");
+      int fromCount=fromA.length();
+      from=new ArrayList<String>(fromCount);
+      for (int j=0; j < fromCount; j++) {
+        from.add(fromA.getString(j));
+      }
     }
+ else {
+      from=new ArrayList<String>();
+    }
+    boolean fromBlank=editO.has("fromBlank") && editO.getBoolean("fromBlank");
+    boolean fromError=editO.has("fromError") && editO.getBoolean("fromError");
     Serializable to=(Serializable)editO.get("to");
     if (editO.has("type")) {
       String type=editO.getString("type");
@@ -16,7 +24,7 @@
         to=ParsingUtilities.stringToDate((String)to);
       }
     }
-    edits.add(new Edit(from,to));
+    edits.add(new Edit(from,fromBlank,fromError,to));
   }
   return edits;
 }

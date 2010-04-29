@@ -1,5 +1,9 @@
 {
   writer.object();
+  writer.key("fromBlank");
+  writer.value(fromBlank);
+  writer.key("fromError");
+  writer.value(fromError);
   writer.key("from");
   writer.array();
   for (  String s : from) {

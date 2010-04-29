@@ -1,0 +1,4 @@
+List<String> from
+boolean fromBlank
+boolean fromError
+Serializable to

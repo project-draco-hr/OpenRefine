@@ -1,0 +1,22 @@
+{
+  List<Row> newRows=new ArrayList<Row>();
+  List<Row> oldRows=project.rows;
+  for (int r=0; r < oldRows.size(); r++) {
+    Row oldRow=oldRows.get(r);
+    Row newRow=null;
+    if (oldRow.contextCellSlots != null && oldRow.contextRowSlots != null) {
+      newRow=oldRow.dup();
+      for (int c=0; c < oldRow.contextCellSlots.length && c < oldRow.contextRowSlots.length; c++) {
+        int contextRowIndex=oldRow.contextRowSlots[c];
+        int contextCellIndex=oldRow.contextCellSlots[c];
+        if (contextRowIndex >= 0 && contextRowIndex < oldRows.size()) {
+          Row contextRow=oldRows.get(contextRowIndex);
+          Cell contextCell=contextRow.getCell(contextCellIndex);
+          newRow.setCell(contextCellIndex,contextCell);
+        }
+      }
+    }
+    newRows.add(newRow != null ? newRow : oldRow);
+  }
+  return new HistoryEntry(historyEntryID,project,getBriefDescription(project),DenormalizeOperation.this,new MassRowChange(newRows));
+}

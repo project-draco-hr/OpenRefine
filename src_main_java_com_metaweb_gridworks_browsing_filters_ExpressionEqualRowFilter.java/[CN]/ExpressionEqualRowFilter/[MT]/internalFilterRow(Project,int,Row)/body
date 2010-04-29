@@ -1,0 +1,26 @@
+{
+  Cell cell=_cellIndex < 0 ? null : row.getCell(_cellIndex);
+  Properties bindings=ExpressionUtils.createBindings(project);
+  ExpressionUtils.bind(bindings,row,rowIndex,_columnName,cell);
+  Object value=_evaluable.evaluate(bindings);
+  if (value != null) {
+    if (value.getClass().isArray()) {
+      Object[] a=(Object[])value;
+      for (      Object v : a) {
+        if (testValue(v)) {
+          return true;
+        }
+      }
+      return false;
+    }
+ else     if (value instanceof Collection<?>) {
+      for (      Object v : ExpressionUtils.toObjectCollection(value)) {
+        if (testValue(v)) {
+          return true;
+        }
+      }
+      return false;
+    }
+  }
+  return testValue(value);
+}

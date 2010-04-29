@@ -2,6 +2,7 @@
   _name=o.getString("name");
   _expression=o.getString("expression");
   _columnName=o.getString("columnName");
+  _invert=o.has("invert") && o.getBoolean("invert");
   if (_columnName.length() > 0) {
     Column column=project.columnModel.getColumnByName(_columnName);
     if (column != null) {

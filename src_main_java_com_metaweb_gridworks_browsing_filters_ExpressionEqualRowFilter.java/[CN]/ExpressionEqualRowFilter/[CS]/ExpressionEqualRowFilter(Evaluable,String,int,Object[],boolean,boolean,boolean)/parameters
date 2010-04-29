@@ -4,3 +4,4 @@ int cellIndex
 Object[] matches
 boolean selectBlank
 boolean selectError
+boolean invert

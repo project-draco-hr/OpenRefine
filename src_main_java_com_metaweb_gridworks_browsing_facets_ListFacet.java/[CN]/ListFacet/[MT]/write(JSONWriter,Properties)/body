@@ -6,6 +6,8 @@
   writer.value(_expression);
   writer.key("columnName");
   writer.value(_columnName);
+  writer.key("invert");
+  writer.value(_invert);
   if (_errorMessage != null) {
     writer.key("error");
     writer.value(_errorMessage);

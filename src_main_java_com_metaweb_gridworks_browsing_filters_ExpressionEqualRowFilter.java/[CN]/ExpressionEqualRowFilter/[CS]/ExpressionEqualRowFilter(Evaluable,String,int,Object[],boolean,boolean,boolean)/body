@@ -5,4 +5,5 @@
   _matches=matches;
   _selectBlank=selectBlank;
   _selectError=selectError;
+  _invert=invert;
 }

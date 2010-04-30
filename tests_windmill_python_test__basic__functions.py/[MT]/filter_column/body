@@ -1,3 +1,0 @@
-def filter_column(client, column):
-    client.click(jquery=u'(".column-header-layout tr:contains({0}) .column-header-menu")[0]'.format(column))
-    client.mouseOver(jquery=u'("td:contains(\'Filter\')")[0]')

@@ -2,7 +2,7 @@
   Provider provider=OAuthUtilities.getProvider(request);
   try {
     Credentials access_credentials=Credentials.getCredentials(request,provider,Credentials.Type.ACCESS);
-    String callbackURL=Gridworks.getURL() + "/command/authorize/" + provider.getHost();
+    String callbackURL=getBaseURL(request,provider);
     if (access_credentials == null) {
       Credentials request_credentials=Credentials.getCredentials(request,provider,Credentials.Type.REQUEST);
       OAuthConsumer consumer=OAuthUtilities.getConsumer(request_credentials,provider);
@@ -10,7 +10,7 @@
       if (request_credentials == null) {
         String url=pp.retrieveRequestToken(consumer,callbackURL);
         request_credentials=new Credentials(consumer.getToken(),consumer.getTokenSecret(),provider);
-        Credentials.setCredentials(response,request_credentials,Credentials.Type.REQUEST,3600);
+        Credentials.setCredentials(request,response,request_credentials,Credentials.Type.REQUEST,3600);
         response.sendRedirect(url);
       }
  else {
@@ -22,7 +22,7 @@
           response.sendRedirect(callbackURL);
         }
  else {
-          Credentials.setCredentials(response,access_credentials,Credentials.Type.ACCESS,30 * 24 * 3600);
+          Credentials.setCredentials(request,response,access_credentials,Credentials.Type.ACCESS,30 * 24 * 3600);
         }
         finish(response);
       }

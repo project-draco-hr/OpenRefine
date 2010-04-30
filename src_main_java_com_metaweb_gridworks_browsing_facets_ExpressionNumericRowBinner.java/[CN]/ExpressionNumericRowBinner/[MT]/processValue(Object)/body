@@ -8,7 +8,9 @@
       if (!Double.isInfinite(d) && !Double.isNaN(d)) {
         rowHasNumeric=true;
         int bin=(int)Math.floor((d - _index.getMin()) / _index.getStep());
-        bins[bin]++;
+        if (bin >= 0 && bin < bins.length) {
+          bins[bin]++;
+        }
       }
  else {
         rowHasError=true;

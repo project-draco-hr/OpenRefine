@@ -2,3 +2,4 @@ List<Object[]> rows
 int row
 int col
 Object value
+Map<String,ReconCandidate> reconCandidateMap

@@ -1,0 +1,2 @@
+Set<String> guids
+Map<String,ReconCandidate> reconCandidateMap

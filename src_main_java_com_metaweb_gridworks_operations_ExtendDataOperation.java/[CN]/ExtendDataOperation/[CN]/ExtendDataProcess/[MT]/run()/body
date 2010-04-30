@@ -8,8 +8,9 @@
     e2.printStackTrace();
   }
   int start=0;
+  Map<String,ReconCandidate> reconCandidateMap=new HashMap<String,ReconCandidate>();
   while (start < rowIndices.size()) {
-    int end=extendRows(rowIndices,dataExtensions,start,rowIndices.size());
+    int end=extendRows(rowIndices,dataExtensions,start,rowIndices.size(),reconCandidateMap);
     start=end;
     _progress=end * 100 / rowIndices.size();
     try {

@@ -9,7 +9,7 @@
   }
   Map<String,DataExtension> map=null;
   try {
-    map=_job.extend(guids);
+    map=_job.extend(guids,reconCandidateMap);
   }
  catch (  Exception e) {
     map=new HashMap<String,DataExtension>();

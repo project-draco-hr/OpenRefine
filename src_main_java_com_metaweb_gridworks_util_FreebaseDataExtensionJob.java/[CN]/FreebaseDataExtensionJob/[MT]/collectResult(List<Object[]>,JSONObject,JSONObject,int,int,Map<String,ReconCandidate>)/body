@@ -8,7 +8,7 @@
       for (int r=0; r < l; r++) {
         Object o=a.isNull(r) ? null : a.get(r);
         if (o instanceof Serializable) {
-          storeCell(rows,startRowIndex++,startColumnIndex,o);
+          storeCell(rows,startRowIndex++,startColumnIndex,o,reconCandidateMap);
         }
       }
     }
@@ -27,14 +27,14 @@
         int startRowIndex2=startRowIndex;
         if (isOwnColumn) {
           if (o != null) {
-            storeCell(rows,startRowIndex2++,startColumnIndex2++,o);
+            storeCell(rows,startRowIndex2++,startColumnIndex2++,o,reconCandidateMap);
           }
  else {
-            storeCell(rows,startRowIndex2++,startColumnIndex2++,v);
+            storeCell(rows,startRowIndex2++,startColumnIndex2++,v,reconCandidateMap);
           }
         }
         if (hasSubProperties && o != null) {
-          int[] rowcol=collectResult(rows,extNode.getJSONArray("properties"),o,startRowIndex,startColumnIndex2);
+          int[] rowcol=collectResult(rows,extNode.getJSONArray("properties"),o,startRowIndex,startColumnIndex2,reconCandidateMap);
           startRowIndex2=rowcol[0];
           startColumnIndex2=rowcol[1];
         }

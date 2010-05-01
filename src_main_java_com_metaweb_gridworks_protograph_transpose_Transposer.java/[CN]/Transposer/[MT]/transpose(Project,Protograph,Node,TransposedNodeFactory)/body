@@ -1,9 +1,3 @@
 {
-  Context rootContext=new Context(rootNode,null,null,20);
-  for (  Row row : project.rows) {
-    descend(project,protograph,nodeFactory,row,rootNode,rootContext);
-    if (rootContext.limit > 0 && rootContext.count > rootContext.limit) {
-      break;
-    }
-  }
+  transpose(project,protograph,rootNode,nodeFactory,20);
 }

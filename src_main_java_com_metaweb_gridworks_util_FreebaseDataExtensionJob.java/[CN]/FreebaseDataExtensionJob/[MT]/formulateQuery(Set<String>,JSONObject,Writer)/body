@@ -9,7 +9,9 @@
   jsonWriter.key("guid|=");
   jsonWriter.array();
   for (  String guid : guids) {
-    jsonWriter.value(guid);
+    if (guid != null) {
+      jsonWriter.value(guid);
+    }
   }
   jsonWriter.endArray();
   formulateQueryNode(node.getJSONArray("properties"),jsonWriter);

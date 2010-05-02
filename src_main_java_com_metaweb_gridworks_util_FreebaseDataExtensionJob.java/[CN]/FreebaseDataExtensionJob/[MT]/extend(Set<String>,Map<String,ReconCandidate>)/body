@@ -7,14 +7,16 @@
     String s=ParsingUtilities.inputStreamToString(is);
     JSONObject o=ParsingUtilities.evaluateJsonStringToObject(s);
     Map<String,FreebaseDataExtensionJob.DataExtension> map=new HashMap<String,FreebaseDataExtensionJob.DataExtension>();
-    JSONArray a=o.getJSONArray("result");
-    int l=a.length();
-    for (int i=0; i < l; i++) {
-      JSONObject o2=a.getJSONObject(i);
-      String guid=o2.getString("guid");
-      FreebaseDataExtensionJob.DataExtension ext=collectResult(o2,reconCandidateMap);
-      if (ext != null) {
-        map.put(guid,ext);
+    if (o.has("result")) {
+      JSONArray a=o.getJSONArray("result");
+      int l=a.length();
+      for (int i=0; i < l; i++) {
+        JSONObject o2=a.getJSONObject(i);
+        String guid=o2.getString("guid");
+        FreebaseDataExtensionJob.DataExtension ext=collectResult(o2,reconCandidateMap);
+        if (ext != null) {
+          map.put(guid,ext);
+        }
       }
     }
     return map;

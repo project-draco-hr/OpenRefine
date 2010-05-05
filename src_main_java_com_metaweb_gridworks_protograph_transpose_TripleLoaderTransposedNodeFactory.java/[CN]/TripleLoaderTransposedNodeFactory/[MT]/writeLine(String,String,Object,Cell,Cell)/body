@@ -4,10 +4,10 @@
     StringBuffer sb=new StringBuffer();
     sb.append("{ \"s\" : \"");
     sb.append(subject);
-    sb.append("\"");
+    sb.append('"');
     sb.append(", \"p\" : \"");
     sb.append(predicate);
-    sb.append("\"");
+    sb.append('"');
     sb.append(", \"o\" : ");
     sb.append(s);
     if (subjectCell != null || objectCell != null) {

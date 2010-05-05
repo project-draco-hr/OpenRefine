@@ -10,7 +10,7 @@
   FilteredRows filteredRows=engine.getAllFilteredRows(false);
   RowVisitor rowVisitor;
   if ("lengths".equals(_mode)) {
-    rowVisitor=new ColumnSplitRowVisitor(project,column.getCellIndex(),columnNames,rowIndices,tuples){
+    rowVisitor=new ColumnSplitRowVisitor(column.getCellIndex(),columnNames,rowIndices,tuples){
       protected java.util.List<Serializable> split(      String s){
         List<Serializable> results=new ArrayList<Serializable>(_fieldLengths.length + 1);
         int lastIndex=0;
@@ -28,7 +28,7 @@
   }
  else   if (_regex) {
     Pattern pattern=Pattern.compile(_separator);
-    rowVisitor=new ColumnSplitRowVisitor(project,column.getCellIndex(),columnNames,rowIndices,tuples){
+    rowVisitor=new ColumnSplitRowVisitor(column.getCellIndex(),columnNames,rowIndices,tuples){
       Pattern _pattern;
       protected java.util.List<Serializable> split(      String s){
         return stringArrayToValueList(_pattern.split(s,_maxColumns));
@@ -41,7 +41,7 @@
 .init(pattern);
   }
  else {
-    rowVisitor=new ColumnSplitRowVisitor(project,column.getCellIndex(),columnNames,rowIndices,tuples){
+    rowVisitor=new ColumnSplitRowVisitor(column.getCellIndex(),columnNames,rowIndices,tuples){
       protected java.util.List<Serializable> split(      String s){
         return stringArrayToValueList(StringUtils.splitByWholeSeparatorPreserveAllTokens(s,_separator,_maxColumns));
       }

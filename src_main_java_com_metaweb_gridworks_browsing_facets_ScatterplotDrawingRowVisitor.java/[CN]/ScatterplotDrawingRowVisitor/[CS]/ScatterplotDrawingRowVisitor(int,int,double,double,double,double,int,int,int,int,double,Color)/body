@@ -5,9 +5,7 @@
   this.min_y=min_y;
   this.max_x=max_x;
   this.max_y=max_y;
-  this.size=size;
   this.dot=dot;
-  this.color=color;
   this.dim_x=dim_x;
   this.dim_y=dim_y;
   this.rotation=rotation;

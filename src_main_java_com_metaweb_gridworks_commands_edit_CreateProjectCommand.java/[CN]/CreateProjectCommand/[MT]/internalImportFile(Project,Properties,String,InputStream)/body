@@ -3,7 +3,8 @@
   if (fileName.endsWith(".zip") || fileName.endsWith(".tar.gz") || fileName.endsWith(".tgz")|| fileName.endsWith(".tar.bz2")) {
     File file=save(inputStream);
     HashMap<String,Integer> ext_map=new HashMap<String,Integer>();
-    InputStream is=getStream(fileName,new FileInputStream(file));
+    FileInputStream fis=new FileInputStream(file);
+    InputStream is=getStream(fileName,fis);
     try {
       if (is instanceof TarInputStream) {
         TarInputStream tis=(TarInputStream)is;
@@ -27,6 +28,7 @@
   finally {
       try {
         is.close();
+        fis.close();
       }
  catch (      IOException e) {
       }

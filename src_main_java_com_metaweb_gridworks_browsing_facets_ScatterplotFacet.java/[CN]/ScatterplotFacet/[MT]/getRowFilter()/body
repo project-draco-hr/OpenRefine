@@ -1,10 +1,14 @@
 {
   if (selected && eval_x != null && errorMessage_x == null && eval_y != null && errorMessage_y == null) {
     return new DualExpressionsNumberComparisonRowFilter(eval_x,columnName_x,columnIndex_x,eval_y,columnName_y,columnIndex_y){
+      double from_x_pixels=from_x * l;
+      double to_x_pixels=to_x * l;
+      double from_y_pixels=from_y * l;
+      double to_y_pixels=to_y * l;
       protected boolean checkValues(      double x,      double y){
         Point2D.Double p=new Point2D.Double(x,y);
-        p=translateCoordinates(p,dim_x,dim_y,rotation,l,min_x,max_x,min_y,max_y);
-        return p.x >= from_x && p.x <= to_x && p.y >= from_y && p.y <= to_y;
+        p=translateCoordinates(p,min_x,max_x,min_y,max_y,dim_x,dim_y,l,t);
+        return p.x >= from_x_pixels && p.x <= to_x_pixels && p.y >= from_y_pixels && p.y <= to_y_pixels;
       }
     }
 ;

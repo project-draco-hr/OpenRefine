@@ -10,13 +10,22 @@
   this.dim_y=dim_y;
   this.rotation=rotation;
   l=(double)size;
+  r=ScatterplotFacet.createRotationMatrix(rotation,l);
   image=new BufferedImage(size,size,BufferedImage.TYPE_4BYTE_ABGR);
   g2=(Graphics2D)image.getGraphics();
   g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
   g2.setStroke(new BasicStroke(1.0f));
   AffineTransform t=AffineTransform.getTranslateInstance(0,l);
-  t.concatenate(AffineTransform.getScaleInstance(1.0d,-1.0d));
+  t.scale(1,-1);
   g2.setTransform(t);
   g2.setColor(color);
   g2.setPaint(color);
+  if (r != null) {
+    Graphics2D g2r=(Graphics2D)g2.create();
+    g2r.transform(r);
+    g2r.setPaint(Color.lightGray);
+    g2r.fillRect(-size,0,size,size);
+    g2r.fillRect(0,-size,size,size);
+    g2r.dispose();
+  }
 }

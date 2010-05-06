@@ -1,9 +1,9 @@
 Point2D.Double p
-int dim_x
-int dim_y
-int rotation
-double l
 double min_x
 double max_x
 double min_y
 double max_y
+int dim_x
+int dim_y
+double l
+AffineTransform t

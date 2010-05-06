@@ -4,26 +4,10 @@
     NumericBinIndex index_x=getBinIndex(project,column_x,eval_x,expression_x);
     min_x=index_x.getMin();
     max_x=index_x.getMax();
-    if (selected) {
-      from_x=Math.max(from_x,min_x);
-      to_x=Math.min(to_x,max_x);
-    }
- else {
-      from_x=min_x;
-      to_x=max_x;
-    }
     Column column_y=project.columnModel.getColumnByCellIndex(columnIndex_y);
     NumericBinIndex index_y=getBinIndex(project,column_y,eval_y,expression_y);
     min_y=index_y.getMin();
     max_y=index_y.getMax();
-    if (selected) {
-      from_y=Math.max(from_y,min_y);
-      to_y=Math.min(to_y,max_y);
-    }
- else {
-      from_y=min_y;
-      to_y=max_y;
-    }
     if (IMAGE_URI) {
       if (index_x.isNumeric() && index_y.isNumeric()) {
         ScatterplotDrawingRowVisitor drawer=new ScatterplotDrawingRowVisitor(columnIndex_x,columnIndex_y,min_x,max_x,min_y,max_y,size,dim_x,dim_y,rotation,dot,color);

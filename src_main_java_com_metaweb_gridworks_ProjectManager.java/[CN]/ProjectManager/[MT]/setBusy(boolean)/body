@@ -1,0 +1,10 @@
+{
+synchronized (this) {
+    if (busy) {
+      _busy++;
+    }
+ else {
+      _busy--;
+    }
+  }
+}

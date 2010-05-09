@@ -1,4 +1,5 @@
 {
+  ProjectManager.singleton.setBusy(true);
   try {
     Properties options=ParsingUtilities.parseUrlParameters(request);
     Project project=new Project();
@@ -16,5 +17,8 @@
  catch (  Exception e) {
     redirect(response,"/error.html?redirect=index.html&msg=" + ParsingUtilities.encode("Failed to import file: " + e.getLocalizedMessage()));
     e.printStackTrace();
+  }
+ finally {
+    ProjectManager.singleton.setBusy(false);
   }
 }

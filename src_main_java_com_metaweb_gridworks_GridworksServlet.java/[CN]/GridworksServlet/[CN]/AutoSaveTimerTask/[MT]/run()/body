@@ -1,0 +1,8 @@
+{
+  try {
+    ProjectManager.singleton.save(false);
+  }
+  finally {
+    _timer.schedule(new AutoSaveTimerTask(),s_autoSavePeriod);
+  }
+}

@@ -1,4 +1,5 @@
 {
+  ProjectManager.singleton.setBusy(true);
   try {
     Project project=getProject(request);
     Engine engine=getEngine(request,project);
@@ -21,5 +22,8 @@
   }
  catch (  Exception e) {
     respondException(response,e);
+  }
+ finally {
+    ProjectManager.singleton.setBusy(false);
   }
 }

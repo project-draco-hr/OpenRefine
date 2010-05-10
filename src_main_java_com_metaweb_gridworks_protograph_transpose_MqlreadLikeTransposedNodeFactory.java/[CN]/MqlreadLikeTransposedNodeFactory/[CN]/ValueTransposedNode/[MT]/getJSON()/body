@@ -4,7 +4,7 @@
     try {
       obj.put(VALUE,node.value);
       obj.put(TYPE,node.valueType);
-      if ("/type/text".equals(node.lang)) {
+      if ("/type/text".equals(node.valueType)) {
         obj.put(LANG,node.lang);
       }
       obj.put(CONNECT,"insert");

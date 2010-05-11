@@ -5,5 +5,5 @@
  else {
     writeLine(subject,predicate,node.value,subjectCell,null);
   }
-  return node.value.toString();
+  return node.value;
 }

@@ -6,8 +6,8 @@
   sb.append("{ ");
   boolean first=true;
   for (int i=0; i < children.size(); i++) {
-    String s=children.get(i).write(null,null,null);
-    if (s != null) {
+    Object c=children.get(i).write(null,null,null);
+    if (c != null) {
       if (first) {
         first=false;
       }
@@ -15,7 +15,7 @@
         sb.append(", ");
       }
       sb.append("\"" + properties.get(i).id + "\": ");
-      sb.append(JSONObject.quote(s));
+      sb.append(c instanceof String ? JSONObject.quote((String)c) : c.toString());
     }
   }
   sb.append(" }");

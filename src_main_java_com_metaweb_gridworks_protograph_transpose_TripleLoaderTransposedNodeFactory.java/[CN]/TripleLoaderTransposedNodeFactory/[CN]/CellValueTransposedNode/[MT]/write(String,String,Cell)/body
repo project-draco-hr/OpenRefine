@@ -7,5 +7,5 @@
       writeLine(subject,predicate,cell.value,subjectCell,null);
     }
   }
-  return cell.value.toString();
+  return cell.value;
 }

@@ -7,7 +7,7 @@
   if (os.contains("windows")) {
     try {
       DataPath localDataPath=JDataPathSystem.getLocalSystem().getLocalDataPath("Gridworks");
-      File data=new File(localDataPath.getPath());
+      File data=new File(fixWindowsUnicodePath(localDataPath.getPath()));
       data.mkdirs();
       return data;
     }

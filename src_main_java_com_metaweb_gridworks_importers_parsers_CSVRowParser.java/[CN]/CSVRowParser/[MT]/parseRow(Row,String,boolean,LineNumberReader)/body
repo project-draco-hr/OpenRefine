@@ -1,6 +1,6 @@
 {
   boolean hasData=false;
-  List<String> strings=split(line);
+  List<String> strings=split(line,lineReader);
   for (  String s : strings) {
     Serializable value=guessValueType ? ImporterUtilities.parseCellValue(s) : s;
     if (ExpressionUtils.isNonBlankData(value)) {

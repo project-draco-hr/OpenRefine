@@ -10,8 +10,14 @@
         int quote=line.indexOf('"',start);
         if (quote < 0) {
           sb.append(line.substring(start));
-          start=line.length();
-          break;
+          start=0;
+          try {
+            line=lineReader.readLine();
+          }
+ catch (          IOException e) {
+            line="";
+            break;
+          }
         }
  else {
           if (quote < line.length() - 1 && line.charAt(quote + 1) == '"') {

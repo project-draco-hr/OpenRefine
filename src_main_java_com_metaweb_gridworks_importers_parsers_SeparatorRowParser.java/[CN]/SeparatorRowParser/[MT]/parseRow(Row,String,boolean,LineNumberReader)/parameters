@@ -1,3 +1,4 @@
 Row row
 String line
 boolean guessValueType
+LineNumberReader lineReader

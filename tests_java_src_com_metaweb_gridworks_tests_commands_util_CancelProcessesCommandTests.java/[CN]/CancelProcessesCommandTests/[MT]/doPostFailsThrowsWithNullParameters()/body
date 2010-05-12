@@ -1,0 +1,29 @@
+{
+  try {
+    SUT.doPost(null,null);
+    Assert.fail();
+  }
+ catch (  ServletException e) {
+  }
+catch (  Exception e) {
+    Assert.fail();
+  }
+  try {
+    SUT.doPost(null,response);
+    Assert.fail();
+  }
+ catch (  ServletException e) {
+  }
+catch (  Exception e) {
+    Assert.fail();
+  }
+  try {
+    SUT.doPost(request,null);
+    Assert.fail();
+  }
+ catch (  ServletException e) {
+  }
+catch (  Exception e) {
+    Assert.fail();
+  }
+}

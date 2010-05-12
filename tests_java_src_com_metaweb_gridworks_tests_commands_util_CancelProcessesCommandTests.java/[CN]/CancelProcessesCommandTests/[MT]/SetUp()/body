@@ -1,0 +1,9 @@
+{
+  projMan=mock(ProjectManager.class);
+  ProjectManager.singleton=projMan;
+  p=mock(Project.class);
+  processMan=mock(ProcessManager.class);
+  request=mock(HttpServletRequest.class);
+  response=mock(HttpServletResponse.class);
+  SUT=new CancelProcessesCommand();
+}

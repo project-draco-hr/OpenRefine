@@ -2,7 +2,12 @@
   response.setCharacterEncoding("UTF-8");
   response.setStatus(HttpServletResponse.SC_OK);
   Writer w=response.getWriter();
-  w.write(content);
-  w.flush();
-  w.close();
+  if (w != null) {
+    w.write(content);
+    w.flush();
+    w.close();
+  }
+ else {
+    throw new ServletException("response returned a null writer");
+  }
 }

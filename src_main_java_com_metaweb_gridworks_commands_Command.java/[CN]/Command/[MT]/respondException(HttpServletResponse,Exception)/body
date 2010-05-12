@@ -1,5 +1,8 @@
 {
   logger.warn("Exception caught",e);
+  if (response == null) {
+    throw new ServletException("Response object can't be null");
+  }
   try {
     JSONObject o=new JSONObject();
     o.put("code","error");

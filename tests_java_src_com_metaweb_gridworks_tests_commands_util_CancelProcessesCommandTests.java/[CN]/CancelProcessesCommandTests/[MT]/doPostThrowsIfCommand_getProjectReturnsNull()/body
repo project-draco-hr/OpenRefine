@@ -1,0 +1,14 @@
+{
+  when(request.getParameter("project")).thenReturn(PROJECT_ID);
+  when(projMan.getProject(anyLong())).thenReturn(null);
+  try {
+    SUT.doPost(request,response);
+  }
+ catch (  ServletException e) {
+  }
+catch (  IOException e) {
+    Assert.fail();
+  }
+  verify(request,times(1)).getParameter("project");
+  verify(projMan,times(1)).getProject(PROJECT_ID_LONG);
+}

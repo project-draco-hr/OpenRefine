@@ -1,3 +1,0 @@
-{
-  assertSame("Just a placeholder for now",Integer.parseInt("1"),1);
-}

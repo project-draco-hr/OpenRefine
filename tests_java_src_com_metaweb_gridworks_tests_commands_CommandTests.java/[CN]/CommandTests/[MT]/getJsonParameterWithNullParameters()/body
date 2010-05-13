@@ -1,0 +1,19 @@
+{
+  when(request.getParameter(null)).thenReturn(null);
+  when(request.getParameter("")).thenReturn(null);
+  try {
+    SUT.wrapGetJsonParameter(null,null);
+    Assert.fail();
+  }
+ catch (  IllegalArgumentException e) {
+  }
+  Assert.assertNull(SUT.wrapGetJsonParameter(request,null));
+  try {
+    SUT.wrapGetJsonParameter(null,"test");
+  }
+ catch (  IllegalArgumentException e) {
+  }
+  Assert.assertNull(SUT.wrapGetJsonParameter(request,""));
+  verify(request,times(1)).getParameter(null);
+  verify(request,times(1)).getParameter("");
+}

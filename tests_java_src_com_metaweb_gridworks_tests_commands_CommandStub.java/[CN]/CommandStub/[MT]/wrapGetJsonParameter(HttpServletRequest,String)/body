@@ -1,0 +1,3 @@
+{
+  return getJsonParameter(request,name);
+}

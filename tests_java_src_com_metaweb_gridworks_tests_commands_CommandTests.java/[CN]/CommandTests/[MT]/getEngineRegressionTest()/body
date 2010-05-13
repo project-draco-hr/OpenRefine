@@ -1,0 +1,12 @@
+{
+  Engine engine=null;
+  when(request.getParameter("engine")).thenReturn("{\"hello\":\"world\"}");
+  try {
+    engine=SUT.wrapGetEngine(request,project);
+    Assert.assertNotNull(engine);
+  }
+ catch (  Exception e) {
+    Assert.fail();
+  }
+  verify(request,times(1)).getParameter("engine");
+}

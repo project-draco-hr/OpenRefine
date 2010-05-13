@@ -1,0 +1,12 @@
+{
+  when(request.getParameter("test")).thenReturn("{\"foo\":\"bar\"}");
+  JSONObject o=SUT.wrapGetJsonParameter(request,"test");
+  Assert.assertNotNull(o);
+  try {
+    Assert.assertEquals("bar",o.getString("foo"));
+  }
+ catch (  JSONException e) {
+    Assert.fail();
+  }
+  verify(request,times(1)).getParameter("test");
+}

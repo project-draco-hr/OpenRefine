@@ -2,7 +2,8 @@
   SUT=null;
   projMan=null;
   ProjectManager.singleton=null;
-  p=null;
+  proj=null;
+  pw=null;
   request=null;
   response=null;
 }

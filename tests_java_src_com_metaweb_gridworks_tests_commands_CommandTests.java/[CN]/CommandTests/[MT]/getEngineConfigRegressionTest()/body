@@ -1,0 +1,15 @@
+{
+  when(request.getParameter("engine")).thenReturn("{\"hello\":\"world\"}");
+  JSONObject o=null;
+  try {
+    o=SUT.wrapGetEngineConfig(request);
+    Assert.assertEquals("world",o.getString("hello"));
+  }
+ catch (  JSONException e) {
+    Assert.fail();
+  }
+catch (  Exception e) {
+    Assert.fail();
+  }
+  verify(request,times(1)).getParameter("engine");
+}

@@ -1,0 +1,26 @@
+{
+  try {
+    SUT.wrapGetEngine(null,null);
+  }
+ catch (  IllegalArgumentException e) {
+  }
+catch (  Exception e) {
+    Assert.fail();
+  }
+  try {
+    SUT.wrapGetEngine(null,project);
+  }
+ catch (  IllegalArgumentException e) {
+  }
+catch (  Exception e) {
+    Assert.fail();
+  }
+  try {
+    SUT.wrapGetEngine(request,null);
+  }
+ catch (  IllegalArgumentException e) {
+  }
+catch (  Exception e) {
+    Assert.fail();
+  }
+}

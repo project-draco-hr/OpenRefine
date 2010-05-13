@@ -1,0 +1,12 @@
+{
+  when(request.getParameter("engine")).thenReturn(null);
+  try {
+    Assert.assertNull(SUT.wrapGetEngineConfig(request));
+  }
+ catch (  JSONException e) {
+    Assert.fail();
+  }
+catch (  Exception e) {
+    Assert.fail();
+  }
+}

@@ -1,4 +1,5 @@
 {
+  if (request == null)   throw new IllegalArgumentException("parameter 'request' should not be null");
   try {
     return Integer.parseInt(request.getParameter(name));
   }

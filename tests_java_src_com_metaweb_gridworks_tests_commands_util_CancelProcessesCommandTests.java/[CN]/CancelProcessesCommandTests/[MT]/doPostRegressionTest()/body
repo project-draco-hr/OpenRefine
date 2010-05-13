@@ -1,8 +1,7 @@
 {
   when(request.getParameter("project")).thenReturn(PROJECT_ID);
-  when(projMan.getProject(anyLong())).thenReturn(p);
-  when(p.getProcessManager()).thenReturn(processMan);
-  PrintWriter pw=mock(PrintWriter.class);
+  when(projMan.getProject(anyLong())).thenReturn(proj);
+  when(proj.getProcessManager()).thenReturn(processMan);
   try {
     when(response.getWriter()).thenReturn(pw);
   }
@@ -20,15 +19,15 @@ catch (  IOException e) {
   }
   verify(request,times(1)).getParameter("project");
   verify(projMan,times(1)).getProject(PROJECT_ID_LONG);
-  verify(p,times(1)).getProcessManager();
+  verify(processMan,times(1)).cancelAll();
+  verify(response,times(1)).setCharacterEncoding("UTF-8");
+  verify(response,times(1)).setHeader("Content-Type","application/json");
+  verify(proj,times(1)).getProcessManager();
   try {
     verify(response,times(1)).getWriter();
   }
  catch (  IOException e) {
     Assert.fail();
   }
-  verify(processMan,times(1)).cancelAll();
-  verify(response,times(1)).setCharacterEncoding("UTF-8");
-  verify(response,times(1)).setHeader("Content-Type","application/json");
   verify(pw,times(1)).write("{ \"code\" : \"ok\" }");
 }

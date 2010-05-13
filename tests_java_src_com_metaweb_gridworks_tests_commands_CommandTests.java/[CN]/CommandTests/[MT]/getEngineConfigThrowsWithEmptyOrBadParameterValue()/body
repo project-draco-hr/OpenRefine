@@ -1,0 +1,10 @@
+{
+  when(request.getParameter("engine")).thenReturn("sdfasdfas");
+  try {
+    Assert.assertNull(SUT.wrapGetEngineConfig(request));
+    Assert.fail();
+  }
+ catch (  Exception e) {
+  }
+  verify(request,times(1)).getParameter("engine");
+}

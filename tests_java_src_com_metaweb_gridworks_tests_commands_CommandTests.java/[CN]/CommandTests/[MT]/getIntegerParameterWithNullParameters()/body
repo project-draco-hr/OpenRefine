@@ -1,0 +1,14 @@
+{
+  try {
+    SUT.wrapGetIntegerParameter(null,null,0);
+    Assert.fail();
+  }
+ catch (  IllegalArgumentException e) {
+  }
+  try {
+    SUT.wrapGetIntegerParameter(null,"name",0);
+    Assert.fail();
+  }
+ catch (  IllegalArgumentException e) {
+  }
+}

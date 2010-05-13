@@ -1,9 +1,8 @@
 {
+  if (request == null)   throw new IllegalArgumentException("parameter 'request' should not be null");
+  if (project == null)   throw new IllegalArgumentException("parameter 'project' should not be null");
   Engine engine=new Engine(project);
-  String json=request.getParameter("engine");
-  if (json != null) {
-    JSONObject o=ParsingUtilities.evaluateJsonStringToObject(json);
-    engine.initializeFromJSON(o);
-  }
+  JSONObject o=getEngineConfig(request);
+  if (o != null)   engine.initializeFromJSON(o);
   return engine;
 }

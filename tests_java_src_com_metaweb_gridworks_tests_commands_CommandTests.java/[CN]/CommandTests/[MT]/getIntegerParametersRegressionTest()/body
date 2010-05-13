@@ -1,0 +1,29 @@
+{
+  when(request.getParameter("positivenumber")).thenReturn("22");
+  when(request.getParameter("zeronumber")).thenReturn("0");
+  when(request.getParameter("negativenumber")).thenReturn("-40");
+  try {
+    int returned=SUT.wrapGetIntegerParameter(request,"positivenumber",5);
+    Assert.assertEquals(22,returned);
+  }
+ catch (  IllegalArgumentException e) {
+    Assert.fail();
+  }
+  try {
+    int returned=SUT.wrapGetIntegerParameter(request,"zeronumber",5);
+    Assert.assertEquals(0,returned);
+  }
+ catch (  IllegalArgumentException e) {
+    Assert.fail();
+  }
+  try {
+    int returned=SUT.wrapGetIntegerParameter(request,"negativenumber",5);
+    Assert.assertEquals(-40,returned);
+  }
+ catch (  IllegalArgumentException e) {
+    Assert.fail();
+  }
+  verify(request,times(1)).getParameter("positivenumber");
+  verify(request,times(1)).getParameter("zeronumber");
+  verify(request,times(1)).getParameter("negativenumber");
+}

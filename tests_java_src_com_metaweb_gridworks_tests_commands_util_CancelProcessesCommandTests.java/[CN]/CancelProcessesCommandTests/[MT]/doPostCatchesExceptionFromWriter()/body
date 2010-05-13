@@ -1,0 +1,25 @@
+{
+  String ERROR_MESSAGE="hello world";
+  when(request.getParameter("project")).thenReturn(PROJECT_ID);
+  when(projMan.getProject(anyLong())).thenReturn(proj);
+  when(proj.getProcessManager()).thenReturn(processMan);
+  try {
+    when(response.getWriter()).thenThrow(new IllegalStateException(ERROR_MESSAGE)).thenReturn(pw);
+  }
+ catch (  IOException e) {
+    Assert.fail();
+  }
+  try {
+    SUT.doPost(request,response);
+  }
+ catch (  ServletException e) {
+    Assert.fail();
+  }
+catch (  IOException e) {
+    Assert.fail();
+  }
+  verify(request,times(1)).getParameter("project");
+  verify(projMan,times(1)).getProject(PROJECT_ID_LONG);
+  verify(processMan,times(1)).cancelAll();
+  verify(response,times(3)).setCharacterEncoding("UTF-8");
+}

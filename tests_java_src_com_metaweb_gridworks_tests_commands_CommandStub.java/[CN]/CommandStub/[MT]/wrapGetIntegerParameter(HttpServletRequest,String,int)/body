@@ -1,0 +1,3 @@
+{
+  return getIntegerParameter(request,name,def);
+}

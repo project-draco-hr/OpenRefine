@@ -1,0 +1,6 @@
+{
+  SUT=new CommandStub();
+  request=mock(HttpServletRequest.class);
+  projectManager=mock(ProjectManager.class);
+  project=mock(Project.class);
+}

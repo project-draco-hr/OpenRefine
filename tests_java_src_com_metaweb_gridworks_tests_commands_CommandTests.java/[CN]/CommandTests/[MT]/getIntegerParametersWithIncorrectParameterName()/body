@@ -1,0 +1,20 @@
+{
+  when(request.getParameter(null)).thenReturn(null);
+  when(request.getParameter("incorrect")).thenReturn(null);
+  try {
+    int returned=SUT.wrapGetIntegerParameter(request,null,5);
+    Assert.assertEquals(5,returned);
+  }
+ catch (  IllegalArgumentException e) {
+    Assert.fail();
+  }
+  try {
+    int returned=SUT.wrapGetIntegerParameter(request,"incorrect",5);
+    Assert.assertEquals(5,returned);
+  }
+ catch (  IllegalArgumentException e) {
+    Assert.fail();
+  }
+  verify(request,times(1)).getParameter(null);
+  verify(request,times(1)).getParameter("incorrect");
+}

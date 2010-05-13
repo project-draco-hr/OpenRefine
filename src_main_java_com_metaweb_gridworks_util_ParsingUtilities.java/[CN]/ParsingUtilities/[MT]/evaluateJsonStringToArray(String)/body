@@ -1,5 +1,10 @@
 {
   JSONTokener t=new JSONTokener(s);
-  JSONArray a=(JSONArray)t.nextValue();
-  return a;
+  Object o=t.nextValue();
+  if (o instanceof JSONArray) {
+    return (JSONArray)o;
+  }
+ else {
+    throw new JSONException(s + " couldn't be parsed as JSON array");
+  }
 }

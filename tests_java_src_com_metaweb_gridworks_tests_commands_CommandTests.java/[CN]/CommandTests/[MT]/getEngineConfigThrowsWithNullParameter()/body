@@ -1,0 +1,11 @@
+{
+  try {
+    SUT.wrapGetEngineConfig(null);
+    Assert.fail();
+  }
+ catch (  IllegalArgumentException e) {
+  }
+catch (  Exception e) {
+    Assert.fail();
+  }
+}

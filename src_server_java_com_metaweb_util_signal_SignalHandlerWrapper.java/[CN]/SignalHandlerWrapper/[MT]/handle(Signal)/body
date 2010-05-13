@@ -1,5 +1,0 @@
-{
-  if (handler.handle(sig.getName()) && (existingHandler != null)) {
-    existingHandler.handle(sig);
-  }
-}

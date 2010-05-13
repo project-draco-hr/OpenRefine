@@ -3,7 +3,10 @@
     SUT.doPost(null,null);
     Assert.fail();
   }
- catch (  ServletException e) {
+ catch (  IllegalArgumentException e) {
+  }
+catch (  ServletException e) {
+    Assert.fail();
   }
 catch (  Exception e) {
     Assert.fail();
@@ -12,7 +15,10 @@ catch (  Exception e) {
     SUT.doPost(null,response);
     Assert.fail();
   }
- catch (  ServletException e) {
+ catch (  IllegalArgumentException e) {
+  }
+catch (  ServletException e) {
+    Assert.fail();
   }
 catch (  Exception e) {
     Assert.fail();
@@ -21,7 +27,10 @@ catch (  Exception e) {
     SUT.doPost(request,null);
     Assert.fail();
   }
- catch (  ServletException e) {
+ catch (  IllegalArgumentException e) {
+  }
+catch (  ServletException e) {
+    Assert.fail();
   }
 catch (  Exception e) {
     Assert.fail();

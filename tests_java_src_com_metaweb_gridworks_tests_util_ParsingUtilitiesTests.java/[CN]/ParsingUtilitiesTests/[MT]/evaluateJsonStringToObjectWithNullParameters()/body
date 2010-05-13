@@ -1,0 +1,11 @@
+{
+  try {
+    Assert.assertNull(ParsingUtilities.evaluateJsonStringToObject(null));
+    Assert.fail();
+  }
+ catch (  IllegalArgumentException e) {
+  }
+catch (  JSONException e) {
+    Assert.fail();
+  }
+}

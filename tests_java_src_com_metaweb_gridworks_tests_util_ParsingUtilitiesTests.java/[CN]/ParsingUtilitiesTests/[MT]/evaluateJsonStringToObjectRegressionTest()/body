@@ -1,0 +1,10 @@
+{
+  try {
+    JSONObject o=ParsingUtilities.evaluateJsonStringToObject("{\"foo\":\"bar\"}");
+    Assert.assertNotNull(o);
+    Assert.assertEquals("bar",o.getString("foo"));
+  }
+ catch (  JSONException e) {
+    Assert.fail();
+  }
+}

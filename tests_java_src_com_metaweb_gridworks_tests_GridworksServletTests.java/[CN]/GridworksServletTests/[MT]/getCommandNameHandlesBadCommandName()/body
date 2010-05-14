@@ -1,0 +1,5 @@
+{
+  when(request.getPathInfo()).thenReturn("/this-command-has-no-trailing-slash");
+  Assert.assertEquals("this-command-has-no-trailing-slash",SUT.wrapGetCommandName(request));
+  verify(request,times(1)).getPathInfo();
+}

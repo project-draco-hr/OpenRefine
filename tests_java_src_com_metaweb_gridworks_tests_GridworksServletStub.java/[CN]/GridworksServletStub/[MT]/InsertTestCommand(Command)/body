@@ -1,3 +1,0 @@
-{
-  _commands.put("test-command",command);
-}

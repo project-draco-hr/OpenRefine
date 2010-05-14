@@ -1,0 +1,3 @@
+{
+  when(request.getPathInfo()).thenReturn(commandName);
+}

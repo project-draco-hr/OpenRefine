@@ -1,0 +1,14 @@
+{
+  whenGetCommandNameThenReturn(BAD_COMMAND_PATH);
+  try {
+    SUT.wrapDoGet(request,response);
+  }
+ catch (  ServletException e) {
+    Assert.fail();
+  }
+catch (  IOException e) {
+    Assert.fail();
+  }
+  verifyGetCommandNameCalled();
+  verifyError404Called();
+}

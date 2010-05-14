@@ -1,0 +1,3 @@
+{
+  _commands.put(commandName,command);
+}

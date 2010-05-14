@@ -3,5 +3,5 @@
   request=null;
   response=null;
   command=null;
-  GridworksServletStub.RemoveTestCommand();
+  GridworksServletStub.RemoveCommand(TEST_COMMAND_NAME);
 }

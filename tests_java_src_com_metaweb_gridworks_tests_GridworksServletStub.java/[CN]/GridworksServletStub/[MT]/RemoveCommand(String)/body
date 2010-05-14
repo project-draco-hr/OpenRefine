@@ -1,0 +1,3 @@
+{
+  _commands.remove(commandName);
+}

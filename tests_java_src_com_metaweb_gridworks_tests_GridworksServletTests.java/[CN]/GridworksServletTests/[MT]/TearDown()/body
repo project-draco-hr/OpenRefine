@@ -1,0 +1,7 @@
+{
+  SUT=null;
+  request=null;
+  response=null;
+  command=null;
+  GridworksServletStub.RemoveTestCommand();
+}

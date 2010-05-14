@@ -1,0 +1,22 @@
+{
+  when(request.getPathInfo()).thenReturn("/test-command/foobar");
+  try {
+    SUT.wrapDoGet(request,response);
+  }
+ catch (  ServletException e) {
+    Assert.fail();
+  }
+catch (  IOException e) {
+    Assert.fail();
+  }
+  verify(request,times(1)).getPathInfo();
+  try {
+    verify(command,times(1)).doGet(request,response);
+  }
+ catch (  ServletException e) {
+    Assert.fail();
+  }
+catch (  IOException e) {
+    Assert.fail();
+  }
+}

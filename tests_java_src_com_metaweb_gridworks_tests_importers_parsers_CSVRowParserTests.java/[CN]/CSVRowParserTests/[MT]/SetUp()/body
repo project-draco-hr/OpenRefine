@@ -1,0 +1,4 @@
+{
+  lineReader=mock(LineNumberReader.class);
+  SUT=new CSVRowParser();
+}

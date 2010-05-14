@@ -1,0 +1,7 @@
+{
+  List<String> splitLine=SUT.split(LEADING_QUOTE_WITH_COMMA,lineReader);
+  Assert.assertEquals(3,splitLine.size());
+  Assert.assertEquals("value1",splitLine.get(0));
+  Assert.assertEquals("\"Open quoted, with commas\" and close quote but no comma",splitLine.get(0));
+  Assert.assertEquals("value3",splitLine.get(2));
+}

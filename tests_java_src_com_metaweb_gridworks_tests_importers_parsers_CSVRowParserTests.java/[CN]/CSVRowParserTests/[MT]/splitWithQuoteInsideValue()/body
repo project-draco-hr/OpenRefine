@@ -1,0 +1,7 @@
+{
+  List<String> splitLine=SUT.split(QUOTED,lineReader);
+  Assert.assertEquals(3,splitLine.size());
+  Assert.assertEquals("value1",splitLine.get(0));
+  Assert.assertEquals("value2 with \"quote\" in middle",splitLine.get(1));
+  Assert.assertEquals("value3",splitLine.get(2));
+}

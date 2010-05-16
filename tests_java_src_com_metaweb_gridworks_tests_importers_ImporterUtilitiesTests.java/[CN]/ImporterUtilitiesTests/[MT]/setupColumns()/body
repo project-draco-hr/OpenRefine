@@ -1,0 +1,11 @@
+{
+  Project project=new Project();
+  List<String> columnNames=new ArrayList<String>();
+  columnNames.add("col1");
+  columnNames.add("col2");
+  columnNames.add("");
+  ImporterUtilities.setupColumns(project,columnNames);
+  Assert.assertEquals(project.columnModel.columns.get(0).getName(),"col1");
+  Assert.assertEquals(project.columnModel.columns.get(1).getName(),"col2");
+  Assert.assertEquals(project.columnModel.columns.get(2).getName(),"Column");
+}

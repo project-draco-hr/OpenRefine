@@ -1,0 +1,24 @@
+{
+  StringReader reader=new StringReader(SAMPLE_ROW);
+  when(properties.getProperty("separator")).thenReturn(",");
+  whenGetIntegerOption("ignore",properties,0);
+  whenGetIntegerOption("header-lines",properties,0);
+  whenGetIntegerOption("limit",properties,-1);
+  whenGetIntegerOption("skip",properties,0);
+  try {
+    SUT.read(reader,project,properties);
+  }
+ catch (  Exception e) {
+    Assert.fail();
+  }
+  Assert.assertEquals(project.rows.size(),1);
+  Assert.assertEquals(project.rows.get(0).cells.size(),3);
+  Assert.assertEquals((String)project.rows.get(0).cells.get(0).value,"NDB_No");
+  Assert.assertEquals((String)project.rows.get(0).cells.get(1).value,"Shrt_Desc");
+  Assert.assertEquals((String)project.rows.get(0).cells.get(2).value,"Water");
+  verify(properties,times(1)).getProperty("separator");
+  verifyGetIntegerOption("ignore",properties);
+  verifyGetIntegerOption("header-lines",properties);
+  verifyGetIntegerOption("limit",properties);
+  verifyGetIntegerOption("skip",properties);
+}

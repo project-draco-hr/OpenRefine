@@ -1,0 +1,9 @@
+{
+  Properties options=mock(Properties.class);
+  when(options.containsKey("testInteger")).thenReturn(true);
+  when(options.getProperty("testInteger")).thenReturn("5");
+  int response=ImporterUtilities.getIntegerOption("testInteger",options,-1);
+  Assert.assertEquals(5,response);
+  verify(options,times(1)).containsKey("testInteger");
+  verify(options,times(1)).getProperty("testInteger");
+}

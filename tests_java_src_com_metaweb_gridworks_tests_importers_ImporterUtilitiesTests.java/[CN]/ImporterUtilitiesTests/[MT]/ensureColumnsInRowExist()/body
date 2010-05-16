@@ -1,0 +1,12 @@
+{
+  String VALUE_1="value1";
+  String VALUE_2="value2";
+  Row row=new Row(2);
+  ArrayList<String> columnNames=new ArrayList<String>(2);
+  columnNames.add(VALUE_1);
+  columnNames.add(VALUE_2);
+  ImporterUtilities.ensureColumnsInRowExist(columnNames,row);
+  Assert.assertEquals(columnNames.size(),2);
+  Assert.assertEquals(columnNames.get(0),VALUE_1);
+  Assert.assertEquals(columnNames.get(1),VALUE_2);
+}

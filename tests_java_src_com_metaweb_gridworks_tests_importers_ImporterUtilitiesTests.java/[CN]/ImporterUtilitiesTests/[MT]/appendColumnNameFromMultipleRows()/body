@@ -1,0 +1,7 @@
+{
+  List<String> columnNames=new ArrayList<String>();
+  ImporterUtilities.appendColumnName(columnNames,0,"foo");
+  ImporterUtilities.appendColumnName(columnNames,0,"bar");
+  Assert.assertEquals(columnNames.size(),1);
+  Assert.assertEquals(columnNames.get(0),"foo bar");
+}

@@ -1,0 +1,4 @@
+{
+  verify(properties,times(1)).containsKey(name);
+  verify(properties,times(1)).getProperty(name);
+}

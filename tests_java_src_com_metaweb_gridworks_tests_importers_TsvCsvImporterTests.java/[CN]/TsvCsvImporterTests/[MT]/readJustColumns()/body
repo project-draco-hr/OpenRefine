@@ -1,0 +1,14 @@
+{
+  String input="col1,col2,col3";
+  CSVReader reader=new CSVReader(new StringReader(input));
+  try {
+    SUT.read(reader,project,-1,0,0,1,false);
+  }
+ catch (  IOException e) {
+    Assert.fail();
+  }
+  Assert.assertEquals(project.columnModel.columns.size(),3);
+  Assert.assertEquals(project.columnModel.columns.get(0).getName(),"col1");
+  Assert.assertEquals(project.columnModel.columns.get(1).getName(),"col2");
+  Assert.assertEquals(project.columnModel.columns.get(2).getName(),"col3");
+}

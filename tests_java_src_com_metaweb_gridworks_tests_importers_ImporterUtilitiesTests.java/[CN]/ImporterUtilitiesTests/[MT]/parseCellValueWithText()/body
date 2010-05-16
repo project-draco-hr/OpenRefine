@@ -1,0 +1,5 @@
+{
+  String END_QUOTES_SHOULD_BE_RETAINED="\"To be\" is almost always followed by \"or not to be\"";
+  String response=(String)ImporterUtilities.parseCellValue(END_QUOTES_SHOULD_BE_RETAINED);
+  Assert.assertEquals(response,END_QUOTES_SHOULD_BE_RETAINED);
+}

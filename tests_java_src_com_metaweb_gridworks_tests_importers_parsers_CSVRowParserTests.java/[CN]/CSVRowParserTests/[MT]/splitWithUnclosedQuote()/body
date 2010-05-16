@@ -1,6 +1,6 @@
 {
   try {
-    when(lineReader.readLine()).thenReturn("");
+    when(lineReader.readLine()).thenReturn("continuation of row above, with comma\",value2");
   }
  catch (  IOException e) {
     Assert.fail();
@@ -8,6 +8,8 @@
   List<String> splitLine=SUT.split(UNCLOSED_QUOTED_ROW,lineReader);
   Assert.assertEquals(1,splitLine.size());
   Assert.assertEquals(UNCLOSED_QUOTED_ROW,splitLine.get(0));
+  Assert.assertEquals(UNCLOSED_QUOTED_ROW + "\ncontinuation of row above, with comma\"",splitLine.get(0));
+  Assert.assertEquals("value2",splitLine.get(1));
   try {
     verify(lineReader,times(1)).readLine();
   }

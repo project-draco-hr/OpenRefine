@@ -1,0 +1,7 @@
+CSVReader reader
+Project project
+int limit
+int skip
+int ignoreLines
+int headerLines
+boolean guessValueType

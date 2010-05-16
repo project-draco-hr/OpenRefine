@@ -1,0 +1,36 @@
+{
+  if (skip < 0)   skip=0;
+  if (ignoreLines < 0)   ignoreLines=0;
+  if (headerLines < 0)   headerLines=0;
+  List<String> columnNames=new ArrayList<String>();
+  String[] nextLine;
+  int lineCounter=0;
+  while ((nextLine=reader.readNext()) != null) {
+    lineCounter++;
+    if (limit > 0 && lineCounter > limit + ignoreLines + headerLines+ skip)     break;
+    if (ignoreLines > 0 && lineCounter <= ignoreLines)     continue;
+    if (headerLines > 0 && lineCounter <= ignoreLines + headerLines && lineCounter > ignoreLines) {
+      for (int c=0; c < nextLine.length; c++) {
+        String cell=nextLine[c].trim();
+        ImporterUtilities.appendColumnName(columnNames,c,cell);
+      }
+    }
+ else {
+      if (skip > 0 && lineCounter <= ignoreLines + headerLines + skip)       continue;
+      Row row=new Row(columnNames.size());
+      project.rows.add(row);
+      project.columnModel.setMaxCellIndex(row.cells.size());
+      for (      String s : nextLine) {
+        Serializable value=guessValueType ? ImporterUtilities.parseCellValue(s) : s;
+        if (ExpressionUtils.isNonBlankData(value)) {
+          row.cells.add(new Cell(value,null));
+        }
+ else {
+          row.cells.add(null);
+        }
+      }
+      ImporterUtilities.ensureColumnsInRowExist(columnNames,row);
+    }
+  }
+  ImporterUtilities.setupColumns(project,columnNames);
+}

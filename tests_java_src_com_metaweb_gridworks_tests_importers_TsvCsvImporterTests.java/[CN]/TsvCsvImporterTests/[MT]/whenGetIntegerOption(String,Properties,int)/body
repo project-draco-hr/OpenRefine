@@ -1,0 +1,4 @@
+{
+  when(properties.containsKey(name)).thenReturn(true);
+  when(properties.getProperty(name)).thenReturn(Integer.toString(def));
+}

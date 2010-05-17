@@ -1,9 +1,8 @@
 {
   String input="col1,col2,col3\n" + "\"\"\"To\n Be\"\" is often followed by \"\"or not To\n Be\"\"\",data2";
-  RowParser parser=new CSVRowParser();
   LineNumberReader lnReader=new LineNumberReader(new StringReader(input));
   try {
-    SUT.read(parser,lnReader,project,",",-1,0,0,1,false,true);
+    SUT.read(null,lnReader,project,",",-1,0,0,1,false,true);
   }
  catch (  IOException e) {
     Assert.fail();

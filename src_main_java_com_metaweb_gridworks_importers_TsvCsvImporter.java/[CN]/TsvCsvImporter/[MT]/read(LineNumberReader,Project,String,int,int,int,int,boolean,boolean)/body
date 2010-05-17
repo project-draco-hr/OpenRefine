@@ -1,4 +1,5 @@
 {
+  RowParser parser=(sep != null && sep.length() > 0 && splitIntoColumns) ? new SeparatorRowParser(sep) : null;
   List<String> columnNames=new ArrayList<String>();
   String line=null;
   int rowsWithData=0;

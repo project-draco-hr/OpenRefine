@@ -2,7 +2,7 @@
   String input="ignore1\n" + "ignore2\n" + "ignore3\n"+ "col1,col2,col3\n"+ "sub1,sub2,sub3\n"+ "skip1\n"+ "skip2\n"+ "data-row1-cell1,data-row1-cell2,data-row1-cell3\n"+ "data-row2-cell1,data-row2-cell2,\n"+ "data-row3-cell1,data-row3-cell2,data-row1-cell3";
   LineNumberReader lnReader=new LineNumberReader(new StringReader(input));
   try {
-    SUT.read(null,lnReader,project,null,2,2,3,2,false,true);
+    SUT.read(lnReader,project,",",2,2,3,2,false,true);
   }
  catch (  IOException e) {
     Assert.fail();
@@ -16,7 +16,7 @@
   Assert.assertEquals(project.rows.get(0).cells.get(0).value,"data-row1-cell1");
   Assert.assertEquals(project.rows.get(0).cells.get(1).value,"data-row1-cell2");
   Assert.assertEquals(project.rows.get(0).cells.get(2).value,"data-row1-cell3");
-  Assert.assertEquals(project.rows.get(1).cells.size(),2);
+  Assert.assertEquals(project.rows.get(1).cells.size(),3);
   Assert.assertEquals(project.rows.get(1).cells.get(0).value,"data-row2-cell1");
   Assert.assertEquals(project.rows.get(1).cells.get(1).value,"data-row2-cell2");
 }

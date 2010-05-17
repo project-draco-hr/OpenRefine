@@ -1,7 +1,7 @@
 {
   List<String> splitLine=SUT.split(ROW_WITH_QUOTED_COMMA,lineReader);
-  Assert.assertEquals(3,splitLine.size());
-  Assert.assertEquals("01001",splitLine.get(0));
-  Assert.assertEquals("BUTTER,WITH SALT",splitLine.get(1));
-  Assert.assertEquals("15.87",splitLine.get(2));
+  Assert.assertEquals(splitLine.size(),3);
+  Assert.assertEquals(splitLine.get(0),"01001");
+  Assert.assertEquals(splitLine.get(1),"BUTTER,WITH SALT");
+  Assert.assertEquals(splitLine.get(2),"15.87");
 }

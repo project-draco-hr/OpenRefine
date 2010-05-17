@@ -1,6 +1,5 @@
 {
   String input="ignore1\n" + "col1,col2,col3\n" + "data1,data2,data3";
-  RowParser parser=new CSVRowParser();
   LineNumberReader lnReader=new LineNumberReader(new StringReader(input));
   try {
     SUT.read(parser,lnReader,project,",",-1,0,1,1,false,true);

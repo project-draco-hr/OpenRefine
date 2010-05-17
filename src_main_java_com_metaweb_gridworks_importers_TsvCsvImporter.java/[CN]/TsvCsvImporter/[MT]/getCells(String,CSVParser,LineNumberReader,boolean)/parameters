@@ -1,0 +1,4 @@
+String line
+CSVParser parser
+LineNumberReader lnReader
+boolean splitIntoColumns

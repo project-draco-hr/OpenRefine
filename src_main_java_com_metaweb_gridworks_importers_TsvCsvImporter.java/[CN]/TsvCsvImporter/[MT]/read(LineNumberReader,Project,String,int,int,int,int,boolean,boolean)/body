@@ -1,5 +1,5 @@
 {
-  RowParser parser=(sep != null && sep.length() > 0 && splitIntoColumns) ? new SeparatorRowParser(sep) : null;
+  CSVParser parser=(sep != null && sep.length() > 0 && splitIntoColumns) ? new CSVParser(sep.toCharArray()[0]) : null;
   List<String> columnNames=new ArrayList<String>();
   String line=null;
   int rowsWithData=0;
@@ -12,24 +12,17 @@
       continue;
     }
     if (parser == null) {
-      if (splitIntoColumns) {
-        int tab=line.indexOf('\t');
-        if (tab >= 0) {
-          sep="\t";
-          parser=new TsvCsvRowParser('\t');
-        }
- else {
-          sep=",";
-          parser=new TsvCsvRowParser(',');
-        }
+      int tab=line.indexOf('\t');
+      if (tab >= 0) {
+        parser=new CSVParser('\t');
       }
  else {
-        parser=new NonSplitRowParser();
+        parser=new CSVParser(',');
       }
     }
     if (headerLines > 0) {
       headerLines--;
-      List<String> cells=parser.split(line,lnReader);
+      ArrayList<String> cells=getCells(line,parser,lnReader,splitIntoColumns);
       for (int c=0; c < cells.size(); c++) {
         String cell=cells.get(c).trim();
         ImporterUtilities.appendColumnName(columnNames,c,cell);
@@ -37,15 +30,23 @@
     }
  else {
       Row row=new Row(columnNames.size());
-      if (parser.parseRow(row,line,guessValueType,lnReader)) {
-        rowsWithData++;
-        if (skip <= 0 || rowsWithData > skip) {
-          project.rows.add(row);
-          project.columnModel.setMaxCellIndex(row.cells.size());
-          ImporterUtilities.ensureColumnsInRowExist(columnNames,row);
-          if (limit > 0 && project.rows.size() >= limit) {
-            break;
+      ArrayList<String> cells=getCells(line,parser,lnReader,splitIntoColumns);
+      if (cells != null && cells.size() > 0)       rowsWithData++;
+      if (skip <= 0 || rowsWithData > skip) {
+        for (        String s : cells) {
+          s=s.trim();
+          if (ExpressionUtils.isNonBlankData(s)) {
+            row.cells.add(new Cell(s,null));
           }
+ else {
+            row.cells.add(null);
+          }
+        }
+        project.rows.add(row);
+        project.columnModel.setMaxCellIndex(row.cells.size());
+        ImporterUtilities.ensureColumnsInRowExist(columnNames,row);
+        if (limit > 0 && project.rows.size() >= limit) {
+          break;
         }
       }
     }

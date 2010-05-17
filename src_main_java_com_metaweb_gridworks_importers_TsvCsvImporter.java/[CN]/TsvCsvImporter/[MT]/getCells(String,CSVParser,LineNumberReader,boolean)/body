@@ -1,0 +1,19 @@
+{
+  ArrayList<String> cells=new ArrayList<String>();
+  if (splitIntoColumns) {
+    String[] tokens=parser.parseLineMulti(line);
+    for (    String s : tokens) {
+      cells.add(s);
+    }
+    while (parser.isPending()) {
+      tokens=parser.parseLineMulti(lnReader.readLine());
+      for (      String s : tokens) {
+        cells.add(s);
+      }
+    }
+  }
+ else {
+    cells.add(line);
+  }
+  return cells;
+}

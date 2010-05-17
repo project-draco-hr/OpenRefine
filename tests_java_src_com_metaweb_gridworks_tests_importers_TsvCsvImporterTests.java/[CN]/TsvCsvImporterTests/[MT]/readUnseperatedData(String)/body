@@ -1,0 +1,15 @@
+{
+  String input="value1,value2,value3";
+  LineNumberReader lnReader=new LineNumberReader(new StringReader(input));
+  try {
+    SUT.read(lnReader,project,sep,-1,0,0,0,false,false);
+  }
+ catch (  IOException e) {
+    Assert.fail();
+  }
+  Assert.assertEquals(project.columnModel.columns.size(),1);
+  Assert.assertEquals(project.columnModel.columns.get(0).getName(),"Column");
+  Assert.assertEquals(project.rows.size(),1);
+  Assert.assertEquals(project.rows.get(0).cells.size(),1);
+  Assert.assertEquals(project.rows.get(0).cells.get(0).value,input);
+}

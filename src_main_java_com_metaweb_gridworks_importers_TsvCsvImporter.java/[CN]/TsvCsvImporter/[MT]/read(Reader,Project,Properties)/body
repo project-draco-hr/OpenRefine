@@ -6,7 +6,7 @@
   int limit=ImporterUtilities.getIntegerOption("limit",options,-1);
   int skip=ImporterUtilities.getIntegerOption("skip",options,0);
   boolean guessValueType=ImporterUtilities.getBooleanOption("guess-value-type",options,true);
-  char separator=(sep != null && sep.length() == 1 && splitIntoColumns) ? sep.toCharArray()[0] : ',';
-  CSVReader CsvReader=new CSVReader(reader,separator);
-  read(CsvReader,project,limit,skip,ignoreLines,headerLines,guessValueType);
+  LineNumberReader lnReader=new LineNumberReader(reader);
+  RowParser parser=(sep != null && sep.length() > 0 && splitIntoColumns) ? new SeparatorRowParser(sep) : null;
+  read(parser,lnReader,project,sep,limit,skip,ignoreLines,headerLines,guessValueType,splitIntoColumns);
 }

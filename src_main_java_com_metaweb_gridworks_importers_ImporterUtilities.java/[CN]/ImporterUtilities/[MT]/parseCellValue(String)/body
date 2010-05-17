@@ -16,6 +16,7 @@
     }
  catch (    NumberFormatException e) {
     }
+    text=text.trim();
   }
   return text;
 }

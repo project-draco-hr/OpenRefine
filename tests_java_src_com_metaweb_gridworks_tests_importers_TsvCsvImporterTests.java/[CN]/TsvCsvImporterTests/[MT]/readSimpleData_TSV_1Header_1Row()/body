@@ -1,9 +1,9 @@
 {
-  String input="col1,col2,col3\n" + "\"\"To Be\"\" is often followed by \"\"or not To Be\"\",data2";
+  String input="col1\tcol2\tcol3\n" + "data1\tdata2\tdata3";
   RowParser parser=new CSVRowParser();
   LineNumberReader lnReader=new LineNumberReader(new StringReader(input));
   try {
-    SUT.read(parser,lnReader,project,",",-1,0,0,1,false,true);
+    SUT.read(parser,lnReader,project,"\t",-1,0,0,1,false,true);
   }
  catch (  IOException e) {
     Assert.fail();
@@ -13,7 +13,8 @@
   Assert.assertEquals(project.columnModel.columns.get(1).getName(),"col2");
   Assert.assertEquals(project.columnModel.columns.get(2).getName(),"col3");
   Assert.assertEquals(project.rows.size(),1);
-  Assert.assertEquals(project.rows.get(0).cells.size(),2);
-  Assert.assertEquals(project.rows.get(0).cells.get(0).value,"\"To Be\" is often followed by \"or not To Be\"");
+  Assert.assertEquals(project.rows.get(0).cells.size(),3);
+  Assert.assertEquals(project.rows.get(0).cells.get(0).value,"data1");
   Assert.assertEquals(project.rows.get(0).cells.get(1).value,"data2");
+  Assert.assertEquals(project.rows.get(0).cells.get(2).value,"data3");
 }

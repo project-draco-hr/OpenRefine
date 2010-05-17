@@ -2,5 +2,4 @@
   SUT=new TsvCsvImporter();
   project=new Project();
   properties=mock(Properties.class);
-  parser=new CSVRowParser();
 }

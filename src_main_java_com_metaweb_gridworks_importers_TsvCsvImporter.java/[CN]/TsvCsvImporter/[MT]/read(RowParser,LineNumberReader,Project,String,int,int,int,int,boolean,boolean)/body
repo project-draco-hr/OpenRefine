@@ -15,11 +15,11 @@
         int tab=line.indexOf('\t');
         if (tab >= 0) {
           sep="\t";
-          parser=new SeparatorRowParser(sep);
+          parser=new TsvCsvRowParser('\t');
         }
  else {
           sep=",";
-          parser=new CSVRowParser();
+          parser=new TsvCsvRowParser(',');
         }
       }
  else {

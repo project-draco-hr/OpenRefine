@@ -28,7 +28,7 @@
  else {
             sb.append(line.substring(start,quote));
             start=quote + 1;
-            if (start < line.length() && line.charAt(start) == ',') {
+            if (start < line.length() && line.charAt(start) == _sep) {
               start++;
             }
             break;
@@ -38,7 +38,7 @@
       text=sb.toString();
     }
  else {
-      int next=line.indexOf(',',start);
+      int next=line.indexOf(_sep,start);
       if (next < 0) {
         text=line.substring(start);
         start=line.length();

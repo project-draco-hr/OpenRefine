@@ -2,7 +2,7 @@
   String input="col1,col2,col3\n" + "data1,data2,data3";
   LineNumberReader lnReader=new LineNumberReader(new StringReader(input));
   try {
-    SUT.read(parser,lnReader,project,",",-1,0,0,1,false,true);
+    SUT.read(null,lnReader,project,null,-1,0,0,1,false,true);
   }
  catch (  IOException e) {
     Assert.fail();

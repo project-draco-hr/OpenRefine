@@ -16,7 +16,7 @@
   Assert.assertEquals(project.rows.get(0).cells.get(0).value,"data-row1-cell1");
   Assert.assertEquals(project.rows.get(0).cells.get(1).value,"data-row1-cell2");
   Assert.assertEquals(project.rows.get(0).cells.get(2).value,"data-row1-cell3");
-  Assert.assertEquals(project.rows.get(1).cells.size(),3);
+  Assert.assertEquals(project.rows.get(1).cells.size(),2);
   Assert.assertEquals(project.rows.get(1).cells.get(0).value,"data-row2-cell1");
   Assert.assertEquals(project.rows.get(1).cells.get(1).value,"data-row2-cell2");
 }

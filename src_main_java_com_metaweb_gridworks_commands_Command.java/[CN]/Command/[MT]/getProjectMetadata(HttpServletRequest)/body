@@ -1,0 +1,12 @@
+{
+  if (request == null)   throw new IllegalArgumentException("parameter 'request' should not be null");
+  try {
+    ProjectMetadata pm=ProjectManager.singleton.getProjectMetadata(Long.parseLong(request.getParameter("project")));
+    if (pm != null) {
+      return pm;
+    }
+  }
+ catch (  Exception e) {
+  }
+  throw new ServletException("Can't find project metadata: missing or bad URL parameter");
+}

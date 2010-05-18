@@ -1,0 +1,27 @@
+{
+  String baseUrl=options.getProperty("base-url");
+  Graph graph=JrdfFactory.getNewGraph();
+  LineHandler lineHandler=nTriplesParserFactory.createParser(graph,newMapFactory);
+  GraphLineParser parser=new GraphLineParser(graph,lineHandler);
+  parser.parse(reader,baseUrl);
+  project.columnModel.columns.add(0,new Column(0,"subject"));
+  project.columnModel.update();
+  ClosableIterable<Triple> triples=graph.find(ANY_SUBJECT_NODE,ANY_PREDICATE_NODE,ANY_OBJECT_NODE);
+  try {
+    int numberOfColumns=1;
+    for (    Triple triple : triples) {
+      String subject=triple.getSubject().toString();
+      String predicate=triple.getPredicate().toString();
+      String object=triple.getObject().toString();
+      if (project.columnModel.getColumnByName(predicate) == null) {
+        project.columnModel.columns.add(numberOfColumns,new Column(numberOfColumns,predicate));
+        project.columnModel.update();
+        numberOfColumns++;
+      }
+      AddNewRow(project,subject,predicate,object);
+    }
+  }
+  finally {
+    triples.iterator().close();
+  }
+}

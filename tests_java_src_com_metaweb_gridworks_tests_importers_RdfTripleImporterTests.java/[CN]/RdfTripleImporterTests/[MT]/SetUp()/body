@@ -1,0 +1,6 @@
+{
+  SUT=new RdfTripleImporter();
+  project=new Project();
+  options=new Properties();
+  options.put("base-url","http://rdf.freebase.com");
+}

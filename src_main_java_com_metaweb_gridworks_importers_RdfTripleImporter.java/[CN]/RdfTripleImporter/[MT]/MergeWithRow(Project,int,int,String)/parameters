@@ -1,0 +1,4 @@
+Project project
+int candidateMergeRowIndex
+int columnIndex
+String object

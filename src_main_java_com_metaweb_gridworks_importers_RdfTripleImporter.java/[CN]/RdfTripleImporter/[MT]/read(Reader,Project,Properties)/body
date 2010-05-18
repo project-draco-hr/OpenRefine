@@ -12,10 +12,23 @@
       String subject=triple.getSubject().toString();
       String predicate=triple.getPredicate().toString();
       String object=triple.getObject().toString();
-      if (project.columnModel.getColumnByName(predicate) == null) {
-        AddNewColumn(project,predicate);
+      int candidateMergeRowIndex=-1;
+      int columnIndex=project.columnModel.getColumnIndexByName(predicate);
+      if (columnIndex == -1) {
+        candidateMergeRowIndex=AddNewColumn(project,predicate,subject);
       }
-      AddNewRow(project,subject,predicate,object);
+      columnIndex=project.columnModel.getColumnIndexByName(predicate);
+      if (candidateMergeRowIndex > -1) {
+        if (project.rows.get(candidateMergeRowIndex).cells.get(columnIndex) == null) {
+          MergeWithRow(project,candidateMergeRowIndex,columnIndex,object);
+        }
+ else {
+          AddNewRow(project,subject,predicate,object);
+        }
+      }
+ else {
+        AddNewRow(project,subject,predicate,object);
+      }
     }
   }
   finally {

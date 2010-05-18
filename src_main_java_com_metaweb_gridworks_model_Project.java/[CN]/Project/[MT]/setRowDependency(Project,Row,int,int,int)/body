@@ -1,5 +1,5 @@
 {
-  int count=columnModel.getMaxCellIndex() + 1;
+  int count=project.columnModel.getMaxCellIndex() + 1;
   if (row.contextRowSlots == null || row.contextCellSlots == null) {
     row.contextRowSlots=new int[count];
     row.contextCellSlots=new int[count];

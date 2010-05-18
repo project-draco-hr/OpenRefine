@@ -1,0 +1,17 @@
+{
+  String sampleRdf="<http://rdf.freebase.com/ns/en.bob_dylan> <http://rdf.freebase.com/ns/common.topic.alias> \"Robert Zimmerman\"@en.";
+  StringReader reader=new StringReader(sampleRdf);
+  try {
+    SUT.read(reader,project,options);
+  }
+ catch (  Exception e) {
+    Assert.fail();
+  }
+  Assert.assertEquals(project.columnModel.columns.size(),2);
+  Assert.assertEquals(project.columnModel.columns.get(0).getName(),"subject");
+  Assert.assertEquals(project.columnModel.columns.get(1).getName(),"http://rdf.freebase.com/ns/common.topic.alias");
+  Assert.assertEquals(project.rows.size(),1);
+  Assert.assertEquals(project.rows.get(0).cells.size(),2);
+  Assert.assertEquals(project.rows.get(0).cells.get(0).value,"http://rdf.freebase.com/ns/en.bob_dylan");
+  Assert.assertEquals(project.rows.get(0).cells.get(1).value,"\"Robert Zimmerman\"@en");
+}

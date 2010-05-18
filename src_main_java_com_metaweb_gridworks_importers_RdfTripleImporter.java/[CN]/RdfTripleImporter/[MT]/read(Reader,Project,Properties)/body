@@ -5,6 +5,7 @@
   GraphLineParser parser=new GraphLineParser(graph,lineHandler);
   parser.parse(reader,baseUrl);
   project.columnModel.columns.add(0,new Column(0,"subject"));
+  project.columnModel.setKeyColumnIndex(0);
   project.columnModel.update();
   ClosableIterable<Triple> triples=graph.find(ANY_SUBJECT_NODE,ANY_PREDICATE_NODE,ANY_OBJECT_NODE);
   try {
@@ -12,22 +13,31 @@
       String subject=triple.getSubject().toString();
       String predicate=triple.getPredicate().toString();
       String object=triple.getObject().toString();
-      int candidateMergeRowIndex=-1;
       int columnIndex=project.columnModel.getColumnIndexByName(predicate);
       if (columnIndex == -1) {
-        candidateMergeRowIndex=AddNewColumn(project,predicate,subject);
+        AddNewColumn(project,predicate,subject);
+      }
+      int candidateMergeRowIndex=-1;
+      for (int i=0; i < project.rows.size(); i++) {
+        Cell cell=project.rows.get(i).cells.get(0);
+        if (cell != null) {
+          if (project.rows.get(i).cells.get(0).value == subject) {
+            candidateMergeRowIndex=i;
+          }
+        }
       }
       columnIndex=project.columnModel.getColumnIndexByName(predicate);
       if (candidateMergeRowIndex > -1) {
-        if (project.rows.get(candidateMergeRowIndex).cells.get(columnIndex) == null) {
+        Cell cell=project.rows.get(candidateMergeRowIndex).cells.get(columnIndex);
+        if (cell == null) {
           MergeWithRow(project,candidateMergeRowIndex,columnIndex,object);
         }
  else {
-          AddNewRow(project,subject,predicate,object);
+          AddNewDependentRow(project,subject,candidateMergeRowIndex,columnIndex,object);
         }
       }
  else {
-        AddNewRow(project,subject,predicate,object);
+        AddNewRow(project,subject,columnIndex,object);
       }
     }
   }

@@ -1,13 +1,9 @@
 {
   int numberOfColumns=project.columnModel.columns.size();
   project.columnModel.columns.add(numberOfColumns,new Column(numberOfColumns,predicate));
+  project.columnModel.setMaxCellIndex(numberOfColumns);
   project.columnModel.update();
-  int candidateMergeRowIndex=-1;
   for (int i=0; i < project.rows.size(); i++) {
     project.rows.get(i).cells.add(numberOfColumns,null);
-    if (project.rows.get(i).cells.get(0).value == subject) {
-      candidateMergeRowIndex=i;
-    }
   }
-  return candidateMergeRowIndex;
 }

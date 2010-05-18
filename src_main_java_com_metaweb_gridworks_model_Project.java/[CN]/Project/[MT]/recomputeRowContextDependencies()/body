@@ -42,7 +42,7 @@
         if (contextRowIndex >= 0) {
           for (          int dependentCellIndex : group.cellIndices) {
             if (ExpressionUtils.isNonBlankData(row.getCellValue(dependentCellIndex))) {
-              setRowDependency(row,dependentCellIndex,contextRowIndex,group.keyCellIndex);
+              setRowDependency(this,row,dependentCellIndex,contextRowIndex,group.keyCellIndex);
             }
           }
         }

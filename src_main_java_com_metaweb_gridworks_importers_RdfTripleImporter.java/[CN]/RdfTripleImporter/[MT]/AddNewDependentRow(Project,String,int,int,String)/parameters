@@ -1,4 +1,5 @@
 Project project
 String subject
-String predicate
+int candidateMergeRowIndex
+int columnIndex
 String object

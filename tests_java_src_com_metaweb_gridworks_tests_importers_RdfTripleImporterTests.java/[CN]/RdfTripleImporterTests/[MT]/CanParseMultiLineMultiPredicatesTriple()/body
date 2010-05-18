@@ -15,9 +15,11 @@
   Assert.assertEquals(project.rows.get(0).cells.size(),3);
   Assert.assertEquals(project.rows.get(0).cells.get(0).value,"http://rdf.freebase.com/ns/en.bob_dylan");
   Assert.assertEquals(project.rows.get(0).cells.get(1).value,"http://rdf.freebase.com/ns/en.blood_on_the_tracks");
-  Assert.assertNull(project.rows.get(0).cells.get(2));
+  Assert.assertEquals(project.rows.get(0).cells.get(2).value,"http://rdf.freebase.com/ns/en.folk_rock");
   Assert.assertEquals(project.rows.get(1).cells.size(),3);
-  Assert.assertEquals(project.rows.get(1).cells.get(0).value,"http://rdf.freebase.com/ns/en.bob_dylan");
+  Assert.assertEquals(project.rows.get(1).contextRowSlots[1],0);
+  Assert.assertEquals(project.rows.get(1).contextCellSlots[1],0);
+  Assert.assertNull(project.rows.get(1).cells.get(0));
   Assert.assertEquals(project.rows.get(1).cells.get(1).value,"http://rdf.freebase.com/ns/en.bringing_it_all_back_home");
-  Assert.assertEquals(project.rows.get(1).cells.get(2).value,"http://rdf.freebase.com/ns/en.folk_rock");
+  Assert.assertNull(project.rows.get(1).cells.get(2));
 }

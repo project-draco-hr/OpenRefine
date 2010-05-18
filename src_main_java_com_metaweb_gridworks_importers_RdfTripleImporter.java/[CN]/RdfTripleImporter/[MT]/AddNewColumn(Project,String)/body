@@ -1,0 +1,8 @@
+{
+  int numberOfColumns=project.columnModel.columns.size();
+  project.columnModel.columns.add(numberOfColumns,new Column(numberOfColumns,predicate));
+  project.columnModel.update();
+  for (  Row r : project.rows) {
+    r.cells.add(numberOfColumns,null);
+  }
+}

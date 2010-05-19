@@ -7,8 +7,7 @@
   }
  else   if ("record".equals(name)) {
     int rowIndex=(Integer)bindings.get("rowIndex");
-    int recordRowIndex=(row.contextRows != null && row.contextRows.size() > 0) ? row.contextRows.get(0) : rowIndex;
-    return new Record(recordRowIndex,rowIndex);
+    return new WrappedRecord(project.recordModel.getRecordOfRow(rowIndex));
   }
  else   if ("columnNames".equals(name)) {
     Project project=(Project)bindings.get("project");

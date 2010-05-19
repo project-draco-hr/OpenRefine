@@ -6,6 +6,7 @@
     int limit=Math.min(project.rows.size() - start,Math.max(0,getIntegerParameter(request,"limit",20)));
     Pool pool=new Pool();
     Properties options=new Properties();
+    options.put("project",project);
     options.put("reconCandidateOmitTypes",true);
     options.put("pool",pool);
     response.setCharacterEncoding("UTF-8");

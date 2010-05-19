@@ -1,0 +1,64 @@
+{
+synchronized (project) {
+    List<Row> rows=project.rows;
+    int rowCount=rows.size();
+    ColumnModel columnModel=project.columnModel;
+    List<KeyedGroup> keyedGroups=computeKeyedGroups(columnModel);
+    int groupCount=keyedGroups.size();
+    int[] lastNonBlankRowsByGroup=new int[keyedGroups.size()];
+    for (int i=0; i < lastNonBlankRowsByGroup.length; i++) {
+      lastNonBlankRowsByGroup[i]=-1;
+    }
+    _rowDependencies=new ArrayList<RowDependency>(rowCount);
+    int recordIndex=0;
+    for (int r=0; r < rowCount; r++) {
+      Row row=rows.get(r);
+      RowDependency rowDependency=new RowDependency();
+      for (int g=0; g < groupCount; g++) {
+        KeyedGroup group=keyedGroups.get(g);
+        if (!ExpressionUtils.isNonBlankData(row.getCellValue(group.keyCellIndex))) {
+          int contextRowIndex=lastNonBlankRowsByGroup[g];
+          if (contextRowIndex >= 0) {
+            for (            int dependentCellIndex : group.cellIndices) {
+              if (ExpressionUtils.isNonBlankData(row.getCellValue(dependentCellIndex))) {
+                setRowDependency(project,rowDependency,dependentCellIndex,contextRowIndex,group.keyCellIndex);
+              }
+            }
+          }
+        }
+ else {
+          lastNonBlankRowsByGroup[g]=r;
+        }
+      }
+      if (rowDependency.cellDependencies != null && rowDependency.cellDependencies.length > 0) {
+        rowDependency.recordIndex=-1;
+        rowDependency.contextRows=new ArrayList<Integer>();
+        for (        CellDependency cd : rowDependency.cellDependencies) {
+          if (cd != null) {
+            rowDependency.contextRows.add(cd.rowIndex);
+          }
+        }
+        Collections.sort(rowDependency.contextRows);
+        columnModel._hasDependentRows=true;
+      }
+ else {
+        rowDependency.recordIndex=recordIndex++;
+      }
+      _rowDependencies.add(rowDependency);
+    }
+    _records=new ArrayList<Record>(recordIndex);
+    if (recordIndex > 0) {
+      recordIndex=0;
+      int recordRowIndex=0;
+      for (int r=1; r < rowCount; r++) {
+        RowDependency rd=_rowDependencies.get(r);
+        if (rd.recordIndex >= 0) {
+          _records.add(new Record(recordRowIndex,r,recordIndex++));
+          recordIndex=rd.recordIndex;
+          recordRowIndex=r;
+        }
+      }
+      _records.add(new Record(recordRowIndex,rowCount,recordIndex++));
+    }
+  }
+}

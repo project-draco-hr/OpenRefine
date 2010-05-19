@@ -3,6 +3,7 @@
   StringReader reader=new StringReader(sampleRdf);
   try {
     SUT.read(reader,project,options);
+    project.update();
   }
  catch (  Exception e) {
     Assert.fail();
@@ -14,14 +15,14 @@
   Assert.assertEquals(project.rows.get(0).cells.size(),2);
   Assert.assertEquals(project.rows.get(0).cells.get(0).value,"http://rdf.freebase.com/ns/en.bob_dylan");
   Assert.assertEquals(project.rows.get(0).cells.get(1).value,"http://rdf.freebase.com/ns/en.blood_on_the_tracks");
-  Assert.assertEquals(project.rows.get(2).cells.size(),2);
+  Assert.assertEquals(project.rows.get(1).cells.size(),2);
   Assert.assertNull(project.rows.get(1).cells.get(0));
-  Assert.assertEquals(project.rows.get(1).contextRowSlots[1],0);
-  Assert.assertEquals(project.rows.get(1).contextCellSlots[1],0);
   Assert.assertEquals(project.rows.get(1).cells.get(1).value,"http://rdf.freebase.com/ns/en.bringing_it_all_back_home");
+  Assert.assertEquals(project.recordModel.getRowDependency(1).cellDependencies[1].rowIndex,0);
+  Assert.assertEquals(project.recordModel.getRowDependency(1).cellDependencies[1].cellIndex,0);
   Assert.assertEquals(project.rows.get(2).cells.size(),2);
-  Assert.assertEquals(project.rows.get(2).contextRowSlots[1],0);
-  Assert.assertEquals(project.rows.get(2).contextCellSlots[1],0);
   Assert.assertNull(project.rows.get(2).cells.get(0));
   Assert.assertEquals(project.rows.get(2).cells.get(1).value,"http://rdf.freebase.com/ns/en.under_the_red_sky");
+  Assert.assertEquals(project.recordModel.getRowDependency(2).cellDependencies[1].rowIndex,0);
+  Assert.assertEquals(project.recordModel.getRowDependency(2).cellDependencies[1].cellIndex,0);
 }

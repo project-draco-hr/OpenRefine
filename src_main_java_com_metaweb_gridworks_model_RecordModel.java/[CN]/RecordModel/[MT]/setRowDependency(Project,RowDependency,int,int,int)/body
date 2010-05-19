@@ -1,0 +1,7 @@
+{
+  if (rowDependency.cellDependencies == null) {
+    int count=project.columnModel.getMaxCellIndex() + 1;
+    rowDependency.cellDependencies=new CellDependency[count];
+  }
+  rowDependency.cellDependencies[cellIndex]=new CellDependency(contextRowIndex,contextCellIndex);
+}

@@ -65,7 +65,6 @@ synchronized (project) {
  catch (      ModelException e) {
       }
     }
-    project.columnModel.update();
-    project.recomputeRowContextDependencies();
+    project.update();
   }
 }

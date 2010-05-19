@@ -6,6 +6,6 @@ synchronized (project) {
       Row row=_rows.get(i);
       project.rows.add(index,row);
     }
-    project.recomputeRowContextDependencies();
+    project.update();
   }
 }

@@ -17,6 +17,6 @@
     }
   }
   column.setName(name);
-  columns.add(index,column);
+  columns.add(index < 0 ? columns.size() : index,column);
   _nameToColumn.put(name,column);
 }

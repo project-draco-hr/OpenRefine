@@ -3,6 +3,7 @@
   StringReader reader=new StringReader(sampleRdf);
   try {
     SUT.read(reader,project,options);
+    project.update();
   }
  catch (  Exception e) {
     Assert.fail();

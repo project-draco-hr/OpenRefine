@@ -1,0 +1,5 @@
+{
+  this.fromRowIndex=fromRowIndex;
+  this.toRowIndex=toRowIndex;
+  this.recordIndex=recordIndex;
+}

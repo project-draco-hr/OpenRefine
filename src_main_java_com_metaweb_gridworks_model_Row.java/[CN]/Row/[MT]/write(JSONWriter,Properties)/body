@@ -16,13 +16,16 @@
   }
   writer.endArray();
   if (!"save".equals(options.getProperty("mode"))) {
-    if (recordIndex >= 0) {
-      writer.key("j");
-      writer.value(recordIndex);
-    }
     if (options.containsKey("rowIndex")) {
+      int rowIndex=(Integer)options.get("rowIndex");
       writer.key("i");
-      writer.value(options.get("rowIndex"));
+      writer.value(rowIndex);
+      Project project=(Project)options.get("project");
+      RowDependency rd=project.recordModel.getRowDependency(rowIndex);
+      if (rd.recordIndex >= 0) {
+        writer.key("j");
+        writer.value(rd.recordIndex);
+      }
     }
     if (options.containsKey("extra")) {
       Properties extra=(Properties)options.get("extra");

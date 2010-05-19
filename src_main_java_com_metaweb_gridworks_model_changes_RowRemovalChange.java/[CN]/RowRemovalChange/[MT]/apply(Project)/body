@@ -9,6 +9,6 @@ synchronized (project) {
       _rows.add(row);
       offset--;
     }
-    project.recomputeRowContextDependencies();
+    project.update();
   }
 }

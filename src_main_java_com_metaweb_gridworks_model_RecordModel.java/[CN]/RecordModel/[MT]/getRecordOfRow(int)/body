@@ -1,0 +1,10 @@
+{
+  RowDependency rd=getRowDependency(rowIndex);
+  if (rd != null) {
+    if (rd.recordIndex < 0) {
+      rd=getRowDependency(rd.contextRows.get(0));
+    }
+    return getRecord(rd.recordIndex);
+  }
+  return null;
+}

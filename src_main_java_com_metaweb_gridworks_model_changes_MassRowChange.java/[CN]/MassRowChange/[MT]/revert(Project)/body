@@ -2,6 +2,6 @@
 synchronized (project) {
     project.rows.clear();
     project.rows.addAll(_oldRows);
-    project.recomputeRowContextDependencies();
+    project.update();
   }
 }

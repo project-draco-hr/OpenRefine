@@ -1,8 +1,0 @@
-{
-  int numberOfColumns=project.columnModel.columns.size();
-  Row row=new Row(numberOfColumns);
-  row.setCell(0,new Cell(subject,null));
-  row.setCell(columnIndex,new Cell(object,null));
-  project.rows.add(row);
-  return row;
-}

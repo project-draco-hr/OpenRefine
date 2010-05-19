@@ -9,7 +9,7 @@ synchronized (project) {
       column.clearPrecomputes();
     }
     if (_updateRowContextDependencies) {
-      project.recomputeRowContextDependencies();
+      project.update();
     }
   }
 }

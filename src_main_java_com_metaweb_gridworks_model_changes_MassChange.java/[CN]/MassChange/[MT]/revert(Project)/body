@@ -4,7 +4,7 @@ synchronized (project) {
       change.revert(project);
     }
     if (_updateRowContextDependencies) {
-      project.recomputeRowContextDependencies();
+      project.update();
     }
   }
 }

@@ -1,0 +1,3 @@
+int fromRowIndex
+int toRowIndex
+int recordIndex

@@ -1,5 +1,0 @@
-{
-  Row row=AddNewRow(project,subject,columnIndex,object);
-  Project.setRowDependency(project,row,columnIndex,candidateMergeRowIndex,project.columnModel.getKeyColumnIndex());
-  row.cells.set(project.columnModel.getKeyColumnIndex(),null);
-}

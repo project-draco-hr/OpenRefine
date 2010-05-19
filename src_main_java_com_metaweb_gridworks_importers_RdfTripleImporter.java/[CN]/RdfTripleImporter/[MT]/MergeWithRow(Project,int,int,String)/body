@@ -1,3 +1,0 @@
-{
-  project.rows.get(candidateMergeRowIndex).setCell(columnIndex,new Cell(object,null));
-}

@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns all arguments passed to it as an array");
+  writer.key("params");
+  writer.value("a1, a2, ...");
+  writer.key("returns");
+  writer.value("array");
+  writer.endObject();
+}

@@ -69,6 +69,11 @@
       throw makeException("Missing )");
     }
   }
+ else   if (_token.type == TokenType.Delimiter && _token.text.equals("[")) {
+    next(true);
+    List<Evaluable> args=parseExpressionList("]");
+    eval=new FunctionCallExpr(makeArray(args),new ArgsToArray());
+  }
  else {
     throw makeException("Missing number, string, identifier, regex, or parenthesized expression");
   }

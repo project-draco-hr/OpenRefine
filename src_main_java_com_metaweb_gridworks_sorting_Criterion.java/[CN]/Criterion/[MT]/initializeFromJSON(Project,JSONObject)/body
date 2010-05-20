@@ -1,0 +1,16 @@
+{
+  if (obj.has("column") && !obj.isNull("column")) {
+    columnName=obj.getString("column");
+    Column column=project.columnModel.getColumnByName(columnName);
+    cellIndex=column != null ? column.getCellIndex() : -1;
+  }
+  if (obj.has("blankPosition") && !obj.isNull("blankPosition")) {
+    blankPosition=obj.getInt("blankPosition");
+  }
+  if (obj.has("errorPosition") && !obj.isNull("errorPosition")) {
+    blankPosition=obj.getInt("errorPosition");
+  }
+  if (obj.has("reverse") && !obj.isNull("reverse")) {
+    reverse=obj.getBoolean("reverse");
+  }
+}

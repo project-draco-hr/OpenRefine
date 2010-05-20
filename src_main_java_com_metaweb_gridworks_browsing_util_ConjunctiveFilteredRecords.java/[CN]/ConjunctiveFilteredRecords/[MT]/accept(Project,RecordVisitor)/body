@@ -1,11 +1,17 @@
 {
-  int c=project.recordModel.getRecordCount();
-  for (int r=0; r < c; r++) {
-    Record record=project.recordModel.getRecord(r);
-    if (matchRecord(project,record)) {
-      if (visitor.visit(project,record)) {
-        return;
+  try {
+    visitor.start(project);
+    int c=project.recordModel.getRecordCount();
+    for (int r=0; r < c; r++) {
+      Record record=project.recordModel.getRecord(r);
+      if (matchRecord(project,record)) {
+        if (visitor.visit(project,record)) {
+          return;
+        }
       }
     }
+  }
+  finally {
+    visitor.end(project);
   }
 }

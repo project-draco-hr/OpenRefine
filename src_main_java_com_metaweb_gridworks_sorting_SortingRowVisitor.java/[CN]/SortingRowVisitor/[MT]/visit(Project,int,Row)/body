@@ -1,0 +1,4 @@
+{
+  _indexedRows.add(new IndexedRow(rowIndex,row));
+  return false;
+}

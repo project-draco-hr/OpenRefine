@@ -1,0 +1,4 @@
+{
+  _records.add(record);
+  return false;
+}

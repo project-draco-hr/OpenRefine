@@ -1,0 +1,4 @@
+{
+  this.criterionIndex=criterionIndex;
+  this.multiplier=_criteria[criterionIndex].reverse ? -1 : 1;
+}

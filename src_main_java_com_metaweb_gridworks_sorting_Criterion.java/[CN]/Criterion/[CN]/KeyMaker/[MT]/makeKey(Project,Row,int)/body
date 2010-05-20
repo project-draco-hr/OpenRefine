@@ -1,0 +1,9 @@
+{
+  if (cellIndex < 0) {
+    return null;
+  }
+ else {
+    Object value=row.getCellValue(cellIndex);
+    return makeKey(value);
+  }
+}

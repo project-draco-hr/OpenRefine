@@ -1,0 +1,15 @@
+{
+  _visitor.start(project);
+  Collections.sort(_records,new Comparator<Record>(){
+    Project project;
+    Comparator<Record> init(    Project project){
+      this.project=project;
+      return this;
+    }
+    @Override public int compare(    Record o1,    Record o2){
+      return SortingRecordVisitor.this.compare(project,o1,o1.recordIndex,o2,o2.recordIndex);
+    }
+  }
+.init(project));
+  _visitor.end(project);
+}

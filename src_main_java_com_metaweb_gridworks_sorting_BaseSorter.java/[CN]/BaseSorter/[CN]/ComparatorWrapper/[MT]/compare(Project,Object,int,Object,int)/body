@@ -1,0 +1,38 @@
+{
+  Criterion c=_criteria[criterionIndex];
+  Object key1=getKey(project,o1,i1);
+  Object key2=getKey(project,o2,i2);
+  if (key1 == null) {
+    if (key2 == null) {
+      return 0;
+    }
+ else     if (key2 instanceof EvalError) {
+      return c.blankPosition - c.errorPosition;
+    }
+ else {
+      return c.blankPosition;
+    }
+  }
+ else   if (key1 instanceof EvalError) {
+    if (key2 == null) {
+      return c.errorPosition - c.blankPosition;
+    }
+ else     if (key2 instanceof EvalError) {
+      return 0;
+    }
+ else {
+      return c.errorPosition;
+    }
+  }
+ else {
+    if (key2 == null) {
+      return -c.blankPosition;
+    }
+ else     if (key2 instanceof EvalError) {
+      return -c.errorPosition;
+    }
+ else {
+      return _keyMakers[criterionIndex].compareKeys(key1,key2) * multiplier;
+    }
+  }
+}

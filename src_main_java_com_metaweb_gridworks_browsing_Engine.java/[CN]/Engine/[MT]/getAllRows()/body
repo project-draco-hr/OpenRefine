@@ -1,10 +1,16 @@
 {
   return new FilteredRows(){
     @Override public void accept(    Project project,    RowVisitor visitor){
-      int c=project.rows.size();
-      for (int rowIndex=0; rowIndex < c; rowIndex++) {
-        Row row=project.rows.get(rowIndex);
-        visitor.visit(project,rowIndex,row);
+      try {
+        visitor.start(project);
+        int c=project.rows.size();
+        for (int rowIndex=0; rowIndex < c; rowIndex++) {
+          Row row=project.rows.get(rowIndex);
+          visitor.visit(project,rowIndex,row);
+        }
+      }
+  finally {
+        visitor.end(project);
       }
     }
   }

@@ -1,0 +1,8 @@
+{
+  Object[] keys=_keys.get(index);
+  if (keys == null) {
+    keys=makeKeys(project,o,index);
+    _keys.set(index,keys);
+  }
+  return keys[criterionIndex];
+}

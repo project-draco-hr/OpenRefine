@@ -1,0 +1,21 @@
+{
+  String valueType="string";
+  if (obj.has("valueType") && !obj.isNull("valueType")) {
+    valueType=obj.getString("valueType");
+  }
+  Criterion c=null;
+  if ("boolean".equals(valueType)) {
+    c=new BooleanCriterion();
+  }
+ else   if ("date".equals(valueType)) {
+    c=new DateCriterion();
+  }
+ else   if ("number".equals(valueType)) {
+    c=new NumberCriterion();
+  }
+ else {
+    c=new StringCriterion();
+  }
+  c.initializeFromJSON(project,obj);
+  return c;
+}

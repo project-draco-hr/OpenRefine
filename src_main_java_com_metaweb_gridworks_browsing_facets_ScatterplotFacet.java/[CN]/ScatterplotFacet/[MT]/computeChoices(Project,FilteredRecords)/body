@@ -1,0 +1,24 @@
+{
+  if (eval_x != null && eval_y != null && errorMessage_x == null && errorMessage_y == null) {
+    Column column_x=project.columnModel.getColumnByCellIndex(columnIndex_x);
+    NumericBinIndex index_x=getBinIndex(project,column_x,eval_x,expression_x,"record-based");
+    Column column_y=project.columnModel.getColumnByCellIndex(columnIndex_y);
+    NumericBinIndex index_y=getBinIndex(project,column_y,eval_y,expression_y,"record-based");
+    retrieveDataFromBinIndices(index_x,index_y);
+    if (IMAGE_URI) {
+      if (index_x.isNumeric() && index_y.isNumeric()) {
+        ScatterplotDrawingRowVisitor drawer=new ScatterplotDrawingRowVisitor(columnIndex_x,columnIndex_y,min_x,max_x,min_y,max_y,size,dim_x,dim_y,rotation,dot,color);
+        filteredRecords.accept(project,drawer);
+        try {
+          image=serializeImage(drawer.getImage());
+        }
+ catch (        IOException e) {
+          logger.warn("Exception caught while generating the image",e);
+        }
+      }
+ else {
+        image=EMPTY_IMAGE;
+      }
+    }
+  }
+}

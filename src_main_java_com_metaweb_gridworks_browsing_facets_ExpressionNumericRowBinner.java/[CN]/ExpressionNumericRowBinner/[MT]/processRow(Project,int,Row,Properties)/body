@@ -1,0 +1,21 @@
+{
+  Cell cell=row.getCell(_cellIndex);
+  ExpressionUtils.bind(bindings,row,rowIndex,_columnName,cell);
+  Object value=_evaluable.evaluate(bindings);
+  if (value != null) {
+    if (value.getClass().isArray()) {
+      Object[] a=(Object[])value;
+      for (      Object v : a) {
+        processValue(v);
+      }
+      return;
+    }
+ else     if (value instanceof Collection<?>) {
+      for (      Object v : ExpressionUtils.toObjectCollection(value)) {
+        processValue(v);
+      }
+      return;
+    }
+  }
+  processValue(value);
+}

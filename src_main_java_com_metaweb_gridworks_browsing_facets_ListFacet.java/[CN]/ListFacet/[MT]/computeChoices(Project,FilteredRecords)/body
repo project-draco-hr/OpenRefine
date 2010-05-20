@@ -1,0 +1,7 @@
+{
+  if (_eval != null && _errorMessage == null) {
+    ExpressionNominalRowGrouper grouper=new ExpressionNominalRowGrouper(_eval,_columnName,_cellIndex);
+    filteredRecords.accept(project,grouper);
+    postProcessGrouper(grouper);
+  }
+}

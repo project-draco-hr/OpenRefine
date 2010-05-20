@@ -7,7 +7,7 @@
   List<String> columnNames=new ArrayList<String>();
   List<Integer> rowIndices=new ArrayList<Integer>(project.rows.size());
   List<List<Serializable>> tuples=new ArrayList<List<Serializable>>(project.rows.size());
-  FilteredRows filteredRows=engine.getAllFilteredRows(false);
+  FilteredRows filteredRows=engine.getAllFilteredRows();
   RowVisitor rowVisitor;
   if ("lengths".equals(_mode)) {
     rowVisitor=new ColumnSplitRowVisitor(column.getCellIndex(),columnNames,rowIndices,tuples){

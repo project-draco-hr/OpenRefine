@@ -1,0 +1,15 @@
+{
+  if (_mode == Mode.RecordBased) {
+    ConjunctiveFilteredRecords cfr=new ConjunctiveFilteredRecords();
+    for (    Facet facet : _facets) {
+      if (facet != except) {
+        RecordFilter recordFilter=facet.getRecordFilter();
+        if (recordFilter != null) {
+          cfr.add(recordFilter);
+        }
+      }
+    }
+    return cfr;
+  }
+  throw new InternalError("This method should not be called when the engine is not in record mode.");
+}

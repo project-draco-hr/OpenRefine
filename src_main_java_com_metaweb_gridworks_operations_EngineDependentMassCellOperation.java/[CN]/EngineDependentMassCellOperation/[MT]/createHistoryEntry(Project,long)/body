@@ -5,7 +5,7 @@
     throw new Exception("No column named " + _columnName);
   }
   List<CellChange> cellChanges=new ArrayList<CellChange>(project.rows.size());
-  FilteredRows filteredRows=engine.getAllFilteredRows(false);
+  FilteredRows filteredRows=engine.getAllFilteredRows();
   try {
     filteredRows.accept(project,createRowVisitor(project,cellChanges,historyEntryID));
   }

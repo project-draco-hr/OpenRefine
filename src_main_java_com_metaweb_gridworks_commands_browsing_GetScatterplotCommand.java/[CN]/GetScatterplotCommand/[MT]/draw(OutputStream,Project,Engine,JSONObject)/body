@@ -77,7 +77,7 @@
       drawer.setColor(color);
     }
 {
-      FilteredRows filteredRows=engine.getAllFilteredRows(false);
+      FilteredRows filteredRows=engine.getAllFilteredRows();
       filteredRows.accept(project,drawer);
     }
     ImageIO.write(drawer.getImage(),"png",output);

@@ -1,0 +1,18 @@
+{
+  if (_mode == Mode.RecordBased) {
+    return new FilteredRecordsAsFilteredRows(getFilteredRecords(except));
+  }
+ else   if (_mode == Mode.RowBased) {
+    ConjunctiveFilteredRows cfr=new ConjunctiveFilteredRows();
+    for (    Facet facet : _facets) {
+      if (facet != except) {
+        RowFilter rowFilter=facet.getRowFilter();
+        if (rowFilter != null) {
+          cfr.add(rowFilter);
+        }
+      }
+    }
+    return cfr;
+  }
+  throw new InternalError("Unknown mode.");
+}

@@ -1,0 +1,8 @@
+{
+  boolean r=false;
+  if (total >= start && total < start + limit) {
+    r=internalVisit(project,record);
+  }
+  total++;
+  return r;
+}

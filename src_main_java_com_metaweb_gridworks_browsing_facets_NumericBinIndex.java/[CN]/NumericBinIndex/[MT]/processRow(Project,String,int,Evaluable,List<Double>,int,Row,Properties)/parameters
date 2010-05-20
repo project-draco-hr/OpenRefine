@@ -1,0 +1,8 @@
+Project project
+String columnName
+int cellIndex
+Evaluable eval
+List<Double> allValues
+int rowIndex
+Row row
+Properties bindings

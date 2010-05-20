@@ -1,6 +1,17 @@
 {
-  for (  Facet facet : _facets) {
-    FilteredRows filteredRows=getFilteredRows(facet,false);
-    facet.computeChoices(_project,filteredRows);
+  if (_mode == Mode.RowBased) {
+    for (    Facet facet : _facets) {
+      FilteredRows filteredRows=getFilteredRows(facet);
+      facet.computeChoices(_project,filteredRows);
+    }
+  }
+ else   if (_mode == Mode.RecordBased) {
+    for (    Facet facet : _facets) {
+      FilteredRecords filteredRecords=getFilteredRecords(facet);
+      facet.computeChoices(_project,filteredRecords);
+    }
+  }
+ else {
+    throw new InternalError("Unknown mode.");
   }
 }

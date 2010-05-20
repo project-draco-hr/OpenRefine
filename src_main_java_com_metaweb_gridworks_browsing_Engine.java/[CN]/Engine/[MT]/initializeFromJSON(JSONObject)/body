@@ -28,6 +28,9 @@
     }
   }
   if (o.has(INCLUDE_DEPENDENT) && !o.isNull(INCLUDE_DEPENDENT)) {
-    _includeDependent=o.getBoolean(INCLUDE_DEPENDENT);
+    _mode=o.getBoolean(INCLUDE_DEPENDENT) ? Mode.RecordBased : Mode.RowBased;
+  }
+  if (o.has(MODE) && !o.isNull(MODE)) {
+    _mode=MODE_ROW_BASED.equals(o.getString(MODE)) ? Mode.RowBased : Mode.RecordBased;
   }
 }

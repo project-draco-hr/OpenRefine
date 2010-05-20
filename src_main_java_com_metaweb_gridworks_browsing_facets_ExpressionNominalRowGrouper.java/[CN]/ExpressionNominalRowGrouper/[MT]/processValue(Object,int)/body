@@ -1,0 +1,25 @@
+{
+  if (ExpressionUtils.isError(value)) {
+    hasError=true;
+  }
+ else   if (ExpressionUtils.isNonBlankData(value)) {
+    String valueString=value.toString();
+    IndexedNominalFacetChoice facetChoice=choices.get(valueString);
+    if (facetChoice != null) {
+      if (facetChoice._latestIndex < index) {
+        facetChoice._latestIndex=index;
+        facetChoice.count++;
+      }
+    }
+ else {
+      String label=value.toString();
+      DecoratedValue dValue=new DecoratedValue(value,label);
+      IndexedNominalFacetChoice choice=new IndexedNominalFacetChoice(dValue,index);
+      choice.count=1;
+      choices.put(valueString,choice);
+    }
+  }
+ else {
+    hasBlank=true;
+  }
+}

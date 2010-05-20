@@ -1,0 +1,11 @@
+{
+  return new FilteredRecords(){
+    @Override public void accept(    Project project,    RecordVisitor visitor){
+      int c=project.recordModel.getRecordCount();
+      for (int r=0; r < c; r++) {
+        visitor.visit(project,project.recordModel.getRecord(r));
+      }
+    }
+  }
+;
+}

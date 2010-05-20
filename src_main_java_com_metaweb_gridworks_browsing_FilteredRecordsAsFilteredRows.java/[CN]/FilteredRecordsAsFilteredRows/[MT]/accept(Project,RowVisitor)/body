@@ -1,0 +1,3 @@
+{
+  _filteredRecords.accept(project,new RowVisitorAsRecordVisitor(visitor));
+}

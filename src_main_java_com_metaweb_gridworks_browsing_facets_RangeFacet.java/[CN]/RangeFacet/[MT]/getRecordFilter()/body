@@ -1,0 +1,4 @@
+{
+  RowFilter rowFilter=getRowFilter();
+  return rowFilter == null ? null : new AnyRowRecordFilter(rowFilter);
+}

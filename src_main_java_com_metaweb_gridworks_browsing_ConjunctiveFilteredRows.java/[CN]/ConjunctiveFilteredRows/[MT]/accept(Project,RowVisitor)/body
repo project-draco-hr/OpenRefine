@@ -1,20 +1,9 @@
 {
-  int lastVisitedRowRowIndex=-1;
-  int lastRecordRowAcceptedRowIndex=-1;
   int c=project.rows.size();
   for (int rowIndex=0; rowIndex < c; rowIndex++) {
     Row row=project.rows.get(rowIndex);
-    RowDependency rd=project.recordModel.getRowDependency(rowIndex);
     if (matchRow(project,rowIndex,row)) {
-      if (rd.recordIndex >= 0) {
-        lastRecordRowAcceptedRowIndex=rowIndex;
-      }
-      visitRow(project,visitor,rowIndex,row,rd,lastVisitedRowRowIndex);
-      lastVisitedRowRowIndex=rowIndex;
-    }
- else     if (_includeDependent && rd.recordIndex < 0 && rd.contextRows != null && rd.contextRows.size() > 0 && rd.contextRows.get(0) == lastRecordRowAcceptedRowIndex) {
-      visitor.visit(project,rowIndex,row,false,true);
-      lastVisitedRowRowIndex=rowIndex;
+      visitRow(project,visitor,rowIndex,row);
     }
   }
 }

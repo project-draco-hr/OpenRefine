@@ -1,0 +1,5 @@
+Project project
+String columnName
+int cellIndex
+Evaluable eval
+List<Double> allValues

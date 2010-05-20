@@ -5,10 +5,8 @@
       this.rowIndices=rowIndices;
       return this;
     }
-    public boolean visit(    Project project,    int rowIndex,    Row row,    boolean includeContextual,    boolean includeDependent){
-      if (!includeContextual) {
-        rowIndices.add(rowIndex);
-      }
+    public boolean visit(    Project project,    int rowIndex,    Row row){
+      rowIndices.add(rowIndex);
       return false;
     }
   }

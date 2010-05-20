@@ -1,26 +1,26 @@
 {
   if (ExpressionUtils.isError(value)) {
-    rowHasError=true;
+    hasError=true;
   }
  else   if (ExpressionUtils.isNonBlankData(value)) {
     if (value instanceof Number) {
       double d=((Number)value).doubleValue();
       if (!Double.isInfinite(d) && !Double.isNaN(d)) {
-        rowHasNumeric=true;
+        hasNumeric=true;
         int bin=(int)Math.floor((d - _index.getMin()) / _index.getStep());
         if (bin >= 0 && bin < bins.length) {
           bins[bin]++;
         }
       }
  else {
-        rowHasError=true;
+        hasError=true;
       }
     }
  else {
-      rowHasNonNumeric=true;
+      hasNonNumeric=true;
     }
   }
  else {
-    rowHasBlank=true;
+    hasBlank=true;
   }
 }

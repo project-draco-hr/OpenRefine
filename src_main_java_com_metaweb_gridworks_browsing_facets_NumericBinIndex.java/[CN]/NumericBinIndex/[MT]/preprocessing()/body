@@ -1,0 +1,6 @@
+{
+  _hasBlank=false;
+  _hasError=false;
+  _hasNonNumeric=false;
+  _hasNumeric=false;
+}

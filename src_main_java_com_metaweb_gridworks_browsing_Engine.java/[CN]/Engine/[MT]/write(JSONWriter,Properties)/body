@@ -6,7 +6,7 @@
     facet.write(writer,options);
   }
   writer.endArray();
-  writer.key(INCLUDE_DEPENDENT);
-  writer.value(_includeDependent);
+  writer.key(MODE);
+  writer.value(_mode == Mode.RowBased ? MODE_ROW_BASED : MODE_RECORD_BASED);
   writer.endObject();
 }

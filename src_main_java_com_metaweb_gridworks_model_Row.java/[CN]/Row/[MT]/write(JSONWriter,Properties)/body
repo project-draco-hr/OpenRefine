@@ -20,11 +20,10 @@
       int rowIndex=(Integer)options.get("rowIndex");
       writer.key("i");
       writer.value(rowIndex);
-      Project project=(Project)options.get("project");
-      RowDependency rd=project.recordModel.getRowDependency(rowIndex);
-      if (rd.recordIndex >= 0) {
+      if (options.containsKey("recordIndex")) {
+        int recordIndex=(Integer)options.get("recordIndex");
         writer.key("j");
-        writer.value(rd.recordIndex);
+        writer.value(recordIndex);
       }
     }
     if (options.containsKey("extra")) {

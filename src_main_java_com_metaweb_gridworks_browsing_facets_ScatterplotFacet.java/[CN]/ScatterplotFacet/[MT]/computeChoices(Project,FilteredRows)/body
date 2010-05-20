@@ -1,13 +1,10 @@
 {
   if (eval_x != null && eval_y != null && errorMessage_x == null && errorMessage_y == null) {
     Column column_x=project.columnModel.getColumnByCellIndex(columnIndex_x);
-    NumericBinIndex index_x=getBinIndex(project,column_x,eval_x,expression_x);
-    min_x=index_x.getMin();
-    max_x=index_x.getMax();
+    NumericBinIndex index_x=getBinIndex(project,column_x,eval_x,expression_x,"row-based");
     Column column_y=project.columnModel.getColumnByCellIndex(columnIndex_y);
-    NumericBinIndex index_y=getBinIndex(project,column_y,eval_y,expression_y);
-    min_y=index_y.getMin();
-    max_y=index_y.getMax();
+    NumericBinIndex index_y=getBinIndex(project,column_y,eval_y,expression_y,"row-based");
+    retrieveDataFromBinIndices(index_x,index_y);
     if (IMAGE_URI) {
       if (index_x.isNumeric() && index_y.isNumeric()) {
         ScatterplotDrawingRowVisitor drawer=new ScatterplotDrawingRowVisitor(columnIndex_x,columnIndex_y,min_x,max_x,min_y,max_y,size,dim_x,dim_y,rotation,dot,color);

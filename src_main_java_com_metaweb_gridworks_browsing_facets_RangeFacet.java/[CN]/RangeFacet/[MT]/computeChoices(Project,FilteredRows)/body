@@ -8,7 +8,7 @@
       column.setPrecompute(key,index);
     }
     retrieveDataFromBaseBinIndex(index);
-    ExpressionNumericRowBinner binner=new ExpressionNumericRowBinner(_eval,_columnName,_cellIndex,index);
+    ExpressionNumericValueBinner binner=new ExpressionNumericValueBinner(_eval,_columnName,_cellIndex,index);
     filteredRows.accept(project,binner);
     retrieveDataFromBinner(binner);
   }

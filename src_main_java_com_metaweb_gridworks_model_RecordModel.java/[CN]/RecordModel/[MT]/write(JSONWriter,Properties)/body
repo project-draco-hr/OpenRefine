@@ -1,0 +1,6 @@
+{
+  writer.object();
+  writer.key("hasRecords");
+  writer.value(_records.size() < _rowDependencies.size());
+  writer.endObject();
+}

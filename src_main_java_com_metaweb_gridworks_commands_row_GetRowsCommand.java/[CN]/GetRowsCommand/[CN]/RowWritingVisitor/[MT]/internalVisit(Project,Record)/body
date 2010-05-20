@@ -1,0 +1,14 @@
+{
+  options.put("recordIndex",record.recordIndex);
+  for (int r=record.fromRowIndex; r < record.toRowIndex; r++) {
+    try {
+      Row row=project.rows.get(r);
+      options.put("rowIndex",r);
+      row.write(writer,options);
+    }
+ catch (    JSONException e) {
+    }
+    options.remove("recordIndex");
+  }
+  return false;
+}

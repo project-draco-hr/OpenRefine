@@ -1,0 +1,4 @@
+int start
+int limit
+JSONWriter writer
+Properties options

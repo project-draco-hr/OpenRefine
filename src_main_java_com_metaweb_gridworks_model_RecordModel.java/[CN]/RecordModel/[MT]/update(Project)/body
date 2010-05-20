@@ -39,7 +39,6 @@ synchronized (project) {
           }
         }
         Collections.sort(rowDependency.contextRows);
-        columnModel._hasDependentRows=true;
       }
  else {
         rowDependency.recordIndex=recordIndex++;

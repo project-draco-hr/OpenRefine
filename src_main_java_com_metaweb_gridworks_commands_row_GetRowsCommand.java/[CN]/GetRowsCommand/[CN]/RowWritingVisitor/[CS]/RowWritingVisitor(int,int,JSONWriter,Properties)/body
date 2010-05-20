@@ -1,0 +1,6 @@
+{
+  this.start=start;
+  this.limit=limit;
+  this.writer=writer;
+  this.options=options;
+}

@@ -1,7 +1,5 @@
 {
   writer.object();
-  writer.key("hasDependentRows");
-  writer.value(_hasDependentRows);
   writer.key("columns");
   writer.array();
   for (  Column column : columns) {

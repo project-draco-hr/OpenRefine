@@ -1,3 +1,5 @@
 {
-  _indexedRows=new ArrayList<IndexedRow>(project.rows.size());
+  int count=project.rows.size();
+  _indexedRows=new ArrayList<IndexedRow>(count);
+  _keys=new ArrayList<Object[]>(count);
 }

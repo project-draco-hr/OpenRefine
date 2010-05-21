@@ -1,3 +1,5 @@
 {
-  _records=new ArrayList<Record>(project.recordModel.getRecordCount());
+  int count=project.recordModel.getRecordCount();
+  _records=new ArrayList<Record>(count);
+  _keys=new ArrayList<Object[]>(count);
 }

@@ -11,5 +11,8 @@
     }
   }
 .init(project));
+  for (  IndexedRow indexedRow : _indexedRows) {
+    _visitor.visit(project,indexedRow.index,indexedRow.row);
+  }
   _visitor.end(project);
 }

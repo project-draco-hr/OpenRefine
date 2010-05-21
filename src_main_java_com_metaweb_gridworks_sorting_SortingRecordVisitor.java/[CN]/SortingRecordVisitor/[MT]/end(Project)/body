@@ -11,5 +11,8 @@
     }
   }
 .init(project));
+  for (  Record record : _records) {
+    _visitor.visit(project,record);
+  }
   _visitor.end(project);
 }

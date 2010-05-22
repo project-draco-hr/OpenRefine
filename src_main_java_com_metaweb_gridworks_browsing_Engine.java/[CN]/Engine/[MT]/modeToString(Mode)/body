@@ -1,0 +1,3 @@
+{
+  return mode == Mode.RowBased ? MODE_ROW_BASED : MODE_RECORD_BASED;
+}

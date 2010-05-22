@@ -1,0 +1,11 @@
+{
+  String mode=request.getParameter("mode");
+  JSONObject sorting=null;
+  try {
+    String json=request.getParameter("sorting");
+    sorting=(json == null) ? null : ParsingUtilities.evaluateJsonStringToObject(json);
+  }
+ catch (  JSONException e) {
+  }
+  return new RowReorderOperation(Engine.stringToMode(mode),sorting);
+}

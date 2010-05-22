@@ -1,0 +1,12 @@
+{
+  writer.object();
+  writer.key("op");
+  writer.value(OperationRegistry.s_opClassToName.get(this.getClass()));
+  writer.key("description");
+  writer.value(getBriefDescription(null));
+  writer.key("mode");
+  writer.value(Engine.modeToString(_mode));
+  writer.key("sorting");
+  writer.value(_sorting);
+  writer.endObject();
+}

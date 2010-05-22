@@ -1,0 +1,4 @@
+{
+  _indices.add(rowIndex);
+  return false;
+}

@@ -1,0 +1,5 @@
+{
+  String mode=obj.getString("mode");
+  JSONObject sorting=obj.has("sorting") && !obj.isNull("sorting") ? obj.getJSONObject("sorting") : null;
+  return new RowReorderOperation(Engine.stringToMode(mode),sorting);
+}

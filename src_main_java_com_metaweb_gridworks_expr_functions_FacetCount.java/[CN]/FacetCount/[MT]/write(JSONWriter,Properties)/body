@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns the facet count corresponding to the given choice value");
+  writer.key("params");
+  writer.value("choiceValue, string facetExpression, string columnName");
+  writer.key("returns");
+  writer.value("number");
+  writer.endObject();
+}

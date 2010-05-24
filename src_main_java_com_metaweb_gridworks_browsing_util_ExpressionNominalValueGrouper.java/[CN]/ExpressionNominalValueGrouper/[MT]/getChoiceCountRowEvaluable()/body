@@ -2,35 +2,7 @@
   return new RowEvaluable(){
     @Override public Object eval(    Project project,    int rowIndex,    Row row,    Properties bindings){
       Object value=evalRow(project,rowIndex,row,bindings);
-      if (value != null) {
-        if (value.getClass().isArray()) {
-          Object[] a=(Object[])value;
-          for (int i=0; i < a.length; i++) {
-            a[i]=getValueCount(a[i]);
-          }
-          return a;
-        }
- else         if (value instanceof Collection<?>) {
-          List<Object> list=ExpressionUtils.toObjectList(value);
-          int count=list.size();
-          for (int i=0; i < count; i++) {
-            list.set(i,getValueCount(list.get(i)));
-          }
-          return list;
-        }
-      }
-      return getValueCount(value);
-    }
-    protected Integer getValueCount(    Object value){
-      if (value == null) {
-        return blankCount;
-      }
- else       if (ExpressionUtils.isError(value)) {
-        return errorCount;
-      }
- else {
-        return choices.get(value).count;
-      }
+      return getChoiceValueCountMultiple(value);
     }
   }
 ;

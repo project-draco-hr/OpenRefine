@@ -1,0 +1,22 @@
+{
+  if (value != null) {
+    if (value.getClass().isArray()) {
+      Object[] choiceValues=(Object[])value;
+      List<Integer> counts=new ArrayList<Integer>(choiceValues.length);
+      for (int i=0; i < choiceValues.length; i++) {
+        counts.add(getChoiceValueCount(choiceValues[i]));
+      }
+      return counts;
+    }
+ else     if (value instanceof Collection<?>) {
+      List<Object> choiceValues=ExpressionUtils.toObjectList(value);
+      List<Integer> counts=new ArrayList<Integer>(choiceValues.size());
+      int count=choiceValues.size();
+      for (int i=0; i < count; i++) {
+        counts.add(getChoiceValueCount(choiceValues.get(i)));
+      }
+      return counts;
+    }
+  }
+  return getChoiceValueCount(value);
+}

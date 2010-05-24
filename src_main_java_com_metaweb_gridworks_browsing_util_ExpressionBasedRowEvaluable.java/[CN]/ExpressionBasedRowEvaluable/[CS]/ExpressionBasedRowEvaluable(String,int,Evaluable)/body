@@ -1,0 +1,5 @@
+{
+  _columnName=columnName;
+  _cellIndex=cellIndex;
+  _eval=eval;
+}

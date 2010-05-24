@@ -1,0 +1,62 @@
+{
+  Object value=rowEvaluable.eval(project,rowIndex,row,bindings);
+  if (ExpressionUtils.isError(value)) {
+    _hasError=true;
+  }
+ else   if (ExpressionUtils.isNonBlankData(value)) {
+    if (value.getClass().isArray()) {
+      Object[] a=(Object[])value;
+      for (      Object v : a) {
+        _totalValueCount++;
+        if (ExpressionUtils.isError(v)) {
+          _hasError=true;
+        }
+ else         if (ExpressionUtils.isNonBlankData(v)) {
+          if (v instanceof Number) {
+            _hasNumeric=true;
+            processValue(((Number)v).doubleValue(),allValues);
+          }
+ else {
+            _hasNonNumeric=true;
+          }
+        }
+ else {
+          _hasBlank=true;
+        }
+      }
+    }
+ else     if (value instanceof Collection<?>) {
+      for (      Object v : ExpressionUtils.toObjectCollection(value)) {
+        _totalValueCount++;
+        if (ExpressionUtils.isError(v)) {
+          _hasError=true;
+        }
+ else         if (ExpressionUtils.isNonBlankData(v)) {
+          if (v instanceof Number) {
+            _hasNumeric=true;
+            processValue(((Number)v).doubleValue(),allValues);
+          }
+ else {
+            _hasNonNumeric=true;
+          }
+        }
+ else {
+          _hasBlank=true;
+        }
+      }
+    }
+ else {
+      _totalValueCount++;
+      if (value instanceof Number) {
+        _hasNumeric=true;
+        processValue(((Number)value).doubleValue(),allValues);
+      }
+ else {
+        _hasNonNumeric=true;
+      }
+    }
+  }
+ else {
+    _hasBlank=true;
+  }
+}

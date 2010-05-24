@@ -1,7 +1,0 @@
-{
-  _evaluable=evaluable;
-  _columnName=columnName;
-  _cellIndex=cellIndex;
-  _index=index;
-  bins=new int[_index.getBins().length];
-}

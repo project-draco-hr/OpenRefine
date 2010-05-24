@@ -1,7 +1,0 @@
-Evaluable evaluable
-String columnName
-int cellIndex
-boolean selectNumeric
-boolean selectNonNumeric
-boolean selectBlank
-boolean selectError

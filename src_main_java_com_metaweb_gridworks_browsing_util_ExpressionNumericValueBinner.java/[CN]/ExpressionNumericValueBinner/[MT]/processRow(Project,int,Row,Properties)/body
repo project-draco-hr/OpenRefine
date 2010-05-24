@@ -1,7 +1,5 @@
 {
-  Cell cell=row.getCell(_cellIndex);
-  ExpressionUtils.bind(bindings,row,rowIndex,_columnName,cell);
-  Object value=_evaluable.evaluate(bindings);
+  Object value=_rowEvaluable.eval(project,rowIndex,row,bindings);
   if (value != null) {
     if (value.getClass().isArray()) {
       Object[] a=(Object[])value;

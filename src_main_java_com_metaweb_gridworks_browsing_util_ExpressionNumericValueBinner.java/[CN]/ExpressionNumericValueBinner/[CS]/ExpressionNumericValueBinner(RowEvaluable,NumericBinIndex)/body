@@ -1,0 +1,5 @@
+{
+  _rowEvaluable=rowEvaluable;
+  _index=index;
+  bins=new int[_index.getBins().length];
+}

@@ -1,0 +1,6 @@
+Project project
+RowEvaluable rowEvaluable
+List<Double> allValues
+int rowIndex
+Row row
+Properties bindings

@@ -1,3 +1,0 @@
-{
-  super(project,columnName,cellIndex,eval);
-}

@@ -1,14 +1,15 @@
 {
   if (_eval != null && _errorMessage == null) {
+    RowEvaluable rowEvaluable=getRowEvaluable(project);
     Column column=project.columnModel.getColumnByCellIndex(_cellIndex);
     String key="numeric-bin:record-based:" + _expression;
     NumericBinIndex index=(NumericBinIndex)column.getPrecompute(key);
     if (index == null) {
-      index=new NumericBinRecordIndex(project,_columnName,_cellIndex,_eval);
+      index=new NumericBinRecordIndex(project,rowEvaluable);
       column.setPrecompute(key,index);
     }
     retrieveDataFromBaseBinIndex(index);
-    ExpressionNumericValueBinner binner=new ExpressionNumericValueBinner(_eval,_columnName,_cellIndex,index);
+    ExpressionNumericValueBinner binner=new ExpressionNumericValueBinner(rowEvaluable,index);
     filteredRecords.accept(project,binner);
     retrieveDataFromBinner(binner);
   }

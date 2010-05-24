@@ -1,0 +1,7 @@
+{
+  SUT=new CsvExporter();
+  writer=new StringWriter();
+  project=new Project();
+  engine=new Engine(project);
+  options=mock(Properties.class);
+}

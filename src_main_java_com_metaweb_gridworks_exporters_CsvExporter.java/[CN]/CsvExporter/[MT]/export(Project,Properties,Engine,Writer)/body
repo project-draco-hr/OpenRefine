@@ -19,7 +19,10 @@
         }
         vals=new String[row.cells.size()];
         for (int i=0; i < vals.length; i++) {
-          vals[i]=row.cells.get(i).value.toString();
+          Cell cell=row.cells.get(i);
+          if (cell != null) {
+            vals[i]=row.cells.get(i).value.toString();
+          }
         }
         csvWriter.writeNext(vals);
         return false;

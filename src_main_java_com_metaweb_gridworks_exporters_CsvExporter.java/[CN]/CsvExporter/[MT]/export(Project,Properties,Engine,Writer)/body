@@ -14,7 +14,7 @@
           for (int i=0; i < cols.length; i++) {
             cols[i]=project.columnModel.columns.get(i).getName();
           }
-          csvWriter.writeNext(cols);
+          csvWriter.writeNext(cols,false);
           columnHeader=false;
         }
         vals=new String[row.cells.size()];
@@ -24,7 +24,7 @@
             vals[i]=row.cells.get(i).value.toString();
           }
         }
-        csvWriter.writeNext(vals);
+        csvWriter.writeNext(vals,false);
         return false;
       }
       @Override public void start(      Project project){

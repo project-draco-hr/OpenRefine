@@ -6,5 +6,5 @@
  catch (  IOException e) {
     Assert.fail();
   }
-  Assert.assertEquals(writer.toString(),"\"column0\"\t\"column1\"\n" + "\"row0cell0\"\t\"row0cell1\"\n" + "\"row1cell0\"\t\"row1cell1\"\n");
+  Assert.assertEquals(writer.toString(),"column0\tcolumn1\n" + "row0cell0\trow0cell1\n" + "row1cell0\trow1cell1\n");
 }

@@ -30,6 +30,12 @@
       @Override public void start(      Project project){
       }
       @Override public void end(      Project project){
+        try {
+          csvWriter.close();
+        }
+ catch (        IOException e) {
+          logger.error("CsvExporter could not close writer : " + e.getMessage());
+        }
       }
     }
 .init(new CSVWriter(writer));

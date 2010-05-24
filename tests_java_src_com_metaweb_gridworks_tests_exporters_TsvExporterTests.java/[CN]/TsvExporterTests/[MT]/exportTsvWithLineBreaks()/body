@@ -1,0 +1,11 @@
+{
+  CreateGrid(3,3);
+  project.rows.get(1).cells.set(1,new Cell("line\n\n\nbreak",null));
+  try {
+    SUT.export(project,options,engine,writer);
+  }
+ catch (  IOException e) {
+    Assert.fail();
+  }
+  Assert.assertEquals(writer.toString(),"\"column0\"\t\"column1\"\t\"column2\"\n" + "\"row0cell0\"\t\"row0cell1\"\t\"row0cell2\"\n" + "\"row1cell0\"\t\"line\n\n\nbreak\"\t\"row1cell2\"\n"+ "\"row2cell0\"\t\"row2cell1\"\t\"row2cell2\"\n");
+}

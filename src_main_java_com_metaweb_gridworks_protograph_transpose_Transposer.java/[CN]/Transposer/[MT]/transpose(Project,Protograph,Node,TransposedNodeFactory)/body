@@ -1,3 +1,0 @@
-{
-  transpose(project,protograph,rootNode,nodeFactory,20);
-}

@@ -1,6 +1,8 @@
 {
   try {
     Project project=getProject(request);
+    Engine engine=getEngine(request,project);
+    FilteredRows filteredRows=engine.getAllFilteredRows();
     response.setCharacterEncoding("UTF-8");
     response.setHeader("Content-Type","application/json");
     String jsonString=request.getParameter("protograph");
@@ -11,14 +13,14 @@
 {
       StringWriter stringWriter=new StringWriter();
       TripleLoaderTransposedNodeFactory nodeFactory=new TripleLoaderTransposedNodeFactory(stringWriter);
-      Transposer.transpose(project,protograph,protograph.getRootNode(0),nodeFactory);
+      Transposer.transpose(project,filteredRows,protograph,protograph.getRootNode(0),nodeFactory);
       nodeFactory.flush();
       sb.append("\"tripleloader\" : ");
       sb.append(JSONObject.quote(stringWriter.toString()));
     }
 {
       MqlreadLikeTransposedNodeFactory nodeFactory=new MqlreadLikeTransposedNodeFactory();
-      Transposer.transpose(project,protograph,protograph.getRootNode(0),nodeFactory);
+      Transposer.transpose(project,filteredRows,protograph,protograph.getRootNode(0),nodeFactory);
       JSONArray results=nodeFactory.getJSON();
       sb.append(", \"mqllike\" : ");
       sb.append(results.toString());

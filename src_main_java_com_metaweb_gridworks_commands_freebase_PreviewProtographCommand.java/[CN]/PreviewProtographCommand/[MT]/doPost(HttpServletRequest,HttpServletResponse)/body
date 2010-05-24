@@ -19,11 +19,12 @@
       sb.append(JSONObject.quote(stringWriter.toString()));
     }
 {
-      MqlreadLikeTransposedNodeFactory nodeFactory=new MqlreadLikeTransposedNodeFactory();
+      StringWriter stringWriter=new StringWriter();
+      MqlwriteLikeTransposedNodeFactory nodeFactory=new MqlwriteLikeTransposedNodeFactory(stringWriter);
       Transposer.transpose(project,filteredRows,protograph,protograph.getRootNode(0),nodeFactory);
-      JSONArray results=nodeFactory.getJSON();
+      nodeFactory.flush();
       sb.append(", \"mqllike\" : ");
-      sb.append(results.toString());
+      sb.append(sb.toString());
     }
     sb.append(" }");
     respond(response,sb.toString());

@@ -1,0 +1,4 @@
+{
+  writer.write(getJSON().toString());
+  writer.flush();
+}

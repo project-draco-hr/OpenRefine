@@ -6,10 +6,6 @@
       CSVWriter csvWriter;
       boolean printColumnHeader=true;
       boolean isFirstRow=true;
-      public RowVisitor init(      CSVWriter writer){
-        this.csvWriter=writer;
-        return this;
-      }
       public RowVisitor init(      CSVWriter writer,      boolean printColumnHeader){
         this.csvWriter=writer;
         this.printColumnHeader=printColumnHeader;

@@ -1,7 +1,0 @@
-{
-  List<String> splitLine=SUT.split(SAMPLE_ROW,lineReader);
-  Assert.assertEquals(3,splitLine.size());
-  Assert.assertEquals("NDB_No",splitLine.get(0));
-  Assert.assertEquals("Shrt_Desc",splitLine.get(1));
-  Assert.assertEquals("Water",splitLine.get(2));
-}

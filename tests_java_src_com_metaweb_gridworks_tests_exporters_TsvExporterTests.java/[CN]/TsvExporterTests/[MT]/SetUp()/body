@@ -1,5 +1,5 @@
 {
-  SUT=new TsvExporter();
+  SUT=new CsvExporter('\t');
   writer=new StringWriter();
   project=new Project();
   engine=new Engine(project);

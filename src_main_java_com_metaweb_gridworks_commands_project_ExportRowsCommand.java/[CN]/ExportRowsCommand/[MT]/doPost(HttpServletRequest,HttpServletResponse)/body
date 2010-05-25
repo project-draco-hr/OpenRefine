@@ -6,7 +6,7 @@
     String format=request.getParameter("format");
     Exporter exporter=s_formatToExporter.get(format.toLowerCase());
     if (exporter == null) {
-      exporter=new TsvExporter();
+      exporter=new CsvExporter('\t');
     }
     response.setCharacterEncoding("UTF-8");
     response.setHeader("Content-Type",exporter.getContentType());

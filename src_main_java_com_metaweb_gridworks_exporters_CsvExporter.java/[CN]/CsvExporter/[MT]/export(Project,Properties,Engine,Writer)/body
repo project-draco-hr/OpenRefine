@@ -46,7 +46,7 @@
         }
       }
     }
-.init(new CSVWriter(writer),printColumnHeader);
+.init(new CSVWriter(writer,separator),printColumnHeader);
     FilteredRows filteredRows=engine.getAllFilteredRows();
     filteredRows.accept(project,visitor);
   }

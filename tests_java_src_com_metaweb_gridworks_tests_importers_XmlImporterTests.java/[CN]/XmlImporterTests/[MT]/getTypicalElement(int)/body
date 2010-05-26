@@ -1,0 +1,3 @@
+{
+  return "<book id=\"" + id + "\">"+ "<author>Author "+ id+ ", The</author>"+ "<title>Book title "+ id+ "</title>"+ "<publish_date>2010-05-26</publish_date>"+ "</book>";
+}

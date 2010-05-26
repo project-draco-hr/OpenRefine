@@ -1,4 +1,5 @@
 {
+  logger.trace("detectRecordElement(XMLStreamReader, String[])");
   List<RecordElementCandidate> descendantCandidates=new ArrayList<RecordElementCandidate>();
   Map<String,Integer> immediateChildCandidateMap=new HashMap<String,Integer>();
   int textNodeCount=0;
@@ -50,6 +51,7 @@
     if (immediateChildCandidates.size() > 0 && immediateChildCandidates.size() < 5) {
       sortRecordElementCandidates(immediateChildCandidates);
       RecordElementCandidate ourCandidate=immediateChildCandidates.get(0);
+      logger.trace("ourCandidate.count : " + ourCandidate.count + "; immediateChildCandidates.size() : "+ immediateChildCandidates.size());
       if (ourCandidate.count / immediateChildCandidates.size() > 5) {
         return ourCandidate;
       }

@@ -1,0 +1,5 @@
+{
+  SUT=new XmlImporter();
+  project=new Project();
+  options=mock(Properties.class);
+}

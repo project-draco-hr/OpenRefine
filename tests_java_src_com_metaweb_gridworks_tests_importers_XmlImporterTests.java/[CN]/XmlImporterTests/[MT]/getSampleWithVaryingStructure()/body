@@ -1,0 +1,10 @@
+{
+  StringBuilder sb=new StringBuilder();
+  sb.append("<?xml version=\"1.0\"?><library>");
+  for (int i=1; i < 6; i++) {
+    sb.append(getTypicalElement(i));
+  }
+  sb.append("<book id=\"6\">" + "<author>With line\n break</author>" + "<title>Book title 6</title>"+ "<genre>New element not seen in other records</genre>"+ "<publish_date>2010-05-26</publish_date>"+ "</book>");
+  sb.append("</library>");
+  return sb.toString();
+}

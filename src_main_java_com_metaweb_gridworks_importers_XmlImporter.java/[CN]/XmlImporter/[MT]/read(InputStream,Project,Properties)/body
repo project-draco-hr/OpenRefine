@@ -1,4 +1,5 @@
 {
+  logger.trace("XmlImporter.read");
   PushbackInputStream pis=new PushbackInputStream(inputStream,BUFFER_SIZE);
   String[] recordPath=null;
 {

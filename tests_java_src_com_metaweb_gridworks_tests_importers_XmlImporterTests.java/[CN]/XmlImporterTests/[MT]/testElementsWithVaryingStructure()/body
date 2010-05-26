@@ -1,0 +1,13 @@
+{
+  RunTest(getSampleWithVaryingStructure());
+  AssertGridCreate(project,5,6);
+  PrintProject(project);
+  Row row0=project.rows.get(0);
+  Assert.assertNotNull(row0);
+  Assert.assertNotNull(row0.cells);
+  Assert.assertEquals(row0.cells.size(),6);
+  Row row5=project.rows.get(5);
+  Assert.assertNotNull(row5);
+  Assert.assertNotNull(row5.cells);
+  Assert.assertEquals(row5.cells.size(),6);
+}

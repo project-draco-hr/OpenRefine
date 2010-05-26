@@ -1,4 +1,5 @@
 {
+  logger.trace("detectRecordElement(inputStream)");
   List<RecordElementCandidate> candidates=new ArrayList<RecordElementCandidate>();
   try {
     XMLStreamReader parser=XMLInputFactory.newInstance().createXMLStreamReader(inputStream);
@@ -18,5 +19,6 @@
     sortRecordElementCandidates(candidates);
     return candidates.get(0).path;
   }
+  logger.info("No candidate elements were found in Xml - at least 6 similar elements are required");
   return null;
 }

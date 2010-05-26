@@ -1,0 +1,8 @@
+{
+  Assert.assertNotNull(project);
+  Assert.assertNotNull(project.columnModel);
+  Assert.assertNotNull(project.columnModel.columns);
+  Assert.assertEquals(project.columnModel.columns.size(),numCols);
+  Assert.assertNotNull(project.rows);
+  Assert.assertEquals(project.rows.size(),numRows);
+}

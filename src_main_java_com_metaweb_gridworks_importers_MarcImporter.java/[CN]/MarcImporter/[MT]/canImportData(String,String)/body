@@ -1,0 +1,15 @@
+{
+  if (contentType != null) {
+    contentType=contentType.toLowerCase().trim();
+    if ("application/marc".equals(contentType)) {
+      return true;
+    }
+  }
+ else   if (fileName != null) {
+    fileName=fileName.toLowerCase();
+    if (fileName.endsWith(".mrc") || fileName.endsWith(".marc") || fileName.contains(".mrc.")|| fileName.contains(".marc.")) {
+      return true;
+    }
+  }
+  return false;
+}

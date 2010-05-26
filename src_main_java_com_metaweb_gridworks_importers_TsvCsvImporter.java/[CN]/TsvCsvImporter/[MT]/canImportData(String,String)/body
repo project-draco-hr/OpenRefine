@@ -1,0 +1,16 @@
+{
+  if (contentType != null) {
+    contentType=contentType.toLowerCase().trim();
+    return false;
+  }
+ else   if (fileName != null) {
+    fileName=fileName.toLowerCase();
+    if (fileName.endsWith(".tsv")) {
+      return true;
+    }
+ else     if (fileName.endsWith(".csv")) {
+      return true;
+    }
+  }
+  return false;
+}

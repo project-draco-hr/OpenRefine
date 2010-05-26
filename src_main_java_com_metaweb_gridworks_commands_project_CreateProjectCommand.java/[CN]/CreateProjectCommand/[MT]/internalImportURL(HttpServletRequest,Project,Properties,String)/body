@@ -17,7 +17,7 @@
     throw new Exception("Cannot retrieve content from " + url,e);
   }
   try {
-    Importer importer=guessImporter(options,connection.getContentType(),url.getPath());
+    Importer importer=guessImporter(connection.getContentType(),url.getPath());
     internalInvokeImporter(project,importer,options,inputStream,connection.getContentEncoding());
   }
   finally {

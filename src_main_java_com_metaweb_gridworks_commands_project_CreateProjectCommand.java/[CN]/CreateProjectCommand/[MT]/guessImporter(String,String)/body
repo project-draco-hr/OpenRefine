@@ -1,0 +1,8 @@
+{
+  for (  Importer i : importers.values()) {
+    if (i.canImportData(contentType,fileName)) {
+      return i;
+    }
+  }
+  return new TsvCsvImporter();
+}

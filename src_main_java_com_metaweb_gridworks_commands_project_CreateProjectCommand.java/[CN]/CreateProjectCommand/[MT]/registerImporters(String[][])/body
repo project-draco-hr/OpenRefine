@@ -1,0 +1,29 @@
+{
+  boolean status=true;
+  for (  String[] importer : importerNames) {
+    String importerName=importer[0];
+    String className=importer[1];
+    logger.debug("Loading command " + importerName + " class: "+ className);
+    Importer cmd;
+    try {
+      cmd=(Importer)Class.forName(className).newInstance();
+    }
+ catch (    InstantiationException e) {
+      logger.error("Failed to load importer class " + className,e);
+      status=false;
+      continue;
+    }
+catch (    IllegalAccessException e) {
+      logger.error("Failed to load importer class " + className,e);
+      status=false;
+      continue;
+    }
+catch (    ClassNotFoundException e) {
+      logger.error("Failed to load importer class " + className,e);
+      status=false;
+      continue;
+    }
+    status|=registerImporter(importerName,cmd);
+  }
+  return status;
+}

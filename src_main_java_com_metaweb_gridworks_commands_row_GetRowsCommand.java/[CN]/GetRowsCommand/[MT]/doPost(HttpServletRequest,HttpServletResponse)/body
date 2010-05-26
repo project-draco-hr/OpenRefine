@@ -27,7 +27,9 @@
       if (sortingJson != null) {
         SortingRowVisitor srv=new SortingRowVisitor(visitor);
         srv.initializeFromJSON(project,sortingJson);
-        visitor=srv;
+        if (srv.hasCriteria()) {
+          visitor=srv;
+        }
       }
       writer.key("mode");
       writer.value("row-based");
@@ -46,7 +48,9 @@
       if (sortingJson != null) {
         SortingRecordVisitor srv=new SortingRecordVisitor(visitor);
         srv.initializeFromJSON(project,sortingJson);
-        visitor=srv;
+        if (srv.hasCriteria()) {
+          visitor=srv;
+        }
       }
       writer.key("mode");
       writer.value("record-based");

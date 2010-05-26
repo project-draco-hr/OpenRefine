@@ -1,0 +1,9 @@
+{
+  try {
+    if (_suffix != null) {
+      writer.write(_suffix);
+    }
+  }
+ catch (  IOException e) {
+  }
+}

@@ -1,0 +1,15 @@
+{
+  if (args.length >= 1) {
+    Object o1=args[0];
+    if (o1 == null) {
+      return "null";
+    }
+ else     if (o1 instanceof Number || o1 instanceof Boolean) {
+      return o1.toString();
+    }
+ else {
+      return JSONObject.quote(o1 instanceof String ? (String)o1 : o1.toString());
+    }
+  }
+  return null;
+}

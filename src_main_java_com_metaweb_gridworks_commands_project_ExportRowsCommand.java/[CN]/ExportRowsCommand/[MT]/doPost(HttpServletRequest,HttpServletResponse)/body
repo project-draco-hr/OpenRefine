@@ -4,6 +4,7 @@
     Project project=getProject(request);
     Engine engine=getEngine(request,project);
     String format=request.getParameter("format");
+    Properties options=getRequestParameters(request);
     Exporter exporter=s_formatToExporter.get(format.toLowerCase());
     if (exporter == null) {
       exporter=new CsvExporter('\t');
@@ -12,10 +13,10 @@
     response.setHeader("Content-Type",exporter.getContentType());
     if (exporter.takeWriter()) {
       PrintWriter writer=response.getWriter();
-      exporter.export(project,new Properties(),engine,writer);
+      exporter.export(project,options,engine,writer);
     }
  else {
-      exporter.export(project,new Properties(),engine,response.getOutputStream());
+      exporter.export(project,options,engine,response.getOutputStream());
     }
   }
  catch (  Exception e) {

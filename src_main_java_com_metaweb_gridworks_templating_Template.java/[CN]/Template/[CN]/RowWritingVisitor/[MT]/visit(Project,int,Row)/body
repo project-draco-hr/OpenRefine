@@ -1,0 +1,7 @@
+{
+  if (limit <= 0 || total < limit) {
+    internalVisit(project,rowIndex,row);
+  }
+  total++;
+  return limit > 0 && total >= limit;
+}

@@ -1,0 +1,10 @@
+{
+  bindings=ExpressionUtils.createBindings(project);
+  try {
+    if (_prefix != null) {
+      writer.write(_prefix);
+    }
+  }
+ catch (  IOException e) {
+  }
+}

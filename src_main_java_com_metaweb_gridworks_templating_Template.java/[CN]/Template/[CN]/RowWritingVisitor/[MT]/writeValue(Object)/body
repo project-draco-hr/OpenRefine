@@ -1,0 +1,14 @@
+{
+  if (v == null) {
+    writer.write("null");
+  }
+ else   if (ExpressionUtils.isError(v)) {
+    writer.write("null");
+  }
+ else   if (v instanceof String) {
+    writer.write((String)v);
+  }
+ else {
+    writer.write(v.toString());
+  }
+}

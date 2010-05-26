@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Quotes a value as a JSON literal value");
+  writer.key("params");
+  writer.value("value");
+  writer.key("returns");
+  writer.value("JSON literal value");
+  writer.endObject();
+}

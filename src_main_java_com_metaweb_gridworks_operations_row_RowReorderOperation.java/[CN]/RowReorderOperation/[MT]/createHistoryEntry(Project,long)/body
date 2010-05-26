@@ -7,7 +7,9 @@
     if (_sorting != null) {
       SortingRowVisitor srv=new SortingRowVisitor(visitor);
       srv.initializeFromJSON(project,_sorting);
-      visitor=srv;
+      if (srv.hasCriteria()) {
+        visitor=srv;
+      }
     }
     engine.getAllRows().accept(project,visitor);
   }
@@ -16,7 +18,9 @@
     if (_sorting != null) {
       SortingRecordVisitor srv=new SortingRecordVisitor(visitor);
       srv.initializeFromJSON(project,_sorting);
-      visitor=srv;
+      if (srv.hasCriteria()) {
+        visitor=srv;
+      }
     }
     engine.getAllRecords().accept(project,visitor);
   }

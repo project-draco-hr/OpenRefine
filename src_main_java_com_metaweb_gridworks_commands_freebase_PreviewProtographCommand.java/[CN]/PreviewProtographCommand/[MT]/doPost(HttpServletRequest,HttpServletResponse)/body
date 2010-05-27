@@ -24,7 +24,7 @@
       Transposer.transpose(project,filteredRows,protograph,protograph.getRootNode(0),nodeFactory);
       nodeFactory.flush();
       sb.append(", \"mqllike\" : ");
-      sb.append(sb.toString());
+      sb.append(stringWriter.toString());
     }
     sb.append(" }");
     respond(response,sb.toString());

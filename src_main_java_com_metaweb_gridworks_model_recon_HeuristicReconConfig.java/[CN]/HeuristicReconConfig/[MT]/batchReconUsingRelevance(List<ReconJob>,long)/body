@@ -20,6 +20,8 @@
       jsonWriter.value("/common/image");
       jsonWriter.key("domain_exclude");
       jsonWriter.value("/freebase");
+      jsonWriter.key("stemmed");
+      jsonWriter.value(1);
       jsonWriter.endObject();
     }
     jsonWriter.endObject();

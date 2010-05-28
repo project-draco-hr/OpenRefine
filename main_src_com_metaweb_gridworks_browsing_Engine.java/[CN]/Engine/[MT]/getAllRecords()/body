@@ -1,0 +1,17 @@
+{
+  return new FilteredRecords(){
+    public void accept(    Project project,    RecordVisitor visitor){
+      try {
+        visitor.start(project);
+        int c=project.recordModel.getRecordCount();
+        for (int r=0; r < c; r++) {
+          visitor.visit(project,project.recordModel.getRecord(r));
+        }
+      }
+  finally {
+        visitor.end(project);
+      }
+    }
+  }
+;
+}

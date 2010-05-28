@@ -1,0 +1,9 @@
+{
+  return new RowEvaluable(){
+    public Object eval(    Project project,    int rowIndex,    Row row,    Properties bindings){
+      Object value=evalRow(project,rowIndex,row,bindings);
+      return getChoiceValueCountMultiple(value);
+    }
+  }
+;
+}

@@ -1,5 +1,0 @@
-{
-  String host=request.getHeader("host");
-  if (host == null)   host=Gridworks.getFullHost();
-  return "http://" + host + "/command/authorize/"+ provider.getHost();
-}

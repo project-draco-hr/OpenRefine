@@ -1,7 +1,0 @@
-{
-  File temp=Gridworks.getTempFile(Long.toString(System.currentTimeMillis()));
-  temp.deleteOnExit();
-  IOUtils.copy(is,temp);
-  is.close();
-  return temp;
-}

@@ -1,0 +1,29 @@
+{
+  boolean status=true;
+  for (  String[] command : commandNames) {
+    String commandName=command[0];
+    String className=command[1];
+    logger.debug("Loading command " + commandName + " class: "+ className);
+    Command cmd;
+    try {
+      cmd=(Command)this.getClass().getClassLoader().loadClass(className).newInstance();
+    }
+ catch (    InstantiationException e) {
+      logger.error("Failed to load command class " + className,e);
+      status=false;
+      continue;
+    }
+catch (    IllegalAccessException e) {
+      logger.error("Failed to load command class " + className,e);
+      status=false;
+      continue;
+    }
+catch (    ClassNotFoundException e) {
+      logger.error("Failed to load command class " + className,e);
+      status=false;
+      continue;
+    }
+    status|=registerCommand(commandName,cmd);
+  }
+  return status;
+}

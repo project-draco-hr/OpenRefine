@@ -1,3 +1,0 @@
-{
-  return Configurations.getInteger("gridworks.max_upload_size",MAX_UPLOAD_SIZE);
-}

@@ -1,0 +1,33 @@
+{
+  writer.write(GridworksServlet.getVersion());
+  writer.write('\n');
+  Properties options=new Properties();
+  options.setProperty("mode","save");
+  options.put("pool",this);
+  Collection<ReconCandidate> candidates2=candidates.values();
+  writer.write("reconCandidateCount=" + candidates2.size());
+  writer.write('\n');
+  for (  ReconCandidate c : candidates2) {
+    JSONWriter jsonWriter=new JSONWriter(writer);
+    try {
+      c.write(jsonWriter,options);
+      writer.write('\n');
+    }
+ catch (    JSONException e) {
+      e.printStackTrace();
+    }
+  }
+  Collection<Recon> recons2=recons.values();
+  writer.write("reconCount=" + recons2.size());
+  writer.write('\n');
+  for (  Recon recon : recons2) {
+    JSONWriter jsonWriter=new JSONWriter(writer);
+    try {
+      recon.write(jsonWriter,options);
+      writer.write('\n');
+    }
+ catch (    JSONException e) {
+      e.printStackTrace();
+    }
+  }
+}

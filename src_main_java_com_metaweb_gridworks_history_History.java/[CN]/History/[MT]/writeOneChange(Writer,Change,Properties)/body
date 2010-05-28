@@ -1,7 +1,0 @@
-{
-  writer.write(Gridworks.getVersion());
-  writer.write('\n');
-  writer.write(change.getClass().getName());
-  writer.write('\n');
-  change.save(writer,options);
-}

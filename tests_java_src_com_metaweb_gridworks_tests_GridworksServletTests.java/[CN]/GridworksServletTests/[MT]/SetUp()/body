@@ -1,7 +1,0 @@
-{
-  SUT=new GridworksServletStub();
-  request=mock(HttpServletRequest.class);
-  response=mock(HttpServletResponse.class);
-  command=mock(Command.class);
-  GridworksServletStub.InsertCommand(TEST_COMMAND_NAME,command);
-}

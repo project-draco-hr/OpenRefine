@@ -1,0 +1,27 @@
+{
+  Engine engine=new Engine(_project);
+  engine.initializeFromJSON(_engineConfig);
+  Column column=_project.columnModel.getColumnByName(_columnName);
+  if (column == null) {
+    throw new Exception("No column named " + _columnName);
+  }
+  _entries=new ArrayList<ReconEntry>(_project.rows.size());
+  _cellIndex=column.getCellIndex();
+  FilteredRows filteredRows=engine.getAllFilteredRows();
+  filteredRows.accept(_project,new RowVisitor(){
+    public void start(    Project project){
+    }
+    public void end(    Project project){
+    }
+    public boolean visit(    Project project,    int rowIndex,    Row row){
+      if (_cellIndex < row.cells.size()) {
+        Cell cell=row.cells.get(_cellIndex);
+        if (cell != null && ExpressionUtils.isNonBlankData(cell.value)) {
+          _entries.add(new ReconEntry(rowIndex,cell));
+        }
+      }
+      return false;
+    }
+  }
+);
+}

@@ -1,0 +1,53 @@
+{
+  String data_dir=Configurations.get("gridworks.data_dir");
+  if (data_dir != null) {
+    return data_dir;
+  }
+  String os=System.getProperty("os.name").toLowerCase();
+  if (os.contains("windows")) {
+    try {
+      DataPath localDataPath=JDataPathSystem.getLocalSystem().getLocalDataPath("Gridworks");
+      File data=new File(fixWindowsUnicodePath(localDataPath.getPath()));
+      data.mkdirs();
+      return data.getAbsolutePath();
+    }
+ catch (    Error e) {
+      logger.warn("Failed to use jdatapath to detect user data path: resorting to environment variables");
+      File parentDir=null;
+      String appData=System.getenv("APPDATA");
+      if (appData != null && appData.length() > 0) {
+        parentDir=new File(appData);
+      }
+ else {
+        String userProfile=System.getenv("USERPROFILE");
+        if (userProfile != null && userProfile.length() > 0) {
+          parentDir=new File(userProfile);
+        }
+      }
+      if (parentDir == null) {
+        parentDir=new File(".");
+      }
+      File data=new File(parentDir,"Gridworks");
+      data.mkdirs();
+      return data.getAbsolutePath();
+    }
+  }
+ else   if (os.contains("mac os x")) {
+    String home=System.getProperty("user.home");
+    String data_home=(home != null) ? home + "/Library/Application Support/Gridworks" : ".gridworks";
+    File data=new File(data_home);
+    data.mkdirs();
+    return data.getAbsolutePath();
+  }
+ else {
+    String data_home=System.getenv("XDG_DATA_HOME");
+    if (data_home == null) {
+      String home=System.getProperty("user.home");
+      if (home == null)       home=".";
+      data_home=home + "/.local/share";
+    }
+    File data=new File(data_home + "/gridworks");
+    data.mkdirs();
+    return data.getAbsolutePath();
+  }
+}

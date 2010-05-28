@@ -1,0 +1,7 @@
+{
+  request=mock(HttpServletRequest.class);
+  response=mock(HttpServletResponse.class);
+  command=mock(Command.class);
+  SUT=new GridworksServletStub();
+  SUT.insertCommand(TEST_COMMAND_NAME,command);
+}

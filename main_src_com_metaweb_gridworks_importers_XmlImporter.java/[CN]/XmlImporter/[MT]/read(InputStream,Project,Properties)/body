@@ -18,6 +18,7 @@
       recordPath=XmlImportUtilities.detectRecordElement(new ByteArrayInputStream(buffer,0,bytes_read));
     }
   }
+  if (recordPath == null)   return;
   ImportColumnGroup rootColumnGroup=new ImportColumnGroup();
   XmlImportUtilities.importXml(pis,project,recordPath,rootColumnGroup);
   XmlImportUtilities.createColumnsFromImport(project,rootColumnGroup);

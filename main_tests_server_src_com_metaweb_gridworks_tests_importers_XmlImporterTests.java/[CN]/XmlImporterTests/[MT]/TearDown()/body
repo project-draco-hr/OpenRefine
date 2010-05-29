@@ -2,4 +2,6 @@
   SUT=null;
   project=null;
   options=null;
+  inputStream.close();
+  inputStream=null;
 }

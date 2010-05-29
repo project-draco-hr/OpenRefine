@@ -1,4 +1,8 @@
 {
+  if (parser.getEventType() == XMLStreamConstants.START_DOCUMENT) {
+    logger.warn("Cannot use findRecord method for START_DOCUMENT event");
+    return;
+  }
   String tagName=parser.getLocalName();
   if (tagName.equals(recordPath[pathIndex])) {
     if (pathIndex < recordPath.length - 1) {

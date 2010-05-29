@@ -1,0 +1,8 @@
+{
+  try {
+    parser.next();
+  }
+ catch (  XMLStreamException e1) {
+    Assert.fail();
+  }
+}

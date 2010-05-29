@@ -1,0 +1,8 @@
+{
+  try {
+    inputStream=new ByteArrayInputStream(xml.getBytes("UTF-8"));
+  }
+ catch (  UnsupportedEncodingException e1) {
+    Assert.fail();
+  }
+}

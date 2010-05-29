@@ -1,0 +1,8 @@
+{
+  String columnLocalName="author";
+  String text="Author1, The";
+  int commonStartingRowIndex=0;
+  project.rows.add(new Row(0));
+  SUT.addCellWrapper(project,columnGroup,record,columnLocalName,text,commonStartingRowIndex);
+  Assert.fail();
+}

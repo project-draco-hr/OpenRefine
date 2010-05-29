@@ -1,0 +1,7 @@
+{
+  org.apache.log4j.Logger.getRootLogger().setLevel(Level.toLevel("trace"));
+  SUT=new XmlImportUtilitiesStub();
+  project=new Project();
+  columnGroup=new ImportColumnGroup();
+  record=new ImportRecord();
+}

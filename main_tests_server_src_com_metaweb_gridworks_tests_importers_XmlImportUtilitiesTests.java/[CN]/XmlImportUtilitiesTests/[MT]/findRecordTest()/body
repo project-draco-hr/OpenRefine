@@ -1,0 +1,16 @@
+{
+  loadSampleXml();
+  createParser();
+  ParserSkip();
+  String[] recordPath=new String[]{"library","book"};
+  int pathIndex=0;
+  try {
+    SUT.findRecordWrapper(project,parser,recordPath,pathIndex,columnGroup);
+  }
+ catch (  XMLStreamException e) {
+    Assert.fail();
+  }
+  TestTools.PrintProject(project);
+  TestTools.AssertGridCreated(project,0,6);
+  Assert.assertEquals(project.rows.get(0).cells.size(),4);
+}

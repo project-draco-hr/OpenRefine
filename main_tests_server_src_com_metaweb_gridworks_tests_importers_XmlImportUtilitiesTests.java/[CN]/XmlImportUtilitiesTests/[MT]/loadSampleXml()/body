@@ -1,0 +1,3 @@
+{
+  loadXml(XmlImporterTests.getSample());
+}

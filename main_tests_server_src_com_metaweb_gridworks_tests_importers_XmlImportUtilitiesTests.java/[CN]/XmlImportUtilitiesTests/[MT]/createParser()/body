@@ -1,0 +1,11 @@
+{
+  try {
+    parser=XMLInputFactory.newInstance().createXMLStreamReader(inputStream);
+  }
+ catch (  XMLStreamException e1) {
+    Assert.fail();
+  }
+catch (  FactoryConfigurationError e1) {
+    Assert.fail();
+  }
+}

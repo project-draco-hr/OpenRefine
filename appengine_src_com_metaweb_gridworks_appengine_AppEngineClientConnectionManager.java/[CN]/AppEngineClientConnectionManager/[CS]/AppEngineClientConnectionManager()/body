@@ -1,0 +1,6 @@
+{
+  SocketFactory noop_sf=new NoopSocketFactory();
+  schemes=new SchemeRegistry();
+  schemes.register(new Scheme("http",noop_sf,80));
+  schemes.register(new Scheme("https",noop_sf,443));
+}

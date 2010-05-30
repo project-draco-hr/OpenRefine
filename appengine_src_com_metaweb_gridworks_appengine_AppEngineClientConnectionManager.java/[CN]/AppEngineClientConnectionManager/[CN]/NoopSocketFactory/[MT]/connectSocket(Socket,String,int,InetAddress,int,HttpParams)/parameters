@@ -1,0 +1,6 @@
+Socket sock
+String host
+int port
+InetAddress addr
+int lport
+HttpParams params

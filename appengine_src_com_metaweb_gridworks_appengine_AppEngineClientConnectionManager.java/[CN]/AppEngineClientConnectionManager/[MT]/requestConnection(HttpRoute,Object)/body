@@ -1,0 +1,11 @@
+{
+  return new ClientConnectionRequest(){
+    public void abortRequest(){
+      return;
+    }
+    public ManagedClientConnection getConnection(    long idletime,    TimeUnit tunit){
+      return AppEngineClientConnectionManager.this.getConnection(route,state);
+    }
+  }
+;
+}

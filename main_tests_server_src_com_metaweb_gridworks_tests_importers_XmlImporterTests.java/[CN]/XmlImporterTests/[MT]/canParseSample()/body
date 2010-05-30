@@ -1,10 +1,9 @@
 {
   RunTest(getSample());
-  AssertGridCreate(project,4,6);
-  PrintProject(project);
+  TestTools.AssertGridCreated(project,4,6);
+  TestTools.PrintProject(project);
   Row row=project.rows.get(0);
   Assert.assertNotNull(row);
-  Assert.assertNotNull(row.cells);
-  Assert.assertNotNull(row.cells.get(2));
-  Assert.assertEquals(row.cells.get(2).value,"Author 1, The");
+  Assert.assertNotNull(row.getCell(1));
+  Assert.assertEquals(row.getCell(1).value,"Author 1, The");
 }

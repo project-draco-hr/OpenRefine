@@ -1,7 +1,7 @@
 {
+  SUT.removeCommand(TEST_COMMAND_NAME);
   SUT=null;
   request=null;
   response=null;
   command=null;
-  GridworksServletStub.RemoveCommand(TEST_COMMAND_NAME);
 }

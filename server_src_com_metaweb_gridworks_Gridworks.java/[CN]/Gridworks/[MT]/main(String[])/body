@@ -7,8 +7,6 @@
     System.setProperty("python.path","lib/python");
   }
   org.apache.log4j.Logger.getRootLogger().setLevel(Level.toLevel(Configurations.get("gridworks.verbosity","info")));
-  tempDir=new File(Configurations.get("gridworks.temp","temp"));
-  if (!tempDir.exists())   tempDir.mkdirs();
   port=Configurations.getInteger("gridworks.port",DEFAULT_PORT);
   host=Configurations.get("gridworks.host",DEFAULT_HOST);
   Gridworks gridworks=new Gridworks();

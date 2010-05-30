@@ -1,8 +1,7 @@
 {
   boolean printColumnHeader=true;
   if (options != null) {
-    String printColHead=options.getProperty("printColumnHeader");
-    if (printColHead != null)     printColumnHeader=!printColHead.toLowerCase().equals("false");
+    printColumnHeader=Boolean.parseBoolean(options.getProperty("printColumnHeader"));
   }
   RowVisitor visitor=new RowVisitor(){
     CSVWriter csvWriter;
@@ -33,9 +32,9 @@
       csvWriter.writeNext(vals,false);
       return false;
     }
-    public void start(    Project project){
+    @Override public void start(    Project project){
     }
-    public void end(    Project project){
+    @Override public void end(    Project project){
       try {
         csvWriter.close();
       }

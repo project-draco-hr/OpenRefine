@@ -6,7 +6,7 @@
       this.project=project;
       return this;
     }
-    public int compare(    IndexedRow o1,    IndexedRow o2){
+    @Override public int compare(    IndexedRow o1,    IndexedRow o2){
       return SortingRowVisitor.this.compare(project,o1.row,o1.index,o2.row,o2.index);
     }
   }

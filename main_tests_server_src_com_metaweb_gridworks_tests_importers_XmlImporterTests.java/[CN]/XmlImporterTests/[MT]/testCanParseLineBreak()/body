@@ -1,7 +1,7 @@
 {
   RunTest(getSampleWithLineBreak());
-  TestTools.AssertGridCreated(project,4,6);
-  TestTools.PrintProject(project);
+  log(project);
+  assertProjectCreated(project,4,6);
   Row row=project.rows.get(3);
   Assert.assertNotNull(row);
   Assert.assertEquals(row.cells.size(),4);

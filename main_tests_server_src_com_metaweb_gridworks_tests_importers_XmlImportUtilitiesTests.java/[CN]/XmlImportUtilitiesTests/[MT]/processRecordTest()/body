@@ -8,7 +8,7 @@
  catch (  XMLStreamException e) {
     Assert.fail();
   }
-  TestTools.PrintProject(project);
+  log(project);
   Assert.assertNotNull(project.rows);
   Assert.assertEquals(project.rows.size(),1);
   Row row=project.rows.get(0);

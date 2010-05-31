@@ -15,8 +15,8 @@
   columnGroup.columns.put("b",ic2);
   columnGroup.subgroups.put("e",subGroup);
   XmlImportUtilitiesStub.createColumnsFromImport(project,columnGroup);
-  TestTools.PrintProject(project);
-  TestTools.AssertGridCreated(project,4,0);
+  log(project);
+  assertProjectCreated(project,4,0);
   Assert.assertEquals(project.columnModel.columns.get(0).getName(),"world");
   Assert.assertEquals(project.columnModel.columns.get(1).getName(),"hello");
   Assert.assertEquals(project.columnModel.columns.get(2).getName(),"bar");

@@ -2,6 +2,6 @@
   SUT=null;
   project=null;
   options=null;
-  inputStream.close();
+  if (inputStream != null)   inputStream.close();
   inputStream=null;
 }

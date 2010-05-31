@@ -1,7 +1,7 @@
 {
   RunTest(getSampleWithVaryingStructure());
-  TestTools.AssertGridCreated(project,5,6);
-  TestTools.PrintProject(project);
+  log(project);
+  assertProjectCreated(project,5,6);
   Row row0=project.rows.get(0);
   Assert.assertNotNull(row0);
   Assert.assertEquals(row0.cells.size(),6);

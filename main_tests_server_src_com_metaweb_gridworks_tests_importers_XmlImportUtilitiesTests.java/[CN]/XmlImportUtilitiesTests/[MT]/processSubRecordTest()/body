@@ -8,6 +8,6 @@
  catch (  XMLStreamException e) {
     Assert.fail();
   }
-  TestTools.PrintProject(project);
+  log(project);
   Assert.fail();
 }

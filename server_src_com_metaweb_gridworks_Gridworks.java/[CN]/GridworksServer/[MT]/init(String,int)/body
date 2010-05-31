@@ -14,21 +14,26 @@
   connector.setMaxIdleTime(Configurations.getInteger("gridworks.connection.max_idle_time",60000));
   connector.setStatsOn(false);
   this.addConnector(connector);
-  final File contextRoot=new File(Configurations.get("gridworks.webapp","webapp"));
-  final String contextPath=Configurations.get("gridworks.context_path","/");
-  File webXml=new File(contextRoot,"WEB-INF/web.xml");
-  if (!webXml.isFile()) {
-    logger.warn("Warning: Failed to find web application. Could not find 'web.xml' at '" + webXml.getAbsolutePath() + "'");
-    System.exit(-1);
+  File webapp=new File(Configurations.get("gridworks.webapp","main/webapp"));
+  if (!isWebapp(webapp)) {
+    webapp=new File("main/webapp");
+    if (!isWebapp(webapp)) {
+      webapp=new File("webapp");
+      if (!isWebapp(webapp)) {
+        logger.warn("Warning: Failed to find web application at '" + webapp.getAbsolutePath() + "'");
+        System.exit(-1);
+      }
+    }
   }
-  logger.info("Initializing context: '" + contextPath + "' from '"+ contextRoot.getAbsolutePath()+ "'");
-  WebAppContext context=new WebAppContext(contextRoot.getAbsolutePath(),contextPath);
+  final String contextPath=Configurations.get("gridworks.context_path","/");
+  logger.info("Initializing context: '" + contextPath + "' from '"+ webapp.getAbsolutePath()+ "'");
+  WebAppContext context=new WebAppContext(webapp.getAbsolutePath(),contextPath);
   context.setMaxFormContentSize(1048576);
   this.setHandler(context);
   this.setStopAtShutdown(true);
   this.setSendServerVersion(true);
   if (Configurations.getBoolean("gridworks.autoreloading",false)) {
-    scanForUpdates(contextRoot,context);
+    scanForUpdates(webapp,context);
   }
   this.start();
   ServletHolder servlet=context.getServletHandler().getServlet("gridworks");

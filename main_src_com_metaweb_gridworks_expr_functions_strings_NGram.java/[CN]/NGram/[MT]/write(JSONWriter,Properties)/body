@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns an array of the word ngrams of s");
+  writer.key("params");
+  writer.value("string s, number n");
+  writer.key("returns");
+  writer.value("array of strings");
+  writer.endObject();
+}

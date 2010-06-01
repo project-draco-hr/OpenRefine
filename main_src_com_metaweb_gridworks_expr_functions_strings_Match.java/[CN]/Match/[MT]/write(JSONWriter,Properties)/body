@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns an array of the groups matching the given regular expression");
+  writer.key("params");
+  writer.value("string or regexp");
+  writer.key("returns");
+  writer.value("array of strings");
+  writer.endObject();
+}

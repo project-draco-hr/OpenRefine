@@ -36,7 +36,5 @@
     scanForUpdates(webapp,context);
   }
   this.start();
-  ServletHolder servlet=context.getServletHandler().getServlet("gridworks");
-  servlet.setInitParameter("gridworks.data",getDataDir());
-  servlet.doStart();
+  configure(context);
 }

@@ -1,3 +1,3 @@
 {
-  verify(request,times(1)).getPathInfo();
+  verify(request,times(2)).getPathInfo();
 }

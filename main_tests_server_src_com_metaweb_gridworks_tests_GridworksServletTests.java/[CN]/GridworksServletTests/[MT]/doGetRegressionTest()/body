@@ -1,7 +1,8 @@
 {
   whenGetCommandNameThenReturn(TEST_COMMAND_PATH);
+  whenGetMethodThenReturn(GET);
   try {
-    SUT.wrapDoGet(request,response);
+    SUT.wrapService(request,response);
   }
  catch (  ServletException e) {
     Assert.fail();

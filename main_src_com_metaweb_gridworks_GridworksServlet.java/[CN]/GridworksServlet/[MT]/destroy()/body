@@ -9,6 +9,6 @@
     ProjectManager.singleton=null;
   }
   this.config=null;
-  super.destroy();
   logger.trace("< destroy");
+  super.destroy();
 }

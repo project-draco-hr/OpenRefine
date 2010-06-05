@@ -1,5 +1,5 @@
 {
-  String commandName=request.getPathInfo().substring(1);
+  String commandName=request.getPathInfo().substring("/command/".length());
   int slash=commandName.indexOf('/');
   return slash > 0 ? commandName.substring(0,slash) : commandName;
 }

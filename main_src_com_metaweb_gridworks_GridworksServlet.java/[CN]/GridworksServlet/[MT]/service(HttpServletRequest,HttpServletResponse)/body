@@ -1,0 +1,27 @@
+{
+  if (request.getPathInfo().startsWith("/command")) {
+    String commandName=getCommandName(request);
+    Command command=commands.get(commandName);
+    if (command != null) {
+      if (request.getMethod().equals("GET")) {
+        logger.trace("> GET {}",commandName);
+        command.doGet(request,response);
+        logger.trace("< GET {}",commandName);
+      }
+ else       if (request.getMethod().equals("POST")) {
+        logger.trace("> POST {}",commandName);
+        command.doPost(request,response);
+        logger.trace("< POST {}",commandName);
+      }
+ else {
+        response.sendError(405);
+      }
+    }
+ else {
+      response.sendError(404);
+    }
+  }
+ else {
+    super.service(request,response);
+  }
+}

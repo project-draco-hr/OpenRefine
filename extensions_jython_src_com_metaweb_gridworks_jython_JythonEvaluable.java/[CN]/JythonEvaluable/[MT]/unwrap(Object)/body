@@ -1,0 +1,17 @@
+{
+  if (result != null) {
+    if (result instanceof JythonObjectWrapper) {
+      return ((JythonObjectWrapper)result)._obj;
+    }
+ else     if (result instanceof JythonHasFieldsWrapper) {
+      return ((JythonHasFieldsWrapper)result)._obj;
+    }
+ else     if (result instanceof PyString) {
+      return ((PyString)result).asString();
+    }
+ else     if (result instanceof PyObject) {
+      return unwrap((PyObject)result);
+    }
+  }
+  return result;
+}

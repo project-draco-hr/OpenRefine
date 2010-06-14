@@ -1,0 +1,3 @@
+String name
+LanguageSpecificParser parser
+String defaultExpression

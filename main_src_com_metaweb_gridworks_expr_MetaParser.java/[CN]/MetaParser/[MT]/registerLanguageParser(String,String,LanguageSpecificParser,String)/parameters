@@ -1,0 +1,4 @@
+String languagePrefix
+String name
+LanguageSpecificParser parser
+String defaultExpression

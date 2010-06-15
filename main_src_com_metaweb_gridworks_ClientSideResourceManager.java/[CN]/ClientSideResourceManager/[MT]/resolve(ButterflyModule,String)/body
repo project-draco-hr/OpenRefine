@@ -1,0 +1,9 @@
+{
+  StringBuffer sb=new StringBuffer();
+  MountPoint mountPoint=module.getMountPoint();
+  boolean slashed=path.startsWith("/");
+  char[] mountPointChars=mountPoint.getMountPoint().toCharArray();
+  sb.append(mountPointChars,0,slashed ? mountPointChars.length - 1 : mountPointChars.length);
+  sb.append(path);
+  return sb.toString();
+}

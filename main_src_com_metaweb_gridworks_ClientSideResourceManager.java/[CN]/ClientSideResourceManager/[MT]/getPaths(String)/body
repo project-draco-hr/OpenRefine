@@ -1,0 +1,11 @@
+{
+  ClientSideResourceBundle bundle=s_bundles.get(bundleName);
+  if (bundle == null) {
+    return new String[]{};
+  }
+ else {
+    String[] paths=new String[bundle._pathList.size()];
+    bundle._pathList.toArray(paths);
+    return paths;
+  }
+}

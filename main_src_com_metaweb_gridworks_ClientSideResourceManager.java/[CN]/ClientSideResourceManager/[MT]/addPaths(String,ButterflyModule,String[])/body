@@ -1,0 +1,14 @@
+{
+  ClientSideResourceBundle bundle=s_bundles.get(bundleName);
+  if (bundle == null) {
+    bundle=new ClientSideResourceBundle();
+    s_bundles.put(bundleName,bundle);
+  }
+  for (  String path : paths) {
+    String fullPath=resolve(module,path);
+    if (!bundle._pathSet.contains(fullPath)) {
+      bundle._pathSet.add(fullPath);
+      bundle._pathList.add(fullPath);
+    }
+  }
+}

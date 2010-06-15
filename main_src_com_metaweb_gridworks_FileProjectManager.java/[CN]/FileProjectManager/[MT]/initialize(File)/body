@@ -1,6 +1,6 @@
 {
   if (singleton == null) {
     logger.info("Using workspace directory: {}",dir.getAbsolutePath());
-    singleton=new ProjectManager(dir);
+    singleton=new FileProjectManager(dir);
   }
 }

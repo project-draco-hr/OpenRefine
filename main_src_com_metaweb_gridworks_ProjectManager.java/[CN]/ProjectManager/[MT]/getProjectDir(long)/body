@@ -1,3 +1,0 @@
-{
-  return getProjectDir(_workspaceDir,projectID);
-}

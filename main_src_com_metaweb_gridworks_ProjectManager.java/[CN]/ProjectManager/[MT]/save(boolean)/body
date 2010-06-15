@@ -1,6 +1,0 @@
-{
-  if (allModified || _busy == 0) {
-    saveProjects(allModified);
-    saveWorkspace();
-  }
-}

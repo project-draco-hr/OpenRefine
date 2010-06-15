@@ -7,5 +7,5 @@
   newCell=new Cell(value,cell != null ? cell.recon : null);
   String description="Edit single cell on row " + (rowIndex + 1) + ", column "+ column.getName();
   Change change=new CellChange(rowIndex,cellIndex,cell,newCell);
-  return new HistoryEntry(historyEntryID,_project,description,null,change);
+  return ProjectManager.singleton.createHistoryEntry(historyEntryID,_project,description,null,change);
 }

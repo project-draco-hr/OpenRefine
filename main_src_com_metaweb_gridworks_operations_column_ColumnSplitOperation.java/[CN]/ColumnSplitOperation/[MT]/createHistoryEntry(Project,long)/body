@@ -51,5 +51,5 @@
   filteredRows.accept(project,rowVisitor);
   String description="Split " + rowIndices.size() + " cell(s) in column "+ _columnName+ " into several columns"+ ("separator".equals(_mode) ? " by separator" : " by field lengths");
   Change change=new ColumnSplitChange(_columnName,columnNames,rowIndices,tuples,_removeOriginalColumn);
-  return new HistoryEntry(historyEntryID,project,description,this,change);
+  return ProjectManager.singleton.createHistoryEntry(historyEntryID,project,description,this,change);
 }

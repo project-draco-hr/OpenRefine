@@ -1,0 +1,3 @@
+{
+  return new FileHistoryEntry(id,project,description,operation,change);
+}

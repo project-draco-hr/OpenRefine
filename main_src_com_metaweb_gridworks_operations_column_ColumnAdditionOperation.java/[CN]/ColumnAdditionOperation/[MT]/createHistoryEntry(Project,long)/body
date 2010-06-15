@@ -9,5 +9,5 @@
   filteredRows.accept(project,createRowVisitor(project,cellsAtRows));
   String description=createDescription(column,cellsAtRows);
   Change change=new ColumnAdditionChange(_newColumnName,_columnInsertIndex,cellsAtRows);
-  return new HistoryEntry(historyEntryID,project,description,this,change);
+  return ProjectManager.singleton.createHistoryEntry(historyEntryID,project,description,this,change);
 }

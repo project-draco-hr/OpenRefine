@@ -1,6 +1,0 @@
-{
-  File changeFile=getChangeFile();
-  if (!(changeFile.exists())) {
-    saveChange(changeFile);
-  }
-}

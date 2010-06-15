@@ -1,9 +1,0 @@
-{
-  File changeFile=getChangeFile();
-  try {
-    loadChange(changeFile);
-  }
- catch (  Exception e) {
-    throw new RuntimeException("Failed to load change file " + changeFile.getAbsolutePath(),e);
-  }
-}

@@ -1,5 +1,0 @@
-{
-  File dir=new File(ProjectManager.singleton.getProjectDir(projectID),"history");
-  dir.mkdirs();
-  return dir;
-}

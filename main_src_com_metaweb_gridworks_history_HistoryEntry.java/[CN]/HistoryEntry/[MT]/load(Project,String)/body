@@ -4,5 +4,5 @@
   if (obj.has(OPERATION) && !obj.isNull(OPERATION)) {
     operation=OperationRegistry.reconstruct(project,obj.getJSONObject(OPERATION));
   }
-  return new HistoryEntry(obj.getLong("id"),project.id,obj.getString("description"),operation,ParsingUtilities.stringToDate(obj.getString("time")));
+  return ProjectManager.singleton.createHistoryEntry(obj.getLong("id"),project.id,obj.getString("description"),operation,ParsingUtilities.stringToDate(obj.getString("time")));
 }

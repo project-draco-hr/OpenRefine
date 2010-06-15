@@ -51,7 +51,7 @@
   }
   if (!_canceled) {
     Change reconChange=new ReconChange(cellChanges,_columnName,_reconConfig,null);
-    HistoryEntry historyEntry=new HistoryEntry(_historyEntryID,_project,_description,ReconOperation.this,reconChange);
+    HistoryEntry historyEntry=ProjectManager.singleton.createHistoryEntry(_historyEntryID,_project,_description,ReconOperation.this,reconChange);
     _project.history.addEntry(historyEntry);
     _project.processManager.onDoneProcess(this);
   }

@@ -13,5 +13,5 @@
     e.printStackTrace();
   }
   String description=createDescription(column,cellChanges);
-  return new HistoryEntry(historyEntryID,project,description,this,createChange(project,column,cellChanges));
+  return ProjectManager.singleton.createHistoryEntry(historyEntryID,project,description,this,createChange(project,column,cellChanges));
 }

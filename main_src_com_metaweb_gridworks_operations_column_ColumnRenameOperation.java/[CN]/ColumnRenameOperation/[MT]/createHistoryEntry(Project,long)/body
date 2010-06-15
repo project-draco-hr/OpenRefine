@@ -6,5 +6,5 @@
     throw new Exception("Another column already named " + _newColumnName);
   }
   Change change=new ColumnRenameChange(_oldColumnName,_newColumnName);
-  return new HistoryEntry(historyEntryID,project,getBriefDescription(null),ColumnRenameOperation.this,change);
+  return ProjectManager.singleton.createHistoryEntry(historyEntryID,project,getBriefDescription(null),ColumnRenameOperation.this,change);
 }

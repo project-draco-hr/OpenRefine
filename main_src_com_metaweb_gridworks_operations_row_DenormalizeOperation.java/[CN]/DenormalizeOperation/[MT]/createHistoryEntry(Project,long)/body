@@ -22,5 +22,5 @@
     }
     newRows.add(newRow != null ? newRow : oldRow);
   }
-  return new HistoryEntry(historyEntryID,project,getBriefDescription(project),DenormalizeOperation.this,new MassRowChange(newRows));
+  return ProjectManager.singleton.createHistoryEntry(historyEntryID,project,getBriefDescription(project),DenormalizeOperation.this,new MassRowChange(newRows));
 }

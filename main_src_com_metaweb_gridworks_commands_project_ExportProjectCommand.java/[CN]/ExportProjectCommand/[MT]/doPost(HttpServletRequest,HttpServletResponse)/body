@@ -5,7 +5,7 @@
     response.setHeader("Content-Type","application/x-gzip");
     OutputStream os=response.getOutputStream();
     try {
-      gzipTarToOutputStream(ProjectManager.singleton.getProjectDir(project.id),os);
+      gzipTarToOutputStream(((FileProjectManager)ProjectManager.singleton).getProjectDir(project.id),os);
     }
   finally {
       os.close();

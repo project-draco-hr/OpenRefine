@@ -1,5 +1,5 @@
 {
-  File destDir=ProjectManager.singleton.getProjectDir(projectID);
+  File destDir=((FileProjectManager)ProjectManager.singleton).getProjectDir(projectID);
   destDir.mkdirs();
   if (gziped) {
     GZIPInputStream gis=new GZIPInputStream(inputStream);

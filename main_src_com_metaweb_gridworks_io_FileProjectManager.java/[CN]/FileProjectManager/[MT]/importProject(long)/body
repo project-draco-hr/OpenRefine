@@ -1,0 +1,12 @@
+{
+synchronized (this) {
+    ProjectMetadata metadata=ProjectMetadataUtilities.load(getProjectDir(projectID));
+    if (metadata != null) {
+      _projectsMetadata.put(projectID,metadata);
+      return true;
+    }
+ else {
+      return false;
+    }
+  }
+}

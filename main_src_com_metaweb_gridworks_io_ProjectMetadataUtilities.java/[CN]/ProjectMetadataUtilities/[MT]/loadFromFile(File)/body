@@ -1,0 +1,11 @@
+{
+  FileReader reader=new FileReader(metadataFile);
+  try {
+    JSONTokener tokener=new JSONTokener(reader);
+    JSONObject obj=(JSONObject)tokener.nextValue();
+    return ProjectMetadata.loadFromJSON(obj);
+  }
+  finally {
+    reader.close();
+  }
+}

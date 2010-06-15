@@ -1,0 +1,29 @@
+{
+  FileWriter writer=new FileWriter(file);
+  try {
+    JSONWriter jsonWriter=new JSONWriter(writer);
+    jsonWriter.object();
+    jsonWriter.key("projectIDs");
+    jsonWriter.array();
+    for (    Long id : _projectsMetadata.keySet()) {
+      ProjectMetadata metadata=_projectsMetadata.get(id);
+      if (metadata != null) {
+        jsonWriter.value(id);
+        try {
+          ProjectMetadataUtilities.save(metadata,getProjectDir(id));
+        }
+ catch (        Exception e) {
+          e.printStackTrace();
+        }
+      }
+    }
+    jsonWriter.endArray();
+    writer.write('\n');
+    jsonWriter.key("expressions");
+    JSONUtilities.writeStringList(jsonWriter,_expressions);
+    jsonWriter.endObject();
+  }
+  finally {
+    writer.close();
+  }
+}

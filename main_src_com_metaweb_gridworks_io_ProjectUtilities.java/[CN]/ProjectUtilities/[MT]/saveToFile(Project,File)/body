@@ -1,0 +1,23 @@
+{
+  ZipOutputStream out=new ZipOutputStream(new FileOutputStream(file));
+  try {
+    Pool pool=new Pool();
+    out.putNextEntry(new ZipEntry("data.txt"));
+    try {
+      project.saveToOutputStream(out,pool);
+    }
+  finally {
+      out.closeEntry();
+    }
+    out.putNextEntry(new ZipEntry("pool.txt"));
+    try {
+      pool.save(out);
+    }
+  finally {
+      out.closeEntry();
+    }
+  }
+  finally {
+    out.close();
+  }
+}

@@ -1,0 +1,5 @@
+{
+  Properties options=new Properties();
+  options.setProperty("mode","save");
+  write(jsonWriter,options);
+}

@@ -1,0 +1,10 @@
+{
+  Writer writer=new OutputStreamWriter(new FileOutputStream(metadataFile));
+  try {
+    JSONWriter jsonWriter=new JSONWriter(writer);
+    projectMeta.write(jsonWriter);
+  }
+  finally {
+    writer.close();
+  }
+}

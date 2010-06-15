@@ -9,5 +9,13 @@
     Assert.fail();
   }
   log(project);
-  Assert.fail();
+  Assert.assertEquals(columnGroup.subgroups.size(),1);
+  Assert.assertEquals(columnGroup.name,"");
+  Assert.assertNotNull(columnGroup.subgroups.get("library"));
+  Assert.assertEquals(columnGroup.subgroups.get("library").subgroups.size(),1);
+  ImportColumnGroup book=columnGroup.subgroups.get("library").subgroups.get("book");
+  Assert.assertNotNull(book);
+  Assert.assertEquals(book.subgroups.size(),2);
+  Assert.assertNotNull(book.subgroups.get("author"));
+  Assert.assertNotNull(book.subgroups.get("genre"));
 }

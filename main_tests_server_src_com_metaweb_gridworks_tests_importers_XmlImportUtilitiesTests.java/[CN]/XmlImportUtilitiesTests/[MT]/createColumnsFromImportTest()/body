@@ -1,18 +1,10 @@
 {
   ImportColumnGroup columnGroup=new ImportColumnGroup();
-  ImportColumn ic1=new ImportColumn();
-  ic1.name="hello";
-  ImportColumn ic2=new ImportColumn();
-  ic2.name="world";
   ImportColumnGroup subGroup=new ImportColumnGroup();
-  ImportColumn ic3=new ImportColumn();
-  ic3.name="foo";
-  ImportColumn ic4=new ImportColumn();
-  ic4.name="bar";
-  subGroup.columns.put("c",ic3);
-  subGroup.columns.put("d",ic4);
-  columnGroup.columns.put("a",ic1);
-  columnGroup.columns.put("b",ic2);
+  columnGroup.columns.put("a",new ImportColumn("hello"));
+  columnGroup.columns.put("b",new ImportColumn("world"));
+  subGroup.columns.put("c",new ImportColumn("foo"));
+  subGroup.columns.put("d",new ImportColumn("bar"));
   columnGroup.subgroups.put("e",subGroup);
   XmlImportUtilitiesStub.createColumnsFromImport(project,columnGroup);
   log(project);

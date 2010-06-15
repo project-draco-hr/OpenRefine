@@ -5,4 +5,10 @@
   log(project);
   assertProjectCreated(project,0,6);
   Assert.assertEquals(project.rows.get(0).cells.size(),4);
+  Assert.assertEquals(columnGroup.subgroups.size(),1);
+  Assert.assertNotNull(columnGroup.subgroups.get("book"));
+  Assert.assertEquals(columnGroup.subgroups.get("book").subgroups.size(),3);
+  Assert.assertNotNull(columnGroup.subgroups.get("book").subgroups.get("author"));
+  Assert.assertNotNull(columnGroup.subgroups.get("book").subgroups.get("title"));
+  Assert.assertNotNull(columnGroup.subgroups.get("book").subgroups.get("publish_date"));
 }

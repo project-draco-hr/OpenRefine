@@ -3,5 +3,5 @@
   List<Change> changes=new ArrayList<Change>(project.rows.size());
   FilteredRows filteredRows=engine.getAllFilteredRows();
   filteredRows.accept(project,createRowVisitor(project,changes));
-  return ProjectManager.singleton.createHistoryEntry(historyEntryID,project,(_flagged ? "Flag" : "Unflag") + " " + changes.size()+ " rows",this,new MassChange(changes,false));
+  return new HistoryEntry(historyEntryID,project,(_flagged ? "Flag" : "Unflag") + " " + changes.size()+ " rows",this,new MassChange(changes,false));
 }

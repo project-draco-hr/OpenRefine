@@ -1,0 +1,6 @@
+{
+  File changeFile=getChangeFile(historyEntry);
+  if (!(changeFile.exists())) {
+    saveChange(historyEntry,changeFile);
+  }
+}

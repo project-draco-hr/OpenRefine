@@ -1,15 +1,15 @@
 {
-  if (_change == null) {
-    loadChange();
+  if (getChange() == null) {
+    ProjectManager.singleton.getHistoryEntryManager().loadChange(this);
   }
 synchronized (project) {
-    _change.apply(project);
+    getChange().apply(project);
     try {
-      saveChange();
+      _manager.saveChange(this);
     }
  catch (    Exception e) {
       e.printStackTrace();
-      _change.revert(project);
+      getChange().revert(project);
       throw new RuntimeException("Failed to apply change",e);
     }
   }

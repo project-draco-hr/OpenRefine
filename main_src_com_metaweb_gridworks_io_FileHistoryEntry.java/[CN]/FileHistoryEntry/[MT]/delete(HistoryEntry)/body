@@ -1,0 +1,6 @@
+{
+  File file=getChangeFile(historyEntry);
+  if (file.exists()) {
+    file.delete();
+  }
+}

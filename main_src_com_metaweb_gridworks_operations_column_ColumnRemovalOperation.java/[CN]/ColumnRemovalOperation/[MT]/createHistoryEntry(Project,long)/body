@@ -5,5 +5,5 @@
   }
   String description="Remove column " + column.getName();
   Change change=new ColumnRemovalChange(project.columnModel.columns.indexOf(column));
-  return ProjectManager.singleton.createHistoryEntry(historyEntryID,project,description,ColumnRemovalOperation.this,change);
+  return new HistoryEntry(historyEntryID,project,description,ColumnRemovalOperation.this,change);
 }

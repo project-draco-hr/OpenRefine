@@ -1,5 +1,0 @@
-long id
-long projectID
-String description
-AbstractOperation operation
-Date time

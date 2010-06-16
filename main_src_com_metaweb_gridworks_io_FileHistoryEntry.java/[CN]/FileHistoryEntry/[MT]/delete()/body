@@ -1,6 +1,0 @@
-{
-  File file=getChangeFile();
-  if (file.exists()) {
-    file.delete();
-  }
-}

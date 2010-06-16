@@ -1,0 +1,3 @@
+{
+  _manager.save(this,writer,options);
+}

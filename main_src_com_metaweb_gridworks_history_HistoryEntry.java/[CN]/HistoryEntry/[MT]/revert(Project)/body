@@ -1,6 +1,6 @@
 {
-  if (_change == null) {
-    loadChange();
+  if (getChange() == null) {
+    _manager.loadChange(this);
   }
-  _change.revert(project);
+  getChange().revert(project);
 }

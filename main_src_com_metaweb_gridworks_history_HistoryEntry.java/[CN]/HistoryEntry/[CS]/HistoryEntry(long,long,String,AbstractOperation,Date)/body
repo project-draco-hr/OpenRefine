@@ -4,4 +4,5 @@
   this.description=description;
   this.operation=operation;
   this.time=time;
+  this._manager=ProjectManager.singleton.getHistoryEntryManager();
 }

@@ -1,5 +1,5 @@
 {
   String description="Save schema-alignment protograph";
   Change change=new ProtographChange(_protograph);
-  return ProjectManager.singleton.createHistoryEntry(historyEntryID,project,description,SaveProtographOperation.this,change);
+  return new HistoryEntry(historyEntryID,project,description,SaveProtographOperation.this,change);
 }

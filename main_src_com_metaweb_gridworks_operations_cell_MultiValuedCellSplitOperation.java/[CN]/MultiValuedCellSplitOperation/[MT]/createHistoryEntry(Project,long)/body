@@ -54,5 +54,5 @@
     }
     r=r2 - 1;
   }
-  return ProjectManager.singleton.createHistoryEntry(historyEntryID,project,getBriefDescription(null),this,new MassRowChange(newRows));
+  return new HistoryEntry(historyEntryID,project,getBriefDescription(null),this,new MassRowChange(newRows));
 }

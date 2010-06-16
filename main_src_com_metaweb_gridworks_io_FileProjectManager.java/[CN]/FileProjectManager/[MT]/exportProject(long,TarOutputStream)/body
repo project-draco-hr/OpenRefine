@@ -1,0 +1,4 @@
+{
+  File dir=this.getProjectDir(projectId);
+  this.tarDir("",dir,tos);
+}

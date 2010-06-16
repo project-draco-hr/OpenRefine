@@ -1,7 +1,7 @@
 {
   TarOutputStream tos=new TarOutputStream(os);
   try {
-    tarDir("",dir,tos);
+    ProjectManager.singleton.exportProject(project.id,tos);
   }
   finally {
     tos.close();

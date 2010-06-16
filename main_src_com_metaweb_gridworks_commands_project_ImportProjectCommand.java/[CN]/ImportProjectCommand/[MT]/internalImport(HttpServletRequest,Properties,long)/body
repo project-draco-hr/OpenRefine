@@ -17,7 +17,7 @@
  else {
       String fileName=item.getName().toLowerCase();
       try {
-        internalImportInputStream(projectID,stream,!fileName.endsWith(".tar"));
+        ProjectManager.singleton.importProject(projectID,stream,!fileName.endsWith(".tar"));
       }
   finally {
         stream.close();

@@ -1,0 +1,6 @@
+{
+  projectManager=mock(ProjectManager.class);
+  ProjectManager.singleton=projectManager;
+  proj=new Project();
+  SUT=new History(proj);
+}

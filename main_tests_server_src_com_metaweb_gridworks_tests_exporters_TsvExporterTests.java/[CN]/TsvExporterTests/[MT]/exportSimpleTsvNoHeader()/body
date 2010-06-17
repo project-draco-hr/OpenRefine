@@ -8,5 +8,5 @@
     Assert.fail();
   }
   Assert.assertEquals(writer.toString(),"row0cell0\trow0cell1\n" + "row1cell0\trow1cell1\n");
-  verify(options,times(1)).getProperty("printColumnHeader");
+  verify(options,times(2)).getProperty("printColumnHeader");
 }

@@ -1,0 +1,12 @@
+{
+  HistoryEntry entry=mock(HistoryEntry.class);
+  Project project=mock(Project.class);
+  ProjectMetadata projectMetadata=mock(ProjectMetadata.class);
+  when(projectManager.getProject(Mockito.anyLong())).thenReturn(project);
+  when(projectManager.getProjectMetadata(Mockito.anyLong())).thenReturn(projectMetadata);
+  SUT.addEntry(entry);
+  verify(projectManager,times(1)).getProject(Mockito.anyLong());
+  verify(entry,times(1)).apply(project);
+  verify(projectMetadata,times(1)).updateModified();
+  Assert.assertEquals(SUT.getLastPastEntries(1).get(0),entry);
+}

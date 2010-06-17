@@ -19,8 +19,8 @@
     }
     jsonWriter.endArray();
     writer.write('\n');
-    jsonWriter.key("expressions");
-    JSONUtilities.writeStringList(jsonWriter,_expressions);
+    jsonWriter.key("preferences");
+    _preferenceStore.write(jsonWriter,new Properties());
     jsonWriter.endObject();
   }
   finally {

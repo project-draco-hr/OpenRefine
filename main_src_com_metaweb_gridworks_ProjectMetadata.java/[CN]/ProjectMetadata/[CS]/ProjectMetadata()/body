@@ -1,4 +1,5 @@
 {
   _created=new Date();
   _modified=_created;
+  preparePreferenceStore(_preferenceStore);
 }

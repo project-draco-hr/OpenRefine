@@ -1,0 +1,14 @@
+{
+  writer.object();
+  writer.key("class");
+  writer.value(this.getClass().getName());
+  writer.key("top");
+  writer.value(_top);
+  writer.key("list");
+  writer.array();
+  for (  String element : _list) {
+    writer.value(element);
+  }
+  writer.endArray();
+  writer.endObject();
+}

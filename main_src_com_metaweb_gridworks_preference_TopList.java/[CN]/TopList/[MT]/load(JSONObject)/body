@@ -1,0 +1,9 @@
+{
+  int top=obj.has("top") && !obj.isNull("top") ? obj.getInt("top") : 10;
+  TopList tl=new TopList(top);
+  if (obj.has("list") && !obj.isNull("list")) {
+    JSONArray a=obj.getJSONArray("list");
+    tl.load(a);
+  }
+  return tl;
+}

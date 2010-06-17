@@ -2,7 +2,8 @@
   _workspaceDir=dir;
   _workspaceDir.mkdirs();
   _projectsMetadata=new HashMap<Long,ProjectMetadata>();
-  _expressions=new LinkedList<String>();
+  _preferenceStore=new PreferenceStore();
   _projects=new HashMap<Long,Project>();
+  preparePreferenceStore(_preferenceStore);
   load();
 }

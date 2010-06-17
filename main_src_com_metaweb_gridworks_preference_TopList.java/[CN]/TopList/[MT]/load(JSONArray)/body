@@ -1,0 +1,6 @@
+{
+  int length=a.length();
+  for (int i=0; i < length && _list.size() < _top; i++) {
+    _list.add(a.getString(i));
+  }
+}

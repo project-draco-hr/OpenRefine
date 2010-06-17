@@ -1,3 +1,4 @@
 {
   _created=date;
+  preparePreferenceStore(_preferenceStore);
 }

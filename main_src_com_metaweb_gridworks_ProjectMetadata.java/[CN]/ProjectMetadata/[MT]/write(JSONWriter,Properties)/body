@@ -13,8 +13,8 @@
     writer.value(_encoding);
     writer.key("encodingConfidence");
     writer.value(_encodingConfidence);
-    writer.key("expressions");
-    JSONUtilities.writeStringList(writer,_expressions);
+    writer.key("preferences");
+    _preferenceStore.write(writer,options);
   }
   writer.endObject();
 }

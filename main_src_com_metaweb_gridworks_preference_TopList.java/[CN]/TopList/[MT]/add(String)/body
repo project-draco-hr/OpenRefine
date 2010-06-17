@@ -1,0 +1,7 @@
+{
+  _list.remove(element);
+  _list.add(0,element);
+  while (_list.size() > _top) {
+    _list.remove(_list.size() - 1);
+  }
+}

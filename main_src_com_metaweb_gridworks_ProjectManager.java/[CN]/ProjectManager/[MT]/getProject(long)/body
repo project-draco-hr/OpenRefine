@@ -1,0 +1,12 @@
+{
+synchronized (this) {
+    if (_projects.containsKey(id)) {
+      return _projects.get(id);
+    }
+ else {
+      Project project=loadProject(id);
+      _projects.put(id,project);
+      return project;
+    }
+  }
+}

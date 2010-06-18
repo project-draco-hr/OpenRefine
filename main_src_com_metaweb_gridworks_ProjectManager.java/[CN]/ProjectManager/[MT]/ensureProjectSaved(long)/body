@@ -1,0 +1,22 @@
+{
+synchronized (this) {
+    ProjectMetadata metadata=_projectsMetadata.get(id);
+    if (metadata != null) {
+      try {
+        saveMetadata(metadata,id);
+      }
+ catch (      Exception e) {
+        e.printStackTrace();
+      }
+    }
+    Project project=_projects.get(id);
+    if (project != null && metadata.getModified().after(project.lastSave)) {
+      try {
+        saveProject(project);
+      }
+ catch (      Exception e) {
+        e.printStackTrace();
+      }
+    }
+  }
+}

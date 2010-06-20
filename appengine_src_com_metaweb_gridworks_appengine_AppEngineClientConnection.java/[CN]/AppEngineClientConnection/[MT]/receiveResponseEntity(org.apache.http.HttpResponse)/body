@@ -1,6 +1,0 @@
-{
-  byte[] data=_appengine_hresponse.getContent();
-  if (data != null) {
-    apache_response.setEntity(new ByteArrayEntity(data));
-  }
-}

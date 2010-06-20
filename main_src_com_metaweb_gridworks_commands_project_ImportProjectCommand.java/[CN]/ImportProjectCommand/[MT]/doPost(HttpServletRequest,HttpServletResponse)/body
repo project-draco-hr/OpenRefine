@@ -5,7 +5,7 @@
     long projectID=Project.generateID();
     logger.info("Importing existing project using new ID {}",projectID);
     internalImport(request,options,projectID);
-    ProjectManager.singleton.importProject(projectID);
+    ProjectManager.singleton.loadProjectMetadata(projectID);
     ProjectMetadata pm=ProjectManager.singleton.getProjectMetadata(projectID);
     if (pm != null) {
       if (options.containsKey("project-name")) {

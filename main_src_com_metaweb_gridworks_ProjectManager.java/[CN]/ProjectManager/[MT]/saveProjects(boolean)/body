@@ -35,7 +35,7 @@ synchronized (this) {
     logger.info(allModified ? "Saving all modified projects ..." : "Saving some modified projects ...");
     for (int i=0; i < records.size() && (allModified || (new Date().getTime() - now.getTime() < s_quickSaveTimeout)); i++) {
       try {
-        ProjectUtilities.save(records.get(i).project);
+        saveProject(records.get(i).project);
       }
  catch (      Exception e) {
         e.printStackTrace();

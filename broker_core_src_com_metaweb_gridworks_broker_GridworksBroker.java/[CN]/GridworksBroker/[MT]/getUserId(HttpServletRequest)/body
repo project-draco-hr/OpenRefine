@@ -1,0 +1,20 @@
+{
+  String oauth=request.getHeader(DELEGATED_OAUTH_HEADER);
+  if (oauth == null) {
+    throw new RuntimeException("The request needs to contain the '" + DELEGATED_OAUTH_HEADER + "' header set to obtain user identity via Freebase.");
+  }
+  List<NameValuePair> formparams=new ArrayList<NameValuePair>();
+  Map<String,String> params=(Map<String,String>)request.getParameterMap();
+  for (  Entry<String,String> e : params.entrySet()) {
+    formparams.add(new BasicNameValuePair((String)e.getKey(),(String)e.getValue()));
+  }
+  UrlEncodedFormEntity entity=new UrlEncodedFormEntity(formparams,"UTF-8");
+  HttpPost httpRequest=new HttpPost(USER_INFO_URL);
+  httpRequest.setHeader(OAUTH_HEADER,oauth);
+  httpRequest.getParams().setParameter(CoreProtocolPNames.USER_AGENT,"Gridworks Broker");
+  httpRequest.setEntity(entity);
+  ResponseHandler<String> responseHandler=new BasicResponseHandler();
+  String responseBody=httpclient.execute(httpRequest,responseHandler);
+  JSONObject o=new JSONObject(responseBody);
+  return o.getString("username");
+}

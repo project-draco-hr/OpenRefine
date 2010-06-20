@@ -1,0 +1,13 @@
+{
+  super.destroy();
+  if (projectStore != null) {
+    projectStore.close();
+  }
+  if (lockStore != null) {
+    lockStore.close();
+  }
+  if (env != null) {
+    env.cleanLog();
+    env.close();
+  }
+}

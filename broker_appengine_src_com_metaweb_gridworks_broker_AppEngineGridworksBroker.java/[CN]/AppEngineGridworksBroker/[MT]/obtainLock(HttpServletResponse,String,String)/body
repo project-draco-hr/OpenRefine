@@ -1,0 +1,24 @@
+{
+  PersistenceManager pm=pmfInstance.getPersistenceManager();
+  try {
+    Lock lock=getLock(pm,pid);
+    if (lock == null) {
+      Transaction tx=pm.currentTransaction();
+      try {
+        tx.begin();
+        lock=new Lock(Long.toHexString(tx.hashCode()),pid,uid);
+        pm.makePersistent(lock);
+        tx.commit();
+      }
+  finally {
+        if (tx.isActive()) {
+          tx.rollback();
+        }
+      }
+    }
+    respond(response,lockToJSON(lock));
+  }
+  finally {
+    pm.close();
+  }
+}

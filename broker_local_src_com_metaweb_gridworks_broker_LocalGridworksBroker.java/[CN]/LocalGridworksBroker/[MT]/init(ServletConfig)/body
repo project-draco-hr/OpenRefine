@@ -1,0 +1,15 @@
+{
+  super.init(config);
+  File dataPath=new File("data");
+  EnvironmentConfig envConfig=new EnvironmentConfig();
+  envConfig.setAllowCreate(true);
+  envConfig.setTransactional(true);
+  env=new Environment(dataPath,envConfig);
+  StoreConfig storeConfig=new StoreConfig();
+  storeConfig.setAllowCreate(true);
+  storeConfig.setTransactional(true);
+  projectStore=new EntityStore(env,"ProjectsStore",storeConfig);
+  lockStore=new EntityStore(env,"LockStore",storeConfig);
+  projectById=projectStore.getPrimaryIndex(String.class,Project.class);
+  lockByProject=lockStore.getPrimaryIndex(String.class,Lock.class);
+}

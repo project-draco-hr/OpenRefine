@@ -1,0 +1,4 @@
+PersistenceManager pm
+String pid
+String uid
+String lid

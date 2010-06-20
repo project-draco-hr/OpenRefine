@@ -1,0 +1,19 @@
+{
+  Transaction txn=env.beginTransaction(null,null);
+  checkLock(pid,uid,lid);
+  Project project=getProject(pid);
+  if (project == null) {
+    throw new RuntimeException("Project '" + pid + "' not found");
+  }
+  try {
+    project.transformations.addAll(transformations);
+    txn.commit();
+  }
+  finally {
+    if (txn != null) {
+      txn.abort();
+      txn=null;
+    }
+  }
+  respond(response,OK);
+}

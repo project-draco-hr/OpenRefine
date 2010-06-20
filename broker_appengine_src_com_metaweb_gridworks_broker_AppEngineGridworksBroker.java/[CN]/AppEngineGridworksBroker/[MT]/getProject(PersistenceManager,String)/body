@@ -1,0 +1,7 @@
+{
+  Project project=pm.getObjectById(Project.class,pid);
+  if (project == null) {
+    throw new RuntimeException("Project '" + pid + "' is not managed by this broker");
+  }
+  return project;
+}

@@ -1,0 +1,9 @@
+{
+  String param=getParameter(request,name);
+  JSONArray a=new JSONArray(param);
+  List<String> result=new ArrayList<String>(a.length());
+  for (int i=0; i < a.length(); i++) {
+    result.add(a.getString(i));
+  }
+  return result;
+}

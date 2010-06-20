@@ -1,0 +1,26 @@
+{
+  PersistenceManager pm=pmfInstance.getPersistenceManager();
+  try {
+    checkLock(pm,pid,uid,lid);
+    Project project=getProject(pm,pid);
+    if (project != null) {
+      throw new RuntimeException("Project '" + pid + "' already exists");
+    }
+    Transaction tx=pm.currentTransaction();
+    try {
+      tx.begin();
+      project=new Project(pid,data);
+      pm.makePersistent(project);
+      tx.commit();
+    }
+  finally {
+      if (tx.isActive()) {
+        tx.rollback();
+      }
+    }
+    respond(response,OK);
+  }
+  finally {
+    pm.close();
+  }
+}

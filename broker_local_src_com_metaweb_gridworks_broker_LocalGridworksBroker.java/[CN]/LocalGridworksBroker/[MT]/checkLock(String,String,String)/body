@@ -1,0 +1,12 @@
+{
+  Lock lock=getLock(pid);
+  if (lock == null) {
+    throw new RuntimeException("No lock was found with the given Lock id '" + lid + "', you have to have a valid lock on a project in order to start it");
+  }
+  if (!lock.pid.equals(pid)) {
+    throw new RuntimeException("Lock '" + lid + "' is for another project: "+ pid);
+  }
+  if (!lock.uid.equals(uid)) {
+    throw new RuntimeException("Lock '" + lid + "' is owned by another user: "+ uid);
+  }
+}

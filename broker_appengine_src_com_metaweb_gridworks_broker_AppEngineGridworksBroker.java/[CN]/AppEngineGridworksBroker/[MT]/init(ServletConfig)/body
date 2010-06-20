@@ -1,0 +1,4 @@
+{
+  super.init(config);
+  pmfInstance=JDOHelper.getPersistenceManagerFactory("transactional");
+}

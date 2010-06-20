@@ -1,0 +1,14 @@
+{
+  if (response == null) {
+    throw new ServletException("Response object can't be null");
+  }
+  Writer w=response.getWriter();
+  if (w != null) {
+    w.write(content);
+    w.flush();
+    w.close();
+  }
+ else {
+    throw new ServletException("response returned a null writer");
+  }
+}

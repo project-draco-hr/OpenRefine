@@ -1,0 +1,18 @@
+{
+  Transaction txn=env.beginTransaction(null,null);
+  checkLock(pid,uid,lid);
+  if (projectById.contains(pid)) {
+    throw new RuntimeException("Project '" + pid + "' already exists");
+  }
+  try {
+    projectById.put(txn,new Project(pid,data));
+    txn.commit();
+  }
+  finally {
+    if (txn != null) {
+      txn.abort();
+      txn=null;
+    }
+  }
+  respond(response,OK);
+}

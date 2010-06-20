@@ -1,0 +1,7 @@
+{
+  String param=request.getParameter(name);
+  if (param == null) {
+    throw new ServletException("request must come with a '" + name + "' parameter");
+  }
+  return param;
+}

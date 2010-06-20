@@ -1,0 +1,26 @@
+{
+  PersistenceManager pm=pmfInstance.getPersistenceManager();
+  try {
+    checkLock(pm,pid,uid,lid);
+    Project project=getProject(pm,pid);
+    if (project == null) {
+      throw new RuntimeException("Project '" + pid + "' not found");
+    }
+    Transaction tx=pm.currentTransaction();
+    try {
+      for (      String s : transformations) {
+        project.transformations.add(new Text(s));
+      }
+      tx.commit();
+    }
+  finally {
+      if (tx.isActive()) {
+        tx.rollback();
+      }
+    }
+    respond(response,OK);
+  }
+  finally {
+    pm.close();
+  }
+}

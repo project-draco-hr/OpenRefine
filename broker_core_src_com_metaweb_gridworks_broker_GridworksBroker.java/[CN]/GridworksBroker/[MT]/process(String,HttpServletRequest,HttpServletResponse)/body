@@ -1,0 +1,47 @@
+{
+  if (logger.isDebugEnabled()) {
+    logger.debug("> process {}",path);
+  }
+ else {
+    logger.info("process {}",path);
+  }
+  response.setCharacterEncoding("UTF-8");
+  response.setHeader("Content-Type","application/json");
+  try {
+    String uid=getUserId(request);
+    logger.debug("uid: {}",path);
+    String pid=getParameter(request,"pid");
+    logger.debug("pid: {}",path);
+    if ("get_lock".equals(path)) {
+      getLock(response,pid);
+    }
+ else     if ("obtain_lock".equals(path)) {
+      obtainLock(response,pid,uid);
+    }
+ else     if ("release_lock".equals(path)) {
+      releaseLock(response,pid,uid,getParameter(request,"lock"));
+    }
+ else     if ("history".equals(path)) {
+      getHistory(response,pid,getInteger(request,"tindex"));
+    }
+ else     if ("transform".equals(path)) {
+      addTransformations(response,pid,uid,getParameter(request,"lock"),getList(request,"transformations"));
+    }
+ else     if ("start".equals(path)) {
+      startProject(response,pid,uid,getParameter(request,"lock"),getParameter(request,"data"));
+    }
+ else     if ("get".equals(path)) {
+      getProject(response,pid);
+    }
+  }
+ catch (  RuntimeException e) {
+    logger.error("runtime error",e);
+    respondError(response,e.getMessage());
+  }
+catch (  Exception e) {
+    logger.error("internal error",e);
+    respondException(response,e);
+  }
+  if (logger.isDebugEnabled())   logger.debug("< process {}",path);
+  return super.process(path,request,response);
+}

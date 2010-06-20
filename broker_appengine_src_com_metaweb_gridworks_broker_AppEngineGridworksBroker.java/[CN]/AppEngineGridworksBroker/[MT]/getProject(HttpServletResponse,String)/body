@@ -1,0 +1,23 @@
+{
+  PersistenceManager pm=pmfInstance.getPersistenceManager();
+  try {
+    Project project=getProject(pm,pid);
+    Writer w=response.getWriter();
+    JSONWriter writer=new JSONWriter(w);
+    writer.object();
+    writer.key("data");
+    writer.value(project.data.toString());
+    writer.key("transformations");
+    writer.array();
+    for (    Text s : project.transformations) {
+      writer.value(s.toString());
+    }
+    writer.endArray();
+    writer.endObject();
+    w.flush();
+    w.close();
+  }
+  finally {
+    pm.close();
+  }
+}

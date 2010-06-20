@@ -1,0 +1,23 @@
+{
+  Transaction txn=env.beginTransaction(null,null);
+  Lock lock=getLock(pid);
+  if (lock != null) {
+    try {
+      if (!lock.id.equals(lid)) {
+        throw new RuntimeException("Lock id doesn't match, can't release the lock");
+      }
+      if (!lock.uid.equals(uid)) {
+        throw new RuntimeException("User id doesn't match the lock owner, can't release the lock");
+      }
+      lockByProject.delete(pid);
+      txn.commit();
+    }
+  finally {
+      if (txn != null) {
+        txn.abort();
+        txn=null;
+      }
+    }
+  }
+  respond(response,OK);
+}

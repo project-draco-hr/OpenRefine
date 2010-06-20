@@ -1,0 +1,9 @@
+{
+  PersistenceManager pm=pmfInstance.getPersistenceManager();
+  try {
+    respond(response,lockToJSON(getLock(pm,pid)));
+  }
+  finally {
+    pm.close();
+  }
+}

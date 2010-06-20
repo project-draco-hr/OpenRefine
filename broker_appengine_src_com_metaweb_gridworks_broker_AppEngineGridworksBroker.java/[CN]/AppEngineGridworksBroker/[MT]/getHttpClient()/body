@@ -1,0 +1,4 @@
+{
+  ClientConnectionManager cm=new AppEngineClientConnectionManager();
+  return new DefaultHttpClient(cm,null);
+}

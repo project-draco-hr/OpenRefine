@@ -1,5 +1,5 @@
 {
-  CSVParser parser=(sep != null && sep.length() > 0 && splitIntoColumns) ? new CSVParser(sep.toCharArray()[0]) : null;
+  CSVParser parser=(sep != null && sep.length() > 0 && splitIntoColumns) ? new CSVParser(sep.toCharArray()[0],CSVParser.DEFAULT_QUOTE_CHARACTER,CSVParser.DEFAULT_ESCAPE_CHARACTER,CSVParser.DEFAULT_STRICT_QUOTES,CSVParser.DEFAULT_IGNORE_LEADING_WHITESPACE,ignoreQuotes) : null;
   List<String> columnNames=new ArrayList<String>();
   String line=null;
   int rowsWithData=0;
@@ -14,10 +14,10 @@
     if (parser == null) {
       int tab=line.indexOf('\t');
       if (tab >= 0) {
-        parser=new CSVParser('\t');
+        parser=new CSVParser('\t',CSVParser.DEFAULT_QUOTE_CHARACTER,CSVParser.DEFAULT_ESCAPE_CHARACTER,CSVParser.DEFAULT_STRICT_QUOTES,CSVParser.DEFAULT_IGNORE_LEADING_WHITESPACE,ignoreQuotes);
       }
  else {
-        parser=new CSVParser(',');
+        parser=new CSVParser(',',CSVParser.DEFAULT_QUOTE_CHARACTER,CSVParser.DEFAULT_ESCAPE_CHARACTER,CSVParser.DEFAULT_STRICT_QUOTES,CSVParser.DEFAULT_IGNORE_LEADING_WHITESPACE,ignoreQuotes);
       }
     }
     if (headerLines > 0) {

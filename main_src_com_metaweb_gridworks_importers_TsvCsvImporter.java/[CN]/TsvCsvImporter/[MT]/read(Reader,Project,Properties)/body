@@ -6,6 +6,7 @@
   int limit=ImporterUtilities.getIntegerOption("limit",options,-1);
   int skip=ImporterUtilities.getIntegerOption("skip",options,0);
   boolean guessValueType=ImporterUtilities.getBooleanOption("guess-value-type",options,true);
+  boolean ignoreQuotes=ImporterUtilities.getBooleanOption("ignore-quotes",options,false);
   LineNumberReader lnReader=new LineNumberReader(reader);
-  read(lnReader,project,sep,limit,skip,ignoreLines,headerLines,guessValueType,splitIntoColumns);
+  read(lnReader,project,sep,limit,skip,ignoreLines,headerLines,guessValueType,splitIntoColumns,ignoreQuotes);
 }

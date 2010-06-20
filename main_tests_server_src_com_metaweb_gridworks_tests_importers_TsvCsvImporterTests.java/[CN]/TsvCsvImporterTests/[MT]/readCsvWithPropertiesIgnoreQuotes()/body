@@ -1,11 +1,12 @@
 {
-  StringReader reader=new StringReader(SAMPLE_ROW);
+  String input="data1,data2\",data3,data4";
+  StringReader reader=new StringReader(input);
   when(properties.getProperty("separator")).thenReturn(",");
   whenGetIntegerOption("ignore",properties,0);
   whenGetIntegerOption("header-lines",properties,0);
   whenGetIntegerOption("limit",properties,-1);
   whenGetIntegerOption("skip",properties,0);
-  whenGetIntegerOption("ignore-quotes",properties,0);
+  whenGetBooleanOption("ignore-quotes",properties,true);
   try {
     SUT.read(reader,project,properties);
   }
@@ -13,10 +14,11 @@
     Assert.fail();
   }
   Assert.assertEquals(project.rows.size(),1);
-  Assert.assertEquals(project.rows.get(0).cells.size(),3);
-  Assert.assertEquals((String)project.rows.get(0).cells.get(0).value,"NDB_No");
-  Assert.assertEquals((String)project.rows.get(0).cells.get(1).value,"Shrt_Desc");
-  Assert.assertEquals((String)project.rows.get(0).cells.get(2).value,"Water");
+  Assert.assertEquals(project.rows.get(0).cells.size(),4);
+  Assert.assertEquals((String)project.rows.get(0).cells.get(0).value,"data1");
+  Assert.assertEquals((String)project.rows.get(0).cells.get(1).value,"data2");
+  Assert.assertEquals((String)project.rows.get(0).cells.get(2).value,"data3");
+  Assert.assertEquals((String)project.rows.get(0).cells.get(3).value,"data4");
   verify(properties,times(1)).getProperty("separator");
   verifyGetOption("ignore",properties);
   verifyGetOption("header-lines",properties);

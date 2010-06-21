@@ -1,0 +1,7 @@
+{
+  registerProject();
+  whenGetSaveTimes(project,metadata);
+  SUT.save(false);
+  verifySaved(project,metadata);
+  verify(SUT,times(1)).saveWorkspace();
+}

@@ -1,6 +1,6 @@
 {
 synchronized (this) {
-    ProjectMetadata metadata=_projectsMetadata.get(id);
+    ProjectMetadata metadata=this.getProjectMetadata(id);
     if (metadata != null) {
       try {
         saveMetadata(metadata,id);
@@ -9,8 +9,8 @@ synchronized (this) {
         e.printStackTrace();
       }
     }
-    Project project=_projects.get(id);
-    if (project != null && metadata.getModified().after(project.lastSave)) {
+    Project project=getProject(id);
+    if (project != null && metadata != null && metadata.getModified().after(project.getLastSave())) {
       try {
         saveProject(project);
       }

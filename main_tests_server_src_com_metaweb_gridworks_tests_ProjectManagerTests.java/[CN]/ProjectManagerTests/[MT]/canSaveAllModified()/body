@@ -1,0 +1,13 @@
+{
+  whenGetSaveTimes(project,metadata);
+  registerProject(project,metadata);
+  Project project2=spy(new ProjectStub(2));
+  ProjectMetadata metadata2=mock(ProjectMetadata.class);
+  whenGetSaveTimes(project2,metadata2,10);
+  registerProject(project2,metadata2);
+  Assert.assertFalse(project.id == project2.id);
+  SUT.save(true);
+  verifySaved(project,metadata);
+  verifySaved(project2,metadata2);
+  verify(SUT,times(1)).saveWorkspace();
+}

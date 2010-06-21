@@ -1,0 +1,6 @@
+{
+  SUT.registerProject(project,metadata);
+  AssertProjectRegistered();
+  verifyNoMoreInteractions(project);
+  verifyNoMoreInteractions(metadata);
+}

@@ -1,0 +1,16 @@
+{
+  whenGetSaveTimes(project,metadata);
+  registerProject();
+  SUT.ensureProjectSaved(project.id);
+  AssertProjectRegistered();
+  try {
+    verify(SUT,times(1)).saveMetadata(metadata,project.id);
+  }
+ catch (  Exception e) {
+    Assert.fail();
+  }
+  this.verifySaveTimeCompared(1);
+  verify(SUT,times(1)).saveProject(project);
+  verifyNoMoreInteractions(project);
+  verifyNoMoreInteractions(metadata);
+}

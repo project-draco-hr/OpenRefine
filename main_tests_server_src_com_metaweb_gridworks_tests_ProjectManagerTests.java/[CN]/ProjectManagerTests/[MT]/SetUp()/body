@@ -1,0 +1,6 @@
+{
+  pm=new ProjectManagerStub();
+  SUT=spy(pm);
+  project=mock(Project.class);
+  metadata=mock(ProjectMetadata.class);
+}

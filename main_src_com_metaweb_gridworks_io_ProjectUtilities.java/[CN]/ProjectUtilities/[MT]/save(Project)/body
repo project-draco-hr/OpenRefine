@@ -20,7 +20,7 @@ synchronized (project) {
     if (oldFile.exists()) {
       oldFile.delete();
     }
-    project.lastSave=new Date();
+    project.setLastSave();
     logger.info("Saved project '{}'",id);
   }
 }

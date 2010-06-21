@@ -1,0 +1,4 @@
+{
+  Date metadataModifiedDate=new GregorianCalendar(1970,01,02,00,30,secondsDifference).getTime();
+  when(meta.getModified()).thenReturn(metadataModifiedDate);
+}

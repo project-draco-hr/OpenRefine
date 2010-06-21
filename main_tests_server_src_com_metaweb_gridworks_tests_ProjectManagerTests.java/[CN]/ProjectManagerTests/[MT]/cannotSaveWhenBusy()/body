@@ -1,0 +1,9 @@
+{
+  registerProject();
+  SUT.setBusy(true);
+  SUT.save(false);
+  verify(SUT,never()).saveProjects(Mockito.anyBoolean());
+  verify(SUT,never()).saveWorkspace();
+  verifyNoMoreInteractions(project);
+  verifyNoMoreInteractions(metadata);
+}

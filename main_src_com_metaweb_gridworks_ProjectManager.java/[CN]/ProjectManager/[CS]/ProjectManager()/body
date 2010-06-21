@@ -1,0 +1,6 @@
+{
+  _projectsMetadata=new HashMap<Long,ProjectMetadata>();
+  _preferenceStore=new PreferenceStore();
+  _projects=new HashMap<Long,Project>();
+  preparePreferenceStore(_preferenceStore);
+}

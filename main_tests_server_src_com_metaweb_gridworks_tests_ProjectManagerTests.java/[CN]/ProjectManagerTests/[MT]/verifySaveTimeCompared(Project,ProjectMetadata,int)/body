@@ -1,0 +1,4 @@
+{
+  verify(metadata,times(times)).getModified();
+  verify(project,times(times)).getLastSave();
+}

@@ -1,0 +1,7 @@
+{
+  verify(meta,times(1)).getModified();
+  verify(proj,times(2)).getLastSave();
+  verify(SUT,times(1)).saveProject(proj);
+  verifyNoMoreInteractions(proj);
+  verifyNoMoreInteractions(meta);
+}

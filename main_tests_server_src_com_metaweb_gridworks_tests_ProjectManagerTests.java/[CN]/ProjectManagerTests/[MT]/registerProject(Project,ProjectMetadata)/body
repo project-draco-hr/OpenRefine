@@ -1,0 +1,3 @@
+{
+  SUT.registerProject(proj,meta);
+}

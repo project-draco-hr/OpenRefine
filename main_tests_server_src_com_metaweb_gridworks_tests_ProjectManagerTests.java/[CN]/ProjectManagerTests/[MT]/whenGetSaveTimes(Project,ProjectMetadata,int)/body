@@ -1,0 +1,4 @@
+{
+  whenProjectGetLastSave(proj);
+  whenMetadataGetModified(meta,secondsDifference);
+}

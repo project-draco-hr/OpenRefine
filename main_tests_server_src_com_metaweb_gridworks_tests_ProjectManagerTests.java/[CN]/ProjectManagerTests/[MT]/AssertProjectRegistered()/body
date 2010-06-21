@@ -1,0 +1,4 @@
+{
+  Assert.assertEquals(SUT.getProject(project.id),project);
+  Assert.assertEquals(SUT.getProjectMetadata(project.id),metadata);
+}

@@ -1,0 +1,13 @@
+{
+  whenGetSaveTimes(project,metadata,-10);
+  registerProject(project,metadata);
+  Assert.assertSame(SUT.getProject(0),project);
+  SUT.save(true);
+  verify(metadata,times(1)).getModified();
+  verify(project,times(2)).getLastSave();
+  verify(SUT,never()).saveProject(project);
+  Assert.assertEquals(SUT.getProject(0),null);
+  verifyNoMoreInteractions(project);
+  verifyNoMoreInteractions(metadata);
+  verify(SUT,times(1)).saveWorkspace();
+}

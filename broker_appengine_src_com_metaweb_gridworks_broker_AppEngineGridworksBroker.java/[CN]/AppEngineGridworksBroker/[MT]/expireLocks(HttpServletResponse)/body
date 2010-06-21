@@ -1,0 +1,30 @@
+{
+  PersistenceManager pm=pmfInstance.getPersistenceManager();
+  try {
+    Extent<Lock> extent=pm.getExtent(Lock.class,false);
+    try {
+      for (      Lock lock : extent) {
+        if (lock.timestamp + LOCK_DURATION < System.currentTimeMillis()) {
+          Transaction tx=pm.currentTransaction();
+          try {
+            tx.begin();
+            pm.deletePersistent(lock);
+            tx.commit();
+          }
+  finally {
+            if (tx.isActive()) {
+              tx.rollback();
+            }
+          }
+        }
+      }
+    }
+  finally {
+      extent.closeAll();
+    }
+    respond(response,OK);
+  }
+  finally {
+    pm.close();
+  }
+}

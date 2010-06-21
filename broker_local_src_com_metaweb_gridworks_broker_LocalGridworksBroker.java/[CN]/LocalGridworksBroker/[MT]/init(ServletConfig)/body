@@ -1,5 +1,8 @@
 {
   super.init(config);
+  timer=new Timer();
+  expirer=new LockExpirer();
+  timer.schedule(expirer,LOCK_EXPIRATION_CHECK_DELAY,LOCK_EXPIRATION_CHECK_DELAY);
   File dataPath=new File("data");
   EnvironmentConfig envConfig=new EnvironmentConfig();
   envConfig.setAllowCreate(true);

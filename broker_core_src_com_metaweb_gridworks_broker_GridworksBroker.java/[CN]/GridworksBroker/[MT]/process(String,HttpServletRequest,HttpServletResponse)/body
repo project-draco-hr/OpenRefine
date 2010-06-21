@@ -15,6 +15,9 @@
     if ("get_lock".equals(path)) {
       getLock(response,pid);
     }
+ else     if ("expire_locks".equals(path)) {
+      expireLocks(response);
+    }
  else     if ("obtain_lock".equals(path)) {
       obtainLock(response,pid,uid);
     }

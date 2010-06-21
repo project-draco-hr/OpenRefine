@@ -19,5 +19,7 @@
       }
     }
   }
-  respond(response,OK);
+  if (response != null) {
+    respond(response,OK);
+  }
 }

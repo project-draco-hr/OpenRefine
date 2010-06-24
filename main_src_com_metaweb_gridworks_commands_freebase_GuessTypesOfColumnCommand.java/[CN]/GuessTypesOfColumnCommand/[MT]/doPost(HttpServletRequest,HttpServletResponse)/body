@@ -2,6 +2,7 @@
   try {
     Project project=getProject(request);
     String columnName=request.getParameter("columnName");
+    String serviceUrl=request.getParameter("service");
     response.setCharacterEncoding("UTF-8");
     response.setHeader("Content-Type","application/json");
     JSONWriter writer=new JSONWriter(response.getWriter());
@@ -19,7 +20,7 @@
         writer.value("ok");
         writer.key("types");
         writer.array();
-        List<TypeGroup> typeGroups=guessTypes(project,column);
+        List<TypeGroup> typeGroups=guessTypes(project,column,serviceUrl);
         for (        TypeGroup tg : typeGroups) {
           writer.object();
           writer.key("id");

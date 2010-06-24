@@ -40,8 +40,6 @@
           writer.value(null);
           writer.key("id");
           writer.value(null);
-          writer.key("guid");
-          writer.value(null);
           writer.key("type");
           writer.array();
           writer.endArray();

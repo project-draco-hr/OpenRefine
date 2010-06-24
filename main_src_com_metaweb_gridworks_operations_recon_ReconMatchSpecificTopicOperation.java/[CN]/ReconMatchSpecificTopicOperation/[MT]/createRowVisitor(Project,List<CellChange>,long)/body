@@ -25,7 +25,7 @@
           newRecon.judgmentBatchSize++;
         }
  else {
-          newRecon=cell.recon != null ? cell.recon.dup(historyEntryID) : new Recon(historyEntryID);
+          newRecon=cell.recon != null ? cell.recon.dup(historyEntryID) : new Recon(historyEntryID,identifierSpace,schemaSpace);
           newRecon.match=match;
           newRecon.matchRank=-1;
           newRecon.judgment=Judgment.Matched;

@@ -64,8 +64,8 @@
         for (int j=0; j < typeIDs.length; j++) {
           typeIDs[j]=types.getString(j);
         }
-        ReconCandidate candidate=new ReconCandidate(result.getString("id"),result.getString("guid"),result.getString("name"),typeIDs,100);
-        Recon recon=new Recon(historyEntryID);
+        ReconCandidate candidate=new ReconCandidate(result.getString("id"),result.getString("name"),typeIDs,100);
+        Recon recon=Recon.makeFreebaseRecon(historyEntryID);
         recon.addCandidate(candidate);
         recon.service="mql";
         recon.judgment=Judgment.Matched;

@@ -1,0 +1,15 @@
+{
+  Project project=request.getParameter("project") != null ? getProject(request) : null;
+  PreferenceStore ps=project != null ? project.getMetadata().getPreferenceStore() : ProjectManager.singleton.getPreferenceStore();
+  String prefName=request.getParameter("name");
+  String valueString=request.getParameter("value");
+  try {
+    JSONTokener t=new JSONTokener(valueString);
+    Object o=t.nextValue();
+    ps.put(prefName,PreferenceStore.loadObject(o));
+    respond(response,"{ \"code\" : \"ok\" }");
+  }
+ catch (  JSONException e) {
+    respondException(response,e);
+  }
+}

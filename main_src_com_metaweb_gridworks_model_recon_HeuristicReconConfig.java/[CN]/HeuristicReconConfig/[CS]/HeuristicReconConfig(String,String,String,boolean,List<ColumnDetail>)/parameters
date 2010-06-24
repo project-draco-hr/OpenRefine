@@ -1,5 +1,0 @@
-String service
-String typeID
-String typeName
-boolean autoMatch
-List<ColumnDetail> columnDetails

@@ -8,7 +8,7 @@
     throw new Exception("No such column");
   }
   Judgment oldJudgment=cell.recon == null ? Judgment.None : cell.recon.judgment;
-  newCell=new Cell(cell.value,cell.recon == null ? new Recon(historyEntryID) : cell.recon.dup(historyEntryID));
+  newCell=new Cell(cell.value,cell.recon == null ? new Recon(historyEntryID,identifierSpace,schemaSpace) : cell.recon.dup(historyEntryID));
   String cellDescription="single cell on row " + (rowIndex + 1) + ", column "+ column.getName()+ ", containing \""+ cell.value+ "\"";
   String description=null;
   newCell.recon.matchRank=-1;
@@ -27,13 +27,15 @@
  else {
     newCell.recon.judgment=Recon.Judgment.Matched;
     newCell.recon.match=this.match;
-    for (int m=0; m < newCell.recon.candidates.size(); m++) {
-      if (newCell.recon.candidates.get(m).topicGUID.equals(this.match.topicGUID)) {
-        newCell.recon.matchRank=m;
-        break;
+    if (newCell.recon.candidates != null) {
+      for (int m=0; m < newCell.recon.candidates.size(); m++) {
+        if (newCell.recon.candidates.get(m).id.equals(this.match.id)) {
+          newCell.recon.matchRank=m;
+          break;
+        }
       }
     }
-    description="Match " + this.match.topicName + " ("+ match.topicID+ ") to "+ cellDescription;
+    description="Match " + this.match.name + " ("+ match.id+ ") to "+ cellDescription;
   }
   ReconStats stats=column.getReconStats();
   if (stats == null) {

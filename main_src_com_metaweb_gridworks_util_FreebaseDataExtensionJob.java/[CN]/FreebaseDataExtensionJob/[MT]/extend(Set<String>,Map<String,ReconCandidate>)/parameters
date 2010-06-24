@@ -1,2 +1,2 @@
-Set<String> guids
+Set<String> ids
 Map<String,ReconCandidate> reconCandidateMap

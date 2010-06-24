@@ -3,6 +3,12 @@
   writer.object();
   writer.key("id");
   writer.value(id);
+  writer.key("service");
+  writer.value(service);
+  writer.key("identifierSpace");
+  writer.value(identifierSpace);
+  writer.key("schemaSpace");
+  writer.value(schemaSpace);
   if (saveMode) {
     writer.key("judgmentHistoryEntry");
     writer.value(judgmentHistoryEntry);
@@ -11,14 +17,14 @@
   writer.value(judgmentToString());
   if (match != null) {
     writer.key("m");
-    writer.value(match.topicID);
+    writer.value(match.id);
   }
   if (match == null || saveMode) {
     writer.key("c");
     writer.array();
     if (candidates != null) {
       for (      ReconCandidate c : candidates) {
-        writer.value(c.topicID);
+        writer.value(c.id);
       }
     }
     writer.endArray();
@@ -30,8 +36,6 @@
       writer.value(o);
     }
     writer.endArray();
-    writer.key("service");
-    writer.value(service);
     writer.key("judgmentAction");
     writer.value(judgmentAction);
     writer.key("judgmentBatchSize");

@@ -74,6 +74,12 @@
  else       if ("service".equals(fieldName)) {
         recon.service=jp.getText();
       }
+ else       if ("identifierSpace".equals(fieldName)) {
+        recon.identifierSpace=jp.getText();
+      }
+ else       if ("schemaSpace".equals(fieldName)) {
+        recon.schemaSpace=jp.getText();
+      }
  else       if ("judgmentAction".equals(fieldName)) {
         recon.judgmentAction=jp.getText();
       }

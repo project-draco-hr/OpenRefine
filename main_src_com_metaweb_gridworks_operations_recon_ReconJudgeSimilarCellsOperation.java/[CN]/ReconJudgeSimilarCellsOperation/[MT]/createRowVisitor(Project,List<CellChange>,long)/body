@@ -24,7 +24,7 @@
           Recon recon=null;
           if (_judgment == Judgment.New && _shareNewTopics) {
             if (_sharedNewRecon == null) {
-              _sharedNewRecon=new Recon(_historyEntryID);
+              _sharedNewRecon=new Recon(_historyEntryID,null,null);
               _sharedNewRecon.judgment=Judgment.New;
               _sharedNewRecon.judgmentBatchSize=0;
               _sharedNewRecon.judgmentAction="similar";
@@ -47,7 +47,7 @@
                 recon.match=_match;
                 if (recon.candidates != null) {
                   for (int m=0; m < recon.candidates.size(); m++) {
-                    if (recon.candidates.get(m).topicGUID.equals(_match.topicGUID)) {
+                    if (recon.candidates.get(m).id.equals(_match.id)) {
                       recon.matchRank=m;
                       break;
                     }

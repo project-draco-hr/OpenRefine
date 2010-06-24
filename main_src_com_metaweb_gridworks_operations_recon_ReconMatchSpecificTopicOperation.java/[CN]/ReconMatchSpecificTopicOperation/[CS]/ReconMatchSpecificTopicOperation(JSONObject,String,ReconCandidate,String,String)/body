@@ -1,0 +1,6 @@
+{
+  super(engineConfig,columnName,false);
+  this.match=match;
+  this.identifierSpace=identifierSpace;
+  this.schemaSpace=schemaSpace;
+}

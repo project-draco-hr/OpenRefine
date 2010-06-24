@@ -1,0 +1,5 @@
+JSONObject engineConfig
+String columnName
+ReconCandidate match
+String identifierSpace
+String schemaSpace

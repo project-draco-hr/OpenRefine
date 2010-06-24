@@ -1,5 +1,5 @@
 {
-  Recon r=new Recon(judgmentHistoryEntry);
+  Recon r=new Recon(judgmentHistoryEntry,identifierSpace,schemaSpace);
   System.arraycopy(features,0,r.features,0,features.length);
   if (candidates != null) {
     r.candidates=new ArrayList<ReconCandidate>(candidates);

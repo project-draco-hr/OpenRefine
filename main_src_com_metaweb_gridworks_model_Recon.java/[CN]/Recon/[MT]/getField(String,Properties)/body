@@ -35,5 +35,14 @@
  else   if ("features".equals(name)) {
     return new Features();
   }
+ else   if ("service".equals(name)) {
+    return service;
+  }
+ else   if ("identifierSpace".equals(name)) {
+    return identifierSpace;
+  }
+ else   if ("schemaSpace".equals(name)) {
+    return schemaSpace;
+  }
   return null;
 }

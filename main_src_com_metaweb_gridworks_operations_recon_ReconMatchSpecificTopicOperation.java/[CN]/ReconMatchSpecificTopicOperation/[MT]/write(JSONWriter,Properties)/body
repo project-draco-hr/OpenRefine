@@ -11,17 +11,19 @@
   writer.key("match");
   writer.object();
   writer.key("id");
-  writer.value(match.topicID);
-  writer.key("guid");
-  writer.value(match.topicGUID);
+  writer.value(match.id);
   writer.key("name");
-  writer.value(match.topicName);
+  writer.value(match.name);
   writer.key("types");
   writer.array();
-  for (  String typeID : match.typeIDs) {
+  for (  String typeID : match.types) {
     writer.value(typeID);
   }
   writer.endArray();
   writer.endObject();
+  writer.key("identifierSpace");
+  writer.value(identifierSpace);
+  writer.key("schemaSpace");
+  writer.value(schemaSpace);
   writer.endObject();
 }

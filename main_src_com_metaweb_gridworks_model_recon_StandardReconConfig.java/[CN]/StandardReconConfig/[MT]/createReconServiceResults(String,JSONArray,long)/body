@@ -1,0 +1,46 @@
+{
+  Recon recon=new Recon(historyEntryID,identifierSpace,schemaSpace);
+  try {
+    int length=results.length();
+    int count=0;
+    for (int i=0; i < length && count < 3; i++) {
+      JSONObject result=results.getJSONObject(i);
+      if (!result.has("name")) {
+        continue;
+      }
+      JSONArray types=result.getJSONArray("type");
+      String[] typeIDs=new String[types.length()];
+      for (int j=0; j < typeIDs.length; j++) {
+        Object type=types.get(j);
+        typeIDs[j]=type instanceof String ? (String)type : ((JSONObject)type).getString("id");
+      }
+      double score=result.getDouble("score");
+      ReconCandidate candidate=new ReconCandidate(result.getString("id"),result.getString("name"),typeIDs,score);
+      recon.addCandidate(candidate);
+      count++;
+    }
+    if (count > 0) {
+      ReconCandidate candidate=recon.candidates.get(0);
+      recon.setFeature(Recon.Feature_nameMatch,text.equalsIgnoreCase(candidate.name));
+      recon.setFeature(Recon.Feature_nameLevenshtein,StringUtils.getLevenshteinDistance(text,candidate.name));
+      recon.setFeature(Recon.Feature_nameWordDistance,wordDistance(text,candidate.name));
+      recon.setFeature(Recon.Feature_typeMatch,false);
+      for (      String typeID : candidate.types) {
+        if (this.typeID.equals(typeID)) {
+          recon.setFeature(Recon.Feature_typeMatch,true);
+          if (autoMatch && candidate.score >= 100 && (count == 1 || candidate.score / recon.candidates.get(1).score >= 1.5)) {
+            recon.match=candidate;
+            recon.matchRank=0;
+            recon.judgment=Judgment.Matched;
+            recon.judgmentAction="auto";
+          }
+          break;
+        }
+      }
+    }
+  }
+ catch (  JSONException e) {
+    e.printStackTrace();
+  }
+  return recon;
+}

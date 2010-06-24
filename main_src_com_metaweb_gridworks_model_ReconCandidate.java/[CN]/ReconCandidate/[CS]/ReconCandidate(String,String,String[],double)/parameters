@@ -1,0 +1,4 @@
+String topicID
+String topicName
+String[] typeIDs
+double score

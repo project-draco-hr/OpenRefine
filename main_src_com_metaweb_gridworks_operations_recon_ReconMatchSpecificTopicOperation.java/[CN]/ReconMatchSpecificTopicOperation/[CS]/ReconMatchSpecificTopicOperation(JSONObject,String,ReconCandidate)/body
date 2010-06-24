@@ -1,4 +1,0 @@
-{
-  super(engineConfig,columnName,false);
-  this.match=match;
-}

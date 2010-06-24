@@ -4,13 +4,13 @@
   jsonWriter.key("query");
   jsonWriter.array();
   jsonWriter.object();
-  jsonWriter.key("guid");
+  jsonWriter.key("id");
   jsonWriter.value(null);
-  jsonWriter.key("guid|=");
+  jsonWriter.key("id|=");
   jsonWriter.array();
-  for (  String guid : guids) {
-    if (guid != null) {
-      jsonWriter.value(guid);
+  for (  String id : ids) {
+    if (id != null) {
+      jsonWriter.value(id);
     }
   }
   jsonWriter.endArray();

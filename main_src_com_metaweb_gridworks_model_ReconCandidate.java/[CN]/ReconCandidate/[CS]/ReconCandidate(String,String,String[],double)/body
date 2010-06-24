@@ -1,0 +1,6 @@
+{
+  this.id=topicID;
+  this.name=topicName;
+  this.types=typeIDs;
+  this.score=score;
+}

@@ -4,7 +4,6 @@
     return null;
   }
   String id=null;
-  String guid=null;
   String name=null;
   List<String> types=null;
   double score=0;
@@ -13,9 +12,6 @@
     jp.nextToken();
     if ("id".equals(fieldName)) {
       id=jp.getText();
-    }
- else     if ("guid".equals(fieldName)) {
-      guid=jp.getText();
     }
  else     if ("name".equals(fieldName)) {
       name=jp.getText();
@@ -41,5 +37,5 @@
  else {
     typesA=new String[0];
   }
-  return new ReconCandidate(id,guid,name,typesA,score);
+  return new ReconCandidate(id,name,typesA,score);
 }

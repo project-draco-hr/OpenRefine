@@ -8,7 +8,7 @@
     for (int i=0; i < typeIDs.length; i++) {
       typeIDs[i]=types.getString(i);
     }
-    match=new ReconCandidate(matchObj.getString("id"),matchObj.getString("guid"),matchObj.getString("name"),typeIDs,matchObj.getDouble("score"));
+    match=new ReconCandidate(matchObj.getString("id"),matchObj.getString("name"),typeIDs,matchObj.getDouble("score"));
   }
   Judgment judgment=Judgment.None;
   if (obj.has("judgment")) {

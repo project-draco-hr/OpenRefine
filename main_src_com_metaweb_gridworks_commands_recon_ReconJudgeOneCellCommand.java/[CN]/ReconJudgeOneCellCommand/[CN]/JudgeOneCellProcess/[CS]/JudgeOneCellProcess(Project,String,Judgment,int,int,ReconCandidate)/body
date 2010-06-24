@@ -1,7 +1,0 @@
-{
-  super(project,briefDescription);
-  this.judgment=judgment;
-  this.rowIndex=rowIndex;
-  this.cellIndex=cellIndex;
-  this.match=match;
-}

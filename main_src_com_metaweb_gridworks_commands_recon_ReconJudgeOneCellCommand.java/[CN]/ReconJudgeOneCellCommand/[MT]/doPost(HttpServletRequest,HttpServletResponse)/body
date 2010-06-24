@@ -8,9 +8,9 @@
     String topicID=request.getParameter("topicID");
     if (topicID != null) {
       String scoreString=request.getParameter("score");
-      match=new ReconCandidate(topicID,request.getParameter("topicGUID"),request.getParameter("topicName"),request.getParameter("types").split(","),scoreString != null ? Double.parseDouble(scoreString) : 100);
+      match=new ReconCandidate(topicID,request.getParameter("topicName"),request.getParameter("types").split(","),scoreString != null ? Double.parseDouble(scoreString) : 100);
     }
-    JudgeOneCellProcess process=new JudgeOneCellProcess(project,"Judge one cell's recon result",judgment,rowIndex,cellIndex,match);
+    JudgeOneCellProcess process=new JudgeOneCellProcess(project,"Judge one cell's recon result",judgment,rowIndex,cellIndex,match,request.getParameter("identifierSpace"),request.getParameter("schemaSpace"));
     HistoryEntry historyEntry=project.processManager.queueProcess(process);
     if (historyEntry != null) {
       JSONWriter writer=new JSONWriter(response.getWriter());

@@ -34,7 +34,7 @@
   writer.value(false);
   writer.endObject();
   writer.endObject();
-  if (_reconConfig instanceof HeuristicReconConfig) {
+  if (_reconConfig instanceof StandardReconConfig) {
     writer.object();
     writer.key("action");
     writer.value("createFacet");

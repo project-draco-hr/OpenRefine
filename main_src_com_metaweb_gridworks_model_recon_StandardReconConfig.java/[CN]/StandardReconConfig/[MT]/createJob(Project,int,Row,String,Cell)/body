@@ -1,0 +1,56 @@
+{
+  StandardReconJob job=new StandardReconJob();
+  try {
+    StringWriter stringWriter=new StringWriter();
+    JSONWriter jsonWriter=new JSONWriter(stringWriter);
+    jsonWriter.object();
+    jsonWriter.key("query");
+    jsonWriter.value(cell.value.toString());
+    jsonWriter.key("type");
+    jsonWriter.value(typeID);
+    if (columnDetails.size() > 0) {
+      jsonWriter.key("properties");
+      jsonWriter.array();
+      for (      ColumnDetail c : columnDetails) {
+        int detailCellIndex=project.columnModel.getColumnByName(c.columnName).getCellIndex();
+        Cell cell2=row.getCell(detailCellIndex);
+        if (cell2 == null || !ExpressionUtils.isNonBlankData(cell2.value)) {
+          int cellIndex=project.columnModel.getColumnByName(columnName).getCellIndex();
+          RowDependency rd=project.recordModel.getRowDependency(rowIndex);
+          if (rd != null && rd.cellDependencies != null) {
+            int contextRowIndex=rd.cellDependencies[cellIndex].rowIndex;
+            if (contextRowIndex >= 0 && contextRowIndex < project.rows.size()) {
+              Row row2=project.rows.get(contextRowIndex);
+              cell2=row2.getCell(detailCellIndex);
+            }
+          }
+        }
+        if (cell2 != null && ExpressionUtils.isNonBlankData(cell2.value)) {
+          jsonWriter.object();
+          jsonWriter.key("pid");
+          jsonWriter.value(c.property.id);
+          jsonWriter.key("v");
+          if (cell2.recon != null && cell2.recon.match != null) {
+            jsonWriter.object();
+            jsonWriter.key("id");
+            jsonWriter.value(cell2.recon.match.id);
+            jsonWriter.key("name");
+            jsonWriter.value(cell2.recon.match.name);
+            jsonWriter.endObject();
+          }
+ else {
+            jsonWriter.value(cell2.value.toString());
+          }
+          jsonWriter.endObject();
+        }
+      }
+      jsonWriter.endArray();
+    }
+    jsonWriter.endObject();
+    job.text=cell.value.toString();
+    job.code=stringWriter.toString();
+  }
+ catch (  JSONException e) {
+  }
+  return job;
+}

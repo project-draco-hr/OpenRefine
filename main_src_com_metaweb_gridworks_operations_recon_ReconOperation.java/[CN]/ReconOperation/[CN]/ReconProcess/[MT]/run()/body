@@ -27,7 +27,8 @@
     }
     List<Recon> recons=_reconConfig.batchRecon(jobs,_historyEntryID);
     for (int j=i; j < to; j++) {
-      Recon recon=recons.get(j - i);
+      int index=j - i;
+      Recon recon=index < recons.size() ? recons.get(j - i) : null;
       List<ReconEntry> entries=groups.get(j).entries;
       if (recon != null) {
         recon.judgmentBatchSize=entries.size();

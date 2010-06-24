@@ -1,0 +1,71 @@
+{
+  List<Recon> recons=new ArrayList<Recon>(jobs.size());
+  StringWriter stringWriter=new StringWriter();
+  stringWriter.write("{");
+  for (int i=0; i < jobs.size(); i++) {
+    StandardReconJob job=(StandardReconJob)jobs.get(i);
+    if (i > 0) {
+      stringWriter.write(",");
+    }
+    stringWriter.write("\"q" + i + "\":");
+    stringWriter.write(job.code);
+  }
+  stringWriter.write("}");
+  String queriesString=stringWriter.toString();
+  try {
+    URL url=new URL(service);
+    URLConnection connection=url.openConnection();
+{
+      connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+      connection.setConnectTimeout(30000);
+      connection.setDoOutput(true);
+      DataOutputStream dos=new DataOutputStream(connection.getOutputStream());
+      try {
+        String body="queries=" + ParsingUtilities.encode(queriesString);
+        dos.writeBytes(body);
+      }
+  finally {
+        dos.flush();
+        dos.close();
+      }
+      connection.connect();
+    }
+    InputStream is=connection.getInputStream();
+    try {
+      String s=ParsingUtilities.inputStreamToString(is);
+      JSONObject o=ParsingUtilities.evaluateJsonStringToObject(s);
+      for (int i=0; i < jobs.size(); i++) {
+        StandardReconJob job=(StandardReconJob)jobs.get(i);
+        Recon recon=null;
+        String text=job.text;
+        String key="q" + i;
+        if (o.has(key)) {
+          JSONObject o2=o.getJSONObject(key);
+          if (o2.has("result")) {
+            JSONArray results=o2.getJSONArray("result");
+            recon=createReconServiceResults(text,results,historyEntryID);
+          }
+        }
+        if (recon == null) {
+          recon=new Recon(historyEntryID,identifierSpace,schemaSpace);
+        }
+        recon.service=service;
+        recons.add(recon);
+      }
+    }
+  finally {
+      is.close();
+    }
+  }
+ catch (  Exception e) {
+    logger.error("Failed to batch recon with load:\n" + queriesString,e);
+  }
+  while (recons.size() < jobs.size()) {
+    Recon recon=new Recon(historyEntryID,identifierSpace,schemaSpace);
+    recon.service=service;
+    recon.identifierSpace=identifierSpace;
+    recon.schemaSpace=schemaSpace;
+    recons.add(recon);
+  }
+  return recons;
+}

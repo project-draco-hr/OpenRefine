@@ -1,15 +1,12 @@
 {
   if ("id".equals(name)) {
-    return topicID;
-  }
- else   if ("guid".equals(name)) {
-    return topicGUID;
+    return id;
   }
  else   if ("name".equals(name)) {
-    return topicName;
+    return this.name;
   }
  else   if ("type".equals(name)) {
-    return typeIDs;
+    return types;
   }
  else   if ("score".equals(name)) {
     return score;

@@ -6,7 +6,7 @@
   String topicID=request.getParameter("topicID");
   if (topicID != null) {
     String scoreString=request.getParameter("score");
-    match=new ReconCandidate(topicID,request.getParameter("topicGUID"),request.getParameter("topicName"),request.getParameter("types").split(","),scoreString != null ? Double.parseDouble(scoreString) : 100);
+    match=new ReconCandidate(topicID,request.getParameter("topicName"),request.getParameter("types").split(","),scoreString != null ? Double.parseDouble(scoreString) : 100);
   }
   String shareNewTopics=request.getParameter("shareNewTopics");
   return new ReconJudgeSimilarCellsOperation(engineConfig,columnName,similarValue,judgment,match,"true".equals(shareNewTopics));

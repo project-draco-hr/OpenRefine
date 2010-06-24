@@ -1,0 +1,3 @@
+{
+  return new Recon(judgmentHistoryEntry,"http://rdf.freebase.com/ns/type.object.id","http://rdf.freebase.com/ns/type.object.id");
+}

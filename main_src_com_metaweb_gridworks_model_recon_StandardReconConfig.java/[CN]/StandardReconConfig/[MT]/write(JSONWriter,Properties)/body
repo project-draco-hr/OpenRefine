@@ -1,0 +1,32 @@
+{
+  writer.object();
+  writer.key("mode");
+  writer.value("standard-service");
+  writer.key("service");
+  writer.value(service);
+  writer.key("identifierSpace");
+  writer.value(identifierSpace);
+  writer.key("schemaSpace");
+  writer.value(schemaSpace);
+  writer.key("type");
+  writer.object();
+  writer.key("id");
+  writer.value(typeID);
+  writer.key("name");
+  writer.value(typeName);
+  writer.endObject();
+  writer.key("autoMatch");
+  writer.value(autoMatch);
+  writer.key("columnDetails");
+  writer.array();
+  for (  ColumnDetail c : columnDetails) {
+    writer.object();
+    writer.key("column");
+    writer.value(c.columnName);
+    writer.key("property");
+    c.property.write(writer,options);
+    writer.endObject();
+  }
+  writer.endArray();
+  writer.endObject();
+}

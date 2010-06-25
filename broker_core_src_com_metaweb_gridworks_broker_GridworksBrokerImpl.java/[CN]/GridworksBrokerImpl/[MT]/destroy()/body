@@ -2,12 +2,19 @@
   super.destroy();
   if (projectStore != null) {
     projectStore.close();
+    projectById=null;
   }
   if (lockStore != null) {
     lockStore.close();
+    lockByProject=null;
+  }
+  if (timer != null) {
+    timer.cancel();
+    timer.purge();
+    timer=null;
   }
   if (env != null) {
-    env.cleanLog();
     env.close();
+    env=null;
   }
 }

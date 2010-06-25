@@ -32,7 +32,7 @@
   this.setHandler(context);
   this.setStopAtShutdown(true);
   this.setSendServerVersion(true);
-  if (Configurations.getBoolean("gridworks.autoreloading",false)) {
+  if (Configurations.getBoolean("gridworks.autoreload",false)) {
     scanForUpdates(webapp,context);
   }
   this.start();

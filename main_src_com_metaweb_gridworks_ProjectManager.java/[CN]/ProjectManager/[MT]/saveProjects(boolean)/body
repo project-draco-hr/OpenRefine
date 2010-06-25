@@ -4,7 +4,7 @@
 synchronized (this) {
     for (    long id : _projectsMetadata.keySet()) {
       ProjectMetadata metadata=getProjectMetadata(id);
-      Project project=getProject(id);
+      Project project=_projects.get(id);
       if (project != null) {
         boolean hasUnsavedChanges=metadata.getModified().getTime() > project.getLastSave().getTime();
         if (hasUnsavedChanges) {

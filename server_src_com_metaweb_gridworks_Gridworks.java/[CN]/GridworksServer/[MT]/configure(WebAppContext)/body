@@ -1,5 +1,15 @@
 {
   ServletHolder servlet=context.getServletHandler().getServlet("gridworks");
-  servlet.setInitParameter("gridworks.data",getDataDir());
-  servlet.doStart();
+  if (servlet != null) {
+    servlet.setInitParameter("gridworks.data",getDataDir());
+    servlet.setInitOrder(1);
+    servlet.doStart();
+  }
+  servlet=context.getServletHandler().getServlet("gridworks-broker");
+  if (servlet != null) {
+    servlet.setInitParameter("gridworks.data",getDataDir() + "/broker");
+    servlet.setInitParameter("gridworks.development",Configurations.get("gridworks.development","false"));
+    servlet.setInitOrder(1);
+    servlet.doStart();
+  }
 }

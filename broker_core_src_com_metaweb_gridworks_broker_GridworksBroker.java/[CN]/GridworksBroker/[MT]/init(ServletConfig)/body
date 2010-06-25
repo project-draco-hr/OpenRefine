@@ -1,4 +1,6 @@
 {
   super.init(config);
   httpclient=getHttpClient();
+  developmentMode=Boolean.parseBoolean(config.getInitParameter("gridworks.development"));
+  if (developmentMode)   logger.warn("Running in development mode");
 }

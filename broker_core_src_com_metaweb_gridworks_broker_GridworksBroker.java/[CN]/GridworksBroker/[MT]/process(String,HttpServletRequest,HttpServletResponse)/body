@@ -9,9 +9,9 @@
   response.setHeader("Content-Type","application/json");
   try {
     String uid=getUserId(request);
-    logger.debug("uid: {}",path);
+    logger.debug("uid: {}",uid);
     String pid=getParameter(request,"pid");
-    logger.debug("pid: {}",path);
+    logger.debug("pid: {}",pid);
     if ("get_lock".equals(path)) {
       getLock(response,pid);
     }

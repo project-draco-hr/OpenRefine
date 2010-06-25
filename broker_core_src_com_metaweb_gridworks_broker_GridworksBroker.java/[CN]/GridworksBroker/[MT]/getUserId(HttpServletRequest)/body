@@ -1,4 +1,7 @@
 {
+  if (developmentMode) {
+    return getParameter(request,"uid");
+  }
   String oauth=request.getHeader(DELEGATED_OAUTH_HEADER);
   if (oauth == null) {
     throw new RuntimeException("The request needs to contain the '" + DELEGATED_OAUTH_HEADER + "' header set to obtain user identity via Freebase.");

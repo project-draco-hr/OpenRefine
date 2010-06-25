@@ -3,9 +3,7 @@
   timer=new Timer();
   expirer=new LockExpirer();
   timer.schedule(expirer,LOCK_EXPIRATION_CHECK_DELAY,LOCK_EXPIRATION_CHECK_DELAY);
-  String dataDir=config.getInitParameter("gridworks.data");
-  if (dataDir == null)   dataDir="data";
-  File dataPath=new File(dataDir);
+  File dataPath=new File("data");
   if (!dataPath.exists())   dataPath.mkdirs();
   EnvironmentConfig envConfig=new EnvironmentConfig();
   envConfig.setAllowCreate(true);

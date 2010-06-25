@@ -1,20 +1,14 @@
 {
   if (lockByProject != null) {
-    EntityCursor<Lock> cursor=lockByProject.entities();
-    try {
-      for (Lock lock=cursor.first(); lock != null; lock=cursor.next()) {
-        if (lock.timestamp + LOCK_DURATION < System.currentTimeMillis()) {
-          try {
-            releaseLock(null,lock.pid,lock.uid,lock.id);
-          }
- catch (          Exception e) {
-            logger.error("Exception while expiring lock for project '" + lock.pid + "'",e);
-          }
+    for (    Lock lock : lockByProject.entities()) {
+      if (lock.timestamp + LOCK_DURATION < System.currentTimeMillis()) {
+        try {
+          releaseLock(null,lock.pid,lock.uid,lock.id);
+        }
+ catch (        Exception e) {
+          logger.error("Exception while expiring lock for project '" + lock.pid + "'",e);
         }
       }
-    }
-  finally {
-      cursor.close();
     }
   }
 }

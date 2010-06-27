@@ -9,12 +9,17 @@
   writer.key("schemaSpace");
   writer.value(schemaSpace);
   writer.key("type");
-  writer.object();
-  writer.key("id");
-  writer.value(typeID);
-  writer.key("name");
-  writer.value(typeName);
-  writer.endObject();
+  if (typeID == null) {
+    writer.value(null);
+  }
+ else {
+    writer.object();
+    writer.key("id");
+    writer.value(typeID);
+    writer.key("name");
+    writer.value(typeName);
+    writer.endObject();
+  }
   writer.key("autoMatch");
   writer.value(autoMatch);
   writer.key("columnDetails");

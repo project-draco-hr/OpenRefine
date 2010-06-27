@@ -31,10 +31,12 @@
       recon.setFeature(Recon.Feature_nameLevenshtein,StringUtils.getLevenshteinDistance(text,candidate.name));
       recon.setFeature(Recon.Feature_nameWordDistance,wordDistance(text,candidate.name));
       recon.setFeature(Recon.Feature_typeMatch,false);
-      for (      String typeID : candidate.types) {
-        if (this.typeID.equals(typeID)) {
-          recon.setFeature(Recon.Feature_typeMatch,true);
-          break;
+      if (this.typeID != null) {
+        for (        String typeID : candidate.types) {
+          if (this.typeID.equals(typeID)) {
+            recon.setFeature(Recon.Feature_typeMatch,true);
+            break;
+          }
         }
       }
     }

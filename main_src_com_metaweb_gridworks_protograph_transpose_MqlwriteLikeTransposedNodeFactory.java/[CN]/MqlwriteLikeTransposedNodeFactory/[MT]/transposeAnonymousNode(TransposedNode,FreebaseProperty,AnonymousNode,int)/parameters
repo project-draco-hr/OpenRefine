@@ -1,0 +1,4 @@
+TransposedNode parentNode
+FreebaseProperty property
+AnonymousNode node
+int rowIndex

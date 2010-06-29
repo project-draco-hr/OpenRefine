@@ -1,0 +1,38 @@
+{
+  String id=null;
+  int objectRowIndex=-1;
+  int objectCellIndex=-1;
+  Cell objectCell=null;
+  if (cell.recon != null && cell.recon.judgment == Recon.Judgment.Matched && cell.recon.match != null) {
+    objectRowIndex=rowIndex;
+    objectCellIndex=cellIndex;
+    objectCell=cell;
+    id=cell.recon.match.id;
+  }
+ else   if (node.createForNoReconMatch || (cell.recon != null && cell.recon.judgment == Judgment.New)) {
+    if (cell.recon != null && newTopicVars.containsKey(cell.recon.id)) {
+      id=newTopicVars.get(cell.recon.id);
+    }
+ else {
+      long var=0;
+      if (varPool.containsKey(node.columnName)) {
+        var=varPool.get(node.columnName);
+      }
+      varPool.put(node.columnName,var + 1);
+      id="$" + node.columnName.replaceAll("\\W+","_") + "_"+ var;
+      writeLine(id,"type",node.type.id,project,-1,-1,(Cell)null,-1,-1,(Cell)null);
+      writeLine(id,"name",cell.value,project,-1,-1,(Cell)null,-1,-1,(Cell)null);
+      if (cell.recon != null) {
+        newTopicVars.put(cell.recon.id,id);
+      }
+    }
+  }
+ else {
+    return null;
+  }
+  if (subject != null) {
+    writeLine(subject,predicate,id,project,subjectRowIndex,subjectCellIndex,subjectCell,objectRowIndex,objectCellIndex,objectCell);
+  }
+  writeChildren(id,project,objectRowIndex,objectCellIndex,objectCell);
+  return id;
+}

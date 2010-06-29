@@ -1,7 +1,7 @@
 {
   if (project.protograph != null) {
     Protograph protograph=project.protograph;
-    TransposedNodeFactory nodeFactory=createNodeFactory(writer);
+    TransposedNodeFactory nodeFactory=createNodeFactory(project,writer);
     Transposer.transpose(project,engine.getAllFilteredRows(),protograph,protograph.getRootNode(0),nodeFactory,-1);
     nodeFactory.flush();
   }

@@ -1,0 +1,4 @@
+{
+  writeLine(subject,"key",node.namespace.id + "/" + cell.value,project,subjectRowIndex,subjectCellIndex,subjectCell,-1,-1,null);
+  return null;
+}

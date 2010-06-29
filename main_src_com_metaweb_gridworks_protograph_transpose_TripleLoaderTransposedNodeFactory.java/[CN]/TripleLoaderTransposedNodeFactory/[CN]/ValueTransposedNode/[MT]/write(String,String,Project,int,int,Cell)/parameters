@@ -1,0 +1,6 @@
+String subject
+String predicate
+Project project
+int subjectRowIndex
+int subjectCellIndex
+Cell subjectCell

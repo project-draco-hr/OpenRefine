@@ -24,7 +24,7 @@
       values=s.split(_separator);
     }
  else {
-      values=StringUtils.splitByWholeSeparator(s,_separator);
+      values=StringUtils.splitByWholeSeparatorPreserveAllTokens(s,_separator);
     }
     if (values.length < 2) {
       newRows.add(oldRow.dup());

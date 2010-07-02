@@ -1,0 +1,4 @@
+{
+  data=new File("data");
+  if (!data.exists())   data.mkdirs();
+}

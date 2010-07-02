@@ -1,0 +1,8 @@
+{
+  request=mock(HttpServletRequest.class);
+  response=mock(HttpServletResponse.class);
+  config=mock(ServletConfig.class);
+  when(config.getInitParameter("gridworks.data")).thenReturn(data.getAbsolutePath());
+  SUT=new GridworksBrokerImpl();
+  SUT.init(config);
+}

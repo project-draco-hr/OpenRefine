@@ -1,0 +1,4 @@
+String pid
+byte[] data
+String metadata
+int rev

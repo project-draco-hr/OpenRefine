@@ -1,3 +1,0 @@
-{
-  respond(response,lockToJSON(getLock(pid)));
-}

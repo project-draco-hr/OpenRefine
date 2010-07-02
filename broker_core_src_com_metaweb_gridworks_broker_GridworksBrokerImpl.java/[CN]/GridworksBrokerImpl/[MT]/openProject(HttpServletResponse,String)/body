@@ -1,0 +1,19 @@
+{
+  Project project=getProject(pid);
+  Writer w=response.getWriter();
+  JSONWriter writer=new JSONWriter(w);
+  writer.object();
+  writer.key("data");
+  writer.value(project.data);
+  writer.key("metadata");
+  writer.value(new JSONObject(project.metadata));
+  writer.key("transformations");
+  writer.array();
+  for (  String s : project.transformations) {
+    writer.value(new JSONObject(s));
+  }
+  writer.endArray();
+  writer.endObject();
+  w.flush();
+  w.close();
+}

@@ -1,7 +1,8 @@
 {
+  logger.trace("> init");
   super.init(config);
   timer=new Timer();
-  expirer=new LockExpirer();
+  expirer=new Expirer();
   timer.schedule(expirer,LOCK_EXPIRATION_CHECK_DELAY,LOCK_EXPIRATION_CHECK_DELAY);
   String dataDir=config.getInitParameter("gridworks.data");
   if (dataDir == null)   dataDir="data";
@@ -17,5 +18,7 @@
   projectStore=new EntityStore(env,"ProjectsStore",storeConfig);
   lockStore=new EntityStore(env,"LockStore",storeConfig);
   projectById=projectStore.getPrimaryIndex(String.class,Project.class);
-  lockByProject=lockStore.getPrimaryIndex(String.class,Lock.class);
+  lockById=lockStore.getPrimaryIndex(String.class,Lock.class);
+  locksByProject=lockStore.getSecondaryIndex(lockById,String.class,"pid");
+  logger.trace("< init");
 }

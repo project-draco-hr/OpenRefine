@@ -1,0 +1,8 @@
+{
+  this.id=id;
+  this.pid=pid;
+  this.uid=uid;
+  this.type=type;
+  this.value=value;
+  this.timestamp=System.currentTimeMillis();
+}

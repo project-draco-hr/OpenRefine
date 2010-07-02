@@ -1,0 +1,5 @@
+{
+  Lock lock=lockById.get(lid);
+  checkLock(lock,lid,pid,uid);
+  return lock;
+}

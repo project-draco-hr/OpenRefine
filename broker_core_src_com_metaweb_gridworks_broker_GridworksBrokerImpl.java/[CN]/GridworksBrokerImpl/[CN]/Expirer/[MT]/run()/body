@@ -1,0 +1,32 @@
+{
+  if (lockById != null) {
+    logger.trace("> expire");
+    Transaction txn=env.beginTransaction(null,null);
+    try {
+      EntityCursor<Lock> cursor=lockById.entities();
+      try {
+        for (        Lock lock : cursor) {
+          if (lock.timestamp + LOCK_DURATION < System.currentTimeMillis()) {
+            logger.trace("Found expired lock {}",lock.id);
+            try {
+              releaseLock(null,lock.pid,lock.uid,lock.id);
+            }
+ catch (            Exception e) {
+              logger.error("Exception while expiring lock for project '" + lock.pid + "'",e);
+            }
+          }
+        }
+      }
+  finally {
+        cursor.close();
+      }
+    }
+  finally {
+      if (txn != null) {
+        txn.abort();
+        txn=null;
+      }
+    }
+    logger.trace("< expire");
+  }
+}

@@ -1,0 +1,16 @@
+{
+  Lock lock=null;
+  EntityCursor<Lock> cursor=locksByProject.subIndex(pid).entities();
+  try {
+    for (    Lock l : cursor) {
+      if (uid.equals(l.uid) && (locktype == l.type)) {
+        lock=l;
+        break;
+      }
+    }
+  }
+  finally {
+    cursor.close();
+  }
+  return lock;
+}

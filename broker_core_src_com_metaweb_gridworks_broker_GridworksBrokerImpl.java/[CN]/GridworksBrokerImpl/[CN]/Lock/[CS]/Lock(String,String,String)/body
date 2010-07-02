@@ -1,6 +1,0 @@
-{
-  this.id=id;
-  this.pid=pid;
-  this.uid=uid;
-  this.timestamp=System.currentTimeMillis();
-}

@@ -1,0 +1,21 @@
+{
+  Transaction txn=env.beginTransaction(null,null);
+  try {
+    if (projectById.contains(pid)) {
+      throw new RuntimeException("Project '" + pid + "' already exists");
+    }
+    Lock lock=getLock(lid,pid,uid);
+    if (lock.type != ALL) {
+      throw new RuntimeException("The lock you have is not enough to start a project");
+    }
+    projectById.put(txn,new Project(pid,data,metadata,rev));
+    txn.commit();
+  }
+  finally {
+    if (txn != null) {
+      txn.abort();
+      txn=null;
+    }
+  }
+  respond(response,OK);
+}

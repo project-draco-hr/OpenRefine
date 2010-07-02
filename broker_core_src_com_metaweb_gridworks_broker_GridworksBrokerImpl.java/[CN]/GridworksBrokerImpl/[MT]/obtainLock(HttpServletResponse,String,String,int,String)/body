@@ -1,0 +1,44 @@
+{
+  Lock lock=null;
+  Transaction txn=env.beginTransaction(null,null);
+  try {
+    EntityCursor<Lock> cursor=locksByProject.subIndex(pid).entities();
+    try {
+      for (      Lock l : cursor) {
+        if (locktype == ALL) {
+          if (l.type == ALL) {
+            lock=l;
+            break;
+          }
+        }
+ else         if (locktype == COLUMN) {
+          if (l.type == ALL || (l.type == COLUMN && l.value.equals(lockvalue))) {
+            lock=l;
+            break;
+          }
+        }
+ else         if (locktype == CELL) {
+          if (l.type == ALL || (l.type == COLUMN && l.value.equals(lockvalue.split(",")[0])) || (l.type == CELL && l.value.equals(lockvalue))) {
+            lock=l;
+            break;
+          }
+        }
+      }
+    }
+  finally {
+      cursor.close();
+    }
+    if (lock == null) {
+      lock=new Lock(Long.toHexString(txn.getId()),pid,uid,locktype,lockvalue);
+      lockById.put(txn,lock);
+      txn.commit();
+    }
+  }
+  finally {
+    if (txn != null) {
+      txn.abort();
+      txn=null;
+    }
+  }
+  respond(response,lockToJSON(lock));
+}

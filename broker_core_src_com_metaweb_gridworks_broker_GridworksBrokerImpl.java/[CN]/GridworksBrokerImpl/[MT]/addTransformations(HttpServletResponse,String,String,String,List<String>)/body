@@ -1,12 +1,53 @@
 {
   Transaction txn=env.beginTransaction(null,null);
-  checkLock(pid,uid,lid);
-  Project project=getProject(pid);
-  if (project == null) {
-    throw new RuntimeException("Project '" + pid + "' not found");
-  }
   try {
-    project.transformations.addAll(transformations);
+    Project project=getProject(pid);
+    if (project == null) {
+      throw new RuntimeException("Project '" + pid + "' not found");
+    }
+    Lock lock=getLock(lid,pid,uid);
+    if (lock.type == ALL) {
+      project.transformations.addAll(transformations);
+    }
+ else {
+      for (      String s : transformations) {
+        JSONObject o=new JSONObject(s);
+        int type=o.getInt("op_type");
+        String value=o.getString("op_value");
+        if (lock.type == COLUMN) {
+          if (type == COLUMN) {
+            if (value != null && value.equals(lock.value)) {
+              project.transformations.add(s);
+            }
+ else {
+              throw new RuntimeException("Can't apply '" + s + "': you have a lock for column '"+ lock.value+ "' and you're attempting to modify column '"+ value+ "'.");
+            }
+          }
+ else           if (type == CELL) {
+            String column=value.split(",")[0];
+            if (column != null && column.equals(lock.value)) {
+              project.transformations.add(s);
+            }
+ else {
+              throw new RuntimeException("Can't apply '" + s + "': you have a lock for column '"+ lock.value+ "' and you're attempting to modify cell '"+ value+ "' in another column.");
+            }
+          }
+        }
+ else         if (lock.type == CELL) {
+          if (type == COLUMN) {
+            throw new RuntimeException("Can't apply '" + s + "': you offered a lock for a single cell and you're attempting an operation for the entire column.");
+          }
+ else           if (type == CELL) {
+            if (value != null && value.equals(lock.value)) {
+              project.transformations.add(s);
+            }
+ else {
+              throw new RuntimeException("Can't apply '" + s + "': you have a lock for cell '"+ lock.value+ "' and you're attempting to modify cell '"+ value+ "'.");
+            }
+          }
+        }
+      }
+    }
     txn.commit();
   }
   finally {

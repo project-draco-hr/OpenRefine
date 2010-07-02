@@ -1,5 +1,0 @@
-HttpServletResponse response
-String pid
-String uid
-String lock
-String data

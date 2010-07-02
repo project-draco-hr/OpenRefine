@@ -1,7 +1,7 @@
 {
   Project project=projectById.get(pid);
   if (project == null) {
-    throw new RuntimeException("Project '" + pid + "' is not managed by this broker");
+    throw new RuntimeException("Project '" + pid + "' could not be found: are you sure is not managed by another broker?");
   }
   return project;
 }

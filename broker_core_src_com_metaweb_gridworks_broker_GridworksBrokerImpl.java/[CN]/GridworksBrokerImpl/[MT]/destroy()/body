@@ -1,4 +1,5 @@
 {
+  logger.trace("> destroy");
   super.destroy();
   if (projectStore != null) {
     projectStore.close();
@@ -6,7 +7,7 @@
   }
   if (lockStore != null) {
     lockStore.close();
-    lockByProject=null;
+    lockById=null;
   }
   if (timer != null) {
     timer.cancel();
@@ -17,4 +18,5 @@
     env.close();
     env=null;
   }
+  logger.trace("< destroy");
 }

@@ -12,29 +12,26 @@
     logger.debug("uid: {}",uid);
     String pid=getParameter(request,"pid");
     logger.debug("pid: {}",pid);
-    if ("get_lock".equals(path)) {
-      getLock(response,pid);
+    if ("get_state".equals(path)) {
+      getState(response,pid,uid,getInteger(request,"rev"));
     }
- else     if ("expire_locks".equals(path)) {
-      expireLocks(response);
+ else     if ("expire".equals(path)) {
+      expire(response);
     }
  else     if ("obtain_lock".equals(path)) {
-      obtainLock(response,pid,uid);
+      obtainLock(response,pid,uid,getInteger(request,"locktype"),getParameter(request,"lockvalue"));
     }
  else     if ("release_lock".equals(path)) {
       releaseLock(response,pid,uid,getParameter(request,"lock"));
-    }
- else     if ("history".equals(path)) {
-      getHistory(response,pid,getInteger(request,"tindex"));
     }
  else     if ("transform".equals(path)) {
       addTransformations(response,pid,uid,getParameter(request,"lock"),getList(request,"transformations"));
     }
  else     if ("start".equals(path)) {
-      startProject(response,pid,uid,getParameter(request,"lock"),getParameter(request,"data"));
+      startProject(response,pid,uid,getParameter(request,"lock"),getData(request),getParameter(request,"metadata"),getInteger(request,"rev"));
     }
- else     if ("get".equals(path)) {
-      getProject(response,pid);
+ else     if ("open".equals(path)) {
+      openProject(response,pid);
     }
  else {
       boolean value=super.process(path,request,response);

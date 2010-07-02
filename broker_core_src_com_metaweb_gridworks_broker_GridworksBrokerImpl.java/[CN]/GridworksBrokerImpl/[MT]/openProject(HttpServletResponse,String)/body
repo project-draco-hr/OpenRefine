@@ -3,6 +3,8 @@
   Writer w=response.getWriter();
   JSONWriter writer=new JSONWriter(w);
   writer.object();
+  writer.key("status");
+  writer.value("ok");
   writer.key("data");
   writer.value(project.data);
   writer.key("metadata");

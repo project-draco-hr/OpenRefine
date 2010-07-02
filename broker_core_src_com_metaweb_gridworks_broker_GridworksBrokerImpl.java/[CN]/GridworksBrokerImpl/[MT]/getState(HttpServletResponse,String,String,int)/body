@@ -3,6 +3,8 @@
   Writer w=response.getWriter();
   JSONWriter writer=new JSONWriter(w);
   writer.object();
+  writer.key("status");
+  writer.value("ok");
   writer.key("transformations");
   writer.array();
   int size=project.transformations.size();

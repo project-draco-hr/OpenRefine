@@ -43,6 +43,8 @@
       txn=null;
     }
   }
-  respond(response,lockToJSON(lock,uid));
+  JSONObject o=lockToJSON(lock,uid);
+  o.put("status","ok");
+  respond(response,o);
   logger.trace("< obtain lock");
 }

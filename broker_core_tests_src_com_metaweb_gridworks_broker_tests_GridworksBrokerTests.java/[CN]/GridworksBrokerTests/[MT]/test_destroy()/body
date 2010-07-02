@@ -1,0 +1,5 @@
+{
+  broker.destroy();
+  broker=null;
+  config=null;
+}

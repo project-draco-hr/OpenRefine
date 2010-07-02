@@ -4,7 +4,7 @@
   }
   try {
     JSONObject o=new JSONObject();
-    o.put("code","error");
+    o.put("status","error");
     o.put("message",e.getMessage());
     StringWriter sw=new StringWriter();
     PrintWriter pw=new PrintWriter(sw);

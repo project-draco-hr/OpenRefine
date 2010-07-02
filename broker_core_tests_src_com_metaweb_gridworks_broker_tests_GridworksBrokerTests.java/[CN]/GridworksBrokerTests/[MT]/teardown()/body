@@ -1,8 +1,4 @@
 {
-  SUT.destroy();
-  SUT=null;
-  writer=null;
   response=null;
   request=null;
-  config=null;
 }

@@ -1,2 +1,6 @@
 {
+  for (  File f : data.listFiles()) {
+    f.delete();
+  }
+  data.delete();
 }

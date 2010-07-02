@@ -2,4 +2,4 @@ GridworksBroker broker
 HttpServletRequest request
 HttpServletResponse response
 String service
-Map<String,String> params
+String params

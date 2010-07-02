@@ -6,7 +6,7 @@
       if (!lock.uid.equals(uid)) {
         throw new RuntimeException("User id doesn't match the lock owner, can't release the lock");
       }
-      lockById.delete(pid);
+      lockById.delete(lid);
       txn.commit();
     }
   }

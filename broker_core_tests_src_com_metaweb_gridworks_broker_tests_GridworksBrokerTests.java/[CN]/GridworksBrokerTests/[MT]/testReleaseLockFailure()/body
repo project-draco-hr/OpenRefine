@@ -1,0 +1,9 @@
+{
+  try {
+    JSONObject result=call(broker,request,response,RELEASE_LOCK);
+    assertJSON(result,"status","error");
+  }
+ catch (  Exception e) {
+    Assert.fail();
+  }
+}

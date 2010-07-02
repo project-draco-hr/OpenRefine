@@ -6,37 +6,37 @@
     logger.info("process '{}'",path);
   }
   try {
-    if ("get_state".equals(path)) {
+    if (GET_STATE.equals(path)) {
       response.setCharacterEncoding("UTF-8");
       response.setHeader("Content-Type","application/json");
       getState(response,getParameter(request,"pid"),getUserId(request),getInteger(request,"rev"));
     }
- else     if ("expire".equals(path)) {
+ else     if (EXPIRE.equals(path)) {
       response.setCharacterEncoding("UTF-8");
       response.setHeader("Content-Type","application/json");
       expire(response);
     }
- else     if ("obtain_lock".equals(path)) {
+ else     if (OBTAIN_LOCK.equals(path)) {
       response.setCharacterEncoding("UTF-8");
       response.setHeader("Content-Type","application/json");
       obtainLock(response,getParameter(request,"pid"),getUserId(request),getInteger(request,"locktype"),getParameter(request,"lockvalue"));
     }
- else     if ("release_lock".equals(path)) {
+ else     if (RELEASE_LOCK.equals(path)) {
       response.setCharacterEncoding("UTF-8");
       response.setHeader("Content-Type","application/json");
       releaseLock(response,getParameter(request,"pid"),getUserId(request),getParameter(request,"lock"));
     }
- else     if ("transform".equals(path)) {
+ else     if (TRANSFORM.equals(path)) {
       response.setCharacterEncoding("UTF-8");
       response.setHeader("Content-Type","application/json");
       addTransformations(response,getParameter(request,"pid"),getUserId(request),getParameter(request,"lock"),getList(request,"transformations"));
     }
- else     if ("start".equals(path)) {
+ else     if (START.equals(path)) {
       response.setCharacterEncoding("UTF-8");
       response.setHeader("Content-Type","application/json");
       startProject(response,getParameter(request,"pid"),getUserId(request),getParameter(request,"lock"),getData(request),getParameter(request,"metadata"),getInteger(request,"rev"));
     }
- else     if ("open".equals(path)) {
+ else     if (OPEN.equals(path)) {
       response.setCharacterEncoding("UTF-8");
       response.setHeader("Content-Type","application/json");
       openProject(response,getParameter(request,"pid"));

@@ -2,6 +2,5 @@
   if (content == null) {
     throw new ServletException("Content object can't be null");
   }
-  JSONObject o=new JSONObject();
-  respond(response,o.toString());
+  respond(response,content.toString());
 }

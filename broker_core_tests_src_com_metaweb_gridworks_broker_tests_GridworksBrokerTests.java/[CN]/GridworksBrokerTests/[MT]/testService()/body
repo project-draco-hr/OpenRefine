@@ -1,7 +1,7 @@
 {
   try {
-    call(SUT,request,response,"expire",null);
-    logger.info(writer.toString());
+    JSONObject result=call(broker,request,response,EXPIRE);
+    assertJSON(result,"status","ok");
   }
  catch (  Exception e) {
     Assert.fail();

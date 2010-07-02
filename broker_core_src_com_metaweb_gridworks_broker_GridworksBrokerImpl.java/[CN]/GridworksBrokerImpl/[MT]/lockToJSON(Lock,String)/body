@@ -1,0 +1,14 @@
+{
+  JSONObject o=new JSONObject();
+  if (lock != null) {
+    if (lock.uid.equals(uid)) {
+      o.put("lock",lock.id);
+    }
+    o.put("pid",lock.pid);
+    o.put("uid",lock.uid);
+    o.put("type",lock.type);
+    o.put("value",lock.value);
+    o.put("timestamp",lock.timestamp);
+  }
+  return o;
+}

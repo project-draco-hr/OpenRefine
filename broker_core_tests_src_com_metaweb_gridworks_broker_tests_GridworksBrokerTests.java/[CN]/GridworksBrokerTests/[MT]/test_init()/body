@@ -1,3 +1,8 @@
 {
   logger=LoggerFactory.getLogger(this.getClass());
+  config=mock(ServletConfig.class);
+  when(config.getInitParameter("gridworks.data")).thenReturn(data.getAbsolutePath());
+  when(config.getInitParameter("gridworks.development")).thenReturn("true");
+  broker=new GridworksBrokerImpl();
+  broker.init(config);
 }

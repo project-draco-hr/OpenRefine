@@ -1,0 +1,23 @@
+{
+  try {
+    JSONObject result=call(broker,request,response,OBTAIN_LOCK,"pid","1","uid","testuser","locktype",Integer.toString(ALL),"lockvalue","");
+    assertJSON(result,"uid","testuser");
+    String lock=result.getString("lock");
+    result=call(broker,request,response,START,"pid","1","uid","testuser","lock",lock,"data","blah","metadata","{}","rev","0");
+    assertJSON(result,"status","ok");
+    result=call(broker,request,response,GET_STATE,"pid","1","uid","testuser","rev","0");
+    JSONArray locks=result.getJSONArray("locks");
+    Assert.assertEquals(locks.length(),1);
+    JSONObject l=locks.getJSONObject(0);
+    assertJSON(l,"uid","testuser");
+    Assert.assertEquals(l.getInt("type"),ALL);
+    result=call(broker,request,response,RELEASE_LOCK,"pid","1","uid","testuser","lock",lock);
+    assertJSON(result,"status","ok");
+    result=call(broker,request,response,GET_STATE,"pid","1","uid","testuser","rev","0");
+    locks=result.getJSONArray("locks");
+    Assert.assertEquals(locks.length(),0);
+  }
+ catch (  Exception e) {
+    Assert.fail();
+  }
+}

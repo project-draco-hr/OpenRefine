@@ -1,10 +1,12 @@
 {
+  logger.trace("> obtain lock");
   Lock lock=null;
   Transaction txn=env.beginTransaction(null,null);
   try {
     EntityCursor<Lock> cursor=locksByProject.subIndex(pid).entities();
     try {
       for (      Lock l : cursor) {
+        logger.info("found lock: {}",l.id);
         if (locktype == ALL) {
           if (l.type == ALL) {
             lock=l;
@@ -29,6 +31,7 @@
       cursor.close();
     }
     if (lock == null) {
+      logger.info("no lock found, creating new");
       lock=new Lock(Long.toHexString(txn.getId()),pid,uid,locktype,lockvalue);
       lockById.put(txn,lock);
       txn.commit();
@@ -40,5 +43,6 @@
       txn=null;
     }
   }
-  respond(response,lockToJSON(lock));
+  respond(response,lockToJSON(lock,uid));
+  logger.trace("< obtain lock");
 }

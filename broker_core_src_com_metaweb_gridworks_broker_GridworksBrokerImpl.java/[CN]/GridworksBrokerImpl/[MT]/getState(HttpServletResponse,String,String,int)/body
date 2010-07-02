@@ -10,14 +10,12 @@
     writer.value(project.transformations.get(i));
   }
   writer.endArray();
-  writer.endObject();
   EntityCursor<Lock> cursor=locksByProject.subIndex(pid).entities();
   try {
-    writer.object();
     writer.key("locks");
     writer.array();
     for (    Lock lock : cursor) {
-      writer.value(lockToJSON(lock));
+      writer.value(lockToJSON(lock,uid));
     }
     writer.endArray();
     writer.endObject();

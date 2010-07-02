@@ -1,8 +1,10 @@
 {
+  config=mock(ServletConfig.class);
   request=mock(HttpServletRequest.class);
   response=mock(HttpServletResponse.class);
-  config=mock(ServletConfig.class);
+  writer=new StringWriter();
   when(config.getInitParameter("gridworks.data")).thenReturn(data.getAbsolutePath());
+  when(response.getWriter()).thenReturn(new PrintWriter(writer));
   SUT=new GridworksBrokerImpl();
   SUT.init(config);
 }

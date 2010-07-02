@@ -1,4 +1,5 @@
 {
+  System.setProperty("log4j.configuration","tests.log4j.properties");
   data=new File("data");
   if (!data.exists())   data.mkdirs();
 }

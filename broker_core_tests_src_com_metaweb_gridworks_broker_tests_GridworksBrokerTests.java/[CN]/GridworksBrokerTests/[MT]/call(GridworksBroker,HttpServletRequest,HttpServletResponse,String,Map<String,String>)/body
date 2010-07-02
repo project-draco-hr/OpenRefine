@@ -1,0 +1,13 @@
+{
+  if (params != null) {
+    for (    Entry<String,String> e : params.entrySet()) {
+      when(request.getParameter(e.getKey())).thenReturn(e.getValue());
+    }
+  }
+  broker.process(service,request,response);
+  if (params != null) {
+    for (    Entry<String,String> e : params.entrySet()) {
+      verify(request,times(1)).getParameter(e.getKey());
+    }
+  }
+}

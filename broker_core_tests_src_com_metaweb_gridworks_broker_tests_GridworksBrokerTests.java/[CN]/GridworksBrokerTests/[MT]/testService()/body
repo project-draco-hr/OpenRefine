@@ -1,0 +1,9 @@
+{
+  try {
+    call(SUT,request,response,"expire",null);
+    logger.info(writer.toString());
+  }
+ catch (  Exception e) {
+    Assert.fail();
+  }
+}

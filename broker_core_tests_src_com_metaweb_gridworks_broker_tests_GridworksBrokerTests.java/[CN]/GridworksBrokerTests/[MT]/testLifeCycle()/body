@@ -1,3 +1,4 @@
 {
+  logger.info("testing lifecycle");
   Assert.assertTrue(true);
 }

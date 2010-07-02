@@ -1,0 +1,3 @@
+{
+  return lock.id + "," + lock.pid+ ","+ lock.uid+ ","+ lock.type+ ","+ lock.value;
+}

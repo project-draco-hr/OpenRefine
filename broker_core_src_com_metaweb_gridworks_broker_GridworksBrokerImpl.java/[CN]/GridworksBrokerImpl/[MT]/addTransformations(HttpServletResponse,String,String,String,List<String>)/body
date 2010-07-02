@@ -6,6 +6,7 @@
       throw new RuntimeException("Project '" + pid + "' not found");
     }
     Lock lock=getLock(lid,pid,uid);
+    logger.info("obtained lock: {}",lockToString(lock));
     if (lock.type == ALL) {
       project.transformations.addAll(transformations);
     }
@@ -14,8 +15,8 @@
         JSONObject o=new JSONObject(s);
         int type=o.getInt("op_type");
         String value=o.getString("op_value");
-        if (lock.type == COLUMN) {
-          if (type == COLUMN) {
+        if (lock.type == COL) {
+          if (type == COL) {
             if (value != null && value.equals(lock.value)) {
               project.transformations.add(s);
             }
@@ -34,7 +35,7 @@
           }
         }
  else         if (lock.type == CELL) {
-          if (type == COLUMN) {
+          if (type == COL) {
             throw new RuntimeException("Can't apply '" + s + "': you offered a lock for a single cell and you're attempting an operation for the entire column.");
           }
  else           if (type == CELL) {
@@ -48,6 +49,7 @@
         }
       }
     }
+    projectById.put(txn,project);
     txn.commit();
   }
   finally {

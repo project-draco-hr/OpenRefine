@@ -9,7 +9,7 @@
   writer.array();
   int size=project.transformations.size();
   for (int i=rev; i < size; i++) {
-    writer.value(project.transformations.get(i));
+    writer.value(new JSONObject(project.transformations.get(i)));
   }
   writer.endArray();
   EntityCursor<Lock> cursor=locksByProject.subIndex(pid).entities();

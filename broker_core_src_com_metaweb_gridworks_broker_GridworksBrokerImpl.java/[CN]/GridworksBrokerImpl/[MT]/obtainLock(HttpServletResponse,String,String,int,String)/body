@@ -1,28 +1,54 @@
 {
   logger.trace("> obtain lock");
   Lock lock=null;
+  Lock blocker=null;
   Transaction txn=env.beginTransaction(null,null);
   try {
     EntityCursor<Lock> cursor=locksByProject.subIndex(pid).entities();
     try {
-      for (      Lock l : cursor) {
-        logger.info("found lock: {}",l.id);
-        if (locktype == ALL) {
-          if (l.type == ALL) {
-            lock=l;
+      if (locktype == ALL) {
+        for (        Lock l : cursor) {
+          if (!l.uid.equals(uid)) {
+            blocker=l;
             break;
           }
-        }
- else         if (locktype == COLUMN) {
-          if (l.type == ALL || (l.type == COLUMN && l.value.equals(lockvalue))) {
-            lock=l;
-            break;
+ else {
+            if (l.type == ALL) {
+              lock=l;
+              break;
+            }
           }
         }
- else         if (locktype == CELL) {
-          if (l.type == ALL || (l.type == COLUMN && l.value.equals(lockvalue.split(",")[0])) || (l.type == CELL && l.value.equals(lockvalue))) {
-            lock=l;
-            break;
+      }
+ else       if (locktype == COL) {
+        for (        Lock l : cursor) {
+          if (!l.uid.equals(uid)) {
+            if (l.type == ALL || (l.type == COL && l.value.equals(lockvalue))) {
+              blocker=l;
+              break;
+            }
+          }
+ else {
+            if (l.type == ALL || (l.type == COL && l.value.equals(lockvalue))) {
+              lock=l;
+              break;
+            }
+          }
+        }
+      }
+ else       if (locktype == CELL) {
+        for (        Lock l : cursor) {
+          if (!l.uid.equals(uid)) {
+            if (l.type == ALL || (l.type == COL && l.value.equals(lockvalue.split(",")[0])) || (l.type == CELL && l.value.equals(lockvalue))) {
+              blocker=l;
+              break;
+            }
+          }
+ else {
+            if (l.type == CELL && l.value.equals(lockvalue)) {
+              lock=l;
+              break;
+            }
           }
         }
       }
@@ -30,8 +56,12 @@
   finally {
       cursor.close();
     }
+    if (blocker != null) {
+      logger.info("found a blocking lock {}",lockToString(blocker));
+      throw new RuntimeException("Can't obtain lock, it is blocked by a type '" + blocker.type + "' lock owned by '"+ blocker.uid+ "'");
+    }
     if (lock == null) {
-      logger.info("no lock found, creating new");
+      logger.info("no comparable lock already exists, creating a new one");
       lock=new Lock(Long.toHexString(txn.getId()),pid,uid,locktype,lockvalue);
       lockById.put(txn,lock);
       txn.commit();

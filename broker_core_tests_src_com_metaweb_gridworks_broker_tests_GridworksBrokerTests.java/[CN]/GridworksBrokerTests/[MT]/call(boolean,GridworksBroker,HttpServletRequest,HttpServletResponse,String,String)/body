@@ -21,6 +21,12 @@
   when(response.getWriter()).thenReturn(new PrintWriter(writer));
   broker.process(service,request,response);
   JSONObject result=new JSONObject(writer.toString());
+  if (successful) {
+    assertJSON(result,"status","ok");
+  }
+ else {
+    assertJSON(result,"status","error");
+  }
   logger.info(result.toString());
   return result;
 }

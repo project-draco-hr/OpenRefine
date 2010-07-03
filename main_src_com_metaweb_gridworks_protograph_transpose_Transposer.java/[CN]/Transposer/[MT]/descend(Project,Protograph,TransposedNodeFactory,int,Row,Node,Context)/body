@@ -1,7 +1,7 @@
 {
   TransposedNode tnode=null;
   TransposedNode parentNode=context.parent == null ? null : context.parent.transposedNode;
-  FreebaseProperty property=context.parent == null ? null : context.link.property;
+  Link link=context.parent == null ? null : context.link;
   if (node instanceof CellNode) {
     CellNode node2=(CellNode)node;
     Column column=project.columnModel.getColumnByName(node2.columnName);
@@ -14,18 +14,18 @@
       if (context.limit > 0 && context.count > context.limit) {
         return;
       }
-      tnode=nodeFactory.transposeCellNode(parentNode,property,node2,rowIndex,cell);
+      tnode=nodeFactory.transposeCellNode(parentNode,link,node2,rowIndex,cell);
     }
   }
  else {
     if (node instanceof AnonymousNode) {
-      tnode=nodeFactory.transposeAnonymousNode(parentNode,property,(AnonymousNode)node,rowIndex);
+      tnode=nodeFactory.transposeAnonymousNode(parentNode,link,(AnonymousNode)node,rowIndex);
     }
  else     if (node instanceof FreebaseTopicNode) {
-      tnode=nodeFactory.transposeTopicNode(parentNode,property,(FreebaseTopicNode)node,rowIndex);
+      tnode=nodeFactory.transposeTopicNode(parentNode,link,(FreebaseTopicNode)node,rowIndex);
     }
  else     if (node instanceof ValueNode) {
-      tnode=nodeFactory.transposeValueNode(parentNode,property,(ValueNode)node,rowIndex);
+      tnode=nodeFactory.transposeValueNode(parentNode,link,(ValueNode)node,rowIndex);
     }
   }
   if (tnode != null) {

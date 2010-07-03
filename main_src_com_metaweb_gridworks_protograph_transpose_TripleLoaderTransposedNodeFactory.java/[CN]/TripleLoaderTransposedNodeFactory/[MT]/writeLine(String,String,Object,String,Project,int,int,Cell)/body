@@ -14,8 +14,10 @@
     sb.append(lang);
     if (subjectCell != null) {
       sb.append(", \"meta\" : { ");
-      sb.append("\"srecon\" : ");
+      sb.append("\"recon\" : { ");
+      sb.append("\"s\" : ");
       writeRecon(sb,project,subjectRowIndex,subjectCellIndex,subjectCell);
+      sb.append(" }");
       sb.append(" }");
     }
     sb.append(" }");

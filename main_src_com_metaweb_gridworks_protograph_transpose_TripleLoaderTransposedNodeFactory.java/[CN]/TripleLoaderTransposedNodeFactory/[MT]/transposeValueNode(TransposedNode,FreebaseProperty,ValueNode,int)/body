@@ -1,5 +1,0 @@
-{
-  WritingTransposedNode tnode=new ValueTransposedNode(node);
-  processTransposedNode(tnode,parentNode,property);
-  return tnode;
-}

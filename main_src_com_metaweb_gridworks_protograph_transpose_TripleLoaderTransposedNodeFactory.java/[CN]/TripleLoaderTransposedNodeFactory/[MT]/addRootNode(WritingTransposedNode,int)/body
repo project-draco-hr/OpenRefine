@@ -1,7 +1,11 @@
 {
   if (lastRootNode != null) {
     lastRootNode.write(null,null,project,-1,-1,null);
-    lastRootNode=null;
     writeContextTreeNode();
   }
+  lastRootNode=tnode;
+  contextTreeRoot=null;
+  contextRowIndex=rowIndex;
+  contextRefCount=0;
+  contextID++;
 }

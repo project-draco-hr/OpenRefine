@@ -1,0 +1,13 @@
+{
+  if (contextTreeRoot != null && contextRefCount > 0) {
+    StringBuffer sb=new StringBuffer();
+    sb.append("{ \"s\" : \"ctx");
+    sb.append(Long.toString(contextID));
+    sb.append("\", \"p\" : \"qa:context_data\", \"o\" : { \"row\" : ");
+    sb.append(Integer.toString(contextRowIndex));
+    sb.append(", \"data\" : ");
+    sb.append(contextTreeRoot.toString());
+    sb.append(" } } }");
+    writeLine(sb.toString());
+  }
+}

@@ -1,5 +1,0 @@
-{
-  WritingTransposedNode tnode=new TopicTransposedNode(node);
-  processTransposedNode(tnode,parentNode,property);
-  return tnode;
-}

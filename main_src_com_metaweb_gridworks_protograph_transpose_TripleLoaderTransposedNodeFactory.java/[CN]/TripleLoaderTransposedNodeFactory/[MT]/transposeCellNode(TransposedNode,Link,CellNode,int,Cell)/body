@@ -1,0 +1,23 @@
+{
+  WritingTransposedNode parentNode2=(WritingTransposedNode)parentNode;
+  Column column=project.columnModel.getColumnByName(node.columnName);
+  int cellIndex=column != null ? column.getCellIndex() : -1;
+  WritingTransposedNode tnode=null;
+  if (node instanceof CellTopicNode) {
+    if (cell.recon != null && (cell.recon.judgment == Judgment.Matched || cell.recon.judgment == Judgment.New)) {
+      tnode=new CellTopicTransposedNode((CellTopicNode)node,rowIndex,cellIndex,cell);
+    }
+  }
+ else   if (node instanceof CellValueNode) {
+    tnode=new CellValueTransposedNode((CellValueNode)node,rowIndex,cellIndex,cell);
+  }
+ else   if (node instanceof CellKeyNode) {
+    tnode=new CellKeyTransposedNode((CellKeyNode)node,rowIndex,cellIndex,cell);
+  }
+  if (tnode != null) {
+    tnode.load=(parentNode2 == null || parentNode2.load) && (link == null || link.load);
+    processTransposedNode(tnode,parentNode,link,rowIndex);
+    tnode.jsonContextNode=addJsonContext(parentNode2 != null ? parentNode2.jsonContextNode : null,link != null ? link.property.id : null,cell,rowIndex);
+  }
+  return tnode;
+}

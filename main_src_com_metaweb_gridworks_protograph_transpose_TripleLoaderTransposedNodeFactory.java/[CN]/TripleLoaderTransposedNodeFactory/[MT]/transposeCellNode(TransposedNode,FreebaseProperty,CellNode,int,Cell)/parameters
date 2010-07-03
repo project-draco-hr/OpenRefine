@@ -1,5 +1,0 @@
-TransposedNode parentNode
-FreebaseProperty property
-CellNode node
-int rowIndex
-Cell cell

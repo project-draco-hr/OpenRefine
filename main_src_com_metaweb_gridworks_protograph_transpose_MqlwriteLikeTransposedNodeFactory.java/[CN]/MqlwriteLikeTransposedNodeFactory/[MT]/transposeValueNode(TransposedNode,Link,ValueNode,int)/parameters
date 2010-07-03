@@ -1,0 +1,4 @@
+TransposedNode parentNode
+Link link
+ValueNode node
+int rowIndex

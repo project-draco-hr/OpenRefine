@@ -30,7 +30,7 @@
     int linkCount=links.length();
     for (int j=0; j < linkCount; j++) {
       JSONObject oLink=links.getJSONObject(j);
-      node2.addLink(new Link(reconstructProperty(oLink.getJSONObject("property")),oLink.has("target") && !oLink.isNull("target") ? reconstructNode(oLink.getJSONObject("target")) : null));
+      node2.addLink(new Link(reconstructProperty(oLink.getJSONObject("property")),oLink.has("target") && !oLink.isNull("target") ? reconstructNode(oLink.getJSONObject("target")) : null,oLink.has("load") && !oLink.isNull("load") ? oLink.getBoolean("load") : true));
     }
   }
   return node;

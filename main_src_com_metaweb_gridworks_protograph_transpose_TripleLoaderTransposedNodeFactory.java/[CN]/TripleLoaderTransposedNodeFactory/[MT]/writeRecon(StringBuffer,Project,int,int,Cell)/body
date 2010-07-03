@@ -1,26 +1,47 @@
 {
   Recon recon=cell.recon;
-  Column column=project.columnModel.getColumnByCellIndex(cellIndex);
-  sb.append("{ ");
-  sb.append("\"id\" : ");
+  sb.append("\"rec");
   sb.append(Long.toString(recon.id));
+  sb.append("\"");
+  contextRefCount++;
   if (!serializedRecons.contains(recon.id)) {
     serializedRecons.add(recon.id);
-    String s=cell.value instanceof String ? (String)cell.value : cell.value.toString();
-    sb.append(", \"history_entry\" : ");
-    sb.append(Long.toString(recon.judgmentHistoryEntry));
-    sb.append(", \"text\" : ");
-    sb.append(JSONObject.quote(s));
-    sb.append(", \"column\" : ");
-    sb.append(JSONObject.quote(column.getName()));
-    sb.append(", \"service\" : ");
-    sb.append(JSONObject.quote(recon.service));
-    sb.append(", \"action\" : ");
-    sb.append(JSONObject.quote(recon.judgmentAction));
-    sb.append(", \"batch\" : ");
-    sb.append(Integer.toString(recon.judgmentBatchSize));
-    sb.append(", \"matchRank\" : ");
-    sb.append(Integer.toString(recon.matchRank));
+    Column column=project.columnModel.getColumnByCellIndex(cellIndex);
+{
+      StringBuffer sb2=new StringBuffer();
+      sb2.append("{ \"s\" : \"rec");
+      sb2.append(Long.toString(recon.id));
+      sb2.append("\", \"p\" : \"qa:sample_group\", \"o\" : ");
+      sb2.append(JSONObject.quote(column.getName()));
+      sb2.append(" }");
+      writeLine(sb2.toString());
+    }
+{
+      StringBuffer sb2=new StringBuffer();
+      String s=cell.value instanceof String ? (String)cell.value : cell.value.toString();
+      sb2.append("{ \"s\" : \"rec");
+      sb2.append(Long.toString(recon.id));
+      sb2.append("\", \"p\" : \"qa:recon_data\", \"o\" : { ");
+      sb2.append(" \"history_entry\" : ");
+      sb2.append(Long.toString(recon.judgmentHistoryEntry));
+      sb2.append(", \"text\" : ");
+      sb2.append(JSONObject.quote(s));
+      sb2.append(", \"column\" : ");
+      sb2.append(JSONObject.quote(column.getName()));
+      sb2.append(", \"service\" : ");
+      sb2.append(JSONObject.quote(recon.service));
+      sb2.append(", \"action\" : ");
+      sb2.append(JSONObject.quote(recon.judgmentAction));
+      sb2.append(", \"batch\" : ");
+      sb2.append(Integer.toString(recon.judgmentBatchSize));
+      if (recon.judgment == Judgment.Matched) {
+        sb2.append(", \"matchRank\" : ");
+        sb2.append(Integer.toString(recon.matchRank));
+        sb2.append(", \"id\" : ");
+        sb2.append(JSONObject.quote(recon.match.id));
+      }
+      sb2.append(" } }");
+      writeLine(sb2.toString());
+    }
   }
-  sb.append(" }");
 }

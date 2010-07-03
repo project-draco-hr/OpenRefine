@@ -12,17 +12,19 @@
     sb.append(s);
     if (subjectCell != null || objectCell != null) {
       sb.append(", \"meta\" : { ");
+      sb.append("\"recon\" : { ");
       if (subjectCell != null) {
-        sb.append("\"srecon\" : ");
+        sb.append("\"s\" : ");
         writeRecon(sb,project,subjectRowIndex,subjectCellIndex,subjectCell);
       }
       if (objectCell != null) {
         if (subjectCell != null) {
           sb.append(", ");
         }
-        sb.append("\"orecon\" : ");
+        sb.append("\"o\" : ");
         writeRecon(sb,project,objectRowIndex,objectCellIndex,objectCell);
       }
+      sb.append(" }");
       sb.append(" }");
     }
     sb.append(" }");

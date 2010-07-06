@@ -1,0 +1,20 @@
+{
+  logger.debug("Loading command " + commandName + " class: "+ className);
+  Command cmd;
+  try {
+    cmd=(Command)this.getClass().getClassLoader().loadClass(className).newInstance();
+    return registerOneCommand(commandName,cmd);
+  }
+ catch (  InstantiationException e) {
+    logger.error("Failed to load command class " + className,e);
+    return false;
+  }
+catch (  IllegalAccessException e) {
+    logger.error("Failed to load command class " + className,e);
+    return false;
+  }
+catch (  ClassNotFoundException e) {
+    logger.error("Failed to load command class " + className,e);
+    return false;
+  }
+}

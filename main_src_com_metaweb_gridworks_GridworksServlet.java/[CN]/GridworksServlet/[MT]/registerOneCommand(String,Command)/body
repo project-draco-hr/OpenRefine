@@ -1,0 +1,8 @@
+{
+  if (commands.containsKey(name)) {
+    return false;
+  }
+  commandObject.init(this);
+  commands.put(name,commandObject);
+  return true;
+}

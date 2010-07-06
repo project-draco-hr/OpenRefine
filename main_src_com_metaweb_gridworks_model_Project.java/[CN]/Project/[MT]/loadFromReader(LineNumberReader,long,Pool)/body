@@ -6,16 +6,16 @@
   String line;
   while ((line=reader.readLine()) != null) {
     int equal=line.indexOf('=');
-    CharSequence field=line.subSequence(0,equal);
+    String field=line.substring(0,equal);
     String value=line.substring(equal + 1);
+    if ("protograph".equals(field)) {
+      field="overlayModel:freebaseProtograph";
+    }
     if ("columnModel".equals(field)) {
       project.columnModel.load(reader);
     }
  else     if ("history".equals(field)) {
       project.history.load(project,reader);
-    }
- else     if ("protograph".equals(field)) {
-      project.protograph=Protograph.load(project,value);
     }
  else     if ("rowCount".equals(field)) {
       int count=Integer.parseInt(value);
@@ -25,6 +25,21 @@
           Row row=Row.load(line,pool);
           project.rows.add(row);
           maxCellCount=Math.max(maxCellCount,row.cells.size());
+        }
+      }
+    }
+ else     if (field.startsWith("overlayModel:")) {
+      String modelName=field.substring("overlayModel:".length());
+      if (s_overlayModelClasses.containsKey(modelName)) {
+        Class<? extends OverlayModel> klass=s_overlayModelClasses.get(modelName);
+        try {
+          Method loadMethod=klass.getMethod("load",Project.class,JSONObject.class);
+          JSONObject obj=ParsingUtilities.evaluateJsonStringToObject(value);
+          OverlayModel overlayModel=(OverlayModel)loadMethod.invoke(null,project,obj);
+          project.overlayModels.put(modelName,overlayModel);
+        }
+ catch (        Exception e) {
+          logger.error("Failed to load overlay model " + modelName);
         }
       }
     }

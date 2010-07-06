@@ -1,5 +1,6 @@
 {
   super.init();
+  s_singleton=this;
   logger.trace("> initialize");
   String data=getInitParameter("gridworks.data");
   if (data == null) {

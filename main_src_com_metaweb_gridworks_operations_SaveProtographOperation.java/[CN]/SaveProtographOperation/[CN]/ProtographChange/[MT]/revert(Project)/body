@@ -1,5 +1,10 @@
 {
 synchronized (project) {
-    project.protograph=_oldProtograph;
+    if (_oldProtograph == null) {
+      project.overlayModels.remove("freebaseProtograph");
+    }
+ else {
+      project.overlayModels.put("freebaseProtograph",_oldProtograph);
+    }
   }
 }

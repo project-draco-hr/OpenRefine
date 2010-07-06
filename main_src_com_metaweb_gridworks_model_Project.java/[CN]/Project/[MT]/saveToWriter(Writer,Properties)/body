@@ -5,9 +5,17 @@
   columnModel.save(writer,options);
   writer.write("history=\n");
   history.save(writer,options);
-  if (protograph != null) {
-    writer.write("protograph=");
-    protograph.save(writer,options);
+  for (  String modelName : overlayModels.keySet()) {
+    writer.write("overlayModel:");
+    writer.write(modelName);
+    writer.write("=");
+    try {
+      JSONWriter jsonWriter=new JSONWriter(writer);
+      overlayModels.get(modelName).write(jsonWriter,options);
+    }
+ catch (    JSONException e) {
+      e.printStackTrace();
+    }
     writer.write('\n');
   }
   writer.write("rowCount=");

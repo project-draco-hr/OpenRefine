@@ -1,0 +1,3 @@
+{
+  bindings.put("baseURI",Util.getProjectSchema(project).getBaseUri());
+}

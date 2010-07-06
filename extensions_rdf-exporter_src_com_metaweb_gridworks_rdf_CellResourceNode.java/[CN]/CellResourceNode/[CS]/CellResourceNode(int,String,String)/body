@@ -1,0 +1,4 @@
+{
+  this(columnIndex,columnName);
+  this.uriExpression=exp;
+}

@@ -1,0 +1,11 @@
+{
+synchronized (project) {
+    RdfSchema rdfSchema=(RdfSchema)project.overlayModels.get("rdfSchema");
+    if (rdfSchema == null) {
+      rdfSchema=new RdfSchema();
+      project.overlayModels.put("rdfSchema",rdfSchema);
+      project.getMetadata().updateModified();
+    }
+    return rdfSchema;
+  }
+}

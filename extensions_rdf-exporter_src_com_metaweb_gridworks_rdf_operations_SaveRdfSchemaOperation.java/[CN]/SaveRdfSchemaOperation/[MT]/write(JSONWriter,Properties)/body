@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("op");
+  writer.value(OperationRegistry.s_opClassToName.get(this.getClass()));
+  writer.key("description");
+  writer.value("Save RDF schema skeleton");
+  writer.key("schema");
+  _schema.write(writer,options);
+  writer.endObject();
+}

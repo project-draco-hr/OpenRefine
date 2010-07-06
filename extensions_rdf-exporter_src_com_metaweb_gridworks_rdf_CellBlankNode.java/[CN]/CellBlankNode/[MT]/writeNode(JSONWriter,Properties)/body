@@ -1,0 +1,8 @@
+{
+  writer.key("nodeType");
+  writer.value("cell-as-blank");
+  writer.key("columnIndex");
+  writer.value(columnIndex);
+  writer.key("columnName");
+  writer.value(columnName);
+}

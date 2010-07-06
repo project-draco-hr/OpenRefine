@@ -1,0 +1,17 @@
+{
+  writer.object();
+  writer.key("prefix");
+  writer.value(prefix);
+  writer.key("result");
+  writer.array();
+  for (  String[] res : results) {
+    writer.object();
+    writer.key("id");
+    writer.value(res[0]);
+    writer.key("name");
+    writer.value(res[1]);
+    writer.endObject();
+  }
+  writer.endArray();
+  writer.endObject();
+}

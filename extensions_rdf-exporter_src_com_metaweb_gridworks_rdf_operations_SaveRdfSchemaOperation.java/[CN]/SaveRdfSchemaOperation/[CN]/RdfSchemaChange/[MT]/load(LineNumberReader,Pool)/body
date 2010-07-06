@@ -1,0 +1,19 @@
+{
+  RdfSchema oldSchema=null;
+  RdfSchema newSchema=null;
+  String line;
+  while ((line=reader.readLine()) != null && !"/ec/".equals(line)) {
+    int equal=line.indexOf('=');
+    CharSequence field=line.subSequence(0,equal);
+    String value=line.substring(equal + 1);
+    if ("oldSchema".equals(field) && value.length() > 0) {
+      oldSchema=RdfSchema.reconstruct(ParsingUtilities.evaluateJsonStringToObject(value));
+    }
+ else     if ("newSchema".equals(field) && value.length() > 0) {
+      newSchema=RdfSchema.reconstruct(ParsingUtilities.evaluateJsonStringToObject(value));
+    }
+  }
+  RdfSchemaChange change=new RdfSchemaChange(newSchema);
+  change._oldSchema=oldSchema;
+  return change;
+}

@@ -1,0 +1,16 @@
+{
+  writer.key("nodeType");
+  writer.value("cell-as-resource");
+  writer.key("uriExpression");
+  writer.value(uriExpression);
+  writer.key("columnIndex");
+  writer.value(columnIndex);
+  if (columnIndex == -1) {
+    writer.key("isRowNumberCell");
+    writer.value(true);
+  }
+ else {
+    writer.key("columnName");
+    writer.value(columnName);
+  }
+}

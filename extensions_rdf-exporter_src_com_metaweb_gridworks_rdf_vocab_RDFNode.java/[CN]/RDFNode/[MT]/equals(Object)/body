@@ -1,0 +1,8 @@
+{
+  if (!(obj instanceof RDFNode))   return false;
+  RDFNode n=(RDFNode)obj;
+  if (n.getURI() == null || this.URI == null) {
+    return false;
+  }
+  return this.URI.equals(n.getURI());
+}

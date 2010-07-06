@@ -1,0 +1,5 @@
+{
+  String description="Save RDF schema skeleton";
+  Change change=new RdfSchemaChange(_schema);
+  return new HistoryEntry(historyEntryID,project,description,SaveRdfSchemaOperation.this,change);
+}

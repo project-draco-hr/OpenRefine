@@ -1,0 +1,8 @@
+{
+  if (format.equals("N3")) {
+    return "text/rdf+n3";
+  }
+ else {
+    return "application/rdf+xml";
+  }
+}

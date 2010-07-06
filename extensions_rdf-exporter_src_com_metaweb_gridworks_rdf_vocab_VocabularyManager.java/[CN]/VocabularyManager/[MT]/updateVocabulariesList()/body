@@ -1,0 +1,12 @@
+{
+  Term typeTerm=new Term("type",VOCABULARY_TYPE);
+  Query query=new TermQuery(typeTerm);
+  TopDocs vocabDocs=searcher.search(query,1000);
+  for (int i=0; i < vocabDocs.totalHits; i++) {
+    Document doc=searcher.doc(vocabDocs.scoreDocs[i].doc);
+    String name=doc.get("name");
+    String uri=doc.get("uri");
+    Vocabulary vocab=new Vocabulary(name,uri);
+    this.vocabularies.add(vocab);
+  }
+}

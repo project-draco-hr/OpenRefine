@@ -1,0 +1,6 @@
+{
+  writer.key("nodeType");
+  writer.value("resource");
+  writer.key("uri");
+  writer.value(uri);
+}

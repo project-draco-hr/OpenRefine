@@ -1,0 +1,16 @@
+{
+  try {
+synchronized (this) {
+      _directory=new SimpleFSDirectory(new File(INDEX_PATH));
+      writer=new IndexWriter(_directory,new StandardAnalyzer(Version.LUCENE_30),true,IndexWriter.MaxFieldLength.LIMITED);
+      searcher=new IndexSearcher(_directory);
+      updateVocabulariesList();
+    }
+  }
+ catch (  CorruptIndexException e) {
+    throw new RuntimeException("Failed initialize vocabulary search",e);
+  }
+catch (  IOException e) {
+    throw new RuntimeException("Failed initialize vocabulary search",e);
+  }
+}

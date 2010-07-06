@@ -1,0 +1,16 @@
+{
+  RdfSchema schema=Util.getProjectSchema(project);
+  Model model=ModelFactory.createDefaultModel();
+  URI baseUri=schema.getBaseUri();
+  Node root=schema.getRoot();
+  Resource[] blanks=new Resource[schema.get_blanks().size()];
+  int i=0;
+  for (  ConstantBlankNode b : schema.get_blanks()) {
+    blanks[i]=model.createResource();
+    i+=1;
+  }
+  RowVisitor visitor=new RdfRowVisitor(model,baseUri,root,blanks);
+  FilteredRows filteredRows=engine.getAllFilteredRows();
+  filteredRows.accept(project,visitor);
+  model.write(writer,format);
+}

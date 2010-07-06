@@ -1,0 +1,3 @@
+{
+  addVocabulary(url,prefix,namespace,"RDF/XML");
+}

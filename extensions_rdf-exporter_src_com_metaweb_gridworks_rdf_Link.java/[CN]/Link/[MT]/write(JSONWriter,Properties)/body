@@ -1,0 +1,12 @@
+{
+  writer.object();
+  writer.key("uri");
+  writer.value(propertyUri);
+  writer.key("curie");
+  writer.value(curie);
+  if (target != null) {
+    writer.key("target");
+    target.write(writer,options);
+  }
+  writer.endObject();
+}

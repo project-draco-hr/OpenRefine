@@ -1,0 +1,12 @@
+{
+  writer.object();
+  writer.key("baseUri");
+  writer.value(baseUri);
+  writer.key("rootNodes");
+  writer.array();
+  for (  Node node : _rootNodes) {
+    node.write(writer,options);
+  }
+  writer.endArray();
+  writer.endObject();
+}

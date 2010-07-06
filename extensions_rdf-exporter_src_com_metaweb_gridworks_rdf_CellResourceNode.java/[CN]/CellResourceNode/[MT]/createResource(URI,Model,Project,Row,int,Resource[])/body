@@ -1,0 +1,21 @@
+{
+  try {
+    Properties bindings=ExpressionUtils.createBindings(project);
+    Evaluable eval=MetaParser.parse(uriExpression);
+    Cell cell=row.getCell(this.columnIndex);
+    String colName=this.columnIndex > -1 ? project.columnModel.getColumnByCellIndex(this.columnIndex).getName() : "";
+    ExpressionUtils.bind(bindings,row,rowIndex,colName,cell);
+    Object result=eval.evaluate(bindings);
+    if (result.toString().length() > 0) {
+      String uri=Util.getUri(baseUri,result.toString());
+      Resource r=model.createResource(uri);
+      return r;
+    }
+ else {
+      return null;
+    }
+  }
+ catch (  Exception e) {
+    return null;
+  }
+}

@@ -1,0 +1,4 @@
+int index
+String columnName
+String valueType
+String lang

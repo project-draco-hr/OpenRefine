@@ -1,0 +1,8 @@
+{
+  Resource r=createResource(baseUri,model,project,row,rowIndex,blanks);
+  if (r == null) {
+    return null;
+  }
+  addTypes(r,model);
+  return addLinks(r,baseUri,model,project,row,rowIndex,blanks);
+}

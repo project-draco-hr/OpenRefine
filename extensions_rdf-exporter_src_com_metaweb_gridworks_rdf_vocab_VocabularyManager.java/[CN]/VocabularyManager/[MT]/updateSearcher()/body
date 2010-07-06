@@ -1,0 +1,3 @@
+{
+  this.searcher=new IndexSearcher(_directory);
+}

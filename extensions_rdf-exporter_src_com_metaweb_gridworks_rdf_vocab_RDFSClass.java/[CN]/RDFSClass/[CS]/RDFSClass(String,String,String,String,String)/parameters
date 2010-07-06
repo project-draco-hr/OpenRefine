@@ -1,0 +1,5 @@
+String uRI
+String label
+String description
+String prefix
+String vocabularyUri

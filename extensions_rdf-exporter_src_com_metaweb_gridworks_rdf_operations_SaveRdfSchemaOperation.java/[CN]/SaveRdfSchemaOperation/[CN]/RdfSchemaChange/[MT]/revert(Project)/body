@@ -1,0 +1,10 @@
+{
+synchronized (project) {
+    if (_oldSchema == null) {
+      project.overlayModels.remove("rdfSchema");
+    }
+ else {
+      project.overlayModels.put("rdfSchema",_oldSchema);
+    }
+  }
+}

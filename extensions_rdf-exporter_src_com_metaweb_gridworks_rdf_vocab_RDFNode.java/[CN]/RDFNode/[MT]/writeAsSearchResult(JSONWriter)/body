@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("id");
+  writer.value(URI);
+  writer.key("name");
+  writer.value(preferredCURIE);
+  writer.key("description");
+  writer.value(description);
+  writer.endObject();
+}

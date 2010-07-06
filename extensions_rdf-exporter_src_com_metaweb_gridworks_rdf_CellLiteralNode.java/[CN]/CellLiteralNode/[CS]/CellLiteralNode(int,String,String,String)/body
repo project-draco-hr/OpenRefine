@@ -1,0 +1,5 @@
+{
+  this(index,columnName);
+  this.lang=lang;
+  this.valueType=valueType;
+}

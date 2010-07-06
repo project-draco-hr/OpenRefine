@@ -1,0 +1,15 @@
+{
+  if (s == null) {
+    return null;
+  }
+  if (s.equals(XSD_INT_URI)) {
+    return XSD_INT_URI;
+  }
+  if (s.equals(XSD_DOUBLE_URI)) {
+    return XSD_DOUBLE_URI;
+  }
+  if (s.equals(XSD_DATE_URI)) {
+    return XSD_DATE_URI;
+  }
+  return null;
+}

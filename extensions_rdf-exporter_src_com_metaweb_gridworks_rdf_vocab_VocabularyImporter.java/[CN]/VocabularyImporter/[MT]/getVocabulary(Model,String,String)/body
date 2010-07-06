@@ -1,0 +1,34 @@
+{
+  Query query=QueryFactory.create(CLASSES_QUERY_P1 + namespace.trim() + CLASSES_QUERY_P2);
+  QueryExecution qe=QueryExecutionFactory.create(query,m);
+  ResultSet res=qe.execSelect();
+  Set<String> seen=new HashSet<String>();
+  Vocabulary vocab=new Vocabulary(prefix,namespace);
+  while (res.hasNext()) {
+    QuerySolution qs=res.nextSolution();
+    String uri=qs.getResource("resource").getURI();
+    if (seen.contains(uri)) {
+      continue;
+    }
+    String label=getFirstNotNull(new Literal[]{qs.getLiteral("en_label"),qs.getLiteral("label")});
+    String description=getFirstNotNull(new Literal[]{qs.getLiteral("en_definition"),qs.getLiteral("definition"),qs.getLiteral("en_description"),qs.getLiteral("description")});
+    RDFSClass clazz=new RDFSClass(uri,label,description,prefix,namespace);
+    vocab.addClass(clazz);
+  }
+  query=QueryFactory.create(PROPERTIES_QUERY_P1 + namespace.trim() + PROPERTIES_QUERY_P2);
+  qe=QueryExecutionFactory.create(query,m);
+  res=qe.execSelect();
+  seen=new HashSet<String>();
+  while (res.hasNext()) {
+    QuerySolution qs=res.nextSolution();
+    String uri=qs.getResource("resource").getURI();
+    if (seen.contains(uri)) {
+      continue;
+    }
+    String label=getFirstNotNull(new Literal[]{qs.getLiteral("en_label"),qs.getLiteral("label")});
+    String description=getFirstNotNull(new Literal[]{qs.getLiteral("en_definition"),qs.getLiteral("definition"),qs.getLiteral("en_description"),qs.getLiteral("description")});
+    RDFSProperty prop=new RDFSProperty(uri,label,description,prefix,namespace);
+    vocab.addProperty(prop);
+  }
+  return vocab;
+}

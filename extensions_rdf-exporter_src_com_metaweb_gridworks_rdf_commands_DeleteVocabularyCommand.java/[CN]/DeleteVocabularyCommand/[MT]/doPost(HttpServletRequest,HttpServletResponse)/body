@@ -1,0 +1,21 @@
+{
+  String uri=request.getParameter("uri");
+  try {
+    VocabularyManager.singleton.deleteVocabulary(uri);
+    respondJSON(response,new Jsonizable(){
+      @Override public void write(      JSONWriter writer,      Properties options) throws JSONException {
+        writer.object();
+        writer.key("code");
+        writer.value("ok");
+        writer.endObject();
+      }
+    }
+);
+  }
+ catch (  JSONException e) {
+    respondException(response,e);
+  }
+catch (  Exception e) {
+    respondException(response,e);
+  }
+}

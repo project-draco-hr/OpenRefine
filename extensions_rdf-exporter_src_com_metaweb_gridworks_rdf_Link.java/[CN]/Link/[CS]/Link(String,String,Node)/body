@@ -1,0 +1,5 @@
+{
+  this.propertyUri=uri;
+  this.target=t;
+  this.curie=curie;
+}

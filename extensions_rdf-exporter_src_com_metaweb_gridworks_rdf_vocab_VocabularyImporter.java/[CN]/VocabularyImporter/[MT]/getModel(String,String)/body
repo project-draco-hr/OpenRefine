@@ -1,0 +1,5 @@
+{
+  Model model=ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RDFS_INF);
+  model.read(url);
+  return model;
+}

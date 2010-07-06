@@ -1,0 +1,10 @@
+{
+  String s=null;
+  for (int i=0; i < literals.length; i++) {
+    s=getString(literals[i]);
+    if (s != null) {
+      break;
+    }
+  }
+  return s;
+}

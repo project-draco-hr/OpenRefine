@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("replaces spaces with underscore");
+  writer.key("params");
+  writer.value("string s");
+  writer.key("returns");
+  writer.value("string");
+  writer.endObject();
+}

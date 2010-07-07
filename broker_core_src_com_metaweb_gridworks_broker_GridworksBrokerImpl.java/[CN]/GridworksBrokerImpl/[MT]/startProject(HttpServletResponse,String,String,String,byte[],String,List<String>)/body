@@ -8,7 +8,7 @@
     if (lock.type != ALL) {
       throw new RuntimeException("The lock you have is not enough to start a project");
     }
-    projectById.put(txn,new Project(pid,data,metadata,rev));
+    projectById.put(txn,new Project(pid,data,metadata,transformations));
     txn.commit();
   }
   finally {

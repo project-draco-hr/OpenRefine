@@ -4,4 +4,4 @@ String uid
 String lid
 byte[] data
 String metadata
-int rev
+List<String> transformations

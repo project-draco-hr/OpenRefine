@@ -1,4 +1,4 @@
 String pid
 byte[] data
 String metadata
-int rev
+List<String> transformations

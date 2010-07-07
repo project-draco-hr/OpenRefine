@@ -34,7 +34,7 @@
  else     if (START.equals(path)) {
       response.setCharacterEncoding("UTF-8");
       response.setHeader("Content-Type","application/json");
-      startProject(response,getParameter(request,"pid"),getUserId(request),getParameter(request,"lock"),getData(request),getParameter(request,"metadata"),getInteger(request,"rev"));
+      startProject(response,getParameter(request,"pid"),getUserId(request),getParameter(request,"lock"),getData(request),getParameter(request,"metadata"),getList(request,"transformations"));
     }
  else     if (OPEN.equals(path)) {
       response.setCharacterEncoding("UTF-8");

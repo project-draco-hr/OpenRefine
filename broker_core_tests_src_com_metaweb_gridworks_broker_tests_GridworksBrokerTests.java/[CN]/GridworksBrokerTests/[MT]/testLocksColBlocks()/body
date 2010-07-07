@@ -1,0 +1,27 @@
+{
+  String project="proj2";
+  String user="testuser";
+  String user2="testuser2";
+  try {
+    logger.info("--- obtain COL lock on project ---");
+    JSONObject result=success(broker,request,response,OBTAIN_LOCK,"pid",project,"uid",user,"locktype",Integer.toString(COL),"lockvalue","1");
+    String lock=result.getString("lock");
+    logger.info("--- other user must fail to obtain lock on the same COL or ALL ---");
+    failure(broker,request,response,OBTAIN_LOCK,"pid",project,"uid",user2,"locktype",Integer.toString(ALL),"lockvalue","");
+    failure(broker,request,response,OBTAIN_LOCK,"pid",project,"uid",user2,"locktype",Integer.toString(COL),"lockvalue","1");
+    failure(broker,request,response,OBTAIN_LOCK,"pid",project,"uid",user2,"locktype",Integer.toString(CELL),"lockvalue","1,1");
+    logger.info("--- but succeed in getting a COL lock on another column or cell ---");
+    result=success(broker,request,response,OBTAIN_LOCK,"pid",project,"uid",user2,"locktype",Integer.toString(COL),"lockvalue","2");
+    String lock2=result.getString("lock");
+    logger.info("--- now it's our first user's turn to fail to get lock ---");
+    failure(broker,request,response,OBTAIN_LOCK,"pid",project,"uid",user,"locktype",Integer.toString(ALL),"lockvalue","");
+    failure(broker,request,response,OBTAIN_LOCK,"pid",project,"uid",user,"locktype",Integer.toString(COL),"lockvalue","2");
+    failure(broker,request,response,OBTAIN_LOCK,"pid",project,"uid",user,"locktype",Integer.toString(CELL),"lockvalue","2,1");
+    logger.info("--- release the locks ---");
+    success(broker,request,response,RELEASE_LOCK,"pid",project,"uid",user,"lock",lock);
+    success(broker,request,response,RELEASE_LOCK,"pid",project,"uid",user2,"lock",lock2);
+  }
+ catch (  Exception e) {
+    Assert.fail();
+  }
+}

@@ -1,0 +1,27 @@
+{
+  String project="proj1";
+  String user="testuser";
+  String user2="testuser2";
+  try {
+    logger.info("--- obtain ALL lock on project ---");
+    JSONObject result=success(broker,request,response,OBTAIN_LOCK,"pid",project,"uid",user,"locktype",Integer.toString(ALL),"lockvalue","");
+    assertJSON(result,"uid",user);
+    String lock=result.getString("lock");
+    logger.info("--- another using asking for any lock will fail ---");
+    failure(broker,request,response,OBTAIN_LOCK,"pid",project,"uid",user2,"locktype",Integer.toString(ALL),"lockvalue","");
+    failure(broker,request,response,OBTAIN_LOCK,"pid",project,"uid",user2,"locktype",Integer.toString(COL),"lockvalue","1");
+    failure(broker,request,response,OBTAIN_LOCK,"pid",project,"uid",user2,"locktype",Integer.toString(CELL),"lockvalue","1,1");
+    logger.info("--- same user asking for lower capable locks will return the ALL one ---");
+    result=success(broker,request,response,OBTAIN_LOCK,"pid",project,"uid",user,"locktype",Integer.toString(COL),"lockvalue","1");
+    String lock2=result.getString("lock");
+    Assert.assertEquals(lock,lock2);
+    result=success(broker,request,response,OBTAIN_LOCK,"pid",project,"uid",user,"locktype",Integer.toString(CELL),"lockvalue","1,1");
+    lock2=result.getString("lock");
+    Assert.assertEquals(lock,lock2);
+    logger.info("--- release the ALL lock ---");
+    success(broker,request,response,RELEASE_LOCK,"pid",project,"uid",user,"lock",lock);
+  }
+ catch (  Exception e) {
+    Assert.fail();
+  }
+}

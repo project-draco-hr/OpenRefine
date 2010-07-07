@@ -1,6 +1,6 @@
 {
   try {
-    String project="proj1";
+    String project="proj4";
     String user="testuser";
     String user2="testuser2";
     String data="blah";
@@ -8,7 +8,7 @@
     String rev="0";
     logger.info("--- obtain ALL lock on project ---");
     JSONObject result=success(broker,request,response,OBTAIN_LOCK,"pid",project,"uid",user,"locktype",Integer.toString(ALL),"lockvalue","");
-    assertJSON(result,"uid","testuser");
+    assertJSON(result,"uid",user);
     String lock=result.getString("lock");
     logger.info("--- start project ---");
     success(broker,request,response,START,"pid",project,"uid",user,"lock",lock,"data",data,"metadata",metadata,"rev",rev);
@@ -72,7 +72,7 @@
     t=tt.getJSONObject(0);
     assertJSON(t,"op_value",column + "," + cell);
     logger.info("--- make sure another user fails to acquire ALL lock ---");
-    failure(broker,request,response,OBTAIN_LOCK,"pid",project,"uid",user2,"locktype",Integer.toString(ALL),"lockvalue",column);
+    failure(broker,request,response,OBTAIN_LOCK,"pid",project,"uid",user2,"locktype",Integer.toString(ALL),"lockvalue","");
     logger.info("--- make sure another user fails to acquire COL lock on the same column ---");
     failure(broker,request,response,OBTAIN_LOCK,"pid",project,"uid",user2,"locktype",Integer.toString(COL),"lockvalue",column);
     logger.info("--- make sure another user manages to acquire COL lock on another column ---");

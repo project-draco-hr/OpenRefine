@@ -1,0 +1,8 @@
+{
+  try {
+    failure(broker,request,response,GET_STATE,"pid","project1934983948","uid","testuser","rev","0");
+  }
+ catch (  Exception e) {
+    Assert.fail();
+  }
+}

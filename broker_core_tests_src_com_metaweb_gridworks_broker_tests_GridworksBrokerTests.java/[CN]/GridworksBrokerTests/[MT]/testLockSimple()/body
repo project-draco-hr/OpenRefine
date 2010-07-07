@@ -1,0 +1,27 @@
+{
+  String project="proj0";
+  String user="testuser";
+  try {
+    logger.info("--- obtain ALL lock on project ---");
+    JSONObject result=success(broker,request,response,OBTAIN_LOCK,"pid",project,"uid",user,"locktype",Integer.toString(ALL),"lockvalue","");
+    assertJSON(result,"uid","testuser");
+    String lock=result.getString("lock");
+    logger.info("--- obtain ALL lock on project ---");
+    success(broker,request,response,RELEASE_LOCK,"pid",project,"uid",user,"lock",lock);
+    logger.info("--- obtain COL lock on project ---");
+    result=success(broker,request,response,OBTAIN_LOCK,"pid",project,"uid",user,"locktype",Integer.toString(COL),"lockvalue","1");
+    assertJSON(result,"uid","testuser");
+    lock=result.getString("lock");
+    logger.info("--- release COL lock on project ---");
+    success(broker,request,response,RELEASE_LOCK,"pid",project,"uid",user,"lock",lock);
+    logger.info("--- obtain CELL lock on project ---");
+    result=success(broker,request,response,OBTAIN_LOCK,"pid",project,"uid",user,"locktype",Integer.toString(CELL),"lockvalue","1,1");
+    assertJSON(result,"uid","testuser");
+    lock=result.getString("lock");
+    logger.info("--- release CELL lock on project ---");
+    success(broker,request,response,RELEASE_LOCK,"pid",project,"uid",user,"lock",lock);
+  }
+ catch (  Exception e) {
+    Assert.fail();
+  }
+}

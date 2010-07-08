@@ -1,7 +1,7 @@
 {
   String uri=request.getParameter("uri");
   try {
-    VocabularyManager.singleton.deleteVocabulary(uri);
+    VocabularyManager.getSingleton(servlet).deleteVocabulary(uri);
     respondJSON(response,new Jsonizable(){
       @Override public void write(      JSONWriter writer,      Properties options) throws JSONException {
         writer.object();

@@ -7,7 +7,7 @@
     writer.key("vocabularies");
     writer.array();
     Properties p=new Properties();
-    for (    Vocabulary v : VocabularyManager.singleton.getVocabularies()) {
+    for (    Vocabulary v : VocabularyManager.getSingleton(servlet).getVocabularies()) {
       v.write(writer,p);
     }
     writer.endArray();

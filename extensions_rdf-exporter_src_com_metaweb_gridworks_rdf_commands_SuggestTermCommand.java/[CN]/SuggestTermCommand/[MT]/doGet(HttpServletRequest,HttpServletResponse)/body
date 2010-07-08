@@ -11,10 +11,10 @@
     writer.array();
     List<RDFNode> nodes;
     if (type != null && type.trim().equals("property")) {
-      nodes=VocabularyManager.singleton.searchProperties(prefix);
+      nodes=VocabularyManager.getSingleton(servlet).searchProperties(prefix);
     }
  else {
-      nodes=VocabularyManager.singleton.searchClasses(prefix);
+      nodes=VocabularyManager.getSingleton(servlet).searchClasses(prefix);
     }
     for (    RDFNode c : nodes) {
       c.writeAsSearchResult(writer);

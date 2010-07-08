@@ -3,7 +3,7 @@
   String url=request.getParameter("url");
   String namespace=request.getParameter("namespace");
   try {
-    VocabularyManager.singleton.addVocabulary(url,prefix,namespace);
+    VocabularyManager.getSingleton(servlet).addVocabulary(url,prefix,namespace);
     respondJSON(response,new Jsonizable(){
       @Override public void write(      JSONWriter writer,      Properties options) throws JSONException {
         writer.object();

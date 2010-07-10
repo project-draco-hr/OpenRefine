@@ -5,7 +5,7 @@
     String columnName=o.getString("columnName");
     if ("cell-as-topic".equals(nodeType)) {
       if (o.has("type")) {
-        node=new CellTopicNode(columnName,o.getBoolean("createForNoReconMatch"),reconstructType(o.getJSONObject("type")));
+        node=new CellTopicNode(columnName,reconstructType(o.getJSONObject("type")));
       }
     }
  else     if ("cell-as-value".equals(nodeType)) {

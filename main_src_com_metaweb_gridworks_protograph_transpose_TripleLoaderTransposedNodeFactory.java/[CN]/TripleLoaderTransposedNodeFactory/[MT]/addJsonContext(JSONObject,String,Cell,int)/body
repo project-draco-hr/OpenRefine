@@ -12,7 +12,7 @@
         }
 {
           StringBuffer sb2=new StringBuffer();
-          sb2.append("{ \"s\" : \"rec");
+          sb2.append("{ \"ignore\" : true, \"s\" : \"rec");
           sb2.append(Long.toString(cell.recon.id));
           sb2.append("\", \"p\" : \"qa:display_context\", \"o\" : \"ctx");
           sb2.append(Long.toString(contextID));

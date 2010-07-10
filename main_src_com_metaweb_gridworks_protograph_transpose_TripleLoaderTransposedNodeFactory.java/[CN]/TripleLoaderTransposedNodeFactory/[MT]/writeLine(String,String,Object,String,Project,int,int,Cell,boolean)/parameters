@@ -1,10 +1,9 @@
 String subject
 String predicate
 Object object
+String lang
 Project project
 int subjectRowIndex
 int subjectCellIndex
 Cell subjectCell
-int objectRowIndex
-int objectCellIndex
-Cell objectCell
+boolean ignore

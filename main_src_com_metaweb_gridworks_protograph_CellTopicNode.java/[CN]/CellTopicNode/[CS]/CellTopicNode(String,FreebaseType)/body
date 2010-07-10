@@ -1,0 +1,4 @@
+{
+  super(columnName);
+  this.type=type;
+}

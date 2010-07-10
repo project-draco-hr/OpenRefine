@@ -10,22 +10,18 @@
     sb.append('"');
     sb.append(", \"o\" : ");
     sb.append(s);
-    if (subjectCell != null || objectCell != null) {
+    sb.append(", \"lang\" : ");
+    sb.append(lang);
+    if (subjectCell != null) {
       sb.append(", \"meta\" : { ");
       sb.append("\"recon\" : { ");
-      if (subjectCell != null) {
-        sb.append("\"s\" : ");
-        writeRecon(sb,project,subjectRowIndex,subjectCellIndex,subjectCell);
-      }
-      if (objectCell != null) {
-        if (subjectCell != null) {
-          sb.append(", ");
-        }
-        sb.append("\"o\" : ");
-        writeRecon(sb,project,objectRowIndex,objectCellIndex,objectCell);
-      }
+      sb.append("\"s\" : ");
+      writeRecon(sb,project,subjectRowIndex,subjectCellIndex,subjectCell);
       sb.append(" }");
       sb.append(" }");
+    }
+    if (ignore) {
+      sb.append(", \"ignore\" : true");
     }
     sb.append(" }");
     writeLine(sb.toString());

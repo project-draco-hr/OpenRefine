@@ -13,7 +13,7 @@
       sb2.append(Long.toString(recon.id));
       sb2.append("\", \"p\" : \"qa:sample_group\", \"o\" : ");
       sb2.append(JSONObject.quote(column.getName()));
-      sb2.append(" }");
+      sb2.append(", \"ignore\" : true }");
       writeLine(sb2.toString());
     }
 {
@@ -21,7 +21,7 @@
       String s=cell.value instanceof String ? (String)cell.value : cell.value.toString();
       sb2.append("{ \"s\" : \"rec");
       sb2.append(Long.toString(recon.id));
-      sb2.append("\", \"p\" : \"qa:recon_data\", \"o\" : { ");
+      sb2.append("\", \"p\" : \"qa:recon_data\", \"ignore\" : true, \"o\" : { ");
       sb2.append(" \"history_entry\" : ");
       sb2.append(Long.toString(recon.judgmentHistoryEntry));
       sb2.append(", \"text\" : ");

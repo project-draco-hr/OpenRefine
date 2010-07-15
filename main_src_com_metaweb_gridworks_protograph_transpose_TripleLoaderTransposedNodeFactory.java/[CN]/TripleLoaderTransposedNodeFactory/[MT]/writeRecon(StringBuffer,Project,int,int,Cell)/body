@@ -40,6 +40,12 @@
         sb2.append(", \"id\" : ");
         sb2.append(JSONObject.quote(recon.match.id));
       }
+      ReconConfig reconConfig=column.getReconConfig();
+      if (reconConfig != null && reconConfig instanceof StandardReconConfig) {
+        StandardReconConfig standardReconConfig=(StandardReconConfig)reconConfig;
+        sb2.append(", \"type\" : ");
+        sb2.append(JSONObject.quote(standardReconConfig.typeID));
+      }
       sb2.append(" } }");
       writeLine(sb2.toString());
     }

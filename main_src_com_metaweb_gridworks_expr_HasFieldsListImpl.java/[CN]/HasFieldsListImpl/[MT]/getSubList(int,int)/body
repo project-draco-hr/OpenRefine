@@ -1,0 +1,5 @@
+{
+  HasFieldsListImpl subList=new HasFieldsListImpl();
+  subList.addAll(this.subList(fromIndex,toIndex));
+  return subList;
+}

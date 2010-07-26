@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns the array of strings obtained by splitting s with separator sep. Handles quotes properly. Guesses tab or comma separator if \"sep\" is not given.");
+  writer.key("params");
+  writer.value("string s, optional string sep");
+  writer.key("returns");
+  writer.value("array");
+  writer.endObject();
+}

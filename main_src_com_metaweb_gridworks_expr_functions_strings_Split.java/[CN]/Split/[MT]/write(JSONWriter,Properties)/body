@@ -1,9 +1,9 @@
 {
   writer.object();
   writer.key("description");
-  writer.value("Returns the array of strings obtained by splitting s with separator sep");
+  writer.value("Returns the array of strings obtained by splitting s with separator sep. If preserveAllTokens is true, then empty segments are preserved.");
   writer.key("params");
-  writer.value("string s, string or regex sep");
+  writer.value("string s, string or regex sep, optional boolean preserveAllTokens");
   writer.key("returns");
   writer.value("array");
   writer.endObject();

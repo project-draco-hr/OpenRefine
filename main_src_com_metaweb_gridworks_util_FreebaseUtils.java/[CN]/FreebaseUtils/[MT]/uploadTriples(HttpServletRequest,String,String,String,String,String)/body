@@ -24,7 +24,7 @@
         formparams.add(new BasicNameValuePair("mdo_guid",mdo_id));
       }
       UrlEncodedFormEntity entity=new UrlEncodedFormEntity(formparams,"UTF-8");
-      HttpPost httpRequest=new HttpPost(FREEQ_URL);
+      HttpPost httpRequest=new HttpPost(getFreeQUrl());
       httpRequest.getParams().setParameter(CoreProtocolPNames.USER_AGENT,"Gridworks " + GridworksServlet.getVersion());
       httpRequest.setEntity(entity);
       HttpPost surrogateRequest=new HttpPost(getUserInfoURL(FREEBASE_HOST));

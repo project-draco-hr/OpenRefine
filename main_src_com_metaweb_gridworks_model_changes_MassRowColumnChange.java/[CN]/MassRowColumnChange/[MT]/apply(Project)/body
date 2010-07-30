@@ -1,0 +1,11 @@
+{
+synchronized (project) {
+    _oldColumns=new ArrayList<Column>(project.columnModel.columns);
+    _oldRows=new ArrayList<Row>(project.rows);
+    project.columnModel.columns.clear();
+    project.columnModel.columns.addAll(_newColumns);
+    project.rows.clear();
+    project.rows.addAll(_newRows);
+    project.update();
+  }
+}

@@ -1,0 +1,6 @@
+String startColumnName
+int columnCount
+String combinedColumnName
+boolean prependColumnName
+String separator
+boolean ignoreBlankCells

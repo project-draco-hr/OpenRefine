@@ -1,0 +1,8 @@
+{
+  _startColumnName=startColumnName;
+  _columnCount=columnCount;
+  _combinedColumnName=combinedColumnName;
+  _prependColumnName=prependColumnName;
+  _separator=separator;
+  _ignoreBlankCells=ignoreBlankCells;
+}

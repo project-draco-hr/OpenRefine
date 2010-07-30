@@ -1,0 +1,3 @@
+{
+  return new TransposeColumnsIntoRowsOperation(obj.getString("startColumnName"),obj.getInt("columnCount"),obj.getString("combinedColumnName"),obj.getBoolean("prependColumnName"),obj.getString("separator"),obj.getBoolean("ignoreBlankCells"));
+}

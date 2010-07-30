@@ -1,0 +1,55 @@
+{
+  List<Column> oldColumns=null;
+  List<Column> newColumns=null;
+  List<Row> oldRows=null;
+  List<Row> newRows=null;
+  String line;
+  while ((line=reader.readLine()) != null && !"/ec/".equals(line)) {
+    int equal=line.indexOf('=');
+    CharSequence field=line.subSequence(0,equal);
+    if ("oldRowCount".equals(field)) {
+      int count=Integer.parseInt(line.substring(equal + 1));
+      oldRows=new ArrayList<Row>(count);
+      for (int i=0; i < count; i++) {
+        line=reader.readLine();
+        if (line != null) {
+          oldRows.add(Row.load(line,pool));
+        }
+      }
+    }
+ else     if ("newRowCount".equals(field)) {
+      int count=Integer.parseInt(line.substring(equal + 1));
+      newRows=new ArrayList<Row>(count);
+      for (int i=0; i < count; i++) {
+        line=reader.readLine();
+        if (line != null) {
+          newRows.add(Row.load(line,pool));
+        }
+      }
+    }
+ else     if ("oldColumnCount".equals(field)) {
+      int count=Integer.parseInt(line.substring(equal + 1));
+      oldColumns=new ArrayList<Column>(count);
+      for (int i=0; i < count; i++) {
+        line=reader.readLine();
+        if (line != null) {
+          oldColumns.add(Column.load(line));
+        }
+      }
+    }
+ else     if ("newColumnCount".equals(field)) {
+      int count=Integer.parseInt(line.substring(equal + 1));
+      newColumns=new ArrayList<Column>(count);
+      for (int i=0; i < count; i++) {
+        line=reader.readLine();
+        if (line != null) {
+          newColumns.add(Column.load(line));
+        }
+      }
+    }
+  }
+  MassRowColumnChange change=new MassRowColumnChange(newColumns,newRows);
+  change._oldColumns=oldColumns;
+  change._oldRows=oldRows;
+  return change;
+}

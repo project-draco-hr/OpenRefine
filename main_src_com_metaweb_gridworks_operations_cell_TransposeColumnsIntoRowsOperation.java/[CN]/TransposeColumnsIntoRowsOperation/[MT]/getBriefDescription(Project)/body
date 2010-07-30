@@ -1,0 +1,3 @@
+{
+  return "Transpose cells in " + _columnCount + " column(s) starting with "+ _startColumnName+ " into rows";
+}

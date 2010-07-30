@@ -1,0 +1,74 @@
+{
+  List<Column> newColumns=new ArrayList<Column>();
+  List<Column> oldColumns=project.columnModel.columns;
+  int columnsLeftToTranspose=_columnCount;
+  int startColumnIndex=oldColumns.size();
+  for (int c=0; c < oldColumns.size(); c++) {
+    Column column=oldColumns.get(c);
+    if (columnsLeftToTranspose == 0) {
+      Column newColumn=new Column(newColumns.size(),column.getOriginalHeaderLabel());
+      newColumn.setName(column.getName());
+      newColumns.add(newColumn);
+    }
+ else     if (columnsLeftToTranspose < _columnCount) {
+      columnsLeftToTranspose--;
+    }
+ else     if (_startColumnName.equals(column.getName())) {
+      startColumnIndex=c;
+      String columnName=_combinedColumnName != null && _combinedColumnName.length() > 0 ? _combinedColumnName : column.getName();
+      Column newColumn=new Column(newColumns.size(),columnName);
+      newColumns.add(newColumn);
+      columnsLeftToTranspose--;
+    }
+ else {
+      Column newColumn=new Column(newColumns.size(),column.getOriginalHeaderLabel());
+      newColumn.setName(column.getName());
+      newColumns.add(newColumn);
+    }
+  }
+  List<Row> oldRows=project.rows;
+  List<Row> newRows=new ArrayList<Row>(oldRows.size() * _columnCount);
+  for (int r=0; r < oldRows.size(); r++) {
+    Row oldRow=project.rows.get(r);
+    Row firstNewRow=new Row(newColumns.size());
+    newRows.add(firstNewRow);
+    int transposedCells=0;
+    for (int c=0; c < oldColumns.size(); c++) {
+      Column column=oldColumns.get(c);
+      Cell cell=oldRow.getCell(column.getCellIndex());
+      if (c < startColumnIndex) {
+        firstNewRow.setCell(c,cell);
+      }
+ else       if (c == startColumnIndex || c < startColumnIndex + _columnCount) {
+        Cell newCell;
+        if (cell == null || cell.value == null) {
+          if (_prependColumnName && !_ignoreBlankCells) {
+            newCell=new Cell(column.getName() + _separator,null);
+          }
+ else {
+            continue;
+          }
+        }
+ else         if (_prependColumnName) {
+          newCell=new Cell(column.getName() + _separator + cell.value,null);
+        }
+ else {
+          newCell=cell;
+        }
+        if (transposedCells == 0) {
+          firstNewRow.setCell(startColumnIndex,newCell);
+        }
+ else {
+          Row newRow=new Row(newColumns.size());
+          newRow.setCell(startColumnIndex,newCell);
+          newRows.add(newRow);
+        }
+        transposedCells++;
+      }
+ else {
+        firstNewRow.setCell(c - _columnCount + 1,cell);
+      }
+    }
+  }
+  return new HistoryEntry(historyEntryID,project,getBriefDescription(null),this,new MassRowColumnChange(newColumns,newRows));
+}

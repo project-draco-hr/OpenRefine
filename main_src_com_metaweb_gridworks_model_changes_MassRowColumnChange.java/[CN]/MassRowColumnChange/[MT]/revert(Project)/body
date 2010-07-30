@@ -1,0 +1,9 @@
+{
+synchronized (project) {
+    project.columnModel.columns.clear();
+    project.columnModel.columns.addAll(_oldColumns);
+    project.rows.clear();
+    project.rows.addAll(_oldRows);
+    project.update();
+  }
+}

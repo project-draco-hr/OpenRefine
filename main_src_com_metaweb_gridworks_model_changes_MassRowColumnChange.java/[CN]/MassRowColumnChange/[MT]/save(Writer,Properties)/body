@@ -1,0 +1,31 @@
+{
+  writer.write("newColumnCount=");
+  writer.write(Integer.toString(_newColumns.size()));
+  writer.write('\n');
+  for (  Column column : _newColumns) {
+    column.save(writer);
+    writer.write('\n');
+  }
+  writer.write("oldColumnCount=");
+  writer.write(Integer.toString(_oldColumns.size()));
+  writer.write('\n');
+  for (  Column column : _oldColumns) {
+    column.save(writer);
+    writer.write('\n');
+  }
+  writer.write("newRowCount=");
+  writer.write(Integer.toString(_newRows.size()));
+  writer.write('\n');
+  for (  Row row : _newRows) {
+    row.save(writer,options);
+    writer.write('\n');
+  }
+  writer.write("oldRowCount=");
+  writer.write(Integer.toString(_oldRows.size()));
+  writer.write('\n');
+  for (  Row row : _oldRows) {
+    row.save(writer,options);
+    writer.write('\n');
+  }
+  writer.write("/ec/\n");
+}

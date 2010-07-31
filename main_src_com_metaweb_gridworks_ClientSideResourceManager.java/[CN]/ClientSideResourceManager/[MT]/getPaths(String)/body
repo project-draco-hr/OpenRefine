@@ -1,10 +1,10 @@
 {
   ClientSideResourceBundle bundle=s_bundles.get(bundleName);
   if (bundle == null) {
-    return new String[]{};
+    return new QualifiedPath[]{};
   }
  else {
-    String[] paths=new String[bundle._pathList.size()];
+    QualifiedPath[] paths=new QualifiedPath[bundle._pathList.size()];
     bundle._pathList.toArray(paths);
     return paths;
   }

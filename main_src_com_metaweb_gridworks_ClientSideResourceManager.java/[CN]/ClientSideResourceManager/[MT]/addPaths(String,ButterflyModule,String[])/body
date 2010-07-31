@@ -11,8 +11,12 @@
       break;
     }
     if (!bundle._pathSet.contains(fullPath)) {
+      QualifiedPath qualifiedPath=new QualifiedPath();
+      qualifiedPath.module=module;
+      qualifiedPath.path=path;
+      qualifiedPath.fullPath=fullPath;
       bundle._pathSet.add(fullPath);
-      bundle._pathList.add(fullPath);
+      bundle._pathList.add(qualifiedPath);
     }
   }
 }

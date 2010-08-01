@@ -1,4 +1,7 @@
 {
+  if (_combinedColumnName != null && !_combinedColumnName.isEmpty() && project.columnModel.getColumnByName(_combinedColumnName) != null) {
+    throw new Exception("Another column already named " + _combinedColumnName);
+  }
   List<Column> newColumns=new ArrayList<Column>();
   List<Column> oldColumns=project.columnModel.columns;
   int columnsLeftToTranspose=_columnCount;

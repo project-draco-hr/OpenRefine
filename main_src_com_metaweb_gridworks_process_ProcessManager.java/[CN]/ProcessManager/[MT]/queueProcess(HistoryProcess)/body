@@ -1,11 +1,6 @@
 {
   if (process.isImmediate() && _processes.size() == 0) {
-    try {
-      return process.performImmediate() != null;
-    }
- catch (    Exception e) {
-      e.printStackTrace();
-    }
+    return process.performImmediate() != null;
   }
  else {
     _processes.add(process);

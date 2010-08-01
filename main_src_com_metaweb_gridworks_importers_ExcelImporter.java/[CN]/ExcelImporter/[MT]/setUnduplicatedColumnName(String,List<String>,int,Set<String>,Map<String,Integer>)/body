@@ -1,0 +1,21 @@
+{
+  if (columnNameSet.contains(rootName)) {
+    int startIndex=columnRootNameToIndex.containsKey(rootName) ? columnRootNameToIndex.get(rootName) : 2;
+    while (true) {
+      String name=rootName + " " + startIndex;
+      if (columnNameSet.contains(name)) {
+        startIndex++;
+      }
+ else {
+        columnNames.set(index,name);
+        columnNameSet.add(name);
+        break;
+      }
+    }
+    columnRootNameToIndex.put(rootName,startIndex + 1);
+  }
+ else {
+    columnNames.set(index,rootName);
+    columnNameSet.add(rootName);
+  }
+}

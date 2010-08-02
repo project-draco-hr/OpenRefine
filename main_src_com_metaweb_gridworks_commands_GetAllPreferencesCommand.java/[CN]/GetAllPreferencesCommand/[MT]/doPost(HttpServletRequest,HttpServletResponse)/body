@@ -1,0 +1,21 @@
+{
+  Project project=request.getParameter("project") != null ? getProject(request) : null;
+  PreferenceStore ps=project != null ? project.getMetadata().getPreferenceStore() : ProjectManager.singleton.getPreferenceStore();
+  try {
+    response.setCharacterEncoding("UTF-8");
+    response.setHeader("Content-Type","application/json");
+    JSONWriter writer=new JSONWriter(response.getWriter());
+    writer.object();
+    for (    String key : ps.getKeys()) {
+      Object pref=ps.get(key);
+      if (pref == null || pref instanceof String || pref instanceof Number || pref instanceof Boolean) {
+        writer.key(key);
+        writer.value(pref);
+      }
+    }
+    writer.endObject();
+  }
+ catch (  JSONException e) {
+    respondException(response,e);
+  }
+}

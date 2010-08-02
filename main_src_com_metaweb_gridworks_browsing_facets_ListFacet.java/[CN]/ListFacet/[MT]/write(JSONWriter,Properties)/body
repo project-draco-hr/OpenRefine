@@ -12,7 +12,7 @@
     writer.key("error");
     writer.value(_errorMessage);
   }
- else   if (_choices.size() > 2000) {
+ else   if (_choices.size() > getLimit()) {
     writer.key("error");
     writer.value("Too many choices");
   }

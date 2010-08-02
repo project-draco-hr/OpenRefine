@@ -1,3 +1,8 @@
 {
-  _prefs.put(key,value);
+  if (value == null) {
+    _prefs.remove(key);
+  }
+ else {
+    _prefs.put(key,value);
+  }
 }

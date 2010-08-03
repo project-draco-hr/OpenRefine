@@ -12,10 +12,8 @@
     URI baseUri=schema.getBaseUri();
     Node root=schema.getRoot();
     Resource[] blanks=new Resource[schema.get_blanks().size()];
-    int i=0;
-    for (    ConstantBlankNode b : schema.get_blanks()) {
+    for (int i=0; i < blanks.length; i++) {
       blanks[i]=model.createResource();
-      i+=1;
     }
     RowVisitor visitor=new RdfRowVisitor(model,baseUri,root,blanks,20);
     filteredRows.accept(project,visitor);

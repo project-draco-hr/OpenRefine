@@ -1,0 +1,3 @@
+{
+  return (Class<? extends Change>)GridworksServlet.getClass(className);
+}

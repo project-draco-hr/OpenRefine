@@ -1,0 +1,18 @@
+{
+  if (o instanceof JSONObject) {
+    try {
+      JSONObject obj2=(JSONObject)o;
+      String className=obj2.getString("class");
+      Class<?> klass=GridworksServlet.getClass(className);
+      Method method=klass.getMethod("load",JSONObject.class);
+      return method.invoke(null,obj2);
+    }
+ catch (    Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+ else {
+    return o;
+  }
+}

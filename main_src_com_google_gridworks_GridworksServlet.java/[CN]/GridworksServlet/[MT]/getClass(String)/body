@@ -1,0 +1,6 @@
+{
+  if (className.startsWith("com.metaweb.")) {
+    className="com.google." + className.substring("com.metaweb.".length());
+  }
+  return Class.forName(className);
+}

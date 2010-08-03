@@ -7,7 +7,7 @@
     mi.addActionListener(this);
     m.add(mi);
     mb.add(m);
-    Class applicationClass=Class.forName("com.apple.eawt.Application");
+    Class<?> applicationClass=Class.forName("com.apple.eawt.Application");
     Object macOSXApplication=applicationClass.getConstructor((Class[])null).newInstance((Object[])null);
     Method setDefaultMenuBar=applicationClass.getDeclaredMethod("setDefaultMenuBar",new Class[]{JMenuBar.class});
     setDefaultMenuBar.invoke(macOSXApplication,new Object[]{mb});

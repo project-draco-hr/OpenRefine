@@ -9,7 +9,7 @@
     writer.print(((Number)o).toString());
   }
  else   if (o instanceof Collection) {
-    writeCollection(writer,(Collection)o);
+    writeCollection(writer,(Collection<?>)o);
   }
  else   if (o instanceof JSONArray) {
     writeJSONArray(writer,(JSONArray)o);

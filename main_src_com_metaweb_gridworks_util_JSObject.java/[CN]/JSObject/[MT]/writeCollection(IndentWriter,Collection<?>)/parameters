@@ -1,2 +1,2 @@
 IndentWriter writer
-Collection c
+Collection<?> c

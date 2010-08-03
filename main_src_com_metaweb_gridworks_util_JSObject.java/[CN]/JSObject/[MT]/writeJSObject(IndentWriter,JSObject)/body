@@ -2,7 +2,7 @@
   writer.println("{");
   writer.indent();
 {
-    Enumeration e=jso.propertyNames();
+    Enumeration<?> e=jso.propertyNames();
     while (e.hasMoreElements()) {
       String name=(String)e.nextElement();
       Object value=jso.get(name);

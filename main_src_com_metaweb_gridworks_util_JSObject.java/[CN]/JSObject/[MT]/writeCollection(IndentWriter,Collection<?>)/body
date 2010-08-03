@@ -2,7 +2,7 @@
   writer.println("[");
   writer.indent();
 {
-    Iterator i=c.iterator();
+    Iterator<?> i=c.iterator();
     while (i.hasNext()) {
       writeObject(writer,i.next());
       if (i.hasNext()) {

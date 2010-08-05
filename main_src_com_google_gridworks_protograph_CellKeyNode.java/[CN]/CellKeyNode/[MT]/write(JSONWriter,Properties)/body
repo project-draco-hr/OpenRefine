@@ -2,8 +2,12 @@
   writer.object();
   writer.key("nodeType");
   writer.value("cell-as-key");
-  writer.key("columnName");
-  writer.value(columnName);
+  writer.key("columnNames");
+  writer.array();
+  for (  String name : columnNames) {
+    writer.value(name);
+  }
+  writer.endArray();
   writer.key("namespace");
   namespace.write(writer,options);
   writer.endObject();

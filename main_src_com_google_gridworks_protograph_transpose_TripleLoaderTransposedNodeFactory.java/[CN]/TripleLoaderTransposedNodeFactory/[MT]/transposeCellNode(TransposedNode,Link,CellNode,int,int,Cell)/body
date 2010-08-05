@@ -1,7 +1,5 @@
 {
   WritingTransposedNode parentNode2=(WritingTransposedNode)parentNode;
-  Column column=project.columnModel.getColumnByName(node.columnName);
-  int cellIndex=column != null ? column.getCellIndex() : -1;
   WritingTransposedNode tnode=null;
   if (node instanceof CellTopicNode) {
     if (cell.recon != null && (cell.recon.judgment == Judgment.Matched || cell.recon.judgment == Judgment.New)) {

@@ -12,14 +12,15 @@
         id=newTopicVars.get(cell.recon.id);
       }
  else {
+        Column column=project.columnModel.getColumnByCellIndex(cellIndex);
+        String columnName=column.getName();
         long var=0;
-        if (varPool.containsKey(node.columnName)) {
-          var=varPool.get(node.columnName);
+        if (varPool.containsKey(columnName)) {
+          var=varPool.get(columnName);
         }
-        varPool.put(node.columnName,var + 1);
-        id="$" + node.columnName.replaceAll("\\W+","_") + "_"+ var;
+        varPool.put(columnName,var + 1);
+        id="$" + columnName.replaceAll("\\W+","_") + "_"+ var;
         String typeID=node.type.id;
-        Column column=project.columnModel.getColumnByName(node.columnName);
         ReconConfig reconConfig=column.getReconConfig();
         if (reconConfig instanceof StandardReconConfig) {
           typeID=((StandardReconConfig)reconConfig).typeID;

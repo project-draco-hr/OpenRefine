@@ -1,4 +1,3 @@
 {
-  super(columnName);
   this.namespace=namespace;
 }

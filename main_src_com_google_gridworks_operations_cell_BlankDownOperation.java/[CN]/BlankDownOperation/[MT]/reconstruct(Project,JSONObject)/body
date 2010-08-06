@@ -1,0 +1,4 @@
+{
+  JSONObject engineConfig=obj.getJSONObject("engineConfig");
+  return new BlankDownOperation(engineConfig,obj.getString("columnName"));
+}

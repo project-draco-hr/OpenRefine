@@ -1,0 +1,3 @@
+{
+  return "Fill down " + cellChanges.size() + " cells in column "+ column.getName();
+}

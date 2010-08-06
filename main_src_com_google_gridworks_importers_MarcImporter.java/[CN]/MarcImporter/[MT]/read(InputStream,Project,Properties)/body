@@ -1,7 +1,13 @@
 {
   int limit=ImporterUtilities.getIntegerOption("limit",options,-1);
   int skip=ImporterUtilities.getIntegerOption("skip",options,0);
-  File tempFile=File.createTempFile("gridworks-import-",".marc.xml");
+  File tempFile;
+  try {
+    tempFile=File.createTempFile("gridworks-import-",".marc.xml");
+  }
+ catch (  IOException e) {
+    throw new ImportException("Unexpected error creating temp file",e);
+  }
   try {
     OutputStream os=new FileOutputStream(tempFile);
     try {
@@ -26,17 +32,28 @@
       writer.close();
     }
   finally {
-      os.close();
+      try {
+        os.close();
+      }
+ catch (      IOException e) {
+      }
     }
     InputStream is=new FileInputStream(tempFile);
     try {
       new XmlImporter().read(is,project,options);
     }
   finally {
-      is.close();
+      try {
+        is.close();
+      }
+ catch (      IOException e) {
+      }
     }
   }
-  finally {
+ catch (  FileNotFoundException e) {
+    throw new ImportException("Input file not found",e);
+  }
+ finally {
     tempFile.delete();
   }
 }

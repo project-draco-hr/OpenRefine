@@ -1,7 +1,7 @@
 {
   if (contentType != null) {
     contentType=contentType.toLowerCase().trim();
-    return false;
+    return "text/plain".equals(contentType) || "text/csv".equals(contentType) || "text/x-csv".equals(contentType)|| "text/tab-separated-value".equals(contentType);
   }
  else   if (fileName != null) {
     fileName=fileName.toLowerCase();

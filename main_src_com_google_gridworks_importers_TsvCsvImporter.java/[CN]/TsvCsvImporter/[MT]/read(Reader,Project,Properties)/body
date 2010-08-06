@@ -8,5 +8,10 @@
   boolean guessValueType=ImporterUtilities.getBooleanOption("guess-value-type",options,true);
   boolean ignoreQuotes=ImporterUtilities.getBooleanOption("ignore-quotes",options,false);
   LineNumberReader lnReader=new LineNumberReader(reader);
-  read(lnReader,project,sep,limit,skip,ignoreLines,headerLines,guessValueType,splitIntoColumns,ignoreQuotes);
+  try {
+    read(lnReader,project,sep,limit,skip,ignoreLines,headerLines,guessValueType,splitIntoColumns,ignoreQuotes);
+  }
+ catch (  IOException e) {
+    throw new ImportException("Import failed",e);
+  }
 }

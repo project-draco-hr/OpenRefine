@@ -1,5 +1,5 @@
 {
-  if (importer.takesReader()) {
+  if (importer instanceof ReaderImporter) {
     BufferedInputStream inputStream=new BufferedInputStream(rawInputStream);
     byte[] bytes=new byte[1024 * 4];
     inputStream.mark(bytes.length);
@@ -23,9 +23,9 @@
     if (reader == null) {
       reader=encoding != null ? new InputStreamReader(inputStream,encoding) : new InputStreamReader(inputStream);
     }
-    importer.read(reader,project,options);
+    ((ReaderImporter)importer).read(reader,project,options);
   }
  else {
-    importer.read(rawInputStream,project,options);
+    ((StreamImporter)importer).read(rawInputStream,project,options);
   }
 }

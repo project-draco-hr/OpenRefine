@@ -1,26 +1,33 @@
 {
   URL url=new URL(urlString);
   URLConnection connection=null;
-  try {
-    connection=url.openConnection();
-    connection.setConnectTimeout(5000);
-    connection.connect();
+  Importer importer=guessUrlImporter(url);
+  if (importer instanceof UrlImporter) {
+    ((UrlImporter)importer).read(url,project,options);
+    return;
   }
- catch (  Exception e) {
-    throw new Exception("Cannot connect to " + urlString,e);
-  }
-  InputStream inputStream=null;
-  try {
-    inputStream=connection.getInputStream();
-  }
- catch (  Exception e) {
-    throw new Exception("Cannot retrieve content from " + url,e);
-  }
-  try {
-    Importer importer=guessImporter(connection.getContentType(),url.getPath());
-    internalInvokeImporter(project,importer,options,inputStream,connection.getContentEncoding());
-  }
+ else {
+    try {
+      connection=url.openConnection();
+      connection.setConnectTimeout(5000);
+      connection.connect();
+    }
+ catch (    Exception e) {
+      throw new Exception("Cannot connect to " + urlString,e);
+    }
+    InputStream inputStream=null;
+    try {
+      inputStream=connection.getInputStream();
+    }
+ catch (    Exception e) {
+      throw new Exception("Cannot retrieve content from " + url,e);
+    }
+    try {
+      importer=guessImporter(connection.getContentType(),url.getPath());
+      internalInvokeImporter(project,importer,options,inputStream,connection.getContentEncoding());
+    }
   finally {
-    inputStream.close();
+      inputStream.close();
+    }
   }
 }

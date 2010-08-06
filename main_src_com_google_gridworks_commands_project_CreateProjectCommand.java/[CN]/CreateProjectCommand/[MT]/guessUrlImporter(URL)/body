@@ -1,0 +1,8 @@
+{
+  for (  Importer importer : importers.values()) {
+    if (importer instanceof UrlImporter && ((UrlImporter)importer).canImportData(url)) {
+      return importer;
+    }
+  }
+  return null;
+}

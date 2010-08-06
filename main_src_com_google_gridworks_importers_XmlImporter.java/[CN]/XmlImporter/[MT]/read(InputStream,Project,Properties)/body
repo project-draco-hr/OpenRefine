@@ -5,12 +5,17 @@
 {
     byte[] buffer=new byte[BUFFER_SIZE];
     int bytes_read=0;
-    while (bytes_read < BUFFER_SIZE) {
-      int c=pis.read(buffer,bytes_read,BUFFER_SIZE - bytes_read);
-      if (c == -1)       break;
-      bytes_read+=c;
+    try {
+      while (bytes_read < BUFFER_SIZE) {
+        int c=pis.read(buffer,bytes_read,BUFFER_SIZE - bytes_read);
+        if (c == -1)         break;
+        bytes_read+=c;
+      }
+      pis.unread(buffer,0,bytes_read);
     }
-    pis.unread(buffer,0,bytes_read);
+ catch (    IOException e) {
+      throw new ImportException("Read error",e);
+    }
     if (options.containsKey("importer-record-tag")) {
       recordPath=XmlImportUtilities.detectPathFromTag(new ByteArrayInputStream(buffer,0,bytes_read),options.getProperty("importer-record-tag"));
     }

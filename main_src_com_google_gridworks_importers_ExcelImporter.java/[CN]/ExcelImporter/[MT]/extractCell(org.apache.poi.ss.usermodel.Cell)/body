@@ -1,0 +1,29 @@
+{
+  int cellType=cell.getCellType();
+  if (cellType == org.apache.poi.ss.usermodel.Cell.CELL_TYPE_ERROR || cellType == org.apache.poi.ss.usermodel.Cell.CELL_TYPE_BLANK) {
+    return null;
+  }
+  if (cellType == org.apache.poi.ss.usermodel.Cell.CELL_TYPE_FORMULA) {
+    cellType=cell.getCachedFormulaResultType();
+  }
+  Serializable value=null;
+  if (cellType == org.apache.poi.ss.usermodel.Cell.CELL_TYPE_BOOLEAN) {
+    value=cell.getBooleanCellValue();
+  }
+ else   if (cellType == org.apache.poi.ss.usermodel.Cell.CELL_TYPE_NUMERIC) {
+    double d=cell.getNumericCellValue();
+    if (HSSFDateUtil.isCellDateFormatted(cell)) {
+      value=HSSFDateUtil.getJavaDate(d);
+    }
+ else {
+      value=d;
+    }
+  }
+ else {
+    String text=cell.getStringCellValue().trim();
+    if (text.length() > 0) {
+      value=text;
+    }
+  }
+  return value;
+}

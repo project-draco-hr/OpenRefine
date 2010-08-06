@@ -1,9 +1,20 @@
 {
   String baseUrl=options.getProperty("base-url");
-  Graph graph=JrdfFactory.getNewGraph();
-  LineHandler lineHandler=nTriplesParserFactory.createParser(graph,newMapFactory);
+  Graph graph=_jrdfFactory.getNewGraph();
+  LineHandler lineHandler=_nTriplesParserFactory.createParser(graph,_newMapFactory);
   GraphLineParser parser=new GraphLineParser(graph,lineHandler);
-  parser.parse(reader,baseUrl);
+  try {
+    parser.parse(reader,baseUrl);
+  }
+ catch (  IOException e) {
+    throw new ImportException("i/o error while parsing RDF",e);
+  }
+catch (  ParseException e) {
+    throw new ImportException("error parsing RDF",e);
+  }
+catch (  StatementHandlerException e) {
+    throw new ImportException("error parsing RDF",e);
+  }
   Map<String,List<Row>> subjectToRows=new HashMap<String,List<Row>>();
   Column subjectColumn=new Column(0,"subject");
   project.columnModel.columns.add(0,subjectColumn);

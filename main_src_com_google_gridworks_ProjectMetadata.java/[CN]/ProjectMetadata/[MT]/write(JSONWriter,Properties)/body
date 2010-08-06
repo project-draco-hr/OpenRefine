@@ -13,6 +13,14 @@
     writer.value(_encoding);
     writer.key("encodingConfidence");
     writer.value(_encodingConfidence);
+    writer.key("customMetadata");
+    writer.object();
+    for (    String key : _customMetadata.keySet()) {
+      Serializable value=_customMetadata.get(key);
+      writer.key(key);
+      writer.value(value);
+    }
+    writer.endObject();
     writer.key("preferences");
     _preferenceStore.write(writer,options);
   }

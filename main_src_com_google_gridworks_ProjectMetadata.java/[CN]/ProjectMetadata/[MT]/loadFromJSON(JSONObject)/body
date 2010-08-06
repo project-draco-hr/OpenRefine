@@ -19,5 +19,20 @@
  catch (    JSONException e) {
     }
   }
+  if (obj.has("customMetadata") && !obj.isNull("customMetadata")) {
+    try {
+      JSONObject obj2=obj.getJSONObject("customMetadata");
+      @SuppressWarnings("unchecked") Iterator<String> keys=obj2.keys();
+      while (keys.hasNext()) {
+        String key=keys.next();
+        Object value=obj2.get(key);
+        if (value != null && value instanceof Serializable) {
+          pm._customMetadata.put(key,(Serializable)value);
+        }
+      }
+    }
+ catch (    JSONException e) {
+    }
+  }
   return pm;
 }

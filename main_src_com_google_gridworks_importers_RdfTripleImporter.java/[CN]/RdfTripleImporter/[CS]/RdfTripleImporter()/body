@@ -1,5 +1,5 @@
 {
-  JrdfFactory=SortedMemoryJRDFFactory.getFactory();
-  nTriplesParserFactory=new NTriplesParserFactory();
-  newMapFactory=new MemMapFactory();
+  _jrdfFactory=SortedMemoryJRDFFactory.getFactory();
+  _nTriplesParserFactory=new NTriplesParserFactory();
+  _newMapFactory=new MemMapFactory();
 }

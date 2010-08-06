@@ -1,6 +1,7 @@
 {
   ServletFileUpload upload=new ServletFileUpload();
-  String url=null;
+  String url=options.getProperty("url");
+  boolean imported=false;
   FileItemIterator iter=upload.getItemIterator(request);
   while (iter.hasNext()) {
     FileItemStream item=iter.next();
@@ -11,12 +12,13 @@
         Reader reader=new InputStreamReader(stream,"UTF-8");
         try {
           internalInvokeImporter(project,new TsvCsvImporter(),options,reader);
+          imported=true;
         }
   finally {
           reader.close();
         }
       }
- else       if (name.equals("url")) {
+ else       if (name.equals("project-url")) {
         url=Streams.asString(stream);
       }
  else {
@@ -25,15 +27,18 @@
     }
  else {
       String fileName=item.getName().toLowerCase();
-      try {
-        internalImportFile(project,options,fileName,stream);
-      }
+      if (fileName.length() > 0) {
+        try {
+          internalImportFile(project,options,fileName,stream);
+          imported=true;
+        }
   finally {
-        stream.close();
+          stream.close();
+        }
       }
     }
   }
-  if (url != null && url.length() > 0) {
+  if (!imported && url != null && url.length() > 0) {
     internalImportURL(request,project,options,url);
   }
 }

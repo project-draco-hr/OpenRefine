@@ -4,7 +4,6 @@
   Importer importer=guessUrlImporter(url);
   if (importer instanceof UrlImporter) {
     ((UrlImporter)importer).read(url,project,options);
-    return;
   }
  else {
     try {

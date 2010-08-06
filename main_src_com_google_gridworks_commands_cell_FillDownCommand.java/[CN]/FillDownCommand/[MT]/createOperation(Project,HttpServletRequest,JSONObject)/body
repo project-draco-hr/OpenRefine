@@ -1,0 +1,4 @@
+{
+  String columnName=request.getParameter("columnName");
+  return new FillDownOperation(engineConfig,columnName);
+}

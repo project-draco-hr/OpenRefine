@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns whether o has field name");
+  writer.key("params");
+  writer.value("o, string name");
+  writer.key("returns");
+  writer.value("boolean");
+  writer.endObject();
+}

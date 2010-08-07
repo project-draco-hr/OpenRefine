@@ -8,6 +8,16 @@
         Arrays.sort(r,0,r.length);
         return r;
       }
+ else       if (v instanceof JSONArray) {
+        try {
+          Object[] r=JSONUtilities.toArray((JSONArray)v);
+          Arrays.sort(r,0,r.length);
+          return r;
+        }
+ catch (        JSONException e) {
+          return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " fails to process a JSON array: " + e.getMessage());
+        }
+      }
  else       if (v instanceof List<?>) {
         List<? extends Comparable<Object>> a=(List<? extends Comparable<Object>>)v;
         Collections.sort(a);

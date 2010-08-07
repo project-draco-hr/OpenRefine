@@ -9,6 +9,12 @@
  else       if (v instanceof Collection<?>) {
         return ((Collection<?>)v).size();
       }
+ else       if (v instanceof HasFieldsList) {
+        return ((HasFieldsList)v).length();
+      }
+ else       if (v instanceof JSONArray) {
+        return ((JSONArray)v).length();
+      }
  else {
         String s=(v instanceof String ? (String)v : v.toString());
         return s.length();

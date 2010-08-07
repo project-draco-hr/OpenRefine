@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Parses a string as JSON");
+  writer.key("params");
+  writer.value("string s");
+  writer.key("returns");
+  writer.value("JSON object");
+  writer.endObject();
+}

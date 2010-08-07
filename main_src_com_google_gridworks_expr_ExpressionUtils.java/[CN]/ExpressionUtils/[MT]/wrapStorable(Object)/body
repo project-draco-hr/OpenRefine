@@ -1,3 +1,11 @@
 {
-  return isStorable(v) ? (Serializable)v : new EvalError(v.getClass().getSimpleName() + " value not storable");
+  if (v instanceof JSONArray) {
+    return ((JSONArray)v).toString();
+  }
+ else   if (v instanceof JSONObject) {
+    return ((JSONObject)v).toString();
+  }
+ else {
+    return isStorable(v) ? (Serializable)v : new EvalError(v.getClass().getSimpleName() + " value not storable");
+  }
 }

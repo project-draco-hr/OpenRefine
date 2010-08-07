@@ -1,0 +1,14 @@
+{
+  if (args.length >= 1) {
+    Object o1=args[0];
+    if (o1 != null) {
+      try {
+        return new JSONTokener(o1.toString()).nextValue();
+      }
+ catch (      JSONException e) {
+        return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " failed: " + e.getMessage());
+      }
+    }
+  }
+  return null;
+}

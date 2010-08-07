@@ -3,7 +3,7 @@
   if (ExpressionUtils.isError(o)) {
     return o;
   }
- else   if (!ExpressionUtils.isArrayOrCollection(o)) {
+ else   if (!ExpressionUtils.isArrayOrCollection(o) && !(o instanceof JSONArray)) {
     return new EvalError("First argument is not an array");
   }
   String name=((VariableExpr)args[1]).getName();
@@ -18,6 +18,24 @@
         Object r=args[2].evaluate(bindings);
         if (r instanceof Boolean && ((Boolean)r).booleanValue()) {
           results.add(v);
+        }
+      }
+    }
+ else     if (o instanceof JSONArray) {
+      JSONArray a=(JSONArray)o;
+      int l=a.length();
+      results=new ArrayList<Object>(l);
+      for (int i=0; i < l; i++) {
+        try {
+          Object v=a.get(i);
+          bindings.put(name,v);
+          Object r=args[2].evaluate(bindings);
+          if (r instanceof Boolean && ((Boolean)r).booleanValue()) {
+            results.add(v);
+          }
+        }
+ catch (        JSONException e) {
+          results.add(new EvalError(e.getMessage()));
         }
       }
     }

@@ -21,6 +21,20 @@
       }
       return true;
     }
+ else     if (value instanceof JSONArray) {
+      JSONArray a=(JSONArray)value;
+      int l=a.length();
+      for (int i=0; i < l; i++) {
+        try {
+          if (testValue(a.get(i))) {
+            return false;
+          }
+        }
+ catch (        JSONException e) {
+        }
+      }
+      return true;
+    }
   }
   return !testValue(value);
 }

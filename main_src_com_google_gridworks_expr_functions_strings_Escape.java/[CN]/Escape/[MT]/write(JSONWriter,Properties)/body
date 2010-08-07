@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Escapes a string depending on the given escaping mode.");
+  writer.key("params");
+  writer.value("string s, string mode ['html','xml','csv','url','javascript']");
+  writer.key("returns");
+  writer.value("string");
+  writer.endObject();
+}

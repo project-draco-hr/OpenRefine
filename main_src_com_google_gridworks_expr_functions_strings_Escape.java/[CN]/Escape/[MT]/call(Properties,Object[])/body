@@ -1,0 +1,33 @@
+{
+  if (args.length == 2) {
+    Object o1=args[0];
+    Object o2=args[1];
+    if (o1 != null && o2 != null && o1 instanceof String && o2 instanceof String) {
+      String s=(String)o1;
+      String mode=((String)o2).toLowerCase();
+      if ("html".equals(mode)) {
+        return StringEscapeUtils.escapeHtml(s);
+      }
+ else       if ("xml".equals(mode)) {
+        return StringEscapeUtils.escapeXml(s);
+      }
+ else       if ("csv".equals(mode)) {
+        return StringEscapeUtils.escapeCsv(s);
+      }
+ else       if ("javascript".equals(mode)) {
+        return StringEscapeUtils.escapeJavaScript(s);
+      }
+ else       if ("url".equals(mode)) {
+        try {
+          return URLEncoder.encode(s,"UTF-8");
+        }
+ catch (        UnsupportedEncodingException e) {
+        }
+      }
+ else {
+        return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " does not recognize mode '" + mode+ "'.");
+      }
+    }
+  }
+  return null;
+}

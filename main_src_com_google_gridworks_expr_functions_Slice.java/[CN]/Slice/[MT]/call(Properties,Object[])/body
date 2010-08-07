@@ -4,13 +4,16 @@
     Object from=args[1];
     Object to=(args.length == 3) ? args[2] : null;
     if (v != null && from != null && from instanceof Number && (to == null || to instanceof Number)) {
-      if (v.getClass().isArray() || v instanceof List<?> || v instanceof HasFieldsList) {
+      if (v.getClass().isArray() || v instanceof List<?> || v instanceof HasFieldsList|| v instanceof JSONArray) {
         int length=0;
         if (v.getClass().isArray()) {
           length=((Object[])v).length;
         }
  else         if (v instanceof HasFieldsList) {
           length=((HasFieldsList)v).length();
+        }
+ else         if (v instanceof JSONArray) {
+          length=((JSONArray)v).length();
         }
  else {
           length=ExpressionUtils.toObjectList(v).size();
@@ -32,6 +35,18 @@
         }
  else         if (v instanceof HasFieldsList) {
           return ((HasFieldsList)v).getSubList(start,end);
+        }
+ else         if (v instanceof JSONArray) {
+          JSONArray a=(JSONArray)v;
+          Object[] a2=new Object[end - start];
+          for (int i=0; i < a2.length; i++) {
+            try {
+              a2[i]=a.get(start + i);
+            }
+ catch (            JSONException e) {
+            }
+          }
+          return a2;
         }
  else {
           return ExpressionUtils.toObjectList(v).subList(start,end);

@@ -1,0 +1,3 @@
+{
+  return "Move column " + _columnName + " to position "+ _index;
+}

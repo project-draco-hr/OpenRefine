@@ -1,0 +1,23 @@
+{
+  String columnName=null;
+  int oldColumnIndex=-1;
+  int newColumnIndex=-1;
+  String line;
+  while ((line=reader.readLine()) != null && !"/ec/".equals(line)) {
+    int equal=line.indexOf('=');
+    CharSequence field=line.subSequence(0,equal);
+    String value=line.substring(equal + 1);
+    if ("oldColumnIndex".equals(field)) {
+      oldColumnIndex=Integer.parseInt(value);
+    }
+ else     if ("newColumnIndex".equals(field)) {
+      newColumnIndex=Integer.parseInt(value);
+    }
+ else     if ("columnName".equals(field)) {
+      columnName=value;
+    }
+  }
+  ColumnMoveChange change=new ColumnMoveChange(columnName,newColumnIndex);
+  change._oldColumnIndex=oldColumnIndex;
+  return change;
+}

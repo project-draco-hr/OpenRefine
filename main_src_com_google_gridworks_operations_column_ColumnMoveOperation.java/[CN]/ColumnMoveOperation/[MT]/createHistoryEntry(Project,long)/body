@@ -1,0 +1,7 @@
+{
+  if (project.columnModel.getColumnByName(_columnName) == null) {
+    throw new Exception("No column named " + _columnName);
+  }
+  Change change=new ColumnMoveChange(_columnName,_index);
+  return new HistoryEntry(historyEntryID,project,getBriefDescription(null),ColumnMoveOperation.this,change);
+}

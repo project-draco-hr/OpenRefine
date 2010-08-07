@@ -1,5 +1,5 @@
 {
 synchronized (this) {
-    ((TopList)_preferenceStore.get("expressions")).add(s);
+    ((TopList)_preferenceStore.get("scripting.expressions")).add(s);
   }
 }

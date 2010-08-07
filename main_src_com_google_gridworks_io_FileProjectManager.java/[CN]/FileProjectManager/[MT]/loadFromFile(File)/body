@@ -20,7 +20,7 @@
         _preferenceStore.load(obj.getJSONObject("preferences"));
       }
       if (obj.has("expressions") && !obj.isNull("expressions")) {
-        ((TopList)_preferenceStore.get("expressions")).load(obj.getJSONArray("expressions"));
+        ((TopList)_preferenceStore.get("scripting.expressions")).load(obj.getJSONArray("expressions"));
       }
       found=true;
     }

@@ -14,7 +14,7 @@
   }
   if (obj.has("expressions") && !obj.isNull("expressions")) {
     try {
-      ((TopList)pm._preferenceStore.get("expressions")).load(obj.getJSONArray("expressions"));
+      ((TopList)pm._preferenceStore.get("scripting.expressions")).load(obj.getJSONArray("expressions"));
     }
  catch (    JSONException e) {
     }

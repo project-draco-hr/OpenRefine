@@ -1,0 +1,24 @@
+{
+  for (  File file : _workspaceDir.listFiles()) {
+    if (file.isDirectory() && !file.isHidden()) {
+      String name=file.getName();
+      if (file.getName().endsWith(s_projectDirNameSuffix)) {
+        String idString=name.substring(0,name.length() - s_projectDirNameSuffix.length());
+        long id=-1;
+        try {
+          id=Long.parseLong(idString);
+        }
+ catch (        NumberFormatException e) {
+        }
+        if (id > 0 && !_projectsMetadata.containsKey(id)) {
+          if (loadProjectMetadata(id)) {
+            logger.info("Recovered project named " + getProjectMetadata(id).getName() + " in directory "+ name);
+          }
+ else {
+            logger.warn("Failed to recover project in directory " + name);
+          }
+        }
+      }
+    }
+  }
+}

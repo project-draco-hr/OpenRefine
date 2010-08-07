@@ -1,5 +1,5 @@
 {
-  File dir=new File(workspaceDir,projectID + ".project");
+  File dir=new File(workspaceDir,projectID + s_projectDirNameSuffix);
   if (!dir.exists()) {
     dir.mkdir();
   }

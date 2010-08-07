@@ -3,4 +3,5 @@
   _workspaceDir=dir;
   _workspaceDir.mkdirs();
   load();
+  recover();
 }

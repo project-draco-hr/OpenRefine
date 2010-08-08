@@ -1,0 +1,3 @@
+{
+  return "Transpose every " + _rowCount + " cells in column "+ _columnName+ " into separate columns";
+}

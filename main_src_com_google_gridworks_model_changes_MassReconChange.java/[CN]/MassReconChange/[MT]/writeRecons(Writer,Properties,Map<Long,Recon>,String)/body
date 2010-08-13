@@ -1,0 +1,17 @@
+{
+  writer.write(key + "=");
+  writer.write(Integer.toString(recons.size()));
+  writer.write('\n');
+  for (  Recon recon : recons.values()) {
+    Pool pool=(Pool)options.get("pool");
+    pool.poolReconCandidates(recon);
+    JSONWriter jsonWriter=new JSONWriter(writer);
+    try {
+      recon.write(jsonWriter,options);
+    }
+ catch (    JSONException e) {
+      e.printStackTrace();
+    }
+    writer.write("\n");
+  }
+}

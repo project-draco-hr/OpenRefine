@@ -1,0 +1,5 @@
+{
+  writeRecons(writer,options,_oldRecons,"oldReconCount");
+  writeRecons(writer,options,_newRecons,"newReconCount");
+  writer.write("/ec/\n");
+}

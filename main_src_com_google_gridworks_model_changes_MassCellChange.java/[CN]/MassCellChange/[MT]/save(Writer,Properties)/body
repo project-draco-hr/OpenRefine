@@ -1,7 +1,9 @@
 {
-  writer.write("commonColumnName=");
-  writer.write(_commonColumnName);
-  writer.write('\n');
+  if (_commonColumnName != null) {
+    writer.write("commonColumnName=");
+    writer.write(_commonColumnName);
+    writer.write('\n');
+  }
   writer.write("updateRowContextDependencies=");
   writer.write(Boolean.toString(_updateRowContextDependencies));
   writer.write('\n');

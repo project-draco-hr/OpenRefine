@@ -3,16 +3,16 @@
   writer.object();
   writer.key("id");
   writer.value(id);
+  if (saveMode) {
+    writer.key("judgmentHistoryEntry");
+    writer.value(judgmentHistoryEntry);
+  }
   writer.key("service");
   writer.value(service);
   writer.key("identifierSpace");
   writer.value(identifierSpace);
   writer.key("schemaSpace");
   writer.value(schemaSpace);
-  if (saveMode) {
-    writer.key("judgmentHistoryEntry");
-    writer.value(judgmentHistoryEntry);
-  }
   writer.key("j");
   writer.value(judgmentToString());
   if (match != null) {

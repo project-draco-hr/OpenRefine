@@ -1,0 +1,7 @@
+{
+  Recon r=new Recon(id,judgmentHistoryEntry);
+  r.identifierSpace=identifierSpace;
+  r.schemaSpace=schemaSpace;
+  copyTo(r);
+  return r;
+}

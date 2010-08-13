@@ -1,0 +1,10 @@
+{
+  if (recon.match != null) {
+    pool(recon.match);
+  }
+  if (recon.candidates != null) {
+    for (    ReconCandidate candidate : recon.candidates) {
+      pool(candidate);
+    }
+  }
+}

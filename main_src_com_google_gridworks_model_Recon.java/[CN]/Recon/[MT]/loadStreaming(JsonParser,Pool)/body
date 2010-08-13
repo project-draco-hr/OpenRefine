@@ -14,6 +14,9 @@
     }
  else     if ("judgmentHistoryEntry".equals(fieldName)) {
       judgmentHistoryEntry=jp.getLongValue();
+      if (recon != null) {
+        recon.judgmentHistoryEntry=judgmentHistoryEntry;
+      }
     }
  else {
       if (recon == null) {

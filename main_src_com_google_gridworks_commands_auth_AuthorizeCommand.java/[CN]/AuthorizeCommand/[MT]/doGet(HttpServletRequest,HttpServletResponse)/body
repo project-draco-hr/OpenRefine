@@ -18,12 +18,7 @@
         pp.retrieveAccessToken(consumer,verificationCode);
         access_credentials=new Credentials(consumer.getToken(),consumer.getTokenSecret(),provider);
         Credentials.deleteCredentials(request,response,provider,Credentials.Type.REQUEST);
-        if (access_credentials == null) {
-          response.sendRedirect(callbackURL);
-        }
- else {
-          Credentials.setCredentials(request,response,access_credentials,Credentials.Type.ACCESS,30 * 24 * 3600);
-        }
+        Credentials.setCredentials(request,response,access_credentials,Credentials.Type.ACCESS,30 * 24 * 3600);
         finish(response);
       }
     }

@@ -1,0 +1,30 @@
+{
+  if (args.length == 1) {
+    Object v=args[0];
+    if (v != null) {
+      if (v instanceof JSONArray) {
+        try {
+          v=JSONUtilities.toArray((JSONArray)v);
+        }
+ catch (        JSONException e) {
+          return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " fails to process a JSON array: " + e.getMessage());
+        }
+      }
+      if (v.getClass().isArray() || v instanceof List<?>) {
+        Set<Object> set=null;
+        if (v.getClass().isArray()) {
+          Object[] a=(Object[])v;
+          set=new HashSet<Object>(a.length);
+          for (int i=0; i < a.length; i++) {
+            set.add(a[i]);
+          }
+        }
+ else {
+          set=new HashSet<Object>(ExpressionUtils.toObjectList(v));
+        }
+        return set.toArray();
+      }
+    }
+  }
+  return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " expects an array");
+}

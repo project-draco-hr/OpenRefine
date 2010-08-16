@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns array a with duplicates removed");
+  writer.key("params");
+  writer.value("array a");
+  writer.key("returns");
+  writer.value("array");
+  writer.endObject();
+}

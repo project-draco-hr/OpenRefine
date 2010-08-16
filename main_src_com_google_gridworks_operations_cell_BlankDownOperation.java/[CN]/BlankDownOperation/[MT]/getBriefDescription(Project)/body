@@ -1,3 +1,3 @@
 {
-  return "Fill down cells in column " + _columnName;
+  return "Blank down cells in column " + _columnName;
 }

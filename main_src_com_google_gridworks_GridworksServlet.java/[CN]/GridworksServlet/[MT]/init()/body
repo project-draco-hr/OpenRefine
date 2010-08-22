@@ -6,7 +6,6 @@
   if (data == null) {
     throw new ServletException("can't find servlet init config 'gridworks.data', I have to give up initializing");
   }
-  registerCommands(commandNames);
   s_dataDir=new File(data);
   FileProjectManager.initialize(s_dataDir);
   if (_timer == null) {

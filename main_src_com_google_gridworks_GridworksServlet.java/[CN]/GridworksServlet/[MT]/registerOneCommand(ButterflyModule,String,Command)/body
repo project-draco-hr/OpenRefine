@@ -1,0 +1,3 @@
+{
+  return registerOneCommand(module.getName() + "/" + name,commandObject);
+}

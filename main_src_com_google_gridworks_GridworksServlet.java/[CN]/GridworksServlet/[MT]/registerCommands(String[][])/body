@@ -1,9 +1,0 @@
-{
-  boolean status=true;
-  for (  String[] command : commandNames) {
-    String commandName=command[0];
-    String className=command[1];
-    status|=registerOneCommand(commandName,className);
-  }
-  return status;
-}

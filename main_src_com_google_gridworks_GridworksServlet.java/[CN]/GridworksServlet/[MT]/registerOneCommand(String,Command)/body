@@ -1,8 +1,8 @@
 {
-  if (commands.containsKey(name)) {
+  if (commands.containsKey(path)) {
     return false;
   }
   commandObject.init(this);
-  commands.put(name,commandObject);
+  commands.put(path,commandObject);
   return true;
 }

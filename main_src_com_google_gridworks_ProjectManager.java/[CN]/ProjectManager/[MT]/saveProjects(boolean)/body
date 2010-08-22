@@ -12,7 +12,7 @@ synchronized (this) {
           records.add(new SaveRecord(project,msecsOverdue));
         }
  else         if (startTimeOfSave.getTime() - project.getLastSave().getTime() > s_projectFlushDelay) {
-          _projects.remove(id);
+          _projects.remove(id).dispose();
         }
       }
     }

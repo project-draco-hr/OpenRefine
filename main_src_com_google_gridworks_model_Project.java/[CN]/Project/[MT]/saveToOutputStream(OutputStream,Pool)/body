@@ -1,4 +1,12 @@
 {
+  for (  OverlayModel overlayModel : overlayModels.values()) {
+    try {
+      overlayModel.onBeforeSave();
+    }
+ catch (    Exception e) {
+      logger.warn("Error signaling overlay model before saving",e);
+    }
+  }
   Writer writer=new OutputStreamWriter(out);
   try {
     Properties options=new Properties();
@@ -8,5 +16,13 @@
   }
   finally {
     writer.flush();
+  }
+  for (  OverlayModel overlayModel : overlayModels.values()) {
+    try {
+      overlayModel.onAfterSave();
+    }
+ catch (    Exception e) {
+      logger.warn("Error signaling overlay model after saving",e);
+    }
   }
 }

@@ -1,0 +1,10 @@
+{
+  for (  OverlayModel overlayModel : overlayModels.values()) {
+    try {
+      overlayModel.dispose();
+    }
+ catch (    Exception e) {
+      logger.warn("Error signaling overlay model before disposing",e);
+    }
+  }
+}

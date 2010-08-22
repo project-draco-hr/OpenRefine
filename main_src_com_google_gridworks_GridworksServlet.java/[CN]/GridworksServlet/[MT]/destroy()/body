@@ -5,7 +5,7 @@
     _timer=null;
   }
   if (ProjectManager.singleton != null) {
-    ProjectManager.singleton.save(true);
+    ProjectManager.singleton.dispose();
     ProjectManager.singleton=null;
   }
   this.config=null;

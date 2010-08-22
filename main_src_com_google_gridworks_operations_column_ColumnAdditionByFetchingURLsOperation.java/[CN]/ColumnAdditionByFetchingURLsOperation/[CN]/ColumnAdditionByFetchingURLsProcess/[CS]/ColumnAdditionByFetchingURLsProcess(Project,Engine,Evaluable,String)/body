@@ -1,0 +1,7 @@
+{
+  super(description);
+  _project=project;
+  _engine=engine;
+  _eval=eval;
+  _historyEntryID=HistoryEntry.allocateID();
+}

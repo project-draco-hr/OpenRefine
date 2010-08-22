@@ -1,0 +1,7 @@
+JSONObject engineConfig
+String baseColumnName
+String urlExpression
+OnError onError
+String newColumnName
+int columnInsertIndex
+int delay

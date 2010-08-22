@@ -1,0 +1,13 @@
+{
+  Column column=project.columnModel.getColumnByName(_baseColumnName);
+  if (column == null) {
+    throw new Exception("No column named " + _baseColumnName);
+  }
+  if (project.columnModel.getColumnByName(_newColumnName) != null) {
+    throw new Exception("Another column already named " + _newColumnName);
+  }
+  Engine engine=createEngine(project);
+  engine.initializeFromJSON(_engineConfig);
+  Evaluable eval=MetaParser.parse(_urlExpression);
+  return new ColumnAdditionByFetchingURLsProcess(project,engine,eval,getBriefDescription(null));
+}

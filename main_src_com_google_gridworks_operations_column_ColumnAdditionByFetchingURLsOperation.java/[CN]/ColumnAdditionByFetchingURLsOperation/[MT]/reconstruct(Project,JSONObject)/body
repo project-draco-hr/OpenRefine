@@ -1,0 +1,4 @@
+{
+  JSONObject engineConfig=obj.getJSONObject("engineConfig");
+  return new ColumnAdditionByFetchingURLsOperation(engineConfig,obj.getString("baseColumnName"),obj.getString("urlExpression"),TextTransformOperation.stringToOnError(obj.getString("onError")),obj.getString("newColumnName"),obj.getInt("columnInsertIndex"),obj.getInt("delay"));
+}

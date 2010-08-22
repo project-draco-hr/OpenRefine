@@ -1,0 +1,22 @@
+{
+  writer.object();
+  writer.key("op");
+  writer.value(OperationRegistry.s_opClassToName.get(this.getClass()));
+  writer.key("description");
+  writer.value(getBriefDescription(null));
+  writer.key("engineConfig");
+  writer.value(getEngineConfig());
+  writer.key("newColumnName");
+  writer.value(_newColumnName);
+  writer.key("columnInsertIndex");
+  writer.value(_columnInsertIndex);
+  writer.key("baseColumnName");
+  writer.value(_baseColumnName);
+  writer.key("urlExpression");
+  writer.value(_urlExpression);
+  writer.key("onError");
+  writer.value(TextTransformOperation.onErrorToString(_onError));
+  writer.key("delay");
+  writer.value(_delay);
+  writer.endObject();
+}

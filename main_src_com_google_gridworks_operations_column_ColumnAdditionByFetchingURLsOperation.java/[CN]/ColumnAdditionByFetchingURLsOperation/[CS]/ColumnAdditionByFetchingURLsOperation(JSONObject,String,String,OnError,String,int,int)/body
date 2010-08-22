@@ -1,0 +1,9 @@
+{
+  super(engineConfig);
+  _baseColumnName=baseColumnName;
+  _urlExpression=urlExpression;
+  _onError=onError;
+  _newColumnName=newColumnName;
+  _columnInsertIndex=columnInsertIndex;
+  _delay=delay;
+}

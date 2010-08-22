@@ -1,0 +1,22 @@
+{
+  String urlString=urlData.cell.value.toString();
+  URL url=null;
+  try {
+    url=new URL(urlString);
+  }
+ catch (  MalformedURLException e) {
+    return null;
+  }
+  try {
+    InputStream is=url.openStream();
+    try {
+      return new CellAtRow(urlData.row,new Cell(ParsingUtilities.inputStreamToString(is),null));
+    }
+  finally {
+      is.close();
+    }
+  }
+ catch (  Exception e) {
+    return _onError == OnError.StoreError ? new CellAtRow(urlData.row,new Cell(new EvalError(e.getMessage()),null)) : null;
+  }
+}

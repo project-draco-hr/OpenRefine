@@ -1,0 +1,9 @@
+{
+  String baseColumnName=request.getParameter("baseColumnName");
+  String urlExpression=request.getParameter("urlExpression");
+  String newColumnName=request.getParameter("newColumnName");
+  int columnInsertIndex=Integer.parseInt(request.getParameter("columnInsertIndex"));
+  int delay=Integer.parseInt(request.getParameter("delay"));
+  String onError=request.getParameter("onError");
+  return new ColumnAdditionByFetchingURLsOperation(engineConfig,baseColumnName,urlExpression,TextTransformOperation.stringToOnError(onError),newColumnName,columnInsertIndex,delay);
+}

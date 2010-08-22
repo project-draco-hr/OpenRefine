@@ -5,7 +5,7 @@
     Engine engine=getEngine(request,project);
     String format=request.getParameter("format");
     Properties options=getRequestParameters(request);
-    Exporter exporter=s_formatToExporter.get(format.toLowerCase());
+    Exporter exporter=ExporterRegistry.getExporter(format);
     if (exporter == null) {
       exporter=new CsvExporter('\t');
     }

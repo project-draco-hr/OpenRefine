@@ -1,7 +1,7 @@
 {
   URL url=new URL(urlString);
   URLConnection connection=null;
-  Importer importer=guessUrlImporter(url);
+  Importer importer=ImporterRegistry.guessUrlImporter(url);
   if (importer instanceof UrlImporter) {
     ((UrlImporter)importer).read(url,project,options);
   }
@@ -22,7 +22,7 @@
       throw new Exception("Cannot retrieve content from " + url,e);
     }
     try {
-      importer=guessImporter(connection.getContentType(),url.getPath());
+      importer=ImporterRegistry.guessImporter(connection.getContentType(),url.getPath());
       internalInvokeImporter(project,importer,options,inputStream,connection.getContentEncoding());
     }
   finally {

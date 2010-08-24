@@ -8,16 +8,39 @@
   }
  catch (  JSONException e) {
   }
+  String templateString=options.getProperty("template");
+  String prefixString=options.getProperty("prefix");
+  String suffixString=options.getProperty("suffix");
+  String separatorString=options.getProperty("separator");
   Template template;
   try {
-    template=Parser.parse(options.getProperty("template"));
+    template=Parser.parse(templateString);
   }
  catch (  ParsingException e) {
     throw new IOException("Missing or bad template",e);
   }
-  template.setPrefix(options.getProperty("prefix"));
-  template.setSuffix(options.getProperty("suffix"));
-  template.setSeparator(options.getProperty("separator"));
+  template.setPrefix(prefixString);
+  template.setSuffix(suffixString);
+  template.setSeparator(separatorString);
+  if (!"true".equals(options.getProperty("preview"))) {
+    StringWriter stringWriter=new StringWriter();
+    JSONWriter jsonWriter=new JSONWriter(stringWriter);
+    try {
+      jsonWriter.object();
+      jsonWriter.key("template");
+      jsonWriter.value(templateString);
+      jsonWriter.key("prefix");
+      jsonWriter.value(prefixString);
+      jsonWriter.key("suffix");
+      jsonWriter.value(suffixString);
+      jsonWriter.key("separator");
+      jsonWriter.value(separatorString);
+      jsonWriter.endObject();
+    }
+ catch (    JSONException e) {
+    }
+    project.getMetadata().getPreferenceStore().put("exporters.templating.template",stringWriter.toString());
+  }
   if (engine.getMode() == Mode.RowBased) {
     FilteredRows filteredRows=engine.getAllFilteredRows();
     RowVisitor visitor=template.getRowVisitor(writer,limit);

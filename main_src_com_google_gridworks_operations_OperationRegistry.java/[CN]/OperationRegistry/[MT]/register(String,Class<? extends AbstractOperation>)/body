@@ -1,4 +1,0 @@
-{
-  s_opNameToClass.put(name,klass);
-  s_opClassToName.put(klass,name);
-}

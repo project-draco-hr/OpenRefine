@@ -1,0 +1,5 @@
+{
+  String key=module.getName() + "/" + name;
+  s_opNameToClass.put(key,klass);
+  s_opClassToName.put(klass,key);
+}

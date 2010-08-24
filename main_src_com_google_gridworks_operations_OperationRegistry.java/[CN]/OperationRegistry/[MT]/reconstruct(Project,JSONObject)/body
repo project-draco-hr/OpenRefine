@@ -1,6 +1,9 @@
 {
   try {
     String op=obj.getString("op");
+    if (!op.contains("/")) {
+      op="core/" + op;
+    }
     Class<? extends AbstractOperation> klass=OperationRegistry.s_opNameToClass.get(op);
     if (klass != null) {
       Method reconstruct=klass.getMethod("reconstruct",Project.class,JSONObject.class);

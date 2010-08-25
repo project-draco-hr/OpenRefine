@@ -4,13 +4,17 @@
   if (record.rows.size() > 0) {
     for (    List<Cell> row : record.rows) {
       Row realRow=new Row(row.size());
+      int cellCount=0;
       for (int c=0; c < row.size(); c++) {
         Cell cell=row.get(c);
         if (cell != null) {
           realRow.setCell(c,cell);
+          cellCount++;
         }
       }
-      project.rows.add(realRow);
+      if (cellCount > 0) {
+        project.rows.add(realRow);
+      }
     }
   }
 }

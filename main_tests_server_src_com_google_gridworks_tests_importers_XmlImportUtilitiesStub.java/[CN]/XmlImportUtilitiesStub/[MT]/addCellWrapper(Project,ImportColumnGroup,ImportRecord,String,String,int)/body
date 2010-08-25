@@ -1,3 +1,3 @@
 {
-  super.addCell(project,columnGroup,record,columnLocalName,text,commonStartingRowIndex);
+  super.addCell(project,columnGroup,record,columnLocalName,text);
 }

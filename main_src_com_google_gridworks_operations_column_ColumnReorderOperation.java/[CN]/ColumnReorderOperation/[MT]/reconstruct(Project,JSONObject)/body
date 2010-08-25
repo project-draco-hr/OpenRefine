@@ -1,0 +1,5 @@
+{
+  List<String> columnNames=new ArrayList<String>();
+  JSONUtilities.getStringList(obj,"columnNames",columnNames);
+  return new ColumnReorderOperation(columnNames);
+}

@@ -1,0 +1,14 @@
+{
+  writer.object();
+  writer.key("op");
+  writer.value(OperationRegistry.s_opClassToName.get(this.getClass()));
+  writer.key("description");
+  writer.value(getBriefDescription(null));
+  writer.key("columnNames");
+  writer.array();
+  for (  String n : _columnNames) {
+    writer.value(n);
+  }
+  writer.endArray();
+  writer.endObject();
+}

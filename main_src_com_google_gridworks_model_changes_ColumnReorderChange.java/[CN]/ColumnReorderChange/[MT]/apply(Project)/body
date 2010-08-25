@@ -1,0 +1,17 @@
+{
+synchronized (project) {
+    if (_newColumns == null) {
+      _newColumns=new ArrayList<Column>();
+      _oldColumns=new ArrayList<Column>(project.columnModel.columns);
+      for (      String n : _columnNames) {
+        Column column=project.columnModel.getColumnByName(n);
+        if (column != null) {
+          _newColumns.add(column);
+        }
+      }
+    }
+    project.columnModel.columns.clear();
+    project.columnModel.columns.addAll(_newColumns);
+    project.update();
+  }
+}

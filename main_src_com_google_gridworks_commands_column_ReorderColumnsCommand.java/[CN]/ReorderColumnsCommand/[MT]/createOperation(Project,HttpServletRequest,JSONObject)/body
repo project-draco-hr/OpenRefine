@@ -1,0 +1,4 @@
+{
+  String columnNames=request.getParameter("columnNames");
+  return new ColumnReorderOperation(JSONUtilities.toStringList(ParsingUtilities.evaluateJsonStringToArray(columnNames)));
+}

@@ -1,0 +1,24 @@
+{
+  writer.write("columnNameCount=");
+  writer.write(Integer.toString(_columnNames.size()));
+  writer.write('\n');
+  for (  String n : _columnNames) {
+    writer.write(n);
+    writer.write('\n');
+  }
+  writer.write("oldColumnCount=");
+  writer.write(Integer.toString(_oldColumns.size()));
+  writer.write('\n');
+  for (  Column c : _oldColumns) {
+    c.save(writer);
+    writer.write('\n');
+  }
+  writer.write("newColumnCount=");
+  writer.write(Integer.toString(_newColumns.size()));
+  writer.write('\n');
+  for (  Column c : _newColumns) {
+    c.save(writer);
+    writer.write('\n');
+  }
+  writer.write("/ec/\n");
+}

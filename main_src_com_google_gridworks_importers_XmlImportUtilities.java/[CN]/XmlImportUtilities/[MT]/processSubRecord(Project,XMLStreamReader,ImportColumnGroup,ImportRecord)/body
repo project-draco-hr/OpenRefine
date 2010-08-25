@@ -1,16 +1,11 @@
 {
   ImportColumnGroup thisColumnGroup=getColumnGroup(project,columnGroup,composeName(parser.getPrefix(),parser.getLocalName()));
-  int commonStartingRowIndex=0;
-  for (  ImportColumn column : thisColumnGroup.columns.values()) {
-    if (column.cellIndex < record.columnEmptyRowIndices.size()) {
-      commonStartingRowIndex=Math.max(commonStartingRowIndex,record.columnEmptyRowIndices.get(column.cellIndex));
-    }
-  }
+  thisColumnGroup.nextRowIndex=Math.max(thisColumnGroup.nextRowIndex,columnGroup.nextRowIndex);
   int attributeCount=parser.getAttributeCount();
   for (int i=0; i < attributeCount; i++) {
     String text=parser.getAttributeValue(i).trim();
     if (text.length() > 0) {
-      addCell(project,thisColumnGroup,record,composeName(parser.getAttributePrefix(i),parser.getAttributeLocalName(i)),text,commonStartingRowIndex);
+      addCell(project,thisColumnGroup,record,composeName(parser.getAttributePrefix(i),parser.getAttributeLocalName(i)),text);
     }
   }
   while (parser.hasNext()) {
@@ -21,20 +16,19 @@
  else     if (eventType == XMLStreamConstants.CHARACTERS) {
       String text=parser.getText().trim();
       if (text.length() > 0) {
-        addCell(project,thisColumnGroup,record,null,parser.getText(),commonStartingRowIndex);
+        addCell(project,thisColumnGroup,record,null,parser.getText());
       }
     }
  else     if (eventType == XMLStreamConstants.END_ELEMENT) {
       break;
     }
   }
-  if (commonStartingRowIndex < record.rows.size()) {
-    List<Cell> startingRow=record.rows.get(commonStartingRowIndex);
-    for (    ImportColumn c : thisColumnGroup.columns.values()) {
-      int cellIndex=c.cellIndex;
-      if (cellIndex >= startingRow.size() || startingRow.get(cellIndex) == null) {
-        c.blankOnFirstRow=true;
-      }
-    }
+  int nextRowIndex=thisColumnGroup.nextRowIndex;
+  for (  ImportColumn column2 : thisColumnGroup.columns.values()) {
+    nextRowIndex=Math.max(nextRowIndex,column2.nextRowIndex);
   }
+  for (  ImportColumnGroup columnGroup2 : thisColumnGroup.subgroups.values()) {
+    nextRowIndex=Math.max(nextRowIndex,columnGroup2.nextRowIndex);
+  }
+  thisColumnGroup.nextRowIndex=nextRowIndex;
 }

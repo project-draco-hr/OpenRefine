@@ -5,10 +5,7 @@
   Serializable value=ImporterUtilities.parseCellValue(text);
   ImportColumn column=getColumn(project,columnGroup,columnLocalName);
   int cellIndex=column.cellIndex;
-  while (cellIndex >= record.columnEmptyRowIndices.size()) {
-    record.columnEmptyRowIndices.add(commonStartingRowIndex);
-  }
-  int rowIndex=record.columnEmptyRowIndices.get(cellIndex);
+  int rowIndex=Math.max(columnGroup.nextRowIndex,column.nextRowIndex);
   while (rowIndex >= record.rows.size()) {
     record.rows.add(new ArrayList<Cell>());
   }
@@ -17,7 +14,7 @@
     row.add(null);
   }
   logger.trace("Adding cell with value : \"" + value + "\" to row : "+ rowIndex+ " at cell index : "+ (cellIndex - 1));
-  row.set(cellIndex - 1,new Cell(value,null));
-  record.columnEmptyRowIndices.set(cellIndex,rowIndex + 1);
+  row.set(cellIndex,new Cell(value,null));
+  column.nextRowIndex=rowIndex + 1;
   column.nonBlankCount++;
 }

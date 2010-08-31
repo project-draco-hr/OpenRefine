@@ -1,0 +1,5 @@
+{
+  super(rowEvaluable,selectTime,selectNonTime,selectBlank,selectError);
+  _selectTime=selectTime;
+  _selectNonTime=selectNonTime;
+}

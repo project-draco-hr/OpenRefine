@@ -1,0 +1,19 @@
+{
+  Object value=_rowEvaluable.eval(project,rowIndex,row,bindings);
+  if (value != null) {
+    if (value.getClass().isArray()) {
+      Object[] a=(Object[])value;
+      for (      Object v : a) {
+        processValue(v);
+      }
+      return;
+    }
+ else     if (value instanceof Collection<?>) {
+      for (      Object v : ExpressionUtils.toObjectCollection(value)) {
+        processValue(v);
+      }
+      return;
+    }
+  }
+  processValue(value);
+}

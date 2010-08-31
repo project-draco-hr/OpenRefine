@@ -1,0 +1,56 @@
+{
+  writer.object();
+  writer.key("name");
+  writer.value(_name);
+  writer.key("expression");
+  writer.value(_expression);
+  writer.key("columnName");
+  writer.value(_columnName);
+  if (_errorMessage != null) {
+    writer.key("error");
+    writer.value(_errorMessage);
+  }
+ else {
+    if (!Double.isInfinite(_min) && !Double.isInfinite(_max)) {
+      writer.key(MIN);
+      writer.value(_min);
+      writer.key(MAX);
+      writer.value(_max);
+      writer.key("step");
+      writer.value(_step);
+      writer.key("bins");
+      writer.array();
+      for (      int b : _bins) {
+        writer.value(b);
+      }
+      writer.endArray();
+      writer.key("baseBins");
+      writer.array();
+      for (      int b : _baseBins) {
+        writer.value(b);
+      }
+      writer.endArray();
+      writer.key(FROM);
+      writer.value(_from);
+      writer.key(TO);
+      writer.value(_to);
+    }
+    writer.key("baseTimeCount");
+    writer.value(_baseTimeCount);
+    writer.key("baseNonTimeCount");
+    writer.value(_baseNonTimeCount);
+    writer.key("baseBlankCount");
+    writer.value(_baseBlankCount);
+    writer.key("baseErrorCount");
+    writer.value(_baseErrorCount);
+    writer.key("timeCount");
+    writer.value(_timeCount);
+    writer.key("nonTimeCount");
+    writer.value(_nonTimeCount);
+    writer.key("blankCount");
+    writer.value(_blankCount);
+    writer.key("errorCount");
+    writer.value(_errorCount);
+  }
+  writer.endObject();
+}

@@ -1,0 +1,35 @@
+{
+  _name=o.getString("name");
+  _expression=o.getString("expression");
+  _columnName=o.getString("columnName");
+  if (_columnName.length() > 0) {
+    Column column=project.columnModel.getColumnByName(_columnName);
+    if (column != null) {
+      _cellIndex=column.getCellIndex();
+    }
+ else {
+      _errorMessage="No column named " + _columnName;
+    }
+  }
+ else {
+    _cellIndex=-1;
+  }
+  try {
+    _eval=MetaParser.parse(_expression);
+  }
+ catch (  ParsingException e) {
+    _errorMessage=e.getMessage();
+  }
+  if (o.has(FROM) || o.has(TO)) {
+    _from=o.has(FROM) ? o.getDouble(FROM) : _min;
+    _to=o.has(TO) ? o.getDouble(TO) : _max;
+    _selected=true;
+  }
+  _selectTime=JSONUtilities.getBoolean(o,"selectTime",true);
+  _selectNonTime=JSONUtilities.getBoolean(o,"selectNonTime",true);
+  _selectBlank=JSONUtilities.getBoolean(o,"selectBlank",true);
+  _selectError=JSONUtilities.getBoolean(o,"selectError",true);
+  if (!_selectTime || !_selectNonTime || !_selectBlank|| !_selectError) {
+    _selected=true;
+  }
+}

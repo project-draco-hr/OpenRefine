@@ -1,0 +1,7 @@
+{
+  _bins=binner.bins;
+  _timeCount=binner.timeCount;
+  _nonTimeCount=binner.nonTimeCount;
+  _blankCount=binner.blankCount;
+  _errorCount=binner.errorCount;
+}

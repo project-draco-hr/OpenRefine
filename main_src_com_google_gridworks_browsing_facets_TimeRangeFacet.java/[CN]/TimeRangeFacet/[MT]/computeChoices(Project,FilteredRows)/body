@@ -1,0 +1,16 @@
+{
+  if (_eval != null && _errorMessage == null) {
+    RowEvaluable rowEvaluable=getRowEvaluable(project);
+    Column column=project.columnModel.getColumnByCellIndex(_cellIndex);
+    String key="time-bin:row-based:" + _expression;
+    TimeBinIndex index=(TimeBinIndex)column.getPrecompute(key);
+    if (index == null) {
+      index=new TimeBinRowIndex(project,rowEvaluable);
+      column.setPrecompute(key,index);
+    }
+    retrieveDataFromBaseBinIndex(index);
+    ExpressionTimeValueBinner binner=new ExpressionTimeValueBinner(rowEvaluable,index);
+    filteredRows.accept(project,binner);
+    retrieveDataFromBinner(binner);
+  }
+}

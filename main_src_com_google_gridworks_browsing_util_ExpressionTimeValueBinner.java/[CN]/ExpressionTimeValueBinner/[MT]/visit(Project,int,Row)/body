@@ -1,0 +1,7 @@
+{
+  resetFlags();
+  Properties bindings=ExpressionUtils.createBindings(project);
+  processRow(project,rowIndex,row,bindings);
+  updateCounts();
+  return false;
+}

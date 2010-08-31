@@ -1,0 +1,18 @@
+{
+  _min=index.getMin();
+  _max=index.getMax();
+  _step=index.getStep();
+  _baseBins=index.getBins();
+  _baseTimeCount=index.getTimeRowCount();
+  _baseNonTimeCount=index.getNonTimeRowCount();
+  _baseBlankCount=index.getBlankRowCount();
+  _baseErrorCount=index.getErrorRowCount();
+  if (_selected) {
+    _from=Math.max(_from,_min);
+    _to=Math.min(_to,_max);
+  }
+ else {
+    _from=_min;
+    _to=_max;
+  }
+}

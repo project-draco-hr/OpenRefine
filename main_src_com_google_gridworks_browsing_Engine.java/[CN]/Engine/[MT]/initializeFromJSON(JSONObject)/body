@@ -15,6 +15,9 @@
  else       if ("range".equals(type)) {
         facet=new RangeFacet();
       }
+ else       if ("timerange".equals(type)) {
+        facet=new TimeRangeFacet();
+      }
  else       if ("scatterplot".equals(type)) {
         facet=new ScatterplotFacet();
       }

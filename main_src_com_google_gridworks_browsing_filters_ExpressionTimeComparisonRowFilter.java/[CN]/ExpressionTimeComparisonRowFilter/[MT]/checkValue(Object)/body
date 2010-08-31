@@ -1,0 +1,17 @@
+{
+  if (ExpressionUtils.isError(v)) {
+    return _selectError;
+  }
+ else   if (ExpressionUtils.isNonBlankData(v)) {
+    if (v instanceof Date) {
+      long time=((Date)v).getTime();
+      return _selectTime && checkValue(time);
+    }
+ else {
+      return _selectNonTime;
+    }
+  }
+ else {
+    return _selectBlank;
+  }
+}

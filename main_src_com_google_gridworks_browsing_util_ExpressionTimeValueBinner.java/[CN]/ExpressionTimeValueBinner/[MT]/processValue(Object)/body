@@ -1,0 +1,21 @@
+{
+  if (ExpressionUtils.isError(value)) {
+    hasError=true;
+  }
+ else   if (ExpressionUtils.isNonBlankData(value)) {
+    if (value instanceof Date) {
+      long t=((Date)value).getTime();
+      hasTime=true;
+      int bin=(int)Math.floor((t - _index.getMin()) / _index.getStep());
+      if (bin >= 0 && bin < bins.length) {
+        bins[bin]++;
+      }
+    }
+ else {
+      hasNonTime=true;
+    }
+  }
+ else {
+    hasBlank=true;
+  }
+}

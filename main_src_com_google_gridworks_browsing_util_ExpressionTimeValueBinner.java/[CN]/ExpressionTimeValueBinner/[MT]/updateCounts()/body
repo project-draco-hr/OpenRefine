@@ -1,0 +1,14 @@
+{
+  if (hasError) {
+    errorCount++;
+  }
+  if (hasBlank) {
+    blankCount++;
+  }
+  if (hasTime) {
+    timeCount++;
+  }
+  if (hasNonTime) {
+    nonTimeCount++;
+  }
+}

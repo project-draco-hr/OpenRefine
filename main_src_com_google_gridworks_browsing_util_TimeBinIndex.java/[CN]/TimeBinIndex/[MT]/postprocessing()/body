@@ -1,0 +1,14 @@
+{
+  if (_hasError) {
+    _errorRowCount++;
+  }
+  if (_hasBlank) {
+    _blankRowCount++;
+  }
+  if (_hasTime) {
+    _timeRowCount++;
+  }
+  if (_hasNonTime) {
+    _nonTimeRowCount++;
+  }
+}

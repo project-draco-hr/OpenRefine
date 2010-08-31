@@ -1,0 +1,13 @@
+{
+  if (_eval != null && _errorMessage == null && _selected) {
+    return new ExpressionTimeComparisonRowFilter(getRowEvaluable(project),_selectTime,_selectNonTime,_selectBlank,_selectError){
+      protected boolean checkValue(      long t){
+        return t >= _from && t < _to;
+      }
+    }
+;
+  }
+ else {
+    return null;
+  }
+}

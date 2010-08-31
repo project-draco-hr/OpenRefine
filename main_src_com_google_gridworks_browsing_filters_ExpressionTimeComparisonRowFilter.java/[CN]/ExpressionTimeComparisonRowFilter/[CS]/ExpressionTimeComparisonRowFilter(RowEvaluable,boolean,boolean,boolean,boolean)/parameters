@@ -1,0 +1,5 @@
+RowEvaluable rowEvaluable
+boolean selectTime
+boolean selectNonTime
+boolean selectBlank
+boolean selectError

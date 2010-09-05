@@ -1,4 +1,4 @@
 HttpServletResponse response
 String pid
 String uid
-String type
+int rev

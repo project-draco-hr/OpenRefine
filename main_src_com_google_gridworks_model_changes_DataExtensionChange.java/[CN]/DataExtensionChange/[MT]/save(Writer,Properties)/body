@@ -35,6 +35,10 @@
   writer.write(Integer.toString(_dataExtensions.size()));
   writer.write('\n');
   for (  DataExtension dataExtension : _dataExtensions) {
+    if (dataExtension == null) {
+      writer.write('\n');
+      continue;
+    }
     writer.write(Integer.toString(dataExtension.data.length));
     writer.write('\n');
     for (    Object[] values : dataExtension.data) {

@@ -1,0 +1,3 @@
+{
+  read(new InputStreamReader(inputStream),project,metadata,options);
+}

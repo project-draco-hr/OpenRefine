@@ -1,0 +1,44 @@
+{
+  ServletFileUpload upload=new ServletFileUpload();
+  String url=options.getProperty("url");
+  boolean imported=false;
+  FileItemIterator iter=upload.getItemIterator(request);
+  while (iter.hasNext()) {
+    FileItemStream item=iter.next();
+    String name=item.getFieldName().toLowerCase();
+    InputStream stream=item.openStream();
+    if (item.isFormField()) {
+      if (name.equals("raw-text")) {
+        Reader reader=new InputStreamReader(stream,"UTF-8");
+        try {
+          internalInvokeImporter(project,new TsvCsvImporter(),metadata,options,reader);
+          imported=true;
+        }
+  finally {
+          reader.close();
+        }
+      }
+ else       if (name.equals("project-url")) {
+        url=Streams.asString(stream);
+      }
+ else {
+        options.put(name,Streams.asString(stream));
+      }
+    }
+ else {
+      String fileName=item.getName().toLowerCase();
+      if (fileName.length() > 0) {
+        try {
+          internalImportFile(project,metadata,options,fileName,stream);
+          imported=true;
+        }
+  finally {
+          stream.close();
+        }
+      }
+    }
+  }
+  if (!imported && url != null && url.length() > 0) {
+    internalImportURL(request,project,metadata,options,url);
+  }
+}

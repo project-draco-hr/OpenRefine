@@ -7,7 +7,7 @@
   whenGetIntegerOption("skip",properties,0);
   whenGetIntegerOption("ignore-quotes",properties,0);
   try {
-    SUT.read(reader,project,properties);
+    SUT.read(reader,project,new ProjectMetadata(),properties);
   }
  catch (  Exception e) {
     Assert.fail();

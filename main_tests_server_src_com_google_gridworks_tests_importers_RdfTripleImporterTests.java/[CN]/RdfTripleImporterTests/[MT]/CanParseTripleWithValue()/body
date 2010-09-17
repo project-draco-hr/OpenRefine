@@ -2,7 +2,7 @@
   String sampleRdf="<http://rdf.freebase.com/ns/en.bob_dylan> <http://rdf.freebase.com/ns/common.topic.alias> \"Robert Zimmerman\"@en.";
   StringReader reader=new StringReader(sampleRdf);
   try {
-    SUT.read(reader,project,options);
+    SUT.read(reader,project,new ProjectMetadata(),options);
     project.update();
   }
  catch (  Exception e) {

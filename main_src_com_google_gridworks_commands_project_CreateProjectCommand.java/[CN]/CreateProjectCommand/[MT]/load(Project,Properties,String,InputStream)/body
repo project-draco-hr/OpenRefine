@@ -1,4 +1,0 @@
-{
-  Importer importer=ImporterRegistry.guessImporter(null,fileName);
-  internalInvokeImporter(project,importer,options,inputStream,null);
-}

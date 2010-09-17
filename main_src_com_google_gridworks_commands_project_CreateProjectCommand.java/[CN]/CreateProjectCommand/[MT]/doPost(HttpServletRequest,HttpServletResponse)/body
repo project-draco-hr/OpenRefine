@@ -3,8 +3,8 @@
   try {
     Properties options=ParsingUtilities.parseUrlParameters(request);
     Project project=new Project();
-    internalImport(request,project,options);
     ProjectMetadata pm=new ProjectMetadata();
+    internalImport(request,project,pm,options);
     pm.setName(options.getProperty("project-name"));
     pm.setPassword(options.getProperty("project-password"));
     pm.setEncoding(options.getProperty("encoding"));

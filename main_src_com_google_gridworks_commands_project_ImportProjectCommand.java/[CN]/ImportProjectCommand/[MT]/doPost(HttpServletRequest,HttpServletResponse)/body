@@ -17,7 +17,7 @@
       redirect(response,"/project?project=" + projectID);
     }
  else {
-      redirect(response,"/error.html?redirect=index.html&msg=" + ParsingUtilities.encode("Failed to import project"));
+      redirect(response,"/error.html?redirect=index&msg=" + ParsingUtilities.encode("Failed to import project"));
     }
   }
  catch (  Exception e) {

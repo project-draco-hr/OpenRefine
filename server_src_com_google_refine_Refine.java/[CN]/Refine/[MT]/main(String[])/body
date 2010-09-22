@@ -1,0 +1,14 @@
+{
+  System.setProperty("VERBOSE","false");
+  System.setProperty("org.mortbay.log.class","org.mortbay.log.Slf4jLog");
+  System.setProperty("apple.laf.useScreenMenuBar","true");
+  System.setProperty("com.apple.eawt.CocoaComponent.CompatibilityMode","false");
+  if (System.getProperty("python.path") == null) {
+    System.setProperty("python.path","lib/python");
+  }
+  org.apache.log4j.Logger.getRootLogger().setLevel(Level.toLevel(Configurations.get("gridworks.verbosity","info")));
+  port=Configurations.getInteger("gridworks.port",DEFAULT_PORT);
+  host=Configurations.get("gridworks.host",DEFAULT_HOST);
+  Refine gridworks=new Refine();
+  gridworks.init(args);
+}

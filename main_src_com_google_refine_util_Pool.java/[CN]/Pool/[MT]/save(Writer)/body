@@ -1,5 +1,5 @@
 {
-  writer.write(GridworksServlet.getVersion());
+  writer.write(RefineServlet.getVersion());
   writer.write('\n');
   Properties options=new Properties();
   options.setProperty("mode","save");

@@ -1,0 +1,16 @@
+{
+  uri=new URI("http://" + host + ":"+ port+ "/");
+  if (MACOSX) {
+    JMenuBar mb=new JMenuBar();
+    JMenu m=new JMenu("Open");
+    JMenuItem mi=new JMenuItem("Open New Refine Window...");
+    mi.addActionListener(this);
+    m.add(mi);
+    mb.add(m);
+    Class<?> applicationClass=Class.forName("com.apple.eawt.Application");
+    Object macOSXApplication=applicationClass.getConstructor((Class[])null).newInstance((Object[])null);
+    Method setDefaultMenuBar=applicationClass.getDeclaredMethod("setDefaultMenuBar",new Class[]{JMenuBar.class});
+    setDefaultMenuBar.invoke(macOSXApplication,new Object[]{mb});
+  }
+  openBrowser();
+}

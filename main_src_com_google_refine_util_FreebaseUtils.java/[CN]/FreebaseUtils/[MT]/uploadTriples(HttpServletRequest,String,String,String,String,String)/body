@@ -26,7 +26,7 @@
       }
       UrlEncodedFormEntity entity=new UrlEncodedFormEntity(formparams,"UTF-8");
       HttpPost httpRequest=new HttpPost(getFreeQUrl());
-      httpRequest.getParams().setParameter(CoreProtocolPNames.USER_AGENT,"Gridworks " + GridworksServlet.getVersion());
+      httpRequest.getParams().setParameter(CoreProtocolPNames.USER_AGENT,"Gridworks " + RefineServlet.getVersion());
       httpRequest.setEntity(entity);
       HttpPost surrogateRequest=new HttpPost(getUserInfoURL(FREEBASE_HOST));
       surrogateRequest.setEntity(entity);

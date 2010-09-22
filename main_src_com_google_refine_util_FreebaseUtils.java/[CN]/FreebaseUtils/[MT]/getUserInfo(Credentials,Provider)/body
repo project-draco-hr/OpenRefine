@@ -1,7 +1,7 @@
 {
   OAuthConsumer consumer=OAuthUtilities.getConsumer(credentials,provider);
   HttpGet httpRequest=new HttpGet(getUserInfoURL(provider.getHost()));
-  httpRequest.getParams().setParameter(CoreProtocolPNames.USER_AGENT,"Gridworks " + GridworksServlet.getVersion());
+  httpRequest.getParams().setParameter(CoreProtocolPNames.USER_AGENT,"Gridworks " + RefineServlet.getVersion());
   httpRequest.setHeader("X-Requested-With","1");
   consumer.sign(httpRequest);
   HttpClient httpClient=new DefaultHttpClient();

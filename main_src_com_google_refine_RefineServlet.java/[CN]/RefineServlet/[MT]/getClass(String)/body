@@ -1,9 +1,20 @@
 {
-  if (className.startsWith("com.metaweb.")) {
-    className="com.google." + className.substring("com.metaweb.".length());
+  String toClassName=classMappingsCache.get(className);
+  if (toClassName == null) {
+    toClassName=className;
+    for (    ClassMapping m : classMappings) {
+      if (m.from.endsWith("*")) {
+        if (toClassName.startsWith(m.from.substring(0,m.from.length() - 1))) {
+          toClassName=m.to + toClassName.substring(m.from.length() - 1);
+        }
+      }
+ else {
+        if (m.from.equals(toClassName)) {
+          toClassName=m.to;
+        }
+      }
+    }
+    classMappingsCache.put(className,toClassName);
   }
-  if (className.startsWith("com.google.gridworks.")) {
-    className="com.google.refine." + className.substring("com.google.gridworks.".length());
-  }
-  return Class.forName(className);
+  return Class.forName(toClassName);
 }

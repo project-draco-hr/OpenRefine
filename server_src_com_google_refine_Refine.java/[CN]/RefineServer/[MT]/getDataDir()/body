@@ -3,13 +3,12 @@
   if (data_dir != null) {
     return data_dir;
   }
+  File dataDir=null;
   String os=System.getProperty("os.name").toLowerCase();
   if (os.contains("windows")) {
     try {
-      DataPath localDataPath=JDataPathSystem.getLocalSystem().getLocalDataPath("Gridworks");
-      File data=new File(fixWindowsUnicodePath(localDataPath.getPath()));
-      data.mkdirs();
-      return data.getAbsolutePath();
+      DataPath localDataPath=JDataPathSystem.getLocalSystem().getLocalDataPath("Google");
+      dataDir=new File(new File(fixWindowsUnicodePath(localDataPath.getPath())),"Refine");
     }
  catch (    Error e) {
       logger.warn("Failed to use jdatapath to detect user data path: resorting to environment variables");
@@ -27,17 +26,13 @@
       if (parentDir == null) {
         parentDir=new File(".");
       }
-      File data=new File(parentDir,"Gridworks");
-      data.mkdirs();
-      return data.getAbsolutePath();
+      dataDir=new File(new File(parentDir,"Google"),"Refine");
     }
   }
  else   if (os.contains("mac os x")) {
     String home=System.getProperty("user.home");
-    String data_home=(home != null) ? home + "/Library/Application Support/Gridworks" : ".gridworks";
-    File data=new File(data_home);
-    data.mkdirs();
-    return data.getAbsolutePath();
+    String data_home=(home != null) ? home + "/Library/Application Support/Google/Refine" : ".google-refine";
+    dataDir=new File(data_home);
   }
  else {
     String data_home=System.getenv("XDG_DATA_HOME");
@@ -46,8 +41,25 @@
       if (home == null)       home=".";
       data_home=home + "/.local/share";
     }
-    File data=new File(data_home + "/gridworks");
-    data.mkdirs();
-    return data.getAbsolutePath();
+    dataDir=new File(data_home + "/google-refine");
   }
+  if (!dataDir.exists()) {
+    File gridworksDir;
+    if (dataDir.getName().equals("Refine")) {
+      gridworksDir=new File(dataDir.getParentFile().getParentFile(),"Gridworks");
+    }
+ else     if (dataDir.getName().startsWith(".")) {
+      gridworksDir=new File(dataDir.getParent(),".gridworks");
+    }
+ else {
+      gridworksDir=new File(dataDir.getParent(),".gridworks");
+    }
+    if (gridworksDir.exists()) {
+      gridworksDir.renameTo(dataDir);
+    }
+ else {
+      dataDir.mkdirs();
+    }
+  }
+  return dataDir.getAbsolutePath();
 }

@@ -5,7 +5,7 @@
   findFiles(".jar",new File(contextRoot,"WEB-INF/lib"),scanList);
   logger.info("Starting autoreloading scanner... ");
   Scanner scanner=new Scanner();
-  scanner.setScanInterval(Configurations.getInteger("gridworks.scanner.period",1));
+  scanner.setScanInterval(Configurations.getInteger("refine.scanner.period",1));
   scanner.setScanDirs(scanList);
   scanner.setReportExistingFilesOnStartup(false);
   scanner.addListener(new Scanner.BulkListener(){

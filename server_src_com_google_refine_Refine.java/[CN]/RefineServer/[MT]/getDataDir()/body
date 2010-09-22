@@ -1,5 +1,5 @@
 {
-  String data_dir=Configurations.get("gridworks.data_dir");
+  String data_dir=Configurations.get("refine.data_dir");
   if (data_dir != null) {
     return data_dir;
   }

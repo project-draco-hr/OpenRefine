@@ -2,5 +2,8 @@
   if (className.startsWith("com.metaweb.")) {
     className="com.google." + className.substring("com.metaweb.".length());
   }
+  if (className.startsWith("com.google.gridworks.")) {
+    className="com.google.refine." + className.substring("com.google.gridworks.".length());
+  }
   return Class.forName(className);
 }

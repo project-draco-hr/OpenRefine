@@ -2,9 +2,9 @@
   super.init();
   s_singleton=this;
   logger.trace("> initialize");
-  String data=getInitParameter("gridworks.data");
+  String data=getInitParameter("refine.data");
   if (data == null) {
-    throw new ServletException("can't find servlet init config 'gridworks.data', I have to give up initializing");
+    throw new ServletException("can't find servlet init config 'refine.data', I have to give up initializing");
   }
   s_dataDir=new File(data);
   FileProjectManager.initialize(s_dataDir);

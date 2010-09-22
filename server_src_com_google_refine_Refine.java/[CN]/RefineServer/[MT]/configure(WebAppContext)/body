@@ -1,15 +1,15 @@
 {
-  ServletHolder servlet=context.getServletHandler().getServlet("gridworks");
+  ServletHolder servlet=context.getServletHandler().getServlet("refine");
   if (servlet != null) {
-    servlet.setInitParameter("gridworks.data",getDataDir());
+    servlet.setInitParameter("refine.data",getDataDir());
     servlet.setInitParameter("butterfly.modules.path",getDataDir() + "/extensions");
     servlet.setInitOrder(1);
     servlet.doStart();
   }
-  servlet=context.getServletHandler().getServlet("gridworks-broker");
+  servlet=context.getServletHandler().getServlet("refine-broker");
   if (servlet != null) {
-    servlet.setInitParameter("gridworks.data",getDataDir() + "/broker");
-    servlet.setInitParameter("gridworks.development",Configurations.get("gridworks.development","false"));
+    servlet.setInitParameter("refine.data",getDataDir() + "/broker");
+    servlet.setInitParameter("refine.development",Configurations.get("refine.development","false"));
     servlet.setInitOrder(1);
     servlet.doStart();
   }

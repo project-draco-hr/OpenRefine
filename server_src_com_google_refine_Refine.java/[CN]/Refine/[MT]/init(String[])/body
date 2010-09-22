@@ -1,7 +1,7 @@
 {
   RefineServer server=new RefineServer();
   server.init(host,port);
-  boolean headless=Configurations.getBoolean("gridworks.headless",false);
+  boolean headless=Configurations.getBoolean("refine.headless",false);
   if (!headless) {
     try {
       RefineClient client=new RefineClient();

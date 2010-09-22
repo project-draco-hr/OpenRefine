@@ -14,7 +14,7 @@
   UrlEncodedFormEntity entity=new UrlEncodedFormEntity(formparams,"UTF-8");
   HttpPost httpRequest=new HttpPost(USER_INFO_URL);
   httpRequest.setHeader(OAUTH_HEADER,oauth);
-  httpRequest.getParams().setParameter(CoreProtocolPNames.USER_AGENT,"Gridworks Broker");
+  httpRequest.getParams().setParameter(CoreProtocolPNames.USER_AGENT,"Google Refine Broker");
   httpRequest.setEntity(entity);
   ResponseHandler<String> responseHandler=new BasicResponseHandler();
   String responseBody=httpclient.execute(httpRequest,responseHandler);

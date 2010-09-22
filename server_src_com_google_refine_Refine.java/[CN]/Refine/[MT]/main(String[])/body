@@ -6,9 +6,9 @@
   if (System.getProperty("python.path") == null) {
     System.setProperty("python.path","lib/python");
   }
-  org.apache.log4j.Logger.getRootLogger().setLevel(Level.toLevel(Configurations.get("gridworks.verbosity","info")));
-  port=Configurations.getInteger("gridworks.port",DEFAULT_PORT);
-  host=Configurations.get("gridworks.host",DEFAULT_HOST);
-  Refine gridworks=new Refine();
-  gridworks.init(args);
+  org.apache.log4j.Logger.getRootLogger().setLevel(Level.toLevel(Configurations.get("refine.verbosity","info")));
+  port=Configurations.getInteger("refine.port",DEFAULT_PORT);
+  host=Configurations.get("refine.host",DEFAULT_HOST);
+  Refine refine=new Refine();
+  refine.init(args);
 }

@@ -1,8 +1,0 @@
-{
-  writer.object();
-  writer.key("name");
-  writer.value(name);
-  writer.key("uri");
-  writer.value(uri);
-  writer.endObject();
-}

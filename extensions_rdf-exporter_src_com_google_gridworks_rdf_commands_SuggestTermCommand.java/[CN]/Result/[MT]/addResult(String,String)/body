@@ -1,4 +1,0 @@
-{
-  String[] res=new String[]{id,name};
-  results.add(res);
-}

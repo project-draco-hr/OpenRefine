@@ -1,6 +1,0 @@
-{
-  if (l != null) {
-    return l.getString();
-  }
-  return null;
-}

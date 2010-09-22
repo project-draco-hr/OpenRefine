@@ -1,4 +1,0 @@
-{
-  Model m=getModel(url,format);
-  return getVocabulary(m,namespace,prefix);
-}

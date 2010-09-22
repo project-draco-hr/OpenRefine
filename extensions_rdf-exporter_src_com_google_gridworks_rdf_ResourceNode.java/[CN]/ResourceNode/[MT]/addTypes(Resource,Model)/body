@@ -1,5 +1,0 @@
-{
-  for (  RdfType type : this.getTypes()) {
-    r.addProperty(RDF.type,model.createResource(type.uri));
-  }
-}

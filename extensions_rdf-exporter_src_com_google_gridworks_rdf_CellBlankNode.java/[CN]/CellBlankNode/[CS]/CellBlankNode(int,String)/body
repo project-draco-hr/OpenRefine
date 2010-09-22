@@ -1,4 +1,0 @@
-{
-  this.columnIndex=i;
-  this.columnName=columnName;
-}

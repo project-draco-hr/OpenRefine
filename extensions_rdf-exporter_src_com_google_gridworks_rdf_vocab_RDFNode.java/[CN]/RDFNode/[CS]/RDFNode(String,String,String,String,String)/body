@@ -1,8 +1,0 @@
-{
-  this.description=description;
-  URI=uRI;
-  this.label=label;
-  this.vocabularyPrefix=prefix;
-  this.preferredCURIE=composePreferredCurie();
-  this.vocabularyUri=vocabularyUri;
-}

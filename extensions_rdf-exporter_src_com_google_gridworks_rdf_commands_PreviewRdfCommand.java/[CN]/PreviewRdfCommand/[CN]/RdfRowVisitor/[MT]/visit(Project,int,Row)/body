@@ -1,8 +1,0 @@
-{
-  if (_count >= limit) {
-    return true;
-  }
-  root.createNode(base,model,project,row,rowIndex,blanks);
-  _count+=1;
-  return false;
-}

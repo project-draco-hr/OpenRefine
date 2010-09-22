@@ -1,9 +1,0 @@
-{
-  writer.write("newSchema=");
-  writeRdfSchema(_newSchema,writer);
-  writer.write('\n');
-  writer.write("oldSchema=");
-  writeRdfSchema(_oldSchema,writer);
-  writer.write('\n');
-  writer.write("/ec/\n");
-}

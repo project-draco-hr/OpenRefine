@@ -1,3 +1,0 @@
-{
-  return new SaveRdfSchemaOperation(RdfSchema.reconstruct(obj.getJSONObject("schema")));
-}

@@ -1,7 +1,0 @@
-{
-  try {
-    this.baseUri=new URI("http://localhost:3333/");
-  }
- catch (  URISyntaxException ue) {
-  }
-}

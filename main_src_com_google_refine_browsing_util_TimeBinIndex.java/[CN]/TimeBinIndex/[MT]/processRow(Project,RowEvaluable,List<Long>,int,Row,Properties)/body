@@ -12,6 +12,9 @@
           _hasError=true;
         }
  else         if (ExpressionUtils.isNonBlankData(v)) {
+          if (v instanceof Calendar) {
+            v=((Calendar)v).getTime();
+          }
           if (v instanceof Date) {
             _hasTime=true;
             processValue(((Date)v).getTime(),allValues);
@@ -32,6 +35,9 @@
           _hasError=true;
         }
  else         if (ExpressionUtils.isNonBlankData(v)) {
+          if (v instanceof Calendar) {
+            v=((Calendar)v).getTime();
+          }
           if (v instanceof Date) {
             _hasTime=true;
             processValue(((Date)v).getTime(),allValues);
@@ -47,6 +53,9 @@
     }
  else {
       _totalValueCount++;
+      if (value instanceof Calendar) {
+        value=((Calendar)value).getTime();
+      }
       if (value instanceof Date) {
         _hasTime=true;
         processValue(((Date)value).getTime(),allValues);

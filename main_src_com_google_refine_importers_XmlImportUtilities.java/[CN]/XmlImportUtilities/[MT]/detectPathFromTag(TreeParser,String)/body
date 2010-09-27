@@ -1,6 +1,5 @@
 {
   try {
-    XMLStreamReader parser=XMLInputFactory.newInstance().createXMLStreamReader(inputStream);
     while (parser.hasNext()) {
       int eventType=parser.next();
       if (eventType == XMLStreamConstants.START_ELEMENT) {

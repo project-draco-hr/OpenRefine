@@ -17,7 +17,14 @@
       throw new ImportException("Read error",e);
     }
     if (options.containsKey("importer-record-tag")) {
-      recordPath=XmlImportUtilities.detectPathFromTag(new ByteArrayInputStream(buffer,0,bytes_read),options.getProperty("importer-record-tag"));
+      InputStream iStream=new ByteArrayInputStream(buffer,0,bytes_read);
+      TreeParser parser=null;
+      try {
+        parser=new XmlParser(iStream);
+        recordPath=XmlImportUtilities.detectPathFromTag(parser,options.getProperty("importer-record-tag"));
+      }
+ catch (      Exception e) {
+      }
     }
  else {
       recordPath=XmlImportUtilities.detectRecordElement(new ByteArrayInputStream(buffer,0,bytes_read));

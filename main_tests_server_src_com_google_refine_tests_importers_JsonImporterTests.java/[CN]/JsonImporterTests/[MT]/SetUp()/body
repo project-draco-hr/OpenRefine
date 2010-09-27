@@ -1,0 +1,5 @@
+{
+  SUT=new JsonImporter();
+  project=new Project();
+  options=mock(Properties.class);
+}

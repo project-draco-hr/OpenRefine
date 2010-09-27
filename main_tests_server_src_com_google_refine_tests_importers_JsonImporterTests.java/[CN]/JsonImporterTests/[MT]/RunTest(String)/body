@@ -1,0 +1,14 @@
+{
+  try {
+    inputStream=new ByteArrayInputStream(testString.getBytes("UTF-8"));
+  }
+ catch (  UnsupportedEncodingException e1) {
+    Assert.fail();
+  }
+  try {
+    SUT.read(inputStream,project,new ProjectMetadata(),options);
+  }
+ catch (  Exception e) {
+    Assert.fail();
+  }
+}

@@ -1,6 +1,6 @@
 {
   loadSampleXml();
-  String[] path=XmlImportUtilitiesStub.detectRecordElement(inputStream);
+  String[] path=XmlImportUtilitiesStub.detectRecordElement(new XmlParser(inputStream));
   Assert.assertNotNull(path);
   Assert.assertEquals(path.length,2);
   Assert.assertEquals(path[0],"library");

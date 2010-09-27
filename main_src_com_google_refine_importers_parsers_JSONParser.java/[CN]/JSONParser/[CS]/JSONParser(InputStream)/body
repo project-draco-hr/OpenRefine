@@ -1,0 +1,11 @@
+{
+  try {
+    parser=factory.createJsonParser(inputStream);
+  }
+ catch (  JsonParseException e) {
+    e.printStackTrace();
+  }
+catch (  IOException e) {
+    e.printStackTrace();
+  }
+}

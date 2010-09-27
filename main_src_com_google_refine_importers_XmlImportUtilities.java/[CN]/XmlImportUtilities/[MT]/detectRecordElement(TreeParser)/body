@@ -2,7 +2,6 @@
   logger.trace("detectRecordElement(inputStream)");
   List<RecordElementCandidate> candidates=new ArrayList<RecordElementCandidate>();
   try {
-    TreeParser parser=new XmlParser(inputStream);
     while (parser.hasNext()) {
       int eventType=parser.next();
       if (eventType == XMLStreamConstants.START_ELEMENT) {

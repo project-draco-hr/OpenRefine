@@ -1,7 +1,7 @@
 {
   loadSampleXml();
   String[] recordPath=new String[]{"library","book"};
-  XmlImportUtilitiesStub.importXml(inputStream,project,recordPath,columnGroup);
+  XmlImportUtilitiesStub.importTreeData(new XmlParser(inputStream),project,recordPath,columnGroup);
   log(project);
   assertProjectCreated(project,0,6);
   Assert.assertEquals(project.rows.get(0).cells.size(),5);

@@ -1,0 +1,10 @@
+{
+  StringBuilder sb=new StringBuilder();
+  sb.append("[");
+  for (int i=1; i < 6; i++) {
+    sb.append(getTypicalElement(i));
+  }
+  sb.append("{\"id\" : 6," + "\"author\" : \"Author 6, The\"," + "\"title\" : \"Book title 6\","+ "\"genre\" : \"New element not seen in other records\","+ "\"publish_date\" : \"2010-05-26\","+ "}");
+  sb.append("]");
+  return sb.toString();
+}

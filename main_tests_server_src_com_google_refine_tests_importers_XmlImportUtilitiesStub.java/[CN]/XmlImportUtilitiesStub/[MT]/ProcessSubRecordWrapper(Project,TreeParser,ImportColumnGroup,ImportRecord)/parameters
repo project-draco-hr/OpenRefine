@@ -1,4 +1,4 @@
 Project project
-XMLStreamReader parser
+TreeParser parser
 ImportColumnGroup columnGroup
 ImportRecord record

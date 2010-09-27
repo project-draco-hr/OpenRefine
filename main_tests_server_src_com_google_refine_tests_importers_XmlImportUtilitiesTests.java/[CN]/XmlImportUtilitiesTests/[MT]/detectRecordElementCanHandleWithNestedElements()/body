@@ -1,10 +1,10 @@
 {
   loadXml("<?xml version=\"1.0\"?><library><book id=\"1\"><author>author1</author><genre>genre1</genre></book></library>");
-  XmlParser xmlParser=new XmlParser(inputStream);
+  createParser();
   String tag="book";
   List<String> response=new ArrayList<String>();
   try {
-    response=SUT.detectRecordElementWrapper(xmlParser,tag);
+    response=SUT.detectRecordElementWrapper(parser,tag);
   }
  catch (  ServletException e) {
     Assert.fail(e.getMessage());

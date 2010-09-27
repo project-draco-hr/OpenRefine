@@ -1,6 +1,6 @@
 {
   try {
-    XMLStreamReader parser=XMLInputFactory.newInstance().createXMLStreamReader(inputStream);
+    TreeParser parser=new XmlParser(inputStream);
     while (parser.hasNext()) {
       int eventType=parser.next();
       if (eventType == XMLStreamConstants.START_ELEMENT) {

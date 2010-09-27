@@ -5,7 +5,7 @@
   try {
     SUT.processRecordWrapper(project,parser,columnGroup);
   }
- catch (  XMLStreamException e) {
+ catch (  ServletException e) {
     Assert.fail();
   }
   log(project);

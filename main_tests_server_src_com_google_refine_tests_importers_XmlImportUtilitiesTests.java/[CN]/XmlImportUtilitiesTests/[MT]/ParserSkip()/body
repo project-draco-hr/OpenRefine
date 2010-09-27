@@ -2,7 +2,7 @@
   try {
     parser.next();
   }
- catch (  XMLStreamException e1) {
+ catch (  ServletException e1) {
     Assert.fail();
   }
 }

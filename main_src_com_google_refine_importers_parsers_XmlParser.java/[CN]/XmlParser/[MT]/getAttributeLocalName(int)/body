@@ -1,0 +1,3 @@
+{
+  return parser.getAttributeLocalName(index);
+}

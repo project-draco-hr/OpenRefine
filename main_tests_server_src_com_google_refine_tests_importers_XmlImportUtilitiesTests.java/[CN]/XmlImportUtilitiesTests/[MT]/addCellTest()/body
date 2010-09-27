@@ -8,6 +8,6 @@
   Assert.assertEquals(record.rows.size(),1);
   Assert.assertNotNull(record.rows.get(0));
   Assert.assertEquals(record.rows.get(0).size(),2);
-  Assert.assertNotNull(record.rows.get(0).get(0));
-  Assert.assertEquals(record.rows.get(0).get(0).value,"Author1, The");
+  Assert.assertNotNull(record.rows.get(0).get(1));
+  Assert.assertEquals(record.rows.get(0).get(1).value,"Author1, The");
 }

@@ -4,7 +4,7 @@
   XmlImportUtilitiesStub.importXml(inputStream,project,recordPath,columnGroup);
   log(project);
   assertProjectCreated(project,0,6);
-  Assert.assertEquals(project.rows.get(0).cells.size(),4);
+  Assert.assertEquals(project.rows.get(0).cells.size(),5);
   Assert.assertEquals(columnGroup.subgroups.size(),1);
   Assert.assertNotNull(columnGroup.subgroups.get("book"));
   Assert.assertEquals(columnGroup.subgroups.get("book").subgroups.size(),3);

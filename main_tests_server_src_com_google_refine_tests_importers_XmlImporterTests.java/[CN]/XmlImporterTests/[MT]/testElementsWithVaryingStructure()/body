@@ -5,8 +5,8 @@
   Assert.assertEquals(project.columnModel.getColumnByCellIndex(5).getName(),"book - genre");
   Row row0=project.rows.get(0);
   Assert.assertNotNull(row0);
-  Assert.assertEquals(row0.cells.size(),4);
+  Assert.assertEquals(row0.cells.size(),5);
   Row row5=project.rows.get(5);
   Assert.assertNotNull(row5);
-  Assert.assertEquals(row5.cells.size(),5);
+  Assert.assertEquals(row5.cells.size(),6);
 }

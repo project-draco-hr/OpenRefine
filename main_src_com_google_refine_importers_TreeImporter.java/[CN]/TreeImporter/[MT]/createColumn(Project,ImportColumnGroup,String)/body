@@ -1,7 +1,0 @@
-{
-  ImportColumn newColumn=new ImportColumn();
-  newColumn.name=columnGroup.name.length() == 0 ? (localName == null ? "Text" : localName) : (localName == null ? columnGroup.name : (columnGroup.name + " - " + localName));
-  newColumn.cellIndex=project.columnModel.allocateNewCellIndex();
-  newColumn.nextRowIndex=columnGroup.nextRowIndex;
-  return newColumn;
-}

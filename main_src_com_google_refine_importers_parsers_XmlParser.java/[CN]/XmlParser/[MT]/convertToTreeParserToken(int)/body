@@ -11,6 +11,6 @@ return TreeParserToken.StartDocument;
 case XMLStreamConstants.END_DOCUMENT:
 return TreeParserToken.EndDocument;
 default :
-throw new ServletException("Not yet implemented");
+return TreeParserToken.Ignorable;
 }
 }

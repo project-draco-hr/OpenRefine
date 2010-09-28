@@ -31,7 +31,7 @@
   }
   if (recordPath == null)   return;
   ImportColumnGroup rootColumnGroup=new ImportColumnGroup();
-  XmlImportUtilities.importTreeData(new XmlParser(pis),project,recordPath,rootColumnGroup);
+  XmlImportUtilities.importTreeData(new JSONParser(pis),project,recordPath,rootColumnGroup);
   XmlImportUtilities.createColumnsFromImport(project,rootColumnGroup);
   project.columnModel.update();
 }

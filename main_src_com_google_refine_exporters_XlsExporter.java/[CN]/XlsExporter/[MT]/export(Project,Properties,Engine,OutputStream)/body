@@ -55,7 +55,11 @@
                   c.setCellValue((Calendar)v);
                 }
  else                 if (v instanceof String) {
-                  c.setCellValue((String)v);
+                  String s=(String)v;
+                  if (s.length() > 32767) {
+                    s=s.substring(0,32767);
+                  }
+                  c.setCellValue(s);
                 }
               }
             }

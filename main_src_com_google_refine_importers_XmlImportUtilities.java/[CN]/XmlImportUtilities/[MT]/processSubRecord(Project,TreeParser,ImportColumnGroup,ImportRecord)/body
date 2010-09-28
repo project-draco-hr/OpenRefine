@@ -9,17 +9,17 @@
     }
   }
   while (parser.hasNext()) {
-    int eventType=parser.next();
-    if (eventType == XMLStreamConstants.START_ELEMENT) {
+    TreeParserToken eventType=parser.next();
+    if (eventType == TreeParserToken.StartEntity) {
       processSubRecord(project,parser,thisColumnGroup,record);
     }
- else     if (eventType == XMLStreamConstants.CHARACTERS) {
+ else     if (eventType == TreeParserToken.Value) {
       String text=parser.getText().trim();
       if (text.length() > 0) {
         addCell(project,thisColumnGroup,record,null,parser.getText());
       }
     }
- else     if (eventType == XMLStreamConstants.END_ELEMENT) {
+ else     if (eventType == TreeParserToken.EndEntity) {
       break;
     }
   }

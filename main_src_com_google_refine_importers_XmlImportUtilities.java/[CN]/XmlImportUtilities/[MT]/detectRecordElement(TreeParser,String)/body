@@ -9,11 +9,11 @@
       return path;
     }
     while (parser.hasNext()) {
-      int eventType=parser.next();
-      if (eventType == XMLStreamConstants.END_ELEMENT) {
+      TreeParserToken eventType=parser.next();
+      if (eventType == TreeParserToken.EndEntity) {
         break;
       }
- else       if (eventType == XMLStreamConstants.START_ELEMENT) {
+ else       if (eventType == TreeParserToken.StartEntity) {
         List<String> path=detectRecordElement(parser,tag);
         if (path != null) {
           path.add(0,localName);

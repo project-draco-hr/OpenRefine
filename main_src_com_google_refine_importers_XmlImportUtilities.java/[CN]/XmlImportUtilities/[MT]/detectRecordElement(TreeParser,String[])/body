@@ -6,16 +6,16 @@
   int childElementNodeCount=0;
   try {
     while (parser.hasNext()) {
-      int eventType=parser.next();
-      if (eventType == XMLStreamConstants.END_ELEMENT) {
+      TreeParserToken eventType=parser.next();
+      if (eventType == TreeParserToken.EndEntity) {
         break;
       }
- else       if (eventType == XMLStreamConstants.CHARACTERS) {
+ else       if (eventType == TreeParserToken.Value) {
         if (parser.getText().trim().length() > 0) {
           textNodeCount++;
         }
       }
- else       if (eventType == XMLStreamConstants.START_ELEMENT) {
+ else       if (eventType == TreeParserToken.StartEntity) {
         childElementNodeCount++;
         String tagName=parser.getLocalName();
         immediateChildCandidateMap.put(tagName,immediateChildCandidateMap.containsKey(tagName) ? immediateChildCandidateMap.get(tagName) + 1 : 1);

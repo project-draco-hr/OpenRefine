@@ -7,11 +7,11 @@
   if (tagName.equals(recordPath[pathIndex])) {
     if (pathIndex < recordPath.length - 1) {
       while (parser.hasNext()) {
-        int eventType=parser.next();
-        if (eventType == XMLStreamConstants.START_ELEMENT) {
+        TreeParserToken eventType=parser.next();
+        if (eventType == TreeParserToken.StartEntity) {
           findRecord(project,parser,recordPath,pathIndex + 1,rootColumnGroup);
         }
- else         if (eventType == XMLStreamConstants.END_ELEMENT) {
+ else         if (eventType == TreeParserToken.EndEntity) {
           break;
         }
       }

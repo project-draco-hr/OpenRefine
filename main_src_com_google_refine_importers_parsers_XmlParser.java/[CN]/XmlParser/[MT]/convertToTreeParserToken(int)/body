@@ -1,0 +1,12 @@
+{
+switch (token) {
+case XMLStreamConstants.START_ELEMENT:
+    return TreeParserToken.StartEntity;
+case XMLStreamConstants.END_ELEMENT:
+  return TreeParserToken.EndEntity;
+case XMLStreamConstants.CHARACTERS:
+return TreeParserToken.Value;
+default :
+throw new ServletException("Not yet implemented");
+}
+}

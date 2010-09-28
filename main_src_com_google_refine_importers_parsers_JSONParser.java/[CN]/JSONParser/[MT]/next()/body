@@ -1,3 +1,14 @@
 {
-  return 0;
+  JsonToken next;
+  try {
+    next=parser.nextToken();
+  }
+ catch (  JsonParseException e) {
+    throw new ServletException(e.getMessage());
+  }
+catch (  IOException e) {
+    throw new ServletException(e.getMessage());
+  }
+  if (next == null)   throw new ServletException("No more Json Tokens in stream");
+  return convertToTreeParserToken(next);
 }

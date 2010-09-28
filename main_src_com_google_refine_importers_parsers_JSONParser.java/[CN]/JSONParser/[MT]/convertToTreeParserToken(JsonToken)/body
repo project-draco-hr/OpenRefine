@@ -1,0 +1,16 @@
+{
+switch (token) {
+case START_ARRAY:
+    return TreeParserToken.StartEntity;
+case END_ARRAY:
+  return TreeParserToken.EndEntity;
+case START_OBJECT:
+return TreeParserToken.StartEntity;
+case END_OBJECT:
+return TreeParserToken.EndEntity;
+case VALUE_STRING:
+return TreeParserToken.Value;
+default :
+throw new ServletException("Not yet implemented");
+}
+}

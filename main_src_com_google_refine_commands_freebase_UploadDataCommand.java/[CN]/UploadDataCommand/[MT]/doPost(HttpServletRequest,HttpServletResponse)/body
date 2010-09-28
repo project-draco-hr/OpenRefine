@@ -9,7 +9,7 @@
     exporter.export(project,new Properties(),engine,triples);
     String source_name=request.getParameter("source_name");
     String source_id=request.getParameter("source_id");
-    String graph=request.getParameter("graph");
+    String qa=request.getParameter("qa");
     String mdo_id=null;
     preferenceStore.put(s_dataLoadJobNamePref,source_name);
     try {
@@ -24,7 +24,7 @@
     }
  catch (    Exception e) {
     }
-    String uploadResponse=FreebaseUtils.uploadTriples(request,graph,source_name,source_id,mdo_id,triples.toString());
+    String uploadResponse=FreebaseUtils.uploadTriples(request,qa,source_name,source_id,mdo_id,triples.toString());
     response.setCharacterEncoding("UTF-8");
     response.setHeader("Content-Type","application/json");
     try {

@@ -5,7 +5,13 @@
   }
  else   if (ProjectManager.singleton instanceof FileProjectManager) {
     File dir=((FileProjectManager)ProjectManager.singleton).getWorkspaceDir();
-    Runtime.getRuntime().exec("open .",new String[]{},dir);
+    if (Desktop.isDesktopSupported()) {
+      Desktop desktop=Desktop.getDesktop();
+      desktop.open(dir);
+    }
+ else {
+      Process p=Runtime.getRuntime().exec("open .",new String[]{},dir);
+    }
     respond(response,"{ \"code\" : \"ok\" }");
   }
  else {

@@ -9,22 +9,28 @@
   int start=_index;
   String detail=null;
   if (Character.isDigit(c)) {
-    double value=0;
+    long value=0;
     while (_index < _limit && Character.isDigit(c=_text.charAt(_index))) {
       value=value * 10 + (c - '0');
       _index++;
     }
-    if (_index < _limit && c == '.') {
-      _index++;
-      double division=1;
-      while (_index < _limit && Character.isDigit(c=_text.charAt(_index))) {
-        value=value * 10 + (c - '0');
-        division*=10;
+    if (_index < _limit && (c == '.' || c == 'e')) {
+      double value2=value;
+      if (c == '.') {
         _index++;
+        double division=1;
+        while (_index < _limit && Character.isDigit(c=_text.charAt(_index))) {
+          value2=value2 * 10 + (c - '0');
+          division*=10;
+          _index++;
+        }
+        value2/=division;
       }
-      value/=division;
+      return new NumberToken(start,_index,_text.substring(start,_index),value2);
     }
-    return new NumberToken(start,_index,_text.substring(start,_index),value);
+ else {
+      return new NumberToken(start,_index,_text.substring(start,_index),value);
+    }
   }
  else   if (c == '"' || c == '\'') {
     StringBuffer sb=new StringBuffer();

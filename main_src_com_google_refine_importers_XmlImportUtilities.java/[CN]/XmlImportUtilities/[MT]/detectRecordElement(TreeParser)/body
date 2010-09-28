@@ -18,6 +18,6 @@
     sortRecordElementCandidates(candidates);
     return candidates.get(0).path;
   }
-  logger.info("No candidate elements were found in Xml - at least 6 similar elements are required");
+  logger.info("No candidate elements were found in data - at least 6 similar elements are required");
   return null;
 }

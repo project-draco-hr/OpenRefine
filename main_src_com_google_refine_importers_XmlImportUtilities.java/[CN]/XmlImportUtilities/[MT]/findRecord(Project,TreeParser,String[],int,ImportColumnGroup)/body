@@ -1,5 +1,5 @@
 {
-  if (parser.getEventType() == XMLStreamConstants.START_DOCUMENT) {
+  if (parser.getEventType() == TreeParserToken.EndDocument) {
     logger.warn("Cannot use findRecord method for START_DOCUMENT event");
     return;
   }

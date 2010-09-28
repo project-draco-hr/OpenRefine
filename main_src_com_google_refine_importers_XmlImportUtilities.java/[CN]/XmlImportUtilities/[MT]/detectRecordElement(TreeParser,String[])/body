@@ -1,5 +1,5 @@
 {
-  logger.trace("detectRecordElement(XMLStreamReader, String[])");
+  logger.trace("detectRecordElement(TreeParser, String[])");
   List<RecordElementCandidate> descendantCandidates=new ArrayList<RecordElementCandidate>();
   Map<String,Integer> immediateChildCandidateMap=new HashMap<String,Integer>();
   int textNodeCount=0;

@@ -1,5 +1,5 @@
 {
-  writer.write(RefineServlet.getVersion());
+  writer.write(RefineServlet.VERSION);
   writer.write('\n');
   writer.write("columnModel=\n");
   columnModel.save(writer,options);

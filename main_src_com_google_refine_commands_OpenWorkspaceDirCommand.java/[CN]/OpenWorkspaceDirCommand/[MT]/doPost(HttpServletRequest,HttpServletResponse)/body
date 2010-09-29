@@ -10,7 +10,7 @@
       desktop.open(dir);
     }
  else {
-      Process p=Runtime.getRuntime().exec("open .",new String[]{},dir);
+      Runtime.getRuntime().exec("open .",new String[]{},dir);
     }
     respond(response,"{ \"code\" : \"ok\" }");
   }

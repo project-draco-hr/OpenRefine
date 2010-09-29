@@ -1,5 +1,9 @@
 {
   super.init();
+  VERSION=getInitParameter("refine.version");
+  REVISION=getInitParameter("refine.revision");
+  FULLNAME+=VERSION + " [" + REVISION+ "]";
+  logger.info("Starting " + FULLNAME + "...");
   s_singleton=this;
   logger.trace("> initialize");
   String data=getInitParameter("refine.data");

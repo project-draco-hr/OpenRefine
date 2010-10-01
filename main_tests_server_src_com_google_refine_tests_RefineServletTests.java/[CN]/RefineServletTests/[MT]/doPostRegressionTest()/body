@@ -10,7 +10,7 @@
 catch (  IOException e) {
     Assert.fail();
   }
-  verifyGetCommandNameCalled();
+  verifyGetCommandNameCalled(3);
   try {
     verify(command,times(1)).doPost(request,response);
   }

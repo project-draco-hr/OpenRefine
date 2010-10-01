@@ -1,3 +1,0 @@
-{
-  verify(request,times(2)).getPathInfo();
-}

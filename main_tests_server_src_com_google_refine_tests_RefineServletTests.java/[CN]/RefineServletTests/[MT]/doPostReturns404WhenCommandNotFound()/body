@@ -10,6 +10,6 @@
 catch (  IOException e) {
     Assert.fail();
   }
-  verifyGetCommandNameCalled();
+  verifyGetCommandNameCalled(2);
   verifyError404Called();
 }

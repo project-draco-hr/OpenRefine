@@ -5,7 +5,7 @@
     sb.append(getTypicalElement(i));
     sb.append(",");
   }
-  sb.append("{\"id\" : 4," + "\"author\" : \"With line\n break\"," + "\"title\" : \"Book title 4\""+ "\"publish_date\" : \"2010-05-26\""+ "},");
+  sb.append("{\"id\" : 4," + "\"author\" : \"With line\\n break\"," + "\"title\" : \"Book title 4\","+ "\"publish_date\" : \"2010-05-26\""+ "},");
   sb.append(getTypicalElement(5));
   sb.append(",");
   sb.append(getTypicalElement(6));

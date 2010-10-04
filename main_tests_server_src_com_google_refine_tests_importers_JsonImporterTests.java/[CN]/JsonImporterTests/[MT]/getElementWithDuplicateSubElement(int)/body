@@ -1,3 +1,3 @@
 {
-  return "{ \"id\" : " + id + ","+ "\"authors\":["+ "{\"author\" : \"Author "+ id+ ", The\"},"+ "{\"author\" : \"Author "+ id+ ", Another\"}"+ "],"+ "\"title\" : \"Book title "+ id+ "\","+ "\"publish_date\" : \"2010-05-26\""+ "}";
+  return "{ \"id\" : " + id + ","+ "\"authors\":["+ "{\"name\" : \"Author "+ id+ ", The\"},"+ "{\"name\" : \"Author "+ id+ ", Another\"}"+ "],"+ "\"title\" : \"Book title "+ id+ "\","+ "\"publish_date\" : \"2010-05-26\""+ "}";
 }

@@ -1,3 +1,8 @@
 {
-  return parser.getLocalName();
+  try {
+    return parser.getLocalName();
+  }
+ catch (  IllegalStateException e) {
+    return null;
+  }
 }

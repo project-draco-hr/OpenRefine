@@ -3,6 +3,6 @@
     return parser.hasNext();
   }
  catch (  XMLStreamException e) {
-    throw new ServletException(e.getMessage());
+    throw new ServletException(e);
   }
 }

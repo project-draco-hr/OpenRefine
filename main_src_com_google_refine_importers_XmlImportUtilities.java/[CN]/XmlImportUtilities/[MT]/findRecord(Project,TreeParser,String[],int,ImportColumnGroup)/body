@@ -1,5 +1,6 @@
 {
-  if (parser.getEventType() == TreeParserToken.EndDocument) {
+  logger.trace("findRecord(Project, TreeParser, String[], int, ImportColumnGroup");
+  if (parser.getEventType() == TreeParserToken.StartDocument) {
     logger.warn("Cannot use findRecord method for START_DOCUMENT event");
     return;
   }

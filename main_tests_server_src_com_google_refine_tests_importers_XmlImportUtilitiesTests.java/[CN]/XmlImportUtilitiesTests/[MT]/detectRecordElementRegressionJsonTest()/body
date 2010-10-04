@@ -1,0 +1,8 @@
+{
+  loadSampleJson();
+  String[] path=XmlImportUtilitiesStub.detectRecordElement(new JSONParser(inputStream));
+  Assert.assertNotNull(path);
+  Assert.assertEquals(path.length,2);
+  Assert.assertEquals(path[0],"__anonymous__");
+  Assert.assertEquals(path[1],"__anonymous__");
+}

@@ -1,6 +1,6 @@
 {
   loadSampleXml();
-  createParser();
+  createXmlParser();
   ParserSkip();
   String[] recordPath=new String[]{"library","book"};
   int pathIndex=0;

@@ -1,0 +1,61 @@
+{
+  String sampleJson="{\"field\":\"value\"}";
+  String sampleJson2="{\"field\":{}}";
+  String sampleJson3="{\"field\":[{},{}]}";
+  JSONParser parser=new JSONParser(new ByteArrayInputStream(sampleJson.getBytes("UTF-8")));
+  TreeParserToken token=TreeParserToken.Ignorable;
+  int i=0;
+  try {
+    while (token != null) {
+      token=parser.next();
+      if (token == null)       break;
+      i++;
+      if (i == 3) {
+        Assert.assertEquals(TreeParserToken.Value,token);
+        Assert.assertEquals("field",parser.getLocalName());
+      }
+    }
+  }
+ catch (  Exception e) {
+  }
+  parser=new JSONParser(new ByteArrayInputStream(sampleJson2.getBytes("UTF-8")));
+  token=TreeParserToken.Ignorable;
+  i=0;
+  try {
+    while (token != null) {
+      token=parser.next();
+      if (token == null)       break;
+      i++;
+      if (i == 3) {
+        Assert.assertEquals(TreeParserToken.StartEntity,token);
+        Assert.assertEquals(parser.getLocalName(),"field");
+      }
+    }
+  }
+ catch (  Exception e) {
+  }
+  parser=new JSONParser(new ByteArrayInputStream(sampleJson3.getBytes("UTF-8")));
+  token=TreeParserToken.Ignorable;
+  i=0;
+  try {
+    while (token != null) {
+      token=parser.next();
+      if (token == null)       break;
+      i++;
+      if (i == 3) {
+        Assert.assertEquals(token,TreeParserToken.StartEntity);
+        Assert.assertEquals(parser.getLocalName(),"field");
+      }
+      if (i == 4) {
+        Assert.assertEquals(token,TreeParserToken.StartEntity);
+        Assert.assertEquals(parser.getLocalName(),"__anonymous__");
+      }
+      if (i == 6) {
+        Assert.assertEquals(token,TreeParserToken.StartEntity);
+        Assert.assertEquals(parser.getLocalName(),"__anonymous__");
+      }
+    }
+  }
+ catch (  Exception e) {
+  }
+}

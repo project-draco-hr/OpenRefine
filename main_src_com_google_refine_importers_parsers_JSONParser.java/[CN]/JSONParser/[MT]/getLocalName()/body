@@ -1,3 +1,13 @@
 {
-  return null;
+  try {
+    String text=parser.getCurrentName();
+    if (text == null) {
+      if (this.lastTokenWasAFieldNameAndCurrentTokenIsANewEntity)       text=this.lastFieldName;
+ else       text="__anonymous__";
+    }
+    return text;
+  }
+ catch (  Exception e) {
+    throw new ServletException(e);
+  }
 }

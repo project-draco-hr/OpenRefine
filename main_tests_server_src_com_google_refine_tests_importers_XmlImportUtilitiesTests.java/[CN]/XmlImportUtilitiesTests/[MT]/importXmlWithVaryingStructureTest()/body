@@ -1,5 +1,5 @@
 {
-  loadXml(XmlImporterTests.getSampleWithVaryingStructure());
+  loadData(XmlImporterTests.getSampleWithVaryingStructure());
   String[] recordPath=new String[]{"library","book"};
   XmlImportUtilitiesStub.importTreeData(new XmlParser(inputStream),project,recordPath,columnGroup);
   log(project);

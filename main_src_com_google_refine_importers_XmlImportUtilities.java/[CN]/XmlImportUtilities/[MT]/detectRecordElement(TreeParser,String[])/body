@@ -11,8 +11,12 @@
         break;
       }
  else       if (eventType == TreeParserToken.Value) {
-        if (parser.getText().trim().length() > 0) {
-          textNodeCount++;
+        try {
+          if (parser.getText().trim().length() > 0) {
+            textNodeCount++;
+          }
+        }
+ catch (        Exception e) {
         }
       }
  else       if (eventType == TreeParserToken.StartEntity) {

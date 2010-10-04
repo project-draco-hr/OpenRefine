@@ -1,4 +1,5 @@
 {
+  logger.trace("processRecord(Project,TreeParser,ImportColumnGroup)");
   ImportRecord record=new ImportRecord();
   processSubRecord(project,parser,rootColumnGroup,record);
   if (record.rows.size() > 0) {

@@ -1,7 +1,7 @@
 {
-  loadXml("<?xml version=\"1.0\"?><library><book id=\"1\"><author>author1</author><genre>genre1</genre></book></library>");
+  loadData("<?xml version=\"1.0\"?><library><book id=\"1\"><author>author1</author><genre>genre1</genre></book></library>");
   String tag="library";
-  createParser();
+  createXmlParser();
   String[] response=XmlImportUtilitiesStub.detectPathFromTag(parser,tag);
   Assert.assertNotNull(response);
   Assert.assertEquals(response.length,1);

@@ -3,14 +3,14 @@
     if (!parser.hasNext())     throw new ServletException("End of XML stream");
   }
  catch (  XMLStreamException e) {
-    throw new ServletException(e.getMessage());
+    throw new ServletException(e);
   }
   int currentToken=-1;
   try {
     currentToken=parser.next();
   }
  catch (  XMLStreamException e) {
-    throw new ServletException(e.getMessage());
+    throw new ServletException(e);
   }
   return convertToTreeParserToken(currentToken);
 }

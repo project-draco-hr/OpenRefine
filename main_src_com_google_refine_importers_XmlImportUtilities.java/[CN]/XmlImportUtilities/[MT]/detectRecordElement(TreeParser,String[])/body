@@ -35,9 +35,6 @@
   }
  catch (  Exception e) {
   }
-  if (textNodeCount > 0 && childElementNodeCount > 0) {
-    return null;
-  }
   if (immediateChildCandidateMap.size() > 0) {
     List<RecordElementCandidate> immediateChildCandidates=new ArrayList<RecordElementCandidate>(immediateChildCandidateMap.size());
     for (    Entry<String,Integer> entry : immediateChildCandidateMap.entrySet()) {

@@ -1,0 +1,12 @@
+{
+  StringBuilder sb=new StringBuilder();
+  sb.append("<?xml version=\"1.0\"?><nest>");
+  sb.append("somemixeduptext");
+  sb.append("<nest2><library>");
+  for (int i=1; i < 7; i++) {
+    sb.append(getTypicalElement(i));
+  }
+  sb.append("</nest2>");
+  sb.append("<anElement>asdf</anElement></nest></library>");
+  return sb.toString();
+}

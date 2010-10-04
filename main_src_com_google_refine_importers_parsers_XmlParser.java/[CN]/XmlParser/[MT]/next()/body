@@ -12,5 +12,5 @@
  catch (  XMLStreamException e) {
     throw new ServletException(e);
   }
-  return convertToTreeParserToken(currentToken);
+  return mapToTreeParserToken(currentToken);
 }

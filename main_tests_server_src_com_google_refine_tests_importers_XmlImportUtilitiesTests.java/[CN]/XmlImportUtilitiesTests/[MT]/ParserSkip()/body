@@ -1,6 +1,6 @@
 {
   try {
-    if (parser.getEventType() == TreeParserToken.StartDocument) {
+    if (parser.getEventType() == TreeParserToken.Ignorable) {
       parser.next();
     }
   }

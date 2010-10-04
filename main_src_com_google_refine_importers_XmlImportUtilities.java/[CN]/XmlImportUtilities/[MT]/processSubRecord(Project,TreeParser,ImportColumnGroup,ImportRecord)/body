@@ -1,6 +1,6 @@
 {
   logger.trace("processSubRecord(Project,TreeParser,ImportColumnGroup,ImportRecord)");
-  if (parser.getEventType() == TreeParserToken.StartDocument)   return;
+  if (parser.getEventType() == TreeParserToken.Ignorable)   return;
   ImportColumnGroup thisColumnGroup=getColumnGroup(project,columnGroup,composeName(parser.getPrefix(),parser.getLocalName()));
   thisColumnGroup.nextRowIndex=Math.max(thisColumnGroup.nextRowIndex,columnGroup.nextRowIndex);
   int attributeCount=parser.getAttributeCount();

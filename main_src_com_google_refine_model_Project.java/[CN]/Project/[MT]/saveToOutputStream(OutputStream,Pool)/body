@@ -1,7 +1,7 @@
 {
   for (  OverlayModel overlayModel : overlayModels.values()) {
     try {
-      overlayModel.onBeforeSave();
+      overlayModel.onBeforeSave(this);
     }
  catch (    Exception e) {
       logger.warn("Error signaling overlay model before saving",e);
@@ -19,7 +19,7 @@
   }
   for (  OverlayModel overlayModel : overlayModels.values()) {
     try {
-      overlayModel.onAfterSave();
+      overlayModel.onAfterSave(this);
     }
  catch (    Exception e) {
       logger.warn("Error signaling overlay model after saving",e);

@@ -1,14 +1,17 @@
 {
-  String language="gel";
+  String language="grel";
   int colon=s.indexOf(':');
   if (colon >= 0) {
-    language=s.substring(0,colon);
+    language=s.substring(0,colon).toLowerCase();
+    if ("gel".equals(language)) {
+      language="grel";
+    }
   }
   LanguageInfo info=s_languages.get(language.toLowerCase());
   if (info != null) {
     return info.parser.parse(s.substring(colon + 1));
   }
  else {
-    return parseGEL(s);
+    return parseGREL(s);
   }
 }

@@ -1,12 +1,23 @@
 {
-  if (request == null)   throw new IllegalArgumentException("parameter 'request' should not be null");
+  if (request == null) {
+    throw new IllegalArgumentException("parameter 'request' should not be null");
+  }
+  String param=request.getParameter("project");
+  if (param == null || "".equals(param)) {
+    throw new ServletException("Can't find project: missing ID parameter");
+  }
+  Long id;
   try {
-    Project p=ProjectManager.singleton.getProject(Long.parseLong(request.getParameter("project")));
-    if (p != null) {
-      return p;
-    }
+    id=Long.parseLong(param);
   }
- catch (  Exception e) {
+ catch (  NumberFormatException e) {
+    throw new ServletException("Can't find project: badly formatted id #",e);
   }
-  throw new ServletException("Can't find project: missing or bad URL parameter");
+  Project p=ProjectManager.singleton.getProject(id);
+  if (p != null) {
+    return p;
+  }
+ else {
+    throw new ServletException("Failed to find project id #" + param + " - may be corrupt");
+  }
 }

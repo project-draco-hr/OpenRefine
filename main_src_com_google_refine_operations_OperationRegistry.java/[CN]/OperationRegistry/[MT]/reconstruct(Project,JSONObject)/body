@@ -4,8 +4,9 @@
     if (!op.contains("/")) {
       op="core/" + op;
     }
-    Class<? extends AbstractOperation> klass=OperationRegistry.s_opNameToClass.get(op);
-    if (klass != null) {
+    List<Class<? extends AbstractOperation>> classes=s_opNameToClass.get(op);
+    if (classes != null && classes.size() > 0) {
+      Class<? extends AbstractOperation> klass=classes.get(classes.size() - 1);
       Method reconstruct=klass.getMethod("reconstruct",Project.class,JSONObject.class);
       if (reconstruct != null) {
         return (AbstractOperation)reconstruct.invoke(null,project,obj);

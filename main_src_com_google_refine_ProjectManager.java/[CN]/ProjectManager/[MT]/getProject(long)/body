@@ -5,7 +5,9 @@ synchronized (this) {
     }
  else {
       Project project=loadProject(id);
-      _projects.put(id,project);
+      if (project != null) {
+        _projects.put(id,project);
+      }
       return project;
     }
   }

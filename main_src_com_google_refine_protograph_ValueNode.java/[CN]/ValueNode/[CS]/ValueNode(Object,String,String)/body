@@ -1,5 +1,0 @@
-{
-  this.value=value;
-  this.valueType=valueType;
-  this.lang=lang;
-}

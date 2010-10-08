@@ -1,3 +1,0 @@
-{
-  transpose(project,filteredRows,protograph,rootNode,nodeFactory,20);
-}

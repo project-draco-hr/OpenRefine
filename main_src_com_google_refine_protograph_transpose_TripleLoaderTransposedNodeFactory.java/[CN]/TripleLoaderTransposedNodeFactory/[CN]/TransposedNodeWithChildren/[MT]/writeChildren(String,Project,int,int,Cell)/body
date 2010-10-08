@@ -1,8 +1,0 @@
-{
-  for (int i=0; i < children.size(); i++) {
-    WritingTransposedNode child=children.get(i);
-    Link link=links.get(i);
-    String predicate=link.property.id;
-    child.write(subject,predicate,project,subjectRowIndex,subjectCellIndex,subjectCell);
-  }
-}

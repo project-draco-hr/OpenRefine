@@ -1,0 +1,58 @@
+{
+  if (children.size() == 0 || subject == null) {
+    return null;
+  }
+  StringBuffer sb=new StringBuffer();
+  sb.append("{ \"s\" : \"");
+  sb.append(subject);
+  sb.append('"');
+  sb.append(", \"p\" : \"");
+  sb.append(predicate);
+  sb.append('"');
+  sb.append(", \"o\" : { ");
+  StringBuffer sbRecon=new StringBuffer();
+  boolean first=true;
+  boolean firstRecon=true;
+  if (subjectCell.recon != null) {
+    sbRecon.append("\"s\" : ");
+    writeRecon(sbRecon,project,subjectRowIndex,subjectCellIndex,subjectCell);
+    firstRecon=false;
+  }
+  for (int i=0; i < children.size(); i++) {
+    WritingTransposedNode child=children.get(i);
+    Link link=links.get(i);
+    FreebaseProperty property=link.property;
+    Object c=child.internalWrite(null,null,project,subjectRowIndex,subjectCellIndex,null);
+    if (c != null) {
+      if (first) {
+        first=false;
+      }
+ else {
+        sb.append(", ");
+      }
+      sb.append("\"" + property.id + "\": ");
+      sb.append(c instanceof String ? JSONObject.quote((String)c) : c.toString());
+    }
+    if (child instanceof CellTopicTransposedNode) {
+      CellTopicTransposedNode child2=(CellTopicTransposedNode)child;
+      Recon recon=child2.cell.recon;
+      if (recon != null && (recon.judgment == Judgment.Matched || recon.judgment == Judgment.New)) {
+        if (firstRecon) {
+          firstRecon=false;
+        }
+ else {
+          sbRecon.append(", ");
+        }
+        sbRecon.append("\"");
+        sbRecon.append(property.id);
+        sbRecon.append("\" : ");
+        writeRecon(sbRecon,project,rowIndices.get(i),child2.cellIndex,child2.cell);
+      }
+    }
+  }
+  sb.append(" }, \"meta\" : { \"recon\" : { ");
+  sb.append(sbRecon.toString());
+  sb.append(" } } }");
+  writeLine(sb.toString());
+  return null;
+}

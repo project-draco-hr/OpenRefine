@@ -1,0 +1,20 @@
+{
+  try {
+    if (parent == null) {
+      contextTreeRoot=o;
+    }
+ else {
+      JSONArray a=null;
+      if (parent.has(key)) {
+        a=parent.getJSONArray(key);
+      }
+ else {
+        a=new JSONArray();
+        parent.put(key,a);
+      }
+      a.put(o);
+    }
+  }
+ catch (  JSONException e) {
+  }
+}

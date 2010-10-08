@@ -1,0 +1,20 @@
+{
+  try {
+    Provider provider=OAuthUtilities.getProvider(request);
+    Credentials.deleteCredentials(request,response,provider,Credentials.Type.REQUEST);
+    Credentials access_credentials=Credentials.getCredentials(request,provider,Credentials.Type.ACCESS);
+    response.setCharacterEncoding("UTF-8");
+    response.setHeader("Content-Type","application/json");
+    if (access_credentials != null) {
+      String user_info=FreebaseUtils.getUserInfo(access_credentials,provider);
+      response.getWriter().write(user_info);
+    }
+ else {
+      respond(response,"401 Unauthorized","You don't have the right credentials");
+    }
+  }
+ catch (  Exception e) {
+    logger.info("error",e);
+    respondException(response,e);
+  }
+}

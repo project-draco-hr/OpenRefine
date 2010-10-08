@@ -1,0 +1,6 @@
+{
+  this.property=property;
+  this.target=target;
+  this.condition=condition;
+  this.load=load;
+}

@@ -1,0 +1,6 @@
+{
+  this.node=node;
+  this.rowIndex=rowIndex;
+  this.cellIndex=cellIndex;
+  this.cell=cell;
+}

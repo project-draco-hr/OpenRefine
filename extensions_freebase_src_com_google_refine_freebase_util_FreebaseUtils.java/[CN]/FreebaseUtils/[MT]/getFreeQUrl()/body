@@ -1,0 +1,4 @@
+{
+  String url=(String)ProjectManager.singleton.getPreferenceStore().get("freebase.freeq");
+  return url != null ? url : FREEQ_URL;
+}

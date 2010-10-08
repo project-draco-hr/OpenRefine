@@ -1,0 +1,13 @@
+{
+  Protograph g=new Protograph();
+  JSONArray rootNodes=o.getJSONArray("rootNodes");
+  int count=rootNodes.length();
+  for (int i=0; i < count; i++) {
+    JSONObject o2=rootNodes.getJSONObject(i);
+    Node node=reconstructNode(o2);
+    if (node != null) {
+      g._rootNodes.add(node);
+    }
+  }
+  return g;
+}

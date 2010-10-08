@@ -1,0 +1,13 @@
+{
+  try {
+    if (start) {
+      start=false;
+    }
+ else {
+      writer.write('\n');
+    }
+    writer.write(line);
+  }
+ catch (  IOException e) {
+  }
+}

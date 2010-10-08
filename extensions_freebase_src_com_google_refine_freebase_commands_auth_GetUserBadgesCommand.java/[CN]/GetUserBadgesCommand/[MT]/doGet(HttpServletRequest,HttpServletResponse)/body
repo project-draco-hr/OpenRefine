@@ -1,0 +1,14 @@
+{
+  try {
+    Provider provider=OAuthUtilities.getProvider(request);
+    String user_id=request.getParameter("user_id");
+    response.setCharacterEncoding("UTF-8");
+    response.setHeader("Content-Type","application/json");
+    String user_badges=FreebaseUtils.getUserBadges(provider,user_id);
+    response.getWriter().write(user_badges);
+  }
+ catch (  Exception e) {
+    logger.info("error",e);
+    respondException(response,e);
+  }
+}

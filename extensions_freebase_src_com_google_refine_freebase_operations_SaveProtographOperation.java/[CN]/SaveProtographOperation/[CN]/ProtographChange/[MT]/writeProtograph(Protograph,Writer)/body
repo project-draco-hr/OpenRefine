@@ -1,0 +1,11 @@
+{
+  if (p != null) {
+    JSONWriter jsonWriter=new JSONWriter(writer);
+    try {
+      p.write(jsonWriter,new Properties());
+    }
+ catch (    JSONException e) {
+      e.printStackTrace();
+    }
+  }
+}

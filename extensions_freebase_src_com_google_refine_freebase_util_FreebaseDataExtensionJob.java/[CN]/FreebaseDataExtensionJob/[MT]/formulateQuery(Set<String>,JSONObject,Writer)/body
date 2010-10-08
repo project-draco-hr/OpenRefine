@@ -1,0 +1,21 @@
+{
+  JSONWriter jsonWriter=new JSONWriter(writer);
+  jsonWriter.object();
+  jsonWriter.key("query");
+  jsonWriter.array();
+  jsonWriter.object();
+  jsonWriter.key("id");
+  jsonWriter.value(null);
+  jsonWriter.key("id|=");
+  jsonWriter.array();
+  for (  String id : ids) {
+    if (id != null) {
+      jsonWriter.value(id);
+    }
+  }
+  jsonWriter.endArray();
+  formulateQueryNode(node.getJSONArray("properties"),jsonWriter);
+  jsonWriter.endObject();
+  jsonWriter.endArray();
+  jsonWriter.endObject();
+}

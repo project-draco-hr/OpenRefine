@@ -1,0 +1,16 @@
+{
+  JsonTransposedNode tnode=null;
+  if (node instanceof CellTopicNode) {
+    tnode=new CellTopicTransposedNode((CellTopicNode)node,cell);
+  }
+ else   if (node instanceof CellValueNode) {
+    tnode=new CellValueTransposedNode((CellValueNode)node,cell);
+  }
+ else   if (node instanceof CellKeyNode) {
+    tnode=new CellKeyTransposedNode((CellKeyNode)node,cell);
+  }
+  if (tnode != null) {
+    processTransposedNode(tnode,parentNode,link != null ? link.property : null);
+  }
+  return tnode;
+}

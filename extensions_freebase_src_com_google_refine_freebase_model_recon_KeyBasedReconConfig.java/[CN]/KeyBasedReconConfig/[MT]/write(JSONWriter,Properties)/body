@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("mode");
+  writer.value("strict");
+  writer.key("match");
+  writer.value("key");
+  writer.key("namespace");
+  namespace.write(writer,options);
+  writer.endObject();
+}

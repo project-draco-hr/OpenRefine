@@ -1,0 +1,6 @@
+{
+  super(engineConfig);
+  _baseColumnName=baseColumnName;
+  _extension=extension;
+  _columnInsertIndex=columnInsertIndex;
+}

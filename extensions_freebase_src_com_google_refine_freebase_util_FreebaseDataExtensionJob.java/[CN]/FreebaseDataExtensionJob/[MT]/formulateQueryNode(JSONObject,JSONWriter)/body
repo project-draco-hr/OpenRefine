@@ -1,0 +1,55 @@
+{
+  String propertyID=node.getString("id");
+  String expectedTypeID=node.getJSONObject("expected").getString("id");
+  writer.key(propertyID);
+  writer.array();
+{
+    if (!expectedTypeID.startsWith("/type/")) {
+      writer.object();
+      writer.key("optional");
+      writer.value(true);
+      boolean hasLimit=false;
+      if (node.has("constraints") && !node.isNull("constraints")) {
+        JSONObject constraints=node.getJSONObject("constraints");
+        String[] names=JSONObject.getNames(constraints);
+        for (        String name : names) {
+          Object value=constraints.get(name);
+          if (name.equals("limit")) {
+            hasLimit=true;
+          }
+          if (!name.contains(":") && !name.equals("limit") && !name.equals("optional")&& !name.equals("count")&& !name.equals("estimate-count")&& !name.equals("sort")&& !name.equals("return")) {
+            if (name.startsWith("!")) {
+              name="!c:" + name.substring(1);
+            }
+ else {
+              name="c:" + name;
+            }
+          }
+          writer.key(name);
+          writer.value(value);
+        }
+      }
+      if (!hasLimit) {
+        writer.key("limit");
+        writer.value(10);
+      }
+{
+        boolean hasSubProperties=(node.has("properties") && !node.isNull("properties"));
+        if (!hasSubProperties || (node.has("included") && node.getBoolean("included"))) {
+          writer.key("name");
+          writer.value(null);
+          writer.key("id");
+          writer.value(null);
+          writer.key("type");
+          writer.array();
+          writer.endArray();
+        }
+        if (hasSubProperties) {
+          formulateQueryNode(node.getJSONArray("properties"),writer);
+        }
+      }
+      writer.endObject();
+    }
+  }
+  writer.endArray();
+}

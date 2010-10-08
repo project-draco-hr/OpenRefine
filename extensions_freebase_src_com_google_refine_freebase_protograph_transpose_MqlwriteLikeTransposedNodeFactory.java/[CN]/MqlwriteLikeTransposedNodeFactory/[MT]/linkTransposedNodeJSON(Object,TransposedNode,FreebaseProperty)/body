@@ -1,0 +1,24 @@
+{
+  if (parentNode == null) {
+    if (obj instanceof JSONObject) {
+      rootObjects.add((JSONObject)obj);
+    }
+  }
+ else   if (parentNode instanceof JsonTransposedNode) {
+    JSONObject parentObj=((JsonObjectTransposedNode)parentNode).getJSONObject();
+    try {
+      JSONArray a=null;
+      if (parentObj.has(property.id)) {
+        a=parentObj.getJSONArray(property.id);
+      }
+ else {
+        a=new JSONArray();
+        parentObj.put(property.id,a);
+      }
+      a.put(a.length(),obj);
+    }
+ catch (    JSONException e) {
+      e.printStackTrace();
+    }
+  }
+}

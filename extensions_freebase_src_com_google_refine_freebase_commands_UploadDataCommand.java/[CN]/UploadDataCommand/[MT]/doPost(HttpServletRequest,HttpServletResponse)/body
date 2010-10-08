@@ -1,0 +1,51 @@
+{
+  ProjectManager.singleton.setBusy(true);
+  try {
+    Project project=getProject(request);
+    Engine engine=getEngine(request,project);
+    PreferenceStore preferenceStore=project.getMetadata().getPreferenceStore();
+    TripleLoaderExporter exporter=new TripleLoaderExporter();
+    StringWriter triples=new StringWriter(10 * 1024 * 1024);
+    exporter.export(project,new Properties(),engine,triples);
+    String source_name=request.getParameter("source_name");
+    String source_id=request.getParameter("source_id");
+    String qa=request.getParameter("qa");
+    String mdo_id=null;
+    preferenceStore.put(s_dataLoadJobNamePref,source_name);
+    try {
+      Integer jobID=(Integer)preferenceStore.get(s_dataLoadJobIDPref);
+      if (jobID != null) {
+        URL url=new URL("http://refinery.freebaseapps.com/job_id_to_mdo?job=" + jobID);
+        String s=ParsingUtilities.inputStreamToString(url.openConnection().getInputStream());
+        if (!s.equals("null")) {
+          mdo_id=s;
+        }
+      }
+    }
+ catch (    Exception e) {
+    }
+    String uploadResponse=FreebaseUtils.uploadTriples(request,qa,source_name,source_id,mdo_id,triples.toString());
+    response.setCharacterEncoding("UTF-8");
+    response.setHeader("Content-Type","application/json");
+    try {
+      JSONObject obj=new JSONObject(uploadResponse);
+      if (obj.has("result") && !obj.isNull("result")) {
+        JSONObject result=obj.getJSONObject("result");
+        if (result.has("job_id") && !result.isNull("job_id")) {
+          Integer jobID=result.getInt("job_id");
+          project.getMetadata().getPreferenceStore().put(s_dataLoadJobIDPref,jobID);
+        }
+      }
+      response.getWriter().write(uploadResponse);
+    }
+ catch (    JSONException e) {
+      respond(response,"500 Error",uploadResponse);
+    }
+  }
+ catch (  Exception e) {
+    respondException(response,e);
+  }
+ finally {
+    ProjectManager.singleton.setBusy(false);
+  }
+}

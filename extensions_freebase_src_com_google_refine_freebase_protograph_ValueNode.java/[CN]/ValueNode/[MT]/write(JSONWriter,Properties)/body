@@ -1,0 +1,12 @@
+{
+  writer.object();
+  writer.key("nodeType");
+  writer.value("value");
+  writer.key("value");
+  writer.value(value);
+  writer.key("valueType");
+  writer.value(valueType);
+  writer.key("lang");
+  writer.value(lang);
+  writer.endObject();
+}

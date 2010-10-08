@@ -1,0 +1,3 @@
+{
+  OAuthUtilities.registerOAuthProvider(new FreebaseProvider(FreebaseUtils.FREEBASE_HOST),FREEBASE_OAUTH_INFO);
+}

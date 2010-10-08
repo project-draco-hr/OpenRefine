@@ -1,0 +1,10 @@
+{
+  OAuthConsumer consumer=OAuthUtilities.getConsumer(credentials,provider);
+  HttpGet httpRequest=new HttpGet(getUserInfoURL(provider.getHost()));
+  httpRequest.getParams().setParameter(CoreProtocolPNames.USER_AGENT,getUserAgent());
+  httpRequest.setHeader("X-Requested-With","1");
+  consumer.sign(httpRequest);
+  HttpClient httpClient=new DefaultHttpClient();
+  HttpResponse httpResponse=httpClient.execute(httpRequest);
+  return EntityUtils.toString(httpResponse.getEntity());
+}

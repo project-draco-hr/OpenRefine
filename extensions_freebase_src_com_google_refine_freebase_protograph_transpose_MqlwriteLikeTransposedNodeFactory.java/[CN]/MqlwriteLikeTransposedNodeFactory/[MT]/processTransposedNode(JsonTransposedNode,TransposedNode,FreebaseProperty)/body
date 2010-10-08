@@ -1,0 +1,5 @@
+{
+  if (!(tnode instanceof AnonymousTransposedNode)) {
+    linkTransposedNodeJSON(tnode.getJSON(),parentNode,property);
+  }
+}

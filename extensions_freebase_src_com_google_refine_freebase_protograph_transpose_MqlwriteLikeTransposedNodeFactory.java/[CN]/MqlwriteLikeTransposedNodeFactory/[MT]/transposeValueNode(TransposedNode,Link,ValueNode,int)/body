@@ -1,0 +1,5 @@
+{
+  JsonTransposedNode tnode=new ValueTransposedNode(node);
+  processTransposedNode(tnode,parentNode,link != null ? link.property : null);
+  return tnode;
+}

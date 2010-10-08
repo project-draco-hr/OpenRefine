@@ -1,0 +1,34 @@
+{
+  Provider provider=OAuthUtilities.getProvider(request);
+  try {
+    Credentials access_credentials=Credentials.getCredentials(request,provider,Credentials.Type.ACCESS);
+    String callbackURL=getBaseURL(request,provider);
+    if (access_credentials == null) {
+      Credentials request_credentials=Credentials.getCredentials(request,provider,Credentials.Type.REQUEST);
+      OAuthConsumer consumer=OAuthUtilities.getConsumer(request_credentials,provider);
+      OAuthProvider pp=OAuthUtilities.getOAuthProvider(provider);
+      if (request_credentials == null) {
+        String url=pp.retrieveRequestToken(consumer,callbackURL);
+        request_credentials=new Credentials(consumer.getToken(),consumer.getTokenSecret(),provider);
+        Credentials.setCredentials(request,response,request_credentials,Credentials.Type.REQUEST,3600);
+        response.sendRedirect(url);
+      }
+ else {
+        String verificationCode=request.getParameter(OAUTH_VERIFIER_PARAM);
+        pp.retrieveAccessToken(consumer,verificationCode);
+        access_credentials=new Credentials(consumer.getToken(),consumer.getTokenSecret(),provider);
+        Credentials.deleteCredentials(request,response,provider,Credentials.Type.REQUEST);
+        Credentials.setCredentials(request,response,access_credentials,Credentials.Type.ACCESS,30 * 24 * 3600);
+        finish(response);
+      }
+    }
+ else {
+      finish(response);
+    }
+  }
+ catch (  Exception e) {
+    Credentials.deleteCredentials(request,response,provider,Credentials.Type.REQUEST);
+    Credentials.deleteCredentials(request,response,provider,Credentials.Type.ACCESS);
+    respondException(response,e);
+  }
+}

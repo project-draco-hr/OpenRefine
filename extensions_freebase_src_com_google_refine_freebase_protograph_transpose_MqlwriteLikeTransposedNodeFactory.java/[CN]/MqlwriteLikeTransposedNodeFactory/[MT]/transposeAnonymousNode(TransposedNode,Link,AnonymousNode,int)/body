@@ -1,0 +1,3 @@
+{
+  return new AnonymousTransposedNode(parentNode instanceof JsonObjectTransposedNode ? (JsonObjectTransposedNode)parentNode : null,link != null ? link.property : null,node);
+}

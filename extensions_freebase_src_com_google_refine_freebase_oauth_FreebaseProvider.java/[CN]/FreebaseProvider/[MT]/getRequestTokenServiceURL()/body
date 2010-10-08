@@ -1,0 +1,3 @@
+{
+  return "https://" + host + "/api/oauth/request_token";
+}

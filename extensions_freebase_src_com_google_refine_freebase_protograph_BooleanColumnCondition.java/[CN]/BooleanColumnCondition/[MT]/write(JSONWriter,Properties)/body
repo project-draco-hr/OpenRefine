@@ -1,0 +1,6 @@
+{
+  writer.object();
+  writer.key("columnName");
+  writer.value(columnName);
+  writer.endObject();
+}

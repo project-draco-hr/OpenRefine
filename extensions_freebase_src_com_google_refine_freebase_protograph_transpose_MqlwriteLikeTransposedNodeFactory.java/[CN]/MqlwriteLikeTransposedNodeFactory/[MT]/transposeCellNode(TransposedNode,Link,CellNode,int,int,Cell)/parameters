@@ -1,0 +1,6 @@
+TransposedNode parentNode
+Link link
+CellNode node
+int rowIndex
+int cellIndex
+Cell cell

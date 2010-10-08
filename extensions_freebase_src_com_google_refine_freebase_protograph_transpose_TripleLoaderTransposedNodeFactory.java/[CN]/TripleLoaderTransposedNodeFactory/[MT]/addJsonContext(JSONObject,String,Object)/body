@@ -1,0 +1,17 @@
+{
+  JSONObject o=new JSONObject();
+  try {
+    if (value instanceof FreebaseTopic) {
+      FreebaseTopic topic=(FreebaseTopic)value;
+      o.put("id",topic.id);
+      o.put("name",topic.name);
+    }
+ else {
+      o.put("v",value);
+    }
+  }
+ catch (  JSONException e) {
+  }
+  connectJsonContext(parent,o,key);
+  return o;
+}

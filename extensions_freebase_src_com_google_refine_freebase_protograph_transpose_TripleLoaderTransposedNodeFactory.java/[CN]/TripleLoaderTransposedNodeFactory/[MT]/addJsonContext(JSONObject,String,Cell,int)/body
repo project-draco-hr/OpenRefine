@@ -1,0 +1,30 @@
+{
+  JSONObject o=new JSONObject();
+  connectJsonContext(parent,o,key);
+  try {
+    if (cell != null) {
+      o.put("v",cell.value);
+      if (cell.recon != null) {
+        o.put("recon","rec" + cell.recon.id);
+        if (cell.recon.judgment == Judgment.Matched) {
+          o.put("id",cell.recon.match.id);
+          o.put("name",cell.recon.match.name);
+        }
+{
+          StringBuffer sb2=new StringBuffer();
+          sb2.append("{ \"ignore\" : true, \"s\" : \"rec");
+          sb2.append(Long.toString(cell.recon.id));
+          sb2.append("\", \"p\" : \"qa:display_context\", \"o\" : \"ctx");
+          sb2.append(Long.toString(contextID));
+          sb2.append("\", \"meta\" : { \"row\" : ");
+          sb2.append(Integer.toString(rowIndex));
+          sb2.append(" } }");
+          writeLine(sb2.toString());
+        }
+      }
+    }
+  }
+ catch (  JSONException e) {
+  }
+  return o;
+}

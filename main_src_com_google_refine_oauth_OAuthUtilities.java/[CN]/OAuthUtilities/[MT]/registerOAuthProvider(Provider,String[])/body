@@ -1,0 +1,4 @@
+{
+  providers.put(provider.getHost(),provider);
+  infos.put(provider.getHost(),oauthInfo);
+}

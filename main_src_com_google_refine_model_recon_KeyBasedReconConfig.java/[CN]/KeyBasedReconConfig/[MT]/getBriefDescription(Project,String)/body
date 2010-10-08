@@ -1,3 +1,0 @@
-{
-  return "Reconcile cells in column " + columnName + " to topics with keys in namespace "+ namespace.id;
-}

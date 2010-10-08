@@ -30,7 +30,7 @@
         if (cell2 != null && ExpressionUtils.isNonBlankData(cell2.value)) {
           jsonWriter.object();
           jsonWriter.key("pid");
-          jsonWriter.value(c.property.id);
+          jsonWriter.value(c.propertyID);
           jsonWriter.key("v");
           if (cell2.recon != null && cell2.recon.match != null) {
             jsonWriter.object();

@@ -16,5 +16,10 @@
     }
     classMappingsCache.put(className,toClassName);
   }
-  return Class.forName(toClassName);
+  Class<?> klass=classCache.get(toClassName);
+  if (klass == null) {
+    klass=Class.forName(toClassName);
+    classCache.put(toClassName,klass);
+  }
+  return klass;
 }

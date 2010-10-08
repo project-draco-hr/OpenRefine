@@ -1,0 +1,3 @@
+{
+  classCache.put(klass.getName(),klass);
+}

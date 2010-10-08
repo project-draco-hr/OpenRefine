@@ -1,0 +1,3 @@
+ButterflyModule module
+String name
+Class<? extends ReconConfig> klass

@@ -1,4 +1,0 @@
-{
-  JSONObject engineConfig=obj.getJSONObject("engineConfig");
-  return new ExtendDataOperation(engineConfig,obj.getString("baseColumnName"),obj.getJSONObject("extension"),obj.getInt("columnInsertIndex"));
-}

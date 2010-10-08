@@ -28,8 +28,10 @@
     writer.object();
     writer.key("column");
     writer.value(c.columnName);
-    writer.key("property");
-    c.property.write(writer,options);
+    writer.key("propertyName");
+    writer.value(c.propertyName);
+    writer.key("propertyID");
+    writer.value(c.propertyID);
     writer.endObject();
   }
   writer.endArray();

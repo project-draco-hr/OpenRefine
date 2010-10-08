@@ -1,13 +1,26 @@
 {
-  String mode=obj.getString("mode");
-  if ("standard-service".equals(mode) || "heuristic".equals(mode)) {
-    return StandardReconConfig.reconstruct(obj);
+  try {
+    String mode=obj.getString("mode");
+    if ("extend".equals(mode) || "strict".equals("mode")) {
+      mode="freebase/" + mode;
+    }
+ else     if ("heuristic".equals(mode)) {
+      mode="core/standard-service";
+    }
+ else     if (!mode.contains("/")) {
+      mode="core/" + mode;
+    }
+    List<Class<? extends ReconConfig>> classes=s_opNameToClass.get(mode);
+    if (classes != null && classes.size() > 0) {
+      Class<? extends ReconConfig> klass=classes.get(classes.size() - 1);
+      Method reconstruct=klass.getMethod("reconstruct",JSONObject.class);
+      if (reconstruct != null) {
+        return (ReconConfig)reconstruct.invoke(null,obj);
+      }
+    }
   }
- else   if ("strict".equals(mode)) {
-    return StrictReconConfig.reconstruct(obj);
-  }
- else   if ("extend".equals(mode)) {
-    return DataExtensionReconConfig.reconstruct(obj);
+ catch (  Exception e) {
+    e.printStackTrace();
   }
   return null;
 }

@@ -6,8 +6,13 @@
     columnDetails=new ArrayList<ColumnDetail>(l);
     for (int i=0; i < l; i++) {
       JSONObject o=columnDetailsA.getJSONObject(i);
-      JSONObject p=o.getJSONObject("property");
-      columnDetails.add(new ColumnDetail(o.getString("column"),new FreebaseProperty(p.getString("id"),p.getString("name"))));
+      if (o.has("property")) {
+        JSONObject p=o.getJSONObject("property");
+        columnDetails.add(new ColumnDetail(o.getString("column"),p.has("name") ? p.getString("name") : null,p.has("id") ? p.getString("id") : null));
+      }
+ else {
+        columnDetails.add(new ColumnDetail(o.getString("column"),o.has("propertyName") ? o.getString("propertyName") : null,o.has("propertyID") ? o.getString("propertyID") : null));
+      }
     }
   }
  else {

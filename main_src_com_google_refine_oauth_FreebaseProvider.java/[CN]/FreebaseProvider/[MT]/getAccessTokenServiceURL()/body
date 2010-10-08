@@ -1,3 +1,0 @@
-{
-  return "https://" + host + "/api/oauth/access_token";
-}

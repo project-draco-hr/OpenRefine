@@ -21,7 +21,7 @@
       formparams.add(new BasicNameValuePair("mdo_guid",mdo_id));
     }
     if (Boolean.parseBoolean(qa)) {
-      formparams.add(new BasicNameValuePair("rabj","true"));
+      formparams.add(new BasicNameValuePair("rabj",getTweezersParams(SAMPLE_SIZE,JUDGES)));
     }
     UrlEncodedFormEntity entity=new UrlEncodedFormEntity(formparams,"UTF-8");
     HttpPost httpRequest=new HttpPost(getFreeQUrl());

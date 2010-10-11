@@ -1,7 +1,8 @@
 {
   _name=o.getString("name");
   _columnName=o.getString("columnName");
-  _cellIndex=project.columnModel.getColumnByName(_columnName).getCellIndex();
+  Column column=project.columnModel.getColumnByName(_columnName);
+  _cellIndex=column != null ? column.getCellIndex() : -1;
   if (!o.isNull("query")) {
     _query=o.getString("query");
   }

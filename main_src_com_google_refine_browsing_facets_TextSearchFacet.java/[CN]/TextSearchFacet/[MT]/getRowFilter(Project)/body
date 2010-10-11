@@ -1,5 +1,5 @@
 {
-  if (_query == null || _query.length() == 0) {
+  if (_query == null || _query.length() == 0 || _cellIndex < 0) {
     return null;
   }
  else   if ("regex".equals(_mode) && _pattern == null) {

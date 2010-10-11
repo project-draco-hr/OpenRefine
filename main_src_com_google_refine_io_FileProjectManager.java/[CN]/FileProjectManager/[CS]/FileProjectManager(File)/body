@@ -1,7 +1,10 @@
 {
   super();
   _workspaceDir=dir;
-  _workspaceDir.mkdirs();
+  if (!_workspaceDir.mkdirs()) {
+    logger.error("Failed to create directory : " + _workspaceDir);
+    return;
+  }
   load();
   recover();
 }

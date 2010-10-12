@@ -34,9 +34,8 @@
       if (cells != null && cells.size() > 0)       rowsWithData++;
       if (skip <= 0 || rowsWithData > skip) {
         for (        String s : cells) {
-          s=s.trim();
           if (ExpressionUtils.isNonBlankData(s)) {
-            Serializable value=guessValueType ? ImporterUtilities.parseCellValue(s) : s;
+            Serializable value=guessValueType ? ImporterUtilities.parseCellValue(s.trim()) : s;
             row.cells.add(new Cell(value,null));
           }
  else {

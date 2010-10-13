@@ -4,11 +4,13 @@
     return data_dir;
   }
   File dataDir=null;
+  File gridworksDir=null;
   String os=System.getProperty("os.name").toLowerCase();
   if (os.contains("windows")) {
     try {
       DataPath localDataPath=JDataPathSystem.getLocalSystem().getLocalDataPath("Google");
       dataDir=new File(new File(fixWindowsUnicodePath(localDataPath.getPath())),"Refine");
+      gridworksDir=new File(fixWindowsUnicodePath(JDataPathSystem.getLocalSystem().getLocalDataPath("Gridworks").getPath()));
     }
  catch (    Error e) {
       logger.warn("Failed to use jdatapath to detect user data path: resorting to environment variables");
@@ -27,38 +29,45 @@
         parentDir=new File(".");
       }
       dataDir=new File(new File(parentDir,"Google"),"Refine");
+      gridworksDir=new File(parentDir,"Gridworks");
     }
   }
  else   if (os.contains("mac os x")) {
     String home=System.getProperty("user.home");
     String data_home=(home != null) ? home + "/Library/Application Support/Google/Refine" : ".google-refine";
     dataDir=new File(data_home);
+    String gridworks_home=(home != null) ? home + "/Library/Application Support/Gridworks" : ".gridworks";
+    gridworksDir=new File(gridworks_home);
   }
  else {
     String data_home=System.getenv("XDG_DATA_HOME");
     if (data_home == null) {
       String home=System.getProperty("user.home");
-      if (home == null)       home=".";
+      if (home == null) {
+        home=".";
+      }
       data_home=home + "/.local/share";
     }
-    dataDir=new File(data_home + "/google-refine");
+    dataDir=new File(data_home + "/google/refine");
+    gridworksDir=new File(data_home + "/gridworks");
+  }
+  if (!dataDir.exists() && gridworksDir.exists()) {
+    if (!dataDir.getParentFile().mkdirs()) {
+      logger.error("FAILED to create parent directory for workspace rename target " + dataDir.getParent());
+    }
+ else {
+      if (gridworksDir.renameTo(dataDir)) {
+        logger.info("Renamed Gridworks directory " + gridworksDir + " to "+ dataDir);
+      }
+ else {
+        logger.error("FAILED to rename Gridworks directory " + gridworksDir + " to "+ dataDir);
+      }
+    }
   }
   if (!dataDir.exists()) {
-    File gridworksDir;
-    if (dataDir.getName().equals("Refine")) {
-      gridworksDir=new File(dataDir.getParentFile().getParentFile(),"Gridworks");
-    }
- else     if (dataDir.getName().startsWith(".")) {
-      gridworksDir=new File(dataDir.getParent(),".gridworks");
-    }
- else {
-      gridworksDir=new File(dataDir.getParent(),".gridworks");
-    }
-    if (gridworksDir.exists()) {
-      gridworksDir.renameTo(dataDir);
-    }
- else {
-      dataDir.mkdirs();
+    logger.info("Creating new workspace directory " + dataDir);
+    if (!dataDir.mkdirs()) {
+      logger.error("FAILED to create new workspace directory " + dataDir);
     }
   }
   return dataDir.getAbsolutePath();

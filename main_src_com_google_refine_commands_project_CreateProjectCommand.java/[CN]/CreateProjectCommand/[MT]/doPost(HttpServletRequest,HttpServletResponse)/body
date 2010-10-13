@@ -14,8 +14,7 @@
     redirect(response,"/project?project=" + project.id);
   }
  catch (  Exception e) {
-    redirect(response,"/error.html?redirect=index.html&msg=" + ParsingUtilities.encode("Failed to import file: " + e.getLocalizedMessage()));
-    e.printStackTrace();
+    respondWithErrorPage(request,response,"Failed to import file",e);
   }
  finally {
     ProjectManager.singleton.setBusy(false);

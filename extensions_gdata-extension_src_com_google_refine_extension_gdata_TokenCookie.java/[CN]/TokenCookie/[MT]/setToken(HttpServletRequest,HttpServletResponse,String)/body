@@ -1,0 +1,3 @@
+{
+  CookiesUtilities.setCookie(request,response,COOKIE_NAME,token,MAX_AGE);
+}

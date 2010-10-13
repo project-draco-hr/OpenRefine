@@ -1,0 +1,4 @@
+{
+  String requestUrl=AuthSubUtil.getRequestUrl(request.getRequestURL() + "2","http://spreadsheets.google.com/feeds",false,true);
+  response.sendRedirect(requestUrl);
+}

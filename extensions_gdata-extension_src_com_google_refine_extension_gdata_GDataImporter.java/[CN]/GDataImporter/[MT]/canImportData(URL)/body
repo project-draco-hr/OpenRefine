@@ -1,0 +1,8 @@
+{
+  if (url.getHost().endsWith(".google.com")) {
+    return true;
+  }
+ else {
+    return false;
+  }
+}

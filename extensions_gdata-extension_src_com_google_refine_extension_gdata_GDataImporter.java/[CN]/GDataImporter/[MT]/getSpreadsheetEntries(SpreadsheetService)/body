@@ -1,0 +1,4 @@
+{
+  SpreadsheetFeed feed=service.getFeed(factory.getSpreadsheetsFeedUrl(),SpreadsheetFeed.class);
+  return feed.getEntries();
+}

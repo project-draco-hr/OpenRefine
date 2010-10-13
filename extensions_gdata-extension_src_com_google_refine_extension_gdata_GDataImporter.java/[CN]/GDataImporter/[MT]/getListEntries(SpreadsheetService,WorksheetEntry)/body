@@ -1,0 +1,5 @@
+{
+  URL listFeedUrl=worksheet.getListFeedUrl();
+  ListFeed feed=service.getFeed(listFeedUrl,ListFeed.class);
+  return feed.getEntries();
+}

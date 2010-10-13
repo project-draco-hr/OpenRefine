@@ -1,0 +1,15 @@
+{
+  try {
+    response.setCharacterEncoding("UTF-8");
+    response.setHeader("Content-Type","application/json");
+    String sessionToken=TokenCookie.getToken(request);
+    if (sessionToken != null) {
+      AuthSubUtil.revokeToken(sessionToken,null);
+      TokenCookie.deleteToken(request,response);
+    }
+    respond(response,"200 OK","");
+  }
+ catch (  Exception e) {
+    respondException(response,e);
+  }
+}

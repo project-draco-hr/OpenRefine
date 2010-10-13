@@ -1,0 +1,3 @@
+{
+  CookiesUtilities.deleteCookie(request,response,COOKIE_NAME);
+}

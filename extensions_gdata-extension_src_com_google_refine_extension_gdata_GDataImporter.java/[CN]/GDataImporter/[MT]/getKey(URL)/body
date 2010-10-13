@@ -1,0 +1,33 @@
+{
+  String query=url.getQuery();
+  if (query != null) {
+    String[] parts=query.split("&");
+    int offset=-1;
+    int numParts=0;
+    String keyOrId="";
+    for (    String part : parts) {
+      if (part.startsWith("id=")) {
+        offset=("id=").length();
+        keyOrId=part.substring(offset);
+        numParts=4;
+        break;
+      }
+ else       if (part.startsWith("key=")) {
+        offset=("key=").length();
+        keyOrId=part.substring(offset);
+        if (keyOrId.startsWith("p") || !keyOrId.contains(".")) {
+          return keyOrId;
+        }
+        numParts=2;
+        break;
+      }
+    }
+    if (offset > -1) {
+      String[] dottedParts=keyOrId.split("\\.");
+      if (dottedParts.length == numParts) {
+        return dottedParts[0] + "." + dottedParts[1];
+      }
+    }
+  }
+  return null;
+}

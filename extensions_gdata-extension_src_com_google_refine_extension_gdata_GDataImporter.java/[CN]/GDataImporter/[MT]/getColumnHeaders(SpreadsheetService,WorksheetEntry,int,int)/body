@@ -1,0 +1,24 @@
+{
+  List<String> headers=new ArrayList<String>();
+  URL cellFeedUrl=worksheet.getCellFeedUrl();
+  CellQuery cellQuery=new CellQuery(cellFeedUrl);
+  if (startRow > 0) {
+    cellQuery.setMinimumRow(startRow + 1);
+  }
+  cellQuery.setMaximumRow(startRow + rows);
+  CellFeed topRowCellFeed=service.query(cellQuery,CellFeed.class);
+  List<CellEntry> cellEntries=topRowCellFeed.getEntries();
+  for (  CellEntry entry : cellEntries) {
+    com.google.gdata.data.spreadsheet.Cell cell=entry.getCell();
+    int r=cell.getRow() - 1;
+    if (cell != null) {
+      if (r == startRow) {
+        headers.add(cell.getValue().trim());
+      }
+ else       if (r < startRow + rows) {
+        headers.set(r,headers.get(r) + " " + cell.getValue().trim());
+      }
+    }
+  }
+  return headers;
+}

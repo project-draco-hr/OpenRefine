@@ -11,12 +11,18 @@
     }
     response.setCharacterEncoding("UTF-8");
     response.setHeader("Content-Type",exporter.getContentType());
-    if (exporter.takeWriter()) {
+    if (exporter instanceof WriterExporter) {
       PrintWriter writer=response.getWriter();
-      exporter.export(project,options,engine,writer);
+      ((WriterExporter)exporter).export(project,options,engine,writer);
+    }
+ else     if (exporter instanceof StreamExporter) {
+      ((StreamExporter)exporter).export(project,options,engine,response.getOutputStream());
+    }
+ else     if (exporter instanceof StreamExporter) {
+      ((StreamExporter)exporter).export(project,options,engine,response.getOutputStream());
     }
  else {
-      exporter.export(project,options,engine,response.getOutputStream());
+      respondException(response,new RuntimeException("Unknown exporter type"));
     }
   }
  catch (  Exception e) {

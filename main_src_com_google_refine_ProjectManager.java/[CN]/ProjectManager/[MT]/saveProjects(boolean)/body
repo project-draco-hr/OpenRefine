@@ -6,7 +6,7 @@ synchronized (this) {
       ProjectMetadata metadata=getProjectMetadata(id);
       Project project=_projects.get(id);
       if (project != null) {
-        boolean hasUnsavedChanges=metadata.getModified().getTime() > project.getLastSave().getTime();
+        boolean hasUnsavedChanges=metadata.getModified().getTime() >= project.getLastSave().getTime();
         if (hasUnsavedChanges) {
           long msecsOverdue=startTimeOfSave.getTime() - project.getLastSave().getTime();
           records.add(new SaveRecord(project,msecsOverdue));

@@ -1,6 +1,7 @@
 {
   SUT=null;
   writer=null;
+  ProjectManager.singleton.deleteProject(project.id);
   project=null;
   engine=null;
   options=null;

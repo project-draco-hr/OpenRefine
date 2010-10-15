@@ -1,7 +1,11 @@
 {
   SUT=new XlsExporter();
   stream=new ByteArrayOutputStream();
+  ProjectManager.singleton=new ProjectManagerStub();
+  projectMetadata=new ProjectMetadata();
   project=new Project();
+  projectMetadata.setName(TEST_PROJECT_NAME);
+  ProjectManager.singleton.registerProject(project,projectMetadata);
   engine=new Engine(project);
   options=mock(Properties.class);
 }

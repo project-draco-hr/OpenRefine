@@ -14,12 +14,12 @@
     if (exporter instanceof WriterExporter) {
       PrintWriter writer=response.getWriter();
       ((WriterExporter)exporter).export(project,options,engine,writer);
+      writer.flush();
     }
  else     if (exporter instanceof StreamExporter) {
-      ((StreamExporter)exporter).export(project,options,engine,response.getOutputStream());
-    }
- else     if (exporter instanceof StreamExporter) {
-      ((StreamExporter)exporter).export(project,options,engine,response.getOutputStream());
+      OutputStream stream=response.getOutputStream();
+      ((StreamExporter)exporter).export(project,options,engine,stream);
+      stream.flush();
     }
  else {
       respondException(response,new RuntimeException("Unknown exporter type"));

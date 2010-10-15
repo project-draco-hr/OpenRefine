@@ -1,0 +1,12 @@
+{
+  CreateGrid(2,2);
+  when(options.getProperty("printColumnHeader")).thenReturn("false");
+  try {
+    SUT.export(project,options,engine,stream);
+  }
+ catch (  IOException e) {
+    Assert.fail();
+  }
+  Assert.assertEquals(stream.toString(),"row0cell0,row0cell1\n" + "row1cell0,row1cell1\n");
+  verify(options,times(2)).getProperty("printColumnHeader");
+}

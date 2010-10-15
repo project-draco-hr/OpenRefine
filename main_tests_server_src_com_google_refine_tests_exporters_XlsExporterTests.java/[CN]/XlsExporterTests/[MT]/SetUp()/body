@@ -1,0 +1,7 @@
+{
+  SUT=new XlsExporter();
+  stream=new ByteArrayOutputStream();
+  project=new Project();
+  engine=new Engine(project);
+  options=mock(Properties.class);
+}

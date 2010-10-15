@@ -1,0 +1,10 @@
+{
+  CreateGrid(2,2);
+  try {
+    SUT.export(project,options,engine,stream);
+  }
+ catch (  IOException e) {
+    Assert.fail();
+  }
+  Assert.assertEquals(stream.toString(),"column0,column1\n" + "row0cell0,row0cell1\n" + "row1cell0,row1cell1\n");
+}

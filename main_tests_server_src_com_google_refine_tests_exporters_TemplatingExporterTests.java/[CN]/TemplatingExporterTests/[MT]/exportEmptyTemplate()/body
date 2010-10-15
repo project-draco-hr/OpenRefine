@@ -1,12 +1,8 @@
 {
-  String template="a simple test template";
-  String prefix="test prefix";
-  String suffix="test suffix";
-  String separator="|";
-  when(options.getProperty("template")).thenReturn(template);
+  when(options.getProperty("template")).thenReturn("a template that should never get used");
   when(options.getProperty("prefix")).thenReturn(prefix);
   when(options.getProperty("suffix")).thenReturn(suffix);
-  when(options.getProperty("separator")).thenReturn(separator);
+  when(options.getProperty("separator")).thenReturn(rowSeparator);
   try {
     SUT.export(project,options,engine,writer);
   }

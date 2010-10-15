@@ -1,11 +1,6 @@
 {
   CreateGrid(2,2);
-  String rowPrefix="boilerplate";
-  String cellSeparator="spacer";
   String template=rowPrefix + "${column0}" + cellSeparator+ "${column1}";
-  String prefix="test prefix>";
-  String suffix="<test suffix";
-  String rowSeparator="\n";
   when(options.getProperty("template")).thenReturn(template);
   when(options.getProperty("prefix")).thenReturn(prefix);
   when(options.getProperty("suffix")).thenReturn(suffix);

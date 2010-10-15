@@ -1,16 +1,15 @@
 {
+  when(options.getProperty("limit")).thenReturn("2");
   when(options.getProperty("template")).thenReturn(rowPrefix + "${column0}" + cellSeparator+ "${column1}"+ cellSeparator+ "${column2}");
   when(options.getProperty("prefix")).thenReturn(prefix);
   when(options.getProperty("suffix")).thenReturn(suffix);
   when(options.getProperty("separator")).thenReturn(rowSeparator);
   CreateGrid(3,3);
-  project.rows.get(1).cells.set(1,null);
-  project.rows.get(2).cells.set(0,null);
   try {
     SUT.export(project,options,engine,writer);
   }
  catch (  IOException e) {
     Assert.fail();
   }
-  Assert.assertEquals(writer.toString(),prefix + rowPrefix + "row0cell0"+ cellSeparator+ "row0cell1"+ cellSeparator+ "row0cell2"+ rowSeparator+ rowPrefix+ "row1cell0"+ cellSeparator+ cellSeparator+ "row1cell2"+ rowSeparator+ rowPrefix+ cellSeparator+ "row2cell1"+ cellSeparator+ "row2cell2"+ suffix);
+  Assert.assertEquals(writer.toString(),prefix + rowPrefix + "row0cell0"+ cellSeparator+ "row0cell1"+ cellSeparator+ "row0cell2"+ rowSeparator+ rowPrefix+ "row1cell0"+ cellSeparator+ "row1cell1"+ cellSeparator+ "row1cell2"+ suffix);
 }

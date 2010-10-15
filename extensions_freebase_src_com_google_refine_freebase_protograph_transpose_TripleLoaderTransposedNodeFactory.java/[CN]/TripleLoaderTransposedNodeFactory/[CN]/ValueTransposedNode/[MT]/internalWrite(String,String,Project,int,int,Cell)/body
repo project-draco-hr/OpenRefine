@@ -1,9 +1,18 @@
 {
-  if ("/type/text".equals(node.lang)) {
-    writeLine(subject,predicate,node.value,node.lang,project,subjectRowIndex,subjectCellIndex,subjectCell,!load);
-  }
+  Object value=node.value;
+  if (value != null) {
+    if ("/type/text".equals(node.valueType)) {
+      value=value.toString();
+      if (subject != null) {
+        writeLine(subject,predicate,value,node.lang,project,subjectRowIndex,subjectCellIndex,subjectCell,!load);
+      }
+    }
  else {
-    writeLine(subject,predicate,node.value,project,subjectRowIndex,subjectCellIndex,subjectCell,-1,-1,null,!load);
+      value=validateValue(value,node.valueType);
+      if (subject != null && value != null) {
+        writeLine(subject,predicate,value,project,subjectRowIndex,subjectCellIndex,subjectCell,-1,-1,null,!load);
+      }
+    }
   }
-  return node.value;
+  return value;
 }

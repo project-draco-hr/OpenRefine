@@ -1,0 +1,52 @@
+{
+  if ("/type/datetime".equals(valueType)) {
+    if (!(value instanceof String)) {
+      value=value.toString();
+    }
+  }
+ else   if ("/type/boolean".equals(valueType)) {
+    if (!(value instanceof Boolean)) {
+      value=Boolean.parseBoolean(value.toString());
+    }
+  }
+ else   if ("/type/int".equals(valueType)) {
+    if (value instanceof Number) {
+      value=((Number)value).longValue();
+    }
+ else {
+      try {
+        value=Long.parseLong(value.toString());
+      }
+ catch (      NumberFormatException e) {
+        value=null;
+      }
+    }
+  }
+ else   if ("/type/float".equals(valueType)) {
+    if (value instanceof Number) {
+      value=((Number)value).floatValue();
+    }
+ else {
+      try {
+        value=Float.parseFloat(value.toString());
+      }
+ catch (      NumberFormatException e) {
+        value=null;
+      }
+    }
+  }
+ else   if ("/type/double".equals(valueType)) {
+    if (value instanceof Number) {
+      value=((Number)value).doubleValue();
+    }
+ else {
+      try {
+        value=Double.parseDouble(value.toString());
+      }
+ catch (      NumberFormatException e) {
+        value=null;
+      }
+    }
+  }
+  return value;
+}

@@ -9,6 +9,8 @@
     if (typeID != null) {
       jsonWriter.key("type");
       jsonWriter.value(typeID);
+      jsonWriter.key("type_strict");
+      jsonWriter.value("should");
     }
     if (columnDetails.size() > 0) {
       jsonWriter.key("properties");

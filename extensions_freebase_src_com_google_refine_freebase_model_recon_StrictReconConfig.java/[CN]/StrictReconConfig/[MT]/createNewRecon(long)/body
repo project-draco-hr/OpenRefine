@@ -1,0 +1,3 @@
+{
+  return Recon.makeFreebaseRecon(historyEntryID);
+}

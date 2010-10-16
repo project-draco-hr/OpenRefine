@@ -1,0 +1,5 @@
+{
+  Recon recon=new Recon(historyEntryID,identifierSpace,schemaSpace);
+  recon.service=service;
+  return recon;
+}

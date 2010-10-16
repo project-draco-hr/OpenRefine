@@ -45,11 +45,16 @@
             JSONArray results=o2.getJSONArray("result");
             recon=createReconServiceResults(text,results,historyEntryID);
           }
+ else {
+            logger.warn("Service error for text: " + text + "\n  Job code: "+ job.code+ "\n  Response: "+ o2.toString());
+          }
         }
-        if (recon == null) {
-          recon=new Recon(historyEntryID,identifierSpace,schemaSpace);
+ else {
+          logger.warn("Service error for text: " + text + "\n  Job code: "+ job.code);
         }
-        recon.service=service;
+        if (recon != null) {
+          recon.service=service;
+        }
         recons.add(recon);
       }
     }

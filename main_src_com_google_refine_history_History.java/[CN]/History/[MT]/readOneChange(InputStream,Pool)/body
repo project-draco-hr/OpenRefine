@@ -1,5 +1,5 @@
 {
-  LineNumberReader reader=new LineNumberReader(new InputStreamReader(in));
+  LineNumberReader reader=new LineNumberReader(new InputStreamReader(in,"UTF-8"));
   try {
     return readOneChange(reader,pool);
   }

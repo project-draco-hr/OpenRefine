@@ -1,0 +1,3 @@
+{
+  load(new InputStreamReader(is,"UTF-8"));
+}

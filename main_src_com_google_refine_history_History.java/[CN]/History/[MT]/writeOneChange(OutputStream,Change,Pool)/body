@@ -1,5 +1,5 @@
 {
-  Writer writer=new OutputStreamWriter(out);
+  Writer writer=new OutputStreamWriter(out,"UTF-8");
   try {
     History.writeOneChange(writer,change,pool);
   }

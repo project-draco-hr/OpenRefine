@@ -7,7 +7,7 @@
       logger.warn("Error signaling overlay model before saving",e);
     }
   }
-  Writer writer=new OutputStreamWriter(out);
+  Writer writer=new OutputStreamWriter(out,"UTF-8");
   try {
     Properties options=new Properties();
     options.setProperty("mode","save");

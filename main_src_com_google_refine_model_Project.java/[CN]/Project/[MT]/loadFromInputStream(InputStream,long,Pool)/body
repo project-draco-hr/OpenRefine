@@ -1,0 +1,3 @@
+{
+  return loadFromReader(new LineNumberReader(new InputStreamReader(is,"UTF-8")),id,pool);
+}

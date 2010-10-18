@@ -1,0 +1,5 @@
+{
+  URL cellFeedUrl=getWorksheet(spreadsheet,worksheet).getCellFeedUrl();
+  CellEntry newEntry=new CellEntry(row,column,input);
+  service.insert(cellFeedUrl,newEntry);
+}

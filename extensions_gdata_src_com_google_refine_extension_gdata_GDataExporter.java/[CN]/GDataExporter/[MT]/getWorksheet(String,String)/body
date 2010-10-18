@@ -1,0 +1,11 @@
+{
+  SpreadsheetEntry spreadsheetEntry=getSpreadsheet(spreadsheet);
+  WorksheetQuery worksheetQuery=new WorksheetQuery(spreadsheetEntry.getWorksheetFeedUrl());
+  worksheetQuery.setTitleQuery(worksheet);
+  WorksheetFeed worksheetFeed=service.query(worksheetQuery,WorksheetFeed.class);
+  List<WorksheetEntry> worksheets=worksheetFeed.getEntries();
+  if (worksheets.isEmpty()) {
+    throw new Exception("No worksheets with that name in spreadhsheet " + spreadsheetEntry.getTitle().getPlainText());
+  }
+  return worksheets.get(0);
+}

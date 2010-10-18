@@ -2,7 +2,14 @@
   super.init();
   VERSION=getInitParameter("refine.version");
   REVISION=getInitParameter("refine.revision");
-  FULLNAME+=VERSION + " [" + REVISION+ "]";
+  if (VERSION.equals("$VERSION")) {
+    VERSION=ASSIGNED_VERSION;
+  }
+  if (REVISION.equals("$REVISION")) {
+    REVISION="TRUNK";
+  }
+  FULL_VERSION=VERSION + " [" + REVISION+ "]";
+  FULLNAME+=FULL_VERSION;
   logger.info("Starting " + FULLNAME + "...");
   s_singleton=this;
   logger.trace("> initialize");

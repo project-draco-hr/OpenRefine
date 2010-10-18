@@ -1,9 +1,0 @@
-{
-  WorksheetEntry worksheetEntry=getWorksheet(spreadsheet,worksheet);
-  CellFeed cellFeed=service.getFeed(worksheetEntry.getCellFeedUrl(),CellFeed.class);
-  List<CellEntry> cells=cellFeed.getEntries();
-  for (  CellEntry cell : cells) {
-    Link editLink=cell.getEditLink();
-    service.delete(new URL(editLink.getHref()));
-  }
-}

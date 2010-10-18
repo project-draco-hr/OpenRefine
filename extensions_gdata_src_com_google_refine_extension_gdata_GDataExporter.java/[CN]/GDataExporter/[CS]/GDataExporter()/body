@@ -1,4 +1,0 @@
-{
-  factory=FeedURLFactory.getDefault();
-  service=new SpreadsheetService("");
-}

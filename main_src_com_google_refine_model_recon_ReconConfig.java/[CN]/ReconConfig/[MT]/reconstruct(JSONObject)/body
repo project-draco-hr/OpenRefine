@@ -1,7 +1,7 @@
 {
   try {
     String mode=obj.getString("mode");
-    if ("extend".equals(mode) || "strict".equals("mode")) {
+    if ("extend".equals(mode) || "strict".equals(mode)) {
       mode="freebase/" + mode;
     }
  else     if ("heuristic".equals(mode)) {

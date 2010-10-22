@@ -1,7 +1,7 @@
 {
   if (subContexts != null) {
     for (    Context context : subContexts) {
-      context.transposedNode=null;
+      context.transposedNodes.clear();
       context.nullifySubContextNodes();
     }
   }

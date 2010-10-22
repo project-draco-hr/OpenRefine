@@ -1,0 +1,5 @@
+JSONObject engineConfig
+String fromColumnName
+String[] toColumnNames
+String[] judgments
+boolean applyToJudgedCells

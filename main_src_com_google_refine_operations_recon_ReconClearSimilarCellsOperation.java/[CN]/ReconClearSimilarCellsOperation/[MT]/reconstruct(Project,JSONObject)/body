@@ -1,0 +1,4 @@
+{
+  JSONObject engineConfig=obj.getJSONObject("engineConfig");
+  return new ReconClearSimilarCellsOperation(engineConfig,obj.getString("columnName"),obj.getString("similarValue"));
+}

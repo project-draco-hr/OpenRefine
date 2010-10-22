@@ -8,7 +8,7 @@
   writer.value(getEngineConfig());
   writer.key("columnName");
   writer.value(_columnName);
-  writer.key("clearData");
-  writer.value(_clearData);
+  writer.key("similarValue");
+  writer.value(_similarValue);
   writer.endObject();
 }

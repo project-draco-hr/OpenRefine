@@ -1,2 +1,3 @@
 JSONObject engineConfig
 String columnName
+boolean clearData

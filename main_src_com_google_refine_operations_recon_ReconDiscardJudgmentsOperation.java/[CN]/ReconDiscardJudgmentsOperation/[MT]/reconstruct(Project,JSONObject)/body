@@ -1,5 +1,4 @@
 {
   JSONObject engineConfig=obj.getJSONObject("engineConfig");
-  String columnName=obj.getString("columnName");
-  return new ReconDiscardJudgmentsOperation(engineConfig,columnName);
+  return new ReconDiscardJudgmentsOperation(engineConfig,obj.getString("columnName"),obj.has("clearData") && obj.getBoolean("clearData"));
 }

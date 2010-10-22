@@ -1,0 +1,7 @@
+{
+  String fromColumnName=request.getParameter("fromColumnName");
+  String[] toColumnNames=request.getParameterValues("toColumnName[]");
+  String[] judgments=request.getParameterValues("judgment[]");
+  boolean applyToJudgedCells=Boolean.parseBoolean(request.getParameter("applyToJudgedCells"));
+  return new ReconCopyAcrossColumnsOperation(engineConfig,fromColumnName,toColumnNames,judgments,applyToJudgedCells);
+}

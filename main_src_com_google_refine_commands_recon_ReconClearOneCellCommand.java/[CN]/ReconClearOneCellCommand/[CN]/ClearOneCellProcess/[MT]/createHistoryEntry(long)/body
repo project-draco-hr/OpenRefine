@@ -1,0 +1,30 @@
+{
+  Cell cell=_project.rows.get(rowIndex).getCell(cellIndex);
+  if (cell == null || !ExpressionUtils.isNonBlankData(cell.value)) {
+    throw new Exception("Cell is blank or error");
+  }
+  Column column=_project.columnModel.getColumnByCellIndex(cellIndex);
+  if (column == null) {
+    throw new Exception("No such column");
+  }
+  Judgment oldJudgment=cell.recon == null ? Judgment.None : cell.recon.judgment;
+  newCell=new Cell(cell.value,null);
+  ReconStats stats=column.getReconStats();
+  if (stats == null) {
+    stats=ReconStats.create(_project,cellIndex);
+  }
+ else {
+    int newChange=0;
+    int matchChange=0;
+    if (oldJudgment == Judgment.New) {
+      newChange--;
+    }
+    if (oldJudgment == Judgment.Matched) {
+      matchChange--;
+    }
+    stats=new ReconStats(stats.nonBlanks + 1,stats.newTopics + newChange,stats.matchedTopics + matchChange);
+  }
+  String description="Clear recon data for single cell on row " + (rowIndex + 1) + ", column "+ column.getName()+ ", containing \""+ cell.value+ "\"";
+  Change change=new ReconChange(new CellChange(rowIndex,cellIndex,cell,newCell),column.getName(),column.getReconConfig(),stats);
+  return new HistoryEntry(historyEntryID,_project,description,null,change);
+}

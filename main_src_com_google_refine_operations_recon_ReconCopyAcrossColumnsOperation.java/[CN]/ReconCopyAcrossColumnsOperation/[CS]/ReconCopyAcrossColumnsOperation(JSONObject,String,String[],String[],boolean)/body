@@ -1,0 +1,7 @@
+{
+  super(engineConfig);
+  _fromColumnName=fromColumnName;
+  _toColumnNames=toColumnNames;
+  _judgments=judgments;
+  _applyToJudgedCells=applyToJudgedCells;
+}

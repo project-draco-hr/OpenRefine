@@ -1,0 +1,4 @@
+{
+  JSONObject engineConfig=obj.getJSONObject("engineConfig");
+  return new ReconCopyAcrossColumnsOperation(engineConfig,obj.getString("fromColumnName"),JSONUtilities.getStringArray(obj,"toColumnNames"),JSONUtilities.getStringArray(obj,"judgments"),obj.getBoolean("applyToJudgedCells"));
+}

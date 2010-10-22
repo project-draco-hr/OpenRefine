@@ -1,4 +1,5 @@
 {
   String columnName=request.getParameter("columnName");
-  return new ReconDiscardJudgmentsOperation(engineConfig,columnName);
+  boolean clearData=Boolean.parseBoolean(request.getParameter("clearData"));
+  return new ReconDiscardJudgmentsOperation(engineConfig,columnName,clearData);
 }

@@ -9,7 +9,6 @@
         int cellIndex=column.getCellIndex();
         Cell cell=row.getCell(cellIndex);
         if (cell != null && ExpressionUtils.isNonBlankData(cell.value)) {
-          System.err.println("row " + rowIndex + " non-blank column "+ columnName);
           if (node2 instanceof CellTopicNode && (cell.recon == null || cell.recon.judgment == Judgment.None)) {
             return;
           }
@@ -25,9 +24,6 @@
               tnodes.add(nodeFactory.transposeCellNode(parentNode,link,node2,rowIndex,cellIndex,cell));
             }
           }
-        }
- else {
-          System.err.println("row " + rowIndex + " blank column "+ columnName);
         }
       }
     }
@@ -74,7 +70,6 @@
     for (int i=0; i < linkCount; i++) {
       Link link2=node2.getLink(i);
       if (link2.condition == null || link2.condition.test(project,rowIndex,row)) {
-        System.err.println("  row " + rowIndex + " descend "+ link2.property.id);
         descend(project,protograph,nodeFactory,rowIndex,row,link2.getTarget(),context.subContexts.get(i));
       }
     }

@@ -1,0 +1,29 @@
+{
+  if (args.length == 1) {
+    Object o1=args[0];
+    if (o1 != null && o1 instanceof String) {
+      String s=(String)o1;
+      if (fullValidKeyPattern.matcher(s).find()) {
+        return s;
+      }
+      StringBuffer sb=new StringBuffer();
+      int last=0;
+      Matcher m=keyCharMustQuotePattern.matcher(s);
+      while (m.find()) {
+        int start=m.start();
+        int end=m.end();
+        if (start > last) {
+          sb.append(s.substring(last,start));
+        }
+        last=end;
+        sb.append('$');
+        sb.append(StringUtils.leftPad(Integer.toHexString(s.charAt(start)).toUpperCase(),4,'0'));
+      }
+      if (last < s.length()) {
+        sb.append(s.substring(last));
+      }
+      return sb.toString();
+    }
+  }
+  return null;
+}

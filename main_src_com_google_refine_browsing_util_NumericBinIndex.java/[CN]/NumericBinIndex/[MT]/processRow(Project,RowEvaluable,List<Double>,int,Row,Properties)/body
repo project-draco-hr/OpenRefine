@@ -13,8 +13,12 @@
         }
  else         if (ExpressionUtils.isNonBlankData(v)) {
           if (v instanceof Number) {
-            _hasNumeric=true;
-            processValue(((Number)v).doubleValue(),allValues);
+            if (processValue(((Number)v).doubleValue(),allValues)) {
+              _hasNumeric=true;
+            }
+ else {
+              _hasError=true;
+            }
           }
  else {
             _hasNonNumeric=true;
@@ -33,8 +37,12 @@
         }
  else         if (ExpressionUtils.isNonBlankData(v)) {
           if (v instanceof Number) {
-            _hasNumeric=true;
-            processValue(((Number)v).doubleValue(),allValues);
+            if (processValue(((Number)v).doubleValue(),allValues)) {
+              _hasNumeric=true;
+            }
+ else {
+              _hasError=true;
+            }
           }
  else {
             _hasNonNumeric=true;
@@ -48,8 +56,12 @@
  else {
       _totalValueCount++;
       if (value instanceof Number) {
-        _hasNumeric=true;
-        processValue(((Number)value).doubleValue(),allValues);
+        if (processValue(((Number)value).doubleValue(),allValues)) {
+          _hasNumeric=true;
+        }
+ else {
+          _hasError=true;
+        }
       }
  else {
         _hasNonNumeric=true;

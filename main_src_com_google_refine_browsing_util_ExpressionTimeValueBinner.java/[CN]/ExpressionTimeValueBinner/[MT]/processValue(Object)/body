@@ -3,6 +3,9 @@
     hasError=true;
   }
  else   if (ExpressionUtils.isNonBlankData(value)) {
+    if (value instanceof Calendar) {
+      value=((Calendar)value).getTime();
+    }
     if (value instanceof Date) {
       long t=((Date)value).getTime();
       hasTime=true;

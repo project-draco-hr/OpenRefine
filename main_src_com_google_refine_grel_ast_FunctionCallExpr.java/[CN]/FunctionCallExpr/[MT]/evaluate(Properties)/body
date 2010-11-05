@@ -7,5 +7,10 @@
     }
     args[i]=v;
   }
-  return _function.call(bindings,args);
+  try {
+    return _function.call(bindings,args);
+  }
+ catch (  Exception e) {
+    return new EvalError(e.toString());
+  }
 }

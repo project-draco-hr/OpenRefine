@@ -1,4 +1,10 @@
 {
-  Object o=args[0].evaluate(bindings);
+  Object o;
+  try {
+    o=args[0].evaluate(bindings);
+  }
+ catch (  Exception e) {
+    o=new EvalError(e.toString());
+  }
   return test(o);
 }

@@ -1,5 +1,6 @@
 {
-  String input="ignore1\n" + "ignore2\n" + "ignore3\n"+ "col1,col2,col3\n"+ "sub1,sub2,sub3\n"+ "skip1\n"+ "skip2\n"+ "data-row1-cell1,data-row1-cell2,data-row1-cell3\n"+ "data-row2-cell1,data-row2-cell2,\n"+ "data-row3-cell1,data-row3-cell2,data-row1-cell3";
+  String inputSeparator=sep == "\t" ? "\t" : ",";
+  String input="ignore1\n" + "ignore2\n" + "ignore3\n"+ "col1" + inputSeparator + "col2"+ inputSeparator+ "col3\n"+ "sub1"+ inputSeparator+ "sub2"+ inputSeparator+ "sub3\n"+ "skip1\n"+ "skip2\n"+ "data-row1-cell1"+ inputSeparator+ "data-row1-cell2"+ inputSeparator+ "data-row1-cell3\n"+ "data-row2-cell1"+ inputSeparator+ "data-row2-cell2"+ inputSeparator+ "\n"+ "data-row3-cell1"+ inputSeparator+ "data-row3-cell2"+ inputSeparator+ "data-row1-cell3";
   LineNumberReader lnReader=new LineNumberReader(new StringReader(input));
   try {
     SUT.read(lnReader,project,sep,2,2,3,2,false,true,false);

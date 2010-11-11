@@ -1,0 +1,5 @@
+{
+  SUT=new FixedWidthImporter();
+  project=new Project();
+  properties=mock(Properties.class);
+}

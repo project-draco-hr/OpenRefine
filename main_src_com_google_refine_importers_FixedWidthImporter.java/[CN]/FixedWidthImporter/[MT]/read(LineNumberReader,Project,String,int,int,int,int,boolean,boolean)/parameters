@@ -1,0 +1,9 @@
+LineNumberReader lnReader
+Project project
+String sep
+int limit
+int skip
+int ignoreLines
+int headerLines
+boolean guessValueType
+boolean splitIntoColumns

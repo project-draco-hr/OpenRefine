@@ -1,0 +1,11 @@
+{
+  boolean splitIntoColumns=ImporterUtilities.getBooleanOption("split-into-columns",options,true);
+  String columnWidths=options.getProperty("fixed-column-widths");
+  int ignoreLines=ImporterUtilities.getIntegerOption("ignore",options,-1);
+  int headerLines=ImporterUtilities.getIntegerOption("header-lines",options,1);
+  int limit=ImporterUtilities.getIntegerOption("limit",options,-1);
+  int skip=ImporterUtilities.getIntegerOption("skip",options,0);
+  boolean guessValueType=ImporterUtilities.getBooleanOption("guess-value-type",options,true);
+  LineNumberReader lnReader=new LineNumberReader(reader);
+  read(lnReader,project,columnWidths,limit,skip,ignoreLines,headerLines,guessValueType,splitIntoColumns);
+}

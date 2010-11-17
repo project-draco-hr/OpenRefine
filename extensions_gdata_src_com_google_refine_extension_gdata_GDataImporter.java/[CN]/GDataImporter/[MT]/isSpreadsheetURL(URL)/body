@@ -1,0 +1,4 @@
+{
+  String host=url.getHost();
+  return host.endsWith(".google.com") && host.contains("spreadsheet");
+}

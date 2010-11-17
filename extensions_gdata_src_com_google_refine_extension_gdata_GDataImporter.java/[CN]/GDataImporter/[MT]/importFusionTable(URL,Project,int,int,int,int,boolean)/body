@@ -1,0 +1,41 @@
+{
+  GoogleService service=new GoogleService("fusiontables",SERVICE_APP_NAME);
+  String tableId=getFusionTableKey(url);
+  final String SERVICE_URL="http://www.google.com/fusiontables/api/query";
+  final String selectQuery="select * from " + tableId + " offset "+ (dataStart)+ (limit > 0 ? (" limit " + limit) : "");
+  URL queryUrl=new URL(SERVICE_URL + "?sql=" + URLEncoder.encode(selectQuery,"UTF-8"));
+  GDataRequest queryRequest=service.getRequestFactory().getRequest(RequestType.QUERY,queryUrl,ContentType.TEXT_PLAIN);
+  queryRequest.execute();
+  Scanner scanner=new Scanner(queryRequest.getResponseStream(),"UTF-8");
+  List<String> columnHeaders=getTableRow(scanner);
+  int columnCount=columnHeaders.size();
+  project.columnModel.setMaxCellIndex(columnCount);
+  boolean validColumn[]=new boolean[columnCount];
+  int index=0;
+  for (  String name : columnHeaders) {
+    Column column=new Column(index,name + " " + index);
+    project.columnModel.columns.add(column);
+    validColumn[index++]=true;
+  }
+  for (int i=index; index < columnCount; index++) {
+    Column column=new Column(index,"Column " + index);
+    project.columnModel.columns.add(column);
+    validColumn[i]=true;
+  }
+  List<String> values=columnHeaders;
+  while (values != null) {
+    Row row=new Row(columnCount);
+    for (    String valString : values) {
+      valString=valString.trim();
+      if (ExpressionUtils.isNonBlankData(valString)) {
+        Serializable value=guessValueType ? ImporterUtilities.parseCellValue(valString) : valString;
+        row.cells.add(new Cell(value,null));
+      }
+ else {
+        row.cells.add(null);
+      }
+      project.rows.add(row);
+      values=getTableRow(scanner);
+    }
+  }
+}

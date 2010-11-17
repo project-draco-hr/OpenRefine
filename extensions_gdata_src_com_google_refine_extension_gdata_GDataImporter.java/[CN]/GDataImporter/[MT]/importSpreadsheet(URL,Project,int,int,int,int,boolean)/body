@@ -1,0 +1,71 @@
+{
+  SpreadsheetService service=new SpreadsheetService(SERVICE_APP_NAME);
+  String spreadsheetKey=getSpreadsheetKey(url);
+  WorksheetEntry worksheet;
+  try {
+    worksheet=getWorksheetEntries(service,spreadsheetKey).get(0);
+  }
+ catch (  InvalidEntryException e) {
+    throw new RuntimeException("Failed to open spreadsheet " + e.getResponseBody(),e);
+  }
+  List<String> columnHeaders=getColumnHeaders(service,worksheet,ignoreLines,headerLines);
+  int columnCount=worksheet.getColCount();
+  project.columnModel.setMaxCellIndex(columnCount);
+  boolean validColumn[]=new boolean[columnCount];
+  int index=0;
+  for (  String name : columnHeaders) {
+    Column column=new Column(index,name + " " + index);
+    project.columnModel.columns.add(column);
+    validColumn[index++]=true;
+  }
+  for (int i=index; index < columnCount; index++) {
+    Column column=new Column(index,"Column " + index);
+    project.columnModel.columns.add(column);
+    validColumn[i]=true;
+  }
+  int previousRow=dataStart - 1;
+  int previousCol=-1;
+  List<CellEntry> cellEntries=getCells(service,worksheet,dataStart);
+  Row row=null;
+  for (  CellEntry cellEntry : cellEntries) {
+    com.google.gdata.data.spreadsheet.Cell cell=cellEntry.getCell();
+    if (cell == null) {
+      continue;
+    }
+    int r=cell.getRow() - 1;
+    int c=cell.getCol() - 1;
+    if (limit > 0 && r > limit) {
+      break;
+    }
+    if (r > previousRow) {
+      if (row != null) {
+        project.rows.add(row);
+      }
+      while (previousRow < r - 1) {
+        project.rows.add(new Row(columnCount));
+        previousRow++;
+      }
+      row=new Row(columnCount);
+      previousRow=r;
+      previousCol=0;
+    }
+    for (int col=previousCol + 1; col < c; col++) {
+      row.cells.add(new Cell("",null));
+    }
+    previousCol=c;
+    String s=cell.getValue();
+    if (s != null) {
+      s=s.trim();
+    }
+    if (ExpressionUtils.isNonBlankData(s)) {
+      Serializable value=guessValueType ? ImporterUtilities.parseCellValue(s) : s;
+      row.cells.add(new Cell(value,null));
+    }
+ else {
+      row.cells.add(null);
+    }
+  }
+  if (row != null) {
+    project.rows.add(row);
+  }
+}

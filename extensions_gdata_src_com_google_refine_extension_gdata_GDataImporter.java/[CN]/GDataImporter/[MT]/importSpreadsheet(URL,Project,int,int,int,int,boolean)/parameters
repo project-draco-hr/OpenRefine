@@ -1,0 +1,7 @@
+URL url
+Project project
+int ignoreLines
+int headerLines
+int limit
+int dataStart
+boolean guessValueType

@@ -1,4 +1,0 @@
-{
-  if (i <= 1)   return 1;
- else   return i * Fact.factorial(i - 1);
-}

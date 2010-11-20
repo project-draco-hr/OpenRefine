@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns the greatest common denominator of the two numbers");
+  writer.key("params");
+  writer.value("number d, number e");
+  writer.key("returns");
+  writer.value("number");
+  writer.endObject();
+}

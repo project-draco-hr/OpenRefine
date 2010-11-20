@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns the factorial of a number");
+  writer.key("params");
+  writer.value("number i");
+  writer.key("returns");
+  writer.value("number");
+  writer.endObject();
+}

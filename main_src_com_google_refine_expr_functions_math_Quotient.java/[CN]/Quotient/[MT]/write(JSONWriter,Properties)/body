@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns the integer portion of a division");
+  writer.key("params");
+  writer.value("number numerator, number denominator");
+  writer.key("returns");
+  writer.value("number");
+  writer.endObject();
+}

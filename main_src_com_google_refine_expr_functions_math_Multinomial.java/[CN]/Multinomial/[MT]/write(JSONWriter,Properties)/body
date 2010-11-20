@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Calculates the multinomial of a series of numbers");
+  writer.key("params");
+  writer.value("one or more numbers");
+  writer.key("returns");
+  writer.value("number");
+  writer.endObject();
+}

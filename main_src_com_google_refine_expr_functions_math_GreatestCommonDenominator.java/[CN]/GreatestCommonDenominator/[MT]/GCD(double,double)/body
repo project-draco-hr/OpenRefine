@@ -1,0 +1,3 @@
+{
+  return b == 0 ? a : GCD(b,a % b);
+}

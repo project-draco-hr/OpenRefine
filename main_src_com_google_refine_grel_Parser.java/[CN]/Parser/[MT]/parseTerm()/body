@@ -1,6 +1,6 @@
 {
   Evaluable factor=parseFactor();
-  while (_token != null && _token.type == TokenType.Operator && "*/".indexOf(_token.text) >= 0) {
+  while (_token != null && _token.type == TokenType.Operator && "*/%".indexOf(_token.text) >= 0) {
     String op=_token.text;
     next(true);
     Evaluable factor2=parseFactor();

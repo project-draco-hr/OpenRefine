@@ -1,0 +1,4 @@
+{
+  double temp=Math.ceil(d);
+  return ((temp % 2) == 0) ? temp : temp + 1;
+}

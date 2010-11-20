@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Converts an angle in degrees to radians");
+  writer.key("params");
+  writer.value("number d");
+  writer.key("returns");
+  writer.value("number");
+  writer.endObject();
+}

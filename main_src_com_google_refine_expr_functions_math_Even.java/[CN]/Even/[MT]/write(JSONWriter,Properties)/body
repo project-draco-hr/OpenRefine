@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Rounds the number up to the nearest even integer");
+  writer.key("params");
+  writer.value("number d");
+  writer.key("returns");
+  writer.value("number");
+  writer.endObject();
+}

@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Returns the hyperbolic cosine of a value");
+  writer.key("params");
+  writer.value("number d");
+  writer.key("returns");
+  writer.value("number");
+  writer.endObject();
+}

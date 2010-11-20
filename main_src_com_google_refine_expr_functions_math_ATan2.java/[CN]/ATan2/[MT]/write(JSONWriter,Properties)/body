@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Converts rectangular coordinates (x, y) to polar (r, theta)");
+  writer.key("params");
+  writer.value("number x, number y");
+  writer.key("returns");
+  writer.value("number theta");
+  writer.endObject();
+}

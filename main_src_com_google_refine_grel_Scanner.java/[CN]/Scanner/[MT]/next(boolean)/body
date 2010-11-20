@@ -110,7 +110,7 @@
     }
     detail="Regex not properly closed";
   }
- else   if ("+-*/.".indexOf(c) >= 0) {
+ else   if ("+-*/.%".indexOf(c) >= 0) {
     _index++;
     return new Token(start,_index,TokenType.Operator,_text.substring(start,_index));
   }

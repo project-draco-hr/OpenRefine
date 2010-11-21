@@ -8,7 +8,6 @@
     ProjectManager.singleton.dispose();
     ProjectManager.singleton=null;
   }
-  this.config=null;
   logger.trace("< destroy");
   super.destroy();
 }

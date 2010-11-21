@@ -1,6 +1,6 @@
 {
   logger.info("Importing '{}'",fileName);
-  if (fileName.endsWith(".zip") || fileName.endsWith(".tar.gz") || fileName.endsWith(".tgz")|| fileName.endsWith(".tar.bz2")) {
+  if (fileName.endsWith(".zip") || fileName.endsWith(".tar") || fileName.endsWith(".tar.gz")|| fileName.endsWith(".tgz")|| fileName.endsWith(".tar.bz2")) {
     File file=save(inputStream);
     HashMap<String,Integer> ext_map=new HashMap<String,Integer>();
     FileInputStream fis=new FileInputStream(file);

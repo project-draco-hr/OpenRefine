@@ -7,28 +7,39 @@
     inputStream.reset();
     CharsetDetector detector=new CharsetDetector();
     detector.setDeclaredEncoding("utf8");
-    Reader reader=null;
+    options.setProperty("encoding_confidence","0");
+    InputStreamReader reader=null;
     CharsetMatch[] charsetMatches=detector.setText(bytes).detectAll();
-    for (    CharsetMatch charsetMatch : charsetMatches) {
-      try {
-        int confidence=charsetMatch.getConfidence();
-        if (confidence >= 50) {
+    if (charsetMatches.length > 0) {
+      CharsetMatch charsetMatch=charsetMatches[0];
+      int confidence=charsetMatch.getConfidence();
+      if (confidence >= 20) {
+        try {
           reader=new InputStreamReader(inputStream,charsetMatch.getName());
-          options.setProperty("encoding",charsetMatch.getName());
-          options.setProperty("encoding_confidence",Integer.toString(confidence));
-          logger.info("Best encoding guess: {} [confidence: {}]",charsetMatch.getName(),charsetMatch.getConfidence());
         }
-        break;
+ catch (        UnsupportedEncodingException e) {
+        }
+        options.setProperty("encoding_confidence",Integer.toString(confidence));
+        logger.info("Best encoding guess: {} [confidence: {}]",charsetMatch.getName(),charsetMatch.getConfidence());
       }
- catch (      UnsupportedEncodingException e) {
+ else {
+        logger.debug("Poor encoding guess: {} [confidence: {}]",charsetMatch.getName(),charsetMatch.getConfidence());
       }
     }
     if (reader == null) {
-      reader=encoding != null ? new InputStreamReader(inputStream,encoding) : new InputStreamReader(inputStream);
+      if (encoding != null) {
+        reader=new InputStreamReader(inputStream,encoding);
+      }
+ else {
+        reader=new InputStreamReader(inputStream);
+      }
     }
+    options.setProperty("encoding",reader.getEncoding());
     ((ReaderImporter)importer).read(reader,project,metadata,options);
   }
  else {
+    options.setProperty("encoding",encoding);
+    options.setProperty("encoding_confidence","0");
     ((StreamImporter)importer).read(rawInputStream,project,metadata,options);
   }
 }

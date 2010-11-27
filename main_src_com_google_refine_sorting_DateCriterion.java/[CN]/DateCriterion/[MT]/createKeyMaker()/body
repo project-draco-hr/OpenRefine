@@ -12,7 +12,7 @@
           return s_error;
         }
       }
-      return value;
+      return null;
     }
     @Override public int compareKeys(    Object key1,    Object key2){
       return ((Date)key1).compareTo((Date)key2);

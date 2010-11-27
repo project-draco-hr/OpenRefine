@@ -9,5 +9,6 @@
     }
   }
  catch (  Exception e) {
+    logger.error("Exception from XML parse",e);
   }
 }

@@ -38,7 +38,9 @@
     ((ReaderImporter)importer).read(reader,project,metadata,options);
   }
  else {
-    options.setProperty("encoding",encoding);
+    if (encoding != null) {
+      options.setProperty("encoding",encoding);
+    }
     options.setProperty("encoding_confidence","0");
     ((StreamImporter)importer).read(rawInputStream,project,metadata,options);
   }

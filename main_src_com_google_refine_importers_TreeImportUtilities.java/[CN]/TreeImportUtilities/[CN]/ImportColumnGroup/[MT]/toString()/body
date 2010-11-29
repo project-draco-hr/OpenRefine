@@ -1,0 +1,3 @@
+{
+  return String.format("name=%s, columns={%s}, subgroups={{%s}}",name,StringUtils.join(columns.keySet(),','),StringUtils.join(subgroups.keySet(),','));
+}

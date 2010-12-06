@@ -1,0 +1,13 @@
+{
+  if (args.length >= 1) {
+    Object o1=args[0];
+    if (o1 != null && o1 instanceof Element) {
+      Element e1=(Element)o1;
+      return e1.text();
+    }
+ else {
+      return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " failed as the first parameter is not an HTML Element.  Please first use parseHtml(string) and select(query) prior to using this function");
+    }
+  }
+  return null;
+}

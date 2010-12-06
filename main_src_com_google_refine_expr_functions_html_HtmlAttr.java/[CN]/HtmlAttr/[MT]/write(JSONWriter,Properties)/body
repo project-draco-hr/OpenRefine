@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Selects a value from an attribute on an Html Element");
+  writer.key("params");
+  writer.value("Element e, String s");
+  writer.key("returns");
+  writer.value("String attribute Value");
+  writer.endObject();
+}

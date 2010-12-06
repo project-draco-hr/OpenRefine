@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("The innerHtml of an HTML element");
+  writer.key("params");
+  writer.value("Element e");
+  writer.key("returns");
+  writer.value("String innerHtml");
+  writer.endObject();
+}

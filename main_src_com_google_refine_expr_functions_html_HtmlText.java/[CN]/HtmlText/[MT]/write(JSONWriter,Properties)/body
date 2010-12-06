@@ -1,0 +1,10 @@
+{
+  writer.object();
+  writer.key("description");
+  writer.value("Selects the text from within an element");
+  writer.key("params");
+  writer.value("Element e");
+  writer.key("returns");
+  writer.value("String text");
+  writer.endObject();
+}

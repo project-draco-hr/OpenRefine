@@ -1,0 +1,6 @@
+{
+  super();
+  collator=Collator.getInstance();
+  collator.setDecomposition(Collator.FULL_DECOMPOSITION);
+  collator.setStrength(Collator.SECONDARY);
+}

@@ -2,5 +2,6 @@
   super.initializeFromJSON(project,obj);
   if (obj.has("caseSensitive") && !obj.isNull("caseSensitive")) {
     caseSensitive=obj.getBoolean("caseSensitive");
+    collator.setStrength(Collator.IDENTICAL);
   }
 }

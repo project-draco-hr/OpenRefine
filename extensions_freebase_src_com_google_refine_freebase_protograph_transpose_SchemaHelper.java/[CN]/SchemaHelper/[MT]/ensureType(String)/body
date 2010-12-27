@@ -1,0 +1,13 @@
+{
+  if (types.containsKey(typeID)) {
+    return;
+  }
+  TypeInfo info=new TypeInfo();
+  types.put(typeID,info);
+  JSONObject obj=getJson(helperURL + "get_type_data" + typeID);
+  if (obj != null) {
+    if (!obj.isNull("includes")) {
+      info.includedTypes=JSONUtilities.getStringArray(obj,"includes");
+    }
+  }
+}

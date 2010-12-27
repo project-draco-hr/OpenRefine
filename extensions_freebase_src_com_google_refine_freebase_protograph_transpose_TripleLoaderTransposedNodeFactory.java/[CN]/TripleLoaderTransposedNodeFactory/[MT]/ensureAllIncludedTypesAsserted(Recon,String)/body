@@ -1,0 +1,11 @@
+{
+  ensureOneTypeAsserted(recon,typeID);
+  String[] includedTypeIDs=schemaHelper.getIncludedTypeIDs(typeID);
+  if (includedTypeIDs != null) {
+    for (    String typeID2 : includedTypeIDs) {
+      if (!"/type/object".equals(typeID2)) {
+        ensureOneTypeAsserted(recon,typeID2);
+      }
+    }
+  }
+}

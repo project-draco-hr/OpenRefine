@@ -1,0 +1,17 @@
+{
+  Set<Long> assertedReconIDSet=getAssertedReconIDSet(typeID);
+  if (!assertedReconIDSet.contains(recon.id)) {
+    assertedReconIDSet.add(recon.id);
+    String subject=recon.judgment == Judgment.New ? newTopicVars.get(recon.id) : recon.match.id;
+    StringBuffer sb=new StringBuffer();
+    sb.append("{ \"s\" : \"");
+    sb.append(subject);
+    sb.append('"');
+    sb.append(", \"p\" : \"type\"");
+    sb.append(", \"o\" : \"");
+    sb.append(typeID);
+    sb.append('"');
+    sb.append(" }");
+    writeLine(sb.toString());
+  }
+}

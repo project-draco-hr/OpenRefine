@@ -4,6 +4,12 @@
     int objectRowIndex=rowIndex;
     int objectCellIndex=cellIndex;
     Cell objectCell=cell;
+    String typeID=node.type.id;
+    Column column=project.columnModel.getColumnByCellIndex(cellIndex);
+    ReconConfig reconConfig=column.getReconConfig();
+    if (reconConfig instanceof StandardReconConfig) {
+      typeID=((StandardReconConfig)reconConfig).typeID;
+    }
     if (cell.recon.judgment == Recon.Judgment.Matched) {
       id=cell.recon.match.id;
     }
@@ -12,7 +18,6 @@
         id=newTopicVars.get(cell.recon.id);
       }
  else {
-        Column column=project.columnModel.getColumnByCellIndex(cellIndex);
         String columnName=column.getName();
         long var=0;
         if (varPool.containsKey(columnName)) {
@@ -20,22 +25,18 @@
         }
         varPool.put(columnName,var + 1);
         id="$" + columnName.replaceAll("\\W+","_") + "_"+ var;
-        String typeID=node.type.id;
-        ReconConfig reconConfig=column.getReconConfig();
-        if (reconConfig instanceof StandardReconConfig) {
-          typeID=((StandardReconConfig)reconConfig).typeID;
-        }
         writeLine(id,"type",typeID,project,rowIndex,cellIndex,cell,-1,-1,(Cell)null,!load);
         writeLine(id,"name",cell.value,project,-1,-1,(Cell)null,-1,-1,(Cell)null,!load);
-        if (cell.recon != null) {
-          newTopicVars.put(cell.recon.id,id);
-        }
+        getAssertedReconIDSet(typeID).add(cell.recon.id);
+        newTopicVars.put(cell.recon.id,id);
       }
     }
  else {
       return null;
     }
+    ensureAllIncludedTypesAsserted(cell.recon,typeID);
     if (subject != null) {
+      ensureToTypesAsserted(cell.recon,predicate);
       writeLine(subject,predicate,id,project,subjectRowIndex,subjectCellIndex,subjectCell,objectRowIndex,objectCellIndex,objectCell,!load);
     }
     writeChildren(id,project,objectRowIndex,objectCellIndex,objectCell);

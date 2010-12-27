@@ -1,0 +1,4 @@
+{
+  ensureProperty(propertyID);
+  return properties.get(propertyID).toTypeID;
+}

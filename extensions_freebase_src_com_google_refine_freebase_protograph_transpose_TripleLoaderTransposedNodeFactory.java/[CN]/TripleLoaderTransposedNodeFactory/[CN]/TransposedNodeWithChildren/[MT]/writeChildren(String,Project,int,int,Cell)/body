@@ -1,8 +1,12 @@
 {
+  Recon recon=subjectCell.recon != null && (subjectCell.recon.judgment == Judgment.Matched || subjectCell.recon.judgment == Judgment.New) ? subjectCell.recon : null;
   for (int i=0; i < children.size(); i++) {
     WritingTransposedNode child=children.get(i);
     Link link=links.get(i);
     String predicate=link.property.id;
+    if (recon != null) {
+      ensureFromTypesAsserted(recon,predicate);
+    }
     child.write(subject,predicate,project,subjectRowIndex,subjectCellIndex,subjectCell);
   }
 }

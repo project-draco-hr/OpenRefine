@@ -1,0 +1,8 @@
+{
+  Set<Long> assertedReconIDSet=typeIDToAssertedReconIDs.get(typeID);
+  if (assertedReconIDSet == null) {
+    assertedReconIDSet=new HashSet<Long>();
+    typeIDToAssertedReconIDs.put(typeID,assertedReconIDSet);
+  }
+  return assertedReconIDSet;
+}

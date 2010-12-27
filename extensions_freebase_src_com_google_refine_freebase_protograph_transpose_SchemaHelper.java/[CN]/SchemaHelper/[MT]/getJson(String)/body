@@ -1,0 +1,20 @@
+{
+  try {
+    URL url=new URL(urlString);
+    InputStream is=url.openStream();
+    try {
+      String s=ParsingUtilities.inputStreamToString(is);
+      return ParsingUtilities.evaluateJsonStringToObject(s);
+    }
+  finally {
+      is.close();
+    }
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+catch (  JSONException e) {
+    e.printStackTrace();
+  }
+  return null;
+}

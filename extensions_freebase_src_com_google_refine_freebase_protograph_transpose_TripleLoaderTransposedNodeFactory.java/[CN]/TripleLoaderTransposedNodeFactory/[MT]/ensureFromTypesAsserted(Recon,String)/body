@@ -1,0 +1,6 @@
+{
+  String fromTypeID=schemaHelper.getPropertyFromType(propertyID);
+  if (fromTypeID != null) {
+    ensureAllIncludedTypesAsserted(recon,fromTypeID);
+  }
+}

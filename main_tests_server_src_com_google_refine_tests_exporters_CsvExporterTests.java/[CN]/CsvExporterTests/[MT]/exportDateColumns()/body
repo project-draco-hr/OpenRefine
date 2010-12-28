@@ -1,0 +1,16 @@
+{
+  CreateGrid(1,1);
+  Calendar calendar=Calendar.getInstance();
+  Date date=new Date();
+  when(options.getProperty("printColumnHeader")).thenReturn("false");
+  project.rows.get(0).cells.set(0,new Cell(calendar,null));
+  project.rows.get(0).cells.set(1,new Cell(date,null));
+  try {
+    SUT.export(project,options,engine,writer);
+  }
+ catch (  IOException e) {
+    Assert.fail();
+  }
+  String expectedOutput=ParsingUtilities.dateToString(calendar.getTime()) + "," + ParsingUtilities.dateToString(date)+ "\n";
+  Assert.assertEquals(writer.toString(),expectedOutput);
+}

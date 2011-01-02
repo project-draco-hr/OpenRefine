@@ -1,0 +1,53 @@
+{
+  InputStream archiveIS=null;
+  if (fileNameOrUrl != null) {
+    try {
+      if (fileNameOrUrl.endsWith(".tar.gz") || fileNameOrUrl.endsWith(".tar.gz.gz") || fileNameOrUrl.endsWith(".tgz")) {
+        archiveIS=new TarInputStream(new GZIPInputStream(is));
+      }
+ else       if (fileNameOrUrl.endsWith(".tar.bz2")) {
+        archiveIS=new TarInputStream(new CBZip2InputStream(is));
+      }
+ else       if (fileNameOrUrl.endsWith(".tar")) {
+        archiveIS=new TarInputStream(is);
+      }
+ else       if (fileNameOrUrl.endsWith(".zip")) {
+        archiveIS=new ZipInputStream(is);
+      }
+    }
+ catch (    IOException e) {
+      archiveIS=null;
+    }
+  }
+  job.bytesSaved=0;
+  if (archiveIS == null) {
+    saveStreamToFile(is,file,job,true,expectedSize);
+  }
+ else {
+    job.retrievingProgress=-1;
+    if (archiveIS instanceof TarInputStream) {
+      TarInputStream tis=(TarInputStream)archiveIS;
+      TarEntry te;
+      while ((te=tis.getNextEntry()) != null) {
+        if (!te.isDirectory()) {
+          saveStreamToFile(tis,new File(file,te.getName()),job,false,0);
+        }
+      }
+    }
+ else     if (archiveIS instanceof ZipInputStream) {
+      ZipInputStream zis=(ZipInputStream)archiveIS;
+      ZipEntry ze;
+      long compressedSize=0;
+      while ((ze=zis.getNextEntry()) != null) {
+        if (!ze.isDirectory()) {
+          saveStreamToFile(zis,new File(file,ze.getName()),job,false,0);
+          compressedSize+=ze.getCompressedSize();
+          if (compressedSize > 0) {
+            job.retrievingProgress=(int)(compressedSize * 100 / expectedSize);
+          }
+        }
+      }
+    }
+  }
+  return job.bytesSaved;
+}

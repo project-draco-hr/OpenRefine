@@ -1,0 +1,5 @@
+InputStream is
+File file
+ImportJob job
+boolean updateProgress
+long expectedSize

@@ -1,0 +1,5 @@
+{
+  if (obj.has("originalFileName")) {
+    originalFileName=obj.getString("originalFileName");
+  }
+}

@@ -1,0 +1,6 @@
+InputStream is
+File file
+String contentType
+String fileNameOrUrl
+ImportJob job
+long expectedSize

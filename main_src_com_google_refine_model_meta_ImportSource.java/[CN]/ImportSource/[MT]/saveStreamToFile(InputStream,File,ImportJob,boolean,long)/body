@@ -1,0 +1,16 @@
+{
+  byte data[]=new byte[4096];
+  file.getParentFile().mkdirs();
+  FileOutputStream fos=new FileOutputStream(file);
+  BufferedOutputStream bos=new BufferedOutputStream(fos,data.length);
+  int count;
+  while ((count=is.read(data,0,data.length)) != -1) {
+    bos.write(data,0,count);
+    job.bytesSaved+=count;
+    if (updateProgress) {
+      job.retrievingProgress=(int)(job.bytesSaved * 100 / expectedSize);
+    }
+  }
+  bos.flush();
+  bos.close();
+}

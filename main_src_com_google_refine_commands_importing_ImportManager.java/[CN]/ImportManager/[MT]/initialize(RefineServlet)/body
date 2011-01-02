@@ -1,0 +1,3 @@
+{
+  singleton=new ImportManager(servlet);
+}

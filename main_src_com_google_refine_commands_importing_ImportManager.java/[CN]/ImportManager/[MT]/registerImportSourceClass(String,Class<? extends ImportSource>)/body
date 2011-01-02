@@ -1,0 +1,8 @@
+{
+  if (nameToImportSourceClass.containsKey(name)) {
+    return false;
+  }
+  nameToImportSourceClass.put(name,klass);
+  importSourceClassNameToName.put(klass.getName(),name);
+  return true;
+}

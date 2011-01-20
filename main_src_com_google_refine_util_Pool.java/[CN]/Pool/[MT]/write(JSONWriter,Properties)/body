@@ -1,12 +1,5 @@
 {
   writer.object();
-  writer.key("reconCandidates");
-  writer.object();
-  for (  Entry<String,ReconCandidate> entry : candidates.entrySet()) {
-    writer.key(entry.getKey());
-    entry.getValue().write(writer,options);
-  }
-  writer.endObject();
   writer.key("recons");
   writer.object();
   for (  Entry<String,Recon> entry : recons.entrySet()) {

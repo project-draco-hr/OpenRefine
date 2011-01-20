@@ -17,14 +17,14 @@
   writer.value(judgmentToString());
   if (match != null) {
     writer.key("m");
-    writer.value(match.id);
+    match.write(writer,options);
   }
   if (match == null || saveMode) {
     writer.key("c");
     writer.array();
     if (candidates != null) {
       for (      ReconCandidate c : candidates) {
-        writer.value(c.id);
+        c.write(writer,options);
       }
     }
     writer.endArray();

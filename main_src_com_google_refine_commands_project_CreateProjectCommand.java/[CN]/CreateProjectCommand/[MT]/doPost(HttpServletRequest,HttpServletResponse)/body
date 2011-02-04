@@ -1,6 +1,9 @@
 {
   ProjectManager.singleton.setBusy(true);
   try {
+    if (request.getCharacterEncoding() == null) {
+      request.setCharacterEncoding("UTF-8");
+    }
     Properties options=ParsingUtilities.parseUrlParameters(request);
     Project project=new Project();
     ProjectMetadata pm=new ProjectMetadata();

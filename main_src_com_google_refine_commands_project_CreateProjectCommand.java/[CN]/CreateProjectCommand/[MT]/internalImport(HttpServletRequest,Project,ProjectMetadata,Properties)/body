@@ -9,7 +9,7 @@
     InputStream stream=item.openStream();
     if (item.isFormField()) {
       if (name.equals("raw-text")) {
-        Reader reader=new InputStreamReader(stream,"UTF-8");
+        Reader reader=new InputStreamReader(stream,request.getCharacterEncoding());
         try {
           internalInvokeImporter(project,new TsvCsvImporter(),metadata,options,reader);
           imported=true;
@@ -19,10 +19,10 @@
         }
       }
  else       if (name.equals("project-url")) {
-        url=Streams.asString(stream);
+        url=Streams.asString(stream,request.getCharacterEncoding());
       }
  else {
-        options.put(name,Streams.asString(stream));
+        options.put(name,Streams.asString(stream,request.getCharacterEncoding()));
       }
     }
  else {

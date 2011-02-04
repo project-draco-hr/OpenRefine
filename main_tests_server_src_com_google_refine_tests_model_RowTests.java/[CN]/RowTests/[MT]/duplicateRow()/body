@@ -1,0 +1,6 @@
+{
+  Row row=new Row(5);
+  row.flagged=true;
+  Row duplicateRow=row.dup();
+  Assert.assertTrue(duplicateRow.flagged);
+}

@@ -1,0 +1,9 @@
+{
+  Row row=new Row(5);
+  row.setCell(0,new Cell(1,null));
+  row.setCell(1,new Cell(2,null));
+  row.setCell(2,new Cell(3,null));
+  row.setCell(3,new Cell(4,null));
+  row.setCell(4,new Cell(5,null));
+  Assert.assertEquals(row.toString(),"1,2,3,4,5,");
+}

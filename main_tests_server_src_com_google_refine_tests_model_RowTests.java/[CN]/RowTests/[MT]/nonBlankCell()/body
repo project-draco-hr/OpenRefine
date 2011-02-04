@@ -1,0 +1,7 @@
+{
+  Row row=new Row(5);
+  row.setCell(0,new Cell("I'm not empty",null));
+  Assert.assertFalse(row.isCellBlank(0));
+  row.setCell(3,new Cell("I'm not empty",null));
+  Assert.assertFalse(row.isCellBlank(3));
+}

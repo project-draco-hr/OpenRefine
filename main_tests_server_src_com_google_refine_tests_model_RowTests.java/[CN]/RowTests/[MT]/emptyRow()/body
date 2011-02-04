@@ -1,0 +1,4 @@
+{
+  Row row=new Row(5);
+  Assert.assertTrue(row.isEmpty());
+}

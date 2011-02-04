@@ -1,0 +1,6 @@
+{
+  Row row=new Row(5);
+  row.setCell(0,new Cell("I'm not empty",null));
+  row.save(writer,options);
+  Assert.assertEquals(writer.getBuffer().toString(),"{\"flagged\":false,\"starred\":false,\"cells\":[{\"v\":\"I'm not empty\"}]}");
+}

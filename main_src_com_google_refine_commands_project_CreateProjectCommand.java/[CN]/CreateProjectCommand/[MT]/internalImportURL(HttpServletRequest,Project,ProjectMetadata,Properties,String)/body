@@ -1,5 +1,6 @@
 {
   URL url=new URL(urlString);
+  url=new URI(url.getProtocol(),url.getHost(),url.getPath(),url.getQuery(),null).toURL();
   URLConnection connection=null;
   Importer importer=ImporterRegistry.guessUrlImporter(url);
   if (importer instanceof UrlImporter) {

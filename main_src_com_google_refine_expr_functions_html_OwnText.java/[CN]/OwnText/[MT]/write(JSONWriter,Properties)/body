@@ -1,10 +1,10 @@
 {
   writer.object();
   writer.key("description");
-  writer.value("Selects the text from within an element (including all child elements)");
+  writer.value("Gets the text owned by this element only; does not get the combined text of all children.");
   writer.key("params");
   writer.value("Element e");
   writer.key("returns");
-  writer.value("String text");
+  writer.value("String ownText");
   writer.endObject();
 }

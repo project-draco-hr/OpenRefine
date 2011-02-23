@@ -3,5 +3,5 @@
   if (query == null) {
     query="";
   }
-  return url.getHost().endsWith(".google.com") && url.getPath().startsWith("/fusiontables/DataSource") && query.contains("dsrcid=");
+  return url.getHost().endsWith(".google.com") && url.getPath().startsWith("/fusiontables/DataSource") && getFusionTableKey(url) != null;
 }

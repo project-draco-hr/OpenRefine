@@ -1,0 +1,36 @@
+{
+  if (fullValidKeyPattern.matcher(s).find()) {
+    return s;
+  }
+  StringBuffer sb=new StringBuffer();
+  int last=0;
+  Matcher m=keyCharMustQuotePattern.matcher(s);
+  while (m.find()) {
+    int start=m.start();
+    int end=m.end();
+    if (start > last) {
+      sb.append(s.substring(last,start));
+    }
+    last=end;
+    sb.append('$');
+    sb.append(quote(s.charAt(start)));
+  }
+  if (last < s.length()) {
+    sb.append(s.substring(last));
+  }
+  if (sb.length() > 0) {
+    if (sb.charAt(0) == '-' || sb.charAt(0) == '_') {
+      char c=sb.charAt(0);
+      sb.deleteCharAt(0);
+      sb.insert(0,'$');
+      sb.insert(1,quote(c));
+    }
+    int length=sb.length();
+    if (sb.charAt(length - 1) == '-') {
+      sb.deleteCharAt(length - 1);
+      sb.insert(length - 1,'$');
+      sb.insert(length,quote('-'));
+    }
+  }
+  return sb.toString();
+}

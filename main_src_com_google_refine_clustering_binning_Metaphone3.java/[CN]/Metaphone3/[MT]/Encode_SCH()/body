@@ -1,0 +1,25 @@
+{
+  if (StringAt((m_current + 1),2,"CH","")) {
+    if ((m_current > 0) && (StringAt((m_current + 3),3,"IEF","EAT","") || StringAt((m_current + 3),4,"ANCE","ARGE","") || StringAt(0,6,"ESCHEW",""))) {
+      MetaphAdd("S");
+      m_current++;
+      return true;
+    }
+    if ((StringAt((m_current + 3),2,"OO","ER","EN","UY","ED","EM","IA","IZ","IS","OL","") && !StringAt(m_current,6,"SCHOLT","SCHISL","SCHERR","")) || StringAt((m_current + 3),3,"ISZ","") || (StringAt((m_current - 1),6,"ESCHAT","ASCHIN","ASCHAL","ISCHAE","ISCHIA","") && !StringAt((m_current - 2),8,"FASCHING",""))|| (StringAt((m_current - 1),5,"ESCHI","") && ((m_current + 3) == m_last))|| (CharAt(m_current + 3) == 'Y')) {
+      if (StringAt((m_current + 3),2,"ER","EN","IS","") && (((m_current + 4) == m_last) || StringAt((m_current + 3),3,"ENK","ENB","IST",""))) {
+        MetaphAdd("X","SK");
+      }
+ else {
+        MetaphAdd("SK");
+      }
+      m_current+=3;
+      return true;
+    }
+ else {
+      MetaphAdd("X");
+      m_current+=3;
+      return true;
+    }
+  }
+  return false;
+}

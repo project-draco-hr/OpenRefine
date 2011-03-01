@@ -1,0 +1,8 @@
+{
+  if (CharAt(m_current + 1) == 'H') {
+    MetaphAdd("J");
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

@@ -1,0 +1,39 @@
+{
+  int len=root.length();
+  String test;
+  test=root + "S";
+  if ((inWord.equals(root)) || (inWord.equals(test))) {
+    return true;
+  }
+  if (root.charAt(len - 1) != 'E') {
+    test=root + "ES";
+  }
+  if (inWord.equals(test)) {
+    return true;
+  }
+  if (root.charAt(len - 1) != 'E') {
+    test=root + "ED";
+  }
+ else {
+    test=root + "D";
+  }
+  if (inWord.equals(test)) {
+    return true;
+  }
+  if (root.charAt(len - 1) == 'E') {
+    root=root.substring(0,len - 1);
+  }
+  test=root + "ING";
+  if (inWord.equals(test)) {
+    return true;
+  }
+  test=root + "INGLY";
+  if (inWord.equals(test)) {
+    return true;
+  }
+  test=root + "Y";
+  if (inWord.equals(test)) {
+    return true;
+  }
+  return false;
+}

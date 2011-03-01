@@ -1,0 +1,8 @@
+{
+  if (StringAt((m_current - 3),5,"WOULD","COULD","") || (StringAt((m_current - 4),6,"SHOULD","") && !StringAt((m_current - 4),8,"SHOULDER",""))) {
+    MetaphAddExactApprox("D","T");
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

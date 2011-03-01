@@ -1,0 +1,9 @@
+{
+  if (Encode_Silent_G_At_Beginning() || Encode_GG() || Encode_GK()|| Encode_GH()|| Encode_Silent_G()|| Encode_GN()|| Encode_GL()|| Encode_Initial_G_Front_Vowel()|| Encode_NGER()|| Encode_GER()|| Encode_GEL()|| Encode_Non_Initial_G_Front_Vowel()|| Encode_GA_To_J()) {
+    return;
+  }
+  if (!StringAt((m_current - 1),1,"C","K","G","Q","")) {
+    MetaphAddExactApprox("G","K");
+  }
+  m_current++;
+}

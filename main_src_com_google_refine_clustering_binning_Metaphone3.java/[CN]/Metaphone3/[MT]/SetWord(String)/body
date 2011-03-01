@@ -1,0 +1,5 @@
+{
+  m_inWord=in.toUpperCase();
+  ;
+  m_length=m_inWord.length();
+}

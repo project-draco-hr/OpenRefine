@@ -1,0 +1,24 @@
+{
+  if (StringAt(m_current,2,"DT","DD","")) {
+    if (StringAt(m_current,3,"DTH","")) {
+      MetaphAddExactApprox("D0","T0");
+      m_current+=3;
+    }
+ else {
+      if (m_encodeExact) {
+        if (StringAt(m_current,2,"DT","")) {
+          MetaphAdd("T");
+        }
+ else {
+          MetaphAdd("D");
+        }
+      }
+ else {
+        MetaphAdd("T");
+      }
+      m_current+=2;
+    }
+    return true;
+  }
+  return false;
+}

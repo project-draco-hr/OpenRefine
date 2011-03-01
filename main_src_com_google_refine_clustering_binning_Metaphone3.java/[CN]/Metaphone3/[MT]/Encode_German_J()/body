@@ -1,0 +1,8 @@
+{
+  if (StringAt((m_current + 1),2,"AH","") || (StringAt((m_current + 1),5,"OHANN","") && ((m_current + 5) == m_last)) || (StringAt((m_current + 1),3,"UNG","") && !StringAt((m_current + 1),4,"UNGL",""))|| StringAt((m_current + 1),3,"UGO","")) {
+    MetaphAdd("A");
+    AdvanceCounter(2,1);
+    return true;
+  }
+  return false;
+}

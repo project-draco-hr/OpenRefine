@@ -1,0 +1,13 @@
+{
+  if (StringAt((m_current + 1),4,"SALM","")) {
+    if (m_encodeVowels) {
+      MetaphAdd("SAM");
+    }
+ else {
+      MetaphAdd("SM");
+    }
+    m_current+=5;
+    return true;
+  }
+  return false;
+}

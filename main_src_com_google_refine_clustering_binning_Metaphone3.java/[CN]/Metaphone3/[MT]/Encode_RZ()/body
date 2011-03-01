@@ -1,0 +1,26 @@
+{
+  if (StringAt((m_current - 2),4,"GARZ","KURZ","MARZ","MERZ","HERZ","PERZ","WARZ","") || StringAt(m_current,5,"RZANO","RZOLA","") || StringAt((m_current - 1),4,"ARZA","ARZN","")) {
+    return false;
+  }
+  if (StringAt((m_current - 4),11,"YASTRZEMSKI","")) {
+    MetaphAdd("R","X");
+    m_current+=2;
+    return true;
+  }
+  if (StringAt((m_current - 1),10,"BRZEZINSKI","")) {
+    MetaphAdd("RS","RJ");
+    m_current+=4;
+    return true;
+  }
+ else   if (StringAt((m_current - 1),3,"TRZ","PRZ","KRZ","") || (StringAt(m_current,2,"RZ","") && (IsVowel(m_current - 1) || (m_current == 0)))) {
+    MetaphAdd("RS","X");
+    m_current+=2;
+    return true;
+  }
+ else   if (StringAt((m_current - 1),3,"BRZ","DRZ","GRZ","")) {
+    MetaphAdd("RS","J");
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

@@ -1,0 +1,6 @@
+{
+  if (((CharAt(at) == 'E') || (CharAt(at) == 'I') || (CharAt(at) == 'Y'))) {
+    return true;
+  }
+  return false;
+}

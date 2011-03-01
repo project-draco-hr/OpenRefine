@@ -1,0 +1,8 @@
+{
+  if (StringAt((m_current - 2),4,"DEBT","") || StringAt((m_current - 2),5,"SUBTL","") || StringAt((m_current - 2),6,"SUBTIL","")|| StringAt((m_current - 3),5,"DOUBT","")) {
+    MetaphAdd("T");
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

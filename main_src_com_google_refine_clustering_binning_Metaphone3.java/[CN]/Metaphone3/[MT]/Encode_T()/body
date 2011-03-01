@@ -1,0 +1,12 @@
+{
+  if (Encode_T_Initial() || Encode_TCH() || Encode_Silent_French_T()|| Encode_TUN_TUL_TUA_TUO()|| Encode_TUE_TEU_TEOU_TUL_TIE()|| Encode_TUR_TIU_Suffixes()|| Encode_TI()|| Encode_TIENT()|| Encode_TSCH()|| Encode_TZSCH()|| Encode_TH_Pronounced_Separately()|| Encode_TTH()|| Encode_TH()) {
+    return;
+  }
+  if (StringAt((m_current + 1),1,"T","D","")) {
+    m_current+=2;
+  }
+ else {
+    m_current++;
+  }
+  MetaphAdd("T");
+}

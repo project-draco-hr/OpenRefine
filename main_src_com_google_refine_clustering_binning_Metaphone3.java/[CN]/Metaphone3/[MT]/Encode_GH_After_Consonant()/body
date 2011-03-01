@@ -1,0 +1,8 @@
+{
+  if ((m_current > 0) && !IsVowel(m_current - 1) && !(StringAt((m_current - 3),5,"HALGH","") && ((m_current + 1) == m_last))) {
+    MetaphAddExactApprox("G","K");
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

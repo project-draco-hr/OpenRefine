@@ -1,0 +1,18 @@
+{
+  if (CharAt(m_current + 1) == 'H') {
+    if (StringAt(m_current,9,"PHTHALEIN","") || ((m_current == 0) && StringAt(m_current,4,"PHTH","")) || StringAt((m_current - 3),10,"APOPHTHEGM","")) {
+      MetaphAdd("0");
+      m_current+=4;
+    }
+ else     if ((m_current > 0) && (StringAt((m_current + 2),3,"EAD","OLE","ELD","ILL","OLD","EAP","ERD","ARD","ANG","ORN","EAV","ART","") || StringAt((m_current + 2),4,"OUSE","") || (StringAt((m_current + 2),2,"AM","") && !StringAt((m_current - 1),5,"LPHAM",""))|| StringAt((m_current + 2),5,"AMMER","AZARD","UGGER","")|| StringAt((m_current + 2),6,"OLSTER","")) && !StringAt((m_current - 3),5,"LYMPH","NYMPH","")) {
+      MetaphAdd("P");
+      AdvanceCounter(3,2);
+    }
+ else {
+      MetaphAdd("F");
+      m_current+=2;
+    }
+    return true;
+  }
+  return false;
+}

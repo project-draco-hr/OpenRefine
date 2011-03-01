@@ -1,0 +1,13 @@
+{
+  if (Encode_GH_Special_Cases()) {
+    return true;
+  }
+ else {
+    if ((m_current > 2) && (CharAt(m_current - 1) == 'U') && IsVowel(m_current - 2)&& StringAt((m_current - 3),1,"C","G","L","R","T","N","S","")&& !StringAt((m_current - 4),8,"BREUGHEL","FLAUGHER","")) {
+      MetaphAdd("F");
+      m_current+=2;
+      return true;
+    }
+  }
+  return false;
+}

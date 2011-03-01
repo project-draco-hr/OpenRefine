@@ -1,0 +1,23 @@
+{
+  if ((m_current == 0) && (StringAt(0,7,"MACIVER","MACEWEN","") || StringAt(0,8,"MACELROY","MACILROY","") || StringAt(0,9,"MACINTOSH","")|| StringAt(0,2,"MC",""))) {
+    if (m_encodeVowels) {
+      MetaphAdd("MAK");
+    }
+ else {
+      MetaphAdd("MK");
+    }
+    if (StringAt(0,2,"MC","")) {
+      if (StringAt((m_current + 2),1,"K","G","Q","") && !StringAt((m_current + 2),4,"GEOR","")) {
+        m_current+=3;
+      }
+ else {
+        m_current+=2;
+      }
+    }
+ else {
+      m_current+=3;
+    }
+    return true;
+  }
+  return false;
+}

@@ -1,0 +1,8 @@
+{
+  if (StringAt(m_current,5,"TZSCH","")) {
+    MetaphAdd("X");
+    m_current+=5;
+    return true;
+  }
+  return false;
+}

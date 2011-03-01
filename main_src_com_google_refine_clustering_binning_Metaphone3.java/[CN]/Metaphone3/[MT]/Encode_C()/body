@@ -1,0 +1,22 @@
+{
+  if (Encode_Silent_C_At_Beginning() || Encode_CA_To_S() || Encode_CO_To_S()|| Encode_CH()|| Encode_CCIA()|| Encode_CC()|| Encode_CK_CG_CQ()|| Encode_C_Front_Vowel()|| Encode_Silent_C()|| Encode_CZ()|| Encode_CS()) {
+    return;
+  }
+  if (!StringAt((m_current - 1),1,"C","K","G","Q","")) {
+    MetaphAdd("K");
+  }
+  if (StringAt((m_current + 1),2," C"," Q"," G","")) {
+    m_current+=2;
+  }
+ else {
+    if (StringAt((m_current + 1),1,"C","K","Q","") && !StringAt((m_current + 1),2,"CE","CI","")) {
+      m_current+=2;
+      if (StringAt((m_current),1,"C","K","Q","") && !StringAt((m_current + 1),2,"CE","CI","")) {
+        m_current++;
+      }
+    }
+ else {
+      m_current++;
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  if (Encode_Initial_Silent_H() || Encode_Initial_HS() || Encode_Initial_HU_HW()|| Encode_Non_Initial_Silent_H()) {
+    return;
+  }
+  if (!Encode_H_Pronounced()) {
+    m_current++;
+  }
+}

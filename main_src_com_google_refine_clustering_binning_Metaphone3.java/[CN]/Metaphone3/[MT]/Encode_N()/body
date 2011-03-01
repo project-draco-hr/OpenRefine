@@ -1,0 +1,14 @@
+{
+  if (Encode_NCE()) {
+    return;
+  }
+  if (CharAt(m_current + 1) == 'N') {
+    m_current+=2;
+  }
+ else {
+    m_current++;
+  }
+  if (!StringAt((m_current - 3),8,"MONSIEUR","") && !StringAt((m_current - 3),6,"NENESS","")) {
+    MetaphAdd("N");
+  }
+}

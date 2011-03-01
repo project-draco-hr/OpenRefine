@@ -1,0 +1,8 @@
+{
+  if ((StringAt(m_current,4,"COEL","") && (IsVowel(m_current + 4) || ((m_current + 3) == m_last))) || StringAt(m_current,5,"COENA","COENO","") || StringAt(0,8,"FRANCOIS","MELANCON","")|| StringAt(0,6,"GARCON","")) {
+    MetaphAdd("S");
+    AdvanceCounter(3,1);
+    return true;
+  }
+  return false;
+}

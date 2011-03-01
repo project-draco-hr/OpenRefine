@@ -1,0 +1,4 @@
+{
+  this();
+  SetWord(in);
+}

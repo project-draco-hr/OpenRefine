@@ -1,0 +1,8 @@
+{
+  if (StringAt(m_current,5,"SUGAR","")) {
+    MetaphAdd("X");
+    m_current++;
+    return true;
+  }
+  return false;
+}

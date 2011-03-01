@@ -1,0 +1,10 @@
+{
+  if ((at < 0) || (at >= m_length)) {
+    return false;
+  }
+  char it=CharAt(at);
+  if (IsVowel(it)) {
+    return true;
+  }
+  return false;
+}

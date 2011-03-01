@@ -1,0 +1,8 @@
+{
+  if (!(in.equals("A") && (m_primary.length() > 0) && (m_primary.charAt(m_primary.length() - 1) == 'A'))) {
+    m_primary.append(in);
+  }
+  if (!(in.equals("A") && (m_secondary.length() > 0) && (m_secondary.charAt(m_secondary.length() - 1) == 'A'))) {
+    m_secondary.append(in);
+  }
+}

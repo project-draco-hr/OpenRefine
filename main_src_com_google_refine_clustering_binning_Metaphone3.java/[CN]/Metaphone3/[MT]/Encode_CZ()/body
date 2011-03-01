@@ -1,0 +1,13 @@
+{
+  if (StringAt((m_current + 1),1,"Z","") && !StringAt((m_current - 1),6,"ECZEMA","")) {
+    if (StringAt(m_current,4,"CZAR","")) {
+      MetaphAdd("S");
+    }
+ else {
+      MetaphAdd("X");
+    }
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

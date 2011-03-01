@@ -1,0 +1,8 @@
+{
+  if (StringAt((m_current - 1),5,"USSIA","ESSUR","ISSUR","ISSUE","") || StringAt((m_current - 1),6,"ESSIAN","ASSURE","ASSURA","ISSUAB","ISSUAN","ASSIUS","")) {
+    MetaphAdd("X");
+    AdvanceCounter(3,2);
+    return true;
+  }
+  return false;
+}

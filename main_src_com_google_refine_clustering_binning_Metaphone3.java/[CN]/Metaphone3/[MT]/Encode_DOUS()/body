@@ -1,0 +1,8 @@
+{
+  if (StringAt((m_current + 1),4,"UOUS","")) {
+    MetaphAddExactApprox("J","D","J","T");
+    AdvanceCounter(4,1);
+    return true;
+  }
+  return false;
+}

@@ -1,0 +1,14 @@
+{
+  if (StringAt(m_current,3,"QIN","")) {
+    MetaphAdd("X");
+    m_current++;
+    return;
+  }
+  if (CharAt(m_current + 1) == 'Q') {
+    m_current+=2;
+  }
+ else {
+    m_current++;
+  }
+  MetaphAdd("K");
+}

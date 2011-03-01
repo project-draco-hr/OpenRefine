@@ -1,0 +1,8 @@
+{
+  if (StringAt((m_current + 1),3,"LIA","LIO","LIE","") && IsVowel(m_current - 1)) {
+    MetaphAddExactApprox("L","GL","L","KL");
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

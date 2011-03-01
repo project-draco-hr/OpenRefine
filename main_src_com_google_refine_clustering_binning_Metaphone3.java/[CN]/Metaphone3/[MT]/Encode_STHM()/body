@@ -1,0 +1,8 @@
+{
+  if (StringAt(m_current,4,"STHM","")) {
+    MetaphAdd("SM");
+    m_current+=4;
+    return true;
+  }
+  return false;
+}

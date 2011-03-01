@@ -1,0 +1,7 @@
+{
+  if (StringAt((m_current + 1),4,"EOUS","IOUS","")) {
+    MetaphAdd("X","S");
+    return true;
+  }
+  return false;
+}

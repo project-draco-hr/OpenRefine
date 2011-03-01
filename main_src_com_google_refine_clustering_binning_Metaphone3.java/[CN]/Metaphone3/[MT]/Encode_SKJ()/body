@@ -1,0 +1,8 @@
+{
+  if (StringAt(m_current,4,"SKJO","SKJU","") && IsVowel(m_current + 3)) {
+    MetaphAdd("X");
+    m_current+=3;
+    return true;
+  }
+  return false;
+}

@@ -1,0 +1,8 @@
+{
+  if (StringAt((m_current + 1),4,"UENT","") || StringAt((m_current - 4),9,"RIGHTEOUS","") || StringAt((m_current - 3),7,"STATUTE","")|| StringAt((m_current - 3),7,"AMATEUR","")|| (StringAt((m_current - 1),5,"NTULE","NTULA","STULE","STULA","STEUR",""))|| (((m_current + 2) == m_last) && StringAt(m_current,3,"TUE",""))|| StringAt(m_current,5,"TUENC","")|| StringAt((m_current - 3),8,"STATUTOR","")|| (((m_current + 5) == m_last) && StringAt(m_current,6,"TIENCE",""))) {
+    MetaphAdd("X","T");
+    AdvanceCounter(2,1);
+    return true;
+  }
+  return false;
+}

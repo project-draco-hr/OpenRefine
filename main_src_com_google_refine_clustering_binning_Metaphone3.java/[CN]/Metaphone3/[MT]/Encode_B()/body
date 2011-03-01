@@ -1,0 +1,12 @@
+{
+  if (Encode_Silent_B()) {
+    return;
+  }
+  MetaphAddExactApprox("B","P");
+  if ((CharAt(m_current + 1) == 'B') || ((CharAt(m_current + 1) == 'P') && ((m_current + 1 < m_last) && (CharAt(m_current + 2) != 'H')))) {
+    m_current+=2;
+  }
+ else {
+    m_current++;
+  }
+}

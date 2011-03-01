@@ -1,0 +1,8 @@
+{
+  if ((((m_current + 3) == m_length) && StringAt((m_current - 1),4,"ILLO","ILLA","ALLE","")) || (((StringAt((m_last - 1),2,"AS","OS","") || StringAt(m_last,2,"AS","OS","") || StringAt(m_last,1,"A","O","")) && StringAt((m_current - 1),2,"AL","IL","")) && !StringAt((m_current - 1),4,"ALLA","")) || StringAt(0,5,"VILLE","VILLA","")|| StringAt(0,8,"GALLARDO","VALLADAR","MAGALLAN","CAVALLAR","BALLASTE","")|| StringAt(0,3,"LLA","")) {
+    MetaphAdd("L","");
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

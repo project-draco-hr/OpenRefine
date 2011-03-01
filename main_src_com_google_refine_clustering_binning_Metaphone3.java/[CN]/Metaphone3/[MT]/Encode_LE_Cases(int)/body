@@ -1,0 +1,13 @@
+{
+  if (Encode_Vowel_LE_Transposition(save_current)) {
+    return;
+  }
+ else {
+    if (Encode_Vowel_Preserve_Vowel_After_L(save_current)) {
+      return;
+    }
+ else {
+      MetaphAdd("L");
+    }
+  }
+}

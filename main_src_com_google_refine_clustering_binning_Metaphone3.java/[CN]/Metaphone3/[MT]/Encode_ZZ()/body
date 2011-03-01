@@ -1,0 +1,8 @@
+{
+  if ((CharAt(m_current + 1) == 'Z') && ((StringAt((m_current + 2),1,"I","O","A","") && ((m_current + 2) == m_last)) || StringAt((m_current - 2),9,"MOZZARELL","PIZZICATO","PUZZONLAN",""))) {
+    MetaphAdd("TS","S");
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

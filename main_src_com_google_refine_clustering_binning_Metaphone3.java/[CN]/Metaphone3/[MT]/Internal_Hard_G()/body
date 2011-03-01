@@ -1,0 +1,6 @@
+{
+  if (!(((m_current + 1) == m_last) && (CharAt(m_current + 1) == 'E')) && (Internal_Hard_NG() || Internal_Hard_GEN_GIN_GET_GIT() || Internal_Hard_G_Open_Syllable()|| Internal_Hard_G_Other())) {
+    return true;
+  }
+  return false;
+}

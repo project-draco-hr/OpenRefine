@@ -1,0 +1,12 @@
+{
+  if (StringAt(m_current,2,"CI","CE","CY","")) {
+    if (Encode_British_Silent_CE() || Encode_CE() || Encode_CI()|| Encode_Latinate_Suffixes()) {
+      AdvanceCounter(2,1);
+      return true;
+    }
+    MetaphAdd("S");
+    AdvanceCounter(2,1);
+    return true;
+  }
+  return false;
+}

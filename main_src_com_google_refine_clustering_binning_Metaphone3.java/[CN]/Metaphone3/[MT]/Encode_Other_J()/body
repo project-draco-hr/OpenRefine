@@ -1,0 +1,26 @@
+{
+  if (m_current == 0) {
+    if (Encode_German_J()) {
+      return;
+    }
+ else {
+      if (Encode_J_To_J()) {
+        return;
+      }
+    }
+  }
+ else {
+    if (Encode_Spanish_J_2()) {
+      return;
+    }
+ else     if (!Encode_J_As_Vowel()) {
+      MetaphAdd("J");
+    }
+    if (CharAt(m_current + 1) == 'J') {
+      m_current+=2;
+    }
+ else {
+      m_current++;
+    }
+  }
+}

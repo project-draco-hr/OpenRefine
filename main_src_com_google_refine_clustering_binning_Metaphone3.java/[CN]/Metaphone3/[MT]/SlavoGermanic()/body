@@ -1,0 +1,6 @@
+{
+  if (StringAt(0,3,"SCH","") || StringAt(0,2,"SW","") || (CharAt(0) == 'J')|| (CharAt(0) == 'W')) {
+    return true;
+  }
+  return false;
+}

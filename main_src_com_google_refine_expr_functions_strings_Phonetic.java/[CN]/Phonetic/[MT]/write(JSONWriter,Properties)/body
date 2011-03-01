@@ -3,7 +3,7 @@
   writer.key("description");
   writer.value("Returns the a phonetic encoding of s (optionally indicating which encoding to use')");
   writer.key("params");
-  writer.value("string s, string encoding (optional, defaults to 'DoubleMetaphone')");
+  writer.value("string s, string encoding (optional, defaults to 'metaphone3')");
   writer.key("returns");
   writer.value("string");
   writer.endObject();

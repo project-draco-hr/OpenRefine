@@ -1,0 +1,17 @@
+{
+  if (Encode_DG() || Encode_DJ() || Encode_DT_DD()|| Encode_D_To_J()|| Encode_DOUS()|| Encode_Silent_D()) {
+    return;
+  }
+  if (m_encodeExact) {
+    if ((m_current == m_last) && StringAt((m_current - 3),4,"SSED","")) {
+      MetaphAdd("T");
+    }
+ else {
+      MetaphAdd("D");
+    }
+  }
+ else {
+    MetaphAdd("T");
+  }
+  m_current++;
+}

@@ -1,0 +1,19 @@
+{
+  if ((StringAt(0,4,"LAME","SAKE","PATE","") && (m_length == 4)) || (StringAt(0,5,"AGAPE","") && (m_length == 5)) || ((m_current == 5) && StringAt(0,6,"RESUME",""))) {
+    MetaphAdd("","A");
+    return;
+  }
+  if (StringAt(0,4,"INGE","") && (m_length == 4)) {
+    MetaphAdd("A","");
+    return;
+  }
+  if ((m_current == 5) && StringAt(0,7,"BLESSED","LEARNED","")) {
+    MetaphAddExactApprox("D","AD","T","AT");
+    m_current+=2;
+    return;
+  }
+  if ((!E_Silent() && !flag_AL_inversion && !Silent_Internal_E()) || E_Pronounced_Exceptions()) {
+    MetaphAdd("A");
+  }
+  flag_AL_inversion=false;
+}

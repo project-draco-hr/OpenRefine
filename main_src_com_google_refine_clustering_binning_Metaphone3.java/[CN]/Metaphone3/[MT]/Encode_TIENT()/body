@@ -1,0 +1,8 @@
+{
+  if (StringAt((m_current + 1),4,"IENT","")) {
+    MetaphAdd("X","T");
+    AdvanceCounter(3,1);
+    return true;
+  }
+  return false;
+}

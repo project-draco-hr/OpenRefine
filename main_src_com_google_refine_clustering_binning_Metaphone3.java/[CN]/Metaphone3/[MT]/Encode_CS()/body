@@ -1,0 +1,13 @@
+{
+  if (StringAt(0,6,"KOVACS","")) {
+    MetaphAdd("KS","X");
+    m_current+=2;
+    return true;
+  }
+  if (StringAt((m_current - 1),3,"ACS","") && ((m_current + 1) == m_last) && !StringAt((m_current - 4),6,"ISAACS","")) {
+    MetaphAdd("X");
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

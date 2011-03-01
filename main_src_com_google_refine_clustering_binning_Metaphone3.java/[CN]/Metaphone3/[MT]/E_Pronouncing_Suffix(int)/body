@@ -1,0 +1,18 @@
+{
+  if ((m_length == (at + 4)) && StringAt(at,4,"WOOD","")) {
+    return true;
+  }
+  if ((m_length == (at + 5)) && StringAt(at,5,"WATER","WORTH","")) {
+    return true;
+  }
+  if ((m_length == (at + 3)) && StringAt(at,3,"TTE","LIA","NOW","ROS","RAS","")) {
+    return true;
+  }
+  if ((m_length == (at + 2)) && StringAt(at,2,"TA","TT","NA","NO","NE","RS","RE","LA","AU","RO","RA","")) {
+    return true;
+  }
+  if ((m_length == (at + 1)) && StringAt(at,1,"T","R","")) {
+    return true;
+  }
+  return false;
+}

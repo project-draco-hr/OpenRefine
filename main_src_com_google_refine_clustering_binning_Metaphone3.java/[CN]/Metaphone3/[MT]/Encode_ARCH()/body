@@ -1,0 +1,13 @@
+{
+  if (StringAt((m_current - 2),4,"ARCH","")) {
+    if (((IsVowel(m_current + 2) && StringAt((m_current - 2),5,"ARCHA","ARCHI","ARCHO","ARCHU","ARCHY","")) || StringAt((m_current - 2),6,"ARCHEA","ARCHEG","ARCHEO","ARCHET","ARCHEL","ARCHES","ARCHEP","ARCHEM","ARCHEN","") || (StringAt((m_current - 2),4,"ARCH","") && (((m_current + 1) == m_last)))|| StringAt(0,7,"MENARCH","")) && (!RootOrInflections(m_inWord,"ARCH") && !StringAt((m_current - 4),6,"SEARCH","POARCH","") && !StringAt(0,9,"ARCHENEMY","ARCHIBALD","ARCHULETA","ARCHAMBAU","")&& !StringAt(0,6,"ARCHER","ARCHIE","")&& !((((StringAt((m_current - 3),5,"LARCH","MARCH","PARCH","") || StringAt((m_current - 4),6,"STARCH","")) && !(StringAt(0,6,"EPARCH","") || StringAt(0,7,"NOMARCH","") || StringAt(0,8,"EXILARCH","HIPPARCH","MARCHESE","")|| StringAt(0,9,"ARISTARCH","")|| StringAt(0,9,"MARCHETTI",""))) || RootOrInflections(m_inWord,"STARCH")) && (!StringAt((m_current - 2),5,"ARCHU","ARCHY","") || StringAt(0,7,"STARCHY",""))))) {
+      MetaphAdd("K","X");
+    }
+ else {
+      MetaphAdd("X");
+    }
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

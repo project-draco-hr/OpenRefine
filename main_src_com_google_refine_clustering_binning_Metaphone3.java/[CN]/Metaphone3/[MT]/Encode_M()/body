@@ -1,0 +1,7 @@
+{
+  if (Encode_Silent_M_At_Beginning() || Encode_MR_And_MRS() || Encode_MAC()|| Encode_MPT()) {
+    return;
+  }
+  Encode_MB();
+  MetaphAdd("M");
+}

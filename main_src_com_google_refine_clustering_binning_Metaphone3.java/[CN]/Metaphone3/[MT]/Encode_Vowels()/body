@@ -1,0 +1,26 @@
+{
+  if (m_current == 0) {
+    MetaphAdd("A");
+  }
+ else   if (m_encodeVowels) {
+    if (CharAt(m_current) != 'E') {
+      if (Skip_Silent_UE()) {
+        return;
+      }
+      if (O_Silent()) {
+        m_current++;
+        return;
+      }
+      MetaphAdd("A");
+    }
+ else {
+      Encode_E_Pronounced();
+    }
+  }
+  if (!(!IsVowel(m_current - 2) && StringAt((m_current - 1),4,"LEWA","LEWO","LEWI",""))) {
+    m_current=SkipVowels(m_current);
+  }
+ else {
+    m_current++;
+  }
+}

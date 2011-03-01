@@ -1,0 +1,18 @@
+{
+  if (((m_current + 3) == m_last) && StringAt(m_current,4,"WICZ","WITZ","")) {
+    if (m_encodeVowels) {
+      if ((m_primary.length() > 0) && m_primary.charAt(m_primary.length() - 1) == 'A') {
+        MetaphAdd("TS","FAX");
+      }
+ else {
+        MetaphAdd("ATS","FAX");
+      }
+    }
+ else {
+      MetaphAdd("TS","FX");
+    }
+    m_current+=4;
+    return true;
+  }
+  return false;
+}

@@ -1,0 +1,7 @@
+{
+  if (m_encodeVowels == true) {
+    if ((m_current == m_last) && StringAt((m_current - 1),1,"D","G","T","")) {
+      MetaphAdd("A");
+    }
+  }
+}

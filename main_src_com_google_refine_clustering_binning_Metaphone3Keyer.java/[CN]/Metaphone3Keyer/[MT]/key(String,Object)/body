@@ -1,0 +1,6 @@
+{
+  Metaphone3 _metaphone3=new Metaphone3();
+  _metaphone3.SetWord(s);
+  _metaphone3.Encode();
+  return _metaphone3.GetMetaph();
+}

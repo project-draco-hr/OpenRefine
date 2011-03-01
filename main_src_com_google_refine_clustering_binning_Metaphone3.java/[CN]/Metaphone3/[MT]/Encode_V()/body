@@ -1,0 +1,9 @@
+{
+  if (CharAt(m_current + 1) == 'V') {
+    m_current+=2;
+  }
+ else {
+    m_current++;
+  }
+  MetaphAddExactApprox("V","F");
+}

@@ -1,0 +1,25 @@
+{
+  if (StringAt(m_current,2,"SC","")) {
+    if (StringAt((m_current - 2),8,"VISCOUNT","")) {
+      m_current+=1;
+      return true;
+    }
+    if (StringAt((m_current + 2),1,"I","E","Y","")) {
+      if (StringAt((m_current + 2),4,"IOUS","") || StringAt((m_current + 2),3,"IUT","") || StringAt((m_current - 4),9,"OMNISCIEN","")|| StringAt((m_current - 3),8,"CONSCIEN","CRESCEND","CONSCION","")|| StringAt((m_current - 2),6,"FASCIS","")) {
+        MetaphAdd("X");
+      }
+ else       if (StringAt(m_current,7,"SCEPTIC","SCEPSIS","") || StringAt(m_current,5,"SCIVV","SCIRO","") || StringAt(m_current,6,"SCIPIO","")|| StringAt((m_current - 2),10,"PISCITELLI","")) {
+        MetaphAdd("SK");
+      }
+ else {
+        MetaphAdd("S");
+      }
+      m_current+=2;
+      return true;
+    }
+    MetaphAdd("SK");
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

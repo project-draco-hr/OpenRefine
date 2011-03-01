@@ -1,0 +1,17 @@
+{
+  if (CharAt(m_current + 1) == 'G') {
+    if (StringAt((m_current - 1),5,"AGGIA","OGGIA","AGGIO","EGGIO","EGGIA","IGGIO","") || (StringAt((m_current - 1),5,"UGGIE","") && !(((m_current + 3) == m_last) || ((m_current + 4) == m_last))) || (((m_current + 2) == m_last) && StringAt((m_current - 1),4,"AGGI","OGGI",""))|| StringAt((m_current - 2),6,"SUGGES","XAGGER","REGGIE","")) {
+      if (StringAt((m_current - 2),7,"SUGGEST","")) {
+        MetaphAddExactApprox("G","K");
+      }
+      MetaphAdd("J");
+      AdvanceCounter(3,2);
+    }
+ else {
+      MetaphAddExactApprox("G","K");
+      m_current+=2;
+    }
+    return true;
+  }
+  return false;
+}

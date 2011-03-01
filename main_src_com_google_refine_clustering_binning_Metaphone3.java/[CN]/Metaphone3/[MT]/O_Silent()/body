@@ -1,0 +1,8 @@
+{
+  if ((CharAt(m_current) == 'O') && StringAt((m_current - 2),4,"IRON","")) {
+    if ((StringAt(0,4,"IRON","") || (StringAt((m_current - 2),4,"IRON","") && (m_last == (m_current + 1)))) && !StringAt((m_current - 2),6,"IRONIC","")) {
+      return true;
+    }
+  }
+  return false;
+}

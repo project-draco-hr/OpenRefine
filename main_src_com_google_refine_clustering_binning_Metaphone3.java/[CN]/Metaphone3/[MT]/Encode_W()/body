@@ -1,0 +1,9 @@
+{
+  if (Encode_Silent_W_At_Beginning() || Encode_WITZ_WICZ() || Encode_WR()|| Encode_Initial_W_Vowel()|| Encode_WH()|| Encode_Eastern_European_W()) {
+    return;
+  }
+  if (m_encodeVowels && StringAt(m_current,2,"WE","") && ((m_current + 1) == m_last)) {
+    MetaphAdd("A");
+  }
+  m_current++;
+}

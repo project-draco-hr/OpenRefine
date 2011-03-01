@@ -1,0 +1,13 @@
+{
+  if (((m_current > 0) && StringAt((m_current + 2),2,"AE",""))) {
+    if (StringAt(0,7,"RACHAEL","")) {
+      MetaphAdd("X");
+    }
+ else     if (!StringAt((m_current - 1),1,"C","K","G","Q","")) {
+      MetaphAdd("K");
+    }
+    AdvanceCounter(4,2);
+    return true;
+  }
+  return false;
+}

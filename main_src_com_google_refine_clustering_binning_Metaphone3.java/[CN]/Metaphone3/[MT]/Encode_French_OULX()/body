@@ -1,0 +1,7 @@
+{
+  if (StringAt((m_current - 2),4,"OULX","") && ((m_current + 1) == m_last)) {
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

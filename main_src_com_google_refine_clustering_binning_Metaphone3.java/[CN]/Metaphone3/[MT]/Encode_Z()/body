@@ -1,0 +1,17 @@
+{
+  if (Encode_ZZ() || Encode_ZU_ZIER_ZS() || Encode_French_EZ()|| Encode_German_Z()) {
+    return;
+  }
+  if (Encode_ZH()) {
+    return;
+  }
+ else {
+    MetaphAdd("S");
+  }
+  if (CharAt(m_current + 1) == 'Z') {
+    m_current+=2;
+  }
+ else {
+    m_current++;
+  }
+}

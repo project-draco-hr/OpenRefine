@@ -1,0 +1,13 @@
+{
+  if (CharAt(m_current + 1) == 'N') {
+    if (((m_current > 1) && ((StringAt((m_current - 1),1,"I","U","E","") || StringAt((m_current - 3),9,"LORGNETTE","") || StringAt((m_current - 2),9,"LAGNIAPPE","")|| StringAt((m_current - 2),6,"COGNAC","")|| StringAt((m_current - 3),7,"CHAGNON","")|| StringAt((m_current - 5),9,"COMPAGNIE","")|| StringAt((m_current - 4),6,"BOLOGN","")) && !(StringAt((m_current + 2),5,"ATION","") || StringAt((m_current + 2),4,"ATOR","") || StringAt((m_current + 2),3,"ATE","ITY","")|| (StringAt((m_current + 2),2,"AN","AC","IA","UM","") && !(StringAt((m_current - 3),8,"POIGNANT","") || StringAt((m_current - 2),6,"COGNAC","")))|| StringAt(0,7,"SPIGNER","STEGNER","")|| (StringAt(0,5,"SIGNE","") && (m_length == 5))|| StringAt((m_current - 2),5,"LIGNI","LIGNO","REGNA","DIGNI","WEGNE","TIGNE","RIGNE","REGNE","TIGNO","")|| StringAt((m_current - 2),6,"SIGNAL","SIGNIF","SIGNAT","")|| StringAt((m_current - 1),5,"IGNIT","")) && !StringAt((m_current - 2),6,"SIGNET","LIGNEO",""))) || (((m_current + 2) == m_last) && StringAt(m_current,3,"GNE","GNA","") && !StringAt((m_current - 2),5,"SIGNA","MAGNA","SIGNE",""))) {
+      MetaphAddExactApprox("N","GN","N","KN");
+    }
+ else {
+      MetaphAddExactApprox("GN","KN");
+    }
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

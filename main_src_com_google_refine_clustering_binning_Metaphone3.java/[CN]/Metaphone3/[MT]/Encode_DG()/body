@@ -1,0 +1,13 @@
+{
+  if (StringAt(m_current,2,"DG","")) {
+    if (StringAt((m_current + 2),1,"A","O","") || StringAt((m_current + 1),3,"GUN","GUT","") || StringAt((m_current + 1),4,"GEAR","GLAS","GRIP","GREN","GILL","GRAF","")|| StringAt((m_current + 1),5,"GUARD","GUILT","GRAVE","GRASS","")|| StringAt((m_current + 1),6,"GROUSE","")) {
+      MetaphAddExactApprox("DG","TK");
+    }
+ else {
+      MetaphAdd("J");
+    }
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

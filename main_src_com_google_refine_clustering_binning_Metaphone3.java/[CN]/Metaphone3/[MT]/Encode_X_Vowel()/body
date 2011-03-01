@@ -1,0 +1,8 @@
+{
+  if (StringAt((m_current + 1),3,"UAL","ION","IOU","")) {
+    MetaphAdd("KX","KS");
+    AdvanceCounter(3,1);
+    return true;
+  }
+  return false;
+}

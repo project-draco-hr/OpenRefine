@@ -1,0 +1,8 @@
+{
+  if ((StringAt(m_current,3,"DUL","") && (IsVowel(m_current - 1) && IsVowel(m_current + 3))) || (((m_current + 3) == m_last) && StringAt((m_current - 1),5,"LDIER","NDEUR","EDURE","RDURE","")) || StringAt((m_current - 3),7,"CORDIAL","")|| StringAt((m_current - 1),5,"NDULA","NDULU","EDUCA","")|| StringAt((m_current - 1),4,"ADUA","IDUA","IDUU","")) {
+    MetaphAddExactApprox("J","D","J","T");
+    AdvanceCounter(2,1);
+    return true;
+  }
+  return false;
+}

@@ -1,0 +1,18 @@
+{
+  if (StringAt(0,3,"HUA","HUE","HWA","")) {
+    if (!StringAt(m_current,4,"HUEY","")) {
+      MetaphAdd("A");
+      if (!m_encodeVowels) {
+        m_current+=3;
+      }
+ else {
+        m_current++;
+        while (IsVowel(m_current) || (CharAt(m_current) == 'W')) {
+          m_current++;
+        }
+      }
+      return true;
+    }
+  }
+  return false;
+}

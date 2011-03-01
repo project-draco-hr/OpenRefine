@@ -1,0 +1,8 @@
+{
+  if (StringAt(m_current,4,"TSCH","") && !StringAt((m_current - 3),4,"WELT","KLAT","FEST","")) {
+    MetaphAdd("X");
+    m_current+=4;
+    return true;
+  }
+  return false;
+}

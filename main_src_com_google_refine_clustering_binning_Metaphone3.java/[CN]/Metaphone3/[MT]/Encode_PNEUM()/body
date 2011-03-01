@@ -1,0 +1,8 @@
+{
+  if (StringAt((m_current + 1),4,"NEUM","")) {
+    MetaphAdd("N");
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

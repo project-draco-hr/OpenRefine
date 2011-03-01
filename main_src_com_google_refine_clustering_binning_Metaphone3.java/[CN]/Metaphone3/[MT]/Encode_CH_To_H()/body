@@ -1,0 +1,8 @@
+{
+  if (((m_current == 0) && (StringAt((m_current + 2),3,"AIM","ETH","ELM","") || StringAt((m_current + 2),4,"ASID","AZAN","") || StringAt((m_current + 2),5,"UPPAH","UTZPA","ALLAH","ALUTZ","AMETZ","")|| StringAt((m_current + 2),6,"ESHVAN","ADARIM","ANUKAH","")|| StringAt((m_current + 2),7,"ALLLOTH","ANNUKAH","AROSETH",""))) || StringAt((m_current - 3),7,"CLACHAN","")) {
+    MetaphAdd("H");
+    AdvanceCounter(3,2);
+    return true;
+  }
+  return false;
+}

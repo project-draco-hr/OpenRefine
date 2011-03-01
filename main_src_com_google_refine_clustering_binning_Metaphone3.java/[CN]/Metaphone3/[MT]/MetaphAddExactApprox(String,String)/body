@@ -1,0 +1,8 @@
+{
+  if (m_encodeExact) {
+    MetaphAdd(mainExact);
+  }
+ else {
+    MetaphAdd(main);
+  }
+}

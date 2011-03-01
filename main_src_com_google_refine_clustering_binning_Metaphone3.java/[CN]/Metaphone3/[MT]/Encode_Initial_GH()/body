@@ -1,0 +1,15 @@
+{
+  if (m_current < 3) {
+    if (m_current == 0) {
+      if (CharAt(m_current + 2) == 'I') {
+        MetaphAdd("J");
+      }
+ else {
+        MetaphAddExactApprox("G","K");
+      }
+      m_current+=2;
+      return true;
+    }
+  }
+  return false;
+}

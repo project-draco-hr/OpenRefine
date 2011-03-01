@@ -1,0 +1,11 @@
+{
+  if (m_encodeVowels && (save_current > 1) && !IsVowel(save_current - 1)&& (CharAt(save_current + 1) == 'E')&& (CharAt(save_current - 1) != 'L')&& (CharAt(save_current - 1) != 'R')&& !IsVowel(save_current + 2)&& !StringAt(0,7,"ECCLESI","COMPLEC","COMPLEJ","ROBLEDO","")&& !StringAt(0,5,"MCCLE","MCLEL","")&& !StringAt(0,6,"EMBLEM","KADLEC","")&& !(((save_current + 2) == m_last) && StringAt(save_current,3,"LET",""))&& !StringAt(save_current,7,"LETTING","")&& !StringAt(save_current,6,"LETELY","LETTER","LETION","LETIAN","LETING","LETORY","")&& !StringAt(save_current,5,"LETUS","LETIV","")&& !StringAt(save_current,4,"LESS","LESQ","LECT","LEDG","LETE","LETH","LETS","LETT","")&& !StringAt(save_current,3,"LEG","LER","LEX","")&& !(StringAt(save_current,6,"LEMENT","") && !(StringAt((m_current - 5),6,"BATTLE","TANGLE","PUZZLE","RABBLE","BABBLE","") || StringAt((m_current - 4),5,"TABLE","")))&& !(((save_current + 2) == m_last) && StringAt((save_current - 2),5,"OCLES","ACLES","AKLES",""))&& !StringAt((save_current - 3),5,"LISLE","AISLE","")&& !StringAt(0,4,"ISLE","")&& !StringAt(0,6,"ROBLES","")&& !StringAt((save_current - 4),7,"PROBLEM","RESPLEN","")&& !StringAt((save_current - 3),6,"REPLEN","")&& !StringAt((save_current - 2),4,"SPLE","")&& (CharAt(save_current - 1) != 'H')&& (CharAt(save_current - 1) != 'W')) {
+    MetaphAdd("AL");
+    flag_AL_inversion=true;
+    if (CharAt(save_current + 2) == 'L') {
+      m_current=save_current + 3;
+    }
+    return true;
+  }
+  return false;
+}

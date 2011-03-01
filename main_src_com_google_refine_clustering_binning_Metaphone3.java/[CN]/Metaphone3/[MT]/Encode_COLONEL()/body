@@ -1,0 +1,8 @@
+{
+  if (StringAt((m_current - 2),7,"COLONEL","")) {
+    MetaphAdd("R");
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

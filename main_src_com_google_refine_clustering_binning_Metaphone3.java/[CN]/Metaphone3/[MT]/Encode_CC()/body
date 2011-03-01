@@ -1,0 +1,25 @@
+{
+  if (StringAt(m_current,2,"CC","") && !((m_current == 1) && (CharAt(0) == 'M'))) {
+    if (StringAt((m_current - 3),7,"FLACCID","")) {
+      MetaphAdd("S");
+      AdvanceCounter(3,2);
+      return true;
+    }
+    if ((((m_current + 2) == m_last) && StringAt((m_current + 2),1,"I","")) || StringAt((m_current + 2),2,"IO","") || (((m_current + 4) == m_last) && StringAt((m_current + 2),3,"INO","INI",""))) {
+      MetaphAdd("X");
+      AdvanceCounter(3,2);
+      return true;
+    }
+    if (StringAt((m_current + 2),1,"I","E","Y","") && !((CharAt(m_current + 2) == 'H') || StringAt((m_current - 2),6,"SOCCER",""))) {
+      MetaphAdd("KS");
+      AdvanceCounter(3,2);
+      return true;
+    }
+ else {
+      MetaphAdd("K");
+      m_current+=2;
+      return true;
+    }
+  }
+  return false;
+}

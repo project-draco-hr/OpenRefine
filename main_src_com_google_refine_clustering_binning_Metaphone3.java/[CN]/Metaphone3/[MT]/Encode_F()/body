@@ -1,0 +1,14 @@
+{
+  if (StringAt((m_current - 1),5,"OFTEN","")) {
+    MetaphAdd("F","FT");
+    m_current+=2;
+    return;
+  }
+  if (CharAt(m_current + 1) == 'F') {
+    m_current+=2;
+  }
+ else {
+    m_current++;
+  }
+  MetaphAdd("F");
+}

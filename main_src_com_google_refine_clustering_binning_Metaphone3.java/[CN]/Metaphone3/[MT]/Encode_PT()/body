@@ -1,0 +1,10 @@
+{
+  if ((CharAt(m_current + 1) == 'T')) {
+    if (((m_current == 0) && StringAt(m_current,5,"PTERO","")) || StringAt((m_current - 5),7,"RECEIPT","") || StringAt((m_current - 4),8,"ASYMPTOT","")) {
+      MetaphAdd("T");
+      m_current+=2;
+      return true;
+    }
+  }
+  return false;
+}

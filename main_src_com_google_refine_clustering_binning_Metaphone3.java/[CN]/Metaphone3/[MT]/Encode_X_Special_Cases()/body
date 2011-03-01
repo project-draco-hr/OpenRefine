@@ -1,0 +1,13 @@
+{
+  if (StringAt((m_current - 2),5,"LUXUR","")) {
+    MetaphAddExactApprox("GJ","KJ");
+    m_current++;
+    return true;
+  }
+  if (StringAt(0,7,"TEXEIRA","") || StringAt(0,8,"TEIXEIRA","")) {
+    MetaphAdd("X");
+    m_current++;
+    return true;
+  }
+  return false;
+}

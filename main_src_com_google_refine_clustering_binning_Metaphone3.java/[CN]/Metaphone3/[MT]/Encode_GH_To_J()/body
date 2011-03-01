@@ -1,0 +1,8 @@
+{
+  if (StringAt((m_current - 2),4,"ALGH","") && ((m_current + 1) == m_last)) {
+    MetaphAdd("J","");
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

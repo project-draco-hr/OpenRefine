@@ -1,0 +1,8 @@
+{
+  if ((StringAt((m_current - 3),6,"NAUSEA","") && ((m_current + 2) == m_last)) || StringAt((m_current - 2),5,"CASUI","") || (StringAt((m_current - 1),5,"OSIER","ASIER","") && !(StringAt(0,6,"EASIER","") || StringAt(0,5,"OSIER","") || StringAt((m_current - 2),6,"ROSIER","MOSIER","")))) {
+    MetaphAdd("J","X");
+    AdvanceCounter(3,1);
+    return true;
+  }
+  return false;
+}

@@ -1,0 +1,8 @@
+{
+  if (StringAt((m_current + 1),3,"YLO","YLE","ENO","") || StringAt((m_current + 1),4,"ANTH","")) {
+    MetaphAdd("S");
+    m_current++;
+    return true;
+  }
+  return false;
+}

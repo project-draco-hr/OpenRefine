@@ -1,0 +1,28 @@
+{
+  if (IsVowel(m_current + 1)) {
+    if ((m_current == 0) && Names_Beginning_With_J_That_Get_Alt_Y()) {
+      if (m_encodeVowels) {
+        MetaphAdd("JA","A");
+      }
+ else {
+        MetaphAdd("J","A");
+      }
+    }
+ else {
+      if (m_encodeVowels) {
+        MetaphAdd("JA");
+      }
+ else {
+        MetaphAdd("J");
+      }
+    }
+    m_current++;
+    m_current=SkipVowels(m_current);
+    return false;
+  }
+ else {
+    MetaphAdd("J");
+    m_current++;
+    return true;
+  }
+}

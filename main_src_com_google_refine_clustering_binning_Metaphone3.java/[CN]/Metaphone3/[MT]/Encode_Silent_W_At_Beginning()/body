@@ -1,0 +1,7 @@
+{
+  if ((m_current == 0) && StringAt(m_current,2,"WR","")) {
+    m_current+=1;
+    return true;
+  }
+  return false;
+}

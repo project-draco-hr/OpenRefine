@@ -1,0 +1,15 @@
+{
+  if (StringAt((m_current + 1),4,"SION","")) {
+    if (StringAt((m_current - 2),2,"CI","")) {
+      MetaphAdd("J");
+    }
+ else {
+      if (IsVowel(m_current - 1)) {
+        MetaphAdd("X");
+      }
+    }
+    AdvanceCounter(4,2);
+    return true;
+  }
+  return false;
+}

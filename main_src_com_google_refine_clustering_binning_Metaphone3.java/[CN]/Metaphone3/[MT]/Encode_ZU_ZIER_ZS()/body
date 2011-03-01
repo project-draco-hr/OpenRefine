@@ -1,0 +1,13 @@
+{
+  if (((m_current == 1) && StringAt((m_current - 1),4,"AZUR","")) || (StringAt(m_current,4,"ZIER","") && !StringAt((m_current - 2),6,"VIZIER","")) || StringAt(m_current,3,"ZSA","")) {
+    MetaphAdd("J","S");
+    if (StringAt(m_current,3,"ZSA","")) {
+      m_current+=2;
+    }
+ else {
+      m_current++;
+    }
+    return true;
+  }
+  return false;
+}

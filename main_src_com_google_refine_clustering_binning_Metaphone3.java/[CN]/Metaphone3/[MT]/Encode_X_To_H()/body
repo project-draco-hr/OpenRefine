@@ -1,0 +1,8 @@
+{
+  if (StringAt((m_current - 2),6,"OAXACA","") || StringAt((m_current - 3),7,"QUIXOTE","")) {
+    MetaphAdd("H");
+    m_current++;
+    return true;
+  }
+  return false;
+}

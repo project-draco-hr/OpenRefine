@@ -1,0 +1,22 @@
+{
+  if (StringAt(m_current,2,"TH","")) {
+    if (StringAt((m_current - 3),7,"CLOTHES","")) {
+      m_current+=3;
+      return true;
+    }
+    if (StringAt((m_current + 2),4,"OMAS","OMPS","OMPK","OMSO","OMSE","AMES","OVEN","OFEN","ILDA","ILDE","") || (StringAt(0,4,"THOM","") && (m_length == 4)) || (StringAt(0,5,"THOMS","") && (m_length == 5))|| StringAt(0,4,"VAN ","VON ","")|| StringAt(0,3,"SCH","")) {
+      MetaphAdd("T");
+    }
+ else {
+      if (StringAt(0,2,"SM","")) {
+        MetaphAdd("0","T");
+      }
+ else {
+        MetaphAdd("0");
+      }
+    }
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

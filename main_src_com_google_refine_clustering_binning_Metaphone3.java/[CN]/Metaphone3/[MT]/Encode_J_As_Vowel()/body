@@ -1,0 +1,10 @@
+{
+  if (StringAt(m_current,5,"JEWSK","")) {
+    MetaphAdd("J","");
+    return true;
+  }
+  if ((StringAt((m_current + 1),1,"L","T","K","S","N","M","") && !StringAt((m_current + 2),1,"A","")) || StringAt(0,9,"HALLELUJA","LJUBLJANA","") || StringAt(0,4,"LJUB","BJOR","")|| StringAt(0,5,"HAJEK","")|| StringAt(0,3,"WOJ","")|| StringAt(0,2,"FJ","")|| StringAt(m_current,5,"JAVIK","JEVIC","")|| (((m_current + 1) == m_last) && StringAt(0,5,"SONJA","TANJA","TONJA",""))) {
+    return true;
+  }
+  return false;
+}

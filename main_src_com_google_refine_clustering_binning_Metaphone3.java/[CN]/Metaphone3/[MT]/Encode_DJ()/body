@@ -1,0 +1,8 @@
+{
+  if (StringAt(m_current,2,"DJ","")) {
+    MetaphAdd("J");
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

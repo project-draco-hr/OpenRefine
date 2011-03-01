@@ -1,0 +1,8 @@
+{
+  if (StringAt((m_current + 1),1,"C","S","") && StringAt((m_current + 2),1,"E","Y","I","") && (((m_current + 2) == m_last) || (((m_current + 3) == m_last)) && (CharAt(m_current + 3) == 'S'))) {
+    MetaphAdd("NTS");
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

@@ -1,0 +1,13 @@
+{
+  if (StringAt(m_current,3,"TTH","")) {
+    if (StringAt((m_current - 2),5,"MATTH","")) {
+      MetaphAdd("0");
+    }
+ else {
+      MetaphAdd("T0");
+    }
+    m_current+=3;
+    return true;
+  }
+  return false;
+}

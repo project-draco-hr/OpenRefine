@@ -1,0 +1,8 @@
+{
+  if ((StringAt((m_current - 4),4,"DONO","DONA","") && IsVowel(m_current + 2)) || StringAt((m_current - 5),9,"CALLAGHAN","")) {
+    MetaphAdd("H");
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

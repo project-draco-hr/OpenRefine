@@ -1,0 +1,8 @@
+{
+  if (StringAt((m_current - 2),8,"COMPTROL","") || StringAt((m_current - 4),7,"ACCOMPT","")) {
+    MetaphAdd("N");
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

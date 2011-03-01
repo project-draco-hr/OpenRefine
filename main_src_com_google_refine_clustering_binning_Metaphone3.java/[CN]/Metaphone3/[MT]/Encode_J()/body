@@ -1,0 +1,6 @@
+{
+  if (Encode_Spanish_J() || Encode_Spanish_OJ_UJ()) {
+    return;
+  }
+  Encode_Other_J();
+}

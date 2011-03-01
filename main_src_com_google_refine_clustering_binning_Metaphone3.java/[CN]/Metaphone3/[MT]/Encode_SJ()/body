@@ -1,0 +1,8 @@
+{
+  if (StringAt(0,2,"SJ","")) {
+    MetaphAdd("X");
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

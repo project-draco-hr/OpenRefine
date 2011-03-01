@@ -1,0 +1,8 @@
+{
+  if ((CharAt(m_current + 1) == 'P') && ((m_current + 2) < m_length) && (CharAt(m_current + 2) == 'H')) {
+    MetaphAdd("F");
+    m_current+=3;
+    return true;
+  }
+  return false;
+}

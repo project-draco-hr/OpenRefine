@@ -1,0 +1,13 @@
+{
+  if (((m_current > 1) && !IsVowel(m_current - 2) && StringAt((m_current - 1),3,"ACH","")&& !StringAt((m_current - 2),7,"MACHADO","MACHUCA","LACHANC","LACHAPE","KACHATU","")&& !StringAt((m_current - 3),7,"KHACHAT","")&& ((CharAt(m_current + 2) != 'I') && ((CharAt(m_current + 2) != 'E') || StringAt((m_current - 2),6,"BACHER","MACHER","MACHEN","LACHER",""))) || (StringAt((m_current + 2),1,"T","S","") && !(StringAt(0,11,"WHICHSOEVER","") || StringAt(0,9,"LUNCHTIME",""))) || StringAt(0,4,"SCHR","") || ((m_current > 2) && StringAt((m_current - 2),5,"MACHE","")) || ((m_current == 2) && StringAt((m_current - 2),4,"ZACH","")) || StringAt((m_current - 4),6,"SCHACH","") || StringAt((m_current - 1),5,"ACHEN","") || StringAt((m_current - 3),5,"SPICH","ZURCH","BUECH","") || (StringAt((m_current - 3),5,"KIRCH","JOACH","BLECH","MALCH","") && !(StringAt((m_current - 3),8,"KIRCHNER","") || ((m_current + 1) == m_last))) || (((m_current + 1) == m_last) && StringAt((m_current - 2),4,"NICH","LICH","BACH","")) || (((m_current + 1) == m_last) && StringAt((m_current - 3),5,"URICH","BRICH","ERICH","DRICH","NRICH","") && !StringAt((m_current - 5),7,"ALDRICH","")&& !StringAt((m_current - 6),8,"GOODRICH","")&& !StringAt((m_current - 7),9,"GINGERICH",""))) || (((m_current + 1) == m_last) && StringAt((m_current - 4),6,"ULRICH","LFRICH","LLRICH","EMRICH","ZURICH","EYRICH","")) || ((StringAt((m_current - 1),1,"A","O","U","E","") || (m_current == 0)) && StringAt((m_current + 2),1,"L","R","N","M","B","H","F","V","W"," ",""))) {
+    if (StringAt((m_current + 2),1,"R","L","") || SlavoGermanic()) {
+      MetaphAdd("K");
+    }
+ else {
+      MetaphAdd("K","X");
+    }
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

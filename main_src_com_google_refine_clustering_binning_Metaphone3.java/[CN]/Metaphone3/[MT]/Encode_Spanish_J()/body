@@ -1,0 +1,30 @@
+{
+  if ((StringAt((m_current + 1),3,"UAN","ACI","ALI","EFE","ICA","IME","OAQ","UAR","") && !StringAt(m_current,8,"JIMERSON","JIMERSEN","")) || (StringAt((m_current + 1),3,"OSE","") && ((m_current + 3) == m_last)) || StringAt((m_current + 1),4,"EREZ","UNTA","AIME","AVIE","AVIA","")|| StringAt((m_current + 1),6,"IMINEZ","ARAMIL","")|| (((m_current + 2) == m_last) && StringAt((m_current - 2),5,"MEJIA",""))|| StringAt((m_current - 2),5,"TEJED","TEJAD","LUJAN","FAJAR","BEJAR","BOJOR","CAJIG","DEJAS","DUJAR","DUJAN","MIJAR","MEJOR","NAJAR","NOJOS","RAJED","RIJAL","REJON","TEJAN","UIJAN","")|| StringAt((m_current - 3),8,"ALEJANDR","GUAJARDO","TRUJILLO","")|| (StringAt((m_current - 2),5,"RAJAS","") && (m_current > 2))|| (StringAt((m_current - 2),5,"MEJIA","") && !StringAt((m_current - 2),6,"MEJIAN",""))|| StringAt((m_current - 1),5,"OJEDA","")|| StringAt((m_current - 3),5,"LEIJA","MINJA","")|| StringAt((m_current - 3),6,"VIAJES","GRAJAL","")|| StringAt(m_current,8,"JAUREGUI","")|| StringAt((m_current - 4),8,"HINOJOSA","")|| StringAt(0,4,"SAN ","")|| (((m_current + 1) == m_last) && (CharAt(m_current + 1) == 'O') && !(StringAt(0,4,"TOJO","") || StringAt(0,5,"BANJO","") || StringAt(0,6,"MARYJO","")))) {
+    if (!(StringAt(m_current,4,"JUAN","") || StringAt(m_current,4,"JOAQ",""))) {
+      MetaphAdd("H");
+    }
+ else {
+      if (m_current == 0) {
+        MetaphAdd("A");
+      }
+    }
+    AdvanceCounter(2,1);
+    return true;
+  }
+  if (StringAt((m_current + 1),4,"ORGE","ULIO","ESUS","") && !StringAt(0,6,"JORGEN","")) {
+    if (((m_current + 4) == m_last) && StringAt((m_current + 1),4,"ORGE","")) {
+      if (m_encodeVowels) {
+        MetaphAdd("JARJ","HARHA");
+      }
+ else {
+        MetaphAdd("JRJ","HRH");
+      }
+      AdvanceCounter(5,5);
+      return true;
+    }
+    MetaphAdd("J","H");
+    AdvanceCounter(2,1);
+    return true;
+  }
+  return false;
+}

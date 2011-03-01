@@ -1,0 +1,8 @@
+{
+  if ((StringAt((m_current - 3),7,"MARGARY","MARGARI","") && !StringAt((m_current - 3),8,"MARGARIT","")) || StringAt(0,4,"GAOL","") || StringAt((m_current - 2),5,"ALGAE","")) {
+    MetaphAddExactApprox("J","G","J","K");
+    AdvanceCounter(2,1);
+    return true;
+  }
+  return false;
+}

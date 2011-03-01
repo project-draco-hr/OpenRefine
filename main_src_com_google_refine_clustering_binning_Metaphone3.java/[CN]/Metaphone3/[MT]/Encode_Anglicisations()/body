@@ -1,0 +1,13 @@
+{
+  if (((m_current == 0) && StringAt((m_current + 1),1,"M","N","L","")) || StringAt((m_current + 1),1,"Z","")) {
+    MetaphAdd("S","X");
+    if (StringAt((m_current + 1),1,"Z","")) {
+      m_current+=2;
+    }
+ else {
+      m_current++;
+    }
+    return true;
+  }
+  return false;
+}

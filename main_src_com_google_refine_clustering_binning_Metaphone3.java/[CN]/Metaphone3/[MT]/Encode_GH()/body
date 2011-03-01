@@ -1,0 +1,11 @@
+{
+  if (CharAt(m_current + 1) == 'H') {
+    if (Encode_GH_After_Consonant() || Encode_Initial_GH() || Encode_GH_To_J()|| Encode_GH_To_H()|| Encode_UGHT()|| Encode_GH_H_Part_Of_Other_Word()|| Encode_Silent_GH()|| Encode_GH_To_F()) {
+      return true;
+    }
+    MetaphAddExactApprox("G","K");
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

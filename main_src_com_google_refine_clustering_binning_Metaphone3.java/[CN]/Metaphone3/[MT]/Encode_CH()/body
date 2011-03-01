@@ -1,0 +1,21 @@
+{
+  if (StringAt(m_current,2,"CH","")) {
+    if (Encode_CHAE() || Encode_CH_To_H() || Encode_Silent_CH()|| Encode_ARCH()|| Encode_CH_To_X()|| Encode_English_CH_To_K()|| Encode_Germanic_CH_To_K()|| Encode_Greek_CH_Initial()|| Encode_Greek_CH_Non_Initial()) {
+      return true;
+    }
+    if (m_current > 0) {
+      if (StringAt(0,2,"MC","") && (m_current == 1)) {
+        MetaphAdd("K");
+      }
+ else {
+        MetaphAdd("X","K");
+      }
+    }
+ else {
+      MetaphAdd("X");
+    }
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

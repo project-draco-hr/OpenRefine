@@ -1,0 +1,8 @@
+{
+  if (StringAt((m_current + 1),1,"P","B","")) {
+    m_current+=2;
+  }
+ else {
+    m_current++;
+  }
+}

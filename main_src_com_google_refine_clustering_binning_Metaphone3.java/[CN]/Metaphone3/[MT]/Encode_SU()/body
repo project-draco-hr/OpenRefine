@@ -1,0 +1,16 @@
+{
+  if (StringAt((m_current + 1),2,"UO","UA","") && (m_current != 0)) {
+    if (StringAt((m_current - 1),4,"RSUA","")) {
+      MetaphAdd("S");
+    }
+ else     if (IsVowel(m_current - 1)) {
+      MetaphAdd("J","S");
+    }
+ else {
+      MetaphAdd("X","S");
+    }
+    AdvanceCounter(3,1);
+    return true;
+  }
+  return false;
+}

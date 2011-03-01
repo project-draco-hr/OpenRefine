@@ -1,0 +1,13 @@
+{
+  if (StringAt((m_current + 1),4,"SYCH","")) {
+    if (m_encodeVowels) {
+      MetaphAdd("SAK");
+    }
+ else {
+      MetaphAdd("SK");
+    }
+    m_current+=5;
+    return true;
+  }
+  return false;
+}

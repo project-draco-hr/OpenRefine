@@ -1,0 +1,13 @@
+{
+  if (StringAt(0,3,"XIA","XIO","XIE","") || StringAt(0,2,"XU","")) {
+    MetaphAdd("X");
+    m_current++;
+    return true;
+  }
+  if ((m_current == 0)) {
+    MetaphAdd("S");
+    m_current++;
+    return true;
+  }
+  return false;
+}

@@ -1,0 +1,8 @@
+{
+  if (StringAt((m_current - 1),5,"ILELY","") && ((m_current + 3) == m_last)) {
+    MetaphAdd("L");
+    m_current+=3;
+    return true;
+  }
+  return false;
+}

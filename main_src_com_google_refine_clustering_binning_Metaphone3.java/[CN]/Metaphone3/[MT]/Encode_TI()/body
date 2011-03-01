@@ -1,0 +1,24 @@
+{
+  if ((StringAt((m_current + 1),2,"IO","") && !StringAt((m_current - 1),5,"ETIOL","")) || StringAt((m_current + 1),3,"IAL","") || StringAt((m_current - 1),5,"RTIUM","ATIUM","")|| ((StringAt((m_current + 1),3,"IAN","") && (m_current > 0)) && !(StringAt((m_current - 4),8,"FAUSTIAN","") || StringAt((m_current - 5),9,"PROUSTIAN","") || StringAt((m_current - 2),7,"TATIANA","")|| (StringAt((m_current - 3),7,"KANTIAN","GENTIAN","") || StringAt((m_current - 8),12,"ROOSEVELTIAN",""))) || (((m_current + 2) == m_last) && StringAt(m_current,3,"TIA","") && !(StringAt((m_current - 3),6,"HESTIA","MASTIA","") || StringAt((m_current - 2),5,"OSTIA","") || StringAt(0,3,"TIA","")|| StringAt((m_current - 5),8,"IZVESTIA",""))) || StringAt((m_current + 1),4,"IATE","IATI","IABL","IATO","IARY","") || StringAt((m_current - 5),9,"CHRISTIAN",""))) {
+    if (((m_current == 2) && StringAt(0,4,"ANTI","")) || StringAt(0,5,"PATIO","PITIA","DUTIA","")) {
+      MetaphAdd("T");
+    }
+ else     if (StringAt((m_current - 4),8,"EQUATION","")) {
+      MetaphAdd("J");
+    }
+ else {
+      if (StringAt(m_current,4,"TION","")) {
+        MetaphAdd("X");
+      }
+ else       if (StringAt(0,5,"KATIA","LATIA","")) {
+        MetaphAdd("T","X");
+      }
+ else {
+        MetaphAdd("X","T");
+      }
+    }
+    AdvanceCounter(3,1);
+    return true;
+  }
+  return false;
+}

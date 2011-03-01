@@ -1,0 +1,11 @@
+{
+  if (inKeyLength < 1) {
+    inKeyLength=1;
+  }
+  if (inKeyLength > MAX_KEY_ALLOCATION) {
+    m_metaphLength=MAX_KEY_ALLOCATION;
+    return false;
+  }
+  m_metaphLength=inKeyLength;
+  return true;
+}

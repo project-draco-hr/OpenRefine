@@ -1,0 +1,6 @@
+{
+  if ((m_current == (at - 1)) && (m_length > (at + 1)) && (IsVowel((at + 1)) || (StringAt(at,2,"ST","SL","") && (m_length > (at + 2))))) {
+    return true;
+  }
+  return false;
+}

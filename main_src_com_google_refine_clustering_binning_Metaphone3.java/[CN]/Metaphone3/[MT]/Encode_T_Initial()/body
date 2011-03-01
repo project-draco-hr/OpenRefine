@@ -1,0 +1,29 @@
+{
+  if (m_current == 0) {
+    if (StringAt((m_current + 1),3,"SAR","ZAR","")) {
+      m_current++;
+      return true;
+    }
+    if (((m_length == 3) && StringAt((m_current + 1),2,"SO","SA","SU","")) || ((m_length == 4) && StringAt((m_current + 1),3,"SAO","SAI","")) || ((m_length == 5) && StringAt((m_current + 1),4,"SING","SANG",""))) {
+      MetaphAdd("X");
+      AdvanceCounter(3,2);
+      return true;
+    }
+    if (StringAt((m_current + 1),1,"S","") && IsVowel(m_current + 2)) {
+      MetaphAdd("TS","S");
+      AdvanceCounter(3,2);
+      return true;
+    }
+    if (StringAt((m_current + 1),1,"J","")) {
+      MetaphAdd("X");
+      AdvanceCounter(3,2);
+      return true;
+    }
+    if ((StringAt((m_current + 1),2,"HU","") && (m_length == 3)) || StringAt((m_current + 1),3,"HAI","HUY","HAO","") || StringAt((m_current + 1),4,"HYME","HYMY","HANH","")|| StringAt((m_current + 1),5,"HERES","")) {
+      MetaphAdd("T");
+      AdvanceCounter(3,2);
+      return true;
+    }
+  }
+  return false;
+}

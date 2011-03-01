@@ -1,0 +1,8 @@
+{
+  if (((m_current == 0) && StringAt(m_current,4,"CAES","CAEC","CAEM","")) || StringAt(0,8,"FRANCAIS","FRANCAIX","LINGUICA","") || StringAt(0,6,"FACADE","")|| StringAt(0,9,"GONCALVES","PROVENCAL","")) {
+    MetaphAdd("S");
+    AdvanceCounter(2,1);
+    return true;
+  }
+  return false;
+}

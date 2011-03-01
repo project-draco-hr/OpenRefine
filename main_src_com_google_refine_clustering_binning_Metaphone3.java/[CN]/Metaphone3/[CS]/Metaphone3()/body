@@ -1,0 +1,7 @@
+{
+  m_primary=new StringBuffer();
+  m_secondary=new StringBuffer();
+  m_metaphLength=DEFAULT_MAX_KEY_LENGTH;
+  m_encodeVowels=false;
+  m_encodeExact=false;
+}

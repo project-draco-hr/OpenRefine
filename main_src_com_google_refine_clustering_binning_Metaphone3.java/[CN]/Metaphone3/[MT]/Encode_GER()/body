@@ -1,0 +1,18 @@
+{
+  if ((m_current > 0) && StringAt((m_current + 1),2,"ER","")) {
+    if ((((m_current == 2) && IsVowel(m_current - 1) && !IsVowel(m_current - 2)&& !(StringAt((m_current - 2),5,"PAGER","WAGER","NIGER","ROGER","LEGER","CAGER","")) || StringAt((m_current - 2),5,"AUGER","EAGER","INGER","YAGER","")) || StringAt((m_current - 3),6,"SEEGER","JAEGER","GEIGER","KRUGER","SAUGER","BURGER","MEAGER","MARGER","RIEGER","YAEGER","STEGER","PRAGER","SWIGER","YERGER","TORGER","FERGER","HILGER","ZEIGER","YARGER","COWGER","CREGER","KROGER","KREGER","GRAGER","STIGER","BERGER","") || (StringAt((m_current - 3),6,"BERGER","") && ((m_current + 2) == m_last))|| StringAt((m_current - 4),7,"KREIGER","KRUEGER","METZGER","KRIEGER","KROEGER","STEIGER","DRAEGER","BUERGER","BOERGER","FIBIGER","")|| (StringAt((m_current - 3),6,"BARGER","") && (m_current > 4))|| (StringAt(m_current,6,"GERBER","") && (m_current > 0))|| StringAt((m_current - 5),8,"SCHWAGER","LYBARGER","SPRENGER","GALLAGER","WILLIGER","")|| StringAt(0,4,"HARGER","")|| (StringAt(0,4,"AGER","EGER","") && (m_length == 4))|| StringAt((m_current - 1),6,"YGERNE","")|| StringAt((m_current - 6),9,"SCHWEIGER","")) && !(StringAt((m_current - 5),10,"BELLIGEREN","") || StringAt(0,7,"MARGERY","") || StringAt((m_current - 3),8,"BERGERAC",""))) {
+      if (SlavoGermanic()) {
+        MetaphAddExactApprox("G","K");
+      }
+ else {
+        MetaphAddExactApprox("G","J","K","J");
+      }
+    }
+ else {
+      MetaphAddExactApprox("J","G","J","K");
+    }
+    AdvanceCounter(2,1);
+    return true;
+  }
+  return false;
+}

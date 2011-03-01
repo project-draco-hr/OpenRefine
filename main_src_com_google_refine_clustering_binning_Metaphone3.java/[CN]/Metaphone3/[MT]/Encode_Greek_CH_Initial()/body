@@ -1,0 +1,13 @@
+{
+  if ((StringAt(m_current,6,"CHAMOM","CHARAC","CHARIS","CHARTO","CHARTU","CHARYB","CHRIST","CHEMIC","CHILIA","") || (StringAt(m_current,5,"CHEMI","CHEMO","CHEMU","CHEMY","CHOND","CHONA","CHONI","CHOIR","CHASM","CHARO","CHROM","CHROI","CHAMA","CHALC","CHALD","CHAET","CHIRO","CHILO","CHELA","CHOUS","CHEIL","CHEIR","CHEIM","CHITI","CHEOP","") && !(StringAt(m_current,6,"CHEMIN","") || StringAt((m_current - 2),8,"ANCHONDO",""))) || (StringAt(m_current,5,"CHISM","CHELI","") && !(StringAt(0,8,"MACHISMO","") || StringAt(0,10,"REVANCHISM","") || StringAt(0,9,"RICHELIEU","")|| (StringAt(0,5,"CHISM","") && (m_length == 5))|| StringAt(0,6,"MICHEL","")))|| (StringAt(m_current,4,"CHOR","CHOL","CHYM","CHYL","CHLO","CHOS","CHUS","CHOE","") && !StringAt(0,6,"CHOLLO","CHOLLA","CHORIZ",""))|| (StringAt(m_current,4,"CHAO","") && ((m_current + 3) != m_last))|| (StringAt(m_current,4,"CHIA","") && !(StringAt(0,10,"APPALACHIA","") || StringAt(0,7,"CHIAPAS","")))|| StringAt(m_current,7,"CHIMERA","CHIMAER","CHIMERI","")|| ((m_current == 0) && StringAt(m_current,5,"CHAME","CHELO","CHITO",""))|| ((((m_current + 4) == m_last) || ((m_current + 5) == m_last)) && StringAt((m_current - 1),6,"OCHETE",""))) && !((StringAt(0,5,"CHORE","CHOLO","CHOLA","") && (m_length == 5)) || StringAt(m_current,5,"CHORT","CHOSE","") || StringAt((m_current - 3),7,"CROCHET","")|| StringAt(0,7,"CHEMISE","CHARISE","CHARISS","CHAROLE",""))) {
+    if (StringAt((m_current + 2),1,"R","L","")) {
+      MetaphAdd("K");
+    }
+ else {
+      MetaphAdd("K","X");
+    }
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

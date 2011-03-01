@@ -1,0 +1,28 @@
+{
+  boolean handled=false;
+  if (StringAt((m_current - 6),8,"HICCOUGH","")) {
+    MetaphAdd("P");
+    handled=true;
+  }
+ else   if (StringAt(0,5,"LOUGH","")) {
+    MetaphAdd("K");
+    handled=true;
+  }
+ else   if (StringAt(0,6,"BALOGH","")) {
+    MetaphAddExactApprox("G","","K","");
+    handled=true;
+  }
+ else   if (StringAt((m_current - 3),8,"LAUGHLIN","COUGHLAN","LOUGHLIN","")) {
+    MetaphAdd("K","F");
+    handled=true;
+  }
+ else   if (StringAt((m_current - 3),5,"GOUGH","") || StringAt((m_current - 7),9,"COLCLOUGH","")) {
+    MetaphAdd("","F");
+    handled=true;
+  }
+  if (handled) {
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

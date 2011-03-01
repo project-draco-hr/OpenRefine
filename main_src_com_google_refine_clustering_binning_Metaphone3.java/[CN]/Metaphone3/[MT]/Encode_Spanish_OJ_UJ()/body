@@ -1,0 +1,13 @@
+{
+  if (StringAt((m_current + 1),5,"OJOBA","UJUY ","")) {
+    if (m_encodeVowels) {
+      MetaphAdd("HAH");
+    }
+ else {
+      MetaphAdd("HH");
+    }
+    AdvanceCounter(4,3);
+    return true;
+  }
+  return false;
+}

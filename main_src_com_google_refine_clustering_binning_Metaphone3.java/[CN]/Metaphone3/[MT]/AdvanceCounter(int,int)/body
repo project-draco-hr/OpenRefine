@@ -1,0 +1,8 @@
+{
+  if (!m_encodeVowels) {
+    m_current+=ifNotEncodeVowels;
+  }
+ else {
+    m_current+=ifEncodeVowels;
+  }
+}

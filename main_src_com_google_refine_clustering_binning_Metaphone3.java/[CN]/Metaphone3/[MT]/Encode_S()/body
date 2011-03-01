@@ -1,0 +1,12 @@
+{
+  if (Encode_SKJ() || Encode_Special_SW() || Encode_SJ()|| Encode_Silent_French_S_Final()|| Encode_Silent_French_S_Internal()|| Encode_ISL()|| Encode_STL()|| Encode_Christmas()|| Encode_STHM()|| Encode_ISTEN()|| Encode_Sugar()|| Encode_SH()|| Encode_SCH()|| Encode_SUR()|| Encode_SU()|| Encode_SSIO()|| Encode_SS()|| Encode_SIA()|| Encode_SIO()|| Encode_Anglicisations()|| Encode_SC()|| Encode_SEA_SUI_SIER()|| Encode_SEA()) {
+    return;
+  }
+  MetaphAdd("S");
+  if (StringAt((m_current + 1),1,"S","Z","") && !StringAt((m_current + 1),2,"SH","")) {
+    m_current+=2;
+  }
+ else {
+    m_current++;
+  }
+}

@@ -1,0 +1,15 @@
+{
+  if (CharAt(m_current + 1) == 'L') {
+    if (Encode_LL_As_Vowel_Special_Cases()) {
+      return true;
+    }
+ else     if (Encode_LL_As_Vowel()) {
+      return true;
+    }
+    m_current+=2;
+  }
+ else {
+    m_current++;
+  }
+  return false;
+}

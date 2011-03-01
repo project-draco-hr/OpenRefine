@@ -1,0 +1,7 @@
+{
+  if (StringAt((m_current - 3),5,"CORPS","") && !StringAt((m_current - 3),6,"CORPSE","")) {
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

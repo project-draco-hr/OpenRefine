@@ -1,0 +1,19 @@
+{
+  if ((m_current == 0) && IsVowel(m_current + 1)) {
+    if (Germanic_Or_Slavic_Name_Beginning_With_W()) {
+      if (m_encodeVowels) {
+        MetaphAddExactApprox("A","VA","A","FA");
+      }
+ else {
+        MetaphAddExactApprox("A","V","A","F");
+      }
+    }
+ else {
+      MetaphAdd("A");
+    }
+    m_current++;
+    m_current=SkipVowels(m_current);
+    return true;
+  }
+  return false;
+}

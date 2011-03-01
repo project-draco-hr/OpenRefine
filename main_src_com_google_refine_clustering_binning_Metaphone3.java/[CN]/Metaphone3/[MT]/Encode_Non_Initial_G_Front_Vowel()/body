@@ -1,0 +1,35 @@
+{
+  if (StringAt((m_current + 1),1,"E","I","Y","")) {
+    if (StringAt(m_current,2,"GE","") && (m_current == (m_last - 1))) {
+      if (Hard_GE_At_End()) {
+        if (SlavoGermanic()) {
+          MetaphAddExactApprox("G","K");
+        }
+ else {
+          MetaphAddExactApprox("G","J","K","J");
+        }
+      }
+ else {
+        MetaphAdd("J");
+      }
+    }
+ else {
+      if (Internal_Hard_G()) {
+        if (!((m_current == 2) && StringAt(0,2,"MC","")) || ((m_current == 3) && StringAt(0,3,"MAC",""))) {
+          if (SlavoGermanic()) {
+            MetaphAddExactApprox("G","K");
+          }
+ else {
+            MetaphAddExactApprox("G","J","K","J");
+          }
+        }
+      }
+ else {
+        MetaphAddExactApprox("J","G","J","K");
+      }
+    }
+    AdvanceCounter(2,1);
+    return true;
+  }
+  return false;
+}

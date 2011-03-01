@@ -1,0 +1,13 @@
+{
+  if (((m_current > 0) && StringAt((m_current + 1),4,"HOOD","HEAD","HEID","HAND","HILL","HOLD","HAWK","HEAP","HERD","HOLE","HOOK","HUNT","HUMO","HAUS","HOFF","HARD","") && !StringAt((m_current - 3),5,"SOUTH","NORTH","")) || StringAt((m_current + 1),5,"HOUSE","HEART","HASTE","HYPNO","HEQUE","") || (StringAt((m_current + 1),4,"HALL","") && ((m_current + 4) == m_last) && !StringAt((m_current - 3),5,"SOUTH","NORTH",""))|| (StringAt((m_current + 1),3,"HAM","") && ((m_current + 3) == m_last) && !(StringAt(0,6,"GOTHAM","WITHAM","LATHAM","") || StringAt(0,7,"BENTHAM","WALTHAM","WORTHAM","") || StringAt(0,8,"GRANTHAM","")))|| (StringAt((m_current + 1),5,"HATCH","") && !((m_current == 0) || StringAt((m_current - 2),8,"UNTHATCH","")))|| StringAt((m_current - 3),7,"WARTHOG","")|| StringAt((m_current - 2),6,"ESTHER","")|| StringAt((m_current - 3),6,"GOETHE","")|| StringAt((m_current - 2),8,"NATHALIE","")) {
+    if (StringAt((m_current - 3),7,"POSTHUM","")) {
+      MetaphAdd("X");
+    }
+ else {
+      MetaphAdd("T");
+    }
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

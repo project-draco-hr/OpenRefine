@@ -1,0 +1,8 @@
+{
+  if ((((m_current == 0) || IsVowel(m_current - 1) || ((m_current > 0) && (CharAt(m_current - 1) == 'W'))) && IsVowel(m_current + 1)) || ((CharAt(m_current + 1) == 'H') && IsVowel(m_current + 2))) {
+    MetaphAdd("H");
+    AdvanceCounter(2,1);
+    return true;
+  }
+  return false;
+}

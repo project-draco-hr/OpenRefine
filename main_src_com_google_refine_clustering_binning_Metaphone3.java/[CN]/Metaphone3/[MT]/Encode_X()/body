@@ -1,0 +1,11 @@
+{
+  if (Encode_Initial_X() || Encode_Greek_X() || Encode_X_Special_Cases()|| Encode_X_To_H()|| Encode_X_Vowel()|| Encode_French_X_Final()) {
+    return;
+  }
+  if (StringAt((m_current + 1),1,"X","Z","S","") || StringAt((m_current + 1),2,"CI","CE","")) {
+    m_current+=2;
+  }
+ else {
+    m_current++;
+  }
+}

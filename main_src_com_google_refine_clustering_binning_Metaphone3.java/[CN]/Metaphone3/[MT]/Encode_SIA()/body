@@ -1,0 +1,23 @@
+{
+  if (StringAt((m_current - 2),5,"CHSIA","") || StringAt((m_current - 1),5,"RSIAL","")) {
+    MetaphAdd("X");
+    AdvanceCounter(3,1);
+    return true;
+  }
+  if ((StringAt(0,6,"ALESIA","ALYSIA","ALISIA","STASIA","") && (m_current == 3) && !StringAt(0,9,"ANASTASIA","")) || StringAt((m_current - 5),9,"DIONYSIAN","") || StringAt((m_current - 5),8,"THERESIA","")) {
+    MetaphAdd("X","S");
+    AdvanceCounter(3,1);
+    return true;
+  }
+  if ((StringAt(m_current,3,"SIA","") && ((m_current + 2) == m_last)) || (StringAt(m_current,4,"SIAN","") && ((m_current + 3) == m_last)) || StringAt((m_current - 5),9,"AMBROSIAL","")) {
+    if ((IsVowel(m_current - 1) || StringAt((m_current - 1),1,"R","")) && !(StringAt(0,5,"JAMES","NICOS","PEGAS","PEPYS","") || StringAt(0,6,"HOBBES","HOLMES","JAQUES","KEYNES","") || StringAt(0,7,"MALTHUS","HOMOOUS","")|| StringAt(0,8,"MAGLEMOS","HOMOIOUS","")|| StringAt(0,9,"LEVALLOIS","TARDENOIS","")|| StringAt((m_current - 4),5,"ALGES",""))) {
+      MetaphAdd("J");
+    }
+ else {
+      MetaphAdd("S");
+    }
+    AdvanceCounter(2,1);
+    return true;
+  }
+  return false;
+}

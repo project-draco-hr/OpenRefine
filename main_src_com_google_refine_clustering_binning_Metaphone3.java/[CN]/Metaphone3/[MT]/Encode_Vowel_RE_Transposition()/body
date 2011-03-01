@@ -1,0 +1,7 @@
+{
+  if ((m_encodeVowels) && (CharAt(m_current + 1) == 'E') && (m_length > 3)&& !StringAt(0,5,"OUTRE","LIBRE","ANDRE","")&& !(StringAt(0,4,"FRED","TRES","") && (m_length == 4))&& !StringAt((m_current - 2),5,"LDRED","LFRED","NDRED","NFRED","NDRES","TRES","IFRED","")&& !IsVowel(m_current - 1)&& (((m_current + 1) == m_last) || (((m_current + 2) == m_last) && StringAt((m_current + 2),1,"D","S","")))) {
+    MetaphAdd("AR");
+    return true;
+  }
+  return false;
+}

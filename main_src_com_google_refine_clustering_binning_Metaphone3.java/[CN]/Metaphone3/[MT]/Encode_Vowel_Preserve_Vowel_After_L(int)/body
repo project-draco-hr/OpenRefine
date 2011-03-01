@@ -1,0 +1,8 @@
+{
+  if (m_encodeVowels && !IsVowel(save_current - 1) && (CharAt(save_current + 1) == 'E')&& (save_current > 1)&& ((save_current + 1) != m_last)&& !(StringAt((save_current + 1),2,"ES","ED","") && ((save_current + 2) == m_last))&& !StringAt((save_current - 1),5,"RLEST","")) {
+    MetaphAdd("LA");
+    m_current=SkipVowels(m_current);
+    return true;
+  }
+  return false;
+}

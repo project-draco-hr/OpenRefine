@@ -1,0 +1,8 @@
+{
+  if (StringAt((m_current - 3),6,"FORTUN","") || (StringAt(m_current,3,"TUL","") && (IsVowel(m_current - 1) && IsVowel(m_current + 3))) || StringAt((m_current - 2),5,"BITUA","BITUE","")|| ((m_current > 1) && StringAt(m_current,3,"TUA","TUO",""))) {
+    MetaphAdd("X","T");
+    m_current++;
+    return true;
+  }
+  return false;
+}

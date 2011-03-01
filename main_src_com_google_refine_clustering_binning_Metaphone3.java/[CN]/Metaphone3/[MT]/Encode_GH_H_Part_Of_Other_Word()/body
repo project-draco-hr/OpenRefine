@@ -1,0 +1,8 @@
+{
+  if (StringAt((m_current + 1),4,"HOUS","HEAD","HOLE","HORN","HARN","")) {
+    MetaphAddExactApprox("G","K");
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

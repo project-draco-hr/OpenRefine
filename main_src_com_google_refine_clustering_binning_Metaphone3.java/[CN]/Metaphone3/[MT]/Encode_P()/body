@@ -1,0 +1,7 @@
+{
+  if (Encode_Silent_P_At_Beginning() || Encode_PT() || Encode_PH()|| Encode_PPH()|| Encode_RPS()|| Encode_COUP()|| Encode_PNEUM()|| Encode_PSYCH()|| Encode_PSALM()) {
+    return;
+  }
+  Encode_PB();
+  MetaphAdd("P");
+}

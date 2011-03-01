@@ -1,0 +1,8 @@
+{
+  if ((StringAt((m_current - 2),4,"OACH","EACH","EECH","OUCH","OOCH","MUCH","SUCH","") && !StringAt((m_current - 3),5,"JOACH","")) || (((m_current + 2) == m_last) && StringAt((m_current - 1),4,"ACHA","ACHO","")) || (StringAt(m_current,4,"CHOT","CHOD","CHAT","") && ((m_current + 3) == m_last))|| ((StringAt((m_current - 1),4,"OCHE","") && ((m_current + 2) == m_last)) && !StringAt((m_current - 2),5,"DOCHE",""))|| StringAt((m_current - 4),6,"ATTACH","DETACH","KOVACH","")|| StringAt((m_current - 5),7,"SPINACH","")|| StringAt(0,6,"MACHAU","")|| StringAt((m_current - 4),8,"PARACHUT","")|| StringAt((m_current - 5),8,"MASSACHU","")|| (StringAt((m_current - 3),5,"THACH","") && !StringAt((m_current - 1),4,"ACHE",""))|| StringAt((m_current - 2),6,"VACHON","")) {
+    MetaphAdd("X");
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

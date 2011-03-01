@@ -1,0 +1,29 @@
+{
+  if (Test_Silent_MB_1()) {
+    if (Test_Pronounced_MB()) {
+      m_current++;
+    }
+ else {
+      m_current+=2;
+    }
+  }
+ else   if (Test_Silent_MB_2()) {
+    if (Test_Pronounced_MB_2()) {
+      m_current++;
+    }
+ else {
+      m_current+=2;
+    }
+  }
+ else   if (Test_MN()) {
+    m_current+=2;
+  }
+ else {
+    if (CharAt(m_current + 1) == 'M') {
+      m_current+=2;
+    }
+ else {
+      m_current++;
+    }
+  }
+}

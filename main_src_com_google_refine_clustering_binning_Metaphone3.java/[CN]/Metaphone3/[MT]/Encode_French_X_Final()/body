@@ -1,0 +1,6 @@
+{
+  if (!((m_current == m_last) && (StringAt((m_current - 3),3,"IAU","EAU","IEU","") || StringAt((m_current - 2),2,"AI","AU","OU","OI","EU","")))) {
+    MetaphAdd("KS");
+  }
+  return false;
+}

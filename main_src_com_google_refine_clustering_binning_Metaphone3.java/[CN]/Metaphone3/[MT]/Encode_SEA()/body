@@ -1,0 +1,8 @@
+{
+  if ((StringAt(0,4,"SEAN","") && ((m_current + 3) == m_last)) || (StringAt((m_current - 3),6,"NAUSEO","") && !StringAt((m_current - 3),7,"NAUSEAT",""))) {
+    MetaphAdd("X");
+    AdvanceCounter(3,1);
+    return true;
+  }
+  return false;
+}

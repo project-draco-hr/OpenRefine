@@ -1,0 +1,25 @@
+{
+  if (StringAt(m_current,2,"WH","")) {
+    if ((CharAt(m_current + 2) == 'O') && !(StringAt((m_current + 2),4,"OOSH","") || StringAt((m_current + 2),3,"OOP","OMP","ORL","ORT","") || StringAt((m_current + 2),2,"OA","OP",""))) {
+      MetaphAdd("H");
+      AdvanceCounter(3,2);
+      return true;
+    }
+ else {
+      if (StringAt((m_current + 2),3,"IDE","ARD","EAD","AWK","ERD","OOK","AND","OLE","OOD","") || StringAt((m_current + 2),4,"EART","OUSE","OUND","") || StringAt((m_current + 2),5,"AMMER","")) {
+        MetaphAdd("H");
+        m_current+=2;
+        return true;
+      }
+ else       if (m_current == 0) {
+        MetaphAdd("A");
+        m_current+=2;
+        m_current=SkipVowels(m_current);
+        return true;
+      }
+    }
+    m_current+=2;
+    return true;
+  }
+  return false;
+}

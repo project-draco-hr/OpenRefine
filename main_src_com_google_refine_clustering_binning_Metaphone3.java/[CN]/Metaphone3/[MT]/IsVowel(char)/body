@@ -1,6 +1,2 @@
 {
-  if ((inChar == 'A') || (inChar == 'E') || (inChar == 'I')|| (inChar == 'O')|| (inChar == 'U')|| (inChar == 'Y')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')|| (inChar == '?')) {
-    return true;
-  }
-  return false;
 }

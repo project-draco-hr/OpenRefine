@@ -2,6 +2,7 @@
   String columnName=null;
   int oldColumnIndex=-1;
   int newColumnIndex=-1;
+  List<ColumnGroup> oldColumnGroups=null;
   String line;
   while ((line=reader.readLine()) != null && !"/ec/".equals(line)) {
     int equal=line.indexOf('=');
@@ -16,8 +17,13 @@
  else     if ("columnName".equals(field)) {
       columnName=value;
     }
+ else     if ("oldColumnGroupCount".equals(field)) {
+      int oldColumnGroupCount=Integer.parseInt(line.substring(equal + 1));
+      oldColumnGroups=readOldColumnGroups(reader,oldColumnGroupCount);
+    }
   }
   ColumnMoveChange change=new ColumnMoveChange(columnName,newColumnIndex);
   change._oldColumnIndex=oldColumnIndex;
+  change._oldColumnGroups=oldColumnGroups != null ? oldColumnGroups : new LinkedList<ColumnGroup>();
   return change;
 }

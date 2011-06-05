@@ -1,0 +1,15 @@
+{
+  writer.write("oldColumnGroupCount=");
+  writer.write(Integer.toString(oldColumnGroups.size()));
+  writer.write('\n');
+  for (  ColumnGroup cg : oldColumnGroups) {
+    JSONWriter jsonWriter=new JSONWriter(writer);
+    try {
+      cg.write(jsonWriter,options);
+    }
+ catch (    JSONException e) {
+      throw new IOException(e);
+    }
+    writer.write('\n');
+  }
+}

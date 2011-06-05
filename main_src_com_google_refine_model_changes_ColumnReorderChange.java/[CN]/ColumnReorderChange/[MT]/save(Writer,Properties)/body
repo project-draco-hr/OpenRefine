@@ -20,5 +20,6 @@
     c.save(writer);
     writer.write('\n');
   }
+  writeOldColumnGroups(writer,options,_oldColumnGroups);
   writer.write("/ec/\n");
 }

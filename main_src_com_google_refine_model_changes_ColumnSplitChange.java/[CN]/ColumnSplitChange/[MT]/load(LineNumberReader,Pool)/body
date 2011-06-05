@@ -9,6 +9,7 @@
   int firstNewCellIndex=-1;
   List<Row> oldRows=null;
   List<Row> newRows=null;
+  List<ColumnGroup> oldColumnGroups=null;
   String line;
   while ((line=reader.readLine()) != null && !"/ec/".equals(line)) {
     int equal=line.indexOf('=');
@@ -86,7 +87,12 @@
         }
       }
     }
+ else     if ("oldColumnGroupCount".equals(field)) {
+      int oldColumnGroupCount=Integer.parseInt(line.substring(equal + 1));
+      oldColumnGroups=ColumnChange.readOldColumnGroups(reader,oldColumnGroupCount);
+    }
   }
   ColumnSplitChange change=new ColumnSplitChange(columnName,columnNames,rowIndices,tuples,removeOriginalColumn,column,columnIndex,firstNewCellIndex,oldRows,newRows);
+  change._oldColumnGroups=oldColumnGroups != null ? oldColumnGroups : new LinkedList<ColumnGroup>();
   return change;
 }

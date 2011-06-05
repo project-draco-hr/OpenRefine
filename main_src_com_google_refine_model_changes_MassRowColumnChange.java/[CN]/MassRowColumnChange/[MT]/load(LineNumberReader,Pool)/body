@@ -1,6 +1,7 @@
 {
   List<Column> oldColumns=null;
   List<Column> newColumns=null;
+  List<ColumnGroup> oldColumnGroups=null;
   List<Row> oldRows=null;
   List<Row> newRows=null;
   String line;
@@ -47,9 +48,14 @@
         }
       }
     }
+ else     if ("oldColumnGroupCount".equals(field)) {
+      int oldColumnGroupCount=Integer.parseInt(line.substring(equal + 1));
+      oldColumnGroups=ColumnChange.readOldColumnGroups(reader,oldColumnGroupCount);
+    }
   }
   MassRowColumnChange change=new MassRowColumnChange(newColumns,newRows);
   change._oldColumns=oldColumns;
   change._oldRows=oldRows;
+  change._oldColumnGroups=oldColumnGroups != null ? oldColumnGroups : new LinkedList<ColumnGroup>();
   return change;
 }

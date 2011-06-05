@@ -1,8 +1,12 @@
 {
 synchronized (project) {
     _oldColumnIndex=project.columnModel.getColumnIndexByName(_columnName);
+    if (_oldColumnGroups == null) {
+      _oldColumnGroups=new ArrayList<ColumnGroup>(project.columnModel.columnGroups);
+    }
     Column column=project.columnModel.columns.remove(_oldColumnIndex);
     project.columnModel.columns.add(_newColumnIndex,column);
+    project.columnModel.columnGroups.clear();
     project.update();
   }
 }

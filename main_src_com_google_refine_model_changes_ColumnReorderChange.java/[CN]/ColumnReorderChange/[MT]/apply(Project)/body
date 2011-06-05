@@ -9,9 +9,11 @@ synchronized (project) {
           _newColumns.add(column);
         }
       }
+      _oldColumnGroups=new ArrayList<ColumnGroup>(project.columnModel.columnGroups);
     }
     project.columnModel.columns.clear();
     project.columnModel.columns.addAll(_newColumns);
+    project.columnModel.columnGroups.clear();
     project.update();
   }
 }

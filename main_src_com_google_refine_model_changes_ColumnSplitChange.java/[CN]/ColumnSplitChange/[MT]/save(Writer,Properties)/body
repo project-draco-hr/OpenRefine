@@ -61,5 +61,6 @@
     row.save(writer,options);
     writer.write('\n');
   }
+  ColumnChange.writeOldColumnGroups(writer,options,_oldColumnGroups);
   writer.write("/ec/\n");
 }

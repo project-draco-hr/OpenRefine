@@ -2,6 +2,8 @@
 synchronized (project) {
     project.columnModel.columns.clear();
     project.columnModel.columns.addAll(_oldColumns);
+    project.columnModel.columnGroups.clear();
+    project.columnModel.columnGroups.addAll(_oldColumnGroups);
     project.rows.clear();
     project.rows.addAll(_oldRows);
     project.update();

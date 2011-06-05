@@ -5,6 +5,8 @@ synchronized (project) {
       row.setCell(_newCellIndex,null);
     }
     project.columnModel.columns.remove(_columnIndex);
+    project.columnModel.columnGroups.clear();
+    project.columnModel.columnGroups.addAll(_oldColumnGroups);
     project.update();
   }
 }

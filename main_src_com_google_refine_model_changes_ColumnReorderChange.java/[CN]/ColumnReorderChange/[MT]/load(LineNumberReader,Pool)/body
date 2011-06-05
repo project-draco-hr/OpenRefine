@@ -2,6 +2,7 @@
   List<String> columnNames=new ArrayList<String>();
   List<Column> oldColumns=new ArrayList<Column>();
   List<Column> newColumns=new ArrayList<Column>();
+  List<ColumnGroup> oldColumnGroups=null;
   String line;
   while ((line=reader.readLine()) != null && !"/ec/".equals(line)) {
     int equal=line.indexOf('=');
@@ -33,9 +34,14 @@
         }
       }
     }
+ else     if ("oldColumnGroupCount".equals(field)) {
+      int oldColumnGroupCount=Integer.parseInt(line.substring(equal + 1));
+      oldColumnGroups=readOldColumnGroups(reader,oldColumnGroupCount);
+    }
   }
   ColumnReorderChange change=new ColumnReorderChange(columnNames);
   change._oldColumns=oldColumns;
   change._newColumns=newColumns;
+  change._oldColumnGroups=oldColumnGroups != null ? oldColumnGroups : new LinkedList<ColumnGroup>();
   return change;
 }

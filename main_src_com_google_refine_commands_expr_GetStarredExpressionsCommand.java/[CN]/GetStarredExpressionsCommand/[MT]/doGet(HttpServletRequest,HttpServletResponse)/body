@@ -1,0 +1,22 @@
+{
+  try {
+    List<String> starredExpressions=((TopList)ProjectManager.singleton.getPreferenceStore().get("scripting.starred-expressions")).getList();
+    response.setCharacterEncoding("UTF-8");
+    response.setHeader("Content-Type","application/json");
+    JSONWriter writer=new JSONWriter(response.getWriter());
+    writer.object();
+    writer.key("expressions");
+    writer.array();
+    for (    String s : starredExpressions) {
+      writer.object();
+      writer.key("code");
+      writer.value(s);
+      writer.endObject();
+    }
+    writer.endArray();
+    writer.endObject();
+  }
+ catch (  Exception e) {
+    respondException(response,e);
+  }
+}

@@ -1,0 +1,6 @@
+{
+  StandardReconConfigTest t=new StandardReconConfigTest();
+  double r=t.wordDistanceTest("On and On","On and On and On");
+  Assert.assertTrue(!Double.isInfinite(r));
+  Assert.assertTrue(!Double.isNaN(r));
+}

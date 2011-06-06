@@ -1,0 +1,5 @@
+{
+  StandardReconConfigTest t=new StandardReconConfigTest();
+  double r=t.wordDistanceTest("Foo","Foo bar");
+  Assert.assertEquals(r,0.5);
+}

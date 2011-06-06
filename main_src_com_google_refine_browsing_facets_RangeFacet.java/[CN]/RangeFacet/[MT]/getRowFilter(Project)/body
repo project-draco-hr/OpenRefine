@@ -1,7 +1,7 @@
 {
   if (_eval != null && _errorMessage == null && _selected) {
     return new ExpressionNumberComparisonRowFilter(getRowEvaluable(project),_selectNumeric,_selectNonNumeric,_selectBlank,_selectError){
-      protected boolean checkValue(      double d){
+      @Override protected boolean checkValue(      double d){
         return d >= _from && d < _to;
       }
     }

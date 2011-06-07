@@ -26,7 +26,7 @@
     }
   }
  catch (  Exception e) {
-    respondException(response,e);
+    throw new ServletException(e);
   }
  finally {
     ProjectManager.singleton.setBusy(false);

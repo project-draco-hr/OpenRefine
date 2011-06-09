@@ -1,0 +1,3 @@
+{
+  _codec=new ColognePhonetic();
+}

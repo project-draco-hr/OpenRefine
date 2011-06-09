@@ -18,6 +18,9 @@
  else       if ("soundex".equalsIgnoreCase(encoding)) {
         return soundex.key(str);
       }
+ else       if ("cologne".equalsIgnoreCase(encoding)) {
+        return cologne.key(str);
+      }
  else {
         return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " doesn't know how to handle the '" + encoding+ "' encoding.");
       }

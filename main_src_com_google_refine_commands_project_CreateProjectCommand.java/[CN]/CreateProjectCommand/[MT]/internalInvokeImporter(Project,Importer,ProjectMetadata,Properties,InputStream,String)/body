@@ -1,29 +1,31 @@
 {
   if (importer instanceof ReaderImporter) {
-    BufferedInputStream inputStream=new BufferedInputStream(rawInputStream);
-    byte[] bytes=new byte[1024 * 4];
-    inputStream.mark(bytes.length);
-    inputStream.read(bytes);
-    inputStream.reset();
+    InputStream inputStream=rawInputStream;
+    if (!inputStream.markSupported()) {
+      inputStream=new BufferedInputStream(rawInputStream);
+    }
     CharsetDetector detector=new CharsetDetector();
     detector.setDeclaredEncoding("utf8");
     options.setProperty("encoding_confidence","0");
     InputStreamReader reader=null;
-    CharsetMatch[] charsetMatches=detector.setText(bytes).detectAll();
-    if (charsetMatches.length > 0) {
-      CharsetMatch charsetMatch=charsetMatches[0];
+    CharsetMatch[] charsetMatches=detector.setText(inputStream).detectAll();
+    for (    CharsetMatch charsetMatch : charsetMatches) {
+      String matchName=charsetMatch.getName();
       int confidence=charsetMatch.getConfidence();
       if (confidence >= 20) {
+        logger.info("Encoding guess: {} [confidence: {}]",matchName,confidence);
         try {
-          reader=new InputStreamReader(inputStream,charsetMatch.getName());
+          reader=new InputStreamReader(inputStream,matchName);
         }
  catch (        UnsupportedEncodingException e) {
+          logger.debug("Unsupported InputStreamReader charset encoding: {} [confidence: {}]; skipping",matchName,confidence);
+          continue;
         }
         options.setProperty("encoding_confidence",Integer.toString(confidence));
-        logger.info("Best encoding guess: {} [confidence: {}]",charsetMatch.getName(),charsetMatch.getConfidence());
+        break;
       }
  else {
-        logger.debug("Poor encoding guess: {} [confidence: {}]",charsetMatch.getName(),charsetMatch.getConfidence());
+        logger.debug("Poor encoding guess: {} [confidence: {}]; skipping",matchName,confidence);
       }
     }
     if (reader == null) {

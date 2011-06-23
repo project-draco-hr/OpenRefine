@@ -3,7 +3,7 @@
   while (_token != null && _token.type == TokenType.Operator && "+-".indexOf(_token.text) >= 0) {
     String op=_token.text;
     next(true);
-    Evaluable sub2=parseSubExpression();
+    Evaluable sub2=parseTerm();
     sub=new OperatorCallExpr(new Evaluable[]{sub,sub2},op);
   }
   return sub;

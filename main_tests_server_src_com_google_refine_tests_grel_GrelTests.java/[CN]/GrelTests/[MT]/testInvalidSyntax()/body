@@ -1,0 +1,12 @@
+{
+  String tests[]={"","1-1-","2**3"};
+  for (  String test : tests) {
+    try {
+      MetaParser.parse("grel:" + test);
+    }
+ catch (    ParsingException e) {
+      continue;
+    }
+    Assert.fail("Expression failed to generate parse syntax error: " + test);
+  }
+}

@@ -1,0 +1,13 @@
+{
+  String tests[]={"a.value"};
+  for (  String test : tests) {
+    try {
+      Evaluable eval=MetaParser.parse("grel:" + test);
+      Object result=eval.evaluate(bindings);
+      Assert.assertTrue(result instanceof EvalError);
+    }
+ catch (    ParsingException e) {
+      Assert.fail("Unexpected parse failure: " + test);
+    }
+  }
+}

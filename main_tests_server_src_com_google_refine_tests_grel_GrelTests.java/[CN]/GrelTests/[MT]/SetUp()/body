@@ -1,0 +1,4 @@
+{
+  project=new Project();
+  bindings=ExpressionUtils.createBindings(project);
+}

@@ -1,0 +1,5 @@
+{
+  Evaluable eval=MetaParser.parse("grel:" + test[0]);
+  Object result=eval.evaluate(bindings);
+  Assert.assertEquals(result.toString(),test[1],"Wrong result for expression: " + test[0]);
+}

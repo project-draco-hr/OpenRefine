@@ -1,6 +1,8 @@
 {
   logger.trace("processSubRecord(Project,TreeReader,ImportColumnGroup,ImportRecord)");
-  if (parser.current() == Token.Ignorable)   return;
+  if (parser.current() == Token.Ignorable) {
+    return;
+  }
   ImportColumnGroup thisColumnGroup=getColumnGroup(project,columnGroup,composeName(parser.getPrefix(),parser.getFieldName()));
   thisColumnGroup.nextRowIndex=Math.max(thisColumnGroup.nextRowIndex,columnGroup.nextRowIndex);
   int attributeCount=parser.getAttributeCount();

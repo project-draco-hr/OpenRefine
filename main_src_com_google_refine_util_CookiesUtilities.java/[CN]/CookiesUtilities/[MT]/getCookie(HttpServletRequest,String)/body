@@ -1,5 +1,7 @@
 {
-  if (name == null)   throw new RuntimeException("cookie name cannot be null");
+  if (name == null) {
+    throw new RuntimeException("cookie name cannot be null");
+  }
   Cookie cookie=null;
   Cookie[] cookies=request.getCookies();
   if (cookies != null) {

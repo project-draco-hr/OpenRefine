@@ -1,8 +1,14 @@
 {
-  if (request == null)   throw new IllegalArgumentException("parameter 'request' should not be null");
-  if (project == null)   throw new IllegalArgumentException("parameter 'project' should not be null");
+  if (request == null) {
+    throw new IllegalArgumentException("parameter 'request' should not be null");
+  }
+  if (project == null) {
+    throw new IllegalArgumentException("parameter 'project' should not be null");
+  }
   Engine engine=new Engine(project);
   JSONObject o=getEngineConfig(request);
-  if (o != null)   engine.initializeFromJSON(o);
+  if (o != null) {
+    engine.initializeFromJSON(o);
+  }
   return engine;
 }

@@ -1,6 +1,10 @@
 {
-  if (request == null)   throw new IllegalArgumentException("parameter 'request' should not be null");
-  if (response == null)   throw new IllegalArgumentException("parameter 'request' should not be null");
+  if (request == null) {
+    throw new IllegalArgumentException("parameter 'request' should not be null");
+  }
+  if (response == null) {
+    throw new IllegalArgumentException("parameter 'request' should not be null");
+  }
   try {
     Project project=getProject(request);
     project.getProcessManager().cancelAll();

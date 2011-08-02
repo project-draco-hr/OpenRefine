@@ -1,5 +1,7 @@
 {
-  if (request == null)   throw new IllegalArgumentException("parameter 'request' should not be null");
+  if (request == null) {
+    throw new IllegalArgumentException("parameter 'request' should not be null");
+  }
   try {
     ProjectMetadata pm=ProjectManager.singleton.getProjectMetadata(Long.parseLong(request.getParameter("project")));
     if (pm != null) {

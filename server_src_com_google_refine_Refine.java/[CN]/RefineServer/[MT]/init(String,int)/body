@@ -1,7 +1,9 @@
 {
   logger.info("Starting Server bound to '" + host + ":"+ port+ "'");
   String memory=Configurations.get("refine.memory");
-  if (memory != null)   logger.info("Max memory size: " + memory);
+  if (memory != null) {
+    logger.info("Max memory size: " + memory);
+  }
   int maxThreads=Configurations.getInteger("refine.queue.size",30);
   int maxQueue=Configurations.getInteger("refine.queue.max_size",300);
   long keepAliveTime=Configurations.getInteger("refine.queue.idle_time",60);

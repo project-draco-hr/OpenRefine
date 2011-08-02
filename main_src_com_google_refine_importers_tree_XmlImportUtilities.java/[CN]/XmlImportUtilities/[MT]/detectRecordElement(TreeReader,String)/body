@@ -1,6 +1,8 @@
 {
   try {
-    if (parser.current() == Token.Ignorable)     parser.next();
+    if (parser.current() == Token.Ignorable) {
+      parser.next();
+    }
     String localName=parser.getFieldName();
     String fullName=composeName(parser.getPrefix(),localName);
     if (tag.equals(parser.getFieldName()) || tag.equals(fullName)) {

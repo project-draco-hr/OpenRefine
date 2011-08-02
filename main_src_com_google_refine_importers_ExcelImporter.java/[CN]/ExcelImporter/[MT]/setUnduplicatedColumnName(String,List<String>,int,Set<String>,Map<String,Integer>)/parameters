@@ -1,5 +1,0 @@
-String rootName
-List<String> columnNames
-int index
-Set<String> columnNameSet
-Map<String,Integer> columnRootNameToIndex

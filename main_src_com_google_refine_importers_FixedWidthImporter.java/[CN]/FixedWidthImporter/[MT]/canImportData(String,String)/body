@@ -1,8 +1,0 @@
-{
-  if (contentType != null) {
-    contentType=contentType.toLowerCase().trim();
-    if ("application/json".equals(contentType) || "text/json".equals(contentType) || "application/xml".equals(contentType)|| "text/xml".equals(contentType)|| "application/rss+xml".equals(contentType)|| "application/atom+xml".equals(contentType)|| "application/rdf+xml".equals(contentType))     return false;
-    return "text/plain".equals(contentType) || "text/fixed-width".equals(contentType);
-  }
-  return false;
-}

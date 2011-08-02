@@ -1,0 +1,40 @@
+{
+  logger.trace("processSubRecord(Project,TreeReader,ImportColumnGroup,ImportRecord)");
+  if (parser.current() == Token.Ignorable)   return;
+  ImportColumnGroup thisColumnGroup=getColumnGroup(project,columnGroup,composeName(parser.getPrefix(),parser.getFieldName()));
+  thisColumnGroup.nextRowIndex=Math.max(thisColumnGroup.nextRowIndex,columnGroup.nextRowIndex);
+  int attributeCount=parser.getAttributeCount();
+  for (int i=0; i < attributeCount; i++) {
+    String text=parser.getAttributeValue(i).trim();
+    if (text.length() > 0) {
+      addCell(project,thisColumnGroup,record,composeName(parser.getAttributePrefix(i),parser.getAttributeLocalName(i)),text);
+    }
+  }
+  while (parser.hasNext()) {
+    Token eventType=parser.next();
+    if (eventType == Token.StartEntity) {
+      processSubRecord(project,parser,thisColumnGroup,record);
+    }
+ else     if (eventType == Token.Value) {
+      String text=parser.getFieldValue();
+      String colName=parser.getFieldName();
+      if (text != null) {
+        text=text.trim();
+        if (text.length() > 0) {
+          addCell(project,thisColumnGroup,record,colName,text);
+        }
+      }
+    }
+ else     if (eventType == Token.EndEntity) {
+      break;
+    }
+  }
+  int nextRowIndex=thisColumnGroup.nextRowIndex;
+  for (  ImportColumn column2 : thisColumnGroup.columns.values()) {
+    nextRowIndex=Math.max(nextRowIndex,column2.nextRowIndex);
+  }
+  for (  ImportColumnGroup columnGroup2 : thisColumnGroup.subgroups.values()) {
+    nextRowIndex=Math.max(nextRowIndex,columnGroup2.nextRowIndex);
+  }
+  thisColumnGroup.nextRowIndex=nextRowIndex;
+}

@@ -19,7 +19,7 @@
   }
   s_dataDir=new File(data);
   FileProjectManager.initialize(s_dataDir);
-  ImportManager.initialize(this);
+  ImportingManager.initialize(this);
   if (_timer == null) {
     _timer=new Timer("autosave");
     _timer.schedule(new AutoSaveTimerTask(),s_autoSavePeriod);

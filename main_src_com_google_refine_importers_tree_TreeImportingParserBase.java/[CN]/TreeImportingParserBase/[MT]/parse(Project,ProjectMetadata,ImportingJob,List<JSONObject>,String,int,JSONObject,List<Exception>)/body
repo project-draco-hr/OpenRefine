@@ -1,0 +1,17 @@
+{
+  MultiFileReadingProgress progress=ImporterUtilities.createMultiFileReadingProgress(job,fileRecords);
+  ImportColumnGroup rootColumnGroup=new ImportColumnGroup();
+  for (  JSONObject fileRecord : fileRecords) {
+    try {
+      parseOneFile(project,metadata,job,fileRecord,rootColumnGroup,limit,options,exceptions,progress);
+    }
+ catch (    IOException e) {
+      exceptions.add(e);
+    }
+    if (limit > 0 && project.rows.size() >= limit) {
+      break;
+    }
+  }
+  XmlImportUtilities.createColumnsFromImport(project,rootColumnGroup);
+  project.columnModel.update();
+}

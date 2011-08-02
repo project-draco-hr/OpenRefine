@@ -1,0 +1,5 @@
+HttpServletRequest request
+Properties parameters
+File rawDataDir
+JSONObject retrievalRecord
+Progress progress

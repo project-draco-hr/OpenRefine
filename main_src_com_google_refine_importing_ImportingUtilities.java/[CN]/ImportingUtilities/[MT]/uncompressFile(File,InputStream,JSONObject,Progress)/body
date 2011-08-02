@@ -1,0 +1,10 @@
+{
+  String fileName=JSONUtilities.getString(fileRecord,"fileName","unknown");
+  File file2=allocateFile(rawDataDir,fileName);
+  progress.setProgress("Uncompressing " + fileName,-1);
+  saveStreamToFile(uncompressedIS,file2,null);
+  JSONUtilities.safePut(fileRecord,"declaredEncoding",(String)null);
+  JSONUtilities.safePut(fileRecord,"declaredMimeType",(String)null);
+  JSONUtilities.safePut(fileRecord,"location",getRelativePath(file2,rawDataDir));
+  return file2;
+}

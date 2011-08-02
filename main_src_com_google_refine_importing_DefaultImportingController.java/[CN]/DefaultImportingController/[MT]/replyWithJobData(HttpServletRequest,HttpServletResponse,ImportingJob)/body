@@ -1,0 +1,19 @@
+{
+  Writer w=response.getWriter();
+  JSONWriter writer=new JSONWriter(w);
+  try {
+    writer.object();
+    writer.key("code");
+    writer.value("ok");
+    writer.key("job");
+    job.write(writer,new Properties());
+    writer.endObject();
+  }
+ catch (  JSONException e) {
+    throw new ServletException(e);
+  }
+ finally {
+    w.flush();
+    w.close();
+  }
+}

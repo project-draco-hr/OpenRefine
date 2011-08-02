@@ -1,0 +1,4 @@
+{
+  when(options.has(name)).thenReturn(true);
+  when(JSONUtilities.getString(options,name,def)).thenReturn(def);
+}

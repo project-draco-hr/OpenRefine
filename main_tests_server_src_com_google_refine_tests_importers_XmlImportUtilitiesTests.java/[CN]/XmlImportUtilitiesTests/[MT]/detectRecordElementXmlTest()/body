@@ -6,7 +6,7 @@
   try {
     response=SUT.detectRecordElementWrapper(parser,tag);
   }
- catch (  ServletException e) {
+ catch (  Exception e) {
     Assert.fail(e.getMessage());
   }
   Assert.assertNotNull(response);

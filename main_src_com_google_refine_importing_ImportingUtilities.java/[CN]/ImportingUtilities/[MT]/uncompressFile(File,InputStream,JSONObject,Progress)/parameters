@@ -1,0 +1,4 @@
+File rawDataDir
+InputStream uncompressedIS
+JSONObject fileRecord
+Progress progress

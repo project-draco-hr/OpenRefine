@@ -1,0 +1,3 @@
+ImportingJob job
+List<JSONObject> fileRecords
+String format

@@ -1,0 +1,45 @@
+{
+  boolean xmlBased=JSONUtilities.getBoolean(options,"xmlBased",false);
+  Workbook wb=null;
+  try {
+    wb=xmlBased ? new XSSFWorkbook(inputStream) : new HSSFWorkbook(new POIFSFileSystem(inputStream));
+  }
+ catch (  IOException e) {
+    exceptions.add(new ImportException("Attempted to parse as an Excel file but failed. " + "Try to use Excel to re-save the file as a different Excel version or as TSV and upload again.",e));
+    return;
+  }
+catch (  ArrayIndexOutOfBoundsException e) {
+    exceptions.add(new ImportException("Attempted to parse file as an Excel file but failed. " + "This is probably caused by a corrupt excel file, or due to the file having previously been created or saved by a non-Microsoft application. " + "Please try opening the file in Microsoft Excel and resaving it, then try re-uploading the file. "+ "See https://issues.apache.org/bugzilla/show_bug.cgi?id=48261 for further details",e));
+    return;
+  }
+  int[] sheets=JSONUtilities.getIntArray(options,"sheets");
+  for (  int sheetIndex : sheets) {
+    final Sheet sheet=wb.getSheetAt(sheetIndex);
+    final int lastRow=sheet.getLastRowNum();
+    TableDataReader dataReader=new TableDataReader(){
+      int nextRow=0;
+      Map<String,Recon> reconMap=new HashMap<String,Recon>();
+      @Override public List<Object> getNextRowOfCells() throws IOException {
+        if (nextRow >= lastRow) {
+          return null;
+        }
+        List<Object> cells=new ArrayList<Object>();
+        org.apache.poi.ss.usermodel.Row row=sheet.getRow(nextRow++);
+        if (row != null) {
+          short lastCell=row.getLastCellNum();
+          for (short cellIndex=0; cellIndex <= lastCell; cellIndex++) {
+            Cell cell=null;
+            org.apache.poi.ss.usermodel.Cell sourceCell=row.getCell(cellIndex);
+            if (sourceCell != null) {
+              cell=extractCell(sourceCell,reconMap);
+            }
+            cells.add(cell);
+          }
+        }
+        return cells;
+      }
+    }
+;
+    readTable(project,metadata,job,dataReader,fileSource + "#" + sheet.getSheetName(),limit,options,exceptions);
+  }
+}

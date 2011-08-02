@@ -1,0 +1,8 @@
+{
+  if (job.config == null) {
+    job.config=new JSONObject();
+    JSONUtilities.safePut(job.config,"state","new");
+    JSONUtilities.safePut(job.config,"hasData",false);
+  }
+  return job.config;
+}

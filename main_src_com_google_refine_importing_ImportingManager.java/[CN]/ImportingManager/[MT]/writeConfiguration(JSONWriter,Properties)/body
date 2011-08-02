@@ -1,0 +1,35 @@
+{
+  writer.object();
+  writer.key("formats");
+  writer.object();
+  for (  String format : formatToRecord.keySet()) {
+    Format record=formatToRecord.get(format);
+    writer.key(format);
+    writer.object();
+    writer.key("id");
+    writer.value(record.id);
+    writer.key("label");
+    writer.value(record.label);
+    writer.key("download");
+    writer.value(record.download);
+    writer.key("uiClass");
+    writer.value(record.uiClass);
+    writer.endObject();
+  }
+  writer.endObject();
+  writer.key("mimeTypeToFormat");
+  writer.object();
+  for (  String mimeType : mimeTypeToFormat.keySet()) {
+    writer.key(mimeType);
+    writer.value(mimeTypeToFormat.get(mimeType));
+  }
+  writer.endObject();
+  writer.key("extensionToFormat");
+  writer.object();
+  for (  String extension : extensionToFormat.keySet()) {
+    writer.key(extension);
+    writer.value(extensionToFormat.get(extension));
+  }
+  writer.endObject();
+  writer.endObject();
+}

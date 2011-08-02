@@ -1,7 +1,12 @@
 {
   SUT=null;
-  project=null;
-  options=null;
-  if (inputStream != null)   inputStream.close();
-  inputStream=null;
+  if (inputStream != null) {
+    try {
+      inputStream.close();
+    }
+ catch (    IOException e) {
+    }
+    inputStream=null;
+  }
+  super.TearDown();
 }

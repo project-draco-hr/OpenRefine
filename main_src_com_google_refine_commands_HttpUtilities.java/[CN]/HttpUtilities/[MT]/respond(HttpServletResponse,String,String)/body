@@ -1,0 +1,16 @@
+{
+  Writer w=response.getWriter();
+  try {
+    JSONWriter writer=new JSONWriter(w);
+    writer.object();
+    writer.key("status");
+    writer.value(status);
+    writer.key("message");
+    writer.value(message);
+    writer.endObject();
+    w.flush();
+    w.close();
+  }
+ catch (  JSONException e) {
+  }
+}

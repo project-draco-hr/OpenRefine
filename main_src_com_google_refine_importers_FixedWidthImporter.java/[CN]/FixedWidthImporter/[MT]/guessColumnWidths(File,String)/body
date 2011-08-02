@@ -1,0 +1,64 @@
+{
+  try {
+    InputStream is=new FileInputStream(file);
+    try {
+      Reader reader=encoding != null ? new InputStreamReader(is,encoding) : new InputStreamReader(is);
+      LineNumberReader lineNumberReader=new LineNumberReader(reader);
+      int[] counts=null;
+      int totalBytes=0;
+      int lineCount=0;
+      String s;
+      while (totalBytes < 64 * 1024 && lineCount < 100 && (s=lineNumberReader.readLine()) != null) {
+        totalBytes+=s.length() + 1;
+        if (s.length() == 0) {
+          continue;
+        }
+        lineCount++;
+        if (counts == null) {
+          counts=new int[s.length()];
+          for (int c=0; c < counts.length; c++) {
+            counts[c]=0;
+          }
+        }
+        for (int c=0; c < counts.length && c < s.length(); c++) {
+          char ch=s.charAt(c);
+          if (ch == ' ') {
+            counts[c]++;
+          }
+        }
+      }
+      if (counts != null) {
+        List<Integer> widths=new ArrayList<Integer>();
+        int startIndex=0;
+        for (int c=0; c < counts.length; c++) {
+          int count=counts[c];
+          if (count == lineCount && c > startIndex) {
+            widths.add(c - startIndex + 1);
+            startIndex=c + 1;
+          }
+        }
+        for (int i=widths.size() - 1; i > 0; i--) {
+          if (widths.get(i) == 1) {
+            widths.remove(i);
+            widths.set(i - 1,widths.get(i - 1) + 1);
+          }
+        }
+        int[] widthA=new int[widths.size()];
+        for (int i=0; i < widthA.length; i++) {
+          widthA[i]=widths.get(i);
+        }
+        return widthA;
+      }
+    }
+  finally {
+      is.close();
+    }
+  }
+ catch (  UnsupportedEncodingException e) {
+    e.printStackTrace();
+  }
+catch (  IOException e) {
+    e.printStackTrace();
+  }
+  return null;
+}

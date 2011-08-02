@@ -2,8 +2,7 @@
   String sampleRdf="<http://rdf.freebase.com/ns/en.bob_dylan> <http://rdf.freebase.com/ns/music.artist.album> <http://rdf.freebase.com/ns/en.blood_on_the_tracks>.";
   StringReader reader=new StringReader(sampleRdf);
   try {
-    SUT.read(reader,project,new ProjectMetadata(),options);
-    project.update();
+    parseOneFile(SUT,reader);
   }
  catch (  Exception e) {
     Assert.fail();

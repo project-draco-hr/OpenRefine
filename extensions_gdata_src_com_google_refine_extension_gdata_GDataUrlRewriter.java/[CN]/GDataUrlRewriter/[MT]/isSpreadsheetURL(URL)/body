@@ -1,0 +1,8 @@
+{
+  String host=url.getHost();
+  String query=url.getQuery();
+  if (query == null) {
+    query="";
+  }
+  return host.endsWith(".google.com") && host.contains("spreadsheet") && query.contains("key=");
+}

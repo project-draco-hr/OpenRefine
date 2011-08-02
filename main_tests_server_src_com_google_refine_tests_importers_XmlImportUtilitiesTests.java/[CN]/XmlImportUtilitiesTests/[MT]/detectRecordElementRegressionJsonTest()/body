@@ -1,6 +1,6 @@
 {
   loadSampleJson();
-  String[] path=XmlImportUtilitiesStub.detectRecordElement(new JSONParser(inputStream));
+  String[] path=XmlImportUtilitiesStub.detectRecordElement(new JSONTreeReader(new InputStreamReader(inputStream)));
   Assert.assertNotNull(path);
   Assert.assertEquals(path.length,2);
   Assert.assertEquals(path[0],"__anonymous__");

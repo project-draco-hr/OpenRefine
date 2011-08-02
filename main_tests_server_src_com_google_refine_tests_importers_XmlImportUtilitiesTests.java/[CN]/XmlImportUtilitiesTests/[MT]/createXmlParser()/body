@@ -1,3 +1,9 @@
 {
-  parser=new XmlParser(inputStream);
+  try {
+    parser=new XmlParser(inputStream);
+    return parser;
+  }
+ catch (  XMLStreamException e) {
+    return null;
+  }
 }

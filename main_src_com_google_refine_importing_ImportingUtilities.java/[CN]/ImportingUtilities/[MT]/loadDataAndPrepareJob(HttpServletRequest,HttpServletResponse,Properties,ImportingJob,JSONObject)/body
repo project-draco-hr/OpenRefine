@@ -1,0 +1,36 @@
+{
+  JSONObject retrievalRecord=new JSONObject();
+  JSONUtilities.safePut(config,"retrievalRecord",retrievalRecord);
+  JSONUtilities.safePut(config,"state","loading-raw-data");
+  final JSONObject progress=new JSONObject();
+  JSONUtilities.safePut(config,"progress",progress);
+  try {
+    ImportingUtilities.retrieveContentFromPostRequest(request,parameters,job.getRawDataDir(),retrievalRecord,new Progress(){
+      @Override public void setProgress(      String message,      int percent){
+        if (message != null) {
+          JSONUtilities.safePut(progress,"message",message);
+        }
+        JSONUtilities.safePut(progress,"percent",percent);
+      }
+      public boolean isCanceled(){
+        return job.canceled;
+      }
+    }
+);
+  }
+ catch (  FileUploadException e) {
+    JSONUtilities.safePut(config,"state","error");
+    JSONUtilities.safePut(config,"error","Error uploading data");
+    throw new ServletException(e);
+  }
+  JSONArray fileSelectionIndexes=new JSONArray();
+  JSONUtilities.safePut(config,"fileSelection",fileSelectionIndexes);
+  String bestFormat=ImportingUtilities.autoSelectFiles(job,retrievalRecord,fileSelectionIndexes);
+  bestFormat=ImportingUtilities.guessBetterFormat(job,bestFormat);
+  JSONArray rankedFormats=new JSONArray();
+  JSONUtilities.safePut(config,"rankedFormats",rankedFormats);
+  ImportingUtilities.rankFormats(job,bestFormat,rankedFormats);
+  JSONUtilities.safePut(config,"state","ready");
+  JSONUtilities.safePut(config,"hasData",true);
+  config.remove("progress");
+}

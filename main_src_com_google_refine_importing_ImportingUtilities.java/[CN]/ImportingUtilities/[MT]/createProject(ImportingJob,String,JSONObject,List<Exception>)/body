@@ -1,0 +1,24 @@
+{
+  final Format record=ImportingManager.formatToRecord.get(format);
+  if (record == null || record.parser == null) {
+    return -1;
+  }
+  JSONUtilities.safePut(job.config,"state","creating-project");
+  final Project project=new Project();
+  new Thread(){
+    public void run(){
+      ProjectMetadata pm=new ProjectMetadata();
+      pm.setName(JSONUtilities.getString(optionObj,"projectName","Untitled"));
+      pm.setEncoding(JSONUtilities.getString(optionObj,"encoding","UTF-8"));
+      record.parser.parse(project,pm,job,getSelectedFileRecords(job),format,-1,optionObj,exceptions);
+      if (!job.canceled) {
+        project.update();
+        ProjectManager.singleton.registerProject(project,pm);
+        JSONUtilities.safePut(job.config,"projectID",project.id);
+        JSONUtilities.safePut(job.config,"state","created-project");
+      }
+    }
+  }
+.start();
+  return project.id;
+}

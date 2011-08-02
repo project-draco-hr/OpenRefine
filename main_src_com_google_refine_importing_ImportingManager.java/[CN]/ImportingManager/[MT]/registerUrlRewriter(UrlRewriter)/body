@@ -1,0 +1,3 @@
+{
+  urlRewriters.add(urlRewriter);
+}

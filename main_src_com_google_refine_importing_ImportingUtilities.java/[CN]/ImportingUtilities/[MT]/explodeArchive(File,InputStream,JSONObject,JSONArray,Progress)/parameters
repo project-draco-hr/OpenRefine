@@ -1,0 +1,5 @@
+File rawDataDir
+InputStream archiveIS
+JSONObject archiveFileRecord
+JSONArray fileRecords
+Progress progress

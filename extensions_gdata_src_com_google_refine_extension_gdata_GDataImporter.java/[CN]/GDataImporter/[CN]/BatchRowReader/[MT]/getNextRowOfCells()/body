@@ -1,0 +1,23 @@
+{
+  if (rowsOfCells == null || nextRow > batchRowStart + rowsOfCells.size()) {
+    batchRowStart=batchRowStart + (rowsOfCells == null ? 0 : rowsOfCells.size());
+    if (batchRowStart < totalRowCount) {
+      try {
+        rowsOfCells=getRowsOfCells(service,worksheet,batchRowStart + 1,batchSize);
+      }
+ catch (      ServiceException e) {
+        rowsOfCells=null;
+        throw new IOException(e);
+      }
+    }
+ else {
+      rowsOfCells=null;
+    }
+  }
+  if (rowsOfCells != null && nextRow - batchRowStart < rowsOfCells.size()) {
+    return rowsOfCells.get(nextRow++ - batchRowStart);
+  }
+ else {
+    return null;
+  }
+}

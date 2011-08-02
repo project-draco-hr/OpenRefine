@@ -1,0 +1,7 @@
+{
+  try {
+    a.put(a.length(),element);
+  }
+ catch (  JSONException e) {
+  }
+}

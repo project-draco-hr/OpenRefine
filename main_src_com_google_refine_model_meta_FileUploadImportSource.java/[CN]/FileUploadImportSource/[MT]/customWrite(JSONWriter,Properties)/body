@@ -1,4 +1,0 @@
-{
-  writer.key("originalFileName");
-  writer.value(originalFileName);
-}

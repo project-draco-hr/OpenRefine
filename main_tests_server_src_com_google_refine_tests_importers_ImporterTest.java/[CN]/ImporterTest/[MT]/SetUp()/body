@@ -1,0 +1,6 @@
+{
+  project=new Project();
+  metadata=new ProjectMetadata();
+  job=ImportingManager.createJob();
+  options=mock(JSONObject.class);
+}

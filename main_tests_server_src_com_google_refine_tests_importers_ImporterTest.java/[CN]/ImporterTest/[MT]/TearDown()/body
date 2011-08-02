@@ -1,0 +1,7 @@
+{
+  project=null;
+  metadata=null;
+  ImportingManager.disposeJob(job.id);
+  job=null;
+  options=null;
+}

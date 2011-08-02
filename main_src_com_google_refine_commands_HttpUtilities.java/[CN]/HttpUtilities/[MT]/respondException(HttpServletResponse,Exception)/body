@@ -1,0 +1,23 @@
+{
+  logger.warn("Exception caught",e);
+  if (response == null) {
+    throw new ServletException("Response object can't be null");
+  }
+  try {
+    JSONObject o=new JSONObject();
+    o.put("code","error");
+    o.put("message",e.getMessage());
+    StringWriter sw=new StringWriter();
+    PrintWriter pw=new PrintWriter(sw);
+    e.printStackTrace(pw);
+    pw.flush();
+    sw.flush();
+    o.put("stack",sw.toString());
+    response.setCharacterEncoding("UTF-8");
+    response.setHeader("Content-Type","application/json");
+    respond(response,o.toString());
+  }
+ catch (  JSONException e1) {
+    e.printStackTrace(response.getWriter());
+  }
+}

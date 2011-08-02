@@ -1,0 +1,15 @@
+{
+  for (int i=0; i < 5 && i < fileRecords.size(); i++) {
+    JSONObject fileRecord=fileRecords.get(i);
+    String encoding=ImportingUtilities.getEncoding(fileRecord);
+    String location=JSONUtilities.getString(fileRecord,"location",null);
+    if (location != null) {
+      File file=new File(job.getRawDataDir(),location);
+      Separator separator=guessSeparator(file,encoding);
+      if (separator != null) {
+        return Character.toString(separator.separator);
+      }
+    }
+  }
+  return null;
+}

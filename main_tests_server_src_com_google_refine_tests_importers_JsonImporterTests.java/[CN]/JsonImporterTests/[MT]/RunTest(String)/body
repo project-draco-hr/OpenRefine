@@ -6,7 +6,7 @@
     Assert.fail();
   }
   try {
-    SUT.read(inputStream,project,new ProjectMetadata(),options);
+    parseOneFile(SUT,inputStream);
   }
  catch (  Exception e) {
     Assert.fail();

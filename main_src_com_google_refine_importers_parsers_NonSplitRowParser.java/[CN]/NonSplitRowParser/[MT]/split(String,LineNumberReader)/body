@@ -1,5 +1,0 @@
-{
-  List<String> results=new ArrayList<String>(1);
-  results.add(line.trim());
-  return results;
-}

@@ -1,0 +1,8 @@
+Project project
+ProjectMetadata metadata
+ImportingJob job
+JSONObject fileRecord
+int limit
+JSONObject options
+List<Exception> exceptions
+MultiFileReadingProgress progress

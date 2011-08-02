@@ -1,0 +1,23 @@
+{
+  JSONArray result=new JSONArray();
+  loop:   while (state.tokenCount < PREVIEW_PARSING_LIMIT) {
+    try {
+      JsonToken token=parser.nextToken();
+      if (token == null) {
+        break;
+      }
+      state.tokenCount++;
+switch (token) {
+case END_ARRAY:
+        break loop;
+default :
+      Object element=parseForPreview(parser,state,token);
+    JSONUtilities.append(result,element);
+}
+}
+ catch (Exception e) {
+break;
+}
+}
+return result;
+}

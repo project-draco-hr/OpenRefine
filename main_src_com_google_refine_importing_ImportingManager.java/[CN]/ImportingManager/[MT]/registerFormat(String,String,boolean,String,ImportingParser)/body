@@ -1,0 +1,3 @@
+{
+  formatToRecord.put(format,new Format(format,label,download,uiClass,parser));
+}

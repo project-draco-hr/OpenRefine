@@ -1,0 +1,18 @@
+{
+  int start=0;
+  while (true) {
+    int dot=fileName.indexOf('.',start);
+    if (dot < 0) {
+      break;
+    }
+    String extension=fileName.substring(dot);
+    String format=extensionToFormat.get(extension);
+    if (format != null) {
+      return format;
+    }
+ else {
+      start=dot + 1;
+    }
+  }
+  return null;
+}

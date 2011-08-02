@@ -1,0 +1,34 @@
+{
+switch (token) {
+case XMLStreamConstants.START_ELEMENT:
+    return Token.StartEntity;
+case XMLStreamConstants.END_ELEMENT:
+  return Token.EndEntity;
+case XMLStreamConstants.CHARACTERS:
+return Token.Value;
+case XMLStreamConstants.START_DOCUMENT:
+return Token.Ignorable;
+case XMLStreamConstants.END_DOCUMENT:
+return Token.Ignorable;
+case XMLStreamConstants.SPACE:
+return Token.Value;
+case XMLStreamConstants.PROCESSING_INSTRUCTION:
+return Token.Ignorable;
+case XMLStreamConstants.NOTATION_DECLARATION:
+return Token.Ignorable;
+case XMLStreamConstants.NAMESPACE:
+return Token.Ignorable;
+case XMLStreamConstants.ENTITY_REFERENCE:
+return Token.Ignorable;
+case XMLStreamConstants.DTD:
+return Token.Ignorable;
+case XMLStreamConstants.COMMENT:
+return Token.Ignorable;
+case XMLStreamConstants.CDATA:
+return Token.Ignorable;
+case XMLStreamConstants.ATTRIBUTE:
+return Token.Ignorable;
+default :
+return Token.Ignorable;
+}
+}

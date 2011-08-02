@@ -1,0 +1,3 @@
+{
+  return JSONUtilities.getString(fileRecord,"url",JSONUtilities.getString(fileRecord,"fileName","unknown"));
+}

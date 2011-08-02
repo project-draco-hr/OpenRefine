@@ -1,0 +1,24 @@
+{
+  long totalSize=0;
+  for (  JSONObject fileRecord : fileRecords) {
+    File file=ImportingUtilities.getFile(job,fileRecord);
+    totalSize+=file.length();
+  }
+  final long totalSize2=totalSize;
+  return new MultiFileReadingProgress(){
+    long totalBytesRead=0;
+    void setProgress(    String fileSource,    long bytesRead){
+      ImportingUtilities.setCreatingProjectProgress(job,"Reading " + fileSource,(int)(100 * (totalBytesRead + bytesRead) / totalSize2));
+    }
+    @Override public void startFile(    String fileSource){
+      setProgress(fileSource,0);
+    }
+    @Override public void readingFile(    String fileSource,    long bytesRead){
+      setProgress(fileSource,bytesRead);
+    }
+    @Override public void endFile(    String fileSource,    long bytesRead){
+      totalBytesRead+=bytesRead;
+    }
+  }
+;
+}

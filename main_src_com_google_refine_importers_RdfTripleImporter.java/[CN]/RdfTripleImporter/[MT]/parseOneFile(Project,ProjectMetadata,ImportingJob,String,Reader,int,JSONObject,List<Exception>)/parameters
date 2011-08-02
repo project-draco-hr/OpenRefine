@@ -1,0 +1,8 @@
+Project project
+ProjectMetadata metadata
+ImportingJob job
+String fileSource
+Reader reader
+int limit
+JSONObject options
+List<Exception> exceptions

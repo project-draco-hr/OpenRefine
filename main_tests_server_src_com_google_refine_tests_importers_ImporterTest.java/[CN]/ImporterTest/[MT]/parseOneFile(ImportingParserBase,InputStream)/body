@@ -1,0 +1,4 @@
+{
+  parser.parseOneFile(project,metadata,job,"file-source",inputStream,-1,options,new ArrayList<Exception>());
+  project.update();
+}

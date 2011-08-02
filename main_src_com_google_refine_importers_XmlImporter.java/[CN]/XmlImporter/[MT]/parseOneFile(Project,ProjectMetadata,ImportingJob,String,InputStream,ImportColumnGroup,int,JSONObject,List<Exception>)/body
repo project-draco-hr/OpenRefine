@@ -1,0 +1,8 @@
+{
+  try {
+    parseOneFile(project,metadata,job,fileSource,new XmlParser(inputStream),rootColumnGroup,limit,options,exceptions);
+  }
+ catch (  XMLStreamException e) {
+    exceptions.add(e);
+  }
+}

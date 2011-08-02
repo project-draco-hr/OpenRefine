@@ -1,0 +1,4 @@
+File file
+JSONObject fileRecord
+JSONArray fileRecords
+Progress progress

@@ -1,8 +1,0 @@
-{
-  try {
-    parser=factory.createJsonParser(inputStream);
-  }
- catch (  Exception e) {
-    e.printStackTrace();
-  }
-}

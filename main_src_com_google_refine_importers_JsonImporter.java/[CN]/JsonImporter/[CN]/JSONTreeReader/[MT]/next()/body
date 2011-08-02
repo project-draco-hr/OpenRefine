@@ -1,0 +1,37 @@
+{
+  JsonToken next;
+  try {
+    next=parser.nextToken();
+  }
+ catch (  JsonParseException e) {
+    throw new ServletException(e);
+  }
+catch (  IOException e) {
+    throw new ServletException(e);
+  }
+  if (next == null)   throw new ServletException("No more Json Tokens in stream");
+  if (next == JsonToken.FIELD_NAME) {
+    try {
+      this.thisTokenIsAFieldName=true;
+      this.lastFieldName=parser.getCurrentName();
+    }
+ catch (    Exception e) {
+    }
+  }
+ else   if (next == JsonToken.START_ARRAY || next == JsonToken.START_OBJECT) {
+    if (this.thisTokenIsAFieldName) {
+      this.lastTokenWasAFieldNameAndCurrentTokenIsANewEntity=true;
+      this.thisTokenIsAFieldName=false;
+    }
+ else {
+      this.lastTokenWasAFieldNameAndCurrentTokenIsANewEntity=false;
+      this.lastFieldName=null;
+    }
+  }
+ else {
+    this.lastTokenWasAFieldNameAndCurrentTokenIsANewEntity=false;
+    this.lastFieldName=null;
+    this.thisTokenIsAFieldName=false;
+  }
+  return mapToToken(next);
+}

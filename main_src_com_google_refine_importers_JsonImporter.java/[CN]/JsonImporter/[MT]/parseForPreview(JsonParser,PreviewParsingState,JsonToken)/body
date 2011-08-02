@@ -1,0 +1,23 @@
+{
+  if (token != null) {
+switch (token) {
+case START_ARRAY:
+      return parseArrayForPreview(parser,state);
+case START_OBJECT:
+    return parseObjectForPreview(parser,state);
+case VALUE_STRING:
+  return parser.getText();
+case VALUE_NUMBER_INT:
+return Integer.valueOf(parser.getIntValue());
+case VALUE_NUMBER_FLOAT:
+return Float.valueOf(parser.getFloatValue());
+case VALUE_TRUE:
+return Boolean.TRUE;
+case VALUE_FALSE:
+return Boolean.FALSE;
+case VALUE_NULL:
+return null;
+}
+}
+return null;
+}

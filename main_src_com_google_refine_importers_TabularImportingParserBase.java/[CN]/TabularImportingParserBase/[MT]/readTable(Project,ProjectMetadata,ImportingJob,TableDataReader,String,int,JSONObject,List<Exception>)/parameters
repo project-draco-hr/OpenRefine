@@ -1,0 +1,8 @@
+Project project
+ProjectMetadata metadata
+ImportingJob job
+TableDataReader reader
+String fileSource
+int limit
+JSONObject options
+List<Exception> exceptions

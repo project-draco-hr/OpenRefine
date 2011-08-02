@@ -1,20 +1,16 @@
 {
   ProjectManager.singleton.setBusy(true);
   try {
-    if (request.getCharacterEncoding() == null) {
-      request.setCharacterEncoding("UTF-8");
-    }
     Properties options=ParsingUtilities.parseUrlParameters(request);
     Project project=new Project();
     ProjectMetadata pm=new ProjectMetadata();
-    internalImport(request,project,pm,options);
     pm.setName(options.getProperty("project-name"));
     pm.setPassword(options.getProperty("project-password"));
     pm.setEncoding(options.getProperty("encoding"));
     pm.setEncodingConfidence(options.getProperty("encoding_confidence"));
     ProjectManager.singleton.registerProject(project,pm);
     project.update();
-    redirect(response,"/project?project=" + project.id);
+    HttpUtilities.redirect(response,"/project?project=" + project.id);
   }
  catch (  Exception e) {
     respondWithErrorPage(request,response,"Failed to import file",e);

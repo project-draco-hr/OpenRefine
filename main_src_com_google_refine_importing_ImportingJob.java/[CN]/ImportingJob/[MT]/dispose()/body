@@ -1,0 +1,12 @@
+{
+  if (project != null) {
+    project.dispose();
+    project=null;
+  }
+  metadata=null;
+  try {
+    FileUtils.deleteDirectory(dir);
+  }
+ catch (  IOException e) {
+  }
+}

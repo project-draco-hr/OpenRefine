@@ -1,7 +1,0 @@
-{
-  if (importers.containsKey(name)) {
-    return false;
-  }
-  importers.put(name,importerObject);
-  return true;
-}

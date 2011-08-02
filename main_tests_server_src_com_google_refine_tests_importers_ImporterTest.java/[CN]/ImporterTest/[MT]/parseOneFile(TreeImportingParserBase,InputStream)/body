@@ -1,0 +1,6 @@
+{
+  ImportColumnGroup rootColumnGroup=new ImportColumnGroup();
+  parser.parseOneFile(project,metadata,job,"file-source",inputStream,rootColumnGroup,-1,options,new ArrayList<Exception>());
+  XmlImportUtilities.createColumnsFromImport(project,rootColumnGroup);
+  project.columnModel.update();
+}

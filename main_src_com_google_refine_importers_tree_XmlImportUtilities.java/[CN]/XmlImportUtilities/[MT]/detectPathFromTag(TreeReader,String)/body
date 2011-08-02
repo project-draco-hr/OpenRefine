@@ -1,0 +1,18 @@
+{
+  try {
+    while (parser.hasNext()) {
+      Token eventType=parser.next();
+      if (eventType == Token.StartEntity) {
+        List<String> path=detectRecordElement(parser,tag);
+        if (path != null) {
+          String[] path2=new String[path.size()];
+          path.toArray(path2);
+          return path2;
+        }
+      }
+    }
+  }
+ catch (  Exception e) {
+  }
+  return null;
+}

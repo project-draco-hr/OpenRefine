@@ -1,0 +1,11 @@
+{
+  while (parser.hasNext()) {
+    Token eventType=parser.next();
+    if (eventType == Token.StartEntity) {
+      skip(parser);
+    }
+ else     if (eventType == Token.EndEntity) {
+      return;
+    }
+  }
+}

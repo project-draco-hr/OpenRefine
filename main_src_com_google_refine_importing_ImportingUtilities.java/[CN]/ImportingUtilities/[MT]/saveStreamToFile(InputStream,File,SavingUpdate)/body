@@ -1,0 +1,20 @@
+{
+  long length=0;
+  FileOutputStream fos=new FileOutputStream(file);
+  try {
+    byte[] bytes=new byte[4096];
+    int c;
+    while ((update == null || !update.isCanceled()) && (c=stream.read(bytes)) > 0) {
+      fos.write(bytes,0,c);
+      length+=c;
+      if (update != null) {
+        update.totalRetrievedSize+=c;
+        update.savedMore();
+      }
+    }
+    return length;
+  }
+  finally {
+    fos.close();
+  }
+}

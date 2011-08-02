@@ -1,0 +1,10 @@
+{
+  try {
+    JsonToken token=parser.nextToken();
+    state.tokenCount++;
+    return parseForPreview(parser,state,token);
+  }
+ catch (  Exception e) {
+    return null;
+  }
+}

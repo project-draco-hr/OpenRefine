@@ -1,0 +1,4 @@
+{
+  when(options.has(name)).thenReturn(true);
+  when(JSONUtilities.getArray(options,name)).thenReturn(def);
+}

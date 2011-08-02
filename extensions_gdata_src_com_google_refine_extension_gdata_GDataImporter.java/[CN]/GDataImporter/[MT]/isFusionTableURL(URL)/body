@@ -1,7 +1,0 @@
-{
-  String query=url.getQuery();
-  if (query == null) {
-    query="";
-  }
-  return url.getHost().endsWith(".google.com") && url.getPath().startsWith("/fusiontables/DataSource") && getFusionTableKey(url) != null;
-}

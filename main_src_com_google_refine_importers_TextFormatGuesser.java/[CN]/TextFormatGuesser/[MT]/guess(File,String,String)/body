@@ -1,0 +1,30 @@
+{
+  try {
+    InputStream is=new FileInputStream(file);
+    try {
+      Reader reader=encoding != null ? new InputStreamReader(is,encoding) : new InputStreamReader(is);
+      int totalBytes=0;
+      int bytes;
+      int lineBreaks=0;
+      CharBuffer charBuffer=CharBuffer.allocate(4096);
+      while (totalBytes < 64 * 1024 && (bytes=reader.read(charBuffer)) > 0) {
+        lineBreaks+=countSubstrings(charBuffer.toString(),"\n");
+        charBuffer.clear();
+        totalBytes+=bytes;
+      }
+      if (lineBreaks > 3) {
+        return "text/line-based";
+      }
+    }
+  finally {
+      is.close();
+    }
+  }
+ catch (  UnsupportedEncodingException e) {
+    e.printStackTrace();
+  }
+catch (  IOException e) {
+    e.printStackTrace();
+  }
+  return null;
+}

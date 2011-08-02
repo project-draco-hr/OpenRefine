@@ -1,0 +1,23 @@
+{
+  final File file=ImportingUtilities.getFile(job,fileRecord);
+  final String fileSource=ImportingUtilities.getFileSource(fileRecord);
+  progress.startFile(fileSource);
+  try {
+    InputStream inputStream=ImporterUtilities.openAndTrackFile(fileSource,file,progress);
+    try {
+      if (useInputStream) {
+        parseOneFile(project,metadata,job,fileSource,inputStream,rootColumnGroup,limit,options,exceptions);
+      }
+ else {
+        Reader reader=ImportingUtilities.getFileReader(file,fileRecord);
+        parseOneFile(project,metadata,job,fileSource,reader,rootColumnGroup,limit,options,exceptions);
+      }
+    }
+  finally {
+      inputStream.close();
+    }
+  }
+  finally {
+    progress.endFile(fileSource,file.length());
+  }
+}

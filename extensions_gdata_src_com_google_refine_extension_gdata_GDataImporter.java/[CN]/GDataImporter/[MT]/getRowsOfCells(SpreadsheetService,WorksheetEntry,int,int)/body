@@ -1,0 +1,30 @@
+{
+  URL cellFeedUrl=worksheet.getCellFeedUrl();
+  int minRow=Math.max(1,startRow);
+  int maxRow=Math.min(worksheet.getRowCount(),startRow + rowCount - 1);
+  int rows=maxRow - minRow + 1;
+  int cols=worksheet.getColCount();
+  CellQuery cellQuery=new CellQuery(cellFeedUrl);
+  cellQuery.setMinimumRow(minRow);
+  cellQuery.setMaximumRow(maxRow);
+  cellQuery.setMaximumCol(cols);
+  cellQuery.setMaxResults(rows * cols);
+  cellQuery.setReturnEmpty(false);
+  CellFeed cellFeed=service.query(cellQuery,CellFeed.class);
+  List<CellEntry> cellEntries=cellFeed.getEntries();
+  List<List<Object>> rowsOfCells=new ArrayList<List<Object>>(rows);
+  for (  CellEntry cellEntry : cellEntries) {
+    Cell cell=cellEntry.getCell();
+    int row=cell.getRow();
+    int col=cell.getCol();
+    while (row > rowsOfCells.size()) {
+      rowsOfCells.add(new ArrayList<Object>(cols));
+    }
+    List<Object> rowOfCells=rowsOfCells.get(row - 1);
+    while (col > rowOfCells.size()) {
+      rowOfCells.add(null);
+    }
+    rowOfCells.set(col - 1,cell.getValue());
+  }
+  return rowsOfCells;
+}

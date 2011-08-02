@@ -16,7 +16,14 @@
  else {
       nameToIndex.put(cell,2);
     }
-    Column column=new Column(c,cell);
-    project.columnModel.columns.add(column);
+    columnNames.set(c,cell);
+    if (project.columnModel.getColumnByName(cell) == null) {
+      Column column=new Column(project.columnModel.allocateNewCellIndex(),cell);
+      try {
+        project.columnModel.addColumn(project.columnModel.columns.size(),column,false);
+      }
+ catch (      ModelException e) {
+      }
+    }
   }
 }

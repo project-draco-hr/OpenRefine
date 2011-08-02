@@ -1,4 +1,4 @@
 {
-  WorksheetFeed feed=service.getFeed(factory.getWorksheetFeedUrl(spreadsheetKey,"public","values"),WorksheetFeed.class);
+  WorksheetFeed feed=service.getFeed(GDataExtension.getFeedUrlFactory().getWorksheetFeedUrl(spreadsheetKey,"public","values"),WorksheetFeed.class);
   return feed.getEntries();
 }

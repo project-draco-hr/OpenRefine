@@ -1,6 +1,17 @@
 {
   try {
-    Project project=getProject(request);
+    Project project=null;
+    String importingJobID=request.getParameter("importingJobID");
+    if (importingJobID != null) {
+      long jobID=Long.parseLong(importingJobID);
+      ImportingJob job=ImportingManager.getJob(jobID);
+      if (job != null) {
+        project=job.project;
+      }
+    }
+    if (project == null) {
+      project=getProject(request);
+    }
     Engine engine=getEngine(request,project);
     String callback=request.getParameter("callback");
     int start=Math.min(project.rows.size(),Math.max(0,getIntegerParameter(request,"start",0)));

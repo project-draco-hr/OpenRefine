@@ -1,0 +1,11 @@
+{
+  String encoding=getEncoding(fileRecord);
+  if (encoding != null) {
+    try {
+      return new InputStreamReader(inputStream,encoding);
+    }
+ catch (    UnsupportedEncodingException e) {
+    }
+  }
+  return new InputStreamReader(inputStream);
+}

@@ -1,11 +1,11 @@
 {
   String inputSeparator=sep == "\t" ? "\t" : ",";
   String input="data1" + inputSeparator + "data2\""+ inputSeparator+ "data3"+ inputSeparator+ "data4";
-  LineNumberReader lnReader=new LineNumberReader(new StringReader(input));
   try {
-    SUT.read(lnReader,project,sep,-1,0,0,0,false,true,true);
+    prepareOptions(sep,-1,0,0,0,false,true,true);
+    parseOneFile(SUT,new StringReader(input));
   }
- catch (  IOException e) {
+ catch (  Exception e) {
     Assert.fail();
   }
   Assert.assertEquals(project.columnModel.columns.size(),4);

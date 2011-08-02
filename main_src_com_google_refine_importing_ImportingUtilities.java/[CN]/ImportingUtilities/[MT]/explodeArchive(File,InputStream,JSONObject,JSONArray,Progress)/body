@@ -1,0 +1,57 @@
+{
+  if (archiveIS instanceof TarInputStream) {
+    TarInputStream tis=(TarInputStream)archiveIS;
+    try {
+      TarEntry te;
+      while (!progress.isCanceled() && (te=tis.getNextEntry()) != null) {
+        if (!te.isDirectory()) {
+          String fileName2=te.getName();
+          File file2=allocateFile(rawDataDir,fileName2);
+          progress.setProgress("Extracting " + fileName2,-1);
+          JSONObject fileRecord2=new JSONObject();
+          JSONUtilities.safePut(fileRecord2,"origin",JSONUtilities.getString(archiveFileRecord,"origin",null));
+          JSONUtilities.safePut(fileRecord2,"declaredEncoding",(String)null);
+          JSONUtilities.safePut(fileRecord2,"declaredMimeType",(String)null);
+          JSONUtilities.safePut(fileRecord2,"fileName",fileName2);
+          JSONUtilities.safePut(fileRecord2,"archiveFileName",JSONUtilities.getString(archiveFileRecord,"fileName",null));
+          JSONUtilities.safePut(fileRecord2,"location",getRelativePath(file2,rawDataDir));
+          JSONUtilities.safePut(fileRecord2,"size",saveStreamToFile(tis,file2,null));
+          postProcessSingleRetrievedFile(file2,fileRecord2);
+          JSONUtilities.append(fileRecords,fileRecord2);
+        }
+      }
+    }
+ catch (    IOException e) {
+      e.printStackTrace();
+    }
+    return true;
+  }
+ else   if (archiveIS instanceof ZipInputStream) {
+    ZipInputStream zis=(ZipInputStream)archiveIS;
+    try {
+      ZipEntry ze;
+      while (!progress.isCanceled() && (ze=zis.getNextEntry()) != null) {
+        if (!ze.isDirectory()) {
+          String fileName2=ze.getName();
+          File file2=allocateFile(rawDataDir,fileName2);
+          progress.setProgress("Extracting " + fileName2,-1);
+          JSONObject fileRecord2=new JSONObject();
+          JSONUtilities.safePut(fileRecord2,"origin",JSONUtilities.getString(archiveFileRecord,"origin",null));
+          JSONUtilities.safePut(fileRecord2,"declaredEncoding",(String)null);
+          JSONUtilities.safePut(fileRecord2,"declaredMimeType",(String)null);
+          JSONUtilities.safePut(fileRecord2,"fileName",fileName2);
+          JSONUtilities.safePut(fileRecord2,"archiveFileName",JSONUtilities.getString(archiveFileRecord,"fileName",null));
+          JSONUtilities.safePut(fileRecord2,"location",getRelativePath(file2,rawDataDir));
+          JSONUtilities.safePut(fileRecord2,"size",saveStreamToFile(zis,file2,null));
+          postProcessSingleRetrievedFile(file2,fileRecord2);
+          JSONUtilities.append(fileRecords,fileRecord2);
+        }
+      }
+    }
+ catch (    IOException e) {
+      e.printStackTrace();
+    }
+    return true;
+  }
+  return false;
+}

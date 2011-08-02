@@ -1,0 +1,5 @@
+String format
+String label
+boolean download
+String uiClass
+ImportingParser parser

@@ -1,6 +1,0 @@
-{
-  long id=ImportManager.singleton().createJob().id;
-  response.setCharacterEncoding("UTF-8");
-  response.setHeader("Content-Type","application/json");
-  respond(response,"{ \"jobID\" : " + id + " }");
-}

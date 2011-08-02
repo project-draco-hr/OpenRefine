@@ -1,0 +1,7 @@
+{
+  String encoding=JSONUtilities.getString(fileRecord,"encoding",null);
+  if (encoding == null) {
+    encoding=JSONUtilities.getString(fileRecord,"declaredEncoding",null);
+  }
+  return encoding;
+}

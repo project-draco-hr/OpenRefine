@@ -1,0 +1,11 @@
+{
+  long jobID=Long.parseLong(request.getParameter("jobID"));
+  ImportingJob job=ImportingManager.getJob(jobID);
+  if (job == null) {
+    HttpUtilities.respond(response,"error","No such import job");
+  }
+ else {
+    job.canceled=true;
+    HttpUtilities.respond(response,"ok","Job canceled");
+  }
+}

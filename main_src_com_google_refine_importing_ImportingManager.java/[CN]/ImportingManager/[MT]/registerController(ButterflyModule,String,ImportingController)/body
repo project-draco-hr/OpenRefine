@@ -1,0 +1,5 @@
+{
+  String key=module.getName() + "/" + name;
+  controllers.put(key,controller);
+  controller.init(servlet);
+}

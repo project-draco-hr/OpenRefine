@@ -1,0 +1,7 @@
+{
+  if (project != null) {
+    project.dispose();
+  }
+  project=new Project();
+  metadata=new ProjectMetadata();
+}

@@ -1,0 +1,6 @@
+{
+  if (bytesRead > 0) {
+    this.bytesRead+=bytesRead;
+  }
+  return bytesRead;
+}

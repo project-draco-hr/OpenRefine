@@ -1,0 +1,11 @@
+{
+  SeparatorBasedImporter.Separator sep=SeparatorBasedImporter.guessSeparator(file,encoding);
+  if (sep != null) {
+    return "text/line-based/*sv";
+  }
+  int[] widths=FixedWidthImporter.guessColumnWidths(file,encoding);
+  if (widths != null) {
+    return "text/line-based/fixed-width";
+  }
+  return null;
+}

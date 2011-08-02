@@ -1,0 +1,27 @@
+{
+  JSONObject result=new JSONObject();
+  loop:   while (state.tokenCount < PREVIEW_PARSING_LIMIT) {
+    try {
+      JsonToken token=parser.nextToken();
+      if (token == null) {
+        break;
+      }
+      state.tokenCount++;
+switch (token) {
+case FIELD_NAME:
+        String fieldName=parser.getText();
+      Object fieldValue=parseForPreview(parser,state);
+    JSONUtilities.safePut(result,fieldName,fieldValue);
+  break;
+case END_OBJECT:
+break loop;
+default :
+break loop;
+}
+}
+ catch (Exception e) {
+break;
+}
+}
+return result;
+}

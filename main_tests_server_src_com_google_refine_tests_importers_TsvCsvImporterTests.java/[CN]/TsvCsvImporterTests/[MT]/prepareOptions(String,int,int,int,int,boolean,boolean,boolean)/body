@@ -1,0 +1,10 @@
+{
+  JSONUtilities.safePut(options,"separator",sep);
+  JSONUtilities.safePut(options,"limit",limit);
+  JSONUtilities.safePut(options,"skipDataLines",skip);
+  JSONUtilities.safePut(options,"ignoreLines",ignoreLines);
+  JSONUtilities.safePut(options,"headerLines",headerLines);
+  JSONUtilities.safePut(options,"guessCellValueTypes",guessValueType);
+  JSONUtilities.safePut(options,"splitIntoColumns",splitIntoColumns);
+  JSONUtilities.safePut(options,"processQuotes",!ignoreQuotes);
+}

@@ -1,0 +1,9 @@
+Project project
+ProjectMetadata metadata
+ImportingJob job
+String fileSource
+InputStream inputStream
+ImportColumnGroup rootColumnGroup
+int limit
+JSONObject options
+List<Exception> exceptions

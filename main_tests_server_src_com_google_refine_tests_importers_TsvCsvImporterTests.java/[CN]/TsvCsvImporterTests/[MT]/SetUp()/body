@@ -1,5 +1,4 @@
 {
-  SUT=new TsvCsvImporter();
-  project=new Project();
-  properties=mock(Properties.class);
+  super.SetUp();
+  SUT=new SeparatorBasedImporter();
 }

@@ -1,9 +1,0 @@
-{
-  String ext=getExtension(name)[1];
-  if (ext_map.containsKey(ext)) {
-    ext_map.put(ext,ext_map.get(ext) + 1);
-  }
- else {
-    ext_map.put(ext,1);
-  }
-}

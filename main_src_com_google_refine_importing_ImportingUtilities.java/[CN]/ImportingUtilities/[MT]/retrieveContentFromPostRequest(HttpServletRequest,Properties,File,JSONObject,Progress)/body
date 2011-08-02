@@ -1,0 +1,138 @@
+{
+  JSONArray fileRecords=new JSONArray();
+  JSONUtilities.safePut(retrievalRecord,"files",fileRecords);
+  int clipboardCount=0;
+  int uploadCount=0;
+  int downloadCount=0;
+  int archiveCount=0;
+  final SavingUpdate update=new SavingUpdate(){
+    @Override public void savedMore(){
+      progress.setProgress(null,calculateProgressPercent(totalExpectedSize,totalRetrievedSize));
+    }
+    @Override public boolean isCanceled(){
+      return progress.isCanceled();
+    }
+  }
+;
+  DiskFileItemFactory fileItemFactory=new DiskFileItemFactory();
+  fileItemFactory.setFileCleaningTracker(new FileCleaningTracker());
+  ServletFileUpload upload=new ServletFileUpload(fileItemFactory);
+  upload.setProgressListener(new ProgressListener(){
+    boolean setContentLength=false;
+    long lastBytesRead=0;
+    @Override public void update(    long bytesRead,    long contentLength,    int itemCount){
+      if (!setContentLength) {
+        if (contentLength >= 0) {
+          update.totalExpectedSize+=contentLength;
+          setContentLength=true;
+        }
+      }
+      if (setContentLength) {
+        update.totalRetrievedSize+=(bytesRead - lastBytesRead);
+        lastBytesRead=bytesRead;
+        update.savedMore();
+      }
+    }
+  }
+);
+  progress.setProgress("Uploading data ...",-1);
+  for (  Object obj : upload.parseRequest(request)) {
+    if (progress.isCanceled()) {
+      break;
+    }
+    FileItem fileItem=(FileItem)obj;
+    InputStream stream=fileItem.getInputStream();
+    String name=fileItem.getFieldName().toLowerCase();
+    if (fileItem.isFormField()) {
+      if (name.equals("clipboard")) {
+        File file=allocateFile(rawDataDir,"clipboard.txt");
+        JSONObject fileRecord=new JSONObject();
+        JSONUtilities.safePut(fileRecord,"origin","clipboard");
+        JSONUtilities.safePut(fileRecord,"declaredEncoding",request.getCharacterEncoding());
+        JSONUtilities.safePut(fileRecord,"declaredMimeType",(String)null);
+        JSONUtilities.safePut(fileRecord,"format","text");
+        JSONUtilities.safePut(fileRecord,"fileName","(clipboard)");
+        JSONUtilities.safePut(fileRecord,"location",getRelativePath(file,rawDataDir));
+        progress.setProgress("Uploading pasted clipboard text",calculateProgressPercent(update.totalExpectedSize,update.totalRetrievedSize));
+        JSONUtilities.safePut(fileRecord,"size",saveStreamToFile(stream,file,null));
+        clipboardCount++;
+        JSONUtilities.append(fileRecords,fileRecord);
+      }
+ else       if (name.equals("download")) {
+        String urlString=Streams.asString(stream);
+        URL url=new URL(urlString);
+        JSONObject fileRecord=new JSONObject();
+        JSONUtilities.safePut(fileRecord,"origin","download");
+        JSONUtilities.safePut(fileRecord,"url",urlString);
+        for (        UrlRewriter rewriter : ImportingManager.urlRewriters) {
+          Result result=rewriter.rewrite(urlString);
+          if (result != null) {
+            urlString=result.rewrittenUrl;
+            url=new URL(urlString);
+            JSONUtilities.safePut(fileRecord,"url",urlString);
+            JSONUtilities.safePut(fileRecord,"format",result.format);
+            if (!result.download) {
+              downloadCount++;
+              JSONUtilities.append(fileRecords,fileRecord);
+              continue;
+            }
+          }
+        }
+        URLConnection urlConnection=url.openConnection();
+        InputStream stream2=urlConnection.getInputStream();
+        try {
+          String fileName=url.getFile();
+          File file=allocateFile(rawDataDir,fileName);
+          int contentLength=urlConnection.getContentLength();
+          if (contentLength >= 0) {
+            update.totalExpectedSize+=contentLength;
+          }
+          JSONUtilities.safePut(fileRecord,"declaredEncoding",urlConnection.getContentEncoding());
+          JSONUtilities.safePut(fileRecord,"declaredMimeType",urlConnection.getContentType());
+          JSONUtilities.safePut(fileRecord,"fileName",fileName);
+          JSONUtilities.safePut(fileRecord,"location",getRelativePath(file,rawDataDir));
+          progress.setProgress("Downloading " + urlString,calculateProgressPercent(update.totalExpectedSize,update.totalRetrievedSize));
+          long actualLength=saveStreamToFile(stream,file,update);
+          JSONUtilities.safePut(fileRecord,"size",actualLength);
+          if (contentLength >= 0) {
+            update.totalExpectedSize+=(actualLength - contentLength);
+          }
+ else {
+            update.totalExpectedSize+=actualLength;
+          }
+          progress.setProgress("Saving " + urlString + " locally",calculateProgressPercent(update.totalExpectedSize,update.totalRetrievedSize));
+          if (postProcessRetrievedFile(file,fileRecord,fileRecords,progress)) {
+            archiveCount++;
+          }
+          downloadCount++;
+        }
+  finally {
+          stream2.close();
+        }
+      }
+    }
+ else {
+      String fileName=fileItem.getName();
+      if (fileName.length() > 0) {
+        long fileSize=fileItem.getSize();
+        File file=allocateFile(rawDataDir,fileName);
+        JSONObject fileRecord=new JSONObject();
+        JSONUtilities.safePut(fileRecord,"origin","upload");
+        JSONUtilities.safePut(fileRecord,"declaredEncoding",request.getCharacterEncoding());
+        JSONUtilities.safePut(fileRecord,"declaredMimeType",fileItem.getContentType());
+        JSONUtilities.safePut(fileRecord,"fileName",fileName);
+        JSONUtilities.safePut(fileRecord,"location",getRelativePath(file,rawDataDir));
+        progress.setProgress("Saving file " + fileName + " locally ("+ formatBytes(fileSize)+ " bytes)",calculateProgressPercent(update.totalExpectedSize,update.totalRetrievedSize));
+        JSONUtilities.safePut(fileRecord,"size",saveStreamToFile(stream,file,null));
+        if (postProcessRetrievedFile(file,fileRecord,fileRecords,progress)) {
+          archiveCount++;
+        }
+        uploadCount++;
+      }
+    }
+  }
+  JSONUtilities.safePut(retrievalRecord,"uploadCount",uploadCount);
+  JSONUtilities.safePut(retrievalRecord,"downloadCount",downloadCount);
+  JSONUtilities.safePut(retrievalRecord,"clipboardCount",clipboardCount);
+  JSONUtilities.safePut(retrievalRecord,"archiveCount",archiveCount);
+}

@@ -1,0 +1,3 @@
+{
+  parseOneFile(project,metadata,job,fileSource,new JSONTreeReader(reader),rootColumnGroup,limit,options,exceptions);
+}

@@ -1,3 +1,4 @@
 {
-  parser=new JSONParser(inputStream);
+  parser=new JSONTreeReader(new InputStreamReader(inputStream));
+  return parser;
 }

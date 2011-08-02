@@ -1,0 +1,105 @@
+{
+  int ignoreLines=JSONUtilities.getInt(options,"ignoreLines",-1);
+  int headerLines=JSONUtilities.getInt(options,"headerLines",1);
+  int skipDataLines=JSONUtilities.getInt(options,"skipDataLines",0);
+  int limit2=JSONUtilities.getInt(options,"limit",-1);
+  if (limit > 0) {
+    if (limit2 > 0) {
+      limit2=Math.min(limit,limit2);
+    }
+ else {
+      limit2=limit;
+    }
+  }
+  boolean guessCellValueTypes=JSONUtilities.getBoolean(options,"guessCellValueTypes",true);
+  boolean storeBlankRows=JSONUtilities.getBoolean(options,"storeBlankRows",true);
+  boolean storeBlankCellsAsNulls=JSONUtilities.getBoolean(options,"storeBlankCellsAsNulls",true);
+  boolean includeFileSources=JSONUtilities.getBoolean(options,"includeFileSources",false);
+  String fileNameColumnName="File";
+  if (includeFileSources) {
+    if (project.columnModel.getColumnByName(fileNameColumnName) == null) {
+      try {
+        project.columnModel.addColumn(0,new Column(project.columnModel.allocateNewCellIndex(),fileNameColumnName),false);
+      }
+ catch (      ModelException e) {
+      }
+    }
+  }
+  List<String> columnNames=new ArrayList<String>();
+  List<Object> cells=null;
+  int rowsWithData=0;
+  try {
+    while (!job.canceled && (cells=reader.getNextRowOfCells()) != null) {
+      if (ignoreLines > 0) {
+        ignoreLines--;
+        continue;
+      }
+      if (headerLines > 0) {
+        for (int c=0; c < cells.size(); c++) {
+          Object cell=cells.get(c);
+          String columnName;
+          if (cell == null) {
+            columnName="";
+          }
+ else           if (cell instanceof Cell) {
+            columnName=((Cell)cell).value.toString().trim();
+          }
+ else {
+            columnName=cell.toString().trim();
+          }
+          ImporterUtilities.appendColumnName(columnNames,c,columnName);
+        }
+        headerLines--;
+        if (headerLines == 0) {
+          ImporterUtilities.setupColumns(project,columnNames);
+        }
+      }
+ else {
+        Row row=new Row(columnNames.size());
+        if (storeBlankRows) {
+          rowsWithData++;
+        }
+ else         if (cells.size() > 0) {
+          rowsWithData++;
+        }
+        if (skipDataLines <= 0 || rowsWithData > skipDataLines) {
+          boolean rowHasData=false;
+          for (int c=0; c < cells.size(); c++) {
+            Column column=ImporterUtilities.getOrAllocateColumn(project,columnNames,c);
+            Object value=cells.get(c);
+            if (value != null && value instanceof Cell) {
+              row.setCell(column.getCellIndex(),(Cell)value);
+              rowHasData=true;
+            }
+ else             if (ExpressionUtils.isNonBlankData(value)) {
+              Serializable storedValue;
+              if (value instanceof String) {
+                storedValue=guessCellValueTypes ? ImporterUtilities.parseCellValue((String)value) : (String)value;
+              }
+ else {
+                storedValue=ExpressionUtils.wrapStorable(value);
+              }
+              row.setCell(column.getCellIndex(),new Cell(storedValue,null));
+              rowHasData=true;
+            }
+ else             if (!storeBlankCellsAsNulls) {
+              row.setCell(column.getCellIndex(),new Cell("",null));
+            }
+          }
+          if (rowHasData || storeBlankRows) {
+            if (includeFileSources) {
+              row.setCell(project.columnModel.getColumnByName(fileNameColumnName).getCellIndex(),new Cell(fileSource,null));
+            }
+            project.rows.add(row);
+          }
+          if (limit2 > 0 && project.rows.size() >= limit2) {
+            break;
+          }
+        }
+      }
+    }
+  }
+ catch (  IOException e) {
+    exceptions.add(e);
+  }
+}

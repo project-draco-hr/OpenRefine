@@ -1,0 +1,19 @@
+{
+  String fileSource=ImportingUtilities.getFileSource(fileRecord);
+  String urlString=JSONUtilities.getString(fileRecord,"url",null);
+  URL url=new URL(urlString);
+  SpreadsheetService service=new SpreadsheetService(GDataExtension.SERVICE_APP_NAME);
+  String spreadsheetKey=getSpreadsheetKey(url);
+  int[] sheets=JSONUtilities.getIntArray(options,"sheets");
+  for (  int sheetIndex : sheets) {
+    WorksheetEntry worksheet;
+    try {
+      worksheet=getWorksheetEntries(service,spreadsheetKey).get(sheetIndex);
+    }
+ catch (    ServiceException e) {
+      exceptions.add(e);
+      continue;
+    }
+    readTable(project,metadata,job,new BatchRowReader(service,worksheet,20),fileSource + "#" + worksheet.getTitle().getPlainText(),limit,options,exceptions);
+  }
+}

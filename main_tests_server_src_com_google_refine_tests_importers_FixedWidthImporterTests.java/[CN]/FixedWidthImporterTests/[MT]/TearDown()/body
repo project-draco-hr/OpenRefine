@@ -1,5 +1,4 @@
 {
   SUT=null;
-  project=null;
-  properties=null;
+  super.TearDown();
 }

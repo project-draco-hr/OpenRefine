@@ -1,0 +1,41 @@
+{
+  final Map<String,Integer> formatToCount=new HashMap<String,Integer>();
+  List<String> formats=new ArrayList<String>();
+  JSONArray fileRecords=JSONUtilities.getArray(retrievalRecord,"files");
+  int count=fileRecords.length();
+  for (int i=0; i < count; i++) {
+    JSONObject fileRecord=JSONUtilities.getObjectElement(fileRecords,i);
+    String format=JSONUtilities.getString(fileRecord,"format",null);
+    if (format != null) {
+      if (formatToCount.containsKey(format)) {
+        formatToCount.put(format,formatToCount.get(format) + 1);
+      }
+ else {
+        formatToCount.put(format,1);
+        formats.add(format);
+      }
+    }
+  }
+  Collections.sort(formats,new Comparator<String>(){
+    @Override public int compare(    String o1,    String o2){
+      return formatToCount.get(o2) - formatToCount.get(o1);
+    }
+  }
+);
+  String bestFormat=formats.size() > 0 ? formats.get(0) : null;
+  if (JSONUtilities.getInt(retrievalRecord,"archiveCount",0) == 0) {
+    for (int i=0; i < count; i++) {
+      JSONUtilities.append(fileSelectionIndexes,i);
+    }
+  }
+ else {
+    for (int i=0; i < count; i++) {
+      JSONObject fileRecord=JSONUtilities.getObjectElement(fileRecords,i);
+      String format=JSONUtilities.getString(fileRecord,"format",null);
+      if (format != null && format.equals(bestFormat)) {
+        JSONUtilities.append(fileSelectionIndexes,i);
+      }
+    }
+  }
+  return bestFormat;
+}

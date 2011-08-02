@@ -1,3 +1,0 @@
-{
-  return importSourceClassNameToName.get(klass.getName());
-}

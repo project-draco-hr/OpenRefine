@@ -1,0 +1,8 @@
+{
+  Properties options=ParsingUtilities.parseUrlParameters(request);
+  String name=options.getProperty("controller");
+  if (name != null) {
+    return ImportingManager.controllers.get(name);
+  }
+  return null;
+}

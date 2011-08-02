@@ -1,0 +1,28 @@
+{
+  try {
+    if (parser.current() == Token.Ignorable)     parser.next();
+    String localName=parser.getFieldName();
+    String fullName=composeName(parser.getPrefix(),localName);
+    if (tag.equals(parser.getFieldName()) || tag.equals(fullName)) {
+      List<String> path=new LinkedList<String>();
+      path.add(localName);
+      return path;
+    }
+    while (parser.hasNext()) {
+      Token eventType=parser.next();
+      if (eventType == Token.EndEntity) {
+        break;
+      }
+ else       if (eventType == Token.StartEntity) {
+        List<String> path=detectRecordElement(parser,tag);
+        if (path != null) {
+          path.add(0,localName);
+          return path;
+        }
+      }
+    }
+  }
+ catch (  Exception e) {
+  }
+  return null;
+}

@@ -1,0 +1,3 @@
+{
+  mimeTypeToFormat.put(mimeType,format);
+}

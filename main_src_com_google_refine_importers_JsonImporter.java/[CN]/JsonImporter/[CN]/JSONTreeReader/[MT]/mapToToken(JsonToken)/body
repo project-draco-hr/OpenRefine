@@ -1,0 +1,32 @@
+{
+switch (token) {
+case START_ARRAY:
+    return Token.StartEntity;
+case END_ARRAY:
+  return Token.EndEntity;
+case START_OBJECT:
+return Token.StartEntity;
+case END_OBJECT:
+return Token.EndEntity;
+case VALUE_STRING:
+return Token.Value;
+case FIELD_NAME:
+return Token.Ignorable;
+case VALUE_NUMBER_INT:
+return Token.Value;
+case VALUE_TRUE:
+return Token.Value;
+case VALUE_NUMBER_FLOAT:
+return Token.Value;
+case VALUE_NULL:
+return Token.Value;
+case VALUE_FALSE:
+return Token.Value;
+case VALUE_EMBEDDED_OBJECT:
+return Token.Ignorable;
+case NOT_AVAILABLE:
+return Token.Ignorable;
+default :
+return Token.Ignorable;
+}
+}

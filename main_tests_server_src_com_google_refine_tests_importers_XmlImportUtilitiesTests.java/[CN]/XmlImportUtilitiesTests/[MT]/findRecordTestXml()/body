@@ -7,7 +7,7 @@
   try {
     SUT.findRecordWrapper(project,parser,recordPath,pathIndex,columnGroup);
   }
- catch (  ServletException e) {
+ catch (  Exception e) {
     Assert.fail();
   }
   log(project);

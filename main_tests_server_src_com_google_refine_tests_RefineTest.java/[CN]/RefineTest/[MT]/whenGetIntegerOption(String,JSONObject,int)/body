@@ -1,0 +1,4 @@
+{
+  when(options.has(name)).thenReturn(true);
+  when(JSONUtilities.getInt(options,name,def)).thenReturn(def);
+}

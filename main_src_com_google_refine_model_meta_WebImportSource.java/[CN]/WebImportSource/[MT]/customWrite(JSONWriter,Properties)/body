@@ -1,4 +1,0 @@
-{
-  writer.key("url");
-  writer.value(url);
-}

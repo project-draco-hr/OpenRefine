@@ -1,0 +1,7 @@
+{
+  long id=System.currentTimeMillis() + (long)(Math.random() * 1000000);
+  File jobDir=new File(getImportDir(),Long.toString(id));
+  ImportingJob job=new ImportingJob(id,jobDir);
+  jobs.put(id,job);
+  return job;
+}

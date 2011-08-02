@@ -1,3 +1,0 @@
-{
-  return isSpreadsheetURL(url) || isFusionTableURL(url);
-}

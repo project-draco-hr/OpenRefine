@@ -1,0 +1,3 @@
+{
+  extensionToFormat.put(extension.startsWith(".") ? extension : ("." + extension),format);
+}

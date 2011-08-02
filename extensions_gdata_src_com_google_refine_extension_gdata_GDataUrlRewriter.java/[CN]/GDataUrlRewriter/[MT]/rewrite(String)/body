@@ -1,0 +1,15 @@
+{
+  try {
+    URL url=new URL(urlString);
+    if (isSpreadsheetURL(url)) {
+      Result result=new Result();
+      result.rewrittenUrl=urlString;
+      result.format="service/gdata/spreadsheet";
+      result.download=false;
+      return result;
+    }
+  }
+ catch (  MalformedURLException e) {
+  }
+  return null;
+}

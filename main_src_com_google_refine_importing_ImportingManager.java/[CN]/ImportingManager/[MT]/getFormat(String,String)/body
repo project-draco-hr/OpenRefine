@@ -1,0 +1,16 @@
+{
+  String fileNameFormat=getFormatFromFileName(fileName);
+  String mimeTypeFormat=mimeType == null ? null : getFormatFromMimeType(mimeType);
+  if (mimeTypeFormat == null) {
+    return fileNameFormat;
+  }
+ else   if (fileNameFormat == null) {
+    return mimeTypeFormat;
+  }
+ else   if (fileNameFormat.startsWith(mimeTypeFormat)) {
+    return fileNameFormat;
+  }
+ else {
+    return mimeTypeFormat;
+  }
+}

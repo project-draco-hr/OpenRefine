@@ -1,0 +1,6 @@
+{
+  writer.object();
+  writer.key("config");
+  writer.value(config);
+  writer.endObject();
+}

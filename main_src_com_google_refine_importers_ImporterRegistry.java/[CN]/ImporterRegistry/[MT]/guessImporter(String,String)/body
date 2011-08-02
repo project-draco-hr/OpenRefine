@@ -1,3 +1,0 @@
-{
-  return guessImporter(contentType,filename,true);
-}

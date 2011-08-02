@@ -1,3 +1,0 @@
-{
-  return importers.remove(verb) != null;
-}

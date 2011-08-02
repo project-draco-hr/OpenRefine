@@ -1,14 +1,14 @@
 {
   String input="data1,data2\",data3,data4";
   StringReader reader=new StringReader(input);
-  when(properties.getProperty("separator")).thenReturn(",");
-  whenGetIntegerOption("ignore",properties,0);
-  whenGetIntegerOption("header-lines",properties,0);
-  whenGetIntegerOption("limit",properties,-1);
-  whenGetIntegerOption("skip",properties,0);
-  whenGetBooleanOption("ignore-quotes",properties,true);
+  when(JSONUtilities.getString(options,"separator",null)).thenReturn(",");
+  whenGetIntegerOption("ignore",options,0);
+  whenGetIntegerOption("header-lines",options,0);
+  whenGetIntegerOption("limit",options,-1);
+  whenGetIntegerOption("skip",options,0);
+  whenGetBooleanOption("ignore-quotes",options,true);
   try {
-    SUT.read(reader,project,new ProjectMetadata(),properties);
+    parseOneFile(SUT,reader);
   }
  catch (  Exception e) {
     Assert.fail();
@@ -19,10 +19,10 @@
   Assert.assertEquals((String)project.rows.get(0).cells.get(1).value,"data2");
   Assert.assertEquals((String)project.rows.get(0).cells.get(2).value,"data3");
   Assert.assertEquals((String)project.rows.get(0).cells.get(3).value,"data4");
-  verify(properties,times(1)).getProperty("separator");
-  verifyGetOption("ignore",properties);
-  verifyGetOption("header-lines",properties);
-  verifyGetOption("limit",properties);
-  verifyGetOption("skip",properties);
-  verifyGetOption("ignore-quotes",properties);
+  JSONUtilities.getString(verify(options,times(1)),"separator",null);
+  verifyGetOption("ignore",options);
+  verifyGetOption("header-lines",options);
+  verifyGetOption("limit",options);
+  verifyGetOption("skip",options);
+  verifyGetOption("ignore-quotes",options);
 }

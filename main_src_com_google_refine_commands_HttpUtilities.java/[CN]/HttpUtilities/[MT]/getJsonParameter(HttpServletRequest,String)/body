@@ -1,0 +1,13 @@
+{
+  if (request == null)   throw new IllegalArgumentException("parameter 'request' should not be null");
+  String value=request.getParameter(name);
+  if (value != null) {
+    try {
+      return ParsingUtilities.evaluateJsonStringToObject(value);
+    }
+ catch (    JSONException e) {
+      logger.warn("Error getting json parameter",e);
+    }
+  }
+  return null;
+}

@@ -1,0 +1,19 @@
+{
+  long jobID=Long.parseLong(parameters.getProperty("jobID"));
+  ImportingJob job=ImportingManager.getJob(jobID);
+  if (job == null) {
+    HttpUtilities.respond(response,"error","No such import job");
+    return;
+  }
+  try {
+    final JSONObject config=getConfig(job);
+    if (!("new".equals(config.getString("state")))) {
+      HttpUtilities.respond(response,"error","Job already started; cannot load more data");
+      return;
+    }
+    ImportingUtilities.loadDataAndPrepareJob(request,response,parameters,job,config);
+  }
+ catch (  JSONException e) {
+    throw new ServletException(e);
+  }
+}

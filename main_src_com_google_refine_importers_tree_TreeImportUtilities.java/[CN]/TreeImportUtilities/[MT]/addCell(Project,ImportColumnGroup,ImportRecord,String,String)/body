@@ -1,5 +1,5 @@
 {
-  if (text == null || ((String)text).isEmpty()) {
+  if (text == null || (text).isEmpty()) {
     return;
   }
   Serializable value=ImporterUtilities.parseCellValue(text);

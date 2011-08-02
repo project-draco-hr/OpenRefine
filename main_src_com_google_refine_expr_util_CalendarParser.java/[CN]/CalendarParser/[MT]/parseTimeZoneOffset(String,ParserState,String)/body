@@ -7,8 +7,7 @@
   int hour=UNSET;
   int minute=UNSET;
   String[] tList=zoneStr.substring(1).split(":");
-  for (int i=0; i < tList.length; i++) {
-    String token=tList[i];
+  for (  String token : tList) {
     if (DEBUG) {
       System.err.println("TZ_HOUR " + (hour != UNSET ? Integer.toString(hour) : "UNSET") + ", TZ_MINUTE "+ (minute != UNSET ? Integer.toString(minute) : "UNSET")+ ", TOKEN=\""+ token+ "\"");
     }

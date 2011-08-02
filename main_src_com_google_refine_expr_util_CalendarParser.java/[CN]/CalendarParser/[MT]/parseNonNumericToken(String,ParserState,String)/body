@@ -80,8 +80,8 @@
       return;
     }
  else     if (zoneNames != null) {
-      for (int z=0; z < zoneNames.length; z++) {
-        if (token.equalsIgnoreCase(zoneNames[z])) {
+      for (      String zoneName : zoneNames) {
+        if (token.equalsIgnoreCase(zoneName)) {
           TimeZone tz=TimeZone.getTimeZone(token);
           if (tz.getRawOffset() != 0 || lToken.equals("gmt")) {
             state.setTimeZone(tz);

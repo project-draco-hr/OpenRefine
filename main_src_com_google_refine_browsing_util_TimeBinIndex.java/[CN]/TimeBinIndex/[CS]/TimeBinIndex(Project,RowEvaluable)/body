@@ -12,8 +12,8 @@
     return;
   }
   long diff=_max - _min;
-  for (int i=0; i < steps.length; i++) {
-    _step=steps[i];
+  for (  long step : steps) {
+    _step=step;
     if (diff / _step <= 100)     break;
   }
   _bins=new int[(int)(diff / _step) + 1];

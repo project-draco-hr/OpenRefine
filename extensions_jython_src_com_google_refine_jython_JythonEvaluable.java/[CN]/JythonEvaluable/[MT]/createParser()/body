@@ -1,6 +1,6 @@
 {
   return new LanguageSpecificParser(){
-    public Evaluable parse(    String s) throws ParsingException {
+    @Override public Evaluable parse(    String s) throws ParsingException {
       return new JythonEvaluable(s);
     }
   }

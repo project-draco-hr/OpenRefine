@@ -12,7 +12,7 @@
         }
         JSONUtilities.safePut(progress,"percent",percent);
       }
-      public boolean isCanceled(){
+      @Override public boolean isCanceled(){
         return job.canceled;
       }
     }

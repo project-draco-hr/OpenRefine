@@ -6,7 +6,7 @@
   JSONUtilities.safePut(job.config,"state","creating-project");
   final Project project=new Project();
   new Thread(){
-    public void run(){
+    @Override public void run(){
       ProjectMetadata pm=new ProjectMetadata();
       pm.setName(JSONUtilities.getString(optionObj,"projectName","Untitled"));
       pm.setEncoding(JSONUtilities.getString(optionObj,"encoding","UTF-8"));

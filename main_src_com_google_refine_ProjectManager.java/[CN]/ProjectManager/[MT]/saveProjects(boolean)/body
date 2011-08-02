@@ -19,7 +19,7 @@ synchronized (this) {
   }
   if (records.size() > 0) {
     Collections.sort(records,new Comparator<SaveRecord>(){
-      public int compare(      SaveRecord o1,      SaveRecord o2){
+      @Override public int compare(      SaveRecord o1,      SaveRecord o2){
         if (o1.overdue < o2.overdue) {
           return 1;
         }

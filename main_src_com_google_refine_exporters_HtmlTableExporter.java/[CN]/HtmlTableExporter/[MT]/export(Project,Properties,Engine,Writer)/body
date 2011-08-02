@@ -25,7 +25,7 @@
       }
       @Override public void end(      Project project){
       }
-      public boolean visit(      Project project,      int rowIndex,      Row row){
+      @Override public boolean visit(      Project project,      int rowIndex,      Row row){
         try {
           writer.write("<tr>");
           for (          Column column : project.columnModel.columns) {

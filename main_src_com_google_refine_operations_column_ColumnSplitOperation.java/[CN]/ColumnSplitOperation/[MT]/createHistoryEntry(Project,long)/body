@@ -11,7 +11,7 @@
   RowVisitor rowVisitor;
   if ("lengths".equals(_mode)) {
     rowVisitor=new ColumnSplitRowVisitor(column.getCellIndex(),columnNames,rowIndices,tuples){
-      protected java.util.List<Serializable> split(      String s){
+      @Override protected java.util.List<Serializable> split(      String s){
         List<Serializable> results=new ArrayList<Serializable>(_fieldLengths.length + 1);
         int lastIndex=0;
         for (int i=0; i < _fieldLengths.length; i++) {
@@ -30,7 +30,7 @@
     Pattern pattern=Pattern.compile(_separator);
     rowVisitor=new ColumnSplitRowVisitor(column.getCellIndex(),columnNames,rowIndices,tuples){
       Pattern _pattern;
-      protected java.util.List<Serializable> split(      String s){
+      @Override protected java.util.List<Serializable> split(      String s){
         return stringArrayToValueList(_pattern.split(s,_maxColumns));
       }
       public RowVisitor init(      Pattern pattern){
@@ -42,7 +42,7 @@
   }
  else {
     rowVisitor=new ColumnSplitRowVisitor(column.getCellIndex(),columnNames,rowIndices,tuples){
-      protected java.util.List<Serializable> split(      String s){
+      @Override protected java.util.List<Serializable> split(      String s){
         return stringArrayToValueList(StringUtils.splitByWholeSeparatorPreserveAllTokens(s,_separator,_maxColumns));
       }
     }

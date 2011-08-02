@@ -18,7 +18,7 @@
     }
   }
   Collections.sort(keyedGroups,new Comparator<KeyedGroup>(){
-    public int compare(    KeyedGroup o1,    KeyedGroup o2){
+    @Override public int compare(    KeyedGroup o1,    KeyedGroup o2){
       return o2.cellIndices.length - o1.cellIndices.length;
     }
   }

@@ -20,7 +20,7 @@ catch (  ArrayIndexOutOfBoundsException e) {
       int nextRow=0;
       Map<String,Recon> reconMap=new HashMap<String,Recon>();
       @Override public List<Object> getNextRowOfCells() throws IOException {
-        if (nextRow >= lastRow) {
+        if (nextRow > lastRow) {
           return null;
         }
         List<Object> cells=new ArrayList<Object>();

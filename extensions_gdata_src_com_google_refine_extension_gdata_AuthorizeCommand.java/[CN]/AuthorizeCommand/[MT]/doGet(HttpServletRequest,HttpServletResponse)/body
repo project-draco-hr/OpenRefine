@@ -1,4 +1,10 @@
 {
-  String requestUrl=AuthSubUtil.getRequestUrl(request.getRequestURL() + "2","http://spreadsheets.google.com/feeds",false,true);
+  char[] mountPointChars=this.servlet.getModule("gdata").getMountPoint().getMountPoint().toCharArray();
+  StringBuffer sb=new StringBuffer();
+  sb.append(mountPointChars,0,mountPointChars.length);
+  sb.append("authorized");
+  URL thisUrl=new URL(request.getRequestURL().toString());
+  URL authorizedUrl=new URL(thisUrl,sb.toString());
+  String requestUrl=AuthSubUtil.getRequestUrl(authorizedUrl.toExternalForm(),"http://docs.google.com/feeds",false,true);
   response.sendRedirect(requestUrl);
 }

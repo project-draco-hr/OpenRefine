@@ -1,0 +1,63 @@
+{
+  String token=TokenCookie.getToken(request);
+  if (token == null) {
+    HttpUtilities.respond(response,"error","Not authorized");
+    return;
+  }
+  Writer w=response.getWriter();
+  JSONWriter writer=new JSONWriter(w);
+  try {
+    writer.object();
+    writer.key("documents");
+    writer.array();
+    try {
+      DocsService service=getDocsService(token);
+      DocumentQuery query=new DocumentQuery(new URL("https://docs.google.com/feeds/default/private/full"));
+      query.addCategoryFilter(new Query.CategoryFilter(new Category("http://schemas.google.com/g/2005#kind","http://schemas.google.com/docs/2007#spreadsheet")));
+      query.setMaxResults(100);
+      DocumentListFeed feed=service.getFeed(query,DocumentListFeed.class);
+      for (      DocumentListEntry entry : feed.getEntries()) {
+        writer.object();
+        writer.key("docId");
+        writer.value(entry.getDocId());
+        writer.key("docLink");
+        writer.value(entry.getDocumentLink().getHref());
+        writer.key("title");
+        writer.value(entry.getTitle().getPlainText());
+        writer.key("isViewed");
+        writer.value(entry.isViewed());
+        writer.key("isStarred");
+        writer.value(entry.isStarred());
+        DateTime edited=entry.getEdited();
+        if (edited != null) {
+          writer.key("edited");
+          writer.value(edited.toStringRfc822());
+        }
+        DateTime lastViewed=entry.getLastViewed();
+        if (lastViewed != null) {
+          writer.key("lastViewed");
+          writer.value(lastViewed.toStringRfc822());
+        }
+        writer.key("authors");
+        writer.array();
+        for (        Person person : entry.getAuthors()) {
+          writer.value(person.getName());
+        }
+        writer.endArray();
+        writer.endObject();
+      }
+    }
+ catch (    ServiceException e) {
+      e.printStackTrace();
+    }
+    writer.endArray();
+    writer.endObject();
+  }
+ catch (  JSONException e) {
+    throw new ServletException(e);
+  }
+ finally {
+    w.flush();
+    w.close();
+  }
+}

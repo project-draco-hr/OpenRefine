@@ -1,0 +1,10 @@
+{
+  Properties parameters=ParsingUtilities.parseUrlParameters(request);
+  String subCommand=parameters.getProperty("subCommand");
+  if ("list-documents".equals(subCommand)) {
+    doListDocuments(request,response,parameters);
+  }
+ else {
+    HttpUtilities.respond(response,"error","No such sub command");
+  }
+}

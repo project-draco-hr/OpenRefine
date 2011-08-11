@@ -1,7 +1,9 @@
+SpreadsheetService service
 Project project
 ProjectMetadata metadata
 ImportingJob job
-JSONObject fileRecord
+URL docURL
+URL worksheetURL
 int limit
 JSONObject options
 List<Exception> exceptions

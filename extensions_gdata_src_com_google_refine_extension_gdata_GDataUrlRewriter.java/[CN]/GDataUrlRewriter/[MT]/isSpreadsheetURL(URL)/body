@@ -4,5 +4,5 @@
   if (query == null) {
     query="";
   }
-  return host.endsWith(".google.com") && host.contains("spreadsheet") && query.contains("key=");
+  return host.endsWith(".google.com") && host.contains("spreadsheets") && query.contains("key=");
 }

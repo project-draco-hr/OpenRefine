@@ -1,0 +1,39 @@
+{
+  String token=TokenCookie.getToken(request);
+  if (token == null) {
+    HttpUtilities.respond(response,"error","Not authorized");
+    return;
+  }
+  final SpreadsheetService service=getSpreadsheetService(token);
+  long jobID=Long.parseLong(parameters.getProperty("jobID"));
+  final ImportingJob job=ImportingManager.getJob(jobID);
+  if (job == null) {
+    HttpUtilities.respond(response,"error","No such import job");
+    return;
+  }
+  try {
+    final JSONObject optionObj=ParsingUtilities.evaluateJsonStringToObject(request.getParameter("options"));
+    final List<Exception> exceptions=new LinkedList<Exception>();
+    JSONUtilities.safePut(job.config,"state","creating-project");
+    final Project project=new Project();
+    new Thread(){
+      @Override public void run(){
+        ProjectMetadata pm=new ProjectMetadata();
+        pm.setName(JSONUtilities.getString(optionObj,"projectName","Untitled"));
+        pm.setEncoding(JSONUtilities.getString(optionObj,"encoding","UTF-8"));
+        GDataImporter.parse(service,project,pm,job,-1,optionObj,exceptions);
+        if (!job.canceled) {
+          project.update();
+          ProjectManager.singleton.registerProject(project,pm);
+          JSONUtilities.safePut(job.config,"projectID",project.id);
+          JSONUtilities.safePut(job.config,"state","created-project");
+        }
+      }
+    }
+.start();
+    HttpUtilities.respond(response,"ok","done");
+  }
+ catch (  JSONException e) {
+    throw new ServletException(e);
+  }
+}

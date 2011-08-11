@@ -1,17 +1,13 @@
 {
-  if (rowsOfCells == null || nextRow > batchRowStart + rowsOfCells.size()) {
-    batchRowStart=batchRowStart + (rowsOfCells == null ? 0 : rowsOfCells.size());
-    if (batchRowStart < totalRowCount) {
-      try {
-        rowsOfCells=getRowsOfCells(service,worksheet,batchRowStart + 1,batchSize);
-      }
- catch (      ServiceException e) {
-        rowsOfCells=null;
-        throw new IOException(e);
-      }
+  if (rowsOfCells == null || (nextRow >= batchRowStart + rowsOfCells.size() && nextRow < totalRows)) {
+    int newBatchRowStart=batchRowStart + (rowsOfCells == null ? 0 : rowsOfCells.size());
+    try {
+      rowsOfCells=getRowsOfCells(service,worksheet,newBatchRowStart + 1,batchSize);
+      batchRowStart=newBatchRowStart;
+      setProgress(job,fileSource,batchRowStart * 100 / totalRows);
     }
- else {
-      rowsOfCells=null;
+ catch (    ServiceException e) {
+      throw new IOException(e);
     }
   }
   if (rowsOfCells != null && nextRow - batchRowStart < rowsOfCells.size()) {

@@ -1,0 +1,8 @@
+{
+  this.job=job;
+  this.fileSource=fileSource;
+  this.service=service;
+  this.worksheet=worksheet;
+  this.batchSize=batchSize;
+  this.totalRows=worksheet.getRowCount();
+}

@@ -5,6 +5,6 @@
   sb.append("authorized");
   URL thisUrl=new URL(request.getRequestURL().toString());
   URL authorizedUrl=new URL(thisUrl,sb.toString());
-  String requestUrl=AuthSubUtil.getRequestUrl(authorizedUrl.toExternalForm(),"http://docs.google.com/feeds",false,true);
+  String requestUrl=AuthSubUtil.getRequestUrl(authorizedUrl.toExternalForm(),"https://docs.google.com/feeds https://spreadsheets.google.com/feeds",false,true);
   response.sendRedirect(requestUrl);
 }

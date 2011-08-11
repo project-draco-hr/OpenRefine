@@ -1,3 +1,5 @@
+ImportingJob job
+String fileSource
 SpreadsheetService service
 WorksheetEntry worksheet
 int batchSize

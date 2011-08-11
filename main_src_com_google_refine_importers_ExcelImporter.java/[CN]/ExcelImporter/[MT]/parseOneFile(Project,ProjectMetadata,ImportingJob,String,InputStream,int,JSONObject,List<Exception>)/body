@@ -40,6 +40,6 @@ catch (  ArrayIndexOutOfBoundsException e) {
       }
     }
 ;
-    readTable(project,metadata,job,dataReader,fileSource + "#" + sheet.getSheetName(),limit,options,exceptions);
+    TabularImportingParserBase.readTable(project,metadata,job,dataReader,fileSource + "#" + sheet.getSheetName(),limit,options,exceptions);
   }
 }

@@ -36,7 +36,7 @@
   }
 );
   progress.setProgress("Uploading data ...",-1);
-  for (  Object obj : upload.parseRequest(request)) {
+  parts:   for (  Object obj : upload.parseRequest(request)) {
     if (progress.isCanceled()) {
       break;
     }
@@ -74,27 +74,35 @@
             if (!result.download) {
               downloadCount++;
               JSONUtilities.append(fileRecords,fileRecord);
-              continue;
+              continue parts;
             }
           }
         }
         URLConnection urlConnection=url.openConnection();
+        urlConnection.setConnectTimeout(5000);
+        if (urlConnection instanceof HttpURLConnection) {
+          HttpURLConnection httpConnection=(HttpURLConnection)urlConnection;
+          RefineServlet.setUserAgent(httpConnection);
+        }
+        urlConnection.connect();
         InputStream stream2=urlConnection.getInputStream();
         try {
-          String fileName=url.getFile();
-          File file=allocateFile(rawDataDir,fileName);
+          File file=allocateFile(rawDataDir,url.getFile());
           int contentLength=urlConnection.getContentLength();
-          if (contentLength >= 0) {
+          if (contentLength > 0) {
             update.totalExpectedSize+=contentLength;
           }
           JSONUtilities.safePut(fileRecord,"declaredEncoding",urlConnection.getContentEncoding());
           JSONUtilities.safePut(fileRecord,"declaredMimeType",urlConnection.getContentType());
-          JSONUtilities.safePut(fileRecord,"fileName",fileName);
+          JSONUtilities.safePut(fileRecord,"fileName",file.getName());
           JSONUtilities.safePut(fileRecord,"location",getRelativePath(file,rawDataDir));
           progress.setProgress("Downloading " + urlString,calculateProgressPercent(update.totalExpectedSize,update.totalRetrievedSize));
-          long actualLength=saveStreamToFile(stream,file,update);
+          long actualLength=saveStreamToFile(stream2,file,update);
           JSONUtilities.safePut(fileRecord,"size",actualLength);
-          if (contentLength >= 0) {
+          if (actualLength == 0) {
+            throw new Exception("No content found in " + urlString);
+          }
+ else           if (contentLength >= 0) {
             update.totalExpectedSize+=(actualLength - contentLength);
           }
  else {

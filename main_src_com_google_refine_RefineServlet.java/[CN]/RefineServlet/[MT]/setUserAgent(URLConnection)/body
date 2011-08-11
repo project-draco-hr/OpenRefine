@@ -1,0 +1,5 @@
+{
+  if (urlConnection instanceof HttpURLConnection) {
+    setUserAgent((HttpURLConnection)urlConnection);
+  }
+}

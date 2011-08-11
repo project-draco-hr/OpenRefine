@@ -18,10 +18,11 @@
     }
 );
   }
- catch (  FileUploadException e) {
+ catch (  Exception e) {
     JSONUtilities.safePut(config,"state","error");
     JSONUtilities.safePut(config,"error","Error uploading data");
-    throw new ServletException(e);
+    JSONUtilities.safePut(config,"errorDetails",e.getLocalizedMessage());
+    return;
   }
   JSONArray fileSelectionIndexes=new JSONArray();
   JSONUtilities.safePut(config,"fileSelection",fileSelectionIndexes);

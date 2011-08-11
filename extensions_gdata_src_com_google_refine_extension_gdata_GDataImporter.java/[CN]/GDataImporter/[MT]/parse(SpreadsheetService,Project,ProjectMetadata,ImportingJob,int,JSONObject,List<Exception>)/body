@@ -1,0 +1,13 @@
+{
+  String docUrlString=JSONUtilities.getString(options,"docUrl",null);
+  String worksheetUrlString=JSONUtilities.getString(options,"sheetUrl",null);
+  if (docUrlString != null && worksheetUrlString != null) {
+    try {
+      parseOneWorkSheet(service,project,metadata,job,new URL(docUrlString),new URL(worksheetUrlString),limit,options,exceptions);
+    }
+ catch (    MalformedURLException e) {
+      e.printStackTrace();
+      exceptions.add(e);
+    }
+  }
+}

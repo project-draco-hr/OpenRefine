@@ -1,0 +1,52 @@
+{
+  String token=TokenCookie.getToken(request);
+  if (token == null) {
+    HttpUtilities.respond(response,"error","Not authorized");
+    return;
+  }
+  SpreadsheetService service=getSpreadsheetService(token);
+  long jobID=Long.parseLong(parameters.getProperty("jobID"));
+  ImportingJob job=ImportingManager.getJob(jobID);
+  if (job == null) {
+    HttpUtilities.respond(response,"error","No such import job");
+    return;
+  }
+  try {
+    job.config=new JSONObject();
+    JSONObject optionObj=ParsingUtilities.evaluateJsonStringToObject(request.getParameter("options"));
+    List<Exception> exceptions=new LinkedList<Exception>();
+    job.prepareNewProject();
+    GDataImporter.parse(service,job.project,job.metadata,job,100,optionObj,exceptions);
+    Writer w=response.getWriter();
+    JSONWriter writer=new JSONWriter(w);
+    try {
+      writer.object();
+      if (exceptions.size() == 0) {
+        job.project.update();
+        writer.key("code");
+        writer.value("ok");
+      }
+ else {
+        writer.key("code");
+        writer.value("error");
+        writer.key("errors");
+        writer.array();
+        for (        Exception e : exceptions) {
+          writer.value(e.getLocalizedMessage());
+        }
+        writer.endArray();
+      }
+      writer.endObject();
+    }
+ catch (    JSONException e) {
+      throw new ServletException(e);
+    }
+ finally {
+      w.flush();
+      w.close();
+    }
+  }
+ catch (  JSONException e) {
+    throw new ServletException(e);
+  }
+}

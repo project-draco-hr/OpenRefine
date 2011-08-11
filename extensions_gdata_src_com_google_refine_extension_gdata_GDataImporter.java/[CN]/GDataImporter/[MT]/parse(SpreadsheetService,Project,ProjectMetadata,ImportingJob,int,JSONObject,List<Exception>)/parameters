@@ -1,0 +1,7 @@
+SpreadsheetService service
+Project project
+ProjectMetadata metadata
+ImportingJob job
+int limit
+JSONObject options
+List<Exception> exceptions

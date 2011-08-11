@@ -1,0 +1,3 @@
+{
+  httpConnection.addRequestProperty("User-Agent","Google Refine/" + FULL_VERSION);
+}

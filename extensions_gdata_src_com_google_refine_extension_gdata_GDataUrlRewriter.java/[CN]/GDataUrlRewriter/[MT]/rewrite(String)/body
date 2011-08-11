@@ -2,10 +2,13 @@
   try {
     URL url=new URL(urlString);
     if (isSpreadsheetURL(url)) {
+      int keyFrom=Math.max(urlString.indexOf("?key="),urlString.indexOf("&key=")) + 5;
+      int keyTo=urlString.indexOf("&",keyFrom);
+      String key=urlString.substring(keyFrom,keyTo > 0 ? keyTo : urlString.length());
       Result result=new Result();
-      result.rewrittenUrl=urlString;
-      result.format="service/gdata/spreadsheet";
-      result.download=false;
+      result.rewrittenUrl="https://spreadsheets.google.com/pub?key=" + key + "&output=csv";
+      result.format="text/line-based/*sv";
+      result.download=true;
       return result;
     }
   }

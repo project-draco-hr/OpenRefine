@@ -1,0 +1,36 @@
+{
+  String token=TokenCookie.getToken(request);
+  if (token == null) {
+    HttpUtilities.respond(response,"error","Not authorized");
+    return;
+  }
+  SpreadsheetService service=getSpreadsheetService(token);
+  try {
+    JSONObject result=new JSONObject();
+    JSONObject options=new JSONObject();
+    JSONUtilities.safePut(result,"status","ok");
+    JSONUtilities.safePut(result,"options",options);
+    JSONUtilities.safePut(options,"ignoreLines",-1);
+    JSONUtilities.safePut(options,"headerLines",1);
+    JSONUtilities.safePut(options,"skipDataLines",0);
+    JSONUtilities.safePut(options,"storeBlankRows",true);
+    JSONUtilities.safePut(options,"storeBlankCellsAsNulls",true);
+    JSONArray worksheets=new JSONArray();
+    JSONUtilities.safePut(options,"worksheets",worksheets);
+    String urlString=parameters.getProperty("docUrl");
+    URL url=new URL(urlString);
+    SpreadsheetEntry spreadsheetEntry=service.getEntry(url,SpreadsheetEntry.class);
+    for (    WorksheetEntry worksheetEntry : spreadsheetEntry.getWorksheets()) {
+      JSONObject worksheetO=new JSONObject();
+      JSONUtilities.safePut(worksheetO,"name",worksheetEntry.getTitle().getPlainText());
+      JSONUtilities.safePut(worksheetO,"rows",worksheetEntry.getRowCount());
+      JSONUtilities.safePut(worksheetO,"link",worksheetEntry.getSelfLink().getHref());
+      JSONUtilities.append(worksheets,worksheetO);
+    }
+    HttpUtilities.respond(response,result.toString());
+  }
+ catch (  ServiceException e) {
+    e.printStackTrace();
+    HttpUtilities.respond(response,"error","Internal error: " + e.getLocalizedMessage());
+  }
+}

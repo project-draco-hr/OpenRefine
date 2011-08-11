@@ -4,6 +4,15 @@
   if ("list-documents".equals(subCommand)) {
     doListDocuments(request,response,parameters);
   }
+ else   if ("initialize-parser-ui".equals(subCommand)) {
+    doInitializeParserUI(request,response,parameters);
+  }
+ else   if ("parse-preview".equals(subCommand)) {
+    doParsePreview(request,response,parameters);
+  }
+ else   if ("create-project".equals(subCommand)) {
+    doCreateProject(request,response,parameters);
+  }
  else {
     HttpUtilities.respond(response,"error","No such sub command");
   }

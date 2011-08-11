@@ -1,4 +1,0 @@
-{
-  SpreadsheetFeed feed=service.getFeed(GDataExtension.getFeedUrlFactory().getSpreadsheetsFeedUrl(),SpreadsheetFeed.class);
-  return feed.getEntries();
-}

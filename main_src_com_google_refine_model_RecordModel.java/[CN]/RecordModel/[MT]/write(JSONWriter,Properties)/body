@@ -1,6 +1,6 @@
 {
   writer.object();
   writer.key("hasRecords");
-  writer.value(_records.size() < _rowDependencies.size());
+  writer.value(_records != null && _rowDependencies != null && _records.size() < _rowDependencies.size());
   writer.endObject();
 }

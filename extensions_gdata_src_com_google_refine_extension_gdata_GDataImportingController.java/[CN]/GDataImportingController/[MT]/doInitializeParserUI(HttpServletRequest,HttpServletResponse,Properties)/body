@@ -4,7 +4,9 @@
     HttpUtilities.respond(response,"error","Not authorized");
     return;
   }
-  SpreadsheetService service=getSpreadsheetService(token);
+  String type=parameters.getProperty("docType");
+  String urlString=parameters.getProperty("docUrl");
+  URL url=new URL(urlString);
   try {
     JSONObject result=new JSONObject();
     JSONObject options=new JSONObject();
@@ -17,15 +19,16 @@
     JSONUtilities.safePut(options,"storeBlankCellsAsNulls",true);
     JSONArray worksheets=new JSONArray();
     JSONUtilities.safePut(options,"worksheets",worksheets);
-    String urlString=parameters.getProperty("docUrl");
-    URL url=new URL(urlString);
-    SpreadsheetEntry spreadsheetEntry=service.getEntry(url,SpreadsheetEntry.class);
-    for (    WorksheetEntry worksheetEntry : spreadsheetEntry.getWorksheets()) {
-      JSONObject worksheetO=new JSONObject();
-      JSONUtilities.safePut(worksheetO,"name",worksheetEntry.getTitle().getPlainText());
-      JSONUtilities.safePut(worksheetO,"rows",worksheetEntry.getRowCount());
-      JSONUtilities.safePut(worksheetO,"link",worksheetEntry.getSelfLink().getHref());
-      JSONUtilities.append(worksheets,worksheetO);
+    if ("spreadsheet".equals(type)) {
+      SpreadsheetService spreadsheetService=getSpreadsheetService(token);
+      SpreadsheetEntry spreadsheetEntry=spreadsheetService.getEntry(url,SpreadsheetEntry.class);
+      for (      WorksheetEntry worksheetEntry : spreadsheetEntry.getWorksheets()) {
+        JSONObject worksheetO=new JSONObject();
+        JSONUtilities.safePut(worksheetO,"name",worksheetEntry.getTitle().getPlainText());
+        JSONUtilities.safePut(worksheetO,"rows",worksheetEntry.getRowCount());
+        JSONUtilities.safePut(worksheetO,"link",worksheetEntry.getSelfLink().getHref());
+        JSONUtilities.append(worksheets,worksheetO);
+      }
     }
     HttpUtilities.respond(response,result.toString());
   }

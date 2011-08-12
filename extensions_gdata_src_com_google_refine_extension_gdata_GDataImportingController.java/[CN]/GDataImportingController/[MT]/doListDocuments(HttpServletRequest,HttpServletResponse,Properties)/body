@@ -12,10 +12,9 @@
     writer.array();
     try {
       DocsService service=getDocsService(token);
-      listDocumentsOfType(service,writer,"http://schemas.google.com/docs/2007#spreadsheet");
+      listSpreadsheets(service,writer);
     }
  catch (    ServiceException e) {
-      e.printStackTrace();
     }
     writer.endArray();
     writer.endObject();

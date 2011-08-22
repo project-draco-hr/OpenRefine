@@ -1,0 +1,3 @@
+{
+  return getFileReader(getFile(job,JSONUtilities.getString(fileRecord,"location","")),fileRecord,commonEncoding);
+}

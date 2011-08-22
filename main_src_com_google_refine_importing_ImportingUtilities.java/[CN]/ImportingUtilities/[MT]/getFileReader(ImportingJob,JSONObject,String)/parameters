@@ -1,2 +1,3 @@
 ImportingJob job
 JSONObject fileRecord
+String commonEncoding

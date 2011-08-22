@@ -1,3 +1,0 @@
-{
-  return getReaderFromStream(new FileInputStream(file),fileRecord);
-}

@@ -22,14 +22,16 @@
           }
         }
       }
-  finally {
+ catch (      XMLStreamException e) {
+        logger.warn("Error generating parser UI initialization data for XML file",e);
+      }
+ finally {
         is.close();
       }
     }
   }
- catch (  XMLStreamException e) {
-  }
-catch (  IOException e) {
+ catch (  IOException e) {
+    logger.error("Error generating parser UI initialization data for XML file",e);
   }
   return options;
 }

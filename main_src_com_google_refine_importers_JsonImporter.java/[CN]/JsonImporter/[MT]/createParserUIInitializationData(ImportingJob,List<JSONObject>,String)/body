@@ -19,6 +19,7 @@
       }
     }
  catch (    IOException e) {
+      logger.error("Error generating parser UI initialization data for JSON file",e);
     }
   }
   return options;

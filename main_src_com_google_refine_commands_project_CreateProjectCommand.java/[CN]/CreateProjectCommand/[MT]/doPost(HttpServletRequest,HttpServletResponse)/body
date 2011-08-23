@@ -1,16 +1,51 @@
 {
   ProjectManager.singleton.setBusy(true);
   try {
-    Properties options=ParsingUtilities.parseUrlParameters(request);
-    Project project=new Project();
-    ProjectMetadata pm=new ProjectMetadata();
-    pm.setName(options.getProperty("project-name"));
-    pm.setPassword(options.getProperty("project-password"));
-    pm.setEncoding(options.getProperty("encoding"));
-    pm.setEncodingConfidence(options.getProperty("encoding_confidence"));
-    ProjectManager.singleton.registerProject(project,pm);
-    project.update();
-    HttpUtilities.redirect(response,"/project?project=" + project.id);
+    Properties parameters=ParsingUtilities.parseUrlParameters(request);
+    ImportingJob job=ImportingManager.createJob();
+    JSONObject config=job.getOrCreateDefaultConfig();
+    ImportingUtilities.loadDataAndPrepareJob(request,response,parameters,job,config);
+    String format=parameters.getProperty("format");
+    if (format != null && !format.isEmpty()) {
+      Format formatRecord=ImportingManager.formatToRecord.get(format);
+      if (formatRecord == null || formatRecord.parser == null) {
+        format=null;
+      }
+    }
+    if (format == null || format.isEmpty()) {
+      if ("false".equals(parameters.getProperty("split-into-columns"))) {
+        format="text/line-based";
+      }
+ else       if (",".equals(parameters.getProperty("separator")) || "\\t".equals(parameters.getProperty("separator"))) {
+        format="text/line-based/*sv";
+      }
+ else {
+        JSONArray rankedFormats=JSONUtilities.getArray(config,"rankedFormats");
+        if (rankedFormats != null && rankedFormats.length() > 0) {
+          format=rankedFormats.getString(0);
+        }
+      }
+      if (format == null || format.isEmpty()) {
+        format="text/line-based";
+      }
+    }
+    JSONObject optionObj=null;
+    String optionsString=request.getParameter("options");
+    if (optionsString != null && !optionsString.isEmpty()) {
+      optionObj=ParsingUtilities.evaluateJsonStringToObject(optionsString);
+    }
+ else {
+      Format formatRecord=ImportingManager.formatToRecord.get(format);
+      optionObj=formatRecord.parser.createParserUIInitializationData(job,ImportingUtilities.getSelectedFileRecords(job),format);
+    }
+    adjustLegacyOptions(format,parameters,optionObj);
+    String projectName=parameters.getProperty("project-name");
+    if (projectName != null && !projectName.isEmpty()) {
+      JSONUtilities.safePut(optionObj,"projectName",projectName);
+    }
+    List<Exception> exceptions=new LinkedList<Exception>();
+    long projectId=ImportingUtilities.createProject(job,format,optionObj,exceptions,true);
+    HttpUtilities.redirect(response,"/project?project=" + projectId);
   }
  catch (  Exception e) {
     respondWithErrorPage(request,response,"Failed to import file",e);

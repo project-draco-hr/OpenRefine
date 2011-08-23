@@ -1,0 +1,8 @@
+{
+  if (config == null) {
+    config=new JSONObject();
+    JSONUtilities.safePut(config,"state","new");
+    JSONUtilities.safePut(config,"hasData",false);
+  }
+  return config;
+}

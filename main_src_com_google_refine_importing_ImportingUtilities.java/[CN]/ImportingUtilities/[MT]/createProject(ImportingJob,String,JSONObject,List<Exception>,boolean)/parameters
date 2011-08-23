@@ -2,3 +2,4 @@ ImportingJob job
 String format
 JSONObject optionObj
 List<Exception> exceptions
+boolean synchronous

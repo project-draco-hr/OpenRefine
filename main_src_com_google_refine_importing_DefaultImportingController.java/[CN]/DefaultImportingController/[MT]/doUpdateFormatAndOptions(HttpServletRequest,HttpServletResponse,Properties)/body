@@ -6,7 +6,7 @@
     return;
   }
   try {
-    JSONObject config=getConfig(job);
+    JSONObject config=job.getOrCreateDefaultConfig();
     if (!("ready".equals(config.getString("state")))) {
       HttpUtilities.respond(response,"error","Job not ready");
       return;

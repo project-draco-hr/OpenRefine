@@ -1,0 +1,6 @@
+String format
+Properties parameters
+JSONObject optionObj
+String legacyName
+String newName
+boolean invert

@@ -1,0 +1,20 @@
+{
+  final Format record=ImportingManager.formatToRecord.get(format);
+  if (record == null || record.parser == null) {
+    return -1;
+  }
+  JSONUtilities.safePut(job.config,"state","creating-project");
+  final Project project=new Project();
+  if (synchronous) {
+    createProjectSynchronously(job,format,optionObj,exceptions,record,project);
+  }
+ else {
+    new Thread(){
+      @Override public void run(){
+        createProjectSynchronously(job,format,optionObj,exceptions,record,project);
+      }
+    }
+.start();
+  }
+  return project.id;
+}

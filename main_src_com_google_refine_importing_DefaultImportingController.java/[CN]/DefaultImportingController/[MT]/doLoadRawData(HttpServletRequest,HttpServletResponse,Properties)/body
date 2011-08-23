@@ -6,7 +6,7 @@
     return;
   }
   try {
-    final JSONObject config=getConfig(job);
+    JSONObject config=job.getOrCreateDefaultConfig();
     if (!("new".equals(config.getString("state")))) {
       HttpUtilities.respond(response,"error","Job already started; cannot load more data");
       return;

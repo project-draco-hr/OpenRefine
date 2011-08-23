@@ -1,0 +1,10 @@
+{
+  String s=parameters.getProperty(legacyName);
+  if (s != null && !s.isEmpty()) {
+    try {
+      JSONUtilities.safePut(optionObj,newName,Integer.parseInt(s));
+    }
+ catch (    NumberFormatException e) {
+    }
+  }
+}

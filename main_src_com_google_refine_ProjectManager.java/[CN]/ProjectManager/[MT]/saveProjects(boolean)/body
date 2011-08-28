@@ -11,7 +11,7 @@ synchronized (this) {
           long msecsOverdue=startTimeOfSave.getTime() - project.getLastSave().getTime();
           records.add(new SaveRecord(project,msecsOverdue));
         }
- else         if (startTimeOfSave.getTime() - project.getLastSave().getTime() > s_projectFlushDelay) {
+ else         if (!project.getProcessManager().hasPending() && startTimeOfSave.getTime() - project.getLastSave().getTime() > s_projectFlushDelay) {
           _projects.remove(id).dispose();
         }
       }

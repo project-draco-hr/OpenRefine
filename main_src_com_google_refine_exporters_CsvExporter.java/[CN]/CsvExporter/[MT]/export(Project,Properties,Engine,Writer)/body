@@ -1,61 +1,34 @@
 {
-  boolean printColumnHeader=true;
-  if (options != null && options.getProperty("printColumnHeader") != null) {
-    printColumnHeader=Boolean.parseBoolean(options.getProperty("printColumnHeader"));
-  }
-  RowVisitor visitor=new RowVisitor(){
-    CSVWriter csvWriter;
-    boolean printColumnHeader=true;
-    boolean isFirstRow=true;
-    public RowVisitor init(    CSVWriter writer,    boolean printColumnHeader){
-      this.csvWriter=writer;
-      this.printColumnHeader=printColumnHeader;
-      return this;
+  String optionsString=params == null ? null : params.getProperty("options");
+  JSONObject options=null;
+  if (optionsString != null) {
+    try {
+      options=ParsingUtilities.evaluateJsonStringToObject(optionsString);
     }
-    @Override public boolean visit(    Project project,    int rowIndex,    Row row){
-      int size=project.columnModel.columns.size();
-      String[] cols=new String[size];
-      String[] vals=new String[size];
-      int i=0;
-      for (      Column col : project.columnModel.columns) {
-        int cellIndex=col.getCellIndex();
-        cols[i]=col.getName();
-        Object value=row.getCellValue(cellIndex);
-        if (value != null) {
-          if (value instanceof String) {
-            vals[i]=(String)value;
-          }
- else           if (value instanceof Calendar) {
-            vals[i]=ParsingUtilities.dateToString(((Calendar)value).getTime());
-          }
- else           if (value instanceof Date) {
-            vals[i]=ParsingUtilities.dateToString((Date)value);
-          }
- else {
-            vals[i]=value.toString();
-          }
+ catch (    JSONException e) {
+    }
+  }
+  final String separator=options == null ? Character.toString(this.separator) : JSONUtilities.getString(options,"separator",Character.toString(this.separator));
+  final String lineSeparator=options == null ? CSVWriter.DEFAULT_LINE_END : JSONUtilities.getString(options,"lineSeparator",CSVWriter.DEFAULT_LINE_END);
+  final boolean printColumnHeader=(params != null && params.getProperty("printColumnHeader") != null) ? Boolean.parseBoolean(params.getProperty("printColumnHeader")) : true;
+  final CSVWriter csvWriter=new CSVWriter(writer,separator.charAt(0),CSVWriter.DEFAULT_QUOTE_CHARACTER,lineSeparator);
+  TabularSerializer serializer=new TabularSerializer(){
+    @Override public void startFile(    JSONObject options){
+    }
+    @Override public void endFile(){
+    }
+    @Override public void addRow(    List<CellData> cells,    boolean isHeader){
+      if (!isHeader || printColumnHeader) {
+        String[] strings=new String[cells.size()];
+        for (int i=0; i < strings.length; i++) {
+          CellData cellData=cells.get(i);
+          strings[i]=(cellData != null && cellData.text != null) ? cellData.text : "";
         }
-        i++;
-      }
-      if (printColumnHeader && isFirstRow) {
-        csvWriter.writeNext(cols,false);
-        isFirstRow=false;
-      }
-      csvWriter.writeNext(vals,false);
-      return false;
-    }
-    @Override public void start(    Project project){
-    }
-    @Override public void end(    Project project){
-      try {
-        csvWriter.close();
-      }
- catch (      IOException e) {
-        logger.error("CsvExporter could not close writer : " + e.getMessage());
+        csvWriter.writeNext(strings,false);
       }
     }
   }
-.init(new CSVWriter(writer,separator),printColumnHeader);
-  FilteredRows filteredRows=engine.getAllFilteredRows();
-  filteredRows.accept(project,visitor);
+;
+  CustomizableTabularExporterUtilities.exportRows(project,engine,params,serializer);
+  csvWriter.close();
 }

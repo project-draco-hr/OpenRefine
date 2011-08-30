@@ -1,3 +1,3 @@
 {
-  return "application/xls";
+  return xml ? "application/xlsx" : "application/xls";
 }

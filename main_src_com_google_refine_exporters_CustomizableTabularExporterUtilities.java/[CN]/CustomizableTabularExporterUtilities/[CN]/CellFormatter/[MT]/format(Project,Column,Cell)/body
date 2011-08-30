@@ -1,0 +1,47 @@
+{
+  if (cell != null) {
+    String link=null;
+    String text=null;
+    if (cell.recon != null) {
+      Recon recon=cell.recon;
+      if (recon.judgment == Recon.Judgment.Matched) {
+        if (recon_outputMode == ReconOutputMode.ENTITY_NAME) {
+          text=recon.match.name;
+        }
+ else         if (recon_outputMode == ReconOutputMode.ENTITY_ID) {
+          text=recon.match.id;
+        }
+        if (recon_linkToEntityPages) {
+          buildIdentifierSpaceToUrlMap();
+          String service=recon.service;
+          String viewUrl=identifierSpaceToUrl.get(service);
+          if (viewUrl != null) {
+            link=StringUtils.replace(viewUrl,"{{id}}",recon.match.id);
+          }
+        }
+      }
+ else       if (recon_blankUnmatchedCells) {
+        return null;
+      }
+    }
+    Object value=cell.value;
+    if (value != null) {
+      if (text == null) {
+        if (value instanceof String) {
+          text=(String)value;
+        }
+ else         if (value instanceof Calendar) {
+          text=dateFormatter.format(((Calendar)value).getTime());
+        }
+ else         if (value instanceof Date) {
+          text=dateFormatter.format((Date)value);
+        }
+ else {
+          text=value.toString();
+        }
+      }
+      return new CellData(column.getName(),value,text,link);
+    }
+  }
+  return null;
+}

@@ -2,10 +2,17 @@
   if (args.length == 0) {
     return null;
   }
-  if (!(args[0] instanceof String)) {
+  Object arg0=args[0];
+  if (arg0 instanceof Date) {
+    return arg0;
+  }
+ else   if (arg0 instanceof Calendar) {
+    return ((Calendar)arg0).getTime();
+  }
+ else   if (!(arg0 instanceof String)) {
     return null;
   }
-  String o1=(String)args[0];
+  String o1=(String)arg0;
   if (args.length == 1 || (args.length == 2 && args[1] instanceof Boolean)) {
     boolean month_first=true;
     if (args.length == 2) {

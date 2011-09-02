@@ -4,7 +4,7 @@
     WorksheetEntry worksheetEntry=service.getEntry(worksheetURL,WorksheetEntry.class);
     String fileSource=spreadsheetEntry.getTitle().getPlainText() + " # " + worksheetEntry.getTitle().getPlainText();
     setProgress(job,fileSource,0);
-    TabularImportingParserBase.readTable(project,metadata,job,new BatchRowReader(job,fileSource,service,worksheetEntry,20),fileSource,limit,options,exceptions);
+    TabularImportingParserBase.readTable(project,metadata,job,new WorksheetBatchRowReader(job,fileSource,service,worksheetEntry,20),fileSource,limit,options,exceptions);
     setProgress(job,fileSource,100);
   }
  catch (  IOException e) {

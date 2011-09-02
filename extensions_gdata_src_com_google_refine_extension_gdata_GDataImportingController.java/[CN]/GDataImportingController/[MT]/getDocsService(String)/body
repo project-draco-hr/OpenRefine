@@ -1,5 +1,0 @@
-{
-  DocsService service=new DocsService(GDataExtension.SERVICE_APP_NAME);
-  service.setAuthSubToken(token);
-  return service;
-}

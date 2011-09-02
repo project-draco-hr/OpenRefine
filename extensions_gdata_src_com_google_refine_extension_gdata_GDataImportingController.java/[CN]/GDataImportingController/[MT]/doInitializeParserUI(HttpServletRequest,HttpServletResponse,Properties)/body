@@ -20,7 +20,7 @@
     JSONArray worksheets=new JSONArray();
     JSONUtilities.safePut(options,"worksheets",worksheets);
     if ("spreadsheet".equals(type)) {
-      SpreadsheetService spreadsheetService=getSpreadsheetService(token);
+      SpreadsheetService spreadsheetService=GDataExtension.getSpreadsheetService(token);
       SpreadsheetEntry spreadsheetEntry=spreadsheetService.getEntry(url,SpreadsheetEntry.class);
       for (      WorksheetEntry worksheetEntry : spreadsheetEntry.getWorksheets()) {
         JSONObject worksheetO=new JSONObject();
@@ -29,6 +29,15 @@
         JSONUtilities.safePut(worksheetO,"link",worksheetEntry.getSelfLink().getHref());
         JSONUtilities.append(worksheets,worksheetO);
       }
+    }
+ else     if ("table".equals(type)) {
+      DocsService docsService=GDataExtension.getDocsService(token);
+      TableEntry tableEntry=docsService.getEntry(url,TableEntry.class);
+      JSONObject worksheetO=new JSONObject();
+      JSONUtilities.safePut(worksheetO,"name",tableEntry.getTitle().getPlainText());
+      JSONUtilities.safePut(worksheetO,"rows",-1);
+      JSONUtilities.safePut(worksheetO,"link",tableEntry.getSelfLink().getHref());
+      JSONUtilities.append(worksheets,worksheetO);
     }
     HttpUtilities.respond(response,result.toString());
   }

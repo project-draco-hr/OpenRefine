@@ -4,7 +4,6 @@
     HttpUtilities.respond(response,"error","Not authorized");
     return;
   }
-  SpreadsheetService service=getSpreadsheetService(token);
   long jobID=Long.parseLong(parameters.getProperty("jobID"));
   ImportingJob job=ImportingManager.getJob(jobID);
   if (job == null) {
@@ -16,7 +15,7 @@
     JSONObject optionObj=ParsingUtilities.evaluateJsonStringToObject(request.getParameter("options"));
     List<Exception> exceptions=new LinkedList<Exception>();
     job.prepareNewProject();
-    GDataImporter.parse(service,job.project,job.metadata,job,100,optionObj,exceptions);
+    GDataImporter.parse(token,job.project,job.metadata,job,100,optionObj,exceptions);
     Writer w=response.getWriter();
     JSONWriter writer=new JSONWriter(w);
     try {

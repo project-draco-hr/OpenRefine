@@ -1,0 +1,11 @@
+{
+  String docType=JSONUtilities.getString(options,"docType",null);
+  if ("spreadsheet".equals(docType)) {
+    SpreadsheetService service=GDataExtension.getSpreadsheetService(token);
+    parse(service,job.project,job.metadata,job,limit,options,exceptions);
+  }
+ else   if ("table".equals(docType)) {
+    DocsService service=GDataExtension.getDocsService(token);
+    parse(service,job.project,job.metadata,job,limit,options,exceptions);
+  }
+}

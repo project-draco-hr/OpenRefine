@@ -1,10 +1,9 @@
 {
-  String token=TokenCookie.getToken(request);
+  final String token=TokenCookie.getToken(request);
   if (token == null) {
     HttpUtilities.respond(response,"error","Not authorized");
     return;
   }
-  final SpreadsheetService service=getSpreadsheetService(token);
   long jobID=Long.parseLong(parameters.getProperty("jobID"));
   final ImportingJob job=ImportingManager.getJob(jobID);
   if (job == null) {
@@ -21,7 +20,7 @@
         ProjectMetadata pm=new ProjectMetadata();
         pm.setName(JSONUtilities.getString(optionObj,"projectName","Untitled"));
         pm.setEncoding(JSONUtilities.getString(optionObj,"encoding","UTF-8"));
-        GDataImporter.parse(service,project,pm,job,-1,optionObj,exceptions);
+        GDataImporter.parse(token,project,pm,job,-1,optionObj,exceptions);
         if (!job.canceled) {
           project.update();
           ProjectManager.singleton.registerProject(project,pm);

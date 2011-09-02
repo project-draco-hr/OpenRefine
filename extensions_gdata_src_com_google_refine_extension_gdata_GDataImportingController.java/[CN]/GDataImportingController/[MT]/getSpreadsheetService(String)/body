@@ -1,5 +1,0 @@
-{
-  SpreadsheetService service=new SpreadsheetService(GDataExtension.SERVICE_APP_NAME);
-  service.setAuthSubToken(token);
-  return service;
-}

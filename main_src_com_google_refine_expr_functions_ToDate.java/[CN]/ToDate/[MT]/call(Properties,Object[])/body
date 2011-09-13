@@ -10,7 +10,7 @@
     return ((Calendar)arg0).getTime();
   }
  else   if (!(arg0 instanceof String)) {
-    return null;
+    return new EvalError("Not a String - cannot parse to date");
   }
   String o1=(String)arg0;
   if (args.length == 1 || (args.length == 2 && args[1] instanceof Boolean)) {
@@ -22,6 +22,7 @@
       return CalendarParser.parse(o1,(month_first) ? CalendarParser.MM_DD_YY : CalendarParser.DD_MM_YY);
     }
  catch (    CalendarParserException e) {
+      return new EvalError("Cannot parse to date");
     }
   }
   if (args.length >= 2) {
@@ -36,6 +37,7 @@
         date=formatter.parse(o1);
       }
  catch (      java.text.ParseException e) {
+        return new EvalError("Cannot parse to date");
       }
       if (date != null) {
         GregorianCalendar c=new GregorianCalendar();

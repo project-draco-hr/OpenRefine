@@ -3,6 +3,8 @@
     ProjectManager.singleton.save(false);
   }
   finally {
-    _timer.schedule(new AutoSaveTimerTask(),s_autoSavePeriod);
+    if (_timer != null) {
+      _timer.schedule(new AutoSaveTimerTask(),s_autoSavePeriod);
+    }
   }
 }

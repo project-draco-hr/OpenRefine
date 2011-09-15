@@ -6,6 +6,7 @@
   }
  else {
     job.canceled=true;
+    ImportingManager.disposeJob(jobID);
     HttpUtilities.respond(response,"ok","Job canceled");
   }
 }

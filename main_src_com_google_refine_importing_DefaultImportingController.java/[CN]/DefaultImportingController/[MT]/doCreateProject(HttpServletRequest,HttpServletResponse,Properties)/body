@@ -5,6 +5,8 @@
     HttpUtilities.respond(response,"error","No such import job");
     return;
   }
+  job.updating=true;
+  job.touch();
   try {
     JSONObject config=job.getOrCreateDefaultConfig();
     if (!("ready".equals(config.getString("state")))) {

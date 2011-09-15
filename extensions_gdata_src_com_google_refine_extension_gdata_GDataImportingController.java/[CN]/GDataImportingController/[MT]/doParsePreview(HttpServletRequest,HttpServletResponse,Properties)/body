@@ -10,6 +10,7 @@
     HttpUtilities.respond(response,"error","No such import job");
     return;
   }
+  job.updating=true;
   try {
     job.config=new JSONObject();
     JSONObject optionObj=ParsingUtilities.evaluateJsonStringToObject(request.getParameter("options"));
@@ -45,5 +46,9 @@
   }
  catch (  JSONException e) {
     throw new ServletException(e);
+  }
+ finally {
+    job.touch();
+    job.updating=false;
   }
 }

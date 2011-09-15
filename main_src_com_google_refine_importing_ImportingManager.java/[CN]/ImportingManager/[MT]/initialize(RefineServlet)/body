@@ -1,3 +1,5 @@
 {
   ImportingManager.servlet=servlet;
+  _timer=new Timer("autosave");
+  _timer.schedule(new CleaningTimerTask(),s_timerPeriod);
 }

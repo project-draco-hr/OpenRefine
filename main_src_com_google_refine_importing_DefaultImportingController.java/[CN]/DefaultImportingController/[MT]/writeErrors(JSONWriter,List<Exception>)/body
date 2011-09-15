@@ -1,0 +1,12 @@
+{
+  for (  Exception e : exceptions) {
+    StringWriter sw=new StringWriter();
+    e.printStackTrace(new PrintWriter(sw));
+    writer.object();
+    writer.key("message");
+    writer.value(e.getLocalizedMessage());
+    writer.key("stack");
+    writer.value(sw.toString());
+    writer.endObject();
+  }
+}

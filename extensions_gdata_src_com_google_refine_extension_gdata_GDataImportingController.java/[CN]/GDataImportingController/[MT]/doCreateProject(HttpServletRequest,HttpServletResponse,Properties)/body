@@ -22,10 +22,16 @@
         pm.setEncoding(JSONUtilities.getString(optionObj,"encoding","UTF-8"));
         GDataImporter.parse(token,project,pm,job,-1,optionObj,exceptions);
         if (!job.canceled) {
-          project.update();
-          ProjectManager.singleton.registerProject(project,pm);
-          JSONUtilities.safePut(job.config,"projectID",project.id);
-          JSONUtilities.safePut(job.config,"state","created-project");
+          if (exceptions.size() > 0) {
+            JSONUtilities.safePut(job.config,"errors",DefaultImportingController.convertErrorsToJsonArray(exceptions));
+            JSONUtilities.safePut(job.config,"state","error");
+          }
+ else {
+            project.update();
+            ProjectManager.singleton.registerProject(project,pm);
+            JSONUtilities.safePut(job.config,"state","created-project");
+            JSONUtilities.safePut(job.config,"projectID",project.id);
+          }
         }
       }
     }

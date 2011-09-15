@@ -12,14 +12,14 @@
     JSONObject options=new JSONObject();
     JSONUtilities.safePut(result,"status","ok");
     JSONUtilities.safePut(result,"options",options);
-    JSONUtilities.safePut(options,"ignoreLines",-1);
-    JSONUtilities.safePut(options,"headerLines",1);
     JSONUtilities.safePut(options,"skipDataLines",0);
     JSONUtilities.safePut(options,"storeBlankRows",true);
     JSONUtilities.safePut(options,"storeBlankCellsAsNulls",true);
-    JSONArray worksheets=new JSONArray();
-    JSONUtilities.safePut(options,"worksheets",worksheets);
     if ("spreadsheet".equals(type)) {
+      JSONUtilities.safePut(options,"ignoreLines",-1);
+      JSONUtilities.safePut(options,"headerLines",1);
+      JSONArray worksheets=new JSONArray();
+      JSONUtilities.safePut(options,"worksheets",worksheets);
       SpreadsheetService spreadsheetService=GDataExtension.getSpreadsheetService(token);
       SpreadsheetEntry spreadsheetEntry=spreadsheetService.getEntry(url,SpreadsheetEntry.class);
       for (      WorksheetEntry worksheetEntry : spreadsheetEntry.getWorksheets()) {
@@ -31,13 +31,6 @@
       }
     }
  else     if ("table".equals(type)) {
-      DocsService docsService=GDataExtension.getDocsService(token);
-      TableEntry tableEntry=docsService.getEntry(url,TableEntry.class);
-      JSONObject worksheetO=new JSONObject();
-      JSONUtilities.safePut(worksheetO,"name",tableEntry.getTitle().getPlainText());
-      JSONUtilities.safePut(worksheetO,"rows",-1);
-      JSONUtilities.safePut(worksheetO,"link",tableEntry.getSelfLink().getHref());
-      JSONUtilities.append(worksheets,worksheetO);
     }
     HttpUtilities.respond(response,result.toString());
   }

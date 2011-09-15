@@ -22,17 +22,15 @@
       writer.object();
       if (exceptions.size() == 0) {
         job.project.update();
-        writer.key("code");
+        writer.key("status");
         writer.value("ok");
       }
  else {
-        writer.key("code");
+        writer.key("status");
         writer.value("error");
         writer.key("errors");
         writer.array();
-        for (        Exception e : exceptions) {
-          writer.value(e.getLocalizedMessage());
-        }
+        DefaultImportingController.writeErrors(writer,exceptions);
         writer.endArray();
       }
       writer.endObject();

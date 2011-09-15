@@ -11,11 +11,11 @@
     writer.key("documents");
     writer.array();
     try {
-      DocsService service=GDataExtension.getDocsService(token);
-      listSpreadsheets(service,writer);
-      listDocumentsOfType(service,writer,"http://schemas.google.com/docs/2007#table");
+      listSpreadsheets(GDataExtension.getDocsService(token),writer);
+      listFusionTables(GDataExtension.getFusionTablesGoogleService(token),writer);
     }
  catch (    ServiceException e) {
+      e.printStackTrace();
     }
     writer.endArray();
     writer.endObject();

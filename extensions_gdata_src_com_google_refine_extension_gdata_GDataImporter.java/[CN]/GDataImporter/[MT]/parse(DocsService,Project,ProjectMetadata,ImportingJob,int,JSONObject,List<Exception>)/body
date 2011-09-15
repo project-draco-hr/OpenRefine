@@ -1,5 +1,0 @@
-{
-  String docUrlString=JSONUtilities.getString(options,"docUrl",null);
-  if (docUrlString != null) {
-  }
-}

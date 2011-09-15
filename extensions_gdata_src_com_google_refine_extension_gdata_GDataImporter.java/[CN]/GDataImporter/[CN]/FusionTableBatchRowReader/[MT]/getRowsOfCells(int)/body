@@ -1,0 +1,41 @@
+{
+  List<List<Object>> rowsOfCells=new ArrayList<List<Object>>(batchSize);
+  String query=baseQuery + " OFFSET " + startRow+ " LIMIT "+ batchSize;
+  List<List<String>> rows=GDataExtension.runFusionTablesSelect(service,query);
+  if (rows.size() > 1) {
+    for (int i=1; i < rows.size(); i++) {
+      List<String> row=rows.get(i);
+      List<Object> rowOfCells=new ArrayList<Object>(row.size());
+      for (int j=0; j < row.size() && j < columns.size(); j++) {
+        String text=row.get(j);
+        if (text.isEmpty()) {
+          rowOfCells.add(null);
+        }
+ else {
+          FTColumnData cd=columns.get(j);
+          if (cd.type == FTColumnType.NUMBER) {
+            try {
+              rowOfCells.add(Long.parseLong(text));
+              continue;
+            }
+ catch (            NumberFormatException e) {
+            }
+            try {
+              double d=Double.parseDouble(text);
+              if (!Double.isInfinite(d) && !Double.isNaN(d)) {
+                rowOfCells.add(d);
+                continue;
+              }
+            }
+ catch (            NumberFormatException e) {
+            }
+          }
+          rowOfCells.add(text);
+        }
+      }
+      rowsOfCells.add(rowOfCells);
+    }
+  }
+  end=rows.size() < batchSize + 1;
+  return rowsOfCells;
+}

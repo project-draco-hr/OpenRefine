@@ -1,0 +1,24 @@
+{
+  this.job=job;
+  this.fileSource=fileSource;
+  this.service=service;
+  this.columns=columns;
+  this.batchSize=batchSize;
+  StringBuffer sb=new StringBuffer();
+  sb.append("SELECT ");
+  boolean first=true;
+  for (  FTColumnData cd : columns) {
+    if (first) {
+      first=false;
+    }
+ else {
+      sb.append(",");
+    }
+    sb.append("'");
+    sb.append(cd.name);
+    sb.append("'");
+  }
+  sb.append(" FROM ");
+  sb.append(tableId);
+  baseQuery=sb.toString();
+}

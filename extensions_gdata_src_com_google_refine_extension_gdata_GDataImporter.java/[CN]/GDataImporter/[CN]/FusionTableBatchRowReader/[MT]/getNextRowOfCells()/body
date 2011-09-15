@@ -1,0 +1,27 @@
+{
+  if (!usedHeaders) {
+    List<Object> row=new ArrayList<Object>(columns.size());
+    for (    FTColumnData cd : columns) {
+      row.add(cd.name);
+    }
+    usedHeaders=true;
+    return row;
+  }
+  if (rowsOfCells == null || (nextRow >= batchRowStart + rowsOfCells.size() && !end)) {
+    int newBatchRowStart=batchRowStart + (rowsOfCells == null ? 0 : rowsOfCells.size());
+    try {
+      rowsOfCells=getRowsOfCells(newBatchRowStart);
+      batchRowStart=newBatchRowStart;
+      setProgress(job,fileSource,-1);
+    }
+ catch (    ServiceException e) {
+      throw new IOException(e);
+    }
+  }
+  if (rowsOfCells != null && nextRow - batchRowStart < rowsOfCells.size()) {
+    return rowsOfCells.get(nextRow++ - batchRowStart);
+  }
+ else {
+    return null;
+  }
+}

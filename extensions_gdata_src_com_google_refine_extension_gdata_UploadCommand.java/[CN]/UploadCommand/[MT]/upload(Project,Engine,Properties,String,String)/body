@@ -1,0 +1,7 @@
+{
+  String format=params.getProperty("format");
+  if ("gdata/google-spreadsheet".equals(format)) {
+    return uploadSpreadsheet(project,engine,params,token,name);
+  }
+  return null;
+}

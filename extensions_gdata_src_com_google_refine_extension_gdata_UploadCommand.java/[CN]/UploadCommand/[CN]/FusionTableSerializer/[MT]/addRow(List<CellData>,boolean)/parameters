@@ -1,0 +1,2 @@
+List<CellData> cells
+boolean isHeader

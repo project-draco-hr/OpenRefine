@@ -1,0 +1,45 @@
+{
+  if (isHeader) {
+    columnNames=new ArrayList<String>(cells.size());
+    StringBuffer sb=new StringBuffer();
+    sb.append("CREATE TABLE '");
+    sb.append(tableName);
+    sb.append("' (");
+    boolean first=true;
+    for (    CellData cellData : cells) {
+      columnNames.add(cellData.text);
+      if (first) {
+        first=false;
+      }
+ else {
+        sb.append(',');
+      }
+      sb.append("'");
+      sb.append(cellData.text);
+      sb.append("': STRING");
+    }
+    sb.append(")");
+    try {
+      String createQuery=sb.toString();
+      GDataRequest createTableRequest=GDataExtension.createFusionTablesPostRequest(service,RequestType.INSERT,createQuery);
+      createTableRequest.execute();
+      List<List<String>> createTableResults=GDataExtension.parseFusionTablesResults(createTableRequest);
+      if (createTableResults != null && createTableResults.size() == 2) {
+        tableId=createTableResults.get(1).get(0);
+      }
+    }
+ catch (    Exception e) {
+      exceptions.add(e);
+    }
+  }
+ else   if (tableId != null) {
+    if (sbBatch == null) {
+      sbBatch=new StringBuffer();
+    }
+    formulateInsert(cells,sbBatch);
+    rows++;
+    if (rows % 20 == 0) {
+      sendBatch();
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  URL url=new URL(FUSION_TABLES_SERVICE_URL);
+  GDataRequest request=service.getRequestFactory().getRequest(requestType,url,new ContentType("application/x-www-form-urlencoded"));
+  OutputStreamWriter writer=new OutputStreamWriter(request.getRequestStream());
+  writer.append("sql=" + URLEncoder.encode(query,"UTF-8"));
+  writer.flush();
+  return request;
+}

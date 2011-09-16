@@ -1,0 +1,10 @@
+{
+  String format=params.getProperty("format");
+  if ("gdata/google-spreadsheet".equals(format)) {
+    return uploadSpreadsheet(project,engine,params,token,name,exceptions);
+  }
+ else   if ("gdata/fusion-table".equals(format)) {
+    return uploadFusionTable(project,engine,params,token,name,exceptions);
+  }
+  return null;
+}

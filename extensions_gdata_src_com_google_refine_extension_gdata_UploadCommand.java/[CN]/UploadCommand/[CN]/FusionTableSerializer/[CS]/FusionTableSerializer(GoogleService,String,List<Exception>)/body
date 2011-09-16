@@ -1,0 +1,5 @@
+{
+  this.service=service;
+  this.tableName=tableName;
+  this.exceptions=exceptions;
+}

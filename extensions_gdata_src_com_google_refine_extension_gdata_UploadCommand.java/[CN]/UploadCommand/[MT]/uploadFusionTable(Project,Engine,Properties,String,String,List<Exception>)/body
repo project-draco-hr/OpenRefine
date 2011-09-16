@@ -1,0 +1,6 @@
+{
+  GoogleService service=GDataExtension.getFusionTablesGoogleService(token);
+  FusionTableSerializer serializer=new FusionTableSerializer(service,name,exceptions);
+  CustomizableTabularExporterUtilities.exportRows(project,engine,params,serializer);
+  return serializer.tableId == null || exceptions.size() > 0 ? null : "https://www.google.com/fusiontables/DataSource?dsrcid=" + serializer.tableId;
+}

@@ -16,18 +16,28 @@
     JSONWriter writer=new JSONWriter(w);
     try {
       writer.object();
-      String url=upload(project,engine,params,token,name);
+      List<Exception> exceptions=new LinkedList<Exception>();
+      String url=upload(project,engine,params,token,name,exceptions);
       if (url != null) {
         writer.key("status");
         writer.value("ok");
         writer.key("url");
         writer.value(url);
       }
- else {
+ else       if (exceptions.size() == 0) {
         writer.key("status");
         writer.value("error");
         writer.key("message");
         writer.value("No such format");
+      }
+ else {
+        for (        Exception e : exceptions) {
+          logger.warn(e.getLocalizedMessage(),e);
+        }
+        writer.key("status");
+        writer.value("error");
+        writer.key("message");
+        writer.value(exceptions.get(0).getLocalizedMessage());
       }
     }
  catch (    Exception e) {

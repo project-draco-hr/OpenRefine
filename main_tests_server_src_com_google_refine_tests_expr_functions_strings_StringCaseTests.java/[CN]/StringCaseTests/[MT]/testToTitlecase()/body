@@ -1,0 +1,7 @@
+{
+  Function fut=new ToTitlecase();
+  Assert.assertEquals((String)(fut.call(bindings,new Object[]{"one"})),"One");
+  Assert.assertEquals((String)(fut.call(bindings,new Object[]{"ONE"})),"One");
+  Assert.assertEquals((String)(fut.call(bindings,new Object[]{"one two three"})),"One Two Three");
+  Assert.assertEquals((String)(fut.call(bindings,new Object[]{"C.R. SANDIDGE WINES, INC."})),"C.R. Sandidge Wines, Inc.");
+}

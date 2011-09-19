@@ -4,5 +4,7 @@
     String s=o instanceof String ? (String)o : o.toString();
     return WordUtils.capitalizeFully(s,delimiters);
   }
-  return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " expects a string");
+ else {
+    return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " expects a one or two strings");
+  }
 }

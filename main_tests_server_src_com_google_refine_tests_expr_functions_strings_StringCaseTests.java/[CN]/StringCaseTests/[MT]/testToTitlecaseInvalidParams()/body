@@ -1,0 +1,6 @@
+{
+  Function fut=new ToTitlecase();
+  Assert.assertTrue(fut.call(bindings,new Object[]{}) instanceof EvalError);
+  Assert.assertTrue(fut.call(bindings,new Object[]{"one","two"}) instanceof EvalError);
+  Assert.assertTrue(fut.call(bindings,new Object[]{"one","two","three"}) instanceof EvalError);
+}

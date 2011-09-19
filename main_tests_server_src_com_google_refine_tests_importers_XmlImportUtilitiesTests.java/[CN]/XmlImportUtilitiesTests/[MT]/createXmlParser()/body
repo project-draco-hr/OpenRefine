@@ -6,4 +6,7 @@
  catch (  XMLStreamException e) {
     return null;
   }
+catch (  IOException e) {
+    return null;
+  }
 }

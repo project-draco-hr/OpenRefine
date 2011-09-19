@@ -5,4 +5,7 @@
  catch (  XMLStreamException e) {
     exceptions.add(e);
   }
+catch (  IOException e) {
+    exceptions.add(e);
+  }
 }

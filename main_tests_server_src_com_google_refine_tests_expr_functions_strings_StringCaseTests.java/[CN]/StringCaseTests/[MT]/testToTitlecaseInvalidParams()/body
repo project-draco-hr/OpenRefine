@@ -1,5 +1,4 @@
 {
   Assert.assertTrue(invoke("toTitlecase") instanceof EvalError);
-  Assert.assertTrue(invoke("toTitlecase","one","two") instanceof EvalError);
   Assert.assertTrue(invoke("toTitlecase","one","two","three") instanceof EvalError);
 }

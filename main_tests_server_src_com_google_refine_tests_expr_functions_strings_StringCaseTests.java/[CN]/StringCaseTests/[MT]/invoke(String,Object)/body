@@ -1,0 +1,12 @@
+{
+  Function function=ControlFunctionRegistry.getFunction(name);
+  if (function == null) {
+    throw new IllegalArgumentException("Unknown function " + name);
+  }
+  if (args == null) {
+    return function.call(bindings,new Object[0]);
+  }
+ else {
+    return function.call(bindings,args);
+  }
+}

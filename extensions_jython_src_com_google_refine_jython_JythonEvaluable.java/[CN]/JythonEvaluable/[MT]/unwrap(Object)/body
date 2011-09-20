@@ -9,6 +9,15 @@
  else     if (result instanceof PyString) {
       return ((PyString)result).asString();
     }
+ else     if (result instanceof PyInteger) {
+      return (long)((PyInteger)result).asInt();
+    }
+ else     if (result instanceof PyLong) {
+      return ((PyLong)result).getLong(Long.MIN_VALUE,Long.MAX_VALUE);
+    }
+ else     if (result instanceof PyFloat) {
+      return ((PyFloat)result).asDouble();
+    }
  else     if (result instanceof PyObject) {
       return unwrap((PyObject)result);
     }

@@ -12,7 +12,7 @@
       }
     }
  else {
-      String label=value.toString();
+      String label=valueString;
       DecoratedValue dValue=new DecoratedValue(value,label);
       IndexedNominalFacetChoice choice=new IndexedNominalFacetChoice(dValue,index);
       choice.count=1;

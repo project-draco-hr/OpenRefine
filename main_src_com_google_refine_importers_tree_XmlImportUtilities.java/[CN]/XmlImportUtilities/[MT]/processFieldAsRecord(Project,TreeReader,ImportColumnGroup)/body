@@ -1,0 +1,9 @@
+{
+  logger.trace("processFieldAsRecord(Project,TreeReader,ImportColumnGroup)");
+  String text=parser.getFieldValue().trim();
+  if (text.length() > 0) {
+    ImportRecord record=new ImportRecord();
+    addCell(project,rootColumnGroup,record,parser.getFieldName(),text);
+    addImportRecordToProject(record,project);
+  }
+}

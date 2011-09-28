@@ -17,6 +17,15 @@
  else         if (eventType == Token.EndEntity) {
           break;
         }
+ else         if (eventType == Token.Value) {
+          if (pathIndex == recordPath.length - 2) {
+            String desiredFieldName=recordPath[pathIndex + 1];
+            String currentFieldName=parser.getFieldName();
+            if (desiredFieldName.equals(currentFieldName)) {
+              processFieldAsRecord(project,parser,rootColumnGroup);
+            }
+          }
+        }
       }
     }
  else {

@@ -16,7 +16,7 @@
     sbColumnNames.append("'");
     sbValues.append("'");
     if (cellData != null && cellData.text != null) {
-      sbValues.append(cellData.text.replaceAll("'","\\'"));
+      sbValues.append(cellData.text.replaceAll("'","\\\\'"));
     }
     sbValues.append("'");
   }

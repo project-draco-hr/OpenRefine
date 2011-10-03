@@ -1,2 +1,3 @@
 {
+  dateFormatter=new SimpleDateFormat(fullIso8601);
 }

@@ -48,7 +48,7 @@
             writer.write("</td>");
           }
         }
-        writer.write("</tr>");
+        writer.write("</tr>\n");
       }
  catch (      IOException e) {
       }

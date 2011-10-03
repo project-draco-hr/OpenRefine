@@ -59,7 +59,7 @@ case CUSTOM:
 dateFormatter=new SimpleDateFormat(date_custom);
 break;
 default :
-dateFormatter=date_omitTime ? new SimpleDateFormat("yyyy-MM-dd") : new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+dateFormatter=date_omitTime ? new SimpleDateFormat("yyyy-MM-dd") : new SimpleDateFormat(fullIso8601);
 }
 if (!date_useLocalTimeZone) {
 dateFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));

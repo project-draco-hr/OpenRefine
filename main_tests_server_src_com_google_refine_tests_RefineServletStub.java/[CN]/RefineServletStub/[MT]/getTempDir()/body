@@ -1,0 +1,12 @@
+{
+  if (tempDir == null) {
+    try {
+      tempDir=File.createTempFile("refine-test-dir","");
+      tempDir.deleteOnExit();
+    }
+ catch (    IOException e) {
+      throw new RuntimeException("Failed to create temp directory",e);
+    }
+  }
+  return tempDir;
+}

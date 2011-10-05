@@ -1,0 +1,12 @@
+{
+  char[] mountPointChars=module.getMountPoint().getMountPoint().toCharArray();
+  StringBuffer sb=new StringBuffer();
+  sb.append(mountPointChars,0,mountPointChars.length);
+  sb.append("authorized?winname=");
+  sb.append(ParsingUtilities.encode(request.getParameter("winname")));
+  sb.append("&callback=");
+  sb.append(ParsingUtilities.encode(request.getParameter("callback")));
+  URL thisUrl=new URL(request.getRequestURL().toString());
+  URL authorizedUrl=new URL(thisUrl,sb.toString());
+  return AuthSubUtil.getRequestUrl(authorizedUrl.toExternalForm(),"https://docs.google.com/feeds https://spreadsheets.google.com/feeds https://www.google.com/fusiontables/api/query",false,true);
+}

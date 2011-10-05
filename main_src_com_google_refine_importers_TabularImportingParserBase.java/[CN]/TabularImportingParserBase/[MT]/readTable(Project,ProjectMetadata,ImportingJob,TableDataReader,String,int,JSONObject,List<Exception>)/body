@@ -86,6 +86,9 @@
  else             if (!storeBlankCellsAsNulls) {
               row.setCell(column.getCellIndex(),new Cell("",null));
             }
+ else {
+              row.setCell(column.getCellIndex(),null);
+            }
           }
           if (rowHasData || storeBlankRows) {
             if (includeFileSources) {

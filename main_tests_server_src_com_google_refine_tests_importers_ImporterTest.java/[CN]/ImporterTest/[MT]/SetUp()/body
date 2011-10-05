@@ -1,4 +1,6 @@
 {
+  servlet=new RefineServletStub();
+  ImportingManager.initialize(servlet);
   project=new Project();
   metadata=new ProjectMetadata();
   job=ImportingManager.createJob();

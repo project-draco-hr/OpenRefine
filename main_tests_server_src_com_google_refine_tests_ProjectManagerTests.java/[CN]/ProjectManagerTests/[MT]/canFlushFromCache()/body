@@ -4,6 +4,7 @@
   Assert.assertSame(SUT.getProject(0),project);
   SUT.save(true);
   verify(metadata,times(1)).getModified();
+  verify(project,times(1)).getProcessManager();
   verify(project,times(2)).getLastSave();
   verify(project,times(1)).dispose();
   verify(SUT,never()).saveProject(project);

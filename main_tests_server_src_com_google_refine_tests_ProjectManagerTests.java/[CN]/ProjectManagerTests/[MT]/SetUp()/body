@@ -3,4 +3,7 @@
   SUT=spy(pm);
   project=mock(Project.class);
   metadata=mock(ProjectMetadata.class);
+  procmgr=mock(ProcessManager.class);
+  when(project.getProcessManager()).thenReturn(procmgr);
+  when(procmgr.hasPending()).thenReturn(false);
 }

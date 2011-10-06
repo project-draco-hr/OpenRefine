@@ -8,6 +8,7 @@
       int closeBraces=0;
       int openAngleBrackets=0;
       int closeAngleBrackets=0;
+      int trailingPeriods=0;
       char firstChar=' ';
       boolean foundFirstChar=false;
       char[] chars=new char[4096];
@@ -18,6 +19,7 @@
         closeBraces+=countSubstrings(chunk,"}");
         openAngleBrackets+=countSubstrings(chunk,"<");
         closeAngleBrackets+=countSubstrings(chunk,">");
+        trailingPeriods+=countLineSuffix(chunk,".");
         if (!foundFirstChar) {
           chunk=chunk.trim();
           if (chunk.length() > 0) {
@@ -31,8 +33,13 @@
         if ((firstChar == '{' || firstChar == '[') && openBraces >= 5 && closeBraces >= 5) {
           return "text/json";
         }
- else         if (firstChar == '<' && openAngleBrackets >= 5 && closeAngleBrackets >= 5) {
-          return "text/xml";
+ else         if (openAngleBrackets >= 5 && closeAngleBrackets >= 5) {
+          if (trailingPeriods > 0) {
+            return "text/rdf+n3";
+          }
+ else           if (firstChar == '<') {
+            return "text/xml";
+          }
         }
       }
       return "text/line-based";

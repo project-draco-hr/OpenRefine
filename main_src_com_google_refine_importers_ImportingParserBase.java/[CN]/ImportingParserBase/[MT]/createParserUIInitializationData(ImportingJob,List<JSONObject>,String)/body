@@ -1,0 +1,5 @@
+{
+  JSONObject options=new JSONObject();
+  JSONUtilities.safePut(options,"includeFileSources",fileRecords.size() > 1);
+  return options;
+}

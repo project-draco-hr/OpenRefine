@@ -10,12 +10,12 @@
     exceptions.add(e);
     return;
   }
-  Map<String,List<Row>> subjectToRows=new HashMap<String,List<Row>>();
-  Column subjectColumn=new Column(0,"subject");
-  project.columnModel.columns.add(0,subjectColumn);
-  project.columnModel.setKeyColumnIndex(0);
   ClosableIterable<Triple> triples=graph.find(ANY_SUBJECT_NODE,ANY_PREDICATE_NODE,ANY_OBJECT_NODE);
   try {
+    Map<String,List<Row>> subjectToRows=new HashMap<String,List<Row>>();
+    Column subjectColumn=new Column(project.columnModel.allocateNewCellIndex(),"subject");
+    project.columnModel.addColumn(0,subjectColumn,false);
+    project.columnModel.setKeyColumnIndex(0);
     for (    Triple triple : triples) {
       String subject=triple.getSubject().toString();
       String predicate=triple.getPredicate().toString();
@@ -23,11 +23,7 @@
       Column column=project.columnModel.getColumnByName(predicate);
       if (column == null) {
         column=new Column(project.columnModel.allocateNewCellIndex(),predicate);
-        try {
-          project.columnModel.addColumn(-1,column,true);
-        }
- catch (        ModelException e) {
-        }
+        project.columnModel.addColumn(-1,column,true);
       }
       int cellIndex=column.getCellIndex();
       if (subjectToRows.containsKey(subject)) {
@@ -58,7 +54,10 @@
       project.rows.addAll(entry.getValue());
     }
   }
-  finally {
+ catch (  ModelException e) {
+    exceptions.add(e);
+  }
+ finally {
     triples.iterator().close();
   }
 }

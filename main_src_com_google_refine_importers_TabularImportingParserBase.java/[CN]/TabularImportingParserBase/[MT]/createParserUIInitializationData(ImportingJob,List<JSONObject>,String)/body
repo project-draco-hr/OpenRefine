@@ -1,10 +1,9 @@
 {
-  JSONObject options=new JSONObject();
+  JSONObject options=super.createParserUIInitializationData(job,fileRecords,format);
   JSONUtilities.safePut(options,"ignoreLines",-1);
   JSONUtilities.safePut(options,"headerLines",1);
   JSONUtilities.safePut(options,"skipDataLines",0);
   JSONUtilities.safePut(options,"storeBlankRows",true);
   JSONUtilities.safePut(options,"storeBlankCellsAsNulls",true);
-  JSONUtilities.safePut(options,"includeFileSources",fileRecords.size() > 1);
   return options;
 }

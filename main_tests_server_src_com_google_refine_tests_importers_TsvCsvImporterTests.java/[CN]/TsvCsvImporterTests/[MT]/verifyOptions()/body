@@ -1,0 +1,15 @@
+{
+  try {
+    verify(options,times(1)).getString("separator");
+    verify(options,times(1)).getInt("limit");
+    verify(options,times(1)).getInt("skipDataLines");
+    verify(options,times(1)).getInt("ignoreLines");
+    verify(options,times(1)).getInt("headerLines");
+    verify(options,times(1)).getBoolean("guessCellValueTypes");
+    verify(options,times(1)).getBoolean("processQuotes");
+    verify(options,times(1)).getBoolean("storeBlankCellsAsNulls");
+  }
+ catch (  JSONException e) {
+    Assert.fail("JSON exception",e);
+  }
+}

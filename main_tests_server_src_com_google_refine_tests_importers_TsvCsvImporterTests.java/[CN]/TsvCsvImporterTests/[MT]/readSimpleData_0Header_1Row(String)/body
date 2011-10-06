@@ -6,7 +6,7 @@
     parseOneFile(SUT,new StringReader(input));
   }
  catch (  Exception e) {
-    Assert.fail();
+    Assert.fail("Exception during file parse",e);
   }
   Assert.assertEquals(project.columnModel.columns.size(),3);
   Assert.assertEquals(project.columnModel.columns.get(0).getName(),"Column 1");

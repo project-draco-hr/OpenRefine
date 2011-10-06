@@ -1,26 +1,16 @@
 {
   StringReader reader=new StringReader(SAMPLE_ROW);
-  when(JSONUtilities.getString(options,"separator",null)).thenReturn(",");
-  whenGetIntegerOption("ignore",options,0);
-  whenGetIntegerOption("header-lines",options,0);
-  whenGetIntegerOption("limit",options,-1);
-  whenGetIntegerOption("skip",options,0);
-  whenGetIntegerOption("ignore-quotes",options,0);
+  prepareOptions(",",-1,0,0,0,true,true,true);
   try {
     parseOneFile(SUT,reader);
   }
  catch (  Exception e) {
-    Assert.fail();
+    Assert.fail("Exception during file parse",e);
   }
   Assert.assertEquals(project.rows.size(),1);
   Assert.assertEquals(project.rows.get(0).cells.size(),3);
   Assert.assertEquals((String)project.rows.get(0).cells.get(0).value,"NDB_No");
   Assert.assertEquals((String)project.rows.get(0).cells.get(1).value,"Shrt_Desc");
   Assert.assertEquals((String)project.rows.get(0).cells.get(2).value,"Water");
-  JSONUtilities.getString(verify(options,times(1)),"separator",null);
-  verifyGetOption("ignore",options);
-  verifyGetOption("header-lines",options);
-  verifyGetOption("limit",options);
-  verifyGetOption("skip",options);
-  verifyGetOption("ignore-quotes",options);
+  verifyOptions();
 }

@@ -4,6 +4,6 @@
   assertProjectCreated(project,4,6);
   Row row=project.rows.get(0);
   Assert.assertNotNull(row);
-  Assert.assertNotNull(row.getCell(2));
-  Assert.assertEquals(row.getCell(2).value,"Author 1, The");
+  Assert.assertNotNull(row.getCell(1));
+  Assert.assertEquals(row.getCell(1).value,"Author 1, The");
 }

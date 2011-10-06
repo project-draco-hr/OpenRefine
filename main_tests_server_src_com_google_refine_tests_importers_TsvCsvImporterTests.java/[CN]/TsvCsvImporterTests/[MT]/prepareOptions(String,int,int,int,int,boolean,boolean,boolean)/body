@@ -1,10 +1,11 @@
 {
-  JSONUtilities.safePut(options,"separator",sep);
-  JSONUtilities.safePut(options,"limit",limit);
-  JSONUtilities.safePut(options,"skipDataLines",skip);
-  JSONUtilities.safePut(options,"ignoreLines",ignoreLines);
-  JSONUtilities.safePut(options,"headerLines",headerLines);
-  JSONUtilities.safePut(options,"guessCellValueTypes",guessValueType);
-  JSONUtilities.safePut(options,"splitIntoColumns",splitIntoColumns);
-  JSONUtilities.safePut(options,"processQuotes",!ignoreQuotes);
+  whenGetStringOption("separator",options,sep);
+  whenGetIntegerOption("limit",options,limit);
+  whenGetIntegerOption("skipDataLines",options,skip);
+  whenGetIntegerOption("ignoreLines",options,ignoreLines);
+  whenGetIntegerOption("headerLines",options,headerLines);
+  whenGetBooleanOption("guessCellValueTypes",options,guessValueType);
+  whenGetBooleanOption("splitIntoColumns",options,splitIntoColumns);
+  whenGetBooleanOption("processQuotes",options,!ignoreQuotes);
+  whenGetBooleanOption("storeBlankCellsAsNulls",options,true);
 }

@@ -1,0 +1,3 @@
+{
+  parseOneInputStream(parser,inputStream,options);
+}

@@ -1,12 +1,3 @@
 {
-  ImportColumnGroup rootColumnGroup=new ImportColumnGroup();
-  Reader reader=new InputStreamReader(inputStream);
-  parser.parseOneFile(project,metadata,job,"file-source",reader,rootColumnGroup,-1,options,new ArrayList<Exception>());
-  XmlImportUtilities.createColumnsFromImport(project,rootColumnGroup);
-  project.columnModel.update();
-  try {
-    reader.close();
-  }
- catch (  IOException e) {
-  }
+  parseOneInputStreamAsReader(parser,inputStream,options);
 }

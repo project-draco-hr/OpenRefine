@@ -13,6 +13,6 @@
   Assert.assertEquals(project.rows.size(),1);
   Row row=project.rows.get(0);
   Assert.assertNotNull(row);
-  Assert.assertNotNull(row.getCell(2));
-  Assert.assertEquals(row.getCell(2).value,"author1");
+  Assert.assertNotNull(row.getCell(1));
+  Assert.assertEquals(row.getCell(1).value,"author1");
 }

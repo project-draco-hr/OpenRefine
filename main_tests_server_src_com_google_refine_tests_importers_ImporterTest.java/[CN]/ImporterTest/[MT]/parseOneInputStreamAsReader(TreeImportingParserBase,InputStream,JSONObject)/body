@@ -1,0 +1,12 @@
+{
+  ImportColumnGroup rootColumnGroup=new ImportColumnGroup();
+  List<Exception> exceptions=new ArrayList<Exception>();
+  Reader reader=new InputStreamReader(inputStream);
+  parser.parseOneFile(project,metadata,job,"file-source",reader,rootColumnGroup,-1,options,exceptions);
+  postProcessProject(project,rootColumnGroup,exceptions);
+  try {
+    reader.close();
+  }
+ catch (  IOException e) {
+  }
+}

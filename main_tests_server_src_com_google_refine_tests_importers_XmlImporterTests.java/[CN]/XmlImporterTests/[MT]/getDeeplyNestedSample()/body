@@ -4,7 +4,7 @@
   for (int i=1; i < 7; i++) {
     sb.append(getTypicalElement(i));
   }
-  sb.append("</nest2>");
-  sb.append("<anElement>asdf</anElement></nest></library>");
+  sb.append("</library></nest2>");
+  sb.append("<anElement>asdf</anElement></nest>");
   return sb.toString();
 }

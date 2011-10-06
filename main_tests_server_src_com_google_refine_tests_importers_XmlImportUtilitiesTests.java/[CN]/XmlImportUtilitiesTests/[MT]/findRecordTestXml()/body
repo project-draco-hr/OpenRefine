@@ -12,5 +12,5 @@
   }
   log(project);
   assertProjectCreated(project,0,6);
-  Assert.assertEquals(project.rows.get(0).cells.size(),5);
+  Assert.assertEquals(project.rows.get(0).cells.size(),4);
 }

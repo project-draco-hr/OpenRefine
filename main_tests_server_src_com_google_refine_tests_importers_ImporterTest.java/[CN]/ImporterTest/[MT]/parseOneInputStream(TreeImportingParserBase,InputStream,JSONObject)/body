@@ -1,0 +1,6 @@
+{
+  ImportColumnGroup rootColumnGroup=new ImportColumnGroup();
+  List<Exception> exceptions=new ArrayList<Exception>();
+  parser.parseOneFile(project,metadata,job,"file-source",inputStream,rootColumnGroup,-1,options,exceptions);
+  postProcessProject(project,rootColumnGroup,exceptions);
+}

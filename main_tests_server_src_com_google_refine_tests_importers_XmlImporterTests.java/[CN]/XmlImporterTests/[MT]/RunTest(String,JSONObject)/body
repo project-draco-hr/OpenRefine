@@ -1,0 +1,15 @@
+{
+  try {
+    inputStream=new ByteArrayInputStream(testString.getBytes("UTF-8"));
+  }
+ catch (  UnsupportedEncodingException e1) {
+    Assert.fail();
+  }
+  try {
+    parseOneFile(SUT,inputStream,options);
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+    Assert.fail();
+  }
+}

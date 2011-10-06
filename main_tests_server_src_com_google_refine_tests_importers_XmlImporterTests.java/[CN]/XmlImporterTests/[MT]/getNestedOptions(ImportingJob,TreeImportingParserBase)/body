@@ -1,0 +1,10 @@
+{
+  JSONObject options=parser.createParserUIInitializationData(job,new LinkedList<JSONObject>(),"text/json");
+  JSONArray path=new JSONArray();
+  JSONUtilities.append(path,"nest");
+  JSONUtilities.append(path,"nest2");
+  JSONUtilities.append(path,"library");
+  JSONUtilities.append(path,"book");
+  JSONUtilities.safePut(options,"recordPath",path);
+  return options;
+}

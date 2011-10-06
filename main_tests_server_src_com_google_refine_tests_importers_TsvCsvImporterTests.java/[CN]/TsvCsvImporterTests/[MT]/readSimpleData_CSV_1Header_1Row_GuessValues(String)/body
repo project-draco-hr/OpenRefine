@@ -1,5 +1,5 @@
 {
-  String inputSeparator=sep == "\t" ? "\t" : ",";
+  String inputSeparator=sep == null ? "\t" : sep;
   String input="col1" + inputSeparator + "col2"+ inputSeparator+ "col3\n"+ "data1"+ inputSeparator+ "234"+ inputSeparator+ "data3";
   try {
     prepareOptions(sep,-1,0,0,1,true,true,false);

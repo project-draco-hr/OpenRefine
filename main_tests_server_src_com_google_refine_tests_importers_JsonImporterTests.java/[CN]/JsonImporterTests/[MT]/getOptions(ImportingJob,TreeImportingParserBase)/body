@@ -1,0 +1,8 @@
+{
+  JSONObject options=parser.createParserUIInitializationData(job,new LinkedList<JSONObject>(),"text/json");
+  JSONArray path=new JSONArray();
+  JSONUtilities.append(path,"__anonymous__");
+  JSONUtilities.append(path,"__anonymous__");
+  JSONUtilities.safePut(options,"recordPath",path);
+  return options;
+}

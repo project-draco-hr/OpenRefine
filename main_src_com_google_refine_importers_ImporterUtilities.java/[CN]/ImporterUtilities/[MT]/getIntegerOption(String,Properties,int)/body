@@ -2,10 +2,12 @@
   int value=def;
   if (options.containsKey(name)) {
     String s=options.getProperty(name);
-    try {
-      value=Integer.parseInt(s);
-    }
- catch (    Exception e) {
+    if (s != null) {
+      try {
+        value=Integer.parseInt(s);
+      }
+ catch (      NumberFormatException e) {
+      }
     }
   }
   return value;

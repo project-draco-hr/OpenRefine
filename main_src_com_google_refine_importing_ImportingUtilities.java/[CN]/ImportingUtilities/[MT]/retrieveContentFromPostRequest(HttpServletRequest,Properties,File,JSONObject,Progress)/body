@@ -118,6 +118,10 @@
           stream2.close();
         }
       }
+ else {
+        String value=Streams.asString(stream);
+        parameters.put(name,value);
+      }
     }
  else {
       String fileName=fileItem.getName();

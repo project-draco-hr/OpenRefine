@@ -4,6 +4,6 @@
     verify(options,times(1)).getJSONArray(name);
   }
  catch (  JSONException e) {
-    e.printStackTrace();
+    Assert.fail("JSONException",e);
   }
 }

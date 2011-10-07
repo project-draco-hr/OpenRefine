@@ -5,10 +5,11 @@
       Token eventType=parser.next();
       if (eventType == Token.StartEntity) {
         findRecord(project,parser,recordPath,0,rootColumnGroup,limit);
+        logger.info("Project rows after findRecord = " + project.rows.size());
       }
     }
   }
- catch (  Exception e) {
+ catch (  TreeReaderException e) {
     logger.error("Exception from XML parse",e);
   }
 }

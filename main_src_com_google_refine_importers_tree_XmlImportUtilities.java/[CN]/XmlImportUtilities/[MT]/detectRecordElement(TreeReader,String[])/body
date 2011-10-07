@@ -16,7 +16,8 @@
             textNodeCount++;
           }
         }
- catch (        Exception e) {
+ catch (        TreeReaderException e) {
+          e.printStackTrace();
         }
       }
  else       if (eventType == Token.StartEntity) {
@@ -33,7 +34,8 @@
       }
     }
   }
- catch (  Exception e) {
+ catch (  TreeReaderException e) {
+    e.printStackTrace();
   }
   if (immediateChildCandidateMap.size() > 0) {
     List<RecordElementCandidate> immediateChildCandidates=new ArrayList<RecordElementCandidate>(immediateChildCandidateMap.size());

@@ -4,20 +4,20 @@
     next=parser.nextToken();
   }
  catch (  JsonParseException e) {
-    throw new ServletException(e);
+    throw new TreeReaderException(e);
   }
 catch (  IOException e) {
-    throw new ServletException(e);
+    throw new TreeReaderException(e);
   }
   if (next == null) {
-    throw new ServletException("No more Json Tokens in stream");
+    throw new TreeReaderException("No more Json Tokens in stream");
   }
   if (next == JsonToken.FIELD_NAME) {
     try {
       this.thisTokenIsAFieldName=true;
       this.lastFieldName=parser.getCurrentName();
     }
- catch (    Exception e) {
+ catch (    IOException e) {
     }
   }
  else   if (next == JsonToken.START_ARRAY || next == JsonToken.START_OBJECT) {

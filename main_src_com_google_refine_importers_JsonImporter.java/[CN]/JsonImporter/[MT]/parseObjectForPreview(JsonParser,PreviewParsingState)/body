@@ -19,7 +19,7 @@ default :
 break loop;
 }
 }
- catch (Exception e) {
+ catch (IOException e) {
 break;
 }
 }

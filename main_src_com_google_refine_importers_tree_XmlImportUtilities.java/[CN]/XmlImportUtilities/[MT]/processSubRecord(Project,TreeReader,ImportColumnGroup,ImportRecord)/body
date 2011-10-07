@@ -30,6 +30,9 @@
  else     if (eventType == Token.EndEntity) {
       break;
     }
+ else {
+      logger.info("unknown event type " + eventType);
+    }
   }
   int nextRowIndex=thisColumnGroup.nextRowIndex;
   for (  ImportColumn column2 : thisColumnGroup.columns.values()) {

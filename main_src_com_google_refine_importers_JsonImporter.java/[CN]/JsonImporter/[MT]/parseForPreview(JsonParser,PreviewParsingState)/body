@@ -4,7 +4,7 @@
     state.tokenCount++;
     return parseForPreview(parser,state,token);
   }
- catch (  Exception e) {
+ catch (  IOException e) {
     return null;
   }
 }

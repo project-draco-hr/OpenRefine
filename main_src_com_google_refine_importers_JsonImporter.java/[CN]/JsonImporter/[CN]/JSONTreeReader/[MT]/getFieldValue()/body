@@ -2,7 +2,7 @@
   try {
     return parser.getText();
   }
- catch (  Exception e) {
-    throw new ServletException(e);
+ catch (  IOException e) {
+    throw new TreeReaderException(e);
   }
 }

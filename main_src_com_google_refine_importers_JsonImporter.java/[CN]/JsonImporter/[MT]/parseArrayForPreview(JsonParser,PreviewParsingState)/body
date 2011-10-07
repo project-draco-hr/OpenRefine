@@ -15,7 +15,7 @@ default :
     JSONUtilities.append(result,element);
 }
 }
- catch (Exception e) {
+ catch (IOException e) {
 break;
 }
 }

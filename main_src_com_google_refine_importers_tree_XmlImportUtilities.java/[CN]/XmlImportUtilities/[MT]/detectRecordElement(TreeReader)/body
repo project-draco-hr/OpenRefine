@@ -12,7 +12,8 @@
       }
     }
   }
- catch (  Exception e) {
+ catch (  TreeReaderException e) {
+    e.printStackTrace();
   }
   if (candidates.size() > 0) {
     sortRecordElementCandidates(candidates);

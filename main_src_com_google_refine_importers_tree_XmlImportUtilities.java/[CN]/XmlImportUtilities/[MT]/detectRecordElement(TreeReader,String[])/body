@@ -2,26 +2,13 @@
   logger.trace("detectRecordElement(TreeReader, String[])");
   List<RecordElementCandidate> descendantCandidates=new ArrayList<RecordElementCandidate>();
   Map<String,Integer> immediateChildCandidateMap=new HashMap<String,Integer>();
-  int textNodeCount=0;
-  int childElementNodeCount=0;
   try {
     while (parser.hasNext()) {
       Token eventType=parser.next();
       if (eventType == Token.EndEntity) {
         break;
       }
- else       if (eventType == Token.Value) {
-        try {
-          if (parser.getFieldValue().trim().length() > 0) {
-            textNodeCount++;
-          }
-        }
- catch (        TreeReaderException e) {
-          e.printStackTrace();
-        }
-      }
  else       if (eventType == Token.StartEntity) {
-        childElementNodeCount++;
         String tagName=parser.getFieldName();
         immediateChildCandidateMap.put(tagName,immediateChildCandidateMap.containsKey(tagName) ? immediateChildCandidateMap.get(tagName) + 1 : 1);
         String[] path2=new String[path.length + 1];

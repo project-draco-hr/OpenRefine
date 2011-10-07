@@ -1,9 +1,9 @@
 {
   try {
     InputStream is=new FileInputStream(file);
+    Reader reader=encoding != null ? new InputStreamReader(is,encoding) : new InputStreamReader(is);
+    LineNumberReader lineNumberReader=new LineNumberReader(reader);
     try {
-      Reader reader=encoding != null ? new InputStreamReader(is,encoding) : new InputStreamReader(is);
-      LineNumberReader lineNumberReader=new LineNumberReader(reader);
       List<Separator> separators=new ArrayList<SeparatorBasedImporter.Separator>();
       Map<Character,Separator> separatorMap=new HashMap<Character,SeparatorBasedImporter.Separator>();
       int totalBytes=0;
@@ -53,6 +53,8 @@
       }
     }
   finally {
+      lineNumberReader.close();
+      reader.close();
       is.close();
     }
   }

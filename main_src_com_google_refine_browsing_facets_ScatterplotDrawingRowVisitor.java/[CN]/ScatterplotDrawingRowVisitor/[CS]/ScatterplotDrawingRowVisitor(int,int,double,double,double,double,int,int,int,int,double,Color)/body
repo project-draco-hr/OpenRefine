@@ -8,7 +8,6 @@
   this.dot=dot;
   this.dim_x=dim_x;
   this.dim_y=dim_y;
-  this.rotation=rotation;
   l=size;
   r=ScatterplotFacet.createRotationMatrix(rotation,l);
   image=new BufferedImage(size,size,BufferedImage.TYPE_4BYTE_ABGR);

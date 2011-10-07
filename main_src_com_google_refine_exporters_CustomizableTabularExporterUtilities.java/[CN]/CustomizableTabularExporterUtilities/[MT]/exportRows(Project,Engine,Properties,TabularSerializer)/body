@@ -1,5 +1,5 @@
 {
-  String optionsString=params.getProperty("options");
+  String optionsString=(params != null) ? params.getProperty("options") : null;
   JSONObject optionsTemp=null;
   if (optionsString != null) {
     try {

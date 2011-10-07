@@ -8,5 +8,5 @@
   if (args[1] == null || !(args[1] instanceof Number)) {
     return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " expects the second argument to be a number");
   }
-  return Combin.Combination(((Number)args[0]).intValue(),((Number)args[1]).intValue());
+  return Combin.combination(((Number)args[0]).intValue(),((Number)args[1]).intValue());
 }

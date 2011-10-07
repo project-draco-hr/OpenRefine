@@ -7,14 +7,12 @@
   final CSVParser parser=new CSVParser(sep.toCharArray()[0],CSVParser.DEFAULT_QUOTE_CHARACTER,(char)0,CSVParser.DEFAULT_STRICT_QUOTES,CSVParser.DEFAULT_IGNORE_LEADING_WHITESPACE,!processQuotes);
   final LineNumberReader lnReader=new LineNumberReader(reader);
   TableDataReader dataReader=new TableDataReader(){
-    long bytesRead=0;
     @Override public List<Object> getNextRowOfCells() throws IOException {
       String line=lnReader.readLine();
       if (line == null) {
         return null;
       }
  else {
-        bytesRead+=line.length();
         return getCells(line,parser,lnReader);
       }
     }

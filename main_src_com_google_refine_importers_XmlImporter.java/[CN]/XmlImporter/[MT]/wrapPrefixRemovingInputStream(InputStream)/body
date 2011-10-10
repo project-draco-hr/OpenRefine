@@ -2,7 +2,7 @@
   PushbackInputStream pis=new PushbackInputStream(inputStream);
   int b;
   while ((b=pis.read()) >= 0) {
-    if (!Character.isWhitespace(b)) {
+    if (b == '<') {
       pis.unread(b);
       break;
     }

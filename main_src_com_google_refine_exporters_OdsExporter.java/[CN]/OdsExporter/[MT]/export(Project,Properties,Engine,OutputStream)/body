@@ -1,0 +1,58 @@
+{
+  final OdfSpreadsheetDocument odfDoc;
+  try {
+    odfDoc=OdfSpreadsheetDocument.newSpreadsheetDocument();
+  }
+ catch (  Exception e) {
+    throw new IOException("Failed to create spreadsheet",e);
+  }
+  TabularSerializer serializer=new TabularSerializer(){
+    OdfTable table;
+    int rowCount=0;
+    @Override public void startFile(    JSONObject options){
+      table=OdfTable.newTable(odfDoc);
+      table.setTableName(ProjectManager.singleton.getProjectMetadata(project.id).getName());
+    }
+    @Override public void endFile(){
+    }
+    @Override public void addRow(    List<CellData> cells,    boolean isHeader){
+      OdfTableRow r=table.appendRow();
+      rowCount++;
+      for (int i=0; i < cells.size(); i++) {
+        OdfTableCell c=r.getCellByIndex(i);
+        CellData cellData=cells.get(i);
+        if (cellData != null && cellData.text != null && cellData.value != null) {
+          Object v=cellData.value;
+          if (v instanceof Number) {
+            c.setDoubleValue(((Number)v).doubleValue());
+          }
+ else           if (v instanceof Boolean) {
+            c.setBooleanValue(((Boolean)v).booleanValue());
+          }
+ else           if (v instanceof Date) {
+            Calendar cal=Calendar.getInstance();
+            cal.setTime((Date)v);
+            c.setDateValue(cal);
+          }
+ else           if (v instanceof Calendar) {
+            c.setDateValue((Calendar)v);
+          }
+ else {
+            c.setStringValue(cellData.text);
+          }
+          if (cellData.link != null) {
+          }
+        }
+      }
+    }
+  }
+;
+  CustomizableTabularExporterUtilities.exportRows(project,engine,params,serializer);
+  try {
+    odfDoc.save(outputStream);
+  }
+ catch (  Exception e) {
+    throw new IOException("Error saving spreadsheet",e);
+  }
+  outputStream.flush();
+}

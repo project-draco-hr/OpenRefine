@@ -1,0 +1,42 @@
+{
+  JSONObject options=super.createParserUIInitializationData(job,fileRecords,format);
+  JSONArray sheetRecords=new JSONArray();
+  JSONUtilities.safePut(options,"sheetRecords",sheetRecords);
+  OdfDocument odfDoc=null;
+  try {
+    JSONObject firstFileRecord=fileRecords.get(0);
+    File file=ImportingUtilities.getFile(job,firstFileRecord);
+    InputStream is=new FileInputStream(file);
+    odfDoc=OdfDocument.loadDocument(is);
+    List<OdfTable> tables=odfDoc.getTableList();
+    int sheetCount=tables.size();
+    boolean hasData=false;
+    for (int i=0; i < sheetCount; i++) {
+      OdfTable sheet=tables.get(i);
+      int rows=sheet.getRowCount();
+      JSONObject sheetRecord=new JSONObject();
+      JSONUtilities.safePut(sheetRecord,"name",sheet.getTableName());
+      JSONUtilities.safePut(sheetRecord,"rows",rows);
+      if (hasData) {
+        JSONUtilities.safePut(sheetRecord,"selected",false);
+      }
+ else       if (rows > 0) {
+        JSONUtilities.safePut(sheetRecord,"selected",true);
+        hasData=true;
+      }
+      JSONUtilities.append(sheetRecords,sheetRecord);
+    }
+  }
+ catch (  FileNotFoundException e) {
+    logger.info("File not found",e);
+  }
+catch (  Exception e) {
+    logger.info("Error reading ODF spreadsheet",e);
+  }
+ finally {
+    if (odfDoc != null) {
+      odfDoc.close();
+    }
+  }
+  return options;
+}

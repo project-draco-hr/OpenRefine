@@ -1,0 +1,41 @@
+{
+  OdfDocument odfDoc;
+  try {
+    odfDoc=OdfDocument.loadDocument(inputStream);
+  }
+ catch (  Exception e) {
+    exceptions.add(e);
+    return;
+  }
+  List<OdfTable> tables=odfDoc.getTableList();
+  int[] sheets=JSONUtilities.getIntArray(options,"sheets");
+  for (  int sheetIndex : sheets) {
+    final OdfTable table=tables.get(sheetIndex);
+    final int lastRow=table.getRowCount();
+    TableDataReader dataReader=new TableDataReader(){
+      int nextRow=0;
+      Map<String,Recon> reconMap=new HashMap<String,Recon>();
+      @Override public List<Object> getNextRowOfCells() throws IOException {
+        if (nextRow > lastRow) {
+          return null;
+        }
+        List<Object> cells=new ArrayList<Object>();
+        OdfTableRow row=table.getRowByIndex(nextRow++);
+        if (row != null) {
+          int lastCell=row.getCellCount();
+          for (int cellIndex=0; cellIndex <= lastCell; cellIndex++) {
+            Cell cell=null;
+            OdfTableCell sourceCell=row.getCellByIndex(cellIndex);
+            if (sourceCell != null) {
+              cell=extractCell(sourceCell,reconMap);
+            }
+            cells.add(cell);
+          }
+        }
+        return cells;
+      }
+    }
+;
+    TabularImportingParserBase.readTable(project,metadata,job,dataReader,fileSource + "#" + table.getTableName(),limit,options,exceptions);
+  }
+}

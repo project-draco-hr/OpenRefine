@@ -1,0 +1,7 @@
+{
+  StringBuffer sb=new StringBuffer();
+  for (  int i : cellIndices) {
+    sb.append(i).append(',');
+  }
+  return "key: " + keyCellIndex + " cells: "+ sb.toString();
+}

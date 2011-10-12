@@ -20,7 +20,7 @@
     }
   }
  else {
-    String text=cell.getStringCellValue().trim();
+    String text=cell.getStringCellValue();
     if (text.length() > 0) {
       value=text;
     }

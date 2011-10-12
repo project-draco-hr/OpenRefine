@@ -1,0 +1,36 @@
+{
+  final Workbook wb=xml ? new XSSFWorkbook() : new HSSFWorkbook();
+  for (int s=0; s < SHEETS; s++) {
+    Sheet sheet=wb.createSheet("Test Sheet " + s);
+    for (int row=0; row < ROWS; row++) {
+      int col=0;
+      Row r=sheet.createRow(row);
+      Cell c;
+      c=r.createCell(col++);
+      c.setCellValue(row * 1.1);
+      c=r.createCell(col++);
+      c.setCellValue(row % 2 == 0);
+      c=r.createCell(col++);
+      c.setCellValue(Calendar.getInstance());
+      c=r.createCell(col++);
+      c.setCellValue(new Date());
+      c=r.createCell(col++);
+      c.setCellValue(" Row " + row + " Col "+ col);
+      c=r.createCell(col++);
+      c.setCellValue("");
+    }
+  }
+  File file=null;
+  try {
+    file=File.createTempFile("google-refine-importer-test",xml ? ".xlsx" : ".xls");
+    file.deleteOnExit();
+    OutputStream outputStream=new FileOutputStream(file);
+    wb.write(outputStream);
+    outputStream.flush();
+    outputStream.close();
+  }
+ catch (  IOException e) {
+    return null;
+  }
+  return file;
+}

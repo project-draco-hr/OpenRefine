@@ -1,0 +1,35 @@
+{
+  JSONArray sheets=new JSONArray();
+  JSONUtilities.append(sheets,0);
+  whenGetArrayOption("sheets",options,sheets);
+  whenGetIntegerOption("ignoreLines",options,0);
+  whenGetIntegerOption("headerLines",options,0);
+  whenGetIntegerOption("skipDataLines",options,0);
+  whenGetIntegerOption("limit",options,-1);
+  whenGetBooleanOption("storeBlankCellsAsNulls",options,true);
+  InputStream stream=new FileInputStream(xlsFile);
+  try {
+    parseOneFile(SUT,stream);
+  }
+ catch (  Exception e) {
+    Assert.fail(e.getMessage());
+  }
+  Assert.assertEquals(project.rows.size(),ROWS);
+  Assert.assertEquals(project.rows.get(1).cells.size(),COLUMNS);
+  Assert.assertEquals(((Number)project.rows.get(1).getCellValue(0)).doubleValue(),1.1,EPSILON);
+  Assert.assertEquals(((Number)project.rows.get(2).getCellValue(0)).doubleValue(),2.2,EPSILON);
+  Assert.assertFalse((Boolean)project.rows.get(1).getCellValue(1));
+  Assert.assertTrue((Boolean)project.rows.get(2).getCellValue(1));
+  Assert.assertEquals((String)project.rows.get(1).getCellValue(4)," Row 1 Col 5");
+  Assert.assertNull((String)project.rows.get(1).getCellValue(5));
+  try {
+    verify(options,times(1)).getInt("ignoreLines");
+    verify(options,times(1)).getInt("headerLines");
+    verify(options,times(1)).getInt("skipDataLines");
+    verify(options,times(1)).getInt("limit");
+    verify(options,times(1)).getBoolean("storeBlankCellsAsNulls");
+  }
+ catch (  JSONException e) {
+    Assert.fail("JSON exception",e);
+  }
+}

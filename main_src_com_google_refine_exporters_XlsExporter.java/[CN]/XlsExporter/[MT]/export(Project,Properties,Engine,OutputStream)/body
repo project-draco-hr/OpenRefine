@@ -3,9 +3,12 @@
   TabularSerializer serializer=new TabularSerializer(){
     Sheet s;
     int rowCount=0;
+    CellStyle dateStyle;
     @Override public void startFile(    JSONObject options){
       s=wb.createSheet();
       wb.setSheetName(0,ProjectManager.singleton.getProjectMetadata(project.id).getName());
+      dateStyle=wb.createCellStyle();
+      dateStyle.setDataFormat(wb.getCreationHelper().createDataFormat().getFormat("YYYY-MM-DD"));
     }
     @Override public void endFile(){
     }
@@ -28,9 +31,11 @@
             }
  else             if (v instanceof Date) {
               c.setCellValue((Date)v);
+              c.setCellStyle(dateStyle);
             }
  else             if (v instanceof Calendar) {
               c.setCellValue((Calendar)v);
+              c.setCellStyle(dateStyle);
             }
  else {
               String s=cellData.text;

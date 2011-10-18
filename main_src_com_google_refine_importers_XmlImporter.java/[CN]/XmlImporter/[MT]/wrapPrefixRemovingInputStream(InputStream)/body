@@ -1,8 +1,12 @@
 {
   PushbackInputStream pis=new PushbackInputStream(inputStream);
   int b;
-  while ((b=pis.read()) >= 0) {
-    if (b == '<') {
+  int count=0;
+  while (count < 100 && (b=pis.read()) >= 0) {
+    if (++count > 100) {
+      throw new XMLStreamException("File starts with too much non-XML content to skip over");
+    }
+ else     if (b == '<') {
       pis.unread(b);
       break;
     }

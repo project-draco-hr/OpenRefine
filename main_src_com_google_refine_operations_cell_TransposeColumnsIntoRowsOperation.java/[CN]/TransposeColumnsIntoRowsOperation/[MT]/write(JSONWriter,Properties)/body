@@ -3,7 +3,7 @@
   writer.key("op");
   writer.value(OperationRegistry.s_opClassToName.get(this.getClass()));
   writer.key("description");
-  writer.value("Transpose cells in " + _columnCount + " column(s) starting with "+ _startColumnName+ " into rows");
+  writer.value(_columnCount > 0 ? ("Transpose cells in " + _columnCount + " column(s) starting with "+ _startColumnName+ " into rows") : ("Transpose cells in columns starting with " + _startColumnName + " into rows"));
   writer.key("startColumnName");
   writer.value(_startColumnName);
   writer.key("columnCount");

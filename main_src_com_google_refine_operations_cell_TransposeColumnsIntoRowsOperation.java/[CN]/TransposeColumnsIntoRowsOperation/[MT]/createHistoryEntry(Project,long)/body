@@ -4,33 +4,54 @@
   }
   List<Column> newColumns=new ArrayList<Column>();
   List<Column> oldColumns=project.columnModel.columns;
-  int columnsLeftToTranspose=_columnCount;
   int startColumnIndex=oldColumns.size();
-  for (int c=0; c < oldColumns.size(); c++) {
-    Column column=oldColumns.get(c);
-    if (columnsLeftToTranspose == 0) {
-      Column newColumn=new Column(newColumns.size(),column.getOriginalHeaderLabel());
-      newColumn.setName(column.getName());
-      newColumns.add(newColumn);
-    }
- else     if (columnsLeftToTranspose < _columnCount) {
-      columnsLeftToTranspose--;
-    }
- else     if (_startColumnName.equals(column.getName())) {
-      startColumnIndex=c;
-      String columnName=_combinedColumnName != null && _combinedColumnName.length() > 0 ? _combinedColumnName : column.getName();
-      Column newColumn=new Column(newColumns.size(),columnName);
-      newColumns.add(newColumn);
-      columnsLeftToTranspose--;
-    }
+  int columnCount=_columnCount;
+  if (_columnCount > 0) {
+    int columnsLeftToTranspose=_columnCount;
+    for (int c=0; c < oldColumns.size(); c++) {
+      Column column=oldColumns.get(c);
+      if (columnsLeftToTranspose == 0) {
+        Column newColumn=new Column(newColumns.size(),column.getOriginalHeaderLabel());
+        newColumn.setName(column.getName());
+        newColumns.add(newColumn);
+      }
+ else       if (columnsLeftToTranspose < _columnCount) {
+        columnsLeftToTranspose--;
+      }
+ else       if (_startColumnName.equals(column.getName())) {
+        startColumnIndex=c;
+        String columnName=_combinedColumnName != null && _combinedColumnName.length() > 0 ? _combinedColumnName : column.getName();
+        Column newColumn=new Column(newColumns.size(),columnName);
+        newColumns.add(newColumn);
+        columnsLeftToTranspose--;
+      }
  else {
-      Column newColumn=new Column(newColumns.size(),column.getOriginalHeaderLabel());
-      newColumn.setName(column.getName());
-      newColumns.add(newColumn);
+        Column newColumn=new Column(newColumns.size(),column.getOriginalHeaderLabel());
+        newColumn.setName(column.getName());
+        newColumns.add(newColumn);
+      }
     }
   }
+ else {
+    for (int c=0; c < oldColumns.size(); c++) {
+      Column column=oldColumns.get(c);
+      if (_startColumnName.equals(column.getName())) {
+        startColumnIndex=c;
+        String columnName=_combinedColumnName != null && _combinedColumnName.length() > 0 ? _combinedColumnName : column.getName();
+        Column newColumn=new Column(newColumns.size(),columnName);
+        newColumns.add(newColumn);
+        break;
+      }
+ else {
+        Column newColumn=new Column(newColumns.size(),column.getOriginalHeaderLabel());
+        newColumn.setName(column.getName());
+        newColumns.add(newColumn);
+      }
+    }
+    columnCount=oldColumns.size() - startColumnIndex;
+  }
   List<Row> oldRows=project.rows;
-  List<Row> newRows=new ArrayList<Row>(oldRows.size() * _columnCount);
+  List<Row> newRows=new ArrayList<Row>(oldRows.size() * columnCount);
   for (int r=0; r < oldRows.size(); r++) {
     Row oldRow=project.rows.get(r);
     Row firstNewRow=new Row(newColumns.size());
@@ -42,7 +63,7 @@
       if (c < startColumnIndex) {
         firstNewRow.setCell(c,cell);
       }
- else       if (c == startColumnIndex || c < startColumnIndex + _columnCount) {
+ else       if (c == startColumnIndex || c < startColumnIndex + columnCount) {
         Cell newCell;
         if (cell == null || cell.value == null) {
           if (_prependColumnName && !_ignoreBlankCells) {
@@ -69,7 +90,7 @@
         transposedCells++;
       }
  else {
-        firstNewRow.setCell(c - _columnCount + 1,cell);
+        firstNewRow.setCell(c - columnCount + 1,cell);
       }
     }
   }

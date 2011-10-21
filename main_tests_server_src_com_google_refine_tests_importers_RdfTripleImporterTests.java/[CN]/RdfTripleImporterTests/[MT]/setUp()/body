@@ -1,5 +1,5 @@
 {
-  super.SetUp();
+  super.setUp();
   SUT=new RdfTripleImporter();
   JSONUtilities.safePut(options,"base-url","http://rdf.freebase.com");
 }

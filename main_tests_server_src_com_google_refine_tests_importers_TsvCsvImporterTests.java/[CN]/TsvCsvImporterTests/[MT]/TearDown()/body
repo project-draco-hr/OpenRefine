@@ -1,4 +1,0 @@
-{
-  SUT=null;
-  super.TearDown();
-}

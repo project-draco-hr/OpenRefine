@@ -1,0 +1,4 @@
+{
+  SUT=null;
+  super.tearDown();
+}

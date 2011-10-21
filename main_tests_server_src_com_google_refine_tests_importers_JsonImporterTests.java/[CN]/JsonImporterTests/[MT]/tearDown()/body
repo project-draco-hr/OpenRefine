@@ -8,5 +8,5 @@
     }
     inputStream=null;
   }
-  super.TearDown();
+  super.tearDown();
 }

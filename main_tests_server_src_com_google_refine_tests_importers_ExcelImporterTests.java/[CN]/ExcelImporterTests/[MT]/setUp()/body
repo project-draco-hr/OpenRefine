@@ -1,4 +1,4 @@
 {
-  super.SetUp();
+  super.setUp();
   SUT=new ExcelImporter();
 }

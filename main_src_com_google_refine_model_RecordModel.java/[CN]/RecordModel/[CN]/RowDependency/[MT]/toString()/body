@@ -1,0 +1,3 @@
+{
+  return "Idx: " + recordIndex + " CellDeps: "+ Arrays.toString(cellDependencies)+ " Rows:"+ contextRows;
+}

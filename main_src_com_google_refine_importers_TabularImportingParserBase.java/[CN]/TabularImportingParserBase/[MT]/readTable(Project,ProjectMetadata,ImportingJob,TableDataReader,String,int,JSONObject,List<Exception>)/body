@@ -22,6 +22,7 @@
         project.columnModel.addColumn(0,new Column(project.columnModel.allocateNewCellIndex(),fileNameColumnName),false);
       }
  catch (      ModelException e) {
+        logger.info("ModelException",e);
       }
     }
   }

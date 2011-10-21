@@ -23,5 +23,6 @@
     }
   }
 );
+  dumpKeyedGroups(keyedGroups,columnModel);
   return keyedGroups;
 }

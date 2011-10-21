@@ -1,5 +1,5 @@
 {
-  logger.trace("processSubRecord(Project,TreeReader,ImportColumnGroup,ImportRecord)");
+  logger.trace("processSubRecord(Project,TreeReader,ImportColumnGroup,ImportRecord) lvl:" + level + " "+ columnGroup);
   if (parser.current() == Token.Ignorable) {
     return;
   }
@@ -15,7 +15,7 @@
   while (parser.hasNext()) {
     Token eventType=parser.next();
     if (eventType == Token.StartEntity) {
-      processSubRecord(project,parser,thisColumnGroup,record);
+      processSubRecord(project,parser,thisColumnGroup,record,level + 1);
     }
  else     if (eventType == Token.Value) {
       String text=parser.getFieldValue();
@@ -29,6 +29,9 @@
     }
  else     if (eventType == Token.EndEntity) {
       break;
+    }
+ else     if (eventType == Token.Ignorable) {
+      continue;
     }
  else {
       logger.info("unknown event type " + eventType);

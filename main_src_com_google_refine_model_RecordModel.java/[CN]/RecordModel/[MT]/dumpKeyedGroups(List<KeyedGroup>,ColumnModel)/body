@@ -1,0 +1,10 @@
+{
+  for (  KeyedGroup g : groups) {
+    String keyColName=columnModel.getColumnByCellIndex(g.keyCellIndex).getName();
+    StringBuffer sb=new StringBuffer();
+    for (    int ci : g.cellIndices) {
+      sb.append(columnModel.getColumnByCellIndex(ci).getName()).append(',');
+    }
+    logger.trace("KeyedGroup " + keyColName + "::"+ sb.toString());
+  }
+}

@@ -12,6 +12,7 @@
       break;
     }
   }
+  rootColumnGroup.tabulate();
   XmlImportUtilities.createColumnsFromImport(project,rootColumnGroup);
   project.columnModel.update();
 }

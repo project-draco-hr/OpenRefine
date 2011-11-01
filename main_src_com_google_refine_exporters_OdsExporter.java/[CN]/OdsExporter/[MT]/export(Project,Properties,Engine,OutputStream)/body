@@ -8,7 +8,6 @@
   }
   TabularSerializer serializer=new TabularSerializer(){
     OdfTable table;
-    int rowCount=0;
     @Override public void startFile(    JSONObject options){
       table=OdfTable.newTable(odfDoc);
       table.setTableName(ProjectManager.singleton.getProjectMetadata(project.id).getName());
@@ -17,7 +16,6 @@
     }
     @Override public void addRow(    List<CellData> cells,    boolean isHeader){
       OdfTableRow r=table.appendRow();
-      rowCount++;
       for (int i=0; i < cells.size(); i++) {
         OdfTableCell c=r.getCellByIndex(i);
         CellData cellData=cells.get(i);

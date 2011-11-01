@@ -1,5 +1,4 @@
 {
-  String formula=cell.getFormula();
   Serializable value=null;
   String cellType=cell.getValueType();
   if ("boolean".equals(cellType)) {

@@ -7,7 +7,7 @@
       File file=new File(job.getRawDataDir(),location);
       Separator separator=guessSeparator(file,encoding);
       if (separator != null) {
-        return Character.toString(separator.separator);
+        return StringEscapeUtils.escapeJava(Character.toString(separator.separator));
       }
     }
   }

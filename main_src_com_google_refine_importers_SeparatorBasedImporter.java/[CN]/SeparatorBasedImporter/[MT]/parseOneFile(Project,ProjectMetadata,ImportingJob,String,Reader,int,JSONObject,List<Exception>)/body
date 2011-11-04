@@ -1,8 +1,9 @@
 {
-  String sep=JSONUtilities.getString(options,"separator","\t");
+  String sep=JSONUtilities.getString(options,"separator","\\t");
   if (sep == null || "".equals(sep)) {
-    sep="\t";
+    sep="\\t";
   }
+  sep=StringEscapeUtils.unescapeJava(sep);
   boolean processQuotes=JSONUtilities.getBoolean(options,"processQuotes",true);
   final CSVParser parser=new CSVParser(sep.toCharArray()[0],CSVParser.DEFAULT_QUOTE_CHARACTER,(char)0,CSVParser.DEFAULT_STRICT_QUOTES,CSVParser.DEFAULT_IGNORE_LEADING_WHITESPACE,!processQuotes);
   final LineNumberReader lnReader=new LineNumberReader(reader);

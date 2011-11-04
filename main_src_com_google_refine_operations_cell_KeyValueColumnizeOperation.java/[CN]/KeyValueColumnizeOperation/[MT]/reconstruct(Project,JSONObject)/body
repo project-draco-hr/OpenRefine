@@ -1,0 +1,3 @@
+{
+  return new KeyValueColumnizeOperation(obj.getString("keyColumnName"),obj.getString("valueColumnName"),JSONUtilities.getString(obj,"noteColumnName",null));
+}

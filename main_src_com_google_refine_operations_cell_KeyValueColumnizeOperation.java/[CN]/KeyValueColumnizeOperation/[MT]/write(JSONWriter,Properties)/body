@@ -1,0 +1,14 @@
+{
+  writer.object();
+  writer.key("op");
+  writer.value(OperationRegistry.s_opClassToName.get(this.getClass()));
+  writer.key("description");
+  writer.value("Columnize by key column " + _keyColumnName + " and value column "+ _valueColumnName+ (_noteColumnName != null ? (" with note column " + _noteColumnName) : ""));
+  writer.key("keyColumnName");
+  writer.value(_keyColumnName);
+  writer.key("valueColumnName");
+  writer.value(_valueColumnName);
+  writer.key("noteColumnName");
+  writer.value(_noteColumnName);
+  writer.endObject();
+}

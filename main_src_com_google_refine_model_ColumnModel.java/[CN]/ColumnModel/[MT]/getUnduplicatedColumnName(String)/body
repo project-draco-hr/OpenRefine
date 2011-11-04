@@ -1,0 +1,14 @@
+{
+  String name=baseName;
+  int i=1;
+  while (true) {
+    if (_nameToColumn.containsKey(name)) {
+      i++;
+      name=baseName + i;
+    }
+ else {
+      break;
+    }
+  }
+  return name;
+}

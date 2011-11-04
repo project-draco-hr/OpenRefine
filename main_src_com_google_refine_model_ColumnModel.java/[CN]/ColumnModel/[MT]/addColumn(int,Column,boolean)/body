@@ -1,22 +1,14 @@
 {
-  String baseName=column.getName();
-  if (_nameToColumn.containsKey(baseName)) {
+  String name=column.getName();
+  if (_nameToColumn.containsKey(name)) {
     if (!avoidNameCollision) {
       throw new ModelException("Duplicated column name");
     }
-  }
-  String name=baseName;
-  int i=1;
-  while (true) {
-    if (_nameToColumn.containsKey(name)) {
-      i++;
-      name=baseName + i;
-    }
  else {
-      break;
+      name=getUnduplicatedColumnName(name);
+      column.setName(name);
     }
   }
-  column.setName(name);
   columns.add(index < 0 ? columns.size() : index,column);
   _nameToColumn.put(name,column);
 }

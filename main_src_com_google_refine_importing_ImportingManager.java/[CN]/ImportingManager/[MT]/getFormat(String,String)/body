@@ -7,10 +7,10 @@
  else   if (fileNameFormat == null) {
     return mimeTypeFormat;
   }
- else   if (fileNameFormat.startsWith(mimeTypeFormat)) {
-    return fileNameFormat;
+ else   if (mimeTypeFormat.startsWith(fileNameFormat)) {
+    return mimeTypeFormat;
   }
  else {
-    return mimeTypeFormat;
+    return fileNameFormat;
   }
 }

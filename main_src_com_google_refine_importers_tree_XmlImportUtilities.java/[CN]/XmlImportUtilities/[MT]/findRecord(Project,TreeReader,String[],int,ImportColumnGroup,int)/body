@@ -9,10 +9,10 @@
   String fullName=composeName(parser.getPrefix(),localName);
   if (recordPathSegment.equals(localName) || recordPathSegment.equals(fullName)) {
     if (pathIndex < recordPath.length - 1) {
-      while (parser.hasNext() && (limit <= 0 || project.rows.size() < limit)) {
+      while (parser.hasNext() && limit != 0) {
         Token eventType=parser.next();
         if (eventType == Token.StartEntity) {
-          findRecord(project,parser,recordPath,pathIndex + 1,rootColumnGroup,limit);
+          findRecord(project,parser,recordPath,pathIndex + 1,rootColumnGroup,limit--);
         }
  else         if (eventType == Token.EndEntity) {
           break;

@@ -1,0 +1,5 @@
+String startColumnName
+int columnCount
+String keyColumnName
+String valueColumnName
+boolean ignoreBlankCells

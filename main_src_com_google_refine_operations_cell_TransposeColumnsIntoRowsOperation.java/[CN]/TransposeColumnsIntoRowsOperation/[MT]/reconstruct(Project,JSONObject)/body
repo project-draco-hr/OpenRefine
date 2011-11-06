@@ -1,3 +1,9 @@
 {
-  return new TransposeColumnsIntoRowsOperation(obj.getString("startColumnName"),obj.getInt("columnCount"),obj.getString("combinedColumnName"),obj.getBoolean("prependColumnName"),obj.getString("separator"),obj.getBoolean("ignoreBlankCells"));
+  String combinedColumnName=JSONUtilities.getString(obj,"combinedColumnName",null);
+  if (combinedColumnName != null) {
+    return new TransposeColumnsIntoRowsOperation(obj.getString("startColumnName"),obj.getInt("columnCount"),combinedColumnName,obj.getBoolean("prependColumnName"),obj.getString("separator"),obj.getBoolean("ignoreBlankCells"));
+  }
+ else {
+    return new TransposeColumnsIntoRowsOperation(obj.getString("startColumnName"),obj.getInt("columnCount"),obj.getString("keyColumnName"),obj.getString("valueColumnName"),obj.getBoolean("ignoreBlankCells"));
+  }
 }

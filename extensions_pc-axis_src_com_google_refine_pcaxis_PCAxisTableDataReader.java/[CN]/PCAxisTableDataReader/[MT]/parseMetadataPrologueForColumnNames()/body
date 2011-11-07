@@ -33,12 +33,9 @@
   }
 );
   List<Object> columnNames=new LinkedList<Object>();
-  if (_dimensions.size() > 0) {
-    for (int i=_dimensions.size() - 1; i > 0; i--) {
-      Dimension d=_dimensions.get(i);
-      columnNames.add(d.name);
-    }
-    columnNames.addAll(_dimensions.get(0).values);
+  for (int i=_dimensions.size() - 1; i >= 0; i--) {
+    columnNames.add(_dimensions.get(i).name);
   }
+  columnNames.add("value");
   return columnNames;
 }

@@ -2,6 +2,7 @@
   _startColumnName=startColumnName;
   _columnCount=columnCount;
   _ignoreBlankCells=ignoreBlankCells;
+  _fillDown=fillDown;
   _combinedColumnName=null;
   _prependColumnName=false;
   _separator=null;

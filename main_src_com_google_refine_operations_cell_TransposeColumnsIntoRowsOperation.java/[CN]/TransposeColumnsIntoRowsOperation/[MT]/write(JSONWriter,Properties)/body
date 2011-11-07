@@ -10,6 +10,8 @@
   writer.value(_columnCount);
   writer.key("ignoreBlankCells");
   writer.value(_ignoreBlankCells);
+  writer.key("fillDown");
+  writer.value(_fillDown);
   if (_combinedColumnName != null) {
     writer.key("combinedColumnName");
     writer.value(_combinedColumnName);

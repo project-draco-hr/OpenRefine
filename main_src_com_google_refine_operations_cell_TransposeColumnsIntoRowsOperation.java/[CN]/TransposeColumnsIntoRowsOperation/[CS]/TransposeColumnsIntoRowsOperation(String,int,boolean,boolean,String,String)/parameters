@@ -1,5 +1,6 @@
 String startColumnName
 int columnCount
+boolean ignoreBlankCells
+boolean fillDown
 String keyColumnName
 String valueColumnName
-boolean ignoreBlankCells

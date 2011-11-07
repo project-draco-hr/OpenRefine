@@ -73,6 +73,7 @@
   for (int r=0; r < oldRows.size(); r++) {
     Row oldRow=project.rows.get(r);
     Row firstNewRow=new Row(newColumns.size());
+    int firstNewRowIndex=newRows.size();
     newRows.add(firstNewRow);
     int transposedCells=0;
     for (int c=0; c < oldColumns.size(); c++) {
@@ -128,6 +129,19 @@
       }
  else {
         firstNewRow.setCell(c - columnCount + (_combinedColumnName != null ? 1 : 2),cell);
+      }
+    }
+    if (_fillDown) {
+      for (int r2=firstNewRowIndex + 1; r2 < newRows.size(); r2++) {
+        Row newRow=newRows.get(r2);
+        for (int c=0; c < newColumns.size(); c++) {
+          Column column=newColumns.get(c);
+          int cellIndex=column.getCellIndex();
+          Cell cellToCopy=firstNewRow.getCell(cellIndex);
+          if (cellToCopy != null && newRow.getCell(cellIndex) == null) {
+            newRow.setCell(cellIndex,cellToCopy);
+          }
+        }
       }
     }
   }

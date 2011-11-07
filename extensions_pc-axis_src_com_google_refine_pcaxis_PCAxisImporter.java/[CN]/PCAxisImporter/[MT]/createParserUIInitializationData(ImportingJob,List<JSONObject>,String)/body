@@ -1,0 +1,7 @@
+{
+  JSONObject options=new JSONObject();
+  JSONUtilities.safePut(options,"includeFileSources",fileRecords.size() > 1);
+  JSONUtilities.safePut(options,"skipDataLines",0);
+  JSONUtilities.safePut(options,"limit",-1);
+  return options;
+}

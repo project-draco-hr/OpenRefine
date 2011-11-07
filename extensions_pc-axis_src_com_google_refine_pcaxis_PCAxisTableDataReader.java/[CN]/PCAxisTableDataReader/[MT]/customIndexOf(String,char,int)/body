@@ -1,0 +1,4 @@
+{
+  int i=s.indexOf(c,start);
+  return i < 0 ? s.length() : i;
+}

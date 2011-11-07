@@ -1,0 +1,9 @@
+{
+  LineNumberReader lnReader=new LineNumberReader(reader);
+  TableDataReader dataReader=new PCAxisTableDataReader(lnReader,exceptions);
+  JSONUtilities.safePut(options,"ignoreLines",-1);
+  JSONUtilities.safePut(options,"headerLines",1);
+  JSONUtilities.safePut(options,"storeBlankRows",true);
+  JSONUtilities.safePut(options,"storeBlankCellsAsNulls",true);
+  TabularImportingParserBase.readTable(project,metadata,job,dataReader,fileSource,limit,options,exceptions);
+}

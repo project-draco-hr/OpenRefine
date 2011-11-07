@@ -1,0 +1,4 @@
+{
+  this._lnReader=lnReader;
+  this.exceptions=exceptions;
+}

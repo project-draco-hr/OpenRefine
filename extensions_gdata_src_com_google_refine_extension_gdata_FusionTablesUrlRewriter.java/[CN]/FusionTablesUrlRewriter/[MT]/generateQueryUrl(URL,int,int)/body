@@ -1,6 +1,0 @@
-{
-  String tableId=getFusionTableKey(url);
-  final String SERVICE_URL="http://www.google.com/fusiontables/api/query";
-  final String selectQuery="select * from " + tableId + " offset "+ (start)+ (limit > 0 ? (" limit " + limit) : "");
-  return new URL(SERVICE_URL + "?sql=" + URLEncoder.encode(selectQuery,"UTF-8"));
-}

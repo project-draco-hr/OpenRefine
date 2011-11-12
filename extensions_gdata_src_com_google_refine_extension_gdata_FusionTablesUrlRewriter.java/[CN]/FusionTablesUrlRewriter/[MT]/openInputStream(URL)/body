@@ -1,6 +1,0 @@
-{
-  GoogleService service=new GoogleService("fusiontables",GDataExtension.SERVICE_APP_NAME);
-  GDataRequest queryRequest=service.getRequestFactory().getRequest(RequestType.QUERY,queryUrl,ContentType.TEXT_PLAIN);
-  queryRequest.execute();
-  return queryRequest.getResponseStream();
-}

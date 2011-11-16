@@ -1,9 +1,5 @@
 {
   String token=TokenCookie.getToken(request);
-  if (token == null) {
-    HttpUtilities.respond(response,"error","Not authorized");
-    return;
-  }
   String type=parameters.getProperty("docType");
   String urlString=parameters.getProperty("docUrl");
   URL url=new URL(urlString);
@@ -21,8 +17,20 @@
       JSONArray worksheets=new JSONArray();
       JSONUtilities.safePut(options,"worksheets",worksheets);
       SpreadsheetService spreadsheetService=GDataExtension.getSpreadsheetService(token);
-      SpreadsheetEntry spreadsheetEntry=spreadsheetService.getEntry(url,SpreadsheetEntry.class);
-      for (      WorksheetEntry worksheetEntry : spreadsheetEntry.getWorksheets()) {
+      List<WorksheetEntry> worksheetEntries;
+      if (token == null) {
+        String visibility="public";
+        FeedURLFactory factory=FeedURLFactory.getDefault();
+        String key=GDataExtension.getSpreadsheetID(url);
+        url=factory.getWorksheetFeedUrl(key,visibility,"values");
+        WorksheetFeed feed=spreadsheetService.getFeed(url,WorksheetFeed.class);
+        worksheetEntries=feed.getEntries();
+      }
+ else {
+        SpreadsheetEntry spreadsheetEntry=spreadsheetService.getEntry(url,SpreadsheetEntry.class);
+        worksheetEntries=spreadsheetEntry.getWorksheets();
+      }
+      for (      WorksheetEntry worksheetEntry : worksheetEntries) {
         JSONObject worksheetO=new JSONObject();
         JSONUtilities.safePut(worksheetO,"name",worksheetEntry.getTitle().getPlainText());
         JSONUtilities.safePut(worksheetO,"rows",worksheetEntry.getRowCount());

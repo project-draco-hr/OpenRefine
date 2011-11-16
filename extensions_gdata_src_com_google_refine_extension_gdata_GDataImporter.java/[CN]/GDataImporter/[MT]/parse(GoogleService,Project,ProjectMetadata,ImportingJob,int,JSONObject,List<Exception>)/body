@@ -1,13 +1,6 @@
 {
   String docUrlString=JSONUtilities.getString(options,"docUrl",null);
-  if (docUrlString == null) {
-    return;
-  }
-  int equal=docUrlString.lastIndexOf('=');
-  if (equal < 0) {
-    return;
-  }
-  String id=docUrlString.substring(equal + 1);
+  String id=getFTid(docUrlString);
   try {
     List<FTColumnData> columns=new ArrayList<GDataImporter.FTColumnData>();
     List<List<String>> rows=GDataExtension.runFusionTablesSelect(service,"DESCRIBE " + id);

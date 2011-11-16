@@ -1,9 +1,5 @@
 {
   String token=TokenCookie.getToken(request);
-  if (token == null) {
-    HttpUtilities.respond(response,"error","Not authorized");
-    return;
-  }
   long jobID=Long.parseLong(parameters.getProperty("jobID"));
   ImportingJob job=ImportingManager.getJob(jobID);
   if (job == null) {

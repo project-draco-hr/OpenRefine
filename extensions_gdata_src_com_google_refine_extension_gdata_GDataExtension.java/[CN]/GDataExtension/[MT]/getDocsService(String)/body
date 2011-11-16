@@ -1,5 +1,7 @@
 {
   DocsService service=new DocsService(SERVICE_APP_NAME);
-  service.setAuthSubToken(token);
+  if (token != null) {
+    service.setAuthSubToken(token);
+  }
   return service;
 }

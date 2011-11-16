@@ -1,0 +1,4 @@
+{
+  String tableId=getParamValue(url,"dsrcid");
+  return tableId;
+}

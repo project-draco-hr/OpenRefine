@@ -7,6 +7,10 @@
       long time=((Date)v).getTime();
       return _selectTime && checkValue(time);
     }
+ else     if (v instanceof Calendar) {
+      long time=((Calendar)v).getTime().getTime();
+      return _selectTime && checkValue(time);
+    }
  else {
       return _selectNonTime;
     }

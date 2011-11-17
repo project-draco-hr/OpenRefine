@@ -1,0 +1,8 @@
+{
+  try {
+    return getWorksheetEntriesForDoc(docUrl,token);
+  }
+ catch (  ServiceException e) {
+    throw e;
+  }
+}

@@ -1,8 +1,7 @@
 {
+  String token=TokenCookie.getToken(request);
   String type=parameters.getProperty("docType");
   String urlString=parameters.getProperty("docUrl");
-  boolean isPublic="true".equals(parameters.getProperty("isPublic"));
-  String token=isPublic ? null : TokenCookie.getToken(request);
   URL url=new URL(urlString);
   try {
     JSONObject result=new JSONObject();
@@ -17,20 +16,7 @@
       JSONUtilities.safePut(options,"headerLines",1);
       JSONArray worksheets=new JSONArray();
       JSONUtilities.safePut(options,"worksheets",worksheets);
-      SpreadsheetService spreadsheetService=GDataExtension.getSpreadsheetService(token);
-      List<WorksheetEntry> worksheetEntries;
-      if (token == null) {
-        String visibility="public";
-        FeedURLFactory factory=FeedURLFactory.getDefault();
-        String key=GDataExtension.getSpreadsheetID(url);
-        url=factory.getWorksheetFeedUrl(key,visibility,"values");
-        WorksheetFeed feed=spreadsheetService.getFeed(url,WorksheetFeed.class);
-        worksheetEntries=feed.getEntries();
-      }
- else {
-        SpreadsheetEntry spreadsheetEntry=spreadsheetService.getEntry(url,SpreadsheetEntry.class);
-        worksheetEntries=spreadsheetEntry.getWorksheets();
-      }
+      List<WorksheetEntry> worksheetEntries=reallyTryToGetWorksheetEntriesForDoc(url,token);
       for (      WorksheetEntry worksheetEntry : worksheetEntries) {
         JSONObject worksheetO=new JSONObject();
         JSONUtilities.safePut(worksheetO,"name",worksheetEntry.getTitle().getPlainText());

@@ -1,0 +1,9 @@
+{
+  SpreadsheetService spreadsheetService=GDataExtension.getSpreadsheetService(null);
+  String visibility="public";
+  FeedURLFactory factory=FeedURLFactory.getDefault();
+  String key=GDataExtension.getSpreadsheetID(docUrl);
+  docUrl=factory.getWorksheetFeedUrl(key,visibility,"values");
+  WorksheetFeed feed=spreadsheetService.getFeed(docUrl,WorksheetFeed.class);
+  return feed.getEntries();
+}

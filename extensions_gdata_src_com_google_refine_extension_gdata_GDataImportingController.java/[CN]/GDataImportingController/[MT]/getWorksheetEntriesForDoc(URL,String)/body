@@ -1,0 +1,12 @@
+{
+  if (token != null) {
+    try {
+      SpreadsheetService spreadsheetService=GDataExtension.getSpreadsheetService(token);
+      SpreadsheetEntry spreadsheetEntry=spreadsheetService.getEntry(docUrl,SpreadsheetEntry.class);
+      return spreadsheetEntry.getWorksheets();
+    }
+ catch (    ServiceException e) {
+    }
+  }
+  return getWorksheetEntriesForDoc(docUrl);
+}

@@ -22,6 +22,17 @@
       return CalendarParser.parse(o1,(month_first) ? CalendarParser.MM_DD_YY : CalendarParser.DD_MM_YY);
     }
  catch (    CalendarParserException e) {
+      Date d=ParsingUtilities.stringToDate(o1);
+      if (d != null) {
+        return d;
+      }
+ else {
+        try {
+          return javax.xml.bind.DatatypeConverter.parseDateTime(o1).getTime();
+        }
+ catch (        IllegalArgumentException e2) {
+        }
+      }
       return new EvalError("Cannot parse to date");
     }
   }

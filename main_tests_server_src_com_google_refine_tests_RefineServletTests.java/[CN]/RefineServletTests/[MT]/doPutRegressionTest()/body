@@ -1,6 +1,6 @@
 {
   whenGetCommandNameThenReturn(TEST_COMMAND_PATH);
-  whenGetMethodThenReturn(POST);
+  whenGetMethodThenReturn(PUT);
   try {
     SUT.wrapService(request,response);
   }
@@ -12,7 +12,7 @@ catch (  IOException e) {
   }
   verifyGetCommandNameCalled(2);
   try {
-    verify(command,times(1)).doPost(request,response);
+    verify(command,times(1)).doPut(request,response);
   }
  catch (  ServletException e) {
     Assert.fail();

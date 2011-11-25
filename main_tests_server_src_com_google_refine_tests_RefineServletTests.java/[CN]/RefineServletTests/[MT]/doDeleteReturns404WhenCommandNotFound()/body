@@ -1,0 +1,15 @@
+{
+  whenGetCommandNameThenReturn(BAD_COMMAND_PATH);
+  whenGetMethodThenReturn(DELETE);
+  try {
+    SUT.wrapService(request,response);
+  }
+ catch (  ServletException e) {
+    Assert.fail();
+  }
+catch (  IOException e) {
+    Assert.fail();
+  }
+  verifyGetCommandNameCalled(2);
+  verifyError404Called();
+}

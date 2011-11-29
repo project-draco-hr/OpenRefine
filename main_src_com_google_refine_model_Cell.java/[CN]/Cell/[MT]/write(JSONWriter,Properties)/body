@@ -17,6 +17,9 @@
         writer.key("t");
         writer.value("date");
       }
+ else       if (value instanceof Double && (((Double)value).isNaN() || ((Double)value).isInfinite())) {
+        writer.value(((Double)value).toString());
+      }
  else {
         writer.value(value);
       }

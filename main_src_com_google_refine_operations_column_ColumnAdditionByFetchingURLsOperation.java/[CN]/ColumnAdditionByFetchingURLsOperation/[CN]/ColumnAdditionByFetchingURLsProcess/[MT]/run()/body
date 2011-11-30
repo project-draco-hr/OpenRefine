@@ -1,4 +1,13 @@
 {
+  Column column=_project.columnModel.getColumnByName(_baseColumnName);
+  if (column == null) {
+    _project.processManager.onFailedProcess(this,new Exception("No column named " + _baseColumnName));
+    return;
+  }
+  if (_project.columnModel.getColumnByName(_newColumnName) != null) {
+    _project.processManager.onFailedProcess(this,new Exception("Another column already named " + _newColumnName));
+    return;
+  }
   List<CellAtRow> urls=new ArrayList<CellAtRow>(_project.rows.size());
   FilteredRows filteredRows=_engine.getAllFilteredRows();
   filteredRows.accept(_project,createRowVisitor(urls));

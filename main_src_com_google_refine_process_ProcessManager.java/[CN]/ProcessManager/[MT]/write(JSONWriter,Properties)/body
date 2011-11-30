@@ -6,5 +6,16 @@
     p.write(writer,options);
   }
   writer.endArray();
+  if (_latestExceptions != null) {
+    writer.key("exceptions");
+    writer.array();
+    for (    Exception e : _latestExceptions) {
+      writer.object();
+      writer.key("message");
+      writer.value(e.getLocalizedMessage());
+      writer.endObject();
+    }
+    writer.endArray();
+  }
   writer.endObject();
 }

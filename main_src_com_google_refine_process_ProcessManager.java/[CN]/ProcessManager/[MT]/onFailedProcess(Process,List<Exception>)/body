@@ -1,0 +1,4 @@
+{
+  _latestExceptions=exceptions;
+  _processes.remove(p);
+}

@@ -5,4 +5,5 @@
     }
   }
   _processes.clear();
+  _latestExceptions=null;
 }

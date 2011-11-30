@@ -2,6 +2,7 @@
   while (_processes.size() > 0) {
     Process p=_processes.get(0);
     if (p.isImmediate()) {
+      _latestExceptions=null;
       try {
         p.performImmediate();
       }
@@ -15,6 +16,7 @@
     }
  else {
       if (!p.isRunning()) {
+        _latestExceptions=null;
         p.startPerforming(this);
       }
       break;

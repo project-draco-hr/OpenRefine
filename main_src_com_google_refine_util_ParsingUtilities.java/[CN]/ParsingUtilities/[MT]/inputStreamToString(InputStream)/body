@@ -1,9 +1,3 @@
 {
-  Reader reader=new InputStreamReader(is,"UTF-8");
-  try {
-    return readerToString(reader);
-  }
-  finally {
-    reader.close();
-  }
+  return inputStreamToString(is,"UTF-8");
 }

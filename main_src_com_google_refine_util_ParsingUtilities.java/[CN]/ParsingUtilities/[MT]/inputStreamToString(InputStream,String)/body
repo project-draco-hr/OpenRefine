@@ -1,0 +1,9 @@
+{
+  Reader reader=new InputStreamReader(is,encoding);
+  try {
+    return readerToString(reader);
+  }
+  finally {
+    reader.close();
+  }
+}

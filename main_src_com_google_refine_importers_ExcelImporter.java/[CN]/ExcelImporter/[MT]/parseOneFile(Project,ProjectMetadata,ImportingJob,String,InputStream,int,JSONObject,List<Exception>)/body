@@ -27,7 +27,7 @@ catch (  ArrayIndexOutOfBoundsException e) {
         org.apache.poi.ss.usermodel.Row row=sheet.getRow(nextRow++);
         if (row != null) {
           short lastCell=row.getLastCellNum();
-          for (short cellIndex=0; cellIndex <= lastCell; cellIndex++) {
+          for (short cellIndex=0; cellIndex < lastCell; cellIndex++) {
             Cell cell=null;
             org.apache.poi.ss.usermodel.Cell sourceCell=row.getCell(cellIndex);
             if (sourceCell != null) {

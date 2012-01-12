@@ -5,8 +5,8 @@
   if (n < 1) {
     throw new IllegalArgumentException("the number of elements, n, cannot be less than 1");
   }
-  int nFact=FactN.factorial(n,1);
-  int rFact=FactN.factorial(k,1);
-  int nminusrFact=FactN.factorial(n - k,1);
+  long nFact=FactN.factorial(n,1);
+  long rFact=FactN.factorial(k,1);
+  long nminusrFact=FactN.factorial(n - k,1);
   return nFact / (rFact * nminusrFact);
 }

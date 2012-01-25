@@ -1,7 +1,7 @@
 {
 synchronized (project) {
-    for (    Change _change : _changes) {
-      _change.apply(project);
+    for (    Change change : _changes) {
+      change.apply(project);
     }
   }
 }

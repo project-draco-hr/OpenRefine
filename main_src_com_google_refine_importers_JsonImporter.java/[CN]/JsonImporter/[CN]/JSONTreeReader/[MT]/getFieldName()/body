@@ -6,7 +6,7 @@
         text=this.lastFieldName;
       }
  else {
-        text="__anonymous__";
+        text=ANONYMOUS;
       }
     }
     return text;

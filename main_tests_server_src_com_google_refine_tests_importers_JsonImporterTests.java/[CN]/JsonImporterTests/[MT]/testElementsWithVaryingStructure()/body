@@ -2,7 +2,7 @@
   RunTest(getSampleWithVaryingStructure());
   log(project);
   assertProjectCreated(project,5,6);
-  Assert.assertEquals(project.columnModel.getColumnByCellIndex(4).getName(),"__anonymous__ - genre");
+  Assert.assertEquals(project.columnModel.getColumnByCellIndex(4).getName(),JsonImporter.ANONYMOUS + " - genre");
   Row row0=project.rows.get(0);
   Assert.assertNotNull(row0);
   Assert.assertEquals(row0.cells.size(),4);

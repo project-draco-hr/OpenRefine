@@ -54,11 +54,11 @@
       }
       if (i == 4) {
         Assert.assertEquals(token,Token.StartEntity);
-        Assert.assertEquals(parser.getFieldName(),"__anonymous__");
+        Assert.assertEquals(parser.getFieldName(),JsonImporter.ANONYMOUS);
       }
       if (i == 6) {
         Assert.assertEquals(token,Token.StartEntity);
-        Assert.assertEquals(parser.getFieldName(),"__anonymous__");
+        Assert.assertEquals(parser.getFieldName(),JsonImporter.ANONYMOUS);
       }
     }
   }

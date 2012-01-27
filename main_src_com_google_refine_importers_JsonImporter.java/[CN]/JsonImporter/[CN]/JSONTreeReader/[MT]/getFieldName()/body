@@ -1,17 +1,3 @@
 {
-  try {
-    String text=parser.getCurrentName();
-    if (text == null) {
-      if (this.lastTokenWasAFieldNameAndCurrentTokenIsANewEntity) {
-        text=this.lastFieldName;
-      }
- else {
-        text=ANONYMOUS;
-      }
-    }
-    return text;
-  }
- catch (  IOException e) {
-    throw new TreeReaderException(e);
-  }
+  return fieldName;
 }

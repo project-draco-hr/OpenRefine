@@ -1,39 +1,28 @@
 {
-  JsonToken next;
+  JsonToken previous=current;
+  current=next;
+  next=null;
   try {
+    if (current != null) {
+      if (current.isScalarValue()) {
+        fieldValue=parser.getText();
+      }
+ else {
+        fieldValue=null;
+      }
+      if (current == JsonToken.FIELD_NAME) {
+        fieldName=parser.getText();
+      }
+ else       if (current == JsonToken.START_ARRAY || current == JsonToken.START_OBJECT) {
+        if (previous != JsonToken.FIELD_NAME) {
+          fieldName=ANONYMOUS;
+        }
+      }
+    }
     next=parser.nextToken();
   }
- catch (  JsonParseException e) {
+ catch (  IOException e) {
     throw new TreeReaderException(e);
   }
-catch (  IOException e) {
-    throw new TreeReaderException(e);
-  }
-  if (next == null) {
-    throw new TreeReaderException("No more Json Tokens in stream");
-  }
-  if (next == JsonToken.FIELD_NAME) {
-    try {
-      this.thisTokenIsAFieldName=true;
-      this.lastFieldName=parser.getCurrentName();
-    }
- catch (    IOException e) {
-    }
-  }
- else   if (next == JsonToken.START_ARRAY || next == JsonToken.START_OBJECT) {
-    if (this.thisTokenIsAFieldName) {
-      this.lastTokenWasAFieldNameAndCurrentTokenIsANewEntity=true;
-      this.thisTokenIsAFieldName=false;
-    }
- else {
-      this.lastTokenWasAFieldNameAndCurrentTokenIsANewEntity=false;
-      this.lastFieldName=null;
-    }
-  }
- else {
-    this.lastTokenWasAFieldNameAndCurrentTokenIsANewEntity=false;
-    this.lastFieldName=null;
-    this.thisTokenIsAFieldName=false;
-  }
-  return mapToToken(next);
+  return current();
 }

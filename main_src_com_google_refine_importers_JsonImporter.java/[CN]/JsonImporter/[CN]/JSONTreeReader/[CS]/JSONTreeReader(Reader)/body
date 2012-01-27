@@ -1,6 +1,8 @@
 {
   try {
     parser=factory.createJsonParser(reader);
+    current=null;
+    next=parser.nextToken();
   }
  catch (  IOException e) {
     e.printStackTrace();

@@ -1,8 +1,3 @@
 {
-  try {
-    return parser.getText();
-  }
- catch (  IOException e) {
-    throw new TreeReaderException(e);
-  }
+  return fieldValue;
 }

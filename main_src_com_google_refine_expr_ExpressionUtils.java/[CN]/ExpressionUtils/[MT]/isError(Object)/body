@@ -1,3 +1,3 @@
 {
-  return o != null && o instanceof EvalError;
+  return o instanceof EvalError;
 }

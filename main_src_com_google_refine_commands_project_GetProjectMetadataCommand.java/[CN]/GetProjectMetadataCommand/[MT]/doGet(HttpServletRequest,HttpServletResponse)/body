@@ -1,6 +1,13 @@
 {
-  Project project=getProject(request);
   try {
+    Project project;
+    try {
+      project=getProject(request);
+    }
+ catch (    ServletException e) {
+      respond(response,"error",e.getLocalizedMessage());
+      return;
+    }
     respondJSON(response,ProjectManager.singleton.getProjectMetadata(project.id));
   }
  catch (  JSONException e) {

@@ -32,7 +32,9 @@ catch (    IOException e) {
     }
  finally {
       try {
-        if (reader != null)         reader.close();
+        if (reader != null) {
+          reader.close();
+        }
       }
  catch (      IOException e) {
         logger.warn("Exception closing file",e);

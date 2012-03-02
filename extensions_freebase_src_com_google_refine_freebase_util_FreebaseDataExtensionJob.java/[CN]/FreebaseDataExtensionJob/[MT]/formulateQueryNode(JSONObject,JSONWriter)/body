@@ -4,7 +4,7 @@
   writer.key(propertyID);
   writer.array();
 {
-    if (!expectedTypeID.startsWith("/type/")) {
+    if (!expectedTypeID.startsWith("/type/") || "/type/key".equals(expectedTypeID)) {
       writer.object();
       writer.key("optional");
       writer.value(true);
@@ -48,10 +48,16 @@
 {
         boolean hasSubProperties=(node.has("properties") && !node.isNull("properties"));
         if (!hasSubProperties || (node.has("included") && node.getBoolean("included"))) {
-          writer.key("name");
-          writer.value(null);
-          writer.key("id");
-          writer.value(null);
+          if ("/type/key".equals(expectedTypeID)) {
+            writer.key("value");
+            writer.value(null);
+          }
+ else {
+            writer.key("name");
+            writer.value(null);
+            writer.key("id");
+            writer.value(null);
+          }
           writer.key("type");
           writer.array();
           writer.endArray();

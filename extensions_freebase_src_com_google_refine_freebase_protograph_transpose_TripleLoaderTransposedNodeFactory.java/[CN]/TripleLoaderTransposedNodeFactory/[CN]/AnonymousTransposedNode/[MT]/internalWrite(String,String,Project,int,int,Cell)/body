@@ -13,7 +13,7 @@
   StringBuffer sbRecon=new StringBuffer();
   boolean first=true;
   boolean firstRecon=true;
-  if (subjectCell.recon != null) {
+  if (subjectCell != null && subjectCell.recon != null) {
     sbRecon.append("\"s\" : ");
     writeRecon(sbRecon,project,subjectRowIndex,subjectCellIndex,subjectCell);
     firstRecon=false;

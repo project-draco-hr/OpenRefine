@@ -1,6 +1,10 @@
 {
   if ("/type/datetime".equals(valueType)) {
-    if (!(value instanceof String)) {
+    if (value instanceof Calendar || value instanceof Date) {
+      DateFormat formatter=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+      value=formatter.format(value instanceof Date ? ((Date)value) : ((Calendar)value).getTime());
+    }
+ else     if (!(value instanceof String)) {
       value=value.toString();
     }
   }

@@ -5,7 +5,7 @@
     String location=JSONUtilities.getString(fileRecord,"location",null);
     if (location != null) {
       File file=new File(job.getRawDataDir(),location);
-      Separator separator=guessSeparator(file,encoding);
+      Separator separator=guessSeparator(file,encoding,true);
       if (separator != null) {
         return StringEscapeUtils.escapeJava(Character.toString(separator.separator));
       }

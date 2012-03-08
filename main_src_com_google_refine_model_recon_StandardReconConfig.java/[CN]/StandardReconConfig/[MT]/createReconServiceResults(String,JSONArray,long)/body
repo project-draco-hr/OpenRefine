@@ -28,7 +28,7 @@
     if (count > 0) {
       ReconCandidate candidate=recon.candidates.get(0);
       recon.setFeature(Recon.Feature_nameMatch,text.equalsIgnoreCase(candidate.name));
-      recon.setFeature(Recon.Feature_nameLevenshtein,StringUtils.getLevenshteinDistance(text,candidate.name));
+      recon.setFeature(Recon.Feature_nameLevenshtein,StringUtils.getLevenshteinDistance(StringUtils.lowerCase(text),StringUtils.lowerCase(candidate.name)));
       recon.setFeature(Recon.Feature_nameWordDistance,wordDistance(text,candidate.name));
       recon.setFeature(Recon.Feature_typeMatch,false);
       if (this.typeID != null) {

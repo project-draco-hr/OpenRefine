@@ -1,0 +1,5 @@
+{
+  Assert.assertNull(invoke("toString"));
+  Assert.assertNull(invoke("toString",(Object)null));
+  Assert.assertEquals(invoke("toString",Double.valueOf(100.0)),"100.0");
+}

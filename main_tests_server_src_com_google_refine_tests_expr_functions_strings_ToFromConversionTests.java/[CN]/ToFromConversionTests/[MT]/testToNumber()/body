@@ -1,0 +1,10 @@
+{
+  Assert.assertNull(invoke("toNumber"));
+  Assert.assertNull(invoke("toNumber",(Object)null));
+  Assert.assertTrue(invoke("toNumber","string") instanceof EvalError);
+  Assert.assertEquals(invoke("toNumber","0.0"),0.0);
+  Assert.assertTrue(Math.abs((Double)invoke("toNumber","123.456") - 123.456) < EPSILON);
+  Assert.assertTrue(Math.abs((Double)invoke("toNumber","001.234") - 1.234) < EPSILON);
+  Assert.assertTrue(Math.abs((Double)invoke("toNumber","1e2") - 100.0) < EPSILON);
+  Assert.assertTrue(Math.abs((Double)invoke("toNumber",Double.parseDouble("100.0")) - 100.0) < EPSILON);
+}

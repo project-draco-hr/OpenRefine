@@ -79,9 +79,15 @@
       }
  else       if ("identifierSpace".equals(fieldName)) {
         recon.identifierSpace=jp.getText();
+        if ("null".equals(recon.identifierSpace)) {
+          recon.identifierSpace=FREEBASE_IDENTIFIER_SPACE;
+        }
       }
  else       if ("schemaSpace".equals(fieldName)) {
         recon.schemaSpace=jp.getText();
+        if ("null".equals(recon.schemaSpace)) {
+          recon.schemaSpace=FREEBASE_SCHEMA_SPACE;
+        }
       }
  else       if ("judgmentAction".equals(fieldName)) {
         recon.judgmentAction=jp.getText();

@@ -1,0 +1,10 @@
+{
+  if (context.parent == null) {
+    tnodes.add(nodeFactory.transposeTopicNode(null,link,(FreebaseTopicNode)node,rowIndex));
+  }
+ else {
+    for (    TransposedNode parentNode : context.parent.transposedNodes) {
+      tnodes.add(nodeFactory.transposeTopicNode(parentNode,link,(FreebaseTopicNode)node,rowIndex));
+    }
+  }
+}

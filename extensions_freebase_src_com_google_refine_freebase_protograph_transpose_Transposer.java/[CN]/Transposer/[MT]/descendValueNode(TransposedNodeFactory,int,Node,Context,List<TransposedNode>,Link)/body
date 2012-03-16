@@ -1,0 +1,10 @@
+{
+  if (context.parent == null) {
+    tnodes.add(nodeFactory.transposeValueNode(null,link,(ValueNode)node,rowIndex));
+  }
+ else {
+    for (    TransposedNode parentNode : context.parent.transposedNodes) {
+      tnodes.add(nodeFactory.transposeValueNode(parentNode,link,(ValueNode)node,rowIndex));
+    }
+  }
+}

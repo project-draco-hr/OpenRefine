@@ -1,0 +1,6 @@
+TransposedNodeFactory nodeFactory
+int rowIndex
+Node node
+Context context
+List<TransposedNode> tnodes
+Link link

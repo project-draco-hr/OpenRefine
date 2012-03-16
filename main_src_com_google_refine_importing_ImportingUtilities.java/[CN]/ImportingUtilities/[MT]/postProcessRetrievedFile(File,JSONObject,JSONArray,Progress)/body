@@ -1,7 +1,8 @@
 {
   String mimeType=JSONUtilities.getString(fileRecord,"declaredMimeType",null);
+  String contentEncoding=JSONUtilities.getString(fileRecord,"declaredEncoding",null);
   File rawDataDir=file.getParentFile();
-  InputStream archiveIS=tryOpenAsArchive(file,mimeType);
+  InputStream archiveIS=tryOpenAsArchive(file,mimeType,contentEncoding);
   if (archiveIS != null) {
     try {
       if (explodeArchive(rawDataDir,archiveIS,fileRecord,fileRecords,progress)) {
@@ -17,7 +18,7 @@
       }
     }
   }
-  InputStream uncompressedIS=tryOpenAsCompressedFile(file,mimeType);
+  InputStream uncompressedIS=tryOpenAsCompressedFile(file,mimeType,contentEncoding);
   if (uncompressedIS != null) {
     try {
       File file2=uncompressFile(rawDataDir,uncompressedIS,fileRecord,progress);
@@ -29,7 +30,7 @@
     }
  finally {
       try {
-        archiveIS.close();
+        uncompressedIS.close();
       }
  catch (      IOException e) {
       }

@@ -1,14 +1,3 @@
 {
-  String fileName=file.getName();
-  try {
-    if (fileName.endsWith(".gz")) {
-      return new GZIPInputStream(new FileInputStream(file));
-    }
- else     if (fileName.endsWith(".bz2")) {
-      return new CBZip2InputStream(new FileInputStream(file));
-    }
-  }
- catch (  IOException e) {
-  }
-  return null;
+  return tryOpenAsCompressedFile(file,mimeType,null);
 }

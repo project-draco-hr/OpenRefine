@@ -5,4 +5,5 @@
  else {
     _prefs.put(key,value);
   }
+  dirty=true;
 }

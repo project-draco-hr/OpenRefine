@@ -9,5 +9,6 @@
         _prefs.put(key,loadObject(o));
       }
     }
+    dirty=false;
   }
 }

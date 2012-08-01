@@ -1,3 +1,3 @@
 {
-  return "https://" + host + "/api/oauth/access_token";
+  return "https://api." + host + "/api/oauth/access_token";
 }

@@ -1,0 +1,8 @@
+{
+  Assert.assertEquals((String)(invoke("diff","onetwo","onetwothree")),"three");
+  Assert.assertEquals(invoke("diff",date2,date1,"days"),Long.valueOf(61));
+  Assert.assertEquals(invoke("diff",date2,date1,"weeks"),Long.valueOf(8));
+  Assert.assertEquals(invoke("diff",date2,date1,"months"),Long.valueOf(2));
+  Assert.assertEquals(invoke("diff",date2,date1,"hours"),Long.valueOf(1464));
+  Assert.assertEquals(invoke("diff",date2,date1,"seconds"),Long.valueOf(5270400));
+}

@@ -1,0 +1,6 @@
+{
+  Assert.assertTrue(invoke("diff") instanceof EvalError);
+  Assert.assertTrue(invoke("diff","one","two","three") instanceof EvalError);
+  Assert.assertTrue(invoke("diff",date1,date2) instanceof EvalError);
+  Assert.assertTrue(invoke("diff",date1,date2,"foo") instanceof EvalError);
+}

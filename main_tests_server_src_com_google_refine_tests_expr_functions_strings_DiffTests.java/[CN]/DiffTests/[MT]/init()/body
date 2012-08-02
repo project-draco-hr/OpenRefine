@@ -1,0 +1,11 @@
+{
+  logger=LoggerFactory.getLogger(this.getClass());
+  try {
+    date1=CalendarParser.parse("2012-08-02");
+    date2=CalendarParser.parse("2012-10-02");
+  }
+ catch (  CalendarParserException e) {
+    e.printStackTrace();
+    Assert.fail();
+  }
+}

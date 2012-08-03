@@ -1,6 +1,0 @@
-{
-  Assert.assertTrue(invoke("fromError") instanceof EvalError);
-  Assert.assertTrue(invoke("fromError",(Object)null) instanceof EvalError);
-  Assert.assertTrue(invoke("fromError","string") instanceof EvalError);
-  Assert.assertEquals(invoke("fromError",new EvalError("message")),"message");
-}

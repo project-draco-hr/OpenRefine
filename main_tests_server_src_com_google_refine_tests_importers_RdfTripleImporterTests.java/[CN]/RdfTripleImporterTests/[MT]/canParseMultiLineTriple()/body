@@ -1,12 +1,7 @@
 {
   String sampleRdf="<http://rdf.freebase.com/ns/en.bob_dylan> <http://rdf.freebase.com/ns/music.artist.album> <http://rdf.freebase.com/ns/en.blood_on_the_tracks>.\n" + "<http://rdf.freebase.com/ns/en.bob_dylan> <http://rdf.freebase.com/ns/music.artist.album> <http://rdf.freebase.com/ns/en.under_the_red_sky>.\n" + "<http://rdf.freebase.com/ns/en.bob_dylan> <http://rdf.freebase.com/ns/music.artist.album> <http://rdf.freebase.com/ns/en.bringing_it_all_back_home>.";
-  StringReader reader=new StringReader(sampleRdf);
-  try {
-    parseOneFile(SUT,reader);
-  }
- catch (  Exception e) {
-    Assert.fail();
-  }
+  InputStream input=new ByteArrayInputStream(sampleRdf.getBytes("UTF-8"));
+  parseOneFile(SUT,input);
   Assert.assertEquals(project.columnModel.columns.size(),2);
   Assert.assertEquals(project.columnModel.columns.get(0).getName(),"subject");
   Assert.assertEquals(project.columnModel.columns.get(1).getName(),"http://rdf.freebase.com/ns/music.artist.album");
@@ -16,12 +11,12 @@
   Assert.assertEquals(project.rows.get(0).cells.get(1).value,"http://rdf.freebase.com/ns/en.blood_on_the_tracks");
   Assert.assertEquals(project.rows.get(1).cells.size(),2);
   Assert.assertNull(project.rows.get(1).cells.get(0));
-  Assert.assertEquals(project.rows.get(1).cells.get(1).value,"http://rdf.freebase.com/ns/en.bringing_it_all_back_home");
+  Assert.assertEquals(project.rows.get(1).cells.get(1).value,"http://rdf.freebase.com/ns/en.under_the_red_sky");
   Assert.assertEquals(project.recordModel.getRowDependency(1).cellDependencies[1].rowIndex,0);
   Assert.assertEquals(project.recordModel.getRowDependency(1).cellDependencies[1].cellIndex,0);
   Assert.assertEquals(project.rows.get(2).cells.size(),2);
   Assert.assertNull(project.rows.get(2).cells.get(0));
-  Assert.assertEquals(project.rows.get(2).cells.get(1).value,"http://rdf.freebase.com/ns/en.under_the_red_sky");
+  Assert.assertEquals(project.rows.get(2).cells.get(1).value,"http://rdf.freebase.com/ns/en.bringing_it_all_back_home");
   Assert.assertEquals(project.recordModel.getRowDependency(2).cellDependencies[1].rowIndex,0);
   Assert.assertEquals(project.recordModel.getRowDependency(2).cellDependencies[1].cellIndex,0);
 }

@@ -1,6 +1,3 @@
 {
-  super(false);
-  _jrdfFactory=SortedMemoryJRDFFactory.getFactory();
-  _nTriplesParserFactory=new NTriplesParserFactory();
-  _newMapFactory=new MemMapFactory();
+  this(Mode.NT);
 }

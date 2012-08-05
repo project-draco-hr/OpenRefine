@@ -1,0 +1,5 @@
+{
+  super(true);
+  rdfReader=new RdfReader();
+  this.mode=mode;
+}

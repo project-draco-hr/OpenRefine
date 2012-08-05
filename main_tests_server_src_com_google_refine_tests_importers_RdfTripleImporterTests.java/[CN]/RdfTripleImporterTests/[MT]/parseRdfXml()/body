@@ -1,0 +1,18 @@
+{
+  String sampleRdf="<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" + "<rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n" + "         xmlns:dc=\"http://purl.org/dc/elements/1.1/\">\n"+ "  <rdf:Description rdf:about=\"http://www.w3.org/TR/rdf-syntax-grammar\">\n"+ "    <dc:title>RDF/XML Syntax Specification (Revised)</dc:title>\n"+ "    <dc:title xml:lang=\"en\">RDF/XML Syntax Specification (Revised)</dc:title>\n"+ "    <dc:title xml:lang=\"en-US\">RDF/XML Syntax Specification (Revised)</dc:title>\n"+ "  </rdf:Description>\n"+ "\n"+ "  <rdf:Description rdf:about=\"http://example.org/buecher/baum\" xml:lang=\"de\">\n"+ "    <dc:title>Der Baum</dc:title>\n"+ "    <dc:description>Das Buch ist au??ergew??hnlich</dc:description>\n"+ "    <dc:title xml:lang=\"en\">The Tree</dc:title>\n"+ "  </rdf:Description>\n"+ "</rdf:RDF>\n";
+  InputStream input=new ByteArrayInputStream(sampleRdf.getBytes("UTF-8"));
+  SUT=new RdfTripleImporter(RdfTripleImporter.Mode.RDFXML);
+  parseOneFile(SUT,input);
+  Assert.assertEquals(project.columnModel.columns.size(),3);
+  Assert.assertEquals(project.columnModel.columns.get(0).getName(),"subject");
+  Assert.assertEquals(project.columnModel.columns.get(1).getName(),"http://purl.org/dc/elements/1.1/title");
+  Assert.assertEquals(project.columnModel.columns.get(2).getName(),"http://purl.org/dc/elements/1.1/description");
+  Assert.assertEquals(project.rows.size(),5);
+  Assert.assertEquals(project.rows.get(0).cells.size(),2);
+  Assert.assertEquals(project.rows.get(0).cells.get(0).value,"http://www.w3.org/TR/rdf-syntax-grammar");
+  Assert.assertEquals(project.rows.get(0).cells.get(1).value,"\"RDF/XML Syntax Specification (Revised)\"");
+  Assert.assertEquals(project.rows.get(3).cells.size(),3);
+  Assert.assertEquals(project.rows.get(3).cells.get(0).value,"http://example.org/buecher/baum");
+  Assert.assertEquals(project.rows.get(3).cells.get(1).value,"\"Der Baum\"@de");
+  Assert.assertEquals(project.rows.get(3).cells.get(2).value,"\"Das Buch ist au??ergew??hnlich\"@de");
+}

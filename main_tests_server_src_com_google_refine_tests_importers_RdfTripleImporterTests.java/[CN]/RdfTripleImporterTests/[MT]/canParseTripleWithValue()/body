@@ -1,12 +1,8 @@
 {
   String sampleRdf="<http://rdf.freebase.com/ns/en.bob_dylan> <http://rdf.freebase.com/ns/common.topic.alias> \"Robert Zimmerman\"@en.";
-  StringReader reader=new StringReader(sampleRdf);
-  try {
-    parseOneFile(SUT,reader);
-  }
- catch (  Exception e) {
-    Assert.fail();
-  }
+  InputStream input=new ByteArrayInputStream(sampleRdf.getBytes("UTF-8"));
+  SUT=new RdfTripleImporter(RdfTripleImporter.Mode.NT);
+  parseOneFile(SUT,input);
   Assert.assertEquals(project.columnModel.columns.size(),2);
   Assert.assertEquals(project.columnModel.columns.get(0).getName(),"subject");
   Assert.assertEquals(project.columnModel.columns.get(1).getName(),"http://rdf.freebase.com/ns/common.topic.alias");

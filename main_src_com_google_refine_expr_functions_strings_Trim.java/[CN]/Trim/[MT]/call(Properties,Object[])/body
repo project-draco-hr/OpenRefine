@@ -5,5 +5,5 @@
       return CharMatcher.WHITESPACE.trimFrom((String)s1);
     }
   }
-  return null;
+  return new EvalError("Invalid parameters");
 }

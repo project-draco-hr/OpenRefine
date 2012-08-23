@@ -1,6 +1,5 @@
 {
   Cookie c=new Cookie(name,value);
-  c.setDomain(getDomain(request));
   c.setPath(PATH);
   c.setMaxAge(max_age);
   response.addCookie(c);

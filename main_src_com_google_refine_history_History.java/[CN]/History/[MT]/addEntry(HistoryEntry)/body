@@ -1,15 +1,20 @@
 {
-  entry.apply(ProjectManager.singleton.getProject(_projectID));
-  _pastEntries.add(entry);
-  setModified();
-  List<HistoryEntry> futureEntries=_futureEntries;
-  _futureEntries=new ArrayList<HistoryEntry>();
-  for (  HistoryEntry entry2 : futureEntries) {
-    try {
-      entry2.delete();
-    }
- catch (    Exception e) {
-      e.printStackTrace();
+  Project project=ProjectManager.singleton.getProject(_projectID);
+synchronized (project) {
+synchronized (this) {
+      entry.apply(project);
+      _pastEntries.add(entry);
+      setModified();
+      List<HistoryEntry> futureEntries=_futureEntries;
+      _futureEntries=new ArrayList<HistoryEntry>();
+      for (      HistoryEntry entry2 : futureEntries) {
+        try {
+          entry2.delete();
+        }
+ catch (        Exception e) {
+          e.printStackTrace();
+        }
+      }
     }
   }
 }

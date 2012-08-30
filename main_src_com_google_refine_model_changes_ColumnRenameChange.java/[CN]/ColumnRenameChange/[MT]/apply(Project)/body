@@ -1,5 +1,6 @@
 {
 synchronized (project) {
+    ProjectManager.singleton.getInterProjectModel().flushJoinsInvolvingProjectColumn(project.id,_oldColumnName);
     project.columnModel.getColumnByName(_oldColumnName).setName(_newColumnName);
     project.columnModel.update();
   }

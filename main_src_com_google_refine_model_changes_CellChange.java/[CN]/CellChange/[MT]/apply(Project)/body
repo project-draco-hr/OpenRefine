@@ -1,4 +1,6 @@
 {
   project.rows.get(row).setCell(cellIndex,newCell);
-  project.columnModel.getColumnByCellIndex(cellIndex).clearPrecomputes();
+  Column column=project.columnModel.getColumnByCellIndex(cellIndex);
+  column.clearPrecomputes();
+  ProjectManager.singleton.getInterProjectModel().flushJoinsInvolvingProjectColumn(project.id,column.getName());
 }

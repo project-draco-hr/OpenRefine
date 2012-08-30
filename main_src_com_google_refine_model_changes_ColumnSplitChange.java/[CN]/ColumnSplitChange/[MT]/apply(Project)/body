@@ -5,6 +5,7 @@ synchronized (project) {
       for (int i=1; i < _columnNames.size(); i++) {
         project.columnModel.allocateNewCellIndex();
       }
+      ProjectManager.singleton.getInterProjectModel().flushJoinsInvolvingProjectColumn(project.id,_columnName);
       _column=project.columnModel.getColumnByName(_columnName);
       _columnIndex=project.columnModel.getColumnIndexByName(_columnName);
       _oldRows=new ArrayList<Row>(_rowIndices.size());

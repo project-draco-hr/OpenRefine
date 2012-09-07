@@ -11,7 +11,7 @@
       limit2=limit;
     }
   }
-  boolean guessCellValueTypes=JSONUtilities.getBoolean(options,"guessCellValueTypes",true);
+  boolean guessCellValueTypes=JSONUtilities.getBoolean(options,"guessCellValueTypes",false);
   boolean storeBlankRows=JSONUtilities.getBoolean(options,"storeBlankRows",true);
   boolean storeBlankCellsAsNulls=JSONUtilities.getBoolean(options,"storeBlankCellsAsNulls",true);
   boolean includeFileSources=JSONUtilities.getBoolean(options,"includeFileSources",false);
@@ -69,7 +69,7 @@
           for (int c=0; c < cells.size(); c++) {
             Column column=ImporterUtilities.getOrAllocateColumn(project,columnNames,c,hasOurOwnColumnNames);
             Object value=cells.get(c);
-            if (value != null && value instanceof Cell) {
+            if (value instanceof Cell) {
               row.setCell(column.getCellIndex(),(Cell)value);
               rowHasData=true;
             }

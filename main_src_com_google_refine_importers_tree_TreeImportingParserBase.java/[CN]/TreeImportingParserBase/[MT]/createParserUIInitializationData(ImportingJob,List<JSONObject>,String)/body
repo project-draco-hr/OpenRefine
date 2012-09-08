@@ -1,4 +1,7 @@
 {
-  JSONObject options=new JSONObject();
+  JSONObject options=super.createParserUIInitializationData(job,fileRecords,format);
+  JSONUtilities.safePut(options,"trimStrings",false);
+  JSONUtilities.safePut(options,"guessCellValueTypes",false);
+  JSONUtilities.safePut(options,"storeEmptyStrings",true);
   return options;
 }

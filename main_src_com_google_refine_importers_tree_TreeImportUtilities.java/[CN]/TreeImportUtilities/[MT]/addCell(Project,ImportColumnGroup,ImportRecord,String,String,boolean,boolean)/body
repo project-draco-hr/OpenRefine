@@ -1,0 +1,10 @@
+{
+  Serializable value=text;
+  if (!storeEmptyString && (text == null || (text).isEmpty())) {
+    return;
+  }
+  if (guessDataType) {
+    value=ImporterUtilities.parseCellValue(text);
+  }
+  addCell(project,columnGroup,record,columnLocalName,value);
+}

@@ -1,0 +1,3 @@
+{
+  super.findRecord(project,parser,recordPath,pathIndex,rootColumnGroup,-1,trimStrings,storeEmptyStrings,guessDataType);
+}

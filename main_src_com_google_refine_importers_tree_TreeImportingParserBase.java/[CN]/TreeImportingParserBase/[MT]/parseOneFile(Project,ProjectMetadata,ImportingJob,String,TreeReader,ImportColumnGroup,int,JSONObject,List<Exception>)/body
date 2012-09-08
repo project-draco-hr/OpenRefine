@@ -12,5 +12,8 @@
   if (limit2 == 0) {
     limit2=-1;
   }
-  XmlImportUtilities.importTreeData(treeParser,project,recordPath,rootColumnGroup,limit2);
+  boolean trimStrings=JSONUtilities.getBoolean(options,"trimStrings",true);
+  boolean storeEmptyStrings=JSONUtilities.getBoolean(options,"storeEmptyStrings",false);
+  boolean guessCellValueTypes=JSONUtilities.getBoolean(options,"guessCellValueTypes",true);
+  XmlImportUtilities.importTreeData(treeParser,project,recordPath,rootColumnGroup,limit2,trimStrings,storeEmptyStrings,guessCellValueTypes);
 }

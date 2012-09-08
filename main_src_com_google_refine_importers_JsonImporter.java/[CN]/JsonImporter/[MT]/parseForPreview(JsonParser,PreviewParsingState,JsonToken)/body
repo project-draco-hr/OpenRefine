@@ -8,9 +8,9 @@ case START_OBJECT:
 case VALUE_STRING:
   return parser.getText();
 case VALUE_NUMBER_INT:
-return Integer.valueOf(parser.getIntValue());
+return Long.valueOf(parser.getLongValue());
 case VALUE_NUMBER_FLOAT:
-return Float.valueOf(parser.getFloatValue());
+return Double.valueOf(parser.getDoubleValue());
 case VALUE_TRUE:
 return Boolean.TRUE;
 case VALUE_FALSE:

@@ -1,0 +1,9 @@
+Project project
+TreeReader parser
+String[] recordPath
+int pathIndex
+ImportColumnGroup rootColumnGroup
+int limit
+boolean trimStrings
+boolean storeEmptyStrings
+boolean guessDataType

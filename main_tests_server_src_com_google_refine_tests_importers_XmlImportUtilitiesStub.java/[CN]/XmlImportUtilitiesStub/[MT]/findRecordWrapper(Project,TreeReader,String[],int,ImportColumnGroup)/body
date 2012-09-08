@@ -1,3 +1,3 @@
 {
-  super.findRecord(project,parser,recordPath,pathIndex,rootColumnGroup,-1);
+  super.findRecord(project,parser,recordPath,pathIndex,rootColumnGroup,-1,true,false,true);
 }

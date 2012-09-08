@@ -1,0 +1,5 @@
+{
+  assertProjectCreated(project,numCols,numRows);
+  Assert.assertNotNull(project.recordModel);
+  Assert.assertEquals(project.recordModel.getRecordCount(),numRecords);
+}

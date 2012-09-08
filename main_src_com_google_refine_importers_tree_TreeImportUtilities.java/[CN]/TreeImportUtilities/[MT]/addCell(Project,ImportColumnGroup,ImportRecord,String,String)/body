@@ -1,19 +1,3 @@
 {
-  if (text == null || (text).isEmpty()) {
-    return;
-  }
-  Serializable value=ImporterUtilities.parseCellValue(text);
-  ImportColumn column=getColumn(project,columnGroup,columnLocalName);
-  int cellIndex=column.cellIndex;
-  int rowIndex=Math.max(columnGroup.nextRowIndex,column.nextRowIndex);
-  while (rowIndex >= record.rows.size()) {
-    record.rows.add(new ArrayList<Cell>());
-  }
-  List<Cell> row=record.rows.get(rowIndex);
-  while (cellIndex >= row.size()) {
-    row.add(null);
-  }
-  row.set(cellIndex,new Cell(value,null));
-  column.nextRowIndex=rowIndex + 1;
-  column.nonBlankCount++;
+  addCell(project,columnGroup,record,columnLocalName,text,true,true);
 }

@@ -1,0 +1,6 @@
+Project project
+ImportColumnGroup columnGroup
+ImportRecord record
+String columnLocalName
+Serializable value
+int commonStartingRowIndex

@@ -4,5 +4,8 @@
   JSONUtilities.append(path,JsonImporter.ANONYMOUS);
   JSONUtilities.append(path,JsonImporter.ANONYMOUS);
   JSONUtilities.safePut(options,"recordPath",path);
+  JSONUtilities.safePut(options,"trimStrings",false);
+  JSONUtilities.safePut(options,"storeEmptyStrings",true);
+  JSONUtilities.safePut(options,"guessCellValueTypes",false);
   return options;
 }

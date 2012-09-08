@@ -1,0 +1,8 @@
+Project project
+TreeReader parser
+ImportColumnGroup columnGroup
+ImportRecord record
+int level
+boolean trimStrings
+boolean storeEmptyStrings
+boolean guessDataType

@@ -1,6 +1,6 @@
 {
   XmlImportUtilities.createColumnsFromImport(project,rootColumnGroup);
-  project.columnModel.update();
+  project.update();
   for (  Exception e : exceptions) {
     e.printStackTrace();
   }

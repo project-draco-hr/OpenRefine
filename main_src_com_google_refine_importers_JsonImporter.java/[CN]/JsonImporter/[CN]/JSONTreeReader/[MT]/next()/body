@@ -5,7 +5,7 @@
   try {
     if (current != null) {
       if (current.isScalarValue()) {
-        fieldValue=parser.getText();
+        fieldValue=getValue(parser,current);
       }
  else {
         fieldValue=null;

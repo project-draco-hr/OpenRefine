@@ -1,6 +1,3 @@
 {
-  logger.trace("processRecord(Project,TreeReader,ImportColumnGroup)");
-  ImportRecord record=new ImportRecord();
-  processSubRecord(project,parser,rootColumnGroup,record,0);
-  addImportRecordToProject(record,project);
+  processRecord(project,parser,rootColumnGroup,true,false,true);
 }

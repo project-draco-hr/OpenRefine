@@ -1,0 +1,6 @@
+{
+  if (oauthProvider == null) {
+    oauthProvider=new CommonsHttpOAuthProvider(getRequestTokenServiceURL(),getAccessTokenServiceURL(),getUserAuthorizationURL());
+  }
+  return oauthProvider;
+}

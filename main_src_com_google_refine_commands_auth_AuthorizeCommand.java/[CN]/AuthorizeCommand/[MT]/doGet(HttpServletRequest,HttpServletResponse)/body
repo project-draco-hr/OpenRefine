@@ -6,7 +6,7 @@
     if (access_credentials == null) {
       Credentials request_credentials=Credentials.getCredentials(request,provider,Credentials.Type.REQUEST);
       OAuthConsumer consumer=OAuthUtilities.getConsumer(request_credentials,provider);
-      OAuthProvider pp=OAuthUtilities.getOAuthProvider(provider);
+      OAuthProvider pp=provider.getProvider();
       if (request_credentials == null) {
         String url=pp.retrieveRequestToken(consumer,callbackURL);
         request_credentials=new Credentials(consumer.getToken(),consumer.getTokenSecret(),provider);

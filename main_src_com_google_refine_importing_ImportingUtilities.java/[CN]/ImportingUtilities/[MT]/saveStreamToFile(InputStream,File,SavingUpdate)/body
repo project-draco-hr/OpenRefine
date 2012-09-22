@@ -2,7 +2,7 @@
   long length=0;
   FileOutputStream fos=new FileOutputStream(file);
   try {
-    byte[] bytes=new byte[4096];
+    byte[] bytes=new byte[16 * 1024];
     int c;
     while ((update == null || !update.isCanceled()) && (c=stream.read(bytes)) > 0) {
       fos.write(bytes,0,c);

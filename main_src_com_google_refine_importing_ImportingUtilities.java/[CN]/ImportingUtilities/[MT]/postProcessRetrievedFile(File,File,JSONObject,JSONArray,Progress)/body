@@ -1,7 +1,6 @@
 {
   String mimeType=JSONUtilities.getString(fileRecord,"declaredMimeType",null);
   String contentEncoding=JSONUtilities.getString(fileRecord,"declaredEncoding",null);
-  File rawDataDir=file.getParentFile();
   InputStream archiveIS=tryOpenAsArchive(file,mimeType,contentEncoding);
   if (archiveIS != null) {
     try {

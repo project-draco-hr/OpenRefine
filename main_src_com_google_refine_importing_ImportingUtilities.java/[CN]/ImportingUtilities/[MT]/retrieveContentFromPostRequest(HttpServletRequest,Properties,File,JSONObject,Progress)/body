@@ -117,7 +117,7 @@
             update.totalExpectedSize+=actualLength;
           }
           progress.setProgress("Saving " + urlString + " locally",calculateProgressPercent(update.totalExpectedSize,update.totalRetrievedSize));
-          if (postProcessRetrievedFile(file,fileRecord,fileRecords,progress)) {
+          if (postProcessRetrievedFile(rawDataDir,file,fileRecord,fileRecords,progress)) {
             archiveCount++;
           }
           downloadCount++;
@@ -144,7 +144,7 @@
         JSONUtilities.safePut(fileRecord,"location",getRelativePath(file,rawDataDir));
         progress.setProgress("Saving file " + fileName + " locally ("+ formatBytes(fileSize)+ " bytes)",calculateProgressPercent(update.totalExpectedSize,update.totalRetrievedSize));
         JSONUtilities.safePut(fileRecord,"size",saveStreamToFile(stream,file,null));
-        if (postProcessRetrievedFile(file,fileRecord,fileRecords,progress)) {
+        if (postProcessRetrievedFile(rawDataDir,file,fileRecord,fileRecords,progress)) {
           archiveCount++;
         }
         uploadCount++;

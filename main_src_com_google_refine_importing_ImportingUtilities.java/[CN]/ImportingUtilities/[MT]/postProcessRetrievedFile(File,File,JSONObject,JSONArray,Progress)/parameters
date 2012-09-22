@@ -1,3 +1,4 @@
+File rawDataDir
 File file
 JSONObject fileRecord
 JSONArray fileRecords

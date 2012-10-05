@@ -19,44 +19,75 @@
   Map<String,Row> groupByCellValuesToRow=new HashMap<String,Row>();
   List<Row> newRows=new ArrayList<Row>();
   List<Row> oldRows=project.rows;
+  Row reusableRow=null;
+  List<Row> currentRows=new ArrayList<Row>();
+  String recordKey=null;
+  if (unchangedColumns.isEmpty()) {
+    reusableRow=new Row(1);
+    newRows.add(reusableRow);
+    currentRows.clear();
+    currentRows.add(reusableRow);
+  }
   for (int r=0; r < oldRows.size(); r++) {
     Row oldRow=oldRows.get(r);
-    Object value=oldRow.getCellValue(valueColumn.getCellIndex());
     Object key=oldRow.getCellValue(keyColumn.getCellIndex());
-    if (!ExpressionUtils.isNonBlankData(value) || !ExpressionUtils.isNonBlankData(key)) {
+    if (!ExpressionUtils.isNonBlankData(key)) {
+      if (unchangedColumns.isEmpty()) {
+        reusableRow=new Row(newColumns.size());
+        newRows.add(reusableRow);
+        currentRows.clear();
+        currentRows.add(reusableRow);
+      }
+ else {
+        newRows.add(buildNewRow(unchangedColumns,oldRow,unchangedColumns.size()));
+      }
       continue;
     }
     String keyString=key.toString();
+    if (keyString.equals(recordKey)) {
+      reusableRow=new Row(newColumns.size());
+      newRows.add(reusableRow);
+      currentRows.clear();
+      currentRows.add(reusableRow);
+    }
     Column newColumn=keyValueToColumn.get(keyString);
     if (newColumn == null) {
       newColumn=new Column(project.columnModel.allocateNewCellIndex(),project.columnModel.getUnduplicatedColumnName(keyString));
       keyValueToColumn.put(keyString,newColumn);
       newColumns.add(newColumn);
-    }
-    StringBuffer sb=new StringBuffer();
-    for (int c=0; c < unchangedColumns.size(); c++) {
-      Column unchangedColumn=unchangedColumns.get(c);
-      Object cellValue=oldRow.getCellValue(unchangedColumn.getCellIndex());
-      if (c > 0) {
-        sb.append('\0');
-      }
-      if (cellValue != null) {
-        sb.append(cellValue.toString());
+      if (recordKey == null) {
+        recordKey=keyString;
       }
     }
-    String unchangedCellValues=sb.toString();
-    Row reusableRow=groupByCellValuesToRow.get(unchangedCellValues);
-    if (reusableRow == null || reusableRow.getCellValue(valueColumn.getCellIndex()) != null) {
-      reusableRow=new Row(newColumn.getCellIndex() + 1);
+    if (unchangedColumns.size() > 0) {
+      StringBuffer sb=new StringBuffer();
       for (int c=0; c < unchangedColumns.size(); c++) {
         Column unchangedColumn=unchangedColumns.get(c);
-        int cellIndex=unchangedColumn.getCellIndex();
-        reusableRow.setCell(cellIndex,oldRow.getCell(cellIndex));
+        Object cellValue=oldRow.getCellValue(unchangedColumn.getCellIndex());
+        if (c > 0) {
+          sb.append('\0');
+        }
+        if (cellValue != null) {
+          sb.append(cellValue.toString());
+        }
       }
-      groupByCellValuesToRow.put(unchangedCellValues,reusableRow);
-      newRows.add(reusableRow);
+      String unchangedCellValues=sb.toString();
+      reusableRow=groupByCellValuesToRow.get(unchangedCellValues);
+      if (reusableRow == null || reusableRow.getCellValue(valueColumn.getCellIndex()) != null) {
+        reusableRow=buildNewRow(unchangedColumns,oldRow,newColumn.getCellIndex() + 1);
+        groupByCellValuesToRow.put(unchangedCellValues,reusableRow);
+        newRows.add(reusableRow);
+      }
     }
-    reusableRow.setCell(newColumn.getCellIndex(),oldRow.getCell(valueColumn.getCellIndex()));
+    Cell cell=oldRow.getCell(valueColumn.getCellIndex());
+    if (unchangedColumns.size() == 0) {
+      int index=newColumn.getCellIndex();
+      Row row=getAvailableRow(currentRows,newRows,index);
+      row.setCell(index,cell);
+    }
+ else {
+      reusableRow.setCell(newColumn.getCellIndex(),cell);
+    }
     if (noteColumn != null) {
       Object noteValue=oldRow.getCellValue(noteColumn.getCellIndex());
       if (ExpressionUtils.isNonBlankData(noteValue)) {
@@ -78,7 +109,8 @@
       }
     }
   }
-  unchangedColumns.addAll(newColumns);
-  unchangedColumns.addAll(newNoteColumns);
-  return new HistoryEntry(historyEntryID,project,getBriefDescription(null),this,new MassRowColumnChange(unchangedColumns,newRows));
+  List<Column> allColumns=new ArrayList<Column>(unchangedColumns);
+  allColumns.addAll(newColumns);
+  allColumns.addAll(newNoteColumns);
+  return new HistoryEntry(historyEntryID,project,getBriefDescription(null),this,new MassRowColumnChange(allColumns,newRows));
 }

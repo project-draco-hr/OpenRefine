@@ -1,0 +1,3 @@
+List<Row> currentRows
+List<Row> newRows
+int index

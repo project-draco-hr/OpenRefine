@@ -6,7 +6,8 @@
     CellStyle dateStyle;
     @Override public void startFile(    JSONObject options){
       s=wb.createSheet();
-      wb.setSheetName(0,ProjectManager.singleton.getProjectMetadata(project.id).getName());
+      String sheetName=WorkbookUtil.createSafeSheetName(ProjectManager.singleton.getProjectMetadata(project.id).getName());
+      wb.setSheetName(0,sheetName);
       dateStyle=wb.createCellStyle();
       dateStyle.setDataFormat(wb.getCreationHelper().createDataFormat().getFormat("YYYY-MM-DD"));
     }

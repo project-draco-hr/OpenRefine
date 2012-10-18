@@ -3,7 +3,7 @@
   System.setProperty("org.mortbay.log.class","org.mortbay.log.Slf4jLog");
   System.setProperty("apple.laf.useScreenMenuBar","true");
   System.setProperty("com.apple.eawt.CocoaComponent.CompatibilityMode","false");
-  System.setProperty("com.apple.mrj.application.apple.menu.about.name","Google Refine");
+  System.setProperty("com.apple.mrj.application.apple.menu.about.name","OpenRefine");
   org.apache.log4j.Logger.getRootLogger().setLevel(Level.toLevel(Configurations.get("refine.verbosity","info")));
   port=Configurations.getInteger("refine.port",DEFAULT_PORT);
   host=Configurations.get("refine.host",DEFAULT_HOST);

@@ -8,5 +8,5 @@
   sb.append(ParsingUtilities.encode(request.getParameter("callback")));
   URL thisUrl=new URL(request.getRequestURL().toString());
   URL authorizedUrl=new URL(thisUrl,sb.toString());
-  return AuthSubUtil.getRequestUrl(authorizedUrl.toExternalForm(),"https://docs.google.com/feeds https://spreadsheets.google.com/feeds",false,true);
+  return AuthSubUtil.getRequestUrl(authorizedUrl.toExternalForm(),"https://www.google.com/fusiontables/api/query",false,true);
 }

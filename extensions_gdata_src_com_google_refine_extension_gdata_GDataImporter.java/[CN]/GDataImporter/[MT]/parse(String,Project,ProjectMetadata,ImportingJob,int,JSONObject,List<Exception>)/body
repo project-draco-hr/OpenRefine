@@ -5,7 +5,6 @@
     parse(service,project,metadata,job,limit,options,exceptions);
   }
  else   if ("table".equals(docType)) {
-    GoogleService service=GDataExtension.getFusionTablesGoogleService(token);
-    parse(service,project,metadata,job,limit,options,exceptions);
+    FusionTableImporter.parse(token,project,metadata,job,limit,options,exceptions);
   }
 }

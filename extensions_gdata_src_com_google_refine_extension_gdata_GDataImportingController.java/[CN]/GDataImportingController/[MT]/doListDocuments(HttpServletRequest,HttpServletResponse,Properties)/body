@@ -12,7 +12,7 @@
     writer.array();
     try {
       listSpreadsheets(GDataExtension.getDocsService(token),writer);
-      listFusionTables(GDataExtension.getFusionTablesGoogleService(token),writer);
+      listFusionTables(FusionTableHandler.getFusionTablesGoogleService(token),writer);
     }
  catch (    ServiceException e) {
       e.printStackTrace();

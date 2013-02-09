@@ -1,0 +1,13 @@
+{
+  List<List<String>> rows=runFusionTablesSelect(service,"SHOW TABLES");
+  if (rows.size() > 1) {
+    for (int i=1; i < rows.size(); i++) {
+      List<String> row=rows.get(i);
+      if (row.size() >= 2) {
+        String id=row.get(0);
+        row.add("https://www.google.com/fusiontables/DataSource?dsrcid=" + id);
+      }
+    }
+  }
+  return rows;
+}

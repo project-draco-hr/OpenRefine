@@ -1,0 +1,7 @@
+{
+  GoogleService service=new GoogleService("fusiontables",GDataExtension.SERVICE_APP_NAME);
+  if (token != null) {
+    service.setAuthSubToken(token);
+  }
+  return service;
+}

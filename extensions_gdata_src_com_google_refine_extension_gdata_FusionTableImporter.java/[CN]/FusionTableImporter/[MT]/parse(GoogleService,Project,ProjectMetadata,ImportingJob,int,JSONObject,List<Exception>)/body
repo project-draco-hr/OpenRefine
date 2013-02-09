@@ -1,0 +1,44 @@
+{
+  String docUrlString=JSONUtilities.getString(options,"docUrl",null);
+  String id=getFTid(docUrlString);
+  try {
+    List<FTColumnData> columns=new ArrayList<FusionTableImporter.FTColumnData>();
+    List<List<String>> rows=FusionTableHandler.runFusionTablesSelect(service,"DESCRIBE " + id);
+    if (rows.size() > 1) {
+      for (int i=1; i < rows.size(); i++) {
+        List<String> row=rows.get(i);
+        if (row.size() >= 2) {
+          FTColumnData cd=new FTColumnData();
+          cd.name=row.get(1);
+          cd.type=FTColumnType.STRING;
+          if (row.size() > 2) {
+            String type=row.get(2).toLowerCase();
+            if (type.equals("number")) {
+              cd.type=FTColumnType.NUMBER;
+            }
+ else             if (type.equals("datetime")) {
+              cd.type=FTColumnType.DATETIME;
+            }
+ else             if (type.equals("location")) {
+              cd.type=FTColumnType.LOCATION;
+            }
+          }
+          columns.add(cd);
+        }
+      }
+      setProgress(job,docUrlString,-1);
+      JSONUtilities.safePut(options,"ignoreLines",0);
+      JSONUtilities.safePut(options,"headerLines",1);
+      TabularImportingParserBase.readTable(project,metadata,job,new FusionTableBatchRowReader(job,docUrlString,service,id,columns,100),docUrlString,limit,options,exceptions);
+      setProgress(job,docUrlString,100);
+    }
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+    exceptions.add(e);
+  }
+catch (  ServiceException e) {
+    e.printStackTrace();
+    exceptions.add(e);
+  }
+}

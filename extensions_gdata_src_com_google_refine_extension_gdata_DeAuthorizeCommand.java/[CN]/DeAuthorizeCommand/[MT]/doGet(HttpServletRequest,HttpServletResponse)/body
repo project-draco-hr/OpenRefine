@@ -4,7 +4,13 @@
     response.setHeader("Content-Type","application/json");
     String sessionToken=TokenCookie.getToken(request);
     if (sessionToken != null) {
-      AuthSubUtil.revokeToken(sessionToken,null);
+      HttpRequestFactory factory=HTTP_TRANSPORT.createRequestFactory();
+      GenericUrl url=new GenericUrl("https://accounts.google.com/o/oauth2/revoke?token=" + sessionToken);
+      HttpRequest rqst=factory.buildGetRequest(url);
+      HttpResponse resp=rqst.execute();
+      if (resp.getStatusCode() != 200) {
+        respond(response,String.valueOf(resp.getStatusCode()),resp.getStatusMessage());
+      }
       TokenCookie.deleteToken(request,response);
     }
     respond(response,"200 OK","");

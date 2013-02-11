@@ -1,6 +1,5 @@
 {
-  GoogleService service=FusionTableHandler.getFusionTablesGoogleService(token);
-  FusionTableSerializer serializer=new FusionTableSerializer(service,name,exceptions);
+  FusionTableSerializer serializer=new FusionTableSerializer(FusionTableHandler.getFusionTablesService(token),name,exceptions);
   CustomizableTabularExporterUtilities.exportRows(project,engine,params,serializer);
   return serializer.getUrl();
 }

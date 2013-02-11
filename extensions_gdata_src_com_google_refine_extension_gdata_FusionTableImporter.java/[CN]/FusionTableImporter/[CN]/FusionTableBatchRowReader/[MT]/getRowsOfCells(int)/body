@@ -1,13 +1,14 @@
 {
   List<List<Object>> rowsOfCells=new ArrayList<List<Object>>(batchSize);
   String query=baseQuery + " OFFSET " + startRow+ " LIMIT "+ batchSize;
-  List<List<String>> rows=FusionTableHandler.runFusionTablesSelect(service,query);
+  Sqlresponse sqlresponse=FusionTableHandler.runFusionTablesSelect(service,query);
+  List<List<Object>> rows=sqlresponse.getRows();
   if (rows.size() > 1) {
     for (int i=1; i < rows.size(); i++) {
-      List<String> row=rows.get(i);
+      List<Object> row=rows.get(i);
       List<Object> rowOfCells=new ArrayList<Object>(row.size());
       for (int j=0; j < row.size() && j < columns.size(); j++) {
-        String text=row.get(j);
+        String text=(String)row.get(j);
         if (text.isEmpty()) {
           rowOfCells.add(null);
         }

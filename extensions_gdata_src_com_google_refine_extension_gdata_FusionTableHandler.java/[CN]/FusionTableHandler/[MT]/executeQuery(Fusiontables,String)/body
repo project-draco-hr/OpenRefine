@@ -1,0 +1,5 @@
+{
+  Sql sql=service.query().sql(query);
+  Sqlresponse response=sql.execute();
+  return response;
+}

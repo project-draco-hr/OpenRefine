@@ -1,6 +1,6 @@
 ImportingJob job
 String fileSource
-GoogleService service
+Fusiontables service
 String tableId
 List<FTColumnData> columns
 int batchSize

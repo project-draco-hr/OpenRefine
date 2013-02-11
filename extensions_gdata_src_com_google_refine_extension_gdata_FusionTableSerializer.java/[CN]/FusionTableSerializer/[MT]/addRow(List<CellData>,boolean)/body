@@ -1,34 +1,14 @@
 {
   if (isHeader) {
     columnNames=new ArrayList<String>(cells.size());
-    StringBuffer sb=new StringBuffer();
-    sb.append("CREATE TABLE '");
-    sb.append(tableName);
-    sb.append("' (");
-    boolean first=true;
     for (    CellData cellData : cells) {
       columnNames.add(cellData.text);
-      if (first) {
-        first=false;
-      }
- else {
-        sb.append(',');
-      }
-      sb.append("'");
-      sb.append(cellData.text);
-      sb.append("': STRING");
     }
-    sb.append(")");
     try {
-      String createQuery=sb.toString();
-      GDataRequest createTableRequest=FusionTableHandler.createFusionTablesPostRequest(service,RequestType.INSERT,createQuery);
-      createTableRequest.execute();
-      List<List<String>> createTableResults=FusionTableHandler.parseFusionTablesResults(createTableRequest);
-      if (createTableResults != null && createTableResults.size() == 2) {
-        tableId=createTableResults.get(1).get(0);
-      }
+      tableId=FusionTableHandler.createTable(service,tableName,columnNames);
     }
  catch (    Exception e) {
+      tableId=null;
       exceptions.add(e);
     }
   }
@@ -36,10 +16,12 @@
     if (sbBatch == null) {
       sbBatch=new StringBuffer();
     }
-    formulateInsert(cells,sbBatch);
+    formatCsv(cells,sbBatch);
     rows++;
-    if (rows % 20 == 0) {
-      sendBatch();
+    if (rows % BATCH_SIZE == 0) {
+      if (!sendBatch()) {
+        return;
+      }
     }
   }
 }

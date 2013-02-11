@@ -1,0 +1,6 @@
+{
+  ImportRows importRows=service.table().importRows(tableId,mediaContent);
+  importRows.setIsStrict(false);
+  FusiontablesImport response=importRows.execute();
+  return response.getNumRowsReceived();
+}

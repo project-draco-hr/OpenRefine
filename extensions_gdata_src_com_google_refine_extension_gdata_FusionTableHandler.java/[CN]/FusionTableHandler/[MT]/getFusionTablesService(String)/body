@@ -1,0 +1,6 @@
+{
+  Credential credential=new GoogleCredential().setAccessToken(token);
+  Fusiontables fusiontables=new Fusiontables.Builder(GDataExtension.HTTP_TRANSPORT,GDataExtension.JSON_FACTORY,credential).setApplicationName(GDataExtension.SERVICE_APP_NAME).build();
+  ;
+  return fusiontables;
+}

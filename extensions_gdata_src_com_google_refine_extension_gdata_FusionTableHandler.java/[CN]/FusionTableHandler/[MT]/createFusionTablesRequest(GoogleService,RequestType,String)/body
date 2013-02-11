@@ -1,4 +1,0 @@
-{
-  URL url=new URL(FUSION_TABLES_SERVICE_URL + "?sql=" + URLEncoder.encode(query,"UTF-8")+ "&alt=csv");
-  return service.getRequestFactory().getRequest(requestType,url,ContentType.TEXT_PLAIN);
-}

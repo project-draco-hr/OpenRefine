@@ -1,0 +1,21 @@
+{
+  Fusiontables.Table.List listTables=service.table().list();
+  TableList tablelist=listTables.execute();
+  for (  Table table : tablelist.getItems()) {
+    String id=table.getTableId();
+    String name=table.getName();
+    String link="https://www.google.com/fusiontables/DataSource?docid=" + id;
+    writer.object();
+    writer.key("docId");
+    writer.value(id);
+    writer.key("docLink");
+    writer.value(link);
+    writer.key("docSelfLink");
+    writer.value(link);
+    writer.key("title");
+    writer.value(name);
+    writer.key("type");
+    writer.value("table");
+    writer.endObject();
+  }
+}

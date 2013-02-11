@@ -1,0 +1,5 @@
+{
+  SqlGet query=service.query().sqlGet(selectQuery);
+  Sqlresponse response=query.execute();
+  return response;
+}

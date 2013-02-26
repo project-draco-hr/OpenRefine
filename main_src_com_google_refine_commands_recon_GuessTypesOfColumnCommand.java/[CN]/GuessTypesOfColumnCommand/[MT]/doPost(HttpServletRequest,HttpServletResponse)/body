@@ -15,30 +15,24 @@
       writer.value("No such column");
     }
  else {
-      try {
-        writer.key("code");
-        writer.value("ok");
-        writer.key("types");
-        writer.array();
-        List<TypeGroup> typeGroups=guessTypes(project,column,serviceUrl);
-        for (        TypeGroup tg : typeGroups) {
-          writer.object();
-          writer.key("id");
-          writer.value(tg.id);
-          writer.key("name");
-          writer.value(tg.name);
-          writer.key("score");
-          writer.value(tg.score);
-          writer.key("count");
-          writer.value(tg.count);
-          writer.endObject();
-        }
-        writer.endArray();
+      List<TypeGroup> typeGroups=guessTypes(project,column,serviceUrl);
+      writer.key("code");
+      writer.value("ok");
+      writer.key("types");
+      writer.array();
+      for (      TypeGroup tg : typeGroups) {
+        writer.object();
+        writer.key("id");
+        writer.value(tg.id);
+        writer.key("name");
+        writer.value(tg.name);
+        writer.key("score");
+        writer.value(tg.score);
+        writer.key("count");
+        writer.value(tg.count);
+        writer.endObject();
       }
- catch (      Exception e) {
-        writer.key("code");
-        writer.value("error");
-      }
+      writer.endArray();
     }
     writer.endObject();
   }

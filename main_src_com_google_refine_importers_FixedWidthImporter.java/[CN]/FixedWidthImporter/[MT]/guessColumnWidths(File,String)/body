@@ -27,7 +27,7 @@
           }
         }
       }
-      if (counts != null) {
+      if (counts != null && lineCount > 2) {
         List<Integer> widths=new ArrayList<Integer>();
         int startIndex=0;
         for (int c=0; c < counts.length; c++) {

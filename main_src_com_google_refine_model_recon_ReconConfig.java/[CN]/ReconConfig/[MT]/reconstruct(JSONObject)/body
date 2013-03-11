@@ -20,7 +20,7 @@
     }
   }
  catch (  Exception e) {
-    e.printStackTrace();
+    LOGGER.error("Reconstruct failed",e);
   }
   return null;
 }

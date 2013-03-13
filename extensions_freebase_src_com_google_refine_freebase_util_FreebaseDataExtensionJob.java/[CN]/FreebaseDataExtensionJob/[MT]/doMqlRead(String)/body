@@ -1,4 +1,0 @@
-{
-  JSONObject result=batchCall1(query);
-  return result;
-}

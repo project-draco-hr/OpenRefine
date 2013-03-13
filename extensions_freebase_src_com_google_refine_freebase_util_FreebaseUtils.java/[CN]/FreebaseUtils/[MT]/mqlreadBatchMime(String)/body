@@ -1,0 +1,39 @@
+{
+  URL url=new URL(GOOGLE_BATCH_URL);
+  String service_url=FREEBASE_SERVICE_URL + "/mqlread";
+  String body="--" + BOUNDARY + "\n"+ queryToMimeBodyPart("0",query,service_url,API_KEY)+ "\n--"+ BOUNDARY+ "\n";
+  HttpURLConnection connection=(HttpURLConnection)url.openConnection();
+  connection.setRequestProperty("Content-Type","multipart/mixed; boundary=" + BOUNDARY);
+  connection.setConnectTimeout(5000);
+  connection.setDoOutput(true);
+  Writer writer=new OutputStreamWriter(connection.getOutputStream());
+  try {
+    writer.write(body);
+  }
+  finally {
+    writer.flush();
+    writer.close();
+  }
+  connection.connect();
+  String result=null;
+  if (connection.getResponseCode() >= 400) {
+    String responseMessage=connection.getResponseMessage();
+    String errorStream=ParsingUtilities.inputStreamToString(connection.getErrorStream());
+    LoggerFactory.getLogger("freebase").error("Error in mqlreadMime: " + connection.getResponseCode() + ":"+ responseMessage+ " : "+ errorStream);
+  }
+ else {
+    InputStream is=connection.getInputStream();
+    try {
+      String s=ParsingUtilities.inputStreamToString(is);
+      String boundary=s.substring(0,s.indexOf("\n"));
+      boundary=boundary.split("\r")[0];
+      String[] part=s.split(boundary);
+      String[] sections=part[1].split("\r\n\r\n");
+      result=sections[2];
+    }
+  finally {
+      is.close();
+    }
+  }
+  return result;
+}

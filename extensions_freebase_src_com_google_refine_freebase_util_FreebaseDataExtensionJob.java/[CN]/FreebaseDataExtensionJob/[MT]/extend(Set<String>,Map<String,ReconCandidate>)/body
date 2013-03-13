@@ -2,7 +2,8 @@
   StringWriter writer=new StringWriter();
   formulateQuery(ids,extension,writer);
   String query=writer.toString();
-  JSONObject o=doMqlRead(query);
+  String result=FreebaseUtils.mqlread(query);
+  JSONObject o=ParsingUtilities.evaluateJsonStringToObject(result);
   Map<String,FreebaseDataExtensionJob.DataExtension> map=new HashMap<String,FreebaseDataExtensionJob.DataExtension>();
   if (o.has("result")) {
     JSONArray a=o.getJSONArray("result");

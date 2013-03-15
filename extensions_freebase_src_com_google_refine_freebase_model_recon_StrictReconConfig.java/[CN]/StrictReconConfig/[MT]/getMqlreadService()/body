@@ -1,0 +1,3 @@
+{
+  return s_mqlreadService + "?key=" + System.getProperty("refine.google_api_key");
+}

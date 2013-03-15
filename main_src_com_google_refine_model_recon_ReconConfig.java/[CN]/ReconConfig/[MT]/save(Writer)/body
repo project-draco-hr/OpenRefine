@@ -4,6 +4,6 @@
     write(jsonWriter,new Properties());
   }
  catch (  JSONException e) {
-    e.printStackTrace();
+    LOGGER.error("Save failed",e);
   }
 }

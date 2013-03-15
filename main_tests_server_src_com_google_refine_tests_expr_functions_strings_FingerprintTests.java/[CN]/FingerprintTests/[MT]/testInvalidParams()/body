@@ -1,0 +1,5 @@
+{
+  Assert.assertNull(invoke("fingerprint"));
+  Assert.assertNull(invoke("fingerprint","one","two","three"));
+  Assert.assertNull(invoke("fingerprint",Long.getLong("1")));
+}

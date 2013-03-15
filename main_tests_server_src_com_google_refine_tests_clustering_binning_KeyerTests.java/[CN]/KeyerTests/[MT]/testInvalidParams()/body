@@ -1,0 +1,3 @@
+{
+  keyer.key("test",(Object[])new String[]{"foo"});
+}

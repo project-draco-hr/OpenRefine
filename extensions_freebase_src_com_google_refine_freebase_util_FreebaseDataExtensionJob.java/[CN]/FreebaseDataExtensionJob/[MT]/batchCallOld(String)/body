@@ -1,0 +1,33 @@
+{
+  URL url=new URL("https://www.googleapis.com/batch");
+  String service_url="https://www.googleapis.com/freebase/v1/mqlread";
+  MimeMultipart mp=new MimeMultipart("mixed");
+  MimeBodyPart mbp=queryToMimeBodyPart("q0",query,service_url,FreebaseUtils.API_KEY);
+  mp.addBodyPart(mbp);
+  mp.getPreamble();
+  HttpURLConnection connection=(HttpURLConnection)url.openConnection();
+  connection.setRequestProperty("Content-Type",mp.getContentType());
+  connection.setConnectTimeout(5000);
+  connection.setDoOutput(true);
+  ByteArrayOutputStream baos=new ByteArrayOutputStream();
+  mp.writeTo(baos);
+  String foo=baos.toString("UTF-8");
+  mp.writeTo(connection.getOutputStream());
+  connection.connect();
+  JSONArray result=null;
+  if (connection.getResponseCode() >= 400) {
+    String responseMessage=connection.getResponseMessage();
+    String errorStream=ParsingUtilities.inputStreamToString(connection.getErrorStream());
+  }
+ else {
+    InputStream is=connection.getInputStream();
+    try {
+      String s=ParsingUtilities.inputStreamToString(is);
+      result=ParsingUtilities.evaluateJsonStringToArray(s);
+    }
+  finally {
+      is.close();
+    }
+  }
+  return result.getJSONObject(0);
+}

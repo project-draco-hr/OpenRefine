@@ -1,0 +1,8 @@
+{
+  PreferenceStore ps=ProjectManager.singleton.getPreferenceStore();
+  String key=(String)ps.get("freebase.api.key");
+  if (key == null) {
+    key=System.getProperty("refine.google_api_key");
+  }
+  return key == null ? API_KEY : key;
+}

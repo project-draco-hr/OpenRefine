@@ -2,7 +2,7 @@
   URL url=new URL(GOOGLE_RPC_URL);
   JSONObject params=new JSONObject();
   params.put("query",query);
-  params.put("key",API_KEY);
+  params.put("key",FreebaseUtils.getApiKey());
   JSONObject req1=new JSONObject();
   req1.put("jsonrpc","2.0");
   req1.put("id","q0");

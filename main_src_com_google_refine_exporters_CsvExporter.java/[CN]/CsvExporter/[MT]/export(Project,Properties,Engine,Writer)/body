@@ -10,6 +10,7 @@
   }
   final String separator=options == null ? Character.toString(this.separator) : JSONUtilities.getString(options,"separator",Character.toString(this.separator));
   final String lineSeparator=options == null ? CSVWriter.DEFAULT_LINE_END : JSONUtilities.getString(options,"lineSeparator",CSVWriter.DEFAULT_LINE_END);
+  final boolean quoteAll=options == null ? false : JSONUtilities.getBoolean(options,"quoteAll",false);
   final boolean printColumnHeader=(params != null && params.getProperty("printColumnHeader") != null) ? Boolean.parseBoolean(params.getProperty("printColumnHeader")) : true;
   final CSVWriter csvWriter=new CSVWriter(writer,separator.charAt(0),CSVWriter.DEFAULT_QUOTE_CHARACTER,lineSeparator);
   TabularSerializer serializer=new TabularSerializer(){
@@ -24,7 +25,7 @@
           CellData cellData=cells.get(i);
           strings[i]=(cellData != null && cellData.text != null) ? cellData.text : "";
         }
-        csvWriter.writeNext(strings,false);
+        csvWriter.writeNext(strings,quoteAll);
       }
     }
   }

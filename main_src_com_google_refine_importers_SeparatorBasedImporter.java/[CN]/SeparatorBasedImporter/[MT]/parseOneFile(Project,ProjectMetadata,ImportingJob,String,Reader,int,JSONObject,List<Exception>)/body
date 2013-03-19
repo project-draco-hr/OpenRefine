@@ -5,7 +5,8 @@
   }
   sep=StringEscapeUtils.unescapeJava(sep);
   boolean processQuotes=JSONUtilities.getBoolean(options,"processQuotes",true);
-  final CSVParser parser=new CSVParser(sep.toCharArray()[0],CSVParser.DEFAULT_QUOTE_CHARACTER,(char)127,CSVParser.DEFAULT_STRICT_QUOTES,CSVParser.DEFAULT_IGNORE_LEADING_WHITESPACE,!processQuotes);
+  boolean strictQuotes=JSONUtilities.getBoolean(options,"strictQuotes",false);
+  final CSVParser parser=new CSVParser(sep.toCharArray()[0],CSVParser.DEFAULT_QUOTE_CHARACTER,(char)127,strictQuotes,CSVParser.DEFAULT_IGNORE_LEADING_WHITESPACE,!processQuotes);
   final LineNumberReader lnReader=new LineNumberReader(reader);
   TableDataReader dataReader=new TableDataReader(){
     @Override public List<Object> getNextRowOfCells() throws IOException {

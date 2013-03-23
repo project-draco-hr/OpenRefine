@@ -1,5 +1,7 @@
 {
-  logger.trace("importTreeData(TreeReader, Project, String[], ImportColumnGroup)");
+  if (logger.isTraceEnabled()) {
+    logger.trace("importTreeData(TreeReader, Project, String[], ImportColumnGroup)");
+  }
   try {
     while (parser.hasNext()) {
       Token eventType=parser.next();

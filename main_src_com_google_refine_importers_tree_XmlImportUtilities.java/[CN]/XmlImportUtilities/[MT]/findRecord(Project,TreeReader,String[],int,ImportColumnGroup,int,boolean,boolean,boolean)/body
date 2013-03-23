@@ -1,5 +1,7 @@
 {
-  logger.trace("findRecord(Project, TreeReader, String[], int, ImportColumnGroup - path:" + Arrays.toString(recordPath));
+  if (logger.isTraceEnabled()) {
+    logger.trace("findRecord(Project, TreeReader, String[], int, ImportColumnGroup - path:" + Arrays.toString(recordPath));
+  }
   if (parser.current() == Token.Ignorable) {
     logger.warn("Cannot use findRecord method for START_DOCUMENT event");
     return;

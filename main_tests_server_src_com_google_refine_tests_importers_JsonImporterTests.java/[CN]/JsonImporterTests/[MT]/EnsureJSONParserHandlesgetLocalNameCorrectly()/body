@@ -2,7 +2,7 @@
   String sampleJson="{\"field\":\"value\"}";
   String sampleJson2="{\"field\":{}}";
   String sampleJson3="{\"field\":[{},{}]}";
-  JSONTreeReader parser=new JSONTreeReader(new StringReader(sampleJson));
+  JSONTreeReader parser=new JSONTreeReader(new ByteArrayInputStream(sampleJson.getBytes("UTF-8")));
   Token token=Token.Ignorable;
   int i=0;
   try {
@@ -20,7 +20,7 @@
   }
  catch (  Exception e) {
   }
-  parser=new JSONTreeReader(new StringReader(sampleJson2));
+  parser=new JSONTreeReader(new ByteArrayInputStream(sampleJson2.getBytes("UTF-8")));
   token=Token.Ignorable;
   i=0;
   try {
@@ -38,7 +38,7 @@
   }
  catch (  Exception e) {
   }
-  parser=new JSONTreeReader(new StringReader(sampleJson3));
+  parser=new JSONTreeReader(new ByteArrayInputStream(sampleJson3.getBytes("UTF-8")));
   token=Token.Ignorable;
   i=0;
   try {

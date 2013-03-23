@@ -2,7 +2,7 @@ Project project
 ProjectMetadata metadata
 ImportingJob job
 String fileSource
-Reader reader
+InputStream is
 ImportColumnGroup rootColumnGroup
 int limit
 JSONObject options

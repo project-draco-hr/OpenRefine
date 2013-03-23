@@ -1,6 +1,6 @@
 {
   try {
-    parser=factory.createJsonParser(reader);
+    parser=factory.createJsonParser(is);
     current=null;
     next=parser.nextToken();
   }

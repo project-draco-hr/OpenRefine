@@ -1,0 +1,6 @@
+{
+  int i=index - offset;
+  while (i >= size()) {
+    add(null);
+  }
+}

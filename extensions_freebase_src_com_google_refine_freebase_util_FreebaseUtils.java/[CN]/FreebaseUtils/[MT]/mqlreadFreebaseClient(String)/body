@@ -1,0 +1,6 @@
+{
+  Freebase client=new Freebase.Builder(HTTP_TRANSPORT,JSON_FACTORY,null).setApplicationName("OpenRefine").setFreebaseRequestInitializer(REQUEST_INITIALIZER).build();
+  InputStream is=client.mqlread(query).executeAsInputStream();
+  String result=ParsingUtilities.inputStreamToString(is);
+  return result;
+}

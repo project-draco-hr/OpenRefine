@@ -1,0 +1,28 @@
+{
+  String query=null;
+{
+    StringWriter stringWriter=new StringWriter();
+    JSONWriter jsonWriter=new JSONWriter(stringWriter);
+    jsonWriter.array();
+    jsonWriter.object();
+    jsonWriter.key("id");
+    jsonWriter.value(null);
+    jsonWriter.key("name");
+    jsonWriter.value(null);
+    jsonWriter.key("guid");
+    jsonWriter.value(null);
+    jsonWriter.key("type");
+    jsonWriter.array();
+    jsonWriter.endArray();
+    jsonWriter.key("id|=");
+    jsonWriter.array();
+    for (    ReconJob job : jobs) {
+      jsonWriter.value(((IdBasedReconJob)job).id);
+    }
+    jsonWriter.endArray();
+    jsonWriter.endObject();
+    jsonWriter.endArray();
+    query=stringWriter.toString();
+  }
+  return query;
+}

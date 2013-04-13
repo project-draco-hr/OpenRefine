@@ -1,0 +1,5 @@
+{
+  rebase(index);
+  extend(index);
+  return super.set(index - offset,element);
+}

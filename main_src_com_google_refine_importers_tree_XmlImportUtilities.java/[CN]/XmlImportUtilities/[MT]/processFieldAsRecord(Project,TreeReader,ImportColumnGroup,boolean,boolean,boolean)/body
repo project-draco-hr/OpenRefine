@@ -1,5 +1,7 @@
 {
-  logger.trace("processFieldAsRecord(Project,TreeReader,ImportColumnGroup)");
+  if (logger.isTraceEnabled()) {
+    logger.trace("processFieldAsRecord(Project,TreeReader,ImportColumnGroup)");
+  }
   Serializable value=parser.getValue();
   ImportRecord record=null;
   if (value instanceof String) {

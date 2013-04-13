@@ -1,0 +1,6 @@
+{
+  if (offset == Integer.MAX_VALUE || index - offset > size() - 1) {
+    return null;
+  }
+  return super.get(index - offset);
+}

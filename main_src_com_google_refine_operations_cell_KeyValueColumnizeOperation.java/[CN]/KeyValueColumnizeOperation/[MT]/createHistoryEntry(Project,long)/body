@@ -44,7 +44,7 @@
       continue;
     }
     String keyString=key.toString();
-    if (keyString.equals(recordKey)) {
+    if (keyString.equals(recordKey) || recordKey == null) {
       reusableRow=new Row(newColumns.size());
       newRows.add(reusableRow);
       currentRows.clear();

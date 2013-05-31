@@ -1,7 +1,10 @@
 {
+  if (s == null || o != null && o.length > 0) {
+    throw new IllegalArgumentException("Fingerprint keyer accepts a single string parameter");
+  }
   s=s.trim();
   s=s.toLowerCase();
-  s=alphanum.matcher(s).replaceAll("");
+  s=punctctrl.matcher(s).replaceAll("");
   String[] frags=StringUtils.split(s);
   TreeSet<String> set=new TreeSet<String>();
   for (  String ss : frags) {
@@ -11,7 +14,9 @@
   Iterator<String> i=set.iterator();
   while (i.hasNext()) {
     b.append(i.next());
-    b.append(' ');
+    if (i.hasNext()) {
+      b.append(' ');
+    }
   }
   return asciify(b.toString());
 }

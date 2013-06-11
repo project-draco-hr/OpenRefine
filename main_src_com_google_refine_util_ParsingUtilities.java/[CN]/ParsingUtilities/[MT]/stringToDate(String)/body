@@ -1,6 +1,6 @@
 {
   try {
-    return s_sdf.parse(s);
+    return ISO8601_FORMAT.parse(s);
   }
  catch (  ParseException e) {
     return null;

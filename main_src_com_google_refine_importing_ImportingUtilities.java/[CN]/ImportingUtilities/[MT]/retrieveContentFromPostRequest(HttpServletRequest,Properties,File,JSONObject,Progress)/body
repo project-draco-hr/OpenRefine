@@ -15,7 +15,6 @@
   }
 ;
   DiskFileItemFactory fileItemFactory=new DiskFileItemFactory();
-  fileItemFactory.setFileCleaningTracker(new FileCleaningTracker());
   ServletFileUpload upload=new ServletFileUpload(fileItemFactory);
   upload.setProgressListener(new ProgressListener(){
     boolean setContentLength=false;
@@ -35,8 +34,9 @@
     }
   }
 );
+  List tempFiles=upload.parseRequest(request);
   progress.setProgress("Uploading data ...",-1);
-  parts:   for (  Object obj : upload.parseRequest(request)) {
+  parts:   for (  Object obj : tempFiles) {
     if (progress.isCanceled()) {
       break;
     }
@@ -150,6 +150,10 @@
         uploadCount++;
       }
     }
+    stream.close();
+  }
+  for (  Object obj : tempFiles) {
+    ((FileItem)obj).delete();
   }
   JSONUtilities.safePut(retrievalRecord,"uploadCount",uploadCount);
   JSONUtilities.safePut(retrievalRecord,"downloadCount",downloadCount);

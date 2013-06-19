@@ -1,0 +1,17 @@
+{
+  JSONObject response=null;
+  JsonBatchCallback<Void> callback=new JsonBatchCallback<Void>(){
+    public void onSuccess(    Void res,    HttpHeaders responseHeaders){
+      System.out.println(res);
+    }
+    public void onFailure(    GoogleJsonError e,    HttpHeaders responseHeaders){
+      System.out.println("Error Message: " + e.getMessage());
+    }
+  }
+;
+  Freebase client=new Freebase.Builder(HTTP_TRANSPORT,JSON_FACTORY,null).setApplicationName("OpenRefine").setFreebaseRequestInitializer(REQUEST_INITIALIZER).build();
+  BatchRequest batch=client.batch();
+  client.mqlread(query).queue(batch,callback);
+  batch.execute();
+  return response;
+}

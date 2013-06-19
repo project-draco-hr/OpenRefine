@@ -1,5 +1,7 @@
 {
-  logger.trace("detectRecordElement(inputStream)");
+  if (logger.isTraceEnabled()) {
+    logger.trace("detectRecordElement(inputStream)");
+  }
   List<RecordElementCandidate> candidates=new ArrayList<RecordElementCandidate>();
   try {
     while (parser.hasNext()) {

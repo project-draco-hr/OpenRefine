@@ -1,9 +1,0 @@
-Project project
-ProjectMetadata metadata
-ImportingJob job
-String fileSource
-Reader reader
-ImportColumnGroup rootColumnGroup
-int limit
-JSONObject options
-List<Exception> exceptions

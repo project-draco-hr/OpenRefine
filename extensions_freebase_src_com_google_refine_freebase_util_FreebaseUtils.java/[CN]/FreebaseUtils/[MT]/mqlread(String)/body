@@ -1,0 +1,4 @@
+{
+  String result=mqlreadBatchMime(query);
+  return result;
+}

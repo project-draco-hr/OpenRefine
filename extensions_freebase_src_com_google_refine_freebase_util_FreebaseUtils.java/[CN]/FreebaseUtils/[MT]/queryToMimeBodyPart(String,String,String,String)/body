@@ -1,0 +1,15 @@
+{
+  StringBuilder sb=new StringBuilder();
+  sb.append("Content-Type: application/http\n");
+  sb.append("Content-Transfer-Encoding: binary\n");
+  sb.append("Content-ID: " + query_name + "\n");
+  sb.append("\n");
+  List<NameValuePair> params=new ArrayList<NameValuePair>();
+  params.add(new BasicNameValuePair("query",query));
+  params.add(new BasicNameValuePair("key",api_key));
+  UrlEncodedFormEntity param_string=new UrlEncodedFormEntity(params,"UTF-8");
+  String body="GET " + service_url + "?"+ ParsingUtilities.inputStreamToString(param_string.getContent())+ "\n";
+  sb.append(body);
+  sb.append("\n");
+  return sb.toString();
+}

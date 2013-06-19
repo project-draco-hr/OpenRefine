@@ -1,0 +1,10 @@
+{
+  try {
+    parser=factory.createJsonParser(is);
+    current=null;
+    next=parser.nextToken();
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+}

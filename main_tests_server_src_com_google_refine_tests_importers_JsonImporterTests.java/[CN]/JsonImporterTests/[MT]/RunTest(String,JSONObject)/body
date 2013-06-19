@@ -6,7 +6,7 @@
     Assert.fail();
   }
   try {
-    parseOneFile(SUT,inputStream,options);
+    parseOneInputStream(SUT,inputStream,options);
   }
  catch (  Exception e) {
     Assert.fail();

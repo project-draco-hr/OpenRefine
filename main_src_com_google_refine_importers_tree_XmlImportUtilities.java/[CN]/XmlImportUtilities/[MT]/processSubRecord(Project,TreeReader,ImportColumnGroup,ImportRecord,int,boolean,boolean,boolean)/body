@@ -1,5 +1,7 @@
 {
-  logger.trace("processSubRecord(Project,TreeReader,ImportColumnGroup,ImportRecord) lvl:" + level + " "+ columnGroup);
+  if (logger.isTraceEnabled()) {
+    logger.trace("processSubRecord(Project,TreeReader,ImportColumnGroup,ImportRecord) lvl:" + level + " "+ columnGroup);
+  }
   if (parser.current() == Token.Ignorable) {
     return;
   }

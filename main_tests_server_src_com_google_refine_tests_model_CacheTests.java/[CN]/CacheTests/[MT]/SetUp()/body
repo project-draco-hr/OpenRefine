@@ -1,0 +1,19 @@
+{
+  writer=new StringWriter();
+  Path dir=Files.createTempDirectory("openrefine-test-workspace-dir");
+  FileProjectManager.initialize(dir.toFile());
+  project=new Project();
+  ProjectMetadata pm=new ProjectMetadata();
+  pm.setName("TNG Test Project");
+  ProjectManager.singleton.registerProject(project,pm);
+  int index=project.columnModel.allocateNewCellIndex();
+  Column column=new Column(index,"Column A");
+  project.columnModel.addColumn(index,column,true);
+  options=mock(Properties.class);
+  engine=new Engine(project);
+  engine_config=new JSONObject(ENGINE_JSON_DUPLICATES);
+  engine.initializeFromJSON(engine_config);
+  engine.setMode(Engine.Mode.RowBased);
+  bindings=new Properties();
+  bindings.put("project",project);
+}

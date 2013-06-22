@@ -1,5 +1,4 @@
 {
-  SUT=null;
   writer=null;
   project=null;
   options=null;

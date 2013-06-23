@@ -3,7 +3,7 @@
     hasError=true;
   }
  else   if (ExpressionUtils.isNonBlankData(value)) {
-    String valueString=value.toString();
+    String valueString=StringUtils.toString(value);
     IndexedNominalFacetChoice facetChoice=choices.get(valueString);
     if (facetChoice != null) {
       if (facetChoice._latestIndex < index) {

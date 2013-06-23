@@ -1,0 +1,5 @@
+{
+  Assert.assertTrue(invoke("facetCount") instanceof EvalError);
+  Assert.assertTrue(invoke("facetCount","one","two","three") instanceof EvalError);
+  Assert.assertTrue(invoke("facetCount","one","bad(","Column A") instanceof EvalError);
+}

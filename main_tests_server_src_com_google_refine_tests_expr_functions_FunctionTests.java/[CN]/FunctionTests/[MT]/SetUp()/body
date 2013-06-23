@@ -1,7 +1,9 @@
 {
   bindings=new Properties();
-  Path dir=Files.createTempDirectory("openrefine-test-workspace-dir");
-  FileProjectManager.initialize(dir.toFile());
+  File dir=File.createTempFile("openrefine-test-workspace-dir","");
+  dir.delete();
+  dir.mkdir();
+  FileProjectManager.initialize(dir);
   project=new Project();
   ProjectMetadata pm=new ProjectMetadata();
   pm.setName("TNG Test Project");

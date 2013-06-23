@@ -1,8 +1,6 @@
 {
   bindings=new Properties();
-  File dir=File.createTempFile("openrefine-test-workspace-dir","");
-  dir.delete();
-  dir.mkdir();
+  File dir=TestUtils.createTempDirectory("openrefine-test-workspace-dir");
   FileProjectManager.initialize(dir);
   project=new Project();
   ProjectMetadata pm=new ProjectMetadata();

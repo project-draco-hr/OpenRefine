@@ -1,6 +1,6 @@
 {
-  Path dir=Files.createTempDirectory("openrefine-test-workspace-dir");
-  FileProjectManager.initialize(dir.toFile());
+  File dir=TestUtils.createTempDirectory("openrefine-test-workspace-dir");
+  FileProjectManager.initialize(dir);
   project=new Project();
   ProjectMetadata pm=new ProjectMetadata();
   pm.setName("TNG Test Project");

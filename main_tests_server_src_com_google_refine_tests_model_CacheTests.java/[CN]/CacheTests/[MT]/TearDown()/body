@@ -1,5 +1,6 @@
 {
-  writer=null;
   project=null;
   options=null;
+  engine=null;
+  bindings=null;
 }

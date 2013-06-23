@@ -1,5 +1,4 @@
 {
-  writer=new StringWriter();
   Path dir=Files.createTempDirectory("openrefine-test-workspace-dir");
   FileProjectManager.initialize(dir.toFile());
   project=new Project();

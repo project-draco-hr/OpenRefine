@@ -1,0 +1,32 @@
+{
+  String rawDirectoryFile=request.getSession().getServletContext().getRealPath("extensions/freebase/module/langs/");
+  String cleanedDirectory=rawDirectoryFile.replace("main" + File.separator + "webapp"+ File.separator,"");
+  BufferedReader reader=null;
+  String[] langs=request.getParameterValues("lng");
+  langs=langs[0].split(" ");
+  try {
+    String file=cleanedDirectory + File.separator + "translation-"+ langs[0]+ ".json";
+    reader=new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF-8"));
+  }
+ catch (  FileNotFoundException e1) {
+    try {
+      String file=cleanedDirectory + File.separator + "translation-default.json";
+      reader=new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF-8"));
+    }
+ catch (    FileNotFoundException e3) {
+      e3.printStackTrace();
+    }
+  }
+  String line=null;
+  String message=new String();
+  if (reader != null) {
+    while ((line=reader.readLine()) != null) {
+      message+=line + System.getProperty("line.separator");
+    }
+  }
+  response.setCharacterEncoding("UTF-8");
+  response.setContentType("application/json");
+  response.getWriter().println(message);
+  response.getWriter().flush();
+  response.getWriter().close();
+}

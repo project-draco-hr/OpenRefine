@@ -3,6 +3,8 @@ synchronized (project) {
     _oldRows=new ArrayList<Row>(project.rows);
     project.rows.clear();
     project.rows.addAll(_newRows);
+    project.columnModel.clearPrecomputes();
+    ProjectManager.singleton.getInterProjectModel().flushJoinsInvolvingProject(project.id);
     project.update();
   }
 }

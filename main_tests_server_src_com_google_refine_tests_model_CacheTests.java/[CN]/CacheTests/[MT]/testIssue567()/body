@@ -1,0 +1,18 @@
+{
+  for (int i=0; i < 5; i++) {
+    Row row=new Row(5);
+    row.setCell(0,new Cell(i < 4 ? "a" : "b",null));
+    project.rows.add(row);
+  }
+  engine.getAllRows().accept(project,new CountingRowVisitor(5));
+  engine.getAllFilteredRows().accept(project,new CountingRowVisitor(4));
+  Function fc=new FacetCount();
+  Integer count=(Integer)fc.call(bindings,new Object[]{"a","value","Column A"});
+  Assert.assertEquals(count.intValue(),4);
+  EngineDependentOperation op=new RowRemovalOperation(engine_config);
+  op.createProcess(project,options).performImmediate();
+  engine.getAllRows().accept(project,new CountingRowVisitor(1));
+  engine.getAllFilteredRows().accept(project,new CountingRowVisitor(0));
+  count=(Integer)fc.call(bindings,new Object[]{"a","value","Column A"});
+  Assert.assertEquals(count.intValue(),0);
+}

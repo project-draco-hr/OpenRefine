@@ -1,0 +1,5 @@
+{
+  Assert.assertEquals(invoke("facetCount","a","value","Column A"),Integer.valueOf(5));
+  Assert.assertEquals(invoke("facetCount",new Integer(1),"value","Column A"),Integer.valueOf(5));
+  Assert.assertEquals(invoke("facetCount",new Integer(2),"value+1","Column A"),Integer.valueOf(5));
+}

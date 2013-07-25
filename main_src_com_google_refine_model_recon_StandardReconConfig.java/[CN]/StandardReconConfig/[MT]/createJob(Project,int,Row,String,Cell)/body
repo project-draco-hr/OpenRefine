@@ -42,6 +42,12 @@
             jsonWriter.value(cell2.recon.match.name);
             jsonWriter.endObject();
           }
+ else           if (cell2.value instanceof Calendar) {
+            jsonWriter.value(ParsingUtilities.dateToString(((Calendar)cell2.value).getTime()));
+          }
+ else           if (cell2.value instanceof Date) {
+            jsonWriter.value(ParsingUtilities.dateToString((Date)cell2.value));
+          }
  else {
             jsonWriter.value(cell2.value.toString());
           }

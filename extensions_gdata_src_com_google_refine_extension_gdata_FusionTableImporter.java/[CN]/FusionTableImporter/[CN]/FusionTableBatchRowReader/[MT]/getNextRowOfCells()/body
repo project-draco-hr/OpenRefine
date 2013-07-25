@@ -11,7 +11,7 @@
     int newBatchRowStart=batchRowStart + (rowsOfCells == null ? 0 : rowsOfCells.size());
     rowsOfCells=getRowsOfCells(newBatchRowStart);
     batchRowStart=newBatchRowStart;
-    GDataImporter.setProgress(job,fileSource,-1);
+    setProgress(job,fileSource,-1);
   }
   if (rowsOfCells != null && nextRow - batchRowStart < rowsOfCells.size()) {
     return rowsOfCells.get(nextRow++ - batchRowStart);

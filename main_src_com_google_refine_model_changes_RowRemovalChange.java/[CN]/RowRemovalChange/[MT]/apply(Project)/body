@@ -9,6 +9,8 @@ synchronized (project) {
       _rows.add(row);
       offset--;
     }
+    project.columnModel.clearPrecomputes();
+    ProjectManager.singleton.getInterProjectModel().flushJoinsInvolvingProject(project.id);
     project.update();
   }
 }

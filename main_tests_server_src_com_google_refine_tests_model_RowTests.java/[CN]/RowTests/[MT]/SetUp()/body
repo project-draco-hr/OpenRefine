@@ -1,5 +1,4 @@
 {
-  SUT=new CsvExporter();
   writer=new StringWriter();
   project=new Project();
   options=mock(Properties.class);

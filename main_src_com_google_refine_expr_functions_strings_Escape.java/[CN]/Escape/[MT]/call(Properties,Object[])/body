@@ -10,8 +10,7 @@
       s="";
     }
  else {
-      ToString toString=new ToString();
-      s=toString.call(bindings,new Object[]{o1});
+      s=StringUtils.toString(o1);
     }
     if (o2 instanceof String) {
       String mode=((String)o2).toLowerCase();

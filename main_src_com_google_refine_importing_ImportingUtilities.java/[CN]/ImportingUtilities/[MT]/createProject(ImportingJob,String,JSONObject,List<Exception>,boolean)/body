@@ -3,7 +3,7 @@
   if (record == null || record.parser == null) {
     return -1;
   }
-  JSONUtilities.safePut(job.config,"state","creating-project");
+  job.setState("creating-project");
   final Project project=new Project();
   if (synchronous) {
     createProjectSynchronously(job,format,optionObj,exceptions,record,project);

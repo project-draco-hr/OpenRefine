@@ -1,0 +1,9 @@
+{
+  if (o instanceof Calendar || o instanceof Date) {
+    DateFormat formatter=DateFormat.getDateInstance();
+    return formatter.format(o instanceof Date ? ((Date)o) : ((Calendar)o).getTime());
+  }
+ else {
+    return o.toString();
+  }
+}

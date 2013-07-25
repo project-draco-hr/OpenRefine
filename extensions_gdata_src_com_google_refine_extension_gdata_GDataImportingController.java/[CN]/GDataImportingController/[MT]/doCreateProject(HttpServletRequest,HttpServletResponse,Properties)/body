@@ -10,7 +10,7 @@
   try {
     final JSONObject optionObj=ParsingUtilities.evaluateJsonStringToObject(request.getParameter("options"));
     final List<Exception> exceptions=new LinkedList<Exception>();
-    JSONUtilities.safePut(job.config,"state","creating-project");
+    job.setState("creating-project");
     final Project project=new Project();
     new Thread(){
       @Override public void run(){
@@ -20,14 +20,13 @@
         GDataImporter.parse(token,project,pm,job,-1,optionObj,exceptions);
         if (!job.canceled) {
           if (exceptions.size() > 0) {
-            JSONUtilities.safePut(job.config,"errors",DefaultImportingController.convertErrorsToJsonArray(exceptions));
-            JSONUtilities.safePut(job.config,"state","error");
+            job.setError(exceptions);
           }
  else {
             project.update();
             ProjectManager.singleton.registerProject(project,pm);
-            JSONUtilities.safePut(job.config,"state","created-project");
-            JSONUtilities.safePut(job.config,"projectID",project.id);
+            job.setState("created-project");
+            job.setProjectID(project.id);
           }
           job.touch();
           job.updating=false;

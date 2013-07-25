@@ -3,7 +3,7 @@
     return errorCount;
   }
  else   if (ExpressionUtils.isNonBlankData(choiceValue)) {
-    IndexedNominalFacetChoice choice=choices.get(choiceValue);
+    IndexedNominalFacetChoice choice=choices.get(StringUtils.toString(choiceValue));
     return choice != null ? choice.count : 0;
   }
  else {

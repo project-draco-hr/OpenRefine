@@ -1,5 +1,5 @@
 {
-  JSONObject retrievalRecord=JSONUtilities.getObject(job.config,"retrievalRecord");
+  JSONObject retrievalRecord=job.getRetrievalRecord();
   final Map<String,Integer> formatToCount=new HashMap<String,Integer>();
   List<String> formats=new ArrayList<String>();
   JSONArray fileRecords=JSONUtilities.getArray(retrievalRecord,"files");

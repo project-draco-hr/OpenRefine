@@ -1,0 +1,5 @@
+{
+  String lang=request.getParameter("lng");
+  PreferenceStore pref=ProjectManager.singleton.getPreferenceStore();
+  pref.put("userLang",lang);
+}

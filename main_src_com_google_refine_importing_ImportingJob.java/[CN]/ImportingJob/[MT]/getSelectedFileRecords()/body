@@ -1,10 +1,10 @@
 {
   List<JSONObject> results=new ArrayList<JSONObject>();
-  JSONObject retrievalRecord=JSONUtilities.getObject(job.config,"retrievalRecord");
+  JSONObject retrievalRecord=JSONUtilities.getObject(config,"retrievalRecord");
   if (retrievalRecord != null) {
     JSONArray fileRecordArray=JSONUtilities.getArray(retrievalRecord,"files");
     if (fileRecordArray != null) {
-      JSONArray fileSelectionArray=JSONUtilities.getArray(job.config,"fileSelection");
+      JSONArray fileSelectionArray=JSONUtilities.getArray(config,"fileSelection");
       if (fileSelectionArray != null) {
         for (int i=0; i < fileSelectionArray.length(); i++) {
           int index=JSONUtilities.getIntElement(fileSelectionArray,i,-1);

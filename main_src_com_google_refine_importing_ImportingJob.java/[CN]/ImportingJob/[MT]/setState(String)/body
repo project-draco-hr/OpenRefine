@@ -1,0 +1,5 @@
+{
+synchronized (config) {
+    JSONUtilities.safePut(config,"state",state);
+  }
+}

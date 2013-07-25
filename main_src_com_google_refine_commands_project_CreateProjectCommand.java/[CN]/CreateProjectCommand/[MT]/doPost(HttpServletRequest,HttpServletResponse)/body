@@ -36,7 +36,7 @@
     }
  else {
       Format formatRecord=ImportingManager.formatToRecord.get(format);
-      optionObj=formatRecord.parser.createParserUIInitializationData(job,ImportingUtilities.getSelectedFileRecords(job),format);
+      optionObj=formatRecord.parser.createParserUIInitializationData(job,job.getSelectedFileRecords(),format);
     }
     adjustLegacyOptions(format,parameters,optionObj);
     String projectName=parameters.getProperty("project-name");

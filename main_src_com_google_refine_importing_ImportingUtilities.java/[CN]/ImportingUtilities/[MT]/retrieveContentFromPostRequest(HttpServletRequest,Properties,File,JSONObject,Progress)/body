@@ -34,7 +34,7 @@
     }
   }
 );
-  List tempFiles=upload.parseRequest(request);
+  @SuppressWarnings("rawtypes") List tempFiles=upload.parseRequest(request);
   progress.setProgress("Uploading data ...",-1);
   parts:   for (  Object obj : tempFiles) {
     if (progress.isCanceled()) {

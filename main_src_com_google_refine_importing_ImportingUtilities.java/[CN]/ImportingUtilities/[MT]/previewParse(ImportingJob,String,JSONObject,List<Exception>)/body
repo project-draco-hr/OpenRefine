@@ -4,6 +4,6 @@
     return;
   }
   job.prepareNewProject();
-  record.parser.parse(job.project,job.metadata,job,getSelectedFileRecords(job),format,100,optionObj,exceptions);
+  record.parser.parse(job.project,job.metadata,job,job.getSelectedFileRecords(),format,100,optionObj,exceptions);
   job.project.update();
 }

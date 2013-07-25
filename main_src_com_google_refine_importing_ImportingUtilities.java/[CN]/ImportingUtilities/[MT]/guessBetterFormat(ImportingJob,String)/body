@@ -1,4 +1,4 @@
 {
-  JSONObject retrievalRecord=JSONUtilities.getObject(job.config,"retrievalRecord");
+  JSONObject retrievalRecord=job.getRetrievalRecord();
   return retrievalRecord != null ? guessBetterFormat(job,retrievalRecord,bestFormat) : bestFormat;
 }

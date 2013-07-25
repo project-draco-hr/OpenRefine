@@ -1,5 +1,9 @@
 {
   this.id=id;
   this.dir=dir;
+  JSONObject cfg=new JSONObject();
+  JSONUtilities.safePut(cfg,"state","new");
+  JSONUtilities.safePut(cfg,"hasData",false);
+  this.config=cfg;
   dir.mkdirs();
 }

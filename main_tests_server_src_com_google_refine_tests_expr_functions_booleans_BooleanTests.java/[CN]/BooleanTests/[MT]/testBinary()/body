@@ -1,0 +1,11 @@
+{
+  for (  String[] test : TRUTH_TABLE) {
+    String operator=test[0];
+    Boolean op1=Boolean.valueOf(test[1]);
+    Boolean op2=Boolean.valueOf(test[2]);
+    Boolean result=Boolean.valueOf(test[3]);
+    Assert.assertEquals(invoke(operator,op1,op2),result);
+  }
+  Assert.assertEquals(invoke("not",Boolean.TRUE),Boolean.FALSE);
+  Assert.assertEquals(invoke("not",Boolean.FALSE),Boolean.TRUE);
+}

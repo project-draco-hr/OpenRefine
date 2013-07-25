@@ -1,8 +1,11 @@
 {
-  for (  Object o : args) {
-    if (Not.objectToBoolean(o)) {
-      return true;
+  if (args.length == 2 && args[0] instanceof Boolean && args[1] instanceof Boolean) {
+    for (    Object o : args) {
+      if (Not.objectToBoolean(o)) {
+        return true;
+      }
     }
+    return false;
   }
-  return false;
+  return new EvalError(ControlFunctionRegistry.getFunctionName(this) + " expects two booleans");
 }

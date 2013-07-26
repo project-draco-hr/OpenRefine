@@ -1,6 +1,10 @@
 {
   long now=System.currentTimeMillis();
-  for (  Long id : jobs.keySet()) {
+  HashSet<Long> keys;
+synchronized (jobs) {
+    keys=new HashSet<Long>(jobs.keySet());
+  }
+  for (  Long id : keys) {
     ImportingJob job=jobs.get(id);
     if (job != null && !job.updating && now - job.lastTouched > s_stalePeriod) {
       job.dispose();

@@ -37,5 +37,8 @@
  catch (  IOException e) {
     logger.error("Error generating parser UI initialization data for Excel file",e);
   }
+catch (  IllegalArgumentException e) {
+    logger.error("Error generating parser UI initialization data for Excel file (only Excel 97 & later supported)",e);
+  }
   return options;
 }

@@ -40,5 +40,8 @@
 catch (  IllegalArgumentException e) {
     logger.error("Error generating parser UI initialization data for Excel file (only Excel 97 & later supported)",e);
   }
+catch (  POIXMLException e) {
+    logger.error("Error generating parser UI initialization data for Excel file - invalid XML",e);
+  }
   return options;
 }

@@ -82,9 +82,21 @@
           }
         }
         if ("http".equals(url.getProtocol()) || "https".equals(url.getProtocol())) {
-          DecompressingHttpClient httpclient=new DecompressingHttpClient(new DefaultHttpClient());
+          DefaultHttpClient client=new DefaultHttpClient();
+          DecompressingHttpClient httpclient=new DecompressingHttpClient(client);
           HttpGet httpGet=new HttpGet(url.toURI());
           httpGet.setHeader("User-Agent",RefineServlet.getUserAgent());
+          if ("https".equals(url.getProtocol())) {
+            String userinfo=url.getUserInfo();
+            if (userinfo != null) {
+              int s=userinfo.indexOf(':');
+              if (s > 0) {
+                String user=userinfo.substring(0,s);
+                String pw=userinfo.substring(s + 1,userinfo.length());
+                client.getCredentialsProvider().setCredentials(new AuthScope(url.getHost(),443),new UsernamePasswordCredentials(user,pw));
+              }
+            }
+          }
           HttpResponse response=httpclient.execute(httpGet);
           try {
             response.getStatusLine();

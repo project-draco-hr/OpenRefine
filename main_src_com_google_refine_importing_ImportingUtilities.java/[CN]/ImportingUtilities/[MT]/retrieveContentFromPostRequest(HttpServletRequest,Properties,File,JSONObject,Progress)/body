@@ -34,13 +34,12 @@
     }
   }
 );
-  @SuppressWarnings("rawtypes") List tempFiles=upload.parseRequest(request);
+  @SuppressWarnings("unchecked") List<FileItem> tempFiles=(List<FileItem>)upload.parseRequest(request);
   progress.setProgress("Uploading data ...",-1);
-  parts:   for (  Object obj : tempFiles) {
+  parts:   for (  FileItem fileItem : tempFiles) {
     if (progress.isCanceled()) {
       break;
     }
-    FileItem fileItem=(FileItem)obj;
     InputStream stream=fileItem.getInputStream();
     String name=fileItem.getFieldName().toLowerCase();
     if (fileItem.isFormField()) {
@@ -59,8 +58,8 @@
         JSONUtilities.safePut(fileRecord,"location",getRelativePath(file,rawDataDir));
         progress.setProgress("Uploading pasted clipboard text",calculateProgressPercent(update.totalExpectedSize,update.totalRetrievedSize));
         JSONUtilities.safePut(fileRecord,"size",saveStreamToFile(stream,file,null));
-        clipboardCount++;
         JSONUtilities.append(fileRecords,fileRecord);
+        clipboardCount++;
       }
  else       if (name.equals("download")) {
         String urlString=Streams.asString(stream);
@@ -82,48 +81,54 @@
             }
           }
         }
-        URLConnection urlConnection=url.openConnection();
-        urlConnection.setConnectTimeout(5000);
-        if (urlConnection instanceof HttpURLConnection) {
-          HttpURLConnection httpConnection=(HttpURLConnection)urlConnection;
-          RefineServlet.setUserAgent(httpConnection);
+        if ("http".equals(url.getProtocol()) || "https".equals(url.getProtocol())) {
+          DecompressingHttpClient httpclient=new DecompressingHttpClient(new DefaultHttpClient());
+          HttpGet httpGet=new HttpGet(url.toURI());
+          httpGet.setHeader("User-Agent",RefineServlet.getUserAgent());
+          HttpResponse response=httpclient.execute(httpGet);
+          try {
+            response.getStatusLine();
+            HttpEntity entity=response.getEntity();
+            if (entity == null) {
+              throw new Exception("No content found in " + url.toString());
+            }
+            InputStream stream2=entity.getContent();
+            String encoding=null;
+            if (entity.getContentEncoding() != null) {
+              encoding=entity.getContentEncoding().getValue();
+            }
+            JSONUtilities.safePut(fileRecord,"declaredEncoding",encoding);
+            String contentType=null;
+            if (entity.getContentType().getValue() != null) {
+              contentType=entity.getContentType().getValue();
+            }
+            JSONUtilities.safePut(fileRecord,"declaredMimeType",contentType);
+            if (saveStream(stream2,url,rawDataDir,progress,update,fileRecord,fileRecords,entity.getContentLength())) {
+              archiveCount++;
+            }
+            downloadCount++;
+            EntityUtils.consume(entity);
+          }
+  finally {
+            httpGet.releaseConnection();
+          }
         }
-        urlConnection.connect();
-        InputStream stream2=urlConnection.getInputStream();
-        try {
-          String localname=url.getPath();
-          if (localname.isEmpty() || localname.endsWith("/")) {
-            localname=localname + "temp";
-          }
-          File file=allocateFile(rawDataDir,localname);
-          int contentLength=urlConnection.getContentLength();
-          if (contentLength > 0) {
-            update.totalExpectedSize+=contentLength;
-          }
+ else {
+          URLConnection urlConnection=url.openConnection();
+          urlConnection.setConnectTimeout(5000);
+          urlConnection.connect();
+          InputStream stream2=urlConnection.getInputStream();
           JSONUtilities.safePut(fileRecord,"declaredEncoding",urlConnection.getContentEncoding());
           JSONUtilities.safePut(fileRecord,"declaredMimeType",urlConnection.getContentType());
-          JSONUtilities.safePut(fileRecord,"fileName",file.getName());
-          JSONUtilities.safePut(fileRecord,"location",getRelativePath(file,rawDataDir));
-          progress.setProgress("Downloading " + urlString,calculateProgressPercent(update.totalExpectedSize,update.totalRetrievedSize));
-          long actualLength=saveStreamToFile(stream2,file,update);
-          JSONUtilities.safePut(fileRecord,"size",actualLength);
-          if (actualLength == 0) {
-            throw new Exception("No content found in " + urlString);
+          try {
+            if (saveStream(stream2,url,rawDataDir,progress,update,fileRecord,fileRecords,urlConnection.getContentLength())) {
+              archiveCount++;
+            }
+            downloadCount++;
           }
- else           if (contentLength >= 0) {
-            update.totalExpectedSize+=(actualLength - contentLength);
-          }
- else {
-            update.totalExpectedSize+=actualLength;
-          }
-          progress.setProgress("Saving " + urlString + " locally",calculateProgressPercent(update.totalExpectedSize,update.totalRetrievedSize));
-          if (postProcessRetrievedFile(rawDataDir,file,fileRecord,fileRecords,progress)) {
-            archiveCount++;
-          }
-          downloadCount++;
-        }
   finally {
-          stream2.close();
+            stream2.close();
+          }
         }
       }
  else {
@@ -152,8 +157,8 @@
     }
     stream.close();
   }
-  for (  Object obj : tempFiles) {
-    ((FileItem)obj).delete();
+  for (  FileItem fileItem : tempFiles) {
+    fileItem.delete();
   }
   JSONUtilities.safePut(retrievalRecord,"uploadCount",uploadCount);
   JSONUtilities.safePut(retrievalRecord,"downloadCount",downloadCount);

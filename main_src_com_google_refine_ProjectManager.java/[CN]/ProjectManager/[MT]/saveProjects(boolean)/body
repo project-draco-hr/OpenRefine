@@ -39,6 +39,7 @@ synchronized (this) {
       }
  catch (      Exception e) {
         e.printStackTrace();
+        disposeUnmodifiedProjects();
       }
     }
   }

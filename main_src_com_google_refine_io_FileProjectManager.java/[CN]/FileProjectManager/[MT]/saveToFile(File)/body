@@ -9,12 +9,7 @@
       ProjectMetadata metadata=_projectsMetadata.get(id);
       if (metadata != null) {
         jsonWriter.value(id);
-        try {
-          ProjectMetadataUtilities.save(metadata,getProjectDir(id));
-        }
- catch (        Exception e) {
-          e.printStackTrace();
-        }
+        ProjectMetadataUtilities.save(metadata,getProjectDir(id));
       }
     }
     jsonWriter.endArray();

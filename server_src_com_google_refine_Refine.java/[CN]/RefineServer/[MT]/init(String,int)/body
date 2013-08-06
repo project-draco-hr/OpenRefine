@@ -37,6 +37,12 @@
   if (Configurations.getBoolean("refine.autoreload",false)) {
     scanForUpdates(webapp,context);
   }
-  this.start();
+  try {
+    this.start();
+  }
+ catch (  BindException e) {
+    logger.error("Failed to start server - is there another copy running already on this port/address?");
+    throw e;
+  }
   configure(context);
 }

@@ -11,7 +11,7 @@ synchronized (this) {
           long msecsOverdue=startTimeOfSave.getTime() - project.getLastSave().getTime();
           records.add(new SaveRecord(project,msecsOverdue));
         }
- else         if (!project.getProcessManager().hasPending() && startTimeOfSave.getTime() - project.getLastSave().getTime() > s_projectFlushDelay) {
+ else         if (!project.getProcessManager().hasPending() && startTimeOfSave.getTime() - project.getLastSave().getTime() > PROJECT_FLUSH_DELAY) {
           _projects.remove(id).dispose();
         }
       }
@@ -33,7 +33,7 @@ synchronized (this) {
     }
 );
     logger.info(allModified ? "Saving all modified projects ..." : "Saving some modified projects ...");
-    for (int i=0; i < records.size() && (allModified || (new Date().getTime() - startTimeOfSave.getTime() < s_quickSaveTimeout)); i++) {
+    for (int i=0; i < records.size() && (allModified || (new Date().getTime() - startTimeOfSave.getTime() < QUICK_SAVE_MAX_TIME)); i++) {
       try {
         saveProject(records.get(i).project);
       }

@@ -1,0 +1,3 @@
+{
+  return written == null || _modified.after(written);
+}

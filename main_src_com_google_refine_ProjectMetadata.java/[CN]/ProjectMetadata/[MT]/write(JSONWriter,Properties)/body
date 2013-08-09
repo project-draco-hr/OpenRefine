@@ -25,4 +25,7 @@
     _preferenceStore.write(writer,options);
   }
   writer.endObject();
+  if ("save".equals(options.getProperty("mode"))) {
+    written=new Date();
+  }
 }

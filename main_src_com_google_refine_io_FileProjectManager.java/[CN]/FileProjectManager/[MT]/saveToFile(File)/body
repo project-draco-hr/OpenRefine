@@ -1,5 +1,6 @@
 {
   FileWriter writer=new FileWriter(file);
+  boolean saveWasNeeded=false;
   try {
     JSONWriter jsonWriter=new JSONWriter(writer);
     jsonWriter.object();
@@ -9,16 +10,21 @@
       ProjectMetadata metadata=_projectsMetadata.get(id);
       if (metadata != null) {
         jsonWriter.value(id);
-        ProjectMetadataUtilities.save(metadata,getProjectDir(id));
+        if (metadata.isDirty()) {
+          ProjectMetadataUtilities.save(metadata,getProjectDir(id));
+          saveWasNeeded=true;
+        }
       }
     }
     jsonWriter.endArray();
     writer.write('\n');
     jsonWriter.key("preferences");
+    saveWasNeeded|=_preferenceStore.isDirty();
     _preferenceStore.write(jsonWriter,new Properties());
     jsonWriter.endObject();
   }
   finally {
     writer.close();
   }
+  return saveWasNeeded;
 }

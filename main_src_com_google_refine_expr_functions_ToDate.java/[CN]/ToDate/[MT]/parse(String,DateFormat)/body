@@ -1,0 +1,11 @@
+{
+  try {
+    Date date=formatter.parse(o1);
+    GregorianCalendar c=new GregorianCalendar();
+    c.setTime(date);
+    return c;
+  }
+ catch (  java.text.ParseException e) {
+    return null;
+  }
+}

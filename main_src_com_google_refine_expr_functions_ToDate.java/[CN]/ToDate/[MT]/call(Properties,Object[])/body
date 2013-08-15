@@ -42,7 +42,7 @@
       return new EvalError("Cannot parse to date");
     }
   }
-  Locale locale=Locale.getDefault(Category.FORMAT);
+  Locale locale=Locale.getDefault();
   if (args.length >= 2) {
     for (int i=1; i < args.length; i++) {
       if (!(args[i] instanceof String)) {

@@ -1,20 +1,13 @@
 {
   File tempFile=new File(projectDir,"metadata.temp.json");
-  try {
-    saveToFile(projectMeta,tempFile);
-  }
- catch (  Exception e) {
-    e.printStackTrace();
-    logger.warn("Failed to save project metadata");
-    return;
-  }
+  saveToFile(projectMeta,tempFile);
   File file=new File(projectDir,"metadata.json");
   File oldFile=new File(projectDir,"metadata.old.json");
+  if (oldFile.exists()) {
+    oldFile.delete();
+  }
   if (file.exists()) {
     file.renameTo(oldFile);
   }
   tempFile.renameTo(file);
-  if (oldFile.exists()) {
-    oldFile.delete();
-  }
 }

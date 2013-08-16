@@ -4,12 +4,14 @@
     return data_dir;
   }
   File dataDir=null;
+  File grefineDir=null;
   File gridworksDir=null;
   String os=System.getProperty("os.name").toLowerCase();
   if (os.contains("windows")) {
     try {
+      dataDir=new File(fixWindowsUnicodePath(JDataPathSystem.getLocalSystem().getLocalDataPath("OpenRefine").getPath()));
       DataPath localDataPath=JDataPathSystem.getLocalSystem().getLocalDataPath("Google");
-      dataDir=new File(new File(fixWindowsUnicodePath(localDataPath.getPath())),"Refine");
+      grefineDir=new File(new File(fixWindowsUnicodePath(localDataPath.getPath())),"Refine");
       gridworksDir=new File(fixWindowsUnicodePath(JDataPathSystem.getLocalSystem().getLocalDataPath("Gridworks").getPath()));
     }
  catch (    Error e) {
@@ -28,14 +30,17 @@
       if (parentDir == null) {
         parentDir=new File(".");
       }
-      dataDir=new File(new File(parentDir,"Google"),"Refine");
+      dataDir=new File(parentDir,"OpenRefine");
+      grefineDir=new File(new File(parentDir,"Google"),"Refine");
       gridworksDir=new File(parentDir,"Gridworks");
     }
   }
  else   if (os.contains("mac os x")) {
     String home=System.getProperty("user.home");
-    String data_home=(home != null) ? home + "/Library/Application Support/Google/Refine" : ".google-refine";
+    String data_home=(home != null) ? home + "/Library/Application Support/OpenRefine" : ".openrefine";
     dataDir=new File(data_home);
+    String grefine_home=(home != null) ? home + "/Library/Application Support/Google/Refine" : ".google-refine";
+    grefineDir=new File(grefine_home);
     String gridworks_home=(home != null) ? home + "/Library/Application Support/Gridworks" : ".gridworks";
     gridworksDir=new File(gridworks_home);
   }
@@ -48,14 +53,23 @@
       }
       data_home=home + "/.local/share";
     }
-    dataDir=new File(data_home + "/google/refine");
+    dataDir=new File(data_home + "/openrefine");
+    grefineDir=new File(data_home + "/google/refine");
     gridworksDir=new File(data_home + "/gridworks");
   }
-  if (!dataDir.exists() && gridworksDir.exists()) {
-    if (!dataDir.getParentFile().mkdirs()) {
-      logger.error("FAILED to create parent directory for workspace rename target " + dataDir.getParent());
-    }
+  if (!dataDir.exists()) {
+    if (grefineDir.exists()) {
+      if (gridworksDir.exists()) {
+        logger.warn("Found both Gridworks: " + gridworksDir + " & Googld Refine dirs "+ grefineDir);
+      }
+      if (grefineDir.renameTo(dataDir)) {
+        logger.info("Renamed Google Refine directory " + grefineDir + " to "+ dataDir);
+      }
  else {
+        logger.error("FAILED to rename Google Refine directory " + grefineDir + " to "+ dataDir);
+      }
+    }
+ else     if (gridworksDir.exists()) {
       if (gridworksDir.renameTo(dataDir)) {
         logger.info("Renamed Gridworks directory " + gridworksDir + " to "+ dataDir);
       }

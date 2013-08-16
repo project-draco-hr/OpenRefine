@@ -1,10 +1,10 @@
 {
   String fileName=file.getName();
   try {
-    if (fileName.endsWith(".gz") || "gzip".equals(contentEncoding) || "x-gzip".equals(contentEncoding)) {
+    if (fileName.endsWith(".gz") || "gzip".equals(contentEncoding) || "x-gzip".equals(contentEncoding)|| "application/x-gzip".equals(mimeType)) {
       return new GZIPInputStream(new FileInputStream(file));
     }
- else     if (fileName.endsWith(".bz2")) {
+ else     if (fileName.endsWith(".bz2") || "application/x-bzip2".equals(mimeType)) {
       InputStream is=new FileInputStream(file);
       is.mark(4);
       if (!(is.read() == 'B' && is.read() == 'Z')) {

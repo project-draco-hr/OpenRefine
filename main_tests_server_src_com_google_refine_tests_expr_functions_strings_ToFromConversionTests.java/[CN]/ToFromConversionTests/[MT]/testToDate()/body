@@ -7,4 +7,9 @@
   Assert.assertEquals(invoke("toDate","2012-03-01"),CalendarParser.parse("2012-03-01"));
   Assert.assertEquals(invoke("toDate","2012-03-01","yyyy-MM-dd"),CalendarParser.parse("2012-03-01"));
   Assert.assertEquals(invoke("toDate","2012-03-01","MMM","yyyy-MM-dd"),CalendarParser.parse("2012-03-01"));
+  Assert.assertEquals(invoke("toDate","2013-06-01","zh"),CalendarParser.parse("2013-06-01"));
+  Assert.assertEquals(invoke("toDate","01-??????-2013","zh","dd-MMM-yyyy"),CalendarParser.parse("2013-06-01"));
+  Assert.assertEquals(invoke("toDate","01-??????-2013","zh_HK","dd-MMM-yyyy"),CalendarParser.parse("2013-06-01"));
+  Assert.assertEquals(invoke("toDate","01-??????-2013","zh_TW","dd-MMM-yyyy"),CalendarParser.parse("2013-06-01"));
+  Assert.assertEquals(invoke("toDate","01-??????-2013","zh_CN","dd-MMM-yyyy"),CalendarParser.parse("2013-06-01"));
 }

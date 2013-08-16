@@ -2,6 +2,7 @@
   if (project != null) {
     project.dispose();
   }
+  ProjectManager.singleton.save(true);
   project=new Project();
   metadata=new ProjectMetadata();
 }

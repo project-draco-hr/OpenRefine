@@ -34,5 +34,6 @@
  catch (    JSONException e) {
     }
   }
+  pm.written=new Date();
   return pm;
 }

@@ -14,7 +14,12 @@
       Object[] values=(Object[])o;
       results=new ArrayList<Object>(values.length);
       for (      Object v : values) {
-        bindings.put(name,v);
+        if (v != null) {
+          bindings.put(name,v);
+        }
+ else {
+          bindings.remove(name);
+        }
         Object r=args[2].evaluate(bindings);
         results.add(r);
       }
@@ -26,7 +31,12 @@
       for (int i=0; i < l; i++) {
         try {
           Object v=a.get(i);
-          bindings.put(name,v);
+          if (v != null) {
+            bindings.put(name,v);
+          }
+ else {
+            bindings.remove(name);
+          }
           Object r=args[2].evaluate(bindings);
           results.add(r);
         }
@@ -39,7 +49,12 @@
       Collection<Object> collection=ExpressionUtils.toObjectCollection(o);
       results=new ArrayList<Object>(collection.size());
       for (      Object v : collection) {
-        bindings.put(name,v);
+        if (v != null) {
+          bindings.put(name,v);
+        }
+ else {
+          bindings.remove(name);
+        }
         Object r=args[2].evaluate(bindings);
         results.add(r);
       }

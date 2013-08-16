@@ -1,0 +1,11 @@
+{
+synchronized (this) {
+    for (    long id : _projectsMetadata.keySet()) {
+      ProjectMetadata metadata=getProjectMetadata(id);
+      Project project=_projects.get(id);
+      if (project != null && !project.getProcessManager().hasPending() && metadata.getModified().getTime() < project.getLastSave().getTime()) {
+        _projects.remove(id).dispose();
+      }
+    }
+  }
+}

@@ -1,5 +1,5 @@
 {
 synchronized (config) {
-    JSONUtilities.safePut(config,"projectID",project.id);
+    JSONUtilities.safePut(config,"projectID",projectID);
   }
 }

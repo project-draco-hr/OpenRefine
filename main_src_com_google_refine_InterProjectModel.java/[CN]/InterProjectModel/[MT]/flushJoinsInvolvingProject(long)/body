@@ -1,9 +1,10 @@
 {
 synchronized (_joins) {
-    for (    Entry<String,ProjectJoin> entry : _joins.entrySet()) {
+    for (Iterator<Entry<String,ProjectJoin>> it=_joins.entrySet().iterator(); it.hasNext(); ) {
+      Entry<String,ProjectJoin> entry=it.next();
       ProjectJoin join=entry.getValue();
       if (join.fromProjectID == projectID || join.toProjectID == projectID) {
-        _joins.remove(entry.getKey());
+        it.remove();
       }
     }
   }

@@ -1,7 +1,8 @@
 {
-  if (singleton == null) {
-    logger.info("Using workspace directory: {}",dir.getAbsolutePath());
-    singleton=new FileProjectManager(dir);
-    ((FileProjectManager)singleton).recover();
+  if (singleton != null) {
+    logger.warn("Overwriting singleton already set: " + singleton);
   }
+  logger.info("Using workspace directory: {}",dir.getAbsolutePath());
+  singleton=new FileProjectManager(dir);
+  ((FileProjectManager)singleton).recover();
 }

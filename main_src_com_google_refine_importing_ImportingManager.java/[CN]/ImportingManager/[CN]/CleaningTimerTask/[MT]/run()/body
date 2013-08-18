@@ -1,8 +1,3 @@
 {
-  try {
-    cleanUpStaleJobs();
-  }
-  finally {
-    _timer.schedule(new CleaningTimerTask(),s_timerPeriod);
-  }
+  cleanUpStaleJobs();
 }

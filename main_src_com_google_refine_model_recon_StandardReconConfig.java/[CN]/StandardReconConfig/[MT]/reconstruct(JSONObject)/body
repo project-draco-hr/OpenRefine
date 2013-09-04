@@ -19,5 +19,6 @@
     columnDetails=new ArrayList<ColumnDetail>();
   }
   JSONObject t=obj.has("type") && !obj.isNull("type") ? obj.getJSONObject("type") : null;
-  return new StandardReconConfig(obj.getString("service"),obj.has("identifierSpace") ? obj.getString("identifierSpace") : null,obj.has("schemaSpace") ? obj.getString("schemaSpace") : null,t == null ? null : t.getString("id"),t == null ? null : (t.has("name") ? t.getString("name") : null),obj.getBoolean("autoMatch"),columnDetails);
+  int limit=obj.has("limit") ? obj.getInt("limit") : 0;
+  return new StandardReconConfig(obj.getString("service"),obj.has("identifierSpace") ? obj.getString("identifierSpace") : null,obj.has("schemaSpace") ? obj.getString("schemaSpace") : null,t == null ? null : t.getString("id"),t == null ? null : (t.has("name") ? t.getString("name") : null),obj.getBoolean("autoMatch"),columnDetails,limit);
 }

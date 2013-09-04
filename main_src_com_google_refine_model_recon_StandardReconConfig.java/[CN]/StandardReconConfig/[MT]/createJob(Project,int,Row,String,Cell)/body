@@ -56,6 +56,10 @@
       }
       jsonWriter.endArray();
     }
+    if (limit != 0) {
+      jsonWriter.key("limit");
+      jsonWriter.value(limit);
+    }
     jsonWriter.endObject();
     job.text=cell.value.toString();
     job.code=stringWriter.toString();

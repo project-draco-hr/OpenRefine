@@ -1,0 +1,8 @@
+String service
+String identifierSpace
+String schemaSpace
+String typeID
+String typeName
+boolean autoMatch
+List<ColumnDetail> columnDetails
+int limit

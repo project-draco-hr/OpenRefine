@@ -3,7 +3,6 @@
   if (modname == null) {
     modname="core";
   }
-  ButterflyModule module=this.servlet.getModule(modname);
   String[] langs=request.getParameterValues("lang");
   if (langs == null || "".equals(langs[0])) {
     PreferenceStore ps=ProjectManager.singleton.getPreferenceStore();
@@ -16,26 +15,20 @@
   JSONObject json=null;
   boolean loaded=false;
   for (  String lang : langs) {
-    File langFile=new File(module.getPath(),"langs" + File.separator + "translation-"+ lang+ ".json");
-    try {
-      Reader reader=new BufferedReader(new InputStreamReader(new FileInputStream(langFile),"UTF-8"));
-      json=new JSONObject(new JSONTokener(reader));
+    json=loadLanguage(this.servlet,modname,lang);
+    if (json != null) {
       response.setCharacterEncoding("UTF-8");
       response.setContentType("application/json");
-      json.write(response.getWriter());
+      try {
+        json.write(response.getWriter());
+      }
+ catch (      JSONException e) {
+        logger.error("Error writing language labels to response stream");
+      }
       response.getWriter().flush();
       response.getWriter().close();
       loaded=true;
       break;
-    }
- catch (    FileNotFoundException e1) {
-      json=null;
-      continue;
-    }
-catch (    JSONException e) {
-      json=null;
-      logger.error("JSON error reading/writing language file",e);
-      continue;
     }
   }
   if (!loaded) {

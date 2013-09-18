@@ -2,7 +2,7 @@
   String inputSeparator=sep == null ? "\t" : sep;
   String input="ignore1\n" + "ignore2\n" + "ignore3\n"+ "col1" + inputSeparator + "col2"+ inputSeparator+ "col3\n"+ "sub1"+ inputSeparator+ "sub2"+ inputSeparator+ "sub3\n"+ "skip1\n"+ "skip2\n"+ "data-row1-cell1"+ inputSeparator+ "data-row1-cell2"+ inputSeparator+ "data-row1-cell3\n"+ "data-row2-cell1"+ inputSeparator+ "data-row2-cell2"+ inputSeparator+ "\n"+ "data-row3-cell1"+ inputSeparator+ "data-row3-cell2"+ inputSeparator+ "data-row1-cell3";
   try {
-    prepareOptions(sep,2,2,3,2,false,true,false);
+    prepareOptions(sep,2,2,3,2,false,false);
     parseOneFile(SUT,new StringReader(input));
   }
  catch (  Exception e) {

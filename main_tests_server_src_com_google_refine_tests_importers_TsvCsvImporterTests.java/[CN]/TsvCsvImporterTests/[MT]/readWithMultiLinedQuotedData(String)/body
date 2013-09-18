@@ -2,7 +2,7 @@
   String inputSeparator=sep == null ? "\t" : sep;
   String input="col1" + inputSeparator + "col2"+ inputSeparator+ "col3\n"+ "\"\"\"To\n Be\"\" is often followed by \"\"or not To\n Be\"\"\""+ inputSeparator+ "data2";
   try {
-    prepareOptions(sep,-1,0,0,1,false,true,false);
+    prepareOptions(sep,-1,0,0,1,false,false);
     parseOneFile(SUT,new StringReader(input));
   }
  catch (  Exception e) {

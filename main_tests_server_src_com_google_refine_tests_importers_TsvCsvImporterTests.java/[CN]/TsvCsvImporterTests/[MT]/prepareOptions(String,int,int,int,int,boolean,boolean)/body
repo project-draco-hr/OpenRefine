@@ -5,7 +5,6 @@
   whenGetIntegerOption("ignoreLines",options,ignoreLines);
   whenGetIntegerOption("headerLines",options,headerLines);
   whenGetBooleanOption("guessCellValueTypes",options,guessValueType);
-  whenGetBooleanOption("splitIntoColumns",options,splitIntoColumns);
   whenGetBooleanOption("processQuotes",options,!ignoreQuotes);
   whenGetBooleanOption("storeBlankCellsAsNulls",options,true);
 }

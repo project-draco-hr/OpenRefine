@@ -4,5 +4,4 @@ int skip
 int ignoreLines
 int headerLines
 boolean guessValueType
-boolean splitIntoColumns
 boolean ignoreQuotes

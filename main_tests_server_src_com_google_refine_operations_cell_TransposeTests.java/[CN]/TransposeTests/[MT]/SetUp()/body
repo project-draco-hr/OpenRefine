@@ -1,0 +1,10 @@
+{
+  servlet=new RefineServletStub();
+  ProjectManager.singleton=new ProjectManagerStub();
+  ImportingManager.initialize(servlet);
+  project=new Project();
+  metadata=new ProjectMetadata();
+  job=ImportingManager.createJob();
+  options=mock(JSONObject.class);
+  importer=new SeparatorBasedImporter();
+}

@@ -1,0 +1,7 @@
+String sep
+int limit
+int skip
+int ignoreLines
+int headerLines
+boolean guessValueType
+boolean ignoreQuotes

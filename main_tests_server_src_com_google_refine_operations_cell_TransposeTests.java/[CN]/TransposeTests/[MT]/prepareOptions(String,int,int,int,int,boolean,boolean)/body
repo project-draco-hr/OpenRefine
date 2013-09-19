@@ -1,0 +1,10 @@
+{
+  whenGetStringOption("separator",options,sep);
+  whenGetIntegerOption("limit",options,limit);
+  whenGetIntegerOption("skipDataLines",options,skip);
+  whenGetIntegerOption("ignoreLines",options,ignoreLines);
+  whenGetIntegerOption("headerLines",options,headerLines);
+  whenGetBooleanOption("guessCellValueTypes",options,guessValueType);
+  whenGetBooleanOption("processQuotes",options,!ignoreQuotes);
+  whenGetBooleanOption("storeBlankCellsAsNulls",options,true);
+}

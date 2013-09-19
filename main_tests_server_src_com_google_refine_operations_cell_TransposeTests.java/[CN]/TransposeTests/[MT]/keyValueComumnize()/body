@@ -1,0 +1,24 @@
+{
+  String input="ID;Cat;Val\n" + "1;a;1\n" + "1;b;3\n"+ "2;b;4\n"+ "2;c;5\n"+ "3;a;2\n"+ "3;b;5\n"+ "3;d;3\n";
+  prepareOptions(";",-1,0,0,1,false,false);
+  List<Exception> exceptions=new ArrayList<Exception>();
+  importer.parseOneFile(project,metadata,job,"filesource",new StringReader(input),-1,options,exceptions);
+  project.update();
+  ProjectManager.singleton.registerProject(project,metadata);
+  AbstractOperation op=new KeyValueColumnizeOperation("Cat","Val",null);
+  Process process=op.createProcess(project,new Properties());
+  HistoryEntry historyEntry=process.performImmediate();
+  Assert.assertEquals(project.columnModel.columns.size(),5);
+  Assert.assertEquals(project.columnModel.columns.get(0).getName(),"ID");
+  Assert.assertEquals(project.columnModel.columns.get(1).getName(),"a");
+  Assert.assertEquals(project.columnModel.columns.get(2).getName(),"b");
+  Assert.assertEquals(project.columnModel.columns.get(3).getName(),"c");
+  Assert.assertEquals(project.columnModel.columns.get(4).getName(),"d");
+  Assert.assertEquals(project.rows.size(),3);
+  Assert.assertEquals(project.rows.get(0).cells.size(),5);
+  Assert.assertEquals(project.rows.get(1).cells.size(),5);
+  Assert.assertEquals(project.rows.get(2).cells.size(),5);
+  Assert.assertEquals(project.rows.get(0).cells.get(0).value,"data1");
+  Assert.assertEquals(project.rows.get(0).cells.get(1).value,"data2");
+  Assert.assertEquals(project.rows.get(0).cells.get(2).value,"data3");
+}

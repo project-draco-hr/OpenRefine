@@ -1,0 +1,15 @@
+{
+  ButterflyModule module=servlet.getModule(modname);
+  JSONObject json=null;
+  File langFile=new File(module.getPath(),"langs" + File.separator + "translation-"+ lang+ ".json");
+  try {
+    Reader reader=new BufferedReader(new InputStreamReader(new FileInputStream(langFile),"UTF-8"));
+    json=new JSONObject(new JSONTokener(reader));
+  }
+ catch (  FileNotFoundException e1) {
+  }
+catch (  JSONException e) {
+    logger.error("JSON error reading/writing language file: " + langFile,e);
+  }
+  return json;
+}

@@ -1,0 +1,3 @@
+Fusiontables service
+String tableName
+List<Exception> exceptions

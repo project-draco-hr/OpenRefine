@@ -35,5 +35,7 @@
     writer.endObject();
   }
   writer.endArray();
+  writer.key("limit");
+  writer.value(limit);
   writer.endObject();
 }

@@ -1,9 +1,3 @@
 {
-  this.service=service;
-  this.identifierSpace=identifierSpace;
-  this.schemaSpace=schemaSpace;
-  this.typeID=typeID;
-  this.typeName=typeName;
-  this.autoMatch=autoMatch;
-  this.columnDetails=columnDetails;
+  this(service,identifierSpace,schemaSpace,typeID,typeName,autoMatch,columnDetails,0);
 }

@@ -1,0 +1,38 @@
+{
+  String docUrlString=JSONUtilities.getString(options,"docUrl",null);
+  String id=getFTid(docUrlString);
+  try {
+    List<FTColumnData> columns=new ArrayList<FusionTableImporter.FTColumnData>();
+    Table table=service.table().get(id).execute();
+    for (    Column col : table.getColumns()) {
+      FTColumnData cd=new FTColumnData();
+      cd.name=col.getName();
+      String type=col.getType();
+      if (type.equals("STRING")) {
+        cd.type=FTColumnType.STRING;
+      }
+ else       if (type.equals("NUMBER")) {
+        cd.type=FTColumnType.NUMBER;
+      }
+ else       if (type.equals("DATETIME")) {
+        cd.type=FTColumnType.DATETIME;
+      }
+ else       if (type.equals("LOCATION")) {
+        cd.type=FTColumnType.LOCATION;
+      }
+ else {
+        cd.type=FTColumnType.STRING;
+      }
+      columns.add(cd);
+    }
+    setProgress(job,docUrlString,-1);
+    JSONUtilities.safePut(options,"ignoreLines",0);
+    JSONUtilities.safePut(options,"headerLines",1);
+    TabularImportingParserBase.readTable(project,metadata,job,new FusionTableBatchRowReader(job,docUrlString,service,id,columns,100),docUrlString,limit,options,exceptions);
+    setProgress(job,docUrlString,100);
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+    exceptions.add(e);
+  }
+}

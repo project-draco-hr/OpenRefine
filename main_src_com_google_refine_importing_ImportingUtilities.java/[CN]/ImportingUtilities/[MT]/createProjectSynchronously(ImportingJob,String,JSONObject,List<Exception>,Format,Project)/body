@@ -6,17 +6,16 @@
     encoding="UTF-8";
   }
   pm.setEncoding(encoding);
-  record.parser.parse(project,pm,job,getSelectedFileRecords(job),format,-1,optionObj,exceptions);
+  record.parser.parse(project,pm,job,job.getSelectedFileRecords(),format,-1,optionObj,exceptions);
   if (!job.canceled) {
     if (exceptions.size() == 0) {
       project.update();
       ProjectManager.singleton.registerProject(project,pm);
-      JSONUtilities.safePut(job.config,"projectID",project.id);
-      JSONUtilities.safePut(job.config,"state","created-project");
+      job.setProjectID(project.id);
+      job.setState("created-project");
     }
  else {
-      JSONUtilities.safePut(job.config,"state","error");
-      JSONUtilities.safePut(job.config,"errors",DefaultImportingController.convertErrorsToJsonArray(exceptions));
+      job.setError(exceptions);
     }
     job.touch();
     job.updating=false;

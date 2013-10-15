@@ -1,5 +1,0 @@
-{
-  GDataRequest request=createFusionTablesRequest(service,RequestType.QUERY,selectQuery);
-  request.execute();
-  return parseFusionTablesResults(request);
-}

@@ -1,6 +1,6 @@
 {
   StringReader reader=new StringReader(SAMPLE_ROW);
-  prepareOptions(",",-1,0,0,0,true,true,true);
+  prepareOptions(",",-1,0,0,0,true,true);
   try {
     parseOneFile(SUT,reader);
   }

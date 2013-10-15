@@ -1,5 +1,11 @@
 {
   Assert.assertTrue(invoke("toString") instanceof EvalError);
-  Assert.assertTrue(invoke("toString",(Object)null) instanceof EvalError);
+  Assert.assertEquals(invoke("toString",(Object)null),"null");
+  Assert.assertEquals(invoke("toString",Long.valueOf(100)),"100");
   Assert.assertEquals(invoke("toString",Double.valueOf(100.0)),"100.0");
+  Assert.assertEquals(invoke("toString",Double.valueOf(100.0),"%.0f"),"100");
+  Assert.assertEquals(invoke("toString",CalendarParser.parse("2013-06-01")),"Jun 1, 2013");
+  Assert.assertEquals(invoke("toString",CalendarParser.parse("2013-06-01").getTime()),"Jun 1, 2013");
+  Assert.assertEquals(invoke("toString",CalendarParser.parse("2013-06-01"),"yyyy"),"2013");
+  Assert.assertEquals(invoke("toString",CalendarParser.parse("2013-06-01"),"yyyy-MM-dd"),"2013-06-01");
 }

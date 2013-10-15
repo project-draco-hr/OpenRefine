@@ -1,6 +1,8 @@
 {
-  writer.object();
-  writer.key("config");
-  writer.value(config);
-  writer.endObject();
+synchronized (lock) {
+    writer.object();
+    writer.key("config");
+    writer.value(config);
+    writer.endObject();
+  }
 }

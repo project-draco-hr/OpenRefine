@@ -1,0 +1,6 @@
+ImportingJob job
+String fileSource
+Fusiontables service
+String tableId
+List<FTColumnData> columns
+int batchSize

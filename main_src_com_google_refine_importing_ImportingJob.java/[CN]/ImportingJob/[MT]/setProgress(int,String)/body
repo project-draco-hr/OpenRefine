@@ -1,0 +1,13 @@
+{
+synchronized (config) {
+    JSONObject progress=JSONUtilities.getObject(config,"progress");
+    if (progress == null) {
+      progress=new JSONObject();
+      JSONUtilities.safePut(config,"progress",progress);
+    }
+    JSONUtilities.safePut(progress,"message",message);
+    JSONUtilities.safePut(progress,"percent",percent);
+    JSONUtilities.safePut(progress,"memory",Runtime.getRuntime().totalMemory() / 1000000);
+    JSONUtilities.safePut(progress,"maxmemory",Runtime.getRuntime().maxMemory() / 1000000);
+  }
+}

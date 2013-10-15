@@ -1,0 +1,32 @@
+{
+  String modname=request.getParameter("module");
+  if (modname == null) {
+    modname="core";
+  }
+  ButterflyModule module=this.servlet.getModule(modname);
+  try {
+    response.setCharacterEncoding("UTF-8");
+    response.setHeader("Content-Type","application/json");
+    JSONWriter writer=new JSONWriter(response.getWriter());
+    writer.object();
+    writer.key("languages");
+    writer.array();
+    writeLangData(writer,"en","English");
+    FileFilter fileFilter=new WildcardFileFilter("translation-*.json");
+    for (    File file : new File(module.getPath() + File.separator + "langs").listFiles(fileFilter)) {
+      String lang=file.getName().split("-")[1].split("\\.")[0];
+      if (!"en".equals(lang) && !"default".equals(lang)) {
+        JSONObject json=LoadLanguageCommand.loadLanguage(this.servlet,"core",lang);
+        if (json != null) {
+          String label=json.getString("name");
+          writeLangData(writer,lang,label);
+        }
+      }
+    }
+    writer.endArray();
+    writer.endObject();
+  }
+ catch (  JSONException e) {
+    respondException(response,e);
+  }
+}

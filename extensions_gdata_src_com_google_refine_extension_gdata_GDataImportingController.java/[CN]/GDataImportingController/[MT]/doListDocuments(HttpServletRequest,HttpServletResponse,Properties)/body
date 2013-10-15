@@ -12,13 +12,18 @@
     writer.array();
     try {
       listSpreadsheets(GDataExtension.getDocsService(token),writer);
-      listFusionTables(GDataExtension.getFusionTablesGoogleService(token),writer);
+      listFusionTables(FusionTableHandler.getFusionTablesService(token),writer);
     }
- catch (    ServiceException e) {
+ catch (    AuthenticationException e) {
+      TokenCookie.deleteToken(request,response);
+    }
+catch (    ServiceException e) {
       e.printStackTrace();
     }
-    writer.endArray();
-    writer.endObject();
+ finally {
+      writer.endArray();
+      writer.endObject();
+    }
   }
  catch (  JSONException e) {
     throw new ServletException(e);

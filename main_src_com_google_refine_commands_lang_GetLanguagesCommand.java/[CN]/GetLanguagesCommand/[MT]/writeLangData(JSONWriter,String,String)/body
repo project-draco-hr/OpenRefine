@@ -1,0 +1,8 @@
+{
+  writer.object();
+  writer.key("code");
+  writer.value(lang);
+  writer.key("label");
+  writer.value(label);
+  writer.endObject();
+}

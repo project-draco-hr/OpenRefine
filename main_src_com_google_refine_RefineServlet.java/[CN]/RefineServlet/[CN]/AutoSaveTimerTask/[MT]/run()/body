@@ -2,9 +2,6 @@
   try {
     ProjectManager.singleton.save(false);
   }
-  finally {
-    if (_timer != null) {
-      _timer.schedule(new AutoSaveTimerTask(),s_autoSavePeriod);
-    }
+ catch (  final Throwable e) {
   }
 }

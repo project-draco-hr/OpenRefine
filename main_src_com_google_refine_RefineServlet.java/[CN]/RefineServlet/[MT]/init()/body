@@ -20,6 +20,6 @@
   s_dataDir=new File(data);
   FileProjectManager.initialize(s_dataDir);
   ImportingManager.initialize(this);
-  _timer.schedule(new AutoSaveTimerTask(),s_autoSavePeriod);
+  service.scheduleWithFixedDelay(new AutoSaveTimerTask(),AUTOSAVE_PERIOD,AUTOSAVE_PERIOD,TimeUnit.MINUTES);
   logger.trace("< initialize");
 }

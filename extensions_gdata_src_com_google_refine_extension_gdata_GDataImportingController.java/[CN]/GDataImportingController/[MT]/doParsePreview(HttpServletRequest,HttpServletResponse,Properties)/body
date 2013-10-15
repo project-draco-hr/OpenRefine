@@ -8,7 +8,6 @@
   }
   job.updating=true;
   try {
-    job.config=new JSONObject();
     JSONObject optionObj=ParsingUtilities.evaluateJsonStringToObject(request.getParameter("options"));
     List<Exception> exceptions=new LinkedList<Exception>();
     job.prepareNewProject();

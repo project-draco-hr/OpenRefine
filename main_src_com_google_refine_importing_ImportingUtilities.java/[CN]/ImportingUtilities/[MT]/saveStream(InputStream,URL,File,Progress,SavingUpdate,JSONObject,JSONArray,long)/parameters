@@ -1,0 +1,8 @@
+InputStream stream
+URL url
+File rawDataDir
+Progress progress
+SavingUpdate update
+JSONObject fileRecord
+JSONArray fileRecords
+long length

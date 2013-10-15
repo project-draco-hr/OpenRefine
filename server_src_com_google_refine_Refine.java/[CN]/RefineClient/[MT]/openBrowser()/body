@@ -1,4 +1,7 @@
 {
+  if (!Desktop.isDesktopSupported()) {
+    logger.warn("Java Desktop class not supported on this platform.  Please open %s in your browser",uri.toString());
+  }
   try {
     Desktop.getDesktop().browse(uri);
   }

@@ -1,0 +1,5 @@
+{
+synchronized (config) {
+    return JSONUtilities.getObject(config,"retrievalRecord");
+  }
+}

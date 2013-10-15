@@ -5,4 +5,7 @@
   this.operation=operation;
   this.time=time;
   this._manager=ProjectManager.singleton.getHistoryEntryManager();
+  if (this._manager == null) {
+    logger.error("Failed to get history entry manager from project manager: " + ProjectManager.singleton);
+  }
 }

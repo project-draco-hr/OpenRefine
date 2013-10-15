@@ -42,30 +42,56 @@
       return new EvalError("Cannot parse to date");
     }
   }
+  Locale locale=Locale.getDefault();
   if (args.length >= 2) {
     for (int i=1; i < args.length; i++) {
       if (!(args[i] instanceof String)) {
         continue;
       }
-      String format=(String)args[i];
-      SimpleDateFormat formatter;
+      String format=StringUtils.trim((String)args[i]);
+      DateFormat formatter;
+      if (i == 1) {
+        Locale possibleLocale;
+        int c=format.indexOf('_');
+        if (c > 0) {
+          possibleLocale=new Locale(format.substring(0,c),format.substring(c + 1));
+        }
+ else {
+          possibleLocale=new Locale(format);
+        }
+        boolean valid=false;
+        for (        Locale l : DateFormat.getAvailableLocales()) {
+          if (l.equals(possibleLocale)) {
+            locale=possibleLocale;
+            valid=true;
+            break;
+          }
+        }
+        if (valid) {
+          if (args.length == 2) {
+            formatter=DateFormat.getDateInstance(DateFormat.DEFAULT,locale);
+            formatter.setLenient(true);
+            GregorianCalendar date=parse(o1,formatter);
+            if (date != null) {
+              return date;
+            }
+ else {
+              return new EvalError("Unable to parse as date");
+            }
+          }
+          continue;
+        }
+      }
       try {
-        formatter=new SimpleDateFormat(format);
+        formatter=new SimpleDateFormat(format,locale);
       }
  catch (      IllegalArgumentException e) {
         return new EvalError("Unknown date format");
       }
-      Date date=null;
-      try {
-        date=formatter.parse(o1);
-      }
- catch (      java.text.ParseException e) {
-        continue;
-      }
+      formatter.setLenient(true);
+      GregorianCalendar date=parse(o1,formatter);
       if (date != null) {
-        GregorianCalendar c=new GregorianCalendar();
-        c.setTime(date);
-        return c;
+        return date;
       }
     }
     return new EvalError("Unable to parse as date");

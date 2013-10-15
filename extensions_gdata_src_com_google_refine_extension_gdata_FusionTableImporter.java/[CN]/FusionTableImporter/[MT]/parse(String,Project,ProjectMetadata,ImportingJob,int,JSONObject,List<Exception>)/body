@@ -1,0 +1,4 @@
+{
+  Fusiontables service=FusionTableHandler.getFusionTablesService(token);
+  parse(service,project,metadata,job,limit,options,exceptions);
+}

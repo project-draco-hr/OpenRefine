@@ -1,9 +1,4 @@
 {
-  this.id=id;
-  this.projectID=project.id;
-  this.description=description;
-  this.operation=operation;
-  this.time=new Date();
-  this._manager=ProjectManager.singleton.getHistoryEntryManager();
+  this(id,project.id,description,operation,new Date());
   setChange(change);
 }

@@ -1,6 +1,0 @@
-ImportingJob job
-String fileSource
-GoogleService service
-String tableId
-List<FTColumnData> columns
-int batchSize

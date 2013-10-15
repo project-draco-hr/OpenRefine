@@ -1,0 +1,3 @@
+{
+  return "OpenRefine/" + FULL_VERSION;
+}

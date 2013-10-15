@@ -1,8 +1,8 @@
 {
-  JSONUtilities.safePut(job.config,"fileSelection",fileSelectionArray);
+  job.setFileSelection(fileSelectionArray);
   String bestFormat=ImportingUtilities.getCommonFormatForSelectedFiles(job,fileSelectionArray);
   bestFormat=ImportingUtilities.guessBetterFormat(job,bestFormat);
   JSONArray rankedFormats=new JSONArray();
-  JSONUtilities.safePut(job.config,"rankedFormats",rankedFormats);
   ImportingUtilities.rankFormats(job,bestFormat,rankedFormats);
+  job.setRankedFormats(rankedFormats);
 }

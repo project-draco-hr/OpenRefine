@@ -2,8 +2,8 @@
   try {
     AbstractInputStreamContent content=ByteArrayContent.fromString("application/octet-stream",sbBatch.toString());
     Long count=FusionTableHandler.insertRows(service,tableId,content);
-    if (count != BATCH_SIZE) {
-      exceptions.add(new IOException("only imported %d of %d rows"));
+    if (!isLastChunk && count != BATCH_SIZE) {
+      exceptions.add(new IOException("Only imported %d of %d rows"));
     }
   }
  catch (  IOException e) {

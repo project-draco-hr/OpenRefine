@@ -2,7 +2,9 @@
   long id;
 synchronized (jobIdLock) {
     ++jobIdCounter;
-    if (jobIdCounter < 0)     jobIdCounter=1;
+    if (jobIdCounter < 0) {
+      jobIdCounter=1;
+    }
     id=jobIdCounter;
   }
   File jobDir=new File(getImportDir(),Long.toString(id));

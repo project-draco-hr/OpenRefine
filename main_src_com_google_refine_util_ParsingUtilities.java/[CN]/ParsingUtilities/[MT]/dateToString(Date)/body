@@ -1,3 +1,3 @@
 {
-  return ISO8601_FORMAT.format(d);
+  return ISO8601_FORMAT.get().format(d);
 }

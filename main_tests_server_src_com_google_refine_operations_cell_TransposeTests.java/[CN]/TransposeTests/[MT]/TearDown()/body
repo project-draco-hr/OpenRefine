@@ -1,0 +1,9 @@
+{
+  ImportingManager.disposeJob(job.id);
+  ProjectManager.singleton.deleteProject(project.id);
+  job=null;
+  metadata=null;
+  project=null;
+  options=null;
+  importer=null;
+}

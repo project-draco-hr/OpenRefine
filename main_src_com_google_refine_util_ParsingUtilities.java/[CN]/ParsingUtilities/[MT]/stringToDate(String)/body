@@ -1,6 +1,6 @@
 {
   try {
-    return ISO8601_FORMAT.parse(s);
+    return ISO8601_FORMAT.get().parse(s);
   }
  catch (  ParseException e) {
     return null;

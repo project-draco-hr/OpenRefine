@@ -11,6 +11,6 @@
     return _function.call(bindings,args);
   }
  catch (  Exception e) {
-    return new EvalError(e.toString());
+    return new EvalError(e);
   }
 }

@@ -23,7 +23,7 @@
             }
           }
         }
-        return new CellAtRow(urlData.row,new Cell(ParsingUtilities.inputStreamToString(is,encoding != null ? encoding : "UTF-8"),null));
+        return new CellAtRow(urlData.row,new Cell(ParsingUtilities.inputStreamToString(is,(encoding == null) || (encoding.equalsIgnoreCase("\"UTF-8\"")) ? "UTF-8" : encoding),null));
       }
   finally {
         is.close();

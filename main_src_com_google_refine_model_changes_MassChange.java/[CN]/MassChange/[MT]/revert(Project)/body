@@ -1,6 +1,6 @@
 {
 synchronized (project) {
-    for (    Change change : _changes) {
+    for (    Change change : Lists.reverse(_changes)) {
       change.revert(project);
     }
     if (_updateRowContextDependencies) {

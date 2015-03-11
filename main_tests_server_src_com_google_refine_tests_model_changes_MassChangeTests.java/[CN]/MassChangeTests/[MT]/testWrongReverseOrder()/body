@@ -1,0 +1,9 @@
+{
+  List<Change> changes=new ArrayList<Change>();
+  changes.add(new ColumnAdditionChange("a",0,new ArrayList<CellAtRow>()));
+  changes.add(new ColumnAdditionChange("b",1,new ArrayList<CellAtRow>()));
+  MassChange massChange=new MassChange(changes,false);
+  massChange.apply(project);
+  massChange.revert(project);
+  assertTrue(project.columnModel.columns.isEmpty());
+}

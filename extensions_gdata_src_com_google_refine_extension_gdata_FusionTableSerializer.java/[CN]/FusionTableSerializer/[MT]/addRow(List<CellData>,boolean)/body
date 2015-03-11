@@ -19,7 +19,7 @@
     formatCsv(cells,sbBatch);
     rows++;
     if (rows % BATCH_SIZE == 0) {
-      if (!sendBatch(false)) {
+      if (!sendBatch(BATCH_SIZE)) {
         return;
       }
     }

@@ -1,5 +1,5 @@
 {
   String authorizedUrl=makeRedirectUrl(module,request);
-  GoogleAuthorizationCodeRequestUrl url=new GoogleAuthorizationCodeRequestUrl(CLIENT_ID,authorizedUrl,Arrays.asList("https://www.googleapis.com/auth/fusiontables","https://docs.google.com/feeds","https://spreadsheets.google.com/feeds"));
+  GoogleAuthorizationCodeRequestUrl url=new GoogleAuthorizationCodeRequestUrl(CLIENT_ID,authorizedUrl,Arrays.asList("https://www.googleapis.com/auth/fusiontables","https://www.googleapis.com/auth/drive","https://spreadsheets.google.com/feeds"));
   return url.toString();
 }

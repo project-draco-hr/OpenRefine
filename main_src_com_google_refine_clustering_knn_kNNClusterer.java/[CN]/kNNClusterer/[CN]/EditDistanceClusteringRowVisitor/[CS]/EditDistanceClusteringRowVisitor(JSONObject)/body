@@ -1,0 +1,11 @@
+{
+  try {
+    JSONObject params=o.getJSONObject("params");
+    _radius=params.getInt("radius");
+    logger.debug("Use radius: {}",_radius);
+  }
+ catch (  JSONException e) {
+    logger.debug("No parameters found, using defaults");
+  }
+  _clusterer=new EditDistanceClusterer(_radius);
+}

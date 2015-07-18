@@ -3,7 +3,6 @@
     JSONObject firstFileRecord=fileRecords.get(0);
     File file=ImportingUtilities.getFile(job,firstFileRecord);
     File tempFile=new File(file.getAbsolutePath() + ".xml");
-    JSONUtilities.safePut(firstFileRecord,"location",JSONUtilities.getString(firstFileRecord,"location","") + ".xml");
     try {
       InputStream inputStream=new FileInputStream(file);
       OutputStream outputStream=new FileOutputStream(tempFile);
@@ -20,7 +19,8 @@
         try {
           outputStream.close();
           inputStream.close();
-          file.delete();
+          if (tempFile.length() == 0)           tempFile.delete();
+ else           JSONUtilities.safePut(firstFileRecord,"location",JSONUtilities.getString(firstFileRecord,"location","") + ".xml");
         }
  catch (        IOException e) {
         }

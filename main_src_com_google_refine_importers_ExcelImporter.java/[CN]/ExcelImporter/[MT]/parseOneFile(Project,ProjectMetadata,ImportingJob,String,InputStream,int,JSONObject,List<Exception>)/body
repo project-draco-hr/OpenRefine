@@ -1,8 +1,10 @@
 {
-  boolean xmlBased=JSONUtilities.getBoolean(options,"xmlBased",false);
   Workbook wb=null;
+  if (!inputStream.markSupported()) {
+    inputStream=new PushbackInputStream(inputStream,8);
+  }
   try {
-    wb=xmlBased ? new XSSFWorkbook(inputStream) : new HSSFWorkbook(new POIFSFileSystem(inputStream));
+    wb=POIXMLDocument.hasOOXMLHeader(inputStream) ? new XSSFWorkbook(inputStream) : new HSSFWorkbook(new POIFSFileSystem(inputStream));
   }
  catch (  IOException e) {
     exceptions.add(new ImportException("Attempted to parse as an Excel file but failed. " + "Try to use Excel to re-save the file as a different Excel version or as TSV and upload again.",e));

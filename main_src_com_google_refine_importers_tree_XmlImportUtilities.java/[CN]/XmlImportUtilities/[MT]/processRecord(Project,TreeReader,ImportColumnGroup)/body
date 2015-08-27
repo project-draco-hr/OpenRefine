@@ -1,3 +1,0 @@
-{
-  processRecord(project,parser,rootColumnGroup,true,false,true);
-}

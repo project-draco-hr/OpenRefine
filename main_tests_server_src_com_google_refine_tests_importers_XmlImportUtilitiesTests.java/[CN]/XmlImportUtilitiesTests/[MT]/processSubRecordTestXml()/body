@@ -3,7 +3,7 @@
   createXmlParser();
   ParserSkip();
   try {
-    SUT.ProcessSubRecordWrapper(project,parser,columnGroup,record,0);
+    SUT.ProcessSubRecordWrapper(project,parser,columnGroup,record,0,new ImportParameters(false,false,false));
   }
  catch (  Exception e) {
     Assert.fail();

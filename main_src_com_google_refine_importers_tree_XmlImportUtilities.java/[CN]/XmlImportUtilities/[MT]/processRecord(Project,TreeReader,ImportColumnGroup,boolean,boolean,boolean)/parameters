@@ -1,6 +1,0 @@
-Project project
-TreeReader parser
-ImportColumnGroup rootColumnGroup
-boolean trimStrings
-boolean storeEmptyStrings
-boolean guessDataType

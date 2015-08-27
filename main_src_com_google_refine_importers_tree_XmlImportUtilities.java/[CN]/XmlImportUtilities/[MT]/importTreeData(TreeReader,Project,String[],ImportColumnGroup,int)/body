@@ -1,3 +1,0 @@
-{
-  importTreeData(parser,project,recordPath,rootColumnGroup,limit,true,false,true);
-}

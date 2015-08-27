@@ -3,7 +3,7 @@
   createXmlParser();
   ParserSkip();
   try {
-    SUT.processRecordWrapper(project,parser,columnGroup);
+    SUT.processRecordWrapper(project,parser,columnGroup,false,false,false);
   }
  catch (  Exception e) {
     Assert.fail();

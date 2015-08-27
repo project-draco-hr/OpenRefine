@@ -15,5 +15,16 @@
   boolean trimStrings=JSONUtilities.getBoolean(options,"trimStrings",true);
   boolean storeEmptyStrings=JSONUtilities.getBoolean(options,"storeEmptyStrings",false);
   boolean guessCellValueTypes=JSONUtilities.getBoolean(options,"guessCellValueTypes",true);
-  XmlImportUtilities.importTreeData(treeParser,project,recordPath,rootColumnGroup,limit2,trimStrings,storeEmptyStrings,guessCellValueTypes);
+  boolean includeFileSources=JSONUtilities.getBoolean(options,"includeFileSources",false);
+  String fileNameColumnName="File";
+  if (includeFileSources) {
+    if (project.columnModel.getColumnByName(fileNameColumnName) == null) {
+      try {
+        project.columnModel.addColumn(0,new Column(project.columnModel.allocateNewCellIndex(),fileNameColumnName),false);
+      }
+ catch (      ModelException e) {
+      }
+    }
+  }
+  XmlImportUtilities.importTreeData(treeParser,project,recordPath,rootColumnGroup,limit2,new ImportParameters(trimStrings,storeEmptyStrings,guessCellValueTypes,includeFileSources,fileSource));
 }

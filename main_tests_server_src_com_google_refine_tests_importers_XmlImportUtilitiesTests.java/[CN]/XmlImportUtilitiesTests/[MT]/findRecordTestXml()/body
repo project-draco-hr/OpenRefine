@@ -5,7 +5,7 @@
   String[] recordPath=new String[]{"library","book"};
   int pathIndex=0;
   try {
-    SUT.findRecordWrapper(project,parser,recordPath,pathIndex,columnGroup);
+    SUT.findRecordWrapper(project,parser,recordPath,pathIndex,columnGroup,false,false,false);
   }
  catch (  Exception e) {
     Assert.fail();

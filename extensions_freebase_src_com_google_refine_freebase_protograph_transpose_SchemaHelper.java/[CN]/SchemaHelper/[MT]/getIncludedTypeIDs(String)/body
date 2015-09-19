@@ -1,4 +1,0 @@
-{
-  ensureType(typeID);
-  return types.get(typeID).includedTypes;
-}

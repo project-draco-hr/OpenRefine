@@ -1,9 +1,0 @@
-{
-  if (args.length == 1) {
-    Object o1=args[0];
-    if (o1 != null && o1 instanceof String) {
-      return mqlKeyQuote((String)o1);
-    }
-  }
-  return null;
-}

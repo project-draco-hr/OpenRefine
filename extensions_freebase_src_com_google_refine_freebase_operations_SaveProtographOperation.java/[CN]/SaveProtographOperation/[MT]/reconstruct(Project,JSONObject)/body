@@ -1,3 +1,0 @@
-{
-  return new SaveProtographOperation(Protograph.reconstruct(obj.getJSONObject("protograph")));
-}

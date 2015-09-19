@@ -1,7 +1,0 @@
-{
-  if (obj == null) {
-    return null;
-  }
-  FreebaseType type=new FreebaseType(obj.getString("id"),obj.getString("name"));
-  return type;
-}

@@ -1,5 +1,0 @@
-{
-  this.parent=parent;
-  this.property=property;
-  this.node=node;
-}

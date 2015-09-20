@@ -1,8 +1,0 @@
-TreeReader parser
-Project project
-String[] recordPath
-ImportColumnGroup rootColumnGroup
-int limit
-boolean trimStrings
-boolean storeEmptyStrings
-boolean guessDataType

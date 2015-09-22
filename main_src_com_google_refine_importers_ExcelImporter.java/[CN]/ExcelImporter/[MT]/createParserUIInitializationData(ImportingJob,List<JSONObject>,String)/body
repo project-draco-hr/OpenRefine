@@ -1,7 +1,5 @@
 {
   JSONObject options=super.createParserUIInitializationData(job,fileRecords,format);
-  boolean xmlBased="text/xml/xlsx".equals(format);
-  JSONUtilities.safePut(options,"xmlBased",xmlBased);
   JSONArray sheetRecords=new JSONArray();
   JSONUtilities.safePut(options,"sheetRecords",sheetRecords);
   try {
@@ -9,8 +7,11 @@
       JSONObject firstFileRecord=fileRecords.get(0);
       File file=ImportingUtilities.getFile(job,firstFileRecord);
       InputStream is=new FileInputStream(file);
+      if (!is.markSupported()) {
+        is=new PushbackInputStream(is,8);
+      }
       try {
-        Workbook wb=xmlBased ? new XSSFWorkbook(is) : new HSSFWorkbook(new POIFSFileSystem(is));
+        Workbook wb=POIXMLDocument.hasOOXMLHeader(is) ? new XSSFWorkbook(is) : new HSSFWorkbook(new POIFSFileSystem(is));
         int sheetCount=wb.getNumberOfSheets();
         boolean hasData=false;
         for (int i=0; i < sheetCount; i++) {

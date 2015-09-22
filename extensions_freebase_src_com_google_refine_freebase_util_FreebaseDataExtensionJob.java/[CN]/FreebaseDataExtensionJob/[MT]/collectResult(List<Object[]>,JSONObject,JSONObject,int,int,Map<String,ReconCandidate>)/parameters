@@ -1,6 +1,0 @@
-List<Object[]> rows
-JSONObject extNode
-JSONObject resultNode
-int startRowIndex
-int startColumnIndex
-Map<String,ReconCandidate> reconCandidateMap

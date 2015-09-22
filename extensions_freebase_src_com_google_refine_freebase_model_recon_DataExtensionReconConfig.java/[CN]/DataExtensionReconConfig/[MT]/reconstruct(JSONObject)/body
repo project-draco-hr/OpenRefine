@@ -1,4 +1,0 @@
-{
-  JSONObject type=obj.getJSONObject("type");
-  return new DataExtensionReconConfig(new FreebaseType(type.getString("id"),type.getString("name")));
-}

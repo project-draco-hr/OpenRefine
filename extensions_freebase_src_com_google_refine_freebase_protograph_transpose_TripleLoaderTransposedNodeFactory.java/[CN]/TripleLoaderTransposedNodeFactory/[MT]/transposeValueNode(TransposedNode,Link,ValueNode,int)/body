@@ -1,8 +1,0 @@
-{
-  WritingTransposedNode parentNode2=(WritingTransposedNode)parentNode;
-  WritingTransposedNode tnode=new ValueTransposedNode(node);
-  tnode.load=(parentNode2 == null || parentNode2.load) && (link == null || link.load);
-  processTransposedNode(tnode,parentNode,link,rowIndex);
-  tnode.jsonContextNode=addJsonContext(parentNode2 != null ? parentNode2.jsonContextNode : null,link != null ? link.property.id : null,node.value);
-  return tnode;
-}

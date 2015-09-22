@@ -1,4 +1,0 @@
-WritingTransposedNode tnode
-TransposedNode parentNode
-Link link
-int rowIndex

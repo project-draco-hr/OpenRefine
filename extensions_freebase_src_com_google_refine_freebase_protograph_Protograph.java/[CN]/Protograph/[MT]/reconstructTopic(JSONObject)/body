@@ -1,3 +1,0 @@
-{
-  return new FreebaseTopic(o.getString("id"),o.getString("name"));
-}

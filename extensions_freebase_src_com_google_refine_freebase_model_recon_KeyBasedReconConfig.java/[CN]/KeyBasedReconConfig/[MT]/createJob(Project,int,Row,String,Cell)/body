@@ -1,5 +1,0 @@
-{
-  KeyBasedReconJob job=new KeyBasedReconJob();
-  job.key=cell.value.toString().replace(' ','_');
-  return job;
-}

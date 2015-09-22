@@ -1,6 +1,14 @@
 {
-  BlockingClusteringRowVisitor visitor=new BlockingClusteringRowVisitor(_distance,_config);
-  FilteredRows filteredRows=engine.getAllFilteredRows();
-  filteredRows.accept(_project,visitor);
-  _clusters=visitor.getClusters();
+  if (_distance != _distances.get("levenshtein")) {
+    BlockingClusteringRowVisitor visitor=new BlockingClusteringRowVisitor(_distance,_config);
+    FilteredRows filteredRows=engine.getAllFilteredRows();
+    filteredRows.accept(_project,visitor);
+    _clusters=visitor.getClusters();
+  }
+ else {
+    EditDistanceClusteringRowVisitor visitor=new EditDistanceClusteringRowVisitor(_config);
+    FilteredRows filteredRows=engine.getAllFilteredRows();
+    filteredRows.accept(_project,visitor);
+    _clusters=visitor.getClusters();
+  }
 }

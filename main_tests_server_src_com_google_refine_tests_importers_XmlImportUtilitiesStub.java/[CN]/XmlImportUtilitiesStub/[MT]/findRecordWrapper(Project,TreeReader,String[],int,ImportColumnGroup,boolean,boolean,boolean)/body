@@ -1,3 +1,3 @@
 {
-  super.findRecord(project,parser,recordPath,pathIndex,rootColumnGroup,-1,trimStrings,storeEmptyStrings,guessDataType);
+  super.findRecord(project,parser,recordPath,pathIndex,rootColumnGroup,-1,new ImportParameters(trimStrings,storeEmptyStrings,guessDataType));
 }

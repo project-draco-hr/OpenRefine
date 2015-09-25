@@ -1,0 +1,21 @@
+{
+  for (  List<Cell> row : record.rows) {
+    if (row.size() > 0) {
+      Row realRow=new Row(row.size());
+      ;
+      for (int c=0; c < row.size(); c++) {
+        if (c == 0 && includeFileSources) {
+          realRow.setCell(0,new Cell(fileSource,null));
+          continue;
+        }
+        Cell cell=row.get(c);
+        if (cell != null) {
+          realRow.setCell(c,cell);
+        }
+      }
+      if (realRow != null) {
+        project.rows.add(realRow);
+      }
+    }
+  }
+}

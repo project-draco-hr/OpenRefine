@@ -1,4 +1,0 @@
-CellTopicNode node
-int rowIndex
-int cellIndex
-Cell cell

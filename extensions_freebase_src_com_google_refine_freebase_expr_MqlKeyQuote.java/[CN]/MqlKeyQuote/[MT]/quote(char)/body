@@ -1,3 +1,0 @@
-{
-  return StringUtils.leftPad(Integer.toHexString(c).toUpperCase(),4,'0');
-}

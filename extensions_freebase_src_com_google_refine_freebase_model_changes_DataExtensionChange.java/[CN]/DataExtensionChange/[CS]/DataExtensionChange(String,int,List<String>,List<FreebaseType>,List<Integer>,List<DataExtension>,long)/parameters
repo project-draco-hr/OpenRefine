@@ -1,7 +1,0 @@
-String baseColumnName
-int columnInsertIndex
-List<String> columnNames
-List<FreebaseType> columnTypes
-List<Integer> rowIndices
-List<DataExtension> dataExtensions
-long historyEntryID

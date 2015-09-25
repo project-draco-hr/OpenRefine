@@ -1,3 +1,0 @@
-{
-  return internalWrite(subject,predicate,project,subjectRowIndex,subjectCellIndex,subjectCell);
-}

@@ -1,3 +1,0 @@
-{
-  return "Extend data at index " + _columnInsertIndex + " based on column "+ _baseColumnName;
-}

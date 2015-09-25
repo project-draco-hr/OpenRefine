@@ -1,8 +1,0 @@
-{
-  writer.object();
-  writer.key("id");
-  writer.value(id);
-  writer.key("name");
-  writer.value(name);
-  writer.endObject();
-}

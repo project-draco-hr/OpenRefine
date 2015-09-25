@@ -1,0 +1,5 @@
+boolean trimStrings
+boolean storeEmptyStrings
+boolean guessCellValueTypes
+boolean includeFileSources
+String fileSource

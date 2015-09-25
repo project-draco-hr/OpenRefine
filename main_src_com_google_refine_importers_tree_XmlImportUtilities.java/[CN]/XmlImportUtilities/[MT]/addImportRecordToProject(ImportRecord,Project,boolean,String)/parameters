@@ -1,0 +1,4 @@
+ImportRecord record
+Project project
+boolean includeFileSources
+String fileSource

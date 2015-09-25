@@ -1,4 +1,0 @@
-JSONObject obj
-List<ColumnInfo> columns
-List<String> names
-List<String> path

@@ -1,7 +1,0 @@
-{
-  String baseColumnName=request.getParameter("baseColumnName");
-  int columnInsertIndex=Integer.parseInt(request.getParameter("columnInsertIndex"));
-  String jsonString=request.getParameter("extension");
-  JSONObject extension=ParsingUtilities.evaluateJsonStringToObject(jsonString);
-  return new ExtendDataOperation(engineConfig,baseColumnName,extension,columnInsertIndex);
-}

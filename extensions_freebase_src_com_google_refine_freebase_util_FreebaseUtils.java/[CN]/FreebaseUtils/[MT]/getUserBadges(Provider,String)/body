@@ -1,4 +1,0 @@
-{
-  String query="{" + "'id' : '" + user_id + "',"+ "'!/type/usergroup/member' : [{"+ "'id' : null,"+ "'key' : [{"+ "'namespace' : null"+ "}]"+ "}]"+ "}".replace("'","\"");
-  return mqlread(provider,query);
-}

@@ -1,7 +1,3 @@
 {
-  this.trimStrings=trimStrings;
-  this.storeEmptyStrings=storeEmptyStrings;
-  this.guessDataType=guessCellValueTypes;
-  this.includeFileSources=false;
-  this.fileSource="";
+  this(trimStrings,storeEmptyStrings,guessCellValueTypes,false,"");
 }

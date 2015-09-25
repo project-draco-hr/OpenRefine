@@ -15,16 +15,9 @@
   boolean storeBlankRows=JSONUtilities.getBoolean(options,"storeBlankRows",true);
   boolean storeBlankCellsAsNulls=JSONUtilities.getBoolean(options,"storeBlankCellsAsNulls",true);
   boolean includeFileSources=JSONUtilities.getBoolean(options,"includeFileSources",false);
-  String fileNameColumnName="File";
+  int filenameColumnIndex=-1;
   if (includeFileSources) {
-    if (project.columnModel.getColumnByName(fileNameColumnName) == null) {
-      try {
-        project.columnModel.addColumn(0,new Column(project.columnModel.allocateNewCellIndex(),fileNameColumnName),false);
-      }
- catch (      ModelException e) {
-        logger.info("ModelException",e);
-      }
-    }
+    filenameColumnIndex=addFilenameColumn(project);
   }
   List<String> columnNames=new ArrayList<String>();
   boolean hasOurOwnColumnNames=headerLines > 0;
@@ -92,8 +85,8 @@
             }
           }
           if (rowHasData || storeBlankRows) {
-            if (includeFileSources) {
-              row.setCell(project.columnModel.getColumnByName(fileNameColumnName).getCellIndex(),new Cell(fileSource,null));
+            if (includeFileSources && filenameColumnIndex >= 0) {
+              row.setCell(filenameColumnIndex,new Cell(fileSource,null));
             }
             project.rows.add(row);
           }

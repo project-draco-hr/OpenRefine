@@ -35,7 +35,7 @@
       gridworksDir=new File(parentDir,"Gridworks");
     }
   }
- else   if (os.contains("mac os x")) {
+ else   if (os.contains("os x")) {
     String home=System.getProperty("user.home");
     String data_home=(home != null) ? home + "/Library/Application Support/OpenRefine" : ".openrefine";
     dataDir=new File(data_home);

@@ -1,4 +1,0 @@
-{
-  Change change=new ProtographChange(_protograph);
-  return new HistoryEntry(historyEntryID,project,getBriefDescription(project),SaveProtographOperation.this,change);
-}

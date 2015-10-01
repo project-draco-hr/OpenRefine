@@ -1,3 +1,0 @@
-{
-  findRecord(project,parser,recordPath,pathIndex,rootColumnGroup,limit,true,false,true);
-}

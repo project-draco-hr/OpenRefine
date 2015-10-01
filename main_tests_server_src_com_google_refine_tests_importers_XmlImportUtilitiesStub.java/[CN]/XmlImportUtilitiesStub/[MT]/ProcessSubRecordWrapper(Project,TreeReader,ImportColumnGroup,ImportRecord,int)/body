@@ -1,3 +1,0 @@
-{
-  super.processSubRecord(project,parser,columnGroup,record,level,false,true,false);
-}

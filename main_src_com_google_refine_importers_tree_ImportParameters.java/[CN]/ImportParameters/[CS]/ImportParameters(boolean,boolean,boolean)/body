@@ -1,0 +1,3 @@
+{
+  this(trimStrings,storeEmptyStrings,guessCellValueTypes,false,"");
+}

@@ -1,6 +1,0 @@
-{
-synchronized (project) {
-    _oldProtograph=(Protograph)project.overlayModels.get("freebaseProtograph");
-    project.overlayModels.put("freebaseProtograph",_newProtograph);
-  }
-}

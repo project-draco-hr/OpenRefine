@@ -1,8 +1,0 @@
-{
-  Protograph protograph=(Protograph)project.overlayModels.get("freebaseProtograph");
-  if (protograph != null) {
-    TransposedNodeFactory nodeFactory=createNodeFactory(project,writer);
-    Transposer.transpose(project,engine.getAllFilteredRows(),protograph,protograph.getRootNode(0),nodeFactory,-1);
-    nodeFactory.flush();
-  }
-}

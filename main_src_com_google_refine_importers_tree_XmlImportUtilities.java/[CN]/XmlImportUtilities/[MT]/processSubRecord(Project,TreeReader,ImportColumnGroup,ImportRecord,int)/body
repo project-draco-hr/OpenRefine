@@ -1,3 +1,0 @@
-{
-  processSubRecord(project,parser,columnGroup,record,level,true,false,true);
-}

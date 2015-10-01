@@ -1,3 +1,0 @@
-{
-  return new ExtendDataProcess(project,getEngineConfig(),getBriefDescription(null));
-}

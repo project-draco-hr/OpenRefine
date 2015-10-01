@@ -1,4 +1,0 @@
-{
-  String o="{" + "'sample_size':" + sample_size + ","+ "'votes':{"+ "'reconciled':"+ judges+ ","+ "'invalid':"+ judges+ ","+ "'new':"+ judges+ ","+ "'skip':"+ (judges + 2)+ "}"+ "}";
-  return o.replace('\'','"');
-}

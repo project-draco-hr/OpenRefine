@@ -1,5 +1,0 @@
-List<Integer> rowIndices
-List<DataExtension> dataExtensions
-int from
-int limit
-Map<String,ReconCandidate> reconCandidateMap

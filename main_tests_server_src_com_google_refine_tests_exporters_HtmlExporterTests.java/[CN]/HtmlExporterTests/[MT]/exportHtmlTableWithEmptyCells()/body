@@ -8,5 +8,5 @@
  catch (  IOException e) {
     Assert.fail();
   }
-  Assert.assertEquals(writer.toString(),"<html>\n" + "<head><title>" + TEST_PROJECT_NAME + "</title></head>\n"+ "<body>\n"+ "<table>\n"+ "<tr><th>column0</th><th>column1</th><th>column2</th></tr>\n"+ "<tr><td>row0cell0</td><td>row0cell1</td><td>row0cell2</td></tr>\n"+ "<tr><td>row1cell0</td><td></td><td>row1cell2</td></tr>\n"+ "<tr><td></td><td>row2cell1</td><td>row2cell2</td></tr>\n"+ "</table>\n"+ "</body>\n"+ "</html>\n");
+  Assert.assertEquals(writer.toString(),"<html>\n" + "<head>\n" + "<title>" + TEST_PROJECT_NAME + "</title>\n"+ "<meta charset=\"utf-8\" />\n"+ "</head>\n"+ "<body>\n"+ "<table>\n"+ "<tr><th>column0</th><th>column1</th><th>column2</th></tr>\n"+ "<tr><td>row0cell0</td><td>row0cell1</td><td>row0cell2</td></tr>\n"+ "<tr><td>row1cell0</td><td></td><td>row1cell2</td></tr>\n"+ "<tr><td></td><td>row2cell1</td><td>row2cell2</td></tr>\n"+ "</table>\n"+ "</body>\n"+ "</html>\n");
 }

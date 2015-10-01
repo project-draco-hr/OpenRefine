@@ -1,4 +1,5 @@
 {
+  this.s_functionName=String.format("__temp_%d__",Math.abs(s.hashCode()));
   String[] lines=s.split("\r\n|\r|\n");
   StringBuffer sb=new StringBuffer(1024);
   sb.append("def ");

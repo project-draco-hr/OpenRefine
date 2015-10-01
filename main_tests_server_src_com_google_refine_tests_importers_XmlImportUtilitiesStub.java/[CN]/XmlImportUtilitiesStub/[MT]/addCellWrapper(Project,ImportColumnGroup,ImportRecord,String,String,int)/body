@@ -1,3 +1,0 @@
-{
-  super.addCell(project,columnGroup,record,columnLocalName,text,false,true);
-}

@@ -1,8 +1,0 @@
-{
-  writer.object();
-  writer.key("mode");
-  writer.value("extend");
-  writer.key("type");
-  type.write(writer,options);
-  writer.endObject();
-}

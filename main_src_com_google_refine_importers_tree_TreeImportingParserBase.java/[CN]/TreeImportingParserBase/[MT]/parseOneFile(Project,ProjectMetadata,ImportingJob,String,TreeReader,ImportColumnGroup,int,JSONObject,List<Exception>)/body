@@ -1,19 +1,2 @@
 {
-  String[] recordPath=JSONUtilities.getStringArray(options,"recordPath");
-  int limit2=JSONUtilities.getInt(options,"limit",-1);
-  if (limit > 0) {
-    if (limit2 > 0) {
-      limit2=Math.min(limit,limit2);
-    }
- else {
-      limit2=limit;
-    }
-  }
-  if (limit2 == 0) {
-    limit2=-1;
-  }
-  boolean trimStrings=JSONUtilities.getBoolean(options,"trimStrings",true);
-  boolean storeEmptyStrings=JSONUtilities.getBoolean(options,"storeEmptyStrings",false);
-  boolean guessCellValueTypes=JSONUtilities.getBoolean(options,"guessCellValueTypes",true);
-  XmlImportUtilities.importTreeData(treeParser,project,recordPath,rootColumnGroup,limit2,trimStrings,storeEmptyStrings,guessCellValueTypes);
 }

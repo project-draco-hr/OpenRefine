@@ -112,5 +112,13 @@
   List<Column> allColumns=new ArrayList<Column>(unchangedColumns);
   allColumns.addAll(newColumns);
   allColumns.addAll(newNoteColumns);
+  int smallIndex=Math.min(keyColumnIndex,valueColumnIndex);
+  int bigIndex=Math.max(keyColumnIndex,valueColumnIndex);
+  project.columnModel.removeCellIndex(bigIndex);
+  project.columnModel.removeCellIndex(smallIndex);
+  for (  Row row : newRows) {
+    row.cells.remove(bigIndex);
+    row.cells.remove(smallIndex);
+  }
   return new HistoryEntry(historyEntryID,project,getBriefDescription(null),this,new MassRowColumnChange(allColumns,newRows));
 }

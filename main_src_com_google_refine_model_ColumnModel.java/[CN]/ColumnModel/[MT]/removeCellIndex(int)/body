@@ -1,0 +1,5 @@
+{
+  if (index > _maxCellIndex - 1)   return;
+  columns.remove(index);
+  _maxCellIndex--;
+}
